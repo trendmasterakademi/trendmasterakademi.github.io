@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "footer-quick": "Hızlı Linkler",
       "footer-warning-title": "Yasal Uyarı",
       "footer-warning-desc": "Trend Master Akademi bünyesinde verilen eğitimler, hazırlanan yazılımlar ve paylaşılan indikatör sinyalleri kesinlikle yatırım danışmanlığı kapsamında değildir. Finansal piyasalar yüksek risk içerir.",
-      "footer-copy": "&copy; 2026 Trend Master Akademi. Tüm Hakları Saklıdır.",
+      "footer-copy": "© 2026 Trend Master Akademi. Tüm Hakları Saklıdır.",
       
       // About Page Intro
       "about-badge": "Eğitim Metodolojimiz",
@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "footer-quick": "Quick Links",
       "footer-warning-title": "Disclaimer",
       "footer-warning-desc": "Trading education, indicators, and software provided by Trend Master Academy are not investment advice. Financial markets involve significant capital risks.",
-      "footer-copy": "&copy; 2026 Trend Master Academy. All Rights Reserved.",
+      "footer-copy": "© 2026 Trend Master Academy. All Rights Reserved.",
       
       // About Page Intro
       "about-badge": "Our Methodology",
