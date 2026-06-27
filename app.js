@@ -130,7 +130,36 @@ document.addEventListener('DOMContentLoaded', () => {
       "about-cta-title": "Birlikte Başaralım",
       "about-cta-desc": "Eğitim müfredatımız ve size en uygun birebir mentörlük saatleri hakkında detaylı bilgi almak için bizimle iletişime geçin.",
       "about-cta-btn1": "İletişim Formuna Git",
-      "about-cta-btn2": "WhatsApp Destek"
+      "about-cta-btn2": "WhatsApp Destek",
+
+      // Statistics Section
+      "stat-hours": "Saat Eğitim İçeriği",
+      "stat-students": "Aktif Öğrenci",
+      "stat-bots": "Bot & İndikatör Projesi",
+      "stat-satisfaction": "Memnuniyet Oranı",
+
+      // Testimonials Section
+      "testimonials-subtitle": "Öğrenci Deneyimleri",
+      "testimonials-title": "Öğrencilerimiz Ne Diyor?",
+      "testimonials-desc": "Eğitim programlarımızdan geçen yatırımcıların geri bildirimleri.",
+      "testimonial1-text": '"Pine Script konusunda sıfırdan başladım. 3 ay sonra kendi indikatörümü yazıp TradingView\'da yayınladım. Eğitim metodolojisi gerçekten çok sistematik ve anlaşılır."',
+      "testimonial1-name": "Ahmet K.",
+      "testimonial1-role": "Bireysel Yatırımcı — Pine Script Eğitimi",
+      "testimonial2-text": '"Risk yönetimi eğitimi hayatımı değiştirdi. Eskiden duygusal işlem yapıyordum, şimdi her pozisyonumda %1 risk kuralını uyguluyorum. Kayıplarım dramatik şekilde azaldı."',
+      "testimonial2-name": "Selin Y.",
+      "testimonial2-role": "Forex Trader — Mentörlük Programı",
+      "testimonial3-text": '"Algoritmik trading botumu TMA ekibiyle birlikte geliştirdik. Strateji mantığından API entegrasyonuna kadar her adımda profesyonel destek aldım. Şimdi botum 7/24 çalışıyor."',
+      "testimonial3-name": "Mehmet E.",
+      "testimonial3-role": "Kripto Trader — Bot Geliştirme",
+      "testimonial4-text": '"Smart Money Concepts eğitimi sayesinde piyasaya bakış açım tamamen değişti. Order Block ve FVG kavramlarını gerçek işlemlere nasıl uygulayacağımı artık çok iyi biliyorum."',
+      "testimonial4-name": "Deniz T.",
+      "testimonial4-role": "BIST Trader — SMC Eğitimi",
+
+      // Tech Band
+      "tech-band-label": "Kullandığımız Teknolojiler",
+
+      // WhatsApp FAB Tooltip
+      "fab-tooltip": "Bize WhatsApp'tan yazın!"
     },
     en: {
       "site-title": "Trend Master Academy | Algorithmic Trading and Financial Software Education",
@@ -258,7 +287,36 @@ document.addEventListener('DOMContentLoaded', () => {
       "about-cta-title": "Let's Succeed Together",
       "about-cta-desc": "Get detailed information about our curriculum and schedule the best 1-on-1 mentorship times that suit your calendar.",
       "about-cta-btn1": "Go to Contact Form",
-      "about-cta-btn2": "WhatsApp Support"
+      "about-cta-btn2": "WhatsApp Support",
+
+      // Statistics Section
+      "stat-hours": "Hours of Education Content",
+      "stat-students": "Active Students",
+      "stat-bots": "Bot & Indicator Projects",
+      "stat-satisfaction": "Satisfaction Rate",
+
+      // Testimonials Section
+      "testimonials-subtitle": "Student Experiences",
+      "testimonials-title": "What Our Students Say",
+      "testimonials-desc": "Feedback from traders who completed our education programs.",
+      "testimonial1-text": '"I started from zero in Pine Script. After 3 months, I wrote and published my own indicator on TradingView. The education methodology is truly systematic and easy to understand."',
+      "testimonial1-name": "Ahmet K.",
+      "testimonial1-role": "Individual Investor — Pine Script Training",
+      "testimonial2-text": '"Risk management training changed my life. I used to trade emotionally, now I apply the 1% risk rule on every position. My losses have decreased dramatically."',
+      "testimonial2-name": "Selin Y.",
+      "testimonial2-role": "Forex Trader — Mentorship Program",
+      "testimonial3-text": '"We developed my algorithmic trading bot together with the TMA team. I received professional support at every step from strategy logic to API integration. Now my bot runs 24/7."',
+      "testimonial3-name": "Mehmet E.",
+      "testimonial3-role": "Crypto Trader — Bot Development",
+      "testimonial4-text": '"Thanks to the Smart Money Concepts training, my perspective on the market has completely changed. I now know very well how to apply Order Block and FVG concepts to real trades."',
+      "testimonial4-name": "Deniz T.",
+      "testimonial4-role": "BIST Trader — SMC Training",
+
+      // Tech Band
+      "tech-band-label": "Technologies We Use",
+
+      // WhatsApp FAB Tooltip
+      "fab-tooltip": "Chat with us on WhatsApp!"
     }
   };
 
@@ -788,5 +846,94 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize language on startup (after all functions are fully defined)
   const initialLang = detectLanguage();
   setLanguage(initialLang);
+
+
+  // ==========================================
+  // 9. BACK TO TOP BUTTON
+  // ==========================================
+  const backToTopBtn = document.getElementById('backToTop');
+  if (backToTopBtn) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+    
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+
+  // ==========================================
+  // 10. ANIMATED STATISTICS COUNTER
+  // ==========================================
+  const animateCounters = () => {
+    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+    
+    statNumbers.forEach(el => {
+      const target = parseInt(el.getAttribute('data-target'));
+      const suffix = el.getAttribute('data-suffix') || '';
+      const duration = 2000; // ms
+      const startTime = performance.now();
+      
+      const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
+      
+      const updateCounter = (currentTime) => {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const easedProgress = easeOutQuart(progress);
+        const currentVal = Math.floor(easedProgress * target);
+        
+        el.textContent = currentVal + suffix;
+        
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          el.textContent = target + suffix;
+        }
+      };
+      
+      requestAnimationFrame(updateCounter);
+    });
+  };
+  
+  const statsSection = document.getElementById('stats');
+  if (statsSection) {
+    let statsAnimated = false;
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !statsAnimated) {
+          statsAnimated = true;
+          animateCounters();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    
+    statsObserver.observe(statsSection);
+  }
+
+
+  // ==========================================
+  // 11. TESTIMONIALS CAROUSEL NAVIGATION
+  // ==========================================
+  const testimonialsCarousel = document.getElementById('testimonialsCarousel');
+  const prevBtn = document.getElementById('testimonialPrev');
+  const nextBtn = document.getElementById('testimonialNext');
+  
+  if (testimonialsCarousel && prevBtn && nextBtn) {
+    const scrollAmount = 384; // card width + gap
+    
+    prevBtn.addEventListener('click', () => {
+      testimonialsCarousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      testimonialsCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+  }
   
 });
