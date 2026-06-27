@@ -1366,7 +1366,12 @@ footer {
 .tech-logo-item svg {
   width: 28px;
   height: 28px;
+  max-width: 28px;
+  max-height: 28px;
+  min-width: 28px;
+  min-height: 28px;
   flex-shrink: 0;
+  display: block;
 }
 
 @keyframes techScroll {
