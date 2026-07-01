@@ -164,9 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Statistics Section
       "stat-hours": "Saat Eğitim İçeriği",
-      "stat-students": "Aktif Öğrenci",
+      "stat-students": "Özel Yazılım Projesi",
       "stat-bots": "Bot & İndikatör Projesi",
-      "stat-satisfaction": "Memnuniyet Oranı",
+      "stat-satisfaction": "Sistem Çalışma Süresi (Uptime)",
 
       // Testimonials Section
       "testimonials-subtitle": "Öğrenci & İş Ortağı Görüşleri",
@@ -356,10 +356,10 @@ document.addEventListener('DOMContentLoaded', () => {
       "about-cta-btn2": "WhatsApp Support",
 
       // Statistics Section
-      "stat-hours": "Hours of Education Content",
-      "stat-students": "Active Students",
+      "stat-hours": "Hours of Trading Content",
+      "stat-students": "Custom Software Projects",
       "stat-bots": "Bot & Indicator Projects",
-      "stat-satisfaction": "Satisfaction Rate",
+      "stat-satisfaction": "System Uptime (Uptime Rate)",
 
       // Testimonials Section
       "testimonials-subtitle": "Student & Partner Testimonials",
@@ -1232,31 +1232,103 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ==========================================
+  // 7b. ANIMATED DEVELOPER TERMINAL SIMULATION
+  // ==========================================
+  const terminal = document.getElementById('softwareTerminalContent');
+  if (terminal) {
+    const logs = [
+      { type: 'command', text: 'npm run build:api-gateway' },
+      { type: 'info', text: 'Building REST & GraphQL microservices...' },
+      { type: 'success', text: '[SUCCESS] Web & SaaS backend compiled. (1.2s)' },
+      { type: 'command', text: 'docker-compose up -d db cache' },
+      { type: 'info', text: 'Launching PostgreSQL and Redis containers...' },
+      { type: 'success', text: '[SUCCESS] Database instances healthy.' },
+      { type: 'command', text: 'python run_bot_agent.py --env live' },
+      { type: 'info', text: 'Authenticating Binance & OKX API keys...' },
+      { type: 'success', text: '[SUCCESS] Algo signature verified. Trading agent live.' },
+      { type: 'info', text: '[WEBHOOK] POST /api/v1/alerts received (Binance ETH Breakout)' },
+      { type: 'info', text: '[DB] Storing order record: Buy 2.5 ETH @ Market' },
+      { type: 'success', text: '[SUCCESS] Telemetry check: 99.9% system uptime' }
+    ];
+
+    let logIndex = 0;
+    let terminalTimeout;
+    
+    const writeLine = (logObj) => {
+      if (!document.getElementById('softwareTerminalContent')) return;
+      const line = document.createElement('div');
+      line.className = 'terminal-line';
+
+      if (logObj.type === 'command') {
+        const prompt = document.createElement('span');
+        prompt.className = 'terminal-prompt-software';
+        prompt.textContent = 'tma-dev@ubuntu:~$';
+        line.appendChild(prompt);
+
+        const textSpan = document.createElement('span');
+        textSpan.className = 'terminal-text';
+        line.appendChild(textSpan);
+
+        let charIndex = 0;
+        const commandText = logObj.text;
+        
+        const typeChar = () => {
+          if (!document.getElementById('softwareTerminalContent')) return;
+          if (charIndex < commandText.length) {
+            textSpan.textContent += commandText[charIndex];
+            charIndex++;
+            terminalTimeout = setTimeout(typeChar, 35);
+          } else {
+            logIndex = (logIndex + 1) % logs.length;
+            terminalTimeout = setTimeout(processNextLog, 1200);
+          }
+        };
+        typeChar();
+      } else {
+        const textSpan = document.createElement('span');
+        textSpan.className = `terminal-text ${logObj.type}`;
+        textSpan.textContent = logObj.text;
+        line.appendChild(textSpan);
+        
+        terminal.appendChild(line);
+        terminal.scrollTop = terminal.scrollHeight;
+        
+        logIndex = (logIndex + 1) % logs.length;
+        terminalTimeout = setTimeout(processNextLog, 1000);
+      }
+
+      if (logObj.type === 'command') {
+        terminal.appendChild(line);
+        terminal.scrollTop = terminal.scrollHeight;
+      }
+    };
+
+    const processNextLog = () => {
+      if (!document.getElementById('softwareTerminalContent')) return;
+      if (terminal.children.length > 9) {
+        terminal.innerHTML = '';
+      }
+      writeLine(logs[logIndex]);
+    };
+
+    const cursor = document.createElement('span');
+    cursor.className = 'terminal-cursor';
+    terminal.appendChild(cursor);
+
+    terminal.innerHTML = '';
+    
+    terminalTimeout = setTimeout(processNextLog, 500);
+
+    window.addEventListener('beforeunload', () => {
+      clearTimeout(terminalTimeout);
+    });
+  }
+
 
   // ==========================================
   // 8. INITIALIZATION & BINDINGS (Moved to bottom)
   // ==========================================
-  // Services Tab Switcher setup
-  const setupTabSwitcher = () => {
-    const tabButtons = document.querySelectorAll('.services-tab-btn');
-    const tabPanes = document.querySelectorAll('.services-tab-pane');
-    
-    tabButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetTab = btn.getAttribute('data-tab');
-        
-        tabButtons.forEach(b => b.classList.remove('active'));
-        tabPanes.forEach(pane => pane.classList.remove('active'));
-        
-        btn.classList.add('active');
-        const activePane = document.getElementById(targetTab);
-        if (activePane) {
-          activePane.classList.add('active');
-        }
-      });
-    });
-  };
-
   // Set up click handlers for language selector
   const langSwitcherElement = document.getElementById('langSwitcher');
   if (langSwitcherElement) {
@@ -1265,9 +1337,6 @@ document.addEventListener('DOMContentLoaded', () => {
       setLanguage(nextLang);
     });
   }
-  
-  // Trigger Services Tab Switcher
-  setupTabSwitcher();
 
   // Trigger GitHub fetch if container is present on page load
   if (document.getElementById('githubReposContainer')) {
