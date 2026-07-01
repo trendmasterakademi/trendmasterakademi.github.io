@@ -8,7 +8,7 @@ Kaldığınız sohbeti bulmak için aşağıdaki tabloda yer alan **Sohbet ID (C
 
 | Tarih / Saat | Çalışma Alanı (Workspace) | Sohbet ID (Conversation ID) | Yapılan Çalışmanın Özeti / İlk Mesaj |
 | :--- | :--- | :--- | :--- |
-| 2026-07-01 10:36:49 | **TMA-Web-Site** | `f65987d3-570e-40e2-8863-21a2c8656192` | site normalde trading yaz |
+| 2026-07-01 11:02:47 | **TMA-Web-Site** | `f65987d3-570e-40e2-8863-21a2c8656192` | site normalde trading yaz |
 | 2026-07-01 10:11:58 | **Fiverr** | `45edc548-e882-41af-9cff-9f32c4f72906` | bu payoneer sistemi her ne halt ise kesinlikle çöp. 2 defa doğrulatt |
 | 2026-07-01 10:03:49 | **SocialMedia** | `3bfeb996-fdb1-4b68-880b-b1b417e784cf` | için windows içine kurduğumuz her gün 10 ve 18 de otomatik x post paylaş |
 | 2026-07-01 09:59:53 | **Armut** | `072d5b27-00ab-4803-ae3d-bc886c7e6640` | 8-Visualization MCP.log) |
@@ -55,4 +55,4 @@ Kaldığınız sohbeti bulmak için aşağıdaki tabloda yer alan **Sohbet ID (C
 | 2026-06-22 23:17:30 | **Genel / Diğer** | `2d9383d8-5bb8-4aec-b4b5-ee458cd3e24f` | (Başlangıç mesajı bulunamadı) |
 
 ---
-*Son Güncelleme Tarihi: 2026-07-01 10:37:06*
+*Son Güncelleme Tarihi: 2026-07-01 11:02:48*
