@@ -169,9 +169,9 @@ document.addEventListener('DOMContentLoaded', () => {
       "stat-satisfaction": "Memnuniyet Oranı",
 
       // Testimonials Section
-      "testimonials-subtitle": "Öğrenci Deneyimleri",
-      "testimonials-title": "Öğrencilerimiz Ne Diyor?",
-      "testimonials-desc": "Eğitim programlarımızdan geçen yatırımcıların geri bildirimleri.",
+      "testimonials-subtitle": "Öğrenci & İş Ortağı Görüşleri",
+      "testimonials-title": "Birlikte Çalıştığımız Kişi ve Kurumların Görüşleri",
+      "testimonials-desc": "Eğitim programlarımızdan mezun olan yatırımcıların ve yazılım çözümlerimizi kullanan iş ortaklarımızın deneyimleri.",
       "testimonial1-text": '"Pine Script konusunda sıfırdan başladım. 3 ay sonra kendi indikatörümü yazıp TradingView\'da yayınladım. Eğitim metodolojisi gerçekten çok sistematik ve anlaşılır."',
       "testimonial1-name": "Ahmet K.",
       "testimonial1-role": "Bireysel Yatırımcı — Pine Script Eğitimi",
@@ -184,6 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
       "testimonial4-text": '"Smart Money Concepts eğitimi sayesinde piyasaya bakış açım tamamen değişti. Order Block ve FVG kavramlarını gerçek işlemlere nasıl uygulayacağımı artık çok iyi biliyorum."',
       "testimonial4-name": "Deniz T.",
       "testimonial4-role": "BIST Trader — SMC Eğitimi",
+      "testimonial5-text": '"Şirketimizin SaaS platformunu sıfırdan kurdular. Hem ölçeklenebilir backend yapısı hem de harika çalışan modern arayüz tasarımı ile beklentilerimizin çok ötesinde bir iş teslim ettiler."',
+      "testimonial5-name": "Hakan B.",
+      "testimonial5-role": "CEO — Fintech SaaS Projesi",
+      "testimonial6-text": '"Mobil uygulamamızın borsa entegrasyonu ve canlı veri akışındaki gecikmeleri çözmek için TMA ile çalıştık. Webhook ve API optimizasyonları sayesinde veri gecikmesini neredeyse sıfıra indirdik."',
+      "testimonial6-name": "Zeynep A.",
+      "testimonial6-role": "CTO — Yatırım Teknolojileri Firması",
 
       // Tech Band
       "tech-band-label": "Kullandığımız Teknolojiler",
@@ -356,9 +362,9 @@ document.addEventListener('DOMContentLoaded', () => {
       "stat-satisfaction": "Satisfaction Rate",
 
       // Testimonials Section
-      "testimonials-subtitle": "Student Experiences",
-      "testimonials-title": "What Our Students Say",
-      "testimonials-desc": "Feedback from traders who completed our education programs.",
+      "testimonials-subtitle": "Student & Partner Testimonials",
+      "testimonials-title": "What Our Students & Partners Say",
+      "testimonials-desc": "Feedback from traders who completed our education programs and business partners using our custom software solutions.",
       "testimonial1-text": '"I started from zero in Pine Script. After 3 months, I wrote and published my own indicator on TradingView. The education methodology is truly systematic and easy to understand."',
       "testimonial1-name": "Ahmet K.",
       "testimonial1-role": "Individual Investor — Pine Script Training",
@@ -371,6 +377,12 @@ document.addEventListener('DOMContentLoaded', () => {
       "testimonial4-text": '"Thanks to the Smart Money Concepts training, my perspective on the market has completely changed. I now know very well how to apply Order Block and FVG concepts to real trades."',
       "testimonial4-name": "Deniz T.",
       "testimonial4-role": "BIST Trader — SMC Training",
+      "testimonial5-text": '"They built our company\'s SaaS platform from scratch. They delivered a job far beyond our expectations with both a scalable backend structure and a wonderfully working modern UI design."',
+      "testimonial5-name": "Hakan B.",
+      "testimonial5-role": "CEO — Fintech SaaS Project",
+      "testimonial6-text": '"We worked with TMA to resolve latency issues in our mobile app\'s exchange integration and live data stream. Thanks to webhook and API optimizations, we reduced data latency to almost zero."',
+      "testimonial6-name": "Zeynep A.",
+      "testimonial6-role": "CTO — Investment Tech Company",
 
       // Tech Band
       "tech-band-label": "Technologies We Use",
