@@ -1,0 +1,18 @@
+[
+  {
+    "id": "1",
+    "title": "TradingView Pine Script ile Algoritmik Strateji Geliştirme",
+    "summary": "Pine Script dilinin temel kurallarını ve trend takip eden stratejilerin geriye dönük test (backtest) aşamalarını inceledik.",
+    "link": "https://www.linkedin.com/pulse/tradingview-pine-script-algoritmik-strateji-trendmasterakademi",
+    "image": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800",
+    "date": "2026-06-30"
+  },
+  {
+    "id": "2",
+    "title": "Price Action ve SMC (Smart Money Concepts) Entegrasyonu",
+    "summary": "Finansal piyasalarda likidite bölgeleri, order block yapısı ve adil değer boşluklarının (FVG) analiz süreçleri.",
+    "link": "https://www.linkedin.com/pulse/price-action-ve-smc-smart-money-concepts-trendmasterakademi",
+    "image": "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=800",
+    "date": "2026-06-29"
+  }
+]

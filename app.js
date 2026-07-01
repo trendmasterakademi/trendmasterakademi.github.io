@@ -5,8 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   const translations = {
     tr: {
-      "site-title": "Trend Master Akademi | Algoritmik Trading ve Finansal Yazılım Eğitimleri",
-      "about-site-title": "Eğitim Stratejileri & Hakkımızda | Trend Master Akademi",
+      "site-title": "Trend Master Akademi | Finansal Teknolojiler & Özel Yazılım Çözümleri",
+      "about-site-title": "Teknoloji Stratejileri & Hakkımızda | Trend Master Akademi",
       
       // Navbar
       "logo-text": "TREND MASTER AKADEMİ",
@@ -17,17 +17,21 @@ document.addEventListener('DOMContentLoaded', () => {
       "nav-btn": "Randevu Al",
       
       // Hero
-      "hero-badge": "Geleceğin Trading Teknolojisi",
-      "hero-title": "Finansal Piyasalarda Uzmanlaşmak İçin Doğru Adrestesiniz",
-      "hero-desc": "Piyasalarda yüksek kazanç vaatleri değil, sadece disiplinli stratejiler ve doğru eğitim kazandırır. Algoritmik sistemler ve teknik onay mekanizmalarıyla işlemlerinizi profesyonel boyuta taşıyın.",
-      "btn-explore": "Eğitimleri İncele",
+      "hero-badge": "Finansal Teknolojiler & Yazılım Çözümleri",
+      "hero-title": "Geleceğin Finansal ve Yazılım Teknolojilerini İnşa Ediyoruz",
+      "hero-desc": "Yüksek performanslı algoritmik trading botlarından, modern web ve mobil uygulamalara kadar uzanan geniş bir yelpazede yenilikçi yazılım çözümleri ve profesyonel eğitimler sunuyoruz.",
+      "btn-explore": "Çözümleri İncele",
       "btn-contact": "Bizimle İletişime Geç",
       "ticker-status": "CANLI SİMÜLASYON",
       
       // Services
       "services-subtitle": "Neler Sunuyoruz?",
-      "services-title": "Trading ve Yazılım Çözümlerimiz",
-      "services-desc": "Piyasalarda rekabet avantajı elde etmeniz için geliştirilen stratejiler, kodlama çözümleri ve özel eğitim modülleri.",
+      "services-title": "Teknoloji ve Yazılım Hizmetlerimiz",
+      "services-desc": "İşinizi ve yatırımlarınızı bir üst seviyeye taşımak için geliştirilen özel yazılım çözümleri, trading sistemleri ve eğitim programları.",
+      
+      // Service Tabs
+      "tab-fintech-title": "Finansal Teknolojiler",
+      "tab-software-title": "Yazılım Çözümleri",
       
       // Product Cards
       "card-algo-title": "Algoritmik Trading Botları",
@@ -47,7 +51,25 @@ document.addEventListener('DOMContentLoaded', () => {
       "card-ment-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Kişiye Özel İlerleme Planı ve Takip",
       "card-ment-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Canlı Piyasa Analizi ve Backtest Pratikleri",
       "card-ment-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Kasa & Risk Yönetimi Metrik Şablonları",
+
+      "card-web-title": "Web & SaaS Geliştirme",
+      "card-web-desc": "Modern, hızlı, SEO uyumlu web uygulamaları ve SaaS platformları geliştiriyoruz. En son web teknolojilerini işinizle buluşturuyoruz.",
+      "card-web-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> React, Next.js ve Tailwind CSS Altyapısı",
+      "card-web-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> REST & GraphQL API Tasarımları",
+      "card-web-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Güvenli Üyelik, Abonelik ve Ödeme Sistemleri",
       
+      "card-mobile-title": "Mobil Uygulama Geliştirme",
+      "card-mobile-desc": "iOS ve Android platformlarında yüksek performanslı, kullanıcı dostu native veya hibrit mobil uygulamalar tasarlıyoruz.",
+      "card-mobile-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Flutter ile Tek Kod Tabanından Hızlı Geliştirme",
+      "card-mobile-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Push Bildirimleri ve Biyometrik Entegrasyonlar",
+      "card-mobile-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> App Store ve Google Play Store Yayın Süreçleri",
+      
+      "card-api-title": "Entegrasyon & Özel API Çözümleri",
+      "card-api-desc": "Sistemlerinizi birbirine bağlayan, veri akışını otomatikleştiren ve iş süreçlerini hızlandıran özel arka uç sistemleri kuruyoruz.",
+      "card-api-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Node.js, Python ve Go ile Güçlü Backend Yapıları",
+      "card-api-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Webhook Entegrasyonları ve Veri Tabanı Optimizasyonu",
+      "card-api-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Bulut Altyapı Dağıtımı ve Mesajlaşma Kuyrukları",
+
       "card-btn-info": "Detaylı Bilgi Al",
       "card-btn-mufredat": "Müfredatı İncele",
       
@@ -58,6 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
       "github-loading": "Projeler yükleniyor...",
       "github-error": "Projeler yüklenirken hata oluştu. Lütfen daha sonra tekrar deneyin.",
       "github-view-profile": "GitHub Profilimizi İnceleyin",
+      
+      // Blog/Publications Section
+      "blog-subtitle": "Yayınlarımız & Makalelerimiz",
+      "blog-title": "Son LinkedIn Paylaşımlarımız",
+      "blog-desc": "Finansal piyasalar, algoritmik trading ve Pine Script üzerine en güncel analizlerimiz ve makalelerimiz.",
+      "blog-loading": "Makaleler yükleniyor...",
+      "blog-error": "Makaleler yüklenirken hata oluştu. Lütfen daha sonra tekrar deneyin.",
+      "blog-view-profile": "Bizi LinkedIn'de Takip Edin",
       
       // CTA Banner
       "cta-unsure": "Kararsız mı kaldınız?",
@@ -84,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "form-submit": "WhatsApp ile Gönder / Başvur",
       
       // Footer
-      "footer-desc": "Finansal okuryazarlığı modern teknoloji ve yazılım disiplinleriyle birleştirerek sürdürülebilir başarıyı hedefleyen profesyonel eğitim akademisi.",
+      "footer-desc": "Finansal okuryazarlık ve trading yazılımlarının yanı sıra modern web, mobil ve entegrasyon çözümleriyle işinizi geleceğe taşıyan profesyonel teknoloji akademisi ve yazılım evi.",
       "footer-quick": "Hızlı Linkler",
       "footer-warning-title": "Yasal Uyarı",
       "footer-warning-desc": "Trend Master Akademi bünyesinde verilen eğitimler, hazırlanan yazılımlar ve paylaşılan indikatör sinyalleri kesinlikle yatırım danışmanlığı kapsamında değildir. Finansal piyasalar yüksek risk içerir.",
@@ -162,8 +192,8 @@ document.addEventListener('DOMContentLoaded', () => {
       "fab-tooltip": "Bize WhatsApp'tan yazın!"
     },
     en: {
-      "site-title": "Trend Master Academy | Algorithmic Trading and Financial Software Education",
-      "about-site-title": "Education Strategies & About Us | Trend Master Academy",
+      "site-title": "Trend Master Academy | Financial Technologies & Custom Software Solutions",
+      "about-site-title": "Technology Strategies & About Us | Trend Master Academy",
       
       // Navbar
       "logo-text": "TREND MASTER ACADEMY",
@@ -174,17 +204,21 @@ document.addEventListener('DOMContentLoaded', () => {
       "nav-btn": "Book Session",
       
       // Hero
-      "hero-badge": "Future of Trading Technology",
-      "hero-title": "You Are in the Right Place to Master Financial Markets",
-      "hero-desc": "Not promises of high profits, but only disciplined strategies and proper education will make you win in the markets. Take your trading to a professional level with algorithmic systems and technical confirmation mechanisms.",
-      "btn-explore": "Explore Programs",
+      "hero-badge": "FinTech & Custom Software Solutions",
+      "hero-title": "Building the Future of Financial and Software Technologies",
+      "hero-desc": "We deliver innovative technology solutions and professional courses, ranging from high-performance algorithmic trading bots to modern web & mobile applications.",
+      "btn-explore": "Explore Solutions",
       "btn-contact": "Get in Touch",
       "ticker-status": "LIVE SIMULATION",
       
       // Services
       "services-subtitle": "What We Offer",
-      "services-title": "Trading & Software Solutions",
-      "services-desc": "Strategies, coding solutions, and customized education modules developed for you to gain a competitive edge in the markets.",
+      "services-title": "Our Technology & Software Services",
+      "services-desc": "Custom software solutions, automated trading systems, and training programs designed to elevate your business and investments.",
+      
+      // Service Tabs
+      "tab-fintech-title": "Financial Tech",
+      "tab-software-title": "Software Solutions",
       
       // Product Cards
       "card-algo-title": "Algorithmic Trading Bots",
@@ -204,7 +238,25 @@ document.addEventListener('DOMContentLoaded', () => {
       "card-ment-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Personalized Progress Tracking",
       "card-ment-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Live Market Analysis & Backtests",
       "card-ment-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Risk & Portfolio Management Metric Sheets",
+
+      "card-web-title": "Web & SaaS Development",
+      "card-web-desc": "We build fast, secure, modern, and SEO-friendly web applications and SaaS platforms, bringing the latest tech to your business.",
+      "card-web-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> React, Next.js, and Tailwind CSS Stack",
+      "card-web-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> High-Performance REST & GraphQL API Design",
+      "card-web-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Secure Auth, Subscription & Payment Flows",
       
+      "card-mobile-title": "Mobile App Development",
+      "card-mobile-desc": "We design and develop high-performance, user-friendly native or hybrid mobile apps running flawlessly on iOS and Android.",
+      "card-mobile-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Cross-Platform Dev with Flutter & React Native",
+      "card-mobile-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Push Notification & Biometric Auth Integration",
+      "card-mobile-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> App Store & Google Play Store Publishing",
+      
+      "card-api-title": "Integration & Custom APIs",
+      "card-api-desc": "We connect systems, automate complex data flows, and build robust backend engines to streamline your business workflows.",
+      "card-api-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Strong Backend with Node.js, Python, and Go",
+      "card-api-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Webhooks Integration & DB Performance Tuning",
+      "card-api-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Cloud Architecture Deployment & Message Queues",
+
       "card-btn-info": "Get Details",
       "card-btn-mufredat": "View Syllabus",
       
@@ -215,6 +267,14 @@ document.addEventListener('DOMContentLoaded', () => {
       "github-loading": "Loading repositories...",
       "github-error": "Failed to load projects. Please try again later.",
       "github-view-profile": "View Our GitHub Profile",
+      
+      // Blog/Publications Section
+      "blog-subtitle": "Our Publications & Articles",
+      "blog-title": "Our Latest LinkedIn Posts",
+      "blog-desc": "Our latest analyses and articles on financial markets, algorithmic trading, and Pine Script.",
+      "blog-loading": "Loading articles...",
+      "blog-error": "Failed to load articles. Please try again later.",
+      "blog-view-profile": "Follow Us on LinkedIn",
       
       // CTA Banner
       "cta-unsure": "Still Undecided?",
@@ -241,7 +301,7 @@ document.addEventListener('DOMContentLoaded', () => {
       "form-submit": "Send / Apply via WhatsApp",
       
       // Footer
-      "footer-desc": "A professional academy aiming for sustainable trading success by combining financial literacy with modern programming disciplines.",
+      "footer-desc": "A professional technology academy and software house empowering your business with modern web, mobile, and integration solutions alongside financial trading systems.",
       "footer-quick": "Quick Links",
       "footer-warning-title": "Disclaimer",
       "footer-warning-desc": "Trading education, indicators, and software provided by Trend Master Academy are not investment advice. Financial markets involve significant capital risks.",
@@ -396,6 +456,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if (githubGrid) {
       renderGitHubRepos();
     }
+    
+    // Re-draw Blog articles in the correct language
+    const blogGrid = document.getElementById('blogContainer');
+    if (blogGrid) {
+      renderBlogArticles();
+    }
   };
 
 
@@ -483,6 +549,24 @@ document.addEventListener('DOMContentLoaded', () => {
       langColor: "#3572A5"
     },
     {
+      name: "tma-fintech-saas-dashboard",
+      description_tr: "Finansal verileri, trading alarmlarını ve kullanıcı portföy yönetimini tek bir arayüzde birleştiren Next.js & Tailwind CSS tabanlı SaaS paneli.",
+      description_en: "A Next.js & Tailwind CSS based SaaS dashboard integrating financial analytics, trading alerts, and user portfolio tracking.",
+      stargazers_count: 31,
+      forks_count: 12,
+      language: "TypeScript",
+      langColor: "#3178c6"
+    },
+    {
+      name: "tma-mobile-trading-companion",
+      description_tr: "Kullanıcıların trading sinyallerini anlık bildirim olarak aldığı ve API anahtarlarını yönettikleri şık Flutter tabanlı mobil uygulama.",
+      description_en: "A sleek Flutter-based iOS/Android mobile companion app for real-time alert notifications and API credential management.",
+      stargazers_count: 19,
+      forks_count: 4,
+      language: "Dart",
+      langColor: "#00B4AB"
+    },
+    {
       name: "price-action-backtester",
       description_tr: "Market yapısı kırılımları (MSB), order block (emir blokları) ve FVG modellerini geriye dönük test eden yüksek performanslı Pandas tabanlı backtest motoru.",
       description_en: "A high-performance algorithmic backtesting engine that simulates market structure breaks, order blocks, and FVG patterns.",
@@ -490,15 +574,6 @@ document.addEventListener('DOMContentLoaded', () => {
       forks_count: 8,
       language: "Python",
       langColor: "#3572A5"
-    },
-    {
-      name: "tma-triangular-ma-strategy",
-      description_tr: "Gürültü filtreleri ve dinamik ATR hedeflerine sahip, çift düzleştirilmiş özel Triangular Moving Average indikatör stratejisi.",
-      description_en: "A double-smoothed customized Triangular Moving Average strategy indicator with noise filters and dynamic ATR targets.",
-      stargazers_count: 18,
-      forks_count: 3,
-      language: "Pine Script",
-      langColor: "#00b0ff"
     }
   ];
   
@@ -506,6 +581,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const colors = {
       "Python": "#3572A5",
       "JavaScript": "#f1e05a",
+      "TypeScript": "#3178c6",
+      "Dart": "#00B4AB",
       "HTML": "#e34c26",
       "CSS": "#563d7c",
       "Pine Script": "#00b0ff"
@@ -601,6 +678,117 @@ document.addEventListener('DOMContentLoaded', () => {
       .catch(err => {
         console.warn('GitHub API fetch failed, loading default fallback projects:', err);
         renderGitHubRepos();
+      });
+  };
+
+
+  // ==========================================
+  // 6b. LINKEDIN ARTICLES FETCH & DISPLAY
+  // ==========================================
+  const blogArticles = []; // cache fetched articles
+
+  const renderBlogArticles = () => {
+    const container = document.getElementById('blogContainer');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    if (blogArticles.length === 0) {
+      container.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0;">
+          \${currentLang === 'tr' ? 'Henüz makale bulunmuyor.' : 'No articles available yet.'}
+        </div>
+      `;
+      return;
+    }
+    
+    blogArticles.forEach(article => {
+      // Create blog card
+      const card = document.createElement('div');
+      card.className = 'blog-card';
+      
+      // Formatting date if possible
+      let dateString = article.date;
+      try {
+        const dateObj = new Date(article.date);
+        if (!isNaN(dateObj)) {
+          const options = { year: 'numeric', month: 'long', day: 'numeric' };
+          dateString = dateObj.toLocaleDateString(currentLang === 'tr' ? 'tr-TR' : 'en-US', options);
+        }
+      } catch (e) {}
+
+      // Resolve titles and summaries (in case we want multilanguage later, or default to general)
+      const title = currentLang === 'tr' && article.title_tr ? article.title_tr : (article.title || '');
+      const summary = currentLang === 'tr' && article.summary_tr ? article.summary_tr : (article.summary || '');
+      
+      card.innerHTML = `
+        <div class="blog-card-image-wrapper">
+          <img src="\${article.image || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800'}" alt="\${title}" class="blog-card-image" loading="lazy">
+          <div class="blog-card-badge">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            <span>LinkedIn</span>
+          </div>
+        </div>
+        <div class="blog-card-content">
+          <div class="blog-card-date">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            <span>\${dateString}</span>
+          </div>
+          <h3 class="blog-card-title">\${title}</h3>
+          <p class="blog-card-desc">\${summary}</p>
+          <div class="blog-card-footer">
+            <a href="\${article.link}" target="_blank" class="blog-card-link">
+              <span>\${currentLang === 'tr' ? 'LinkedIn\\'de Oku' : 'Read on LinkedIn'}</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+          </div>
+        </div>
+      `;
+      
+      container.appendChild(card);
+    });
+  };
+
+  const fetchBlogArticles = () => {
+    const container = document.getElementById('blogContainer');
+    if (!container) return;
+    
+    // Draw skeleton loader
+    container.innerHTML = Array(3).fill(0).map(() => `
+      <div class="blog-skeleton">
+        <div class="skeleton-image"></div>
+        <div class="skeleton-content">
+          <div class="skeleton-text date"></div>
+          <div class="skeleton-text title"></div>
+          <div class="skeleton-text desc-1"></div>
+          <div class="skeleton-text desc-2"></div>
+          <div class="skeleton-text desc-3"></div>
+          <div class="skeleton-text button"></div>
+        </div>
+      </div>
+    `).join('');
+    
+    fetch('articles.json')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch articles.json');
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (Array.isArray(data)) {
+          blogArticles.length = 0;
+          data.forEach(item => blogArticles.push(item));
+        }
+        renderBlogArticles();
+      })
+      .catch(err => {
+        console.error('Error fetching articles.json:', err);
+        container.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; color: var(--accent-red); padding: 40px 0;">
+            <p>\${currentLang === 'tr' ? 'Makaleler yüklenirken hata oluştu.' : 'Failed to load articles.'}</p>
+          </div>
+        `;
       });
   };
 
@@ -829,6 +1017,27 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   // 8. INITIALIZATION & BINDINGS (Moved to bottom)
   // ==========================================
+  // Services Tab Switcher setup
+  const setupTabSwitcher = () => {
+    const tabButtons = document.querySelectorAll('.services-tab-btn');
+    const tabPanes = document.querySelectorAll('.services-tab-pane');
+    
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetTab = btn.getAttribute('data-tab');
+        
+        tabButtons.forEach(b => b.classList.remove('active'));
+        tabPanes.forEach(pane => pane.classList.remove('active'));
+        
+        btn.classList.add('active');
+        const activePane = document.getElementById(targetTab);
+        if (activePane) {
+          activePane.classList.add('active');
+        }
+      });
+    });
+  };
+
   // Set up click handlers for language selector
   const langSwitcherElement = document.getElementById('langSwitcher');
   if (langSwitcherElement) {
@@ -838,9 +1047,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
+  // Trigger Services Tab Switcher
+  setupTabSwitcher();
+
   // Trigger GitHub fetch if container is present on page load
   if (document.getElementById('githubReposContainer')) {
     fetchGitHubRepos();
+  }
+
+  // Trigger Blog articles fetch if container is present on page load
+  if (document.getElementById('blogContainer')) {
+    fetchBlogArticles();
   }
   
   // Initialize language on startup (after all functions are fully defined)

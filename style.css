@@ -427,6 +427,58 @@ header.scrolled {
   font-size: 1.05rem;
 }
 
+/* SERVICES TAB SWITCHER */
+.services-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 48px;
+  width: 100%;
+}
+
+.services-tab-btn {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 12px 28px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.services-tab-btn:hover {
+  color: var(--text-main);
+  border-color: rgba(0, 229, 255, 0.25);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
+}
+
+.services-tab-btn.active {
+  color: #080b11;
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-green) 100%);
+  border-color: transparent;
+  box-shadow: var(--shadow-glow-blue);
+  font-weight: 700;
+}
+
+/* SERVICES TAB PANES */
+.services-tab-pane {
+  display: none;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.services-tab-pane.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* PRODUCTS / SERVICES GRID */
 .products-grid {
   display: grid;
@@ -1528,3 +1580,189 @@ footer {
   }
 }
 
+/* PUBLICATIONS / BLOG SECTION */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.blog-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.blog-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 229, 255, 0.3);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), var(--shadow-glow-blue);
+}
+
+.blog-card-image-wrapper {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.blog-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.blog-card:hover .blog-card-image {
+  transform: scale(1.08);
+}
+
+.blog-card-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 119, 181, 0.9); /* LinkedIn Blue */
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.blog-card-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.blog-card-date {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.blog-card-title {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+  line-height: 1.4;
+  color: var(--text-main);
+  transition: var(--transition-smooth);
+  font-weight: 600;
+}
+
+.blog-card:hover .blog-card-title {
+  color: var(--accent-blue);
+}
+
+.blog-card-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex-grow: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-color);
+  padding-top: 16px;
+  margin-top: auto;
+}
+
+.blog-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent-blue);
+  transition: var(--transition-smooth);
+}
+
+.blog-card-link:hover {
+  color: var(--accent-green);
+  text-shadow: 0 0 8px rgba(0, 230, 118, 0.4);
+}
+
+/* SKELETON LOADER ANIMATION */
+.blog-skeleton {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  height: 420px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.skeleton-image {
+  height: 200px;
+  background: var(--bg-tertiary);
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex-grow: 1;
+}
+
+.skeleton-text {
+  background: var(--bg-tertiary);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton-text.date { width: 80px; height: 14px; }
+.skeleton-text.title { width: 100%; height: 22px; }
+.skeleton-text.desc-1 { width: 100%; height: 14px; }
+.skeleton-text.desc-2 { width: 90%; height: 14px; }
+.skeleton-text.desc-3 { width: 75%; height: 14px; }
+.skeleton-text.button { width: 120px; height: 18px; margin-top: auto; }
+
+.skeleton-image::after, .skeleton-text::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transform: translateX(-100%);
+  animation: loading-shimmer 1.5s infinite;
+}
+
+@keyframes loading-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
