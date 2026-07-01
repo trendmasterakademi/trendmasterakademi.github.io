@@ -392,6 +392,207 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // ==========================================
+  // 10b. DYNAMIC TESTIMONIALS (SHUFFLE & RENDER)
+  // ==========================================
+  const testimonialsList = [
+    {
+      avatar: "SG",
+      stars: 5,
+      name: "Süleyman G.",
+      role: {
+        tr: "Kripto Para Danışmanı",
+        en: "Cryptocurrency Consultant"
+      },
+      text: {
+        tr: "Trading sistemleri ve indikatör entegyonu konusunda çok donanımlı. İşlemlerimi disipline etmemde büyük yardımı dokundu.",
+        en: "Very knowledgeable in trading systems and indicator integration. Great help in disciplining my trades."
+      }
+    },
+    {
+      avatar: "MD",
+      stars: 5,
+      name: "Muammer D.",
+      role: {
+        tr: "Borsa Özel Ders",
+        en: "Stock Market Private Student"
+      },
+      text: {
+        tr: "Mehmet hocamla dersler çok verimli geçiyor. Teknik analiz ve piyasa dinamiklerini pratik örneklerle anlatıyor.",
+        en: "Lessons with teacher Mehmet are extremely productive. He explains technical analysis and market dynamics with practical examples."
+      }
+    },
+    {
+      avatar: "KY",
+      stars: 5,
+      name: "Kaan Y.",
+      role: {
+        tr: "Kripto Para Danışmanı",
+        en: "Cryptocurrency Consultant"
+      },
+      text: {
+        tr: "Piyasa dilini anlamak, alım-satıma dair tüm detayları öğrenmek ve herkesten önde olmak istiyorsanız doğru tercihi yaparsınız. Hocam gerçekten çok özel bir trader.",
+        en: "If you want to understand the language of the market, learn all the details of buying and selling, and be ahead of everyone, you will make the right choice. My teacher is truly a very special trader."
+      }
+    },
+    {
+      avatar: "MŞ",
+      stars: 5,
+      name: "Mehmet Ş.",
+      role: {
+        tr: "Forex Eğitimi",
+        en: "Forex Training"
+      },
+      text: {
+        tr: "Mehmet hocamla yaklaşık 1,5 aydır ders yapıyoruz. Kendisinden fazlası ile faydalanıyorum. Mehmet hoca hem piyasa bilgisi hem tecrübesi hem de bilgi aktarımı ile çok kaliteli bir eğitim sunuyor. Her fiyat hareketini nedeni ile birlikte detaylı şekilde açıklıyor.",
+        en: "We have been doing classes with teacher Mehmet for about 1.5 months. I benefit from him more than enough. I receive a very high-quality education thanks to Mehmet teacher's market knowledge, experience, and information transfer. He explains every price movement in detail with its reason."
+      }
+    },
+    {
+      avatar: "ÖÖ",
+      stars: 5,
+      name: "Ömer Efe Ö.",
+      role: {
+        tr: "Borsa Yatırım Danışmanı",
+        en: "Stock Market Investment Advisor"
+      },
+      text: {
+        tr: "Benimle çok iyi ilgilendi ve tüm sorularımı sabırla yanıtladı, sorunlarımı dinledi teşekkürler.",
+        en: "He took great care of me, answered all my questions patiently, and listened to my concerns, thank you."
+      }
+    },
+    {
+      avatar: "MK",
+      stars: 5,
+      name: "Mert K.",
+      role: {
+        tr: "Teknoloji Direktörü — Finans Teknolojileri Sektörü",
+        en: "Technology Director — Financial Technologies Sector"
+      },
+      text: {
+        tr: "Mevcut altyapımızın performans sorunlarını kökten çözdüler. Sistem artık kat kat daha hızlı yanıt veriyor ve ölçeklenme konusunda hiç endişemiz kalmadı.",
+        en: "They solved the performance issues of our current infrastructure from the root. The system now responds times faster and we have no concerns about scaling anymore."
+      }
+    },
+    {
+      avatar: "AY",
+      stars: 5,
+      name: "Ayşe Y.",
+      role: {
+        tr: "Kurucu Ortak — Yatırım Teknolojileri",
+        en: "Co-Founder — Investment Technologies"
+      },
+      text: {
+        tr: "Karmaşık entegrasyon ihtiyaçlarımızı sıfırdan planlayıp uyguladılar. Hem teknik derinlik hem de iletişim tarafında beklentimizin üzerinde bir deneyimdi.",
+        en: "They planned and implemented our complex integration needs from scratch. It was an experience beyond our expectations in both technical depth and communication."
+      }
+    },
+    {
+      avatar: "SD",
+      stars: 5,
+      name: "Suzan D.",
+      role: {
+        tr: "Ürün Sorumlusu — Mobil Uygulama Geliştirme",
+        en: "Product Manager — Mobile App Development"
+      },
+      text: {
+        tr: "Canlı veri akışındaki gecikme sorunlarını API optimizasyonlarıyla neredeyse tamamen ortadan kaldırdılar. Kullanıcı deneyimimiz belirgin şekilde iyileşti.",
+        en: "They almost completely eliminated latency issues in live data stream with API optimizations. Our user experience has improved significantly."
+      }
+    },
+    {
+      avatar: "ET",
+      stars: 5,
+      name: "Emre T.",
+      role: {
+        tr: "CTO — Fintech SaaS",
+        en: "CTO — Fintech SaaS"
+      },
+      text: {
+        tr: "Backend mimarimizi modern ve sürdürülebilir bir yapıya taşıdılar. Ekibin teknik yetkinliği ve çözüm odaklı yaklaşımı fark yaratıyor.",
+        en: "They migrated our backend architecture to a modern and sustainable structure. The technical competence and solution-oriented approach of the team make a difference."
+      }
+    },
+    {
+      avatar: "BC",
+      stars: 5,
+      name: "Burak C.",
+      role: {
+        tr: "Operasyon Direktörü — Yatırım Platformu",
+        en: "Operations Director — Investment Platform"
+      },
+      text: {
+        tr: "Webhook tabanlı otomasyon altyapımızı kurdular; manuel süreçlerimizin büyük kısmını devre dışı bıraktık. Zaman kazancı ciddi oldu.",
+        en: "They built our webhook-based automation infrastructure; we disabled most of our manual processes. The time savings have been significant."
+      }
+    },
+    {
+      avatar: "RA",
+      stars: 5,
+      name: "Rana A.",
+      role: {
+        tr: "Genel Müdür — Teknoloji Danışmanlığı",
+        en: "General Manager — Technology Consulting"
+      },
+      text: {
+        tr: "Projeye başından sonuna kadar profesyonelce yaklaştılar. Teslim süresi, kod kalitesi ve sonrasındaki destek konusunda tam güven verdiler.",
+        en: "They approached the project professionally from start to finish. They gave full confidence regarding delivery time, code quality, and post-delivery support."
+      }
+    }
+  ];
+
+  let shuffledTestimonials = [];
+
+  function shuffleTestimonials() {
+    const clone = [...testimonialsList];
+    for (let i = clone.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [clone[i], clone[j]] = [clone[j], clone[i]];
+    }
+    shuffledTestimonials = clone;
+  }
+
+  function renderTestimonials(lang) {
+    const container = document.getElementById('testimonialsCarousel');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    shuffledTestimonials.forEach(t => {
+      const text = t.text[lang] || t.text['tr'];
+      const role = t.role[lang] || t.role['tr'];
+      
+      const card = document.createElement('div');
+      card.className = 'testimonial-card';
+      
+      // Star rating display
+      let starsHTML = '';
+      for (let i = 0; i < t.stars; i++) {
+        starsHTML += '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+      }
+      
+      card.innerHTML = `
+        <div class="testimonial-stars">
+          ${starsHTML}
+        </div>
+        <svg class="testimonial-quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
+        <p class="testimonial-text">${text}</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">${t.avatar}</div>
+          <div>
+            <div class="testimonial-name">${t.name}</div>
+            <div class="testimonial-role">${role}</div>
+          </div>
+        </div>
+      `;
+      
+      container.appendChild(card);
+    });
+  }
+
+  // Shuffle once on load
+  shuffleTestimonials();
+
 
   // ==========================================
   // 2. LANGUAGE MANAGEMENT (i18n)
@@ -1150,208 +1351,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     statsObserver.observe(statsSection);
   }
-
-
-  // ==========================================
-  // 10b. DYNAMIC TESTIMONIALS (SHUFFLE & RENDER)
-  // ==========================================
-  const testimonialsList = [
-    {
-      avatar: "SG",
-      stars: 5,
-      name: "Süleyman G.",
-      role: {
-        tr: "Kripto Para Danışmanı",
-        en: "Cryptocurrency Consultant"
-      },
-      text: {
-        tr: "Trading sistemleri ve indikatör entegrasyonu konusunda çok donanımlı. İşlemlerimi disipline etmemde büyük yardımı dokundu.",
-        en: "Very knowledgeable in trading systems and indicator integration. Great help in disciplining my trades."
-      }
-    },
-    {
-      avatar: "MD",
-      stars: 5,
-      name: "Muammer D.",
-      role: {
-        tr: "Borsa Özel Ders",
-        en: "Stock Market Private Student"
-      },
-      text: {
-        tr: "Mehmet hocamla dersler çok verimli geçiyor. Teknik analiz ve piyasa dinamiklerini pratik örneklerle anlatıyor.",
-        en: "Lessons with teacher Mehmet are extremely productive. He explains technical analysis and market dynamics with practical examples."
-      }
-    },
-    {
-      avatar: "KY",
-      stars: 5,
-      name: "Kaan Y.",
-      role: {
-        tr: "Kripto Para Danışmanı",
-        en: "Cryptocurrency Consultant"
-      },
-      text: {
-        tr: "Piyasa dilini anlamak, alım-satıma dair tüm detayları öğrenmek ve herkesten önde olmak istiyorsanız doğru tercihi yaparsınız. Hocam gerçekten çok özel bir trader.",
-        en: "If you want to understand the language of the market, learn all the details of buying and selling, and be ahead of everyone, you will make the right choice. My teacher is truly a very special trader."
-      }
-    },
-    {
-      avatar: "MŞ",
-      stars: 5,
-      name: "Mehmet Ş.",
-      role: {
-        tr: "Forex Eğitimi",
-        en: "Forex Training"
-      },
-      text: {
-        tr: "Mehmet hocamla yaklaşık 1,5 aydır ders yapıyoruz. Kendisinden fazlası ile faydalanıyorum. Mehmet hoca hem piyasa bilgisi hem tecrübesi hem de bilgi aktarımı ile çok kaliteli bir eğitim sunuyor. Her fiyat hareketini nedeni ile birlikte detaylı şekilde açıklıyor.",
-        en: "We have been doing classes with teacher Mehmet for about 1.5 months. I benefit from him more than enough. I receive a very high-quality education thanks to Mehmet teacher's market knowledge, experience, and information transfer. He explains every price movement in detail with its reason."
-      }
-    },
-    {
-      avatar: "ÖÖ",
-      stars: 5,
-      name: "Ömer Efe Ö.",
-      role: {
-        tr: "Borsa Yatırım Danışmanı",
-        en: "Stock Market Investment Advisor"
-      },
-      text: {
-        tr: "Benimle çok iyi ilgilendi ve tüm sorularımı sabırla yanıtladı, sorunlarımı dinledi teşekkürler.",
-        en: "He took great care of me, answered all my questions patiently, and listened to my concerns, thank you."
-      }
-    },
-    {
-      avatar: "MK",
-      stars: 5,
-      name: "Mert K.",
-      role: {
-        tr: "Teknoloji Direktörü — Finans Teknolojileri Sektörü",
-        en: "Technology Director — Financial Technologies Sector"
-      },
-      text: {
-        tr: "Mevcut altyapımızın performans sorunlarını kökten çözdüler. Sistem artık kat kat daha hızlı yanıt veriyor ve ölçeklenme konusunda hiç endişemiz kalmadı.",
-        en: "They solved the performance issues of our current infrastructure from the root. The system now responds times faster and we have no concerns about scaling anymore."
-      }
-    },
-    {
-      avatar: "AY",
-      stars: 5,
-      name: "Ayşe Y.",
-      role: {
-        tr: "Kurucu Ortak — Yatırım Teknolojileri",
-        en: "Co-Founder — Investment Technologies"
-      },
-      text: {
-        tr: "Karmaşık entegrasyon ihtiyaçlarımızı sıfırdan planlayıp uyguladılar. Hem teknik derinlik hem de iletişim tarafında beklentimizin üzerinde bir deneyimdi.",
-        en: "They planned and implemented our complex integration needs from scratch. It was an experience beyond our expectations in both technical depth and communication."
-      }
-    },
-    {
-      avatar: "SD",
-      stars: 5,
-      name: "Suzan D.",
-      role: {
-        tr: "Ürün Sorumlusu — Mobil Uygulama Geliştirme",
-        en: "Product Manager — Mobile App Development"
-      },
-      text: {
-        tr: "Canlı veri akışındaki gecikme sorunlarını API optimizasyonlarıyla neredeyse tamamen ortadan kaldırdılar. Kullanıcı deneyimimiz belirgin şekilde iyileşti.",
-        en: "They almost completely eliminated latency issues in live data stream with API optimizations. Our user experience has improved significantly."
-      }
-    },
-    {
-      avatar: "ET",
-      stars: 5,
-      name: "Emre T.",
-      role: {
-        tr: "CTO — Fintech SaaS",
-        en: "CTO — Fintech SaaS"
-      },
-      text: {
-        tr: "Backend mimarimizi modern ve sürdürülebilir bir yapıya taşıdılar. Ekibin teknik yetkinliği ve çözüm odaklı yaklaşımı fark yaratıyor.",
-        en: "They migrated our backend architecture to a modern and sustainable structure. The technical competence and solution-oriented approach of the team make a difference."
-      }
-    },
-    {
-      avatar: "BC",
-      stars: 5,
-      name: "Burak C.",
-      role: {
-        tr: "Operasyon Direktörü — Yatırım Platformu",
-        en: "Operations Director — Investment Platform"
-      },
-      text: {
-        tr: "Webhook tabanlı otomasyon altyapımızı kurdular; manuel süreçlerimizin büyük kısmını devre dışı bıraktık. Zaman kazancı ciddi oldu.",
-        en: "They built our webhook-based automation infrastructure; we disabled most of our manual processes. The time savings have been significant."
-      }
-    },
-    {
-      avatar: "RA",
-      stars: 5,
-      name: "Rana A.",
-      role: {
-        tr: "Genel Müdür — Teknoloji Danışmanlığı",
-        en: "General Manager — Technology Consulting"
-      },
-      text: {
-        tr: "Projeye başından sonuna kadar profesyonelce yaklaştılar. Teslim süresi, kod kalitesi ve sonrasındaki destek konusunda tam güven verdiler.",
-        en: "They approached the project professionally from start to finish. They gave full confidence regarding delivery time, code quality, and post-delivery support."
-      }
-    }
-  ];
-
-  let shuffledTestimonials = [];
-
-  const shuffleTestimonials = () => {
-    const clone = [...testimonialsList];
-    for (let i = clone.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [clone[i], clone[j]] = [clone[j], clone[i]];
-    }
-    shuffledTestimonials = clone;
-  };
-
-  const renderTestimonials = (lang) => {
-    const container = document.getElementById('testimonialsCarousel');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    
-    shuffledTestimonials.forEach(t => {
-      const text = t.text[lang] || t.text['tr'];
-      const role = t.role[lang] || t.role['tr'];
-      
-      const card = document.createElement('div');
-      card.className = 'testimonial-card';
-      
-      // Star rating display
-      let starsHTML = '';
-      for (let i = 0; i < t.stars; i++) {
-        starsHTML += '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
-      }
-      
-      card.innerHTML = `
-        <div class="testimonial-stars">
-          ${starsHTML}
-        </div>
-        <svg class="testimonial-quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-        <p class="testimonial-text">${text}</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">${t.avatar}</div>
-          <div>
-            <div class="testimonial-name">${t.name}</div>
-            <div class="testimonial-role">${role}</div>
-          </div>
-        </div>
-      `;
-      
-      container.appendChild(card);
-    });
-  };
-
-  // Shuffle once on load
-  shuffleTestimonials();
 
   // ==========================================
   // 11. TESTIMONIALS CAROUSEL NAVIGATION
