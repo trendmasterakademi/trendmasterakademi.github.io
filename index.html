@@ -77,21 +77,44 @@
         </div>
       </div>
       
-      <!-- INTERACTIVE TRADING SIMULATOR -->
-      <div class="hero-graphic" id="chartCard">
-        <div class="graphic-header">
-          <div class="ticker-info">
-            <span class="ticker-name">TMA / USD</span>
-            <span class="ticker-status" data-i18n="ticker-status">LIVE SIMULATION</span>
+      <!-- INTERACTIVE DUAL SIMULATOR (TRADING & SOFTWARE) -->
+      <div class="hero-graphics-split">
+        <!-- TRADING SIMULATOR -->
+        <div class="hero-graphic trading-panel" id="chartCard">
+          <div class="graphic-header">
+            <div class="ticker-info">
+              <span class="ticker-name">TMA / USD</span>
+              <span class="ticker-status" data-i18n="ticker-status">LIVE SIMULATION</span>
+            </div>
+            <div class="graphic-controls">
+              <span class="control-dot"></span>
+              <span class="control-dot"></span>
+              <span class="control-dot"></span>
+            </div>
           </div>
-          <div class="graphic-controls">
-            <span class="control-dot"></span>
-            <span class="control-dot"></span>
-            <span class="control-dot"></span>
+          <div class="canvas-container">
+            <canvas id="chartCanvas"></canvas>
           </div>
         </div>
-        <div class="canvas-container">
-          <canvas id="chartCanvas"></canvas>
+
+        <!-- SOFTWARE SIMULATOR -->
+        <div class="hero-graphic software-panel" id="terminalCard">
+          <div class="graphic-header">
+            <div class="ticker-info">
+              <span class="ticker-name">TMA / DEV-TERMINAL</span>
+              <span class="ticker-status software-status" data-i18n="terminal-status">ACTIVE DEPLOYMENT</span>
+            </div>
+            <div class="graphic-controls">
+              <span class="control-dot"></span>
+              <span class="control-dot"></span>
+              <span class="control-dot"></span>
+            </div>
+          </div>
+          <div class="terminal-container">
+            <div class="terminal-content" id="softwareTerminalContent">
+              <!-- Animated code / terminal lines will go here -->
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -110,24 +133,24 @@
         </div>
         <div class="stat-card">
           <div class="stat-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
           </div>
-          <div class="stat-number" data-target="50" data-suffix="+">0+</div>
-          <div class="stat-label" data-i18n="stat-students">Aktif Öğrenci</div>
+          <div class="stat-number" data-target="500" data-suffix="+">0+</div>
+          <div class="stat-label" data-i18n="stat-bots">Bot & İndikatör Projesi</div>
         </div>
         <div class="stat-card">
           <div class="stat-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
           </div>
-          <div class="stat-number" data-target="30" data-suffix="+">0+</div>
-          <div class="stat-label" data-i18n="stat-bots">Bot & İndikatör Projesi</div>
+          <div class="stat-number" data-target="50" data-suffix="+">0+</div>
+          <div class="stat-label" data-i18n="stat-students">Özel Yazılım Projesi</div>
         </div>
         <div class="stat-card">
           <div class="stat-icon">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
           </div>
-          <div class="stat-number" data-target="98" data-suffix="%">0%</div>
-          <div class="stat-label" data-i18n="stat-satisfaction">Memnuniyet Oranı</div>
+          <div class="stat-number" data-target="99" data-suffix=".9%">0%</div>
+          <div class="stat-label" data-i18n="stat-satisfaction">Sistem Çalışma Süresi (Uptime)</div>
         </div>
       </div>
     </div>
@@ -139,20 +162,14 @@
       <div class="section-header">
         <span class="section-subtitle" data-i18n="services-subtitle">Neler Sunuyoruz?</span>
         <h2 class="section-title" data-i18n="services-title">Trading ve Yazılım Çözümlerimiz</h2>
-        <p class="section-desc" data-i18n="services-desc">Piyasalarda rekabet avantajı elde etmeniz için geliştirilen stratejiler, kodlama çözümleri ve özel eğitim modülleri.</p>
-      </div>
-      
-      <!-- Services Tabs Navigation -->
-      <div class="services-tabs">
-        <button class="services-tab-btn active" data-tab="tabFinTech" data-i18n="tab-fintech-title">Finansal Teknolojiler</button>
-        <button class="services-tab-btn" data-tab="tabSoftware" data-i18n="tab-software-title">Yazılım Çözümleri</button>
-      </div>
-
-      <!-- Tab Panes Container -->
-      <div class="services-tabs-content">
-        <!-- TAB 1: FINTECH -->
-        <div class="services-tab-pane active" id="tabFinTech">
-          <div class="products-grid">
+        <p class="section-desc" data-i18n="services-desc">Piyasalarda rekabet avantajı elde etmeniz için geliştiril      <!-- Services Parallel Column Layout -->
+      <div class="services-dual-layout">
+        <!-- COLUMN 1: TRADING SYSTEMS -->
+        <div class="services-column fintech-column">
+          <div class="column-header">
+            <span class="column-badge badge-green" data-i18n="tab-fintech-title">Finansal Teknolojiler</span>
+          </div>
+          <div class="column-cards">
             <!-- PRODUCT 1 -->
             <div class="product-card" id="cardAlgo">
               <div class="product-icon">
@@ -190,11 +207,11 @@
                   Çoklu Zaman Dilimi (MTF) Filtreleme
                 </li>
                 <li data-i18n="card-ind-feat2">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12'></polyline></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   Gecikmesiz Sinyal Doğrulama Motoru
                 </li>
                 <li data-i18n="card-ind-feat3">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12'></polyline></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   Özelleştirilebilir Canlı Alarm Yapısı
                 </li>
               </ul>
@@ -210,15 +227,15 @@
               <p class="product-desc" data-i18n="card-ment-desc">Price Action, Smart Money Concepts ve sistemli risk yönetimi metodolojilerini baştan sona uygulamalı olarak öğreten profesyonel eğitim serisi.</p>
               <ul class="product-features">
                 <li data-i18n="card-ment-feat1">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12'></polyline></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   Kişiye Özel İlerleme Planı ve Takip
                 </li>
                 <li data-i18n="card-ment-feat2">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12'></polyline></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   Canlı Piyasa Analizi ve Backtest Pratikleri
                 </li>
                 <li data-i18n="card-ment-feat3">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12'></polyline></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   Kasa & Risk Yönetimi Metrik Şablonları
                 </li>
               </ul>
@@ -227,9 +244,12 @@
           </div>
         </div>
 
-        <!-- TAB 2: SOFTWARE SOLUTIONS -->
-        <div class="services-tab-pane" id="tabSoftware">
-          <div class="products-grid">
+        <!-- COLUMN 2: SOFTWARE SOLUTIONS -->
+        <div class="services-column software-column">
+          <div class="column-header">
+            <span class="column-badge badge-blue" data-i18n="tab-software-title">Yazılım Çözümleri</span>
+          </div>
+          <div class="column-cards">
             <!-- PRODUCT 4 -->
             <div class="product-card" id="cardWeb">
               <div class="product-icon">
@@ -267,11 +287,11 @@
                   Flutter ile Tek Kod Tabanından Hızlı Geliştirme
                 </li>
                 <li data-i18n="card-mobile-feat2">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12'></polyline></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   Push Bildirimleri ve Biyometrik Entegrasyonlar
                 </li>
                 <li data-i18n="card-mobile-feat3">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12'></polyline></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   App Store ve Google Play Store Yayın Süreçleri
                 </li>
               </ul>
@@ -287,15 +307,15 @@
               <p class="product-desc" data-i18n="card-api-desc">Sistemlerinizi birbirine bağlayan, veri akışını otomatikleştiren ve iş süreçlerini hızlandıran özel arka uç sistemleri kuruyoruz.</p>
               <ul class="product-features">
                 <li data-i18n="card-api-feat1">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12'></polyline></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   Node.js, Python ve Go ile Güçlü Backend Yapıları
                 </li>
                 <li data-i18n="card-api-feat2">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12'></polyline></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   Webhook Entegrasyonları ve Veri Tabanı Optimizasyonu
                 </li>
                 <li data-i18n="card-api-feat3">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12'></polyline></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   Bulut Altyapı Dağıtımı ve Mesajlaşma Kuyrukları
                 </li>
               </ul>

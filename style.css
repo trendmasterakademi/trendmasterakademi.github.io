@@ -229,7 +229,7 @@ header.scrolled {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1fr 1.3fr;
   gap: 48px;
   align-items: center;
 }
@@ -319,6 +319,19 @@ header.scrolled {
 }
 
 /* HERO GRAPHICS / SIMULATION */
+.hero-graphics-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+}
+
+@media (max-width: 576px) {
+  .hero-graphics-split {
+    grid-template-columns: 1fr;
+  }
+}
+
 .hero-graphic {
   position: relative;
   width: 100%;
@@ -395,6 +408,78 @@ header.scrolled {
   height: 100%;
 }
 
+/* TERMINAL STYLES */
+.software-status {
+  background: rgba(213, 0, 249, 0.12) !important;
+  color: var(--accent-purple) !important;
+  border: 1px solid rgba(213, 0, 249, 0.2) !important;
+}
+
+.terminal-container {
+  flex: 1;
+  padding: 20px;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.8rem;
+  background: rgba(5, 7, 12, 0.7);
+  overflow-y: auto;
+  text-align: left;
+  line-height: 1.6;
+}
+
+.terminal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.terminal-line {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.terminal-prompt {
+  color: var(--accent-blue);
+  font-weight: bold;
+}
+
+.terminal-prompt-software {
+  color: var(--accent-purple);
+  font-weight: bold;
+}
+
+.terminal-text {
+  color: var(--text-main);
+}
+
+.terminal-text.success {
+  color: var(--accent-green);
+}
+
+.terminal-text.info {
+  color: var(--accent-blue);
+}
+
+.terminal-text.warn {
+  color: #ffbd2e;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: var(--accent-blue);
+  animation: terminal-blink 0.8s infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+@keyframes terminal-blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
 /* SECTION GLOBAL HEADINGS */
 .section {
   padding: 100px 0;
@@ -427,56 +512,108 @@ header.scrolled {
   font-size: 1.05rem;
 }
 
-/* SERVICES TAB SWITCHER */
-.services-tabs {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-bottom: 48px;
+/* SERVICES DUAL TRACK PARALLEL LAYOUT */
+.services-dual-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 48px;
   width: 100%;
 }
 
-.services-tab-btn {
-  background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
-  color: var(--text-muted);
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.95rem;
-  padding: 12px 28px;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: var(--transition-smooth);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+@media (max-width: 991px) {
+  .services-dual-layout {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
 }
 
-.services-tab-btn:hover {
-  color: var(--text-main);
-  border-color: rgba(0, 229, 255, 0.25);
-  box-shadow: 0 0 15px rgba(0, 229, 255, 0.1);
+.services-column {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
 }
 
-.services-tab-btn.active {
-  color: #080b11;
-  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-green) 100%);
-  border-color: transparent;
-  box-shadow: var(--shadow-glow-blue);
+.column-header {
+  margin-bottom: 8px;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 16px;
+}
+
+.column-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-size: 0.8rem;
   font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
-/* SERVICES TAB PANES */
-.services-tab-pane {
-  display: none;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+/* Custom visual styling per column track */
+.fintech-column .column-badge {
+  background: rgba(0, 230, 118, 0.08);
+  border: 1px solid rgba(0, 230, 118, 0.2);
+  color: var(--accent-green);
 }
 
-.services-tab-pane.active {
-  display: block;
-  opacity: 1;
-  transform: translateY(0);
+.fintech-column .product-card::before {
+  background: linear-gradient(90deg, var(--accent-green) 0%, #00c853 100%);
+}
+
+.fintech-column .product-card:hover {
+  border-color: rgba(0, 230, 118, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), var(--shadow-glow-green);
+}
+
+.fintech-column .product-icon {
+  color: var(--accent-green) !important;
+  background: rgba(0, 230, 118, 0.06) !important;
+  border-color: rgba(0, 230, 118, 0.15) !important;
+}
+
+.fintech-column .product-features li svg {
+  color: var(--accent-green) !important;
+}
+
+.fintech-column .product-card:hover .product-btn {
+  background: linear-gradient(135deg, var(--accent-green) 0%, #00c853 100%) !important;
+  color: #080b11 !important;
+  border-color: transparent !important;
+  box-shadow: var(--shadow-glow-green) !important;
+}
+
+.software-column .column-badge {
+  background: rgba(0, 229, 255, 0.08);
+  border: 1px solid rgba(0, 229, 255, 0.2);
+  color: var(--accent-blue);
+}
+
+.software-column .product-card::before {
+  background: linear-gradient(90deg, var(--accent-blue) 0%, #00b0ff 100%);
+}
+
+.software-column .product-card:hover {
+  border-color: rgba(0, 229, 255, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), var(--shadow-glow-blue);
+}
+
+.software-column .product-icon {
+  color: var(--accent-blue) !important;
+  background: rgba(0, 229, 255, 0.06) !important;
+  border-color: rgba(0, 229, 255, 0.15) !important;
+}
+
+.software-column .product-features li svg {
+  color: var(--accent-blue) !important;
+}
+
+.software-column .product-card:hover .product-btn {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, #00b0ff 100%) !important;
+  color: #080b11 !important;
+  border-color: transparent !important;
+  box-shadow: var(--shadow-glow-blue) !important;
 }
 
 /* PRODUCTS / SERVICES GRID */
