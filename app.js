@@ -963,32 +963,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const featuredYoutube = youtubeArticles[0];
     const featuredTwitter = twitterArticles[0];
     
-    const mainGridIds = new Set();
-    if (featuredLinkedin) mainGridIds.add(featuredLinkedin.id);
-    if (featuredYoutube) mainGridIds.add(featuredYoutube.id);
-    if (featuredTwitter) mainGridIds.add(featuredTwitter.id);
-    
-    const secondaryArticles = blogArticles.filter(a => !mainGridIds.has(a.id));
-    
-    // Render HTML structure (featured grid + hidden secondary grid)
-    container.innerHTML = `
-      <div class="blog-grid" id="mainArticlesGrid" style="width: 100%;"></div>
-      <div class="blog-grid" id="moreArticlesGrid" style="display: none; margin-top: 30px; border-top: 1px dashed var(--border-color); padding-top: 30px; width: 100%;"></div>
-      ${secondaryArticles.length > 0 ? `
-        <div style="text-align: center; margin-top: 48px; width: 100%; display: flex; justify-content: center;">
-          <button id="toggleArticlesBtn" class="btn btn-secondary" style="padding: 12px 28px; font-size: 0.95rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
-            <span id="toggleBtnText">${currentLang === 'tr' ? 'Daha Fazla Analiz & Makale Göster' : 'Show More Analyses & Articles'}</span>
-            <svg id="toggleBtnIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.3s;"><polyline points="6 9 12 15 18 9"></polyline></svg>
-          </button>
-        </div>
-      ` : ''}
-    `;
-    
+    // Create grid container
+    container.innerHTML = `<div class="blog-grid" id="mainArticlesGrid" style="width: 100%;"></div>`;
     const mainGrid = document.getElementById('mainArticlesGrid');
-    const moreGrid = document.getElementById('moreArticlesGrid');
     
     // Helper function to build card HTML
-    const createCardHTML = (article, isFeatured = false) => {
+    const createCardHTML = (article) => {
       const link = article.link || '';
       const isTwitter = link.includes('twitter.com') || link.includes('x.com');
       const isYoutube = link.includes('youtube.com') || link.includes('youtu.be');
@@ -1028,7 +1008,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const image = article.image || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800';
 
       return `
-        <div class="blog-card ${isFeatured ? 'featured' : ''}">
+        <div class="blog-card">
           <div class="blog-card-image-wrapper">
             <img src="${image}" alt="${title}" class="blog-card-image" loading="lazy">
             <div class="blog-card-badge">
@@ -1054,48 +1034,15 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     };
     
-    // Render Main Grid items
+    // Render exactly the 3 cards
     if (featuredLinkedin && mainGrid) {
-      mainGrid.innerHTML += createCardHTML(featuredLinkedin, true);
+      mainGrid.innerHTML += createCardHTML(featuredLinkedin);
     }
     if (featuredYoutube && mainGrid) {
       mainGrid.innerHTML += createCardHTML(featuredYoutube);
     }
     if (featuredTwitter && mainGrid) {
       mainGrid.innerHTML += createCardHTML(featuredTwitter);
-    }
-    
-    // Render Secondary Grid items
-    if (secondaryArticles.length > 0 && moreGrid) {
-      secondaryArticles.forEach(article => {
-        moreGrid.innerHTML += createCardHTML(article);
-      });
-    }
-    
-    // Set up toggle logic
-    const toggleBtn = document.getElementById('toggleArticlesBtn');
-    if (toggleBtn && moreGrid) {
-      toggleBtn.addEventListener('click', () => {
-        const isHidden = moreGrid.style.display === 'none';
-        const toggleBtnText = document.getElementById('toggleBtnText');
-        const toggleBtnIcon = document.getElementById('toggleBtnIcon');
-        
-        if (isHidden) {
-          moreGrid.style.display = 'grid';
-          if (toggleBtnText) toggleBtnText.textContent = currentLang === 'tr' ? 'Daha Az Göster' : 'Show Less';
-          if (toggleBtnIcon) toggleBtnIcon.style.transform = 'rotate(180deg)';
-        } else {
-          moreGrid.style.display = 'none';
-          if (toggleBtnText) toggleBtnText.textContent = currentLang === 'tr' ? 'Daha Fazla Analiz & Makale Göster' : 'Show More Analyses & Articles';
-          if (toggleBtnIcon) toggleBtnIcon.style.transform = 'rotate(0deg)';
-          
-          // Smooth scroll back to section header
-          const blogSection = document.getElementById('blog');
-          if (blogSection) {
-            blogSection.scrollIntoView({ behavior: 'smooth' });
-          }
-        }
-      });
     }
   };;
 
