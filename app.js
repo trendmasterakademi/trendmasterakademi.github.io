@@ -195,7 +195,32 @@ document.addEventListener('DOMContentLoaded', () => {
       "tech-band-label": "Kullandığımız Teknolojiler",
 
       // WhatsApp FAB Tooltip
-      "fab-tooltip": "Bize WhatsApp'tan yazın!"
+      "fab-tooltip": "Bize WhatsApp'tan yazın!",
+
+      // Service Tabs / Columns
+      "tab-training-title": "Eğitim Modüllerimiz",
+      
+      // Training Cards
+      "card-train1-title": "Temel & Klasik Teknik Analiz",
+      "card-train1-desc": "Modül 1-4: Grafik okuma temelleri, klasik teknik formasyonlar, market yapısı kırılımları ve fiyatın doğal hareketlerini anlama.",
+      "card-train1-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 1: Finansal Temeller & Grafik Okuma",
+      "card-train1-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 2: Klasik Teknik Analiz Araçları",
+      "card-train1-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 3: Piyasa Yapısı & Kırılımlar (SMC)",
+      "card-train1-feat4": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 4: Price Action Fiyat Stratejileri",
+
+      "card-train2-title": "İleri Düzey Kurumsal Analiz",
+      "card-train2-desc": "Modül 5-8: Hacimli oyuncuların ayak izlerini izleme, likidite mühendisliği, indikatör onayları ve risk yönetimi.",
+      "card-train2-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 5: Smart Money Concepts (SMC)",
+      "card-train2-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 6: Likidite Mühendisliği & Stop Hunt",
+      "card-train2-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 7: Teknik İndikatör Uyumsuzluk Onayları",
+      "card-train2-feat4": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 8: Risk & Kasa Yönetimi (Position Sizing)",
+
+      "card-train3-title": "Algoritma & Bot Entegrasyonu",
+      "card-train3-desc": "Modül 9-12: Yatırımcı psikolojisi, Pine Script v5 programlama ve webhook-API ile strateji otomasyonu.",
+      "card-train3-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 9: Yatırımcı Psikolojisi & İşlem Disiplini",
+      "card-train3-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 10: Algoritmik Ticarete Giriş & Tasarım",
+      "card-train3-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 11: Pine Script v5 ile TV Kodlama",
+      "card-train3-feat4": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 12: Webhook, API & Canlı Bot Otomasyonu"
     },
     en: {
       "site-title": "Trend Master Academy | Financial Technologies & Custom Software Solutions",
@@ -388,7 +413,32 @@ document.addEventListener('DOMContentLoaded', () => {
       "tech-band-label": "Technologies We Use",
 
       // WhatsApp FAB Tooltip
-      "fab-tooltip": "Chat with us on WhatsApp!"
+      "fab-tooltip": "Chat with us on WhatsApp!",
+
+      // Service Tabs / Columns
+      "tab-training-title": "Our Training Modules",
+      
+      // Training Cards
+      "card-train1-title": "Basic & Classical Analysis",
+      "card-train1-desc": "Modules 1-4: Chart reading basics, classical technical patterns, market structure breaks, and understanding natural price movements.",
+      "card-train1-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 1: Financial Basics & Chart Reading",
+      "card-train1-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 2: Classical Technical Analysis Tools",
+      "card-train1-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 3: Market Structure & Breaks (SMC)",
+      "card-train1-feat4": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 4: Price Action Price Strategies",
+
+      "card-train2-title": "Advanced Institutional Analysis",
+      "card-train2-desc": "Modules 5-8: Tracking high-volume players, liquidity engineering, indicator confirmations, and risk management.",
+      "card-train2-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 5: Smart Money Concepts (SMC)",
+      "card-train2-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 6: Liquidity Engineering & Stop Hunt",
+      "card-train2-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 7: Technical Indicator Divergence Confirmations",
+      "card-train2-feat4": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 8: Risk & Capital Management (Position Sizing)",
+
+      "card-train3-title": "Algorithmic Trading & Bots",
+      "card-train3-desc": "Modules 9-12: Trading psychology, Pine Script v5 programming, and webhook-API based strategy automation.",
+      "card-train3-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 9: Trader Psychology & Discipline",
+      "card-train3-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 10: Intro to Algorithmic Trading & Design",
+      "card-train3-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 11: Coding in Pine Script v5",
+      "card-train3-feat4": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 12: Webhook, API & Live Bot Automation"
     }
   };
 
