@@ -917,10 +917,16 @@ document.addEventListener('DOMContentLoaded', () => {
       return `https://www.linkedin.com/embed/feed/update/${urnMatch[0]}`;
     }
     
-    // Pattern to match standard post IDs (e.g. -activity-123456 or posts/123456)
-    const idMatch = url.match(/(?:activity|share|posts)-(\d+)/) || url.match(/\/posts\/.*-(\d+)/) || url.match(/-(\d+)(?:\?|$)/) || url.match(/\/posts\/(\d+)/);
-    if (idMatch) {
-      return `https://www.linkedin.com/embed/feed/update/urn:li:share:${idMatch[1]}`;
+    // Pattern to match activity ID in posts
+    const activityMatch = url.match(/activity-(\d+)/);
+    if (activityMatch) {
+      return `https://www.linkedin.com/embed/feed/update/urn:li:activity:${activityMatch[1]}`;
+    }
+    
+    // Pattern to match standard post IDs (e.g. share-123456 or posts/123456)
+    const shareMatch = url.match(/(?:share|posts)-(\d+)/) || url.match(/\/posts\/.*-(\d+)/) || url.match(/-(\d+)(?:\?|$)/) || url.match(/\/posts\/(\d+)/);
+    if (shareMatch) {
+      return `https://www.linkedin.com/embed/feed/update/urn:li:share:${shareMatch[1]}`;
     }
     
     return null;
@@ -948,12 +954,19 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     
+    // We only want to embed the LATEST (first) embeddable post.
+    // All other posts will render as standard cards.
+    let embedRendered = false;
+    
     blogArticles.forEach(article => {
       const link = article.link || '';
       const isTwitter = link.includes('twitter.com') || link.includes('x.com');
       const linkedInEmbed = getLinkedInEmbedUrl(link);
       const youtubeId = getYouTubeId(link);
       const hasCustomEmbed = !!article.embed_html;
+      
+      const isEmbeddable = hasCustomEmbed || linkedInEmbed || isTwitter || youtubeId;
+      const shouldEmbed = isEmbeddable && !embedRendered;
       
       // Formatting date if possible
       let dateString = article.date;
@@ -972,52 +985,72 @@ document.addEventListener('DOMContentLoaded', () => {
       // Create element
       const card = document.createElement('div');
       
-      if (hasCustomEmbed) {
-        card.className = 'blog-card embed-card custom-embed';
-        card.innerHTML = article.embed_html;
-      } else if (linkedInEmbed) {
-        card.className = 'blog-card embed-card linkedin-embed';
-        card.innerHTML = `
-          <div class="embed-wrapper" style="width: 100%; height: 100%;">
-            <iframe src="${linkedInEmbed}" height="550" style="width: 100%; border: none; border-radius: 12px; background: transparent;" allowfullscreen="" title="LinkedIn Post"></iframe>
-          </div>
-        `;
-      } else if (isTwitter) {
-        card.className = 'blog-card embed-card twitter-embed';
-        card.innerHTML = `
-          <div class="embed-wrapper" style="width: 100%; display: flex; justify-content: center;">
-            <blockquote class="twitter-tweet" data-theme="dark" data-width="100%" data-align="center">
-              <a href="${link}"></a>
-            </blockquote>
-          </div>
-        `;
-        // Load or reload Twitter widgets for this card
-        setTimeout(() => {
-          if (window.twttr && window.twttr.widgets) {
-            window.twttr.widgets.load(card);
-          } else {
-            const script = document.createElement('script');
-            script.src = 'https://platform.twitter.com/widgets.js';
-            script.async = true;
-            document.head.appendChild(script);
-          }
-        }, 50);
-      } else if (youtubeId) {
-        card.className = 'blog-card embed-card youtube-embed';
-        card.innerHTML = `
-          <div class="embed-wrapper" style="width: 100%;">
-            <iframe src="https://www.youtube.com/embed/${youtubeId}" style="width: 100%; aspect-ratio: 16/9; border: none; border-radius: 12px;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube Video"></iframe>
-          </div>
-        `;
+      if (shouldEmbed) {
+        embedRendered = true; // Set flag so we only embed the single most recent highlight post
+        
+        if (hasCustomEmbed) {
+          card.className = 'blog-card embed-card custom-embed';
+          card.innerHTML = article.embed_html;
+        } else if (linkedInEmbed) {
+          card.className = 'blog-card embed-card linkedin-embed';
+          card.innerHTML = `
+            <div class="embed-wrapper" style="width: 100%; height: 100%;">
+              <iframe src="${linkedInEmbed}" height="550" style="width: 100%; border: none; border-radius: 12px; background: transparent;" allowfullscreen="" title="LinkedIn Post"></iframe>
+            </div>
+          `;
+        } else if (isTwitter) {
+          card.className = 'blog-card embed-card twitter-embed';
+          card.innerHTML = `
+            <div class="embed-wrapper" style="width: 100%; display: flex; justify-content: center;">
+              <blockquote class="twitter-tweet" data-theme="dark" data-width="100%" data-align="center">
+                <a href="${link}">${title || 'X Paylaşımı'}</a>
+              </blockquote>
+            </div>
+          `;
+          // Load or reload Twitter widgets for this card
+          setTimeout(() => {
+            if (window.twttr && window.twttr.widgets) {
+              window.twttr.widgets.load(card);
+            } else {
+              const script = document.createElement('script');
+              script.src = 'https://platform.twitter.com/widgets.js';
+              script.async = true;
+              document.head.appendChild(script);
+            }
+          }, 50);
+        } else if (youtubeId) {
+          card.className = 'blog-card embed-card youtube-embed';
+          card.innerHTML = `
+            <div class="embed-wrapper" style="width: 100%;">
+              <iframe src="https://www.youtube.com/embed/${youtubeId}" style="width: 100%; aspect-ratio: 16/9; border: none; border-radius: 12px;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube Video"></iframe>
+            </div>
+          `;
+        }
       } else {
-        // Fallback to standard preview card
+        // Fallback to standard preview card (or default render style for secondary items)
+        
+        // Resolve platform specific details for badge and button
+        let platformName = 'LinkedIn';
+        let linkText = currentLang === 'tr' ? 'LinkedIn\'de Oku' : 'Read on LinkedIn';
+        let badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`;
+        
+        if (isTwitter) {
+          platformName = 'X (Twitter)';
+          linkText = currentLang === 'tr' ? 'X\'te Oku' : 'Read on X';
+          badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+        } else if (youtubeId) {
+          platformName = 'YouTube';
+          linkText = currentLang === 'tr' ? 'YouTube\'da İzle' : 'Watch on YouTube';
+          badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.528 3.545 12 3.545 12 3.545s-7.528 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.022 0 12 0 12s0 3.978.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.86.508 9.388.508 9.388.508s7.528 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.978 24 12 24 12s0-3.978-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
+        }
+        
         card.className = 'blog-card';
         card.innerHTML = `
           <div class="blog-card-image-wrapper">
             <img src="${article.image || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800'}" alt="${title}" class="blog-card-image" loading="lazy">
             <div class="blog-card-badge">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-              <span>LinkedIn</span>
+              ${badgeIcon}
+              <span>${platformName}</span>
             </div>
           </div>
           <div class="blog-card-content">
@@ -1029,7 +1062,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <p class="blog-card-desc">${summary}</p>
             <div class="blog-card-footer">
               <a href="${link}" target="_blank" class="blog-card-link">
-                <span>${currentLang === 'tr' ? 'LinkedIn\'de Oku' : 'Read on LinkedIn'}</span>
+                <span>${linkText}</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </a>
             </div>
