@@ -14,12 +14,16 @@
   },
   {
     "id": "3",
-    "title": "YouTube Algoritmik Trade Tanıtımı",
-    "summary": "YouTube kanalımızdaki en son algoritmik trade botu kurulum videomuzu izleyin.",
-    "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "title": "Trend Master Akademi YouTube Kanalı",
+    "summary": "Pine Script egitimleri, algoritmik trade botlari ve teknik analiz ipuclarini paylastigimiz YouTube kanalimizi takip edin.",
+    "link": "https://www.youtube.com/@trendmasterakademi",
     "image": "",
     "date": "2026-07-03",
-    "is_embed": true
+    "is_embed": false,
+    "title_tr": "Trend Master Akademi YouTube Kanalı",
+    "title_en": "Trend Master Akademi YouTube Channel",
+    "summary_tr": "Pine Script egitimleri, algoritmik trade botlari ve teknik analiz ipuclarini paylastigimiz YouTube kanalimizi takip edin.",
+    "summary_en": "Follow our YouTube channel for Pine Script tutorials, algorithmic trading bots, and technical analysis tips."
   },
   {
     "id": "4",
