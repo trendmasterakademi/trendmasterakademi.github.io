@@ -963,10 +963,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const featuredYoutube = youtubeArticles[0];
     const featuredTwitter = twitterArticles[0];
     
-    // Create grid container
-    container.innerHTML = `<div class="blog-grid" id="mainArticlesGrid" style="width: 100%;"></div>`;
-    const mainGrid = document.getElementById('mainArticlesGrid');
-    
     // Helper function to build card HTML
     const createCardHTML = (article) => {
       const link = article.link || '';
@@ -1034,16 +1030,18 @@ document.addEventListener('DOMContentLoaded', () => {
       `;
     };
     
-    // Render exactly the 3 cards
-    if (featuredLinkedin && mainGrid) {
-      mainGrid.innerHTML += createCardHTML(featuredLinkedin);
+    // Render exactly the 3 cards directly to container
+    let htmlContent = '';
+    if (featuredLinkedin) {
+      htmlContent += createCardHTML(featuredLinkedin);
     }
-    if (featuredYoutube && mainGrid) {
-      mainGrid.innerHTML += createCardHTML(featuredYoutube);
+    if (featuredYoutube) {
+      htmlContent += createCardHTML(featuredYoutube);
     }
-    if (featuredTwitter && mainGrid) {
-      mainGrid.innerHTML += createCardHTML(featuredTwitter);
+    if (featuredTwitter) {
+      htmlContent += createCardHTML(featuredTwitter);
     }
+    container.innerHTML = htmlContent;
   };;
 
   const fetchBlogArticles = () => {
