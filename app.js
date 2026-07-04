@@ -954,26 +954,65 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
     
-    // We only want to embed the LATEST (first) embeddable post.
-    // All other posts will render as standard cards.
-    let embedRendered = false;
+    // Categorize
+    const linkedinArticles = blogArticles.filter(a => a.link && a.link.includes('linkedin.com'));
+    const youtubeArticles = blogArticles.filter(a => a.link && (a.link.includes('youtube.com') || a.link.includes('youtu.be')));
+    const twitterArticles = blogArticles.filter(a => a.link && (a.link.includes('twitter.com') || a.link.includes('x.com')));
     
-    blogArticles.forEach(article => {
+    const featuredLinkedin = linkedinArticles[0];
+    const featuredYoutube = youtubeArticles[0];
+    const featuredTwitter = twitterArticles[0];
+    
+    const mainGridIds = new Set();
+    if (featuredLinkedin) mainGridIds.add(featuredLinkedin.id);
+    if (featuredYoutube) mainGridIds.add(featuredYoutube.id);
+    if (featuredTwitter) mainGridIds.add(featuredTwitter.id);
+    
+    const secondaryArticles = blogArticles.filter(a => !mainGridIds.has(a.id));
+    
+    // Render HTML structure (featured grid + hidden secondary grid)
+    container.innerHTML = `
+      <div class="blog-grid" id="mainArticlesGrid" style="width: 100%;"></div>
+      <div class="blog-grid" id="moreArticlesGrid" style="display: none; margin-top: 30px; border-top: 1px dashed var(--border-color); padding-top: 30px; width: 100%;"></div>
+      ${secondaryArticles.length > 0 ? `
+        <div style="text-align: center; margin-top: 48px; width: 100%; display: flex; justify-content: center;">
+          <button id="toggleArticlesBtn" class="btn btn-secondary" style="padding: 12px 28px; font-size: 0.95rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+            <span id="toggleBtnText">${currentLang === 'tr' ? 'Daha Fazla Analiz & Makale Göster' : 'Show More Analyses & Articles'}</span>
+            <svg id="toggleBtnIcon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="transition: transform 0.3s;"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+        </div>
+      ` : ''}
+    `;
+    
+    const mainGrid = document.getElementById('mainArticlesGrid');
+    const moreGrid = document.getElementById('moreArticlesGrid');
+    
+    // Helper function to build card HTML
+    const createCardHTML = (article, isFeatured = false) => {
       const link = article.link || '';
       const isTwitter = link.includes('twitter.com') || link.includes('x.com');
       const isYoutube = link.includes('youtube.com') || link.includes('youtu.be');
-      const isLinkedin = link.includes('linkedin.com');
       
-      const isTwitterStatus = isTwitter && link.includes('/status/');
-      const isLinkedinPost = isLinkedin && (link.includes('/posts/') || link.includes('/feed/update/') || link.includes('urn:li:'));
+      let platformName = 'LinkedIn';
+      let linkText = currentLang === 'tr' ? 'LinkedIn\'de Oku' : 'Read on LinkedIn';
+      let badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`;
       
-      const linkedInEmbed = isLinkedinPost ? getLinkedInEmbedUrl(link) : null;
-      const youtubeId = isYoutube ? getYouTubeId(link) : null;
-      const hasCustomEmbed = !!article.embed_html;
-      
-      const isEmbeddable = hasCustomEmbed || linkedInEmbed || isTwitterStatus || (isYoutube && youtubeId);
-      const shouldEmbed = isEmbeddable && !embedRendered;
-      
+      if (isTwitter) {
+        platformName = 'X (Twitter)';
+        const isStatus = link.includes('/status/');
+        linkText = isStatus
+          ? (currentLang === 'tr' ? 'X\'te Oku' : 'Read on X')
+          : (currentLang === 'tr' ? 'X\'te Takip Et' : 'Follow on X');
+        badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+      } else if (isYoutube) {
+        platformName = 'YouTube';
+        const isVideo = link.includes('watch?v=') || link.includes('youtu.be/');
+        linkText = isVideo
+          ? (currentLang === 'tr' ? 'YouTube\'da İzle' : 'Watch on YouTube')
+          : (currentLang === 'tr' ? 'Kanala Abone Ol' : 'Subscribe on YouTube');
+        badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.528 3.545 12 3.545 12 3.545s-7.528 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.022 0 12 0 12s0 3.978.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.86.508 9.388.508 9.388.508s7.528 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.978 24 12 24 12s0-3.978-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
+      }
+
       // Formatting date if possible
       let dateString = article.date;
       try {
@@ -984,82 +1023,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (e) {}
 
-      // Resolve titles and summaries
       const title = currentLang === 'tr' && article.title_tr ? article.title_tr : (article.title || '');
       const summary = currentLang === 'tr' && article.summary_tr ? article.summary_tr : (article.summary || '');
-      
-      // Create element
-      const card = document.createElement('div');
-      
-      if (shouldEmbed) {
-        embedRendered = true; // Set flag so we only embed the single most recent highlight post
-        
-        if (hasCustomEmbed) {
-          card.className = 'blog-card embed-card custom-embed';
-          card.innerHTML = article.embed_html;
-        } else if (linkedInEmbed) {
-          card.className = 'blog-card embed-card linkedin-embed';
-          card.innerHTML = `
-            <div class="embed-wrapper" style="width: 100%; height: 100%;">
-              <iframe src="${linkedInEmbed}" height="550" style="width: 100%; border: none; border-radius: 12px; background: transparent;" allowfullscreen="" title="LinkedIn Post"></iframe>
-            </div>
-          `;
-        } else if (isTwitterStatus) {
-          card.className = 'blog-card embed-card twitter-embed';
-          card.innerHTML = `
-            <div class="embed-wrapper" style="width: 100%; display: flex; justify-content: center;">
-              <blockquote class="twitter-tweet" data-theme="dark" data-width="100%" data-align="center">
-                <a href="${link}">${title || 'X Paylaşımı'}</a>
-              </blockquote>
-            </div>
-          `;
-          // Load or reload Twitter widgets for this card
-          setTimeout(() => {
-            if (window.twttr && window.twttr.widgets) {
-              window.twttr.widgets.load(card);
-            } else {
-              const script = document.createElement('script');
-              script.src = 'https://platform.twitter.com/widgets.js';
-              script.async = true;
-              document.head.appendChild(script);
-            }
-          }, 50);
-        } else if (youtubeId) {
-          card.className = 'blog-card embed-card youtube-embed';
-          card.innerHTML = `
-            <div class="embed-wrapper" style="width: 100%;">
-              <iframe src="https://www.youtube.com/embed/${youtubeId}" style="width: 100%; aspect-ratio: 16/9; border: none; border-radius: 12px;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube Video"></iframe>
-            </div>
-          `;
-        }
-      } else {
-        // Fallback to standard preview card (or default render style for secondary items)
-        
-        // Resolve platform specific details for badge and button
-        let platformName = 'LinkedIn';
-        let linkText = currentLang === 'tr' ? 'LinkedIn\'de Oku' : 'Read on LinkedIn';
-        let badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`;
-        
-        if (isTwitter) {
-          platformName = 'X (Twitter)';
-          const isStatus = link.includes('/status/');
-          linkText = isStatus
-            ? (currentLang === 'tr' ? 'X\'te Oku' : 'Read on X')
-            : (currentLang === 'tr' ? 'X\'te Takip Et' : 'Follow on X');
-          badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
-        } else if (isYoutube) {
-          platformName = 'YouTube';
-          const isVideo = link.includes('watch?v=') || link.includes('youtu.be/');
-          linkText = isVideo
-            ? (currentLang === 'tr' ? 'YouTube\'da İzle' : 'Watch on YouTube')
-            : (currentLang === 'tr' ? 'Kanala Abone Ol' : 'Subscribe on YouTube');
-          badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.528 3.545 12 3.545 12 3.545s-7.528 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.022 0 12 0 12s0 3.978.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.86.508 9.388.508 9.388.508s7.528 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.978 24 12 24 12s0-3.978-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
-        }
-        
-        card.className = 'blog-card';
-        card.innerHTML = `
+      const image = article.image || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800';
+
+      return `
+        <div class="blog-card ${isFeatured ? 'featured' : ''}">
           <div class="blog-card-image-wrapper">
-            <img src="${article.image || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800'}" alt="${title}" class="blog-card-image" loading="lazy">
+            <img src="${image}" alt="${title}" class="blog-card-image" loading="lazy">
             <div class="blog-card-badge">
               ${badgeIcon}
               <span>${platformName}</span>
@@ -1079,12 +1050,54 @@ document.addEventListener('DOMContentLoaded', () => {
               </a>
             </div>
           </div>
-        `;
-      }
-      
-      container.appendChild(card);
-    });
-  };
+        </div>
+      `;
+    };
+    
+    // Render Main Grid items
+    if (featuredLinkedin && mainGrid) {
+      mainGrid.innerHTML += createCardHTML(featuredLinkedin, true);
+    }
+    if (featuredYoutube && mainGrid) {
+      mainGrid.innerHTML += createCardHTML(featuredYoutube);
+    }
+    if (featuredTwitter && mainGrid) {
+      mainGrid.innerHTML += createCardHTML(featuredTwitter);
+    }
+    
+    // Render Secondary Grid items
+    if (secondaryArticles.length > 0 && moreGrid) {
+      secondaryArticles.forEach(article => {
+        moreGrid.innerHTML += createCardHTML(article);
+      });
+    }
+    
+    // Set up toggle logic
+    const toggleBtn = document.getElementById('toggleArticlesBtn');
+    if (toggleBtn && moreGrid) {
+      toggleBtn.addEventListener('click', () => {
+        const isHidden = moreGrid.style.display === 'none';
+        const toggleBtnText = document.getElementById('toggleBtnText');
+        const toggleBtnIcon = document.getElementById('toggleBtnIcon');
+        
+        if (isHidden) {
+          moreGrid.style.display = 'grid';
+          if (toggleBtnText) toggleBtnText.textContent = currentLang === 'tr' ? 'Daha Az Göster' : 'Show Less';
+          if (toggleBtnIcon) toggleBtnIcon.style.transform = 'rotate(180deg)';
+        } else {
+          moreGrid.style.display = 'none';
+          if (toggleBtnText) toggleBtnText.textContent = currentLang === 'tr' ? 'Daha Fazla Analiz & Makale Göster' : 'Show More Analyses & Articles';
+          if (toggleBtnIcon) toggleBtnIcon.style.transform = 'rotate(0deg)';
+          
+          // Smooth scroll back to section header
+          const blogSection = document.getElementById('blog');
+          if (blogSection) {
+            blogSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    }
+  };;
 
   const fetchBlogArticles = () => {
     const container = document.getElementById('blogContainer');
