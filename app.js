@@ -961,11 +961,17 @@ document.addEventListener('DOMContentLoaded', () => {
     blogArticles.forEach(article => {
       const link = article.link || '';
       const isTwitter = link.includes('twitter.com') || link.includes('x.com');
-      const linkedInEmbed = getLinkedInEmbedUrl(link);
-      const youtubeId = getYouTubeId(link);
+      const isYoutube = link.includes('youtube.com') || link.includes('youtu.be');
+      const isLinkedin = link.includes('linkedin.com');
+      
+      const isTwitterStatus = isTwitter && link.includes('/status/');
+      const isLinkedinPost = isLinkedin && (link.includes('/posts/') || link.includes('/feed/update/') || link.includes('urn:li:'));
+      
+      const linkedInEmbed = isLinkedinPost ? getLinkedInEmbedUrl(link) : null;
+      const youtubeId = isYoutube ? getYouTubeId(link) : null;
       const hasCustomEmbed = !!article.embed_html;
       
-      const isEmbeddable = hasCustomEmbed || linkedInEmbed || isTwitter || youtubeId;
+      const isEmbeddable = hasCustomEmbed || linkedInEmbed || isTwitterStatus || (isYoutube && youtubeId);
       const shouldEmbed = isEmbeddable && !embedRendered;
       
       // Formatting date if possible
@@ -998,7 +1004,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <iframe src="${linkedInEmbed}" height="550" style="width: 100%; border: none; border-radius: 12px; background: transparent;" allowfullscreen="" title="LinkedIn Post"></iframe>
             </div>
           `;
-        } else if (isTwitter) {
+        } else if (isTwitterStatus) {
           card.className = 'blog-card embed-card twitter-embed';
           card.innerHTML = `
             <div class="embed-wrapper" style="width: 100%; display: flex; justify-content: center;">
@@ -1038,7 +1044,7 @@ document.addEventListener('DOMContentLoaded', () => {
           platformName = 'X (Twitter)';
           linkText = currentLang === 'tr' ? 'X\'te Oku' : 'Read on X';
           badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
-        } else if (youtubeId) {
+        } else if (isYoutube) {
           platformName = 'YouTube';
           linkText = currentLang === 'tr' ? 'YouTube\'da İzle' : 'Watch on YouTube';
           badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.528 3.545 12 3.545 12 3.545s-7.528 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.022 0 12 0 12s0 3.978.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.86.508 9.388.508 9.388.508s7.528 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.978 24 12 24 12s0-3.978-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;

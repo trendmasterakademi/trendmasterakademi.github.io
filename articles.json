@@ -15,33 +15,15 @@
   {
     "id": "3",
     "title": "Trend Master Akademi YouTube Kanalı",
+    "title_tr": "Trend Master Akademi YouTube Kanalı",
+    "title_en": "Trend Master Akademi YouTube Channel",
     "summary": "Pine Script egitimleri, algoritmik trade botlari ve teknik analiz ipuclarini paylastigimiz YouTube kanalimizi takip edin.",
+    "summary_tr": "Pine Script egitimleri, algoritmik trade botlari ve teknik analiz ipuclarini paylastigimiz YouTube kanalimizi takip edin.",
+    "summary_en": "Follow our YouTube channel for Pine Script tutorials, algorithmic trading bots, and technical analysis tips.",
     "link": "https://www.youtube.com/@trendmasterakademi",
     "image": "",
     "date": "2026-07-03",
-    "is_embed": false,
-    "title_tr": "Trend Master Akademi YouTube Kanalı",
-    "title_en": "Trend Master Akademi YouTube Channel",
-    "summary_tr": "Pine Script egitimleri, algoritmik trade botlari ve teknik analiz ipuclarini paylastigimiz YouTube kanalimizi takip edin.",
-    "summary_en": "Follow our YouTube channel for Pine Script tutorials, algorithmic trading bots, and technical analysis tips."
-  },
-  {
-    "id": "4",
-    "title": "X (Twitter) Pazar Analizi",
-    "summary": "Bu haftaki Bitcoin ve Ethereum teknik analizimiz X platformunda yayında.",
-    "link": "https://x.com/Twitter/status/1680509653818318849",
-    "image": "",
-    "date": "2026-07-02",
-    "is_embed": true
-  },
-  {
-    "id": "5",
-    "title": "LinkedIn Pine Script Güncellemesi",
-    "summary": "Pine Script v5 yenilikleri ve trading entegrasyonu paylaşımımız.",
-    "link": "https://www.linkedin.com/feed/update/urn:li:share:7214569112211910656",
-    "image": "",
-    "date": "2026-07-01",
-    "is_embed": true
+    "is_embed": false
   },
   {
     "id": "1",
