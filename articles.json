@@ -1,5 +1,45 @@
 [
   {
+    "id": "7479108317487939585",
+    "title": "LSTMs ve Python Gecikmesine Son: MetaTrader 5 (MQL5) Uzerinde Nativ GPT Mimarisi ve OpenCL GPU Ivmelendirmesi",
+    "title_tr": "LSTMs ve Python Gecikmesine Son: MetaTrader 5 (MQL5) Uzerinde Nativ GPT Mimarisi ve OpenCL GPU Ivmelendirmesi",
+    "title_en": "Ending LSTMs and Python Latency: Native GPT Architecture and OpenCL GPU Acceleration on MetaTrader 5 (MQL5)",
+    "summary": "MetaTrader 5 uzerinde Python gecikmesi olmadan, MQL5 ile native GPT mimarisi ve OpenCL GPU hizlandirmasi kullanarak algoritmik trade stratejileri gelistirme.",
+    "summary_tr": "MetaTrader 5 uzerinde Python gecikmesi olmadan, MQL5 ile native GPT mimarisi ve OpenCL GPU hizlandirmasi kullanarak algoritmik trade stratejileri gelistirme.",
+    "summary_en": "Developing algorithmic trade strategies on MetaTrader 5 without Python latency, using native GPT architecture and OpenCL GPU acceleration with MQL5.",
+    "link": "https://www.linkedin.com/posts/trendmasterakademi_activity-7479108317487939585-143E?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEQ0rV4BET4NAJfRHFWjbpjwI85Htwk-rxM",
+    "image": "",
+    "date": "2026-07-04",
+    "is_embed": true
+  },
+  {
+    "id": "3",
+    "title": "YouTube Algoritmik Trade Tanıtımı",
+    "summary": "YouTube kanalımızdaki en son algoritmik trade botu kurulum videomuzu izleyin.",
+    "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "image": "",
+    "date": "2026-07-03",
+    "is_embed": true
+  },
+  {
+    "id": "4",
+    "title": "X (Twitter) Pazar Analizi",
+    "summary": "Bu haftaki Bitcoin ve Ethereum teknik analizimiz X platformunda yayında.",
+    "link": "https://x.com/Twitter/status/1680509653818318849",
+    "image": "",
+    "date": "2026-07-02",
+    "is_embed": true
+  },
+  {
+    "id": "5",
+    "title": "LinkedIn Pine Script Güncellemesi",
+    "summary": "Pine Script v5 yenilikleri ve trading entegrasyonu paylaşımımız.",
+    "link": "https://www.linkedin.com/feed/update/urn:li:share:7214569112211910656",
+    "image": "",
+    "date": "2026-07-01",
+    "is_embed": true
+  },
+  {
     "id": "1",
     "title": "TradingView Pine Script ile Algoritmik Strateji Geliştirme",
     "summary": "Pine Script dilinin temel kurallarını ve trend takip eden stratejilerin geriye dönük test (backtest) aşamalarını inceledik.",

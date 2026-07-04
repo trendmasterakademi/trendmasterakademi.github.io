@@ -1903,3 +1903,80 @@ footer {
     transform: translateX(100%);
   }
 }
+
+/* =============================================
+   SOCIAL MEDIA EMBEDS STYLING
+============================================= */
+.embed-card {
+  padding: 16px;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  height: 100%;
+  min-height: 480px;
+  transition: var(--transition-smooth);
+}
+
+.embed-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(0, 229, 255, 0.3);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), var(--shadow-glow-blue);
+}
+
+.embed-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.youtube-embed {
+  min-height: auto; /* Allow aspect-ratio to set height */
+}
+
+.youtube-embed .embed-wrapper iframe {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  background: #000;
+}
+
+.linkedin-embed {
+  min-height: 580px;
+}
+
+.linkedin-embed iframe {
+  width: 100%;
+  max-width: 100%;
+  background: transparent;
+}
+
+.twitter-embed {
+  min-height: auto; /* Let twitter widget size itself */
+  background: rgba(21, 32, 43, 0.4); /* Subtle X dark background context */
+  border-color: rgba(29, 161, 242, 0.15);
+}
+
+.twitter-embed:hover {
+  border-color: rgba(29, 161, 242, 0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(29, 161, 242, 0.2);
+}
+
+.twitter-embed .twitter-tweet {
+  margin: 0 auto !important;
+}
+
+/* Adjust grid for better spacing when embeds are mixed with cards */
+@media (max-width: 768px) {
+  .linkedin-embed {
+    min-height: 500px;
+  }
+}

@@ -82,12 +82,12 @@ document.addEventListener('DOMContentLoaded', () => {
       "github-view-profile": "GitHub Profilimizi İnceleyin",
       
       // Blog/Publications Section
-      "blog-subtitle": "Yayınlarımız & Makalelerimiz",
-      "blog-title": "Son LinkedIn Paylaşımlarımız",
-      "blog-desc": "Finansal piyasalar, algoritmik trading ve Pine Script üzerine en güncel analizlerimiz ve makalelerimiz.",
-      "blog-loading": "Makaleler yükleniyor...",
-      "blog-error": "Makaleler yüklenirken hata oluştu. Lütfen daha sonra tekrar deneyin.",
-      "blog-view-profile": "Bizi LinkedIn'de Takip Edin",
+      "blog-subtitle": "Sosyal Medya & Analizler",
+      "blog-title": "Son Paylaşımlarımız & Analizler",
+      "blog-desc": "Sosyal medya hesaplarımızda (X, LinkedIn) paylaştığımız güncel analizler, piyasa yorumları ve en son makalelerimiz.",
+      "blog-loading": "Paylaşımlar yükleniyor...",
+      "blog-error": "Paylaşımlar yüklenirken hata oluştu. Lütfen daha sonra tekrar deneyin.",
+      "blog-view-profile": "Sosyal Medyada Bizi Takip Edin",
       
       // CTA Banner
       "cta-unsure": "Kararsız mı kaldınız?",
@@ -275,12 +275,12 @@ document.addEventListener('DOMContentLoaded', () => {
       "github-view-profile": "View Our GitHub Profile",
       
       // Blog/Publications Section
-      "blog-subtitle": "Our Publications & Articles",
-      "blog-title": "Our Latest LinkedIn Posts",
-      "blog-desc": "Our latest analyses and articles on financial markets, algorithmic trading, and Pine Script.",
-      "blog-loading": "Loading articles...",
-      "blog-error": "Failed to load articles. Please try again later.",
-      "blog-view-profile": "Follow Us on LinkedIn",
+      "blog-subtitle": "Social Media & Analyses",
+      "blog-title": "Our Latest Social Posts & Analyses",
+      "blog-desc": "Our latest market analyses, updates, and articles shared across our social media platforms (X, LinkedIn).",
+      "blog-loading": "Loading posts...",
+      "blog-error": "Failed to load posts. Please try again later.",
+      "blog-view-profile": "Follow Us on Social Media",
       
       // CTA Banner
       "cta-unsure": "Still Undecided?",
@@ -902,9 +902,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 6b. LINKEDIN ARTICLES FETCH & DISPLAY
+  // 6b. LINKEDIN & SOCIAL MEDIA EMBEDS FETCH & DISPLAY
   // ==========================================
   const blogArticles = []; // cache fetched articles
+
+  // Helper functions for social media embeds
+  const getLinkedInEmbedUrl = (url) => {
+    if (!url) return null;
+    if (url.includes('/embed/')) return url;
+    
+    // Pattern to match standard URNs (e.g. urn:li:activity:123456)
+    const urnMatch = url.match(/urn:li:(activity|share|ugcPost|comment):(\d+)/);
+    if (urnMatch) {
+      return `https://www.linkedin.com/embed/feed/update/${urnMatch[0]}`;
+    }
+    
+    // Pattern to match standard post IDs (e.g. -activity-123456 or posts/123456)
+    const idMatch = url.match(/(?:activity|share|posts)-(\d+)/) || url.match(/\/posts\/.*-(\d+)/) || url.match(/-(\d+)(?:\?|$)/) || url.match(/\/posts\/(\d+)/);
+    if (idMatch) {
+      return `https://www.linkedin.com/embed/feed/update/urn:li:share:${idMatch[1]}`;
+    }
+    
+    return null;
+  };
+
+  const getYouTubeId = (url) => {
+    if (!url) return null;
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  };
 
   const renderBlogArticles = () => {
     const container = document.getElementById('blogContainer');
@@ -915,16 +942,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (blogArticles.length === 0) {
       container.innerHTML = `
         <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0;">
-          \${currentLang === 'tr' ? 'Henüz makale bulunmuyor.' : 'No articles available yet.'}
+          ${currentLang === 'tr' ? 'Henüz paylaşım bulunmuyor.' : 'No posts available yet.'}
         </div>
       `;
       return;
     }
     
     blogArticles.forEach(article => {
-      // Create blog card
-      const card = document.createElement('div');
-      card.className = 'blog-card';
+      const link = article.link || '';
+      const isTwitter = link.includes('twitter.com') || link.includes('x.com');
+      const linkedInEmbed = getLinkedInEmbedUrl(link);
+      const youtubeId = getYouTubeId(link);
+      const hasCustomEmbed = !!article.embed_html;
       
       // Formatting date if possible
       let dateString = article.date;
@@ -936,33 +965,77 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       } catch (e) {}
 
-      // Resolve titles and summaries (in case we want multilanguage later, or default to general)
+      // Resolve titles and summaries
       const title = currentLang === 'tr' && article.title_tr ? article.title_tr : (article.title || '');
       const summary = currentLang === 'tr' && article.summary_tr ? article.summary_tr : (article.summary || '');
       
-      card.innerHTML = `
-        <div class="blog-card-image-wrapper">
-          <img src="\${article.image || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800'}" alt="\${title}" class="blog-card-image" loading="lazy">
-          <div class="blog-card-badge">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            <span>LinkedIn</span>
+      // Create element
+      const card = document.createElement('div');
+      
+      if (hasCustomEmbed) {
+        card.className = 'blog-card embed-card custom-embed';
+        card.innerHTML = article.embed_html;
+      } else if (linkedInEmbed) {
+        card.className = 'blog-card embed-card linkedin-embed';
+        card.innerHTML = `
+          <div class="embed-wrapper" style="width: 100%; height: 100%;">
+            <iframe src="${linkedInEmbed}" height="550" style="width: 100%; border: none; border-radius: 12px; background: transparent;" allowfullscreen="" title="LinkedIn Post"></iframe>
           </div>
-        </div>
-        <div class="blog-card-content">
-          <div class="blog-card-date">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-            <span>\${dateString}</span>
+        `;
+      } else if (isTwitter) {
+        card.className = 'blog-card embed-card twitter-embed';
+        card.innerHTML = `
+          <div class="embed-wrapper" style="width: 100%; display: flex; justify-content: center;">
+            <blockquote class="twitter-tweet" data-theme="dark" data-width="100%" data-align="center">
+              <a href="${link}"></a>
+            </blockquote>
           </div>
-          <h3 class="blog-card-title">\${title}</h3>
-          <p class="blog-card-desc">\${summary}</p>
-          <div class="blog-card-footer">
-            <a href="\${article.link}" target="_blank" class="blog-card-link">
-              <span>\${currentLang === 'tr' ? 'LinkedIn\\'de Oku' : 'Read on LinkedIn'}</span>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
+        `;
+        // Load or reload Twitter widgets for this card
+        setTimeout(() => {
+          if (window.twttr && window.twttr.widgets) {
+            window.twttr.widgets.load(card);
+          } else {
+            const script = document.createElement('script');
+            script.src = 'https://platform.twitter.com/widgets.js';
+            script.async = true;
+            document.head.appendChild(script);
+          }
+        }, 50);
+      } else if (youtubeId) {
+        card.className = 'blog-card embed-card youtube-embed';
+        card.innerHTML = `
+          <div class="embed-wrapper" style="width: 100%;">
+            <iframe src="https://www.youtube.com/embed/${youtubeId}" style="width: 100%; aspect-ratio: 16/9; border: none; border-radius: 12px;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen title="YouTube Video"></iframe>
           </div>
-        </div>
-      `;
+        `;
+      } else {
+        // Fallback to standard preview card
+        card.className = 'blog-card';
+        card.innerHTML = `
+          <div class="blog-card-image-wrapper">
+            <img src="${article.image || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800'}" alt="${title}" class="blog-card-image" loading="lazy">
+            <div class="blog-card-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              <span>LinkedIn</span>
+            </div>
+          </div>
+          <div class="blog-card-content">
+            <div class="blog-card-date">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+              <span>${dateString}</span>
+            </div>
+            <h3 class="blog-card-title">${title}</h3>
+            <p class="blog-card-desc">${summary}</p>
+            <div class="blog-card-footer">
+              <a href="${link}" target="_blank" class="blog-card-link">
+                <span>${currentLang === 'tr' ? 'LinkedIn\'de Oku' : 'Read on LinkedIn'}</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </a>
+            </div>
+          </div>
+        `;
+      }
       
       container.appendChild(card);
     });
@@ -1005,7 +1078,7 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('Error fetching articles.json:', err);
         container.innerHTML = `
           <div style="grid-column: 1/-1; text-align: center; color: var(--accent-red); padding: 40px 0;">
-            <p>\${currentLang === 'tr' ? 'Makaleler yüklenirken hata oluştu.' : 'Failed to load articles.'}</p>
+            <p>${currentLang === 'tr' ? 'Paylaşımlar yüklenirken hata oluştu.' : 'Failed to load posts.'}</p>
           </div>
         `;
       });

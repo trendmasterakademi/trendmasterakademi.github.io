@@ -26,29 +26,53 @@ def main():
             print(f"Uyarı: articles.json okunamadı, yeni liste oluşturulacak. Hata: {e}")
 
     # Gather inputs
-    title_tr = get_input("Makale Başlığı (TR): ")
-    if not title_tr:
-        print("Hata: Başlık boş olamaz!")
-        return
+    is_embed = get_input("Bu bir sosyal medya gönderi embed'i mi? (y/n) [Varsayılan: n]: ", "n").lower() == "y"
+    
+    embed_html = ""
+    image = ""
+    
+    if is_embed:
+        link = get_input("Gönderi Bağlantısı (URL) (LinkedIn, X/Twitter, YouTube): ")
+        if not link:
+            print("Hata: Bağlantı boş olamaz!")
+            return
+            
+        custom_html_choice = get_input("Özel embed HTML kodu eklemek ister misiniz? (y/n) [Varsayılan: n]: ", "n").lower()
+        if custom_html_choice == 'y':
+            embed_html = get_input("Embed HTML Kodu (<iframe> veya blockquote): ")
+            
+        default_date = datetime.now().strftime("%Y-%m-%d")
+        date = get_input(f"Yayın Tarihi (YYYY-MM-DD) [Varsayılan: Bugün - {default_date}]: ", default_date)
+        
+        title_tr = get_input("Gönderi Başlığı/Açıklaması (TR) [Varsayılan: Sosyal Medya Paylaşımı]: ", "Sosyal Medya Paylaşımı")
+        title_en = get_input(f"Gönderi Başlığı/Açıklaması (EN) [Varsayılan: {title_tr}]: ", title_tr)
+        
+        summary_tr = get_input("Gönderi Özeti (TR) [Varsayılan: Yeni sosyal medya gönderimiz.]: ", "Yeni sosyal medya gönderimiz.")
+        summary_en = get_input(f"Gönderi Özeti (EN) [Varsayılan: {summary_tr}]: ", summary_tr)
+    else:
+        title_tr = get_input("Makale Başlığı (TR): ")
+        if not title_tr:
+            print("Hata: Başlık boş olamaz!")
+            return
 
-    title_en = get_input(f"Makale Başlığı (EN) [Varsayılan: {title_tr}]: ", title_tr)
-    
-    link = get_input("LinkedIn Makale/Gönderi Bağlantısı (URL): ")
-    if not link:
-        print("Hata: Bağlantı boş olamaz!")
-        return
+        title_en = get_input(f"Makale Başlığı (EN) [Varsayılan: {title_tr}]: ", title_tr)
+        
+        link = get_input("LinkedIn Makale/Gönderi Bağlantısı (URL): ")
+        if not link:
+            print("Hata: Bağlantı boş olamaz!")
+            return
 
-    default_image = "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800"
-    image = get_input(f"Görsel URL'si [Varsayılan: Trading Görseli]: ", default_image)
-    
-    default_date = datetime.now().strftime("%Y-%m-%d")
-    date = get_input(f"Yayın Tarihi (YYYY-MM-DD) [Varsayılan: Bugün - {default_date}]: ", default_date)
-    
-    summary_tr = get_input("Makale Özeti / Açıklaması (TR): ")
-    if len(summary_tr) > 180:
-        print(f"Uyarı: Özet 180 karakterden uzun ({len(summary_tr)} karakter). Kırpılabilir.")
-    
-    summary_en = get_input(f"Makale Özeti / Açıklaması (EN) [Varsayılan: TR Özet]: ", summary_tr)
+        default_image = "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800"
+        image = get_input(f"Görsel URL'si [Varsayılan: Trading Görseli]: ", default_image)
+        
+        default_date = datetime.now().strftime("%Y-%m-%d")
+        date = get_input(f"Yayın Tarihi (YYYY-MM-DD) [Varsayılan: Bugün - {default_date}]: ", default_date)
+        
+        summary_tr = get_input("Makale Özeti / Açıklaması (TR): ")
+        if len(summary_tr) > 180:
+            print(f"Uyarı: Özet 180 karakterden uzun ({len(summary_tr)} karakter). Kırpılabilir.")
+        
+        summary_en = get_input(f"Makale Özeti / Açıklaması (EN) [Varsayılan: TR Özet]: ", summary_tr)
 
     # Build object
     article_id = str(int(datetime.now().timestamp()))
@@ -64,6 +88,10 @@ def main():
         "image": image,
         "date": date
     }
+    if is_embed:
+        new_article["is_embed"] = True
+        if embed_html:
+            new_article["embed_html"] = embed_html
 
     # Prepend new article
     articles.insert(0, new_article)
