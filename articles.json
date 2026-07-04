@@ -26,6 +26,19 @@
     "is_embed": false
   },
   {
+    "id": "6",
+    "title": "Trend Master Akademi X (Twitter) Profili",
+    "title_tr": "Trend Master Akademi X (Twitter) Profili",
+    "title_en": "Trend Master Akademi X (Twitter) Profile",
+    "summary": "Piyasa analizleri, anlık grafik paylaşımları ve algoritmik trading duyuruları için bizi X platformunda takip edin.",
+    "summary_tr": "Piyasa analizleri, anlık grafik paylaşımları ve algoritmik trading duyuruları için bizi X platformunda takip edin.",
+    "summary_en": "Follow us on X for market analyses, instant chart updates, and algorithmic trading announcements.",
+    "link": "https://x.com/tmakademi",
+    "image": "",
+    "date": "2026-07-02",
+    "is_embed": false
+  },
+  {
     "id": "1",
     "title": "TradingView Pine Script ile Algoritmik Strateji Geliştirme",
     "summary": "Pine Script dilinin temel kurallarını ve trend takip eden stratejilerin geriye dönük test (backtest) aşamalarını inceledik.",

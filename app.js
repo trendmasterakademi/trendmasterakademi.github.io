@@ -1042,11 +1042,17 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (isTwitter) {
           platformName = 'X (Twitter)';
-          linkText = currentLang === 'tr' ? 'X\'te Oku' : 'Read on X';
+          const isStatus = link.includes('/status/');
+          linkText = isStatus
+            ? (currentLang === 'tr' ? 'X\'te Oku' : 'Read on X')
+            : (currentLang === 'tr' ? 'X\'te Takip Et' : 'Follow on X');
           badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
         } else if (isYoutube) {
           platformName = 'YouTube';
-          linkText = currentLang === 'tr' ? 'YouTube\'da İzle' : 'Watch on YouTube';
+          const isVideo = link.includes('watch?v=') || link.includes('youtu.be/');
+          linkText = isVideo
+            ? (currentLang === 'tr' ? 'YouTube\'da İzle' : 'Watch on YouTube')
+            : (currentLang === 'tr' ? 'Kanala Abone Ol' : 'Subscribe on YouTube');
           badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.528 3.545 12 3.545 12 3.545s-7.528 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.022 0 12 0 12s0 3.978.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.86.508 9.388.508 9.388.508s7.528 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.978 24 12 24 12s0-3.978-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
         }
         
