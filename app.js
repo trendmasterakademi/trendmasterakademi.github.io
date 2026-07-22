@@ -94,6 +94,16 @@ document.addEventListener('DOMContentLoaded', () => {
       "cta-desc": "Eğitim sistemimizi ve stratejilerimizi yakından tanımak için ücretsiz bir tanışma dersi planlayabilirsiniz.",
       "cta-btn": "Ücretsiz İlk Ders Randevusu Al",
       
+      // Newsletter
+      "newsletter-subtitle": "Bültene Katılın",
+      "newsletter-title": "Finansal Algoritmalar ve Analizler E-Postanıza Gelsin",
+      "newsletter-desc": "Her hafta en yeni Pine Script stratejileri, piyasa yorumları ve yazılım güncellemelerini paylaşıyoruz. Spam yok, dilediğiniz zaman çıkabilirsiniz.",
+      "newsletter-placeholder": "E-Posta adresiniz",
+      "newsletter-btn-text": "Abone Ol",
+      "newsletter-success": "Tebrikler! Bültenimize başarıyla kaydoldunuz.",
+      "newsletter-error-invalid": "Lütfen geçerli bir e-posta adresi girin.",
+      "newsletter-error-generic": "Bir hata oluştu. Lütfen tekrar deneyin.",
+      
       // Contact Section
       "contact-subtitle": "Bize Ulaşın",
       "contact-title": "Geleceğinizi Birlikte Kodlayalım",
@@ -311,6 +321,16 @@ document.addEventListener('DOMContentLoaded', () => {
       "cta-unsure": "Still Undecided?",
       "cta-desc": "You can schedule a free introductory session to get to know our education system and strategies up close.",
       "cta-btn": "Book a Free First Session",
+      
+      // Newsletter
+      "newsletter-subtitle": "Join Our Newsletter",
+      "newsletter-title": "Financial Algorithms and Analyses in Your Inbox",
+      "newsletter-desc": "Every week we share the latest Pine Script strategies, market commentaries, and software updates. No spam, unsubscribe anytime.",
+      "newsletter-placeholder": "Your email address",
+      "newsletter-btn-text": "Subscribe",
+      "newsletter-success": "Congratulations! You have successfully subscribed to our newsletter.",
+      "newsletter-error-invalid": "Please enter a valid email address.",
+      "newsletter-error-generic": "An error occurred. Please try again.",
       
       // Contact Section
       "contact-subtitle": "Get in Touch",
@@ -1565,5 +1585,67 @@ document.addEventListener('DOMContentLoaded', () => {
       testimonialsCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
   }
-  
+
+  // ==========================================
+  // 12. NEWSLETTER FORM HANDLING
+  // ==========================================
+  const newsletterForm = document.getElementById('newsletterForm');
+  const newsletterEmail = document.getElementById('newsletterEmail');
+  const newsletterStatus = document.getElementById('newsletterStatus');
+  const newsletterBtn = document.getElementById('newsletterBtn');
+
+  if (newsletterForm && newsletterEmail && newsletterStatus && newsletterBtn) {
+    newsletterForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const emailValue = newsletterEmail.value.trim();
+      
+      // Basic validation
+      if (!emailValue || !emailValue.includes('@')) {
+        showStatus('error', translations[currentLang]['newsletter-error-invalid']);
+        return;
+      }
+      
+      // Update UI for loading state
+      newsletterBtn.disabled = true;
+      const originalBtnHTML = newsletterBtn.innerHTML;
+      newsletterBtn.innerHTML = `
+        <span>...</span>
+      `;
+      
+      // Simulate API submission
+      setTimeout(() => {
+        try {
+          // Save to LocalStorage
+          let subscribers = JSON.parse(localStorage.getItem('tma_subscribers') || '[]');
+          if (!subscribers.includes(emailValue)) {
+            subscribers.push(emailValue);
+            localStorage.setItem('tma_subscribers', JSON.stringify(subscribers));
+          }
+          
+          // Show success
+          showStatus('success', translations[currentLang]['newsletter-success']);
+          newsletterForm.reset();
+        } catch (error) {
+          console.error('Newsletter error:', error);
+          showStatus('error', translations[currentLang]['newsletter-error-generic']);
+        } finally {
+          newsletterBtn.disabled = false;
+          newsletterBtn.innerHTML = originalBtnHTML;
+        }
+      }, 1000);
+    });
+    
+    function showStatus(type, message) {
+      newsletterStatus.className = 'newsletter-status ' + type;
+      newsletterStatus.textContent = message;
+      
+      // Clear message after 5 seconds
+      setTimeout(() => {
+        newsletterStatus.textContent = '';
+        newsletterStatus.className = 'newsletter-status';
+      }, 5000);
+    }
+  }
+
 });
