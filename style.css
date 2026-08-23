@@ -3050,13 +3050,15 @@ footer {
   background: var(--glass-bg);
   border: 1px solid var(--border-color);
   border-radius: 20px;
-  overflow: hidden;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
   margin-top: 48px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
 }
 
 .compare-table {
   width: 100%;
+  min-width: 620px;
   border-collapse: collapse;
   text-align: left;
 }
@@ -3067,6 +3069,7 @@ footer {
   font-size: 0.95rem;
   font-weight: 700;
   border-bottom: 1px solid var(--border-color);
+  white-space: nowrap;
 }
 
 .compare-table td {
@@ -3097,7 +3100,7 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(8, 11, 17, 0.92);
+  background: rgba(8, 11, 17, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-top: 1px solid rgba(0, 229, 255, 0.2);
@@ -3124,6 +3127,7 @@ footer {
   justify-content: center;
   gap: 8px;
   box-shadow: var(--shadow-glow-green);
+  text-decoration: none;
 }
 
 .sticky-btn-wizard {
@@ -3138,12 +3142,13 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  text-decoration: none;
 }
 
 /* ==========================================
    RESPONSIVE BREAKPOINTS
    ========================================== */
-@media (max-width: 1100px) {
+@media (max-width: 1180px) {
   .matrix-grid, .case-studies-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -3159,7 +3164,8 @@ footer {
     gap: 40px;
   }
   .deck-container {
-    height: 440px;
+    height: auto;
+    min-height: 440px;
   }
   .wizard-grid {
     grid-template-columns: 1fr;
@@ -3168,7 +3174,11 @@ footer {
 
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 2.2rem;
+    font-size: 2.1rem;
+    line-height: 1.2;
+  }
+  .hero-desc {
+    font-size: 1rem;
   }
   .matrix-grid, .case-studies-grid {
     grid-template-columns: 1fr;
@@ -3177,23 +3187,59 @@ footer {
     grid-template-columns: 1fr;
   }
   .arch-flow-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 12px;
   }
   .sticky-mobile-bar {
     display: block;
   }
   body {
-    padding-bottom: 60px; /* Space for sticky bar */
+    padding-bottom: 70px; /* Space for sticky mobile bar */
+  }
+  .contact-form-wrapper {
+    padding: 24px 20px;
   }
 }
 
 @media (max-width: 576px) {
+  .hero-title {
+    font-size: 1.85rem;
+  }
+  .hero-typewriter-container {
+    font-size: 0.82rem;
+    padding: 0 12px;
+  }
+  .deck-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+  .deck-tabs {
+    overflow-x: auto;
+    width: 100%;
+    scrollbar-width: none;
+  }
+  .deck-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .deck-tab-btn {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+    white-space: nowrap;
+  }
   .wizard-options-grid {
     grid-template-columns: 1fr;
   }
   .wizard-card {
-    padding: 24px;
+    padding: 24px 18px;
+  }
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 
