@@ -5,786 +5,835 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================
   const translations = {
     tr: {
-      "site-title": "Trend Master Akademi | Finansal Teknolojiler & Özel Yazılım Çözümleri",
-      "about-site-title": "Teknoloji Stratejileri & Hakkımızda | Trend Master Akademi",
+      "site-title": "Trend Master Akademi | Elite Full-Stack Yazılım & Dijital Çözüm Stüdyosu",
+      "about-site-title": "Hakkımızda & Mühendislik Vizyonumuz | Trend Master Akademi",
       
       // Navbar
       "logo-text": "TREND MASTER AKADEMİ",
       "nav-home": "Ana Sayfa",
-      "nav-about": "Eğitim & Hakkımızda",
-      "nav-services": "Hizmetler",
+      "nav-solutions": "Çözümlerimiz",
+      "nav-wizard": "Proje Hesaplayıcı",
+      "nav-cases": "Vaka Analizleri",
+      "nav-about": "Akademi & Hakkımızda",
       "nav-contact": "İletişim",
-      "nav-btn": "Randevu Al",
+      "nav-btn-start": "Proje Başlat",
       
       // Hero
-      "hero-badge": "Finansal Teknolojiler & Yazılım Çözümleri",
-      "hero-title": "Geleceğin Finansal ve Yazılım Teknolojilerini İnşa Ediyoruz",
-      "hero-desc": "Yüksek performanslı algoritmik trading botlarından, modern web ve mobil uygulamalara kadar uzanan geniş bir yelpazede yenilikçi yazılım çözümleri ve profesyonel eğitimler sunuyoruz.",
-      "btn-explore": "Çözümleri İncele",
-      "btn-contact": "Bizimle İletişime Geç",
-      "ticker-status": "CANLI SİMÜLASYON",
+      "hero-typewriter-default": "Fikirden Canlı Ürüne SaaS ve Web Çözümleri",
+      "hero-title": "Fikirden Canlı Ürüne: <span class='hero-title-highlight'>Modern Web, SaaS & Uçtan Uca Yazılım Mimarisi</span>",
+      "hero-desc": "Sıfırdan modern web siteleri ve SaaS platformları inşası, kilitlenen kodların kurtarılması, yapay zeka & API entegrasyonları ve algoritmik sistemler. Aracı ajanslar olmadan, doğrudan kıdemli mühendis güvencesiyle ilk günden çalışan çözümler.",
+      "btn-hero-wizard": "Projenizi / Sorununuzu Anlatın",
+      "btn-hero-whatsapp": "WhatsApp ile Hemen Danışın",
       
-      // Services
-      "services-subtitle": "Neler Sunuyoruz?",
-      "services-title": "Teknoloji ve Yazılım Hizmetlerimiz",
-      "services-desc": "İşinizi ve yatırımlarınızı bir üst seviyeye taşımak için geliştirilen özel yazılım çözümleri, trading sistemleri ve eğitim programları.",
-      
-      // Service Tabs
-      "tab-fintech-title": "Finansal Teknolojiler",
-      "tab-software-title": "Yazılım Çözümleri",
-      
-      // Product Cards
-      "card-algo-title": "Algoritmik Trading Botları",
-      "card-algo-desc": "Pine Script ve Python tabanlı stratejilerinizi tam otomatik botlara dönüştürüyoruz. Sizin belirlediğiniz kurallarla 7/24 kesintisiz işlem disiplini sağlayın.",
-      "card-algo-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Pine Script & Python Entegrasyonu",
-      "card-algo-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Geriye Dönük Test (Backtest) Optimizasyonu",
-      "card-algo-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Webhook ve Borsa API Bağlantıları",
-      
-      "card-ind-title": "Özel Teknik İndikatörler",
-      "card-ind-desc": "Karmaşık piyasa verilerini basitleştiren, trend yönünü ve hacim onaylarını tek bir panelde birleştiren özel formüllü indikatör setleri hazırlıyoruz.",
-      "card-ind-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Çoklu Zaman Dilimi (MTF) Filtreleme",
-      "card-ind-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Gecikmesiz Sinyal Doğrulama Motoru",
-      "card-ind-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Özelleştirilebilir Canlı Alarm Yapısı",
-      
-      "card-ment-title": "Birebir Mentörlük Programı",
-      "card-ment-desc": "Price Action, Smart Money Concepts ve sistemli risk yönetimi metodolojilerini baştan sona uygulamalı olarak öğreten profesyonel eğitim serisi.",
-      "card-ment-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Kişiye Özel İlerleme Planı ve Takip",
-      "card-ment-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Canlı Piyasa Analizi ve Backtest Pratikleri",
-      "card-ment-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Kasa & Risk Yönetimi Metrik Şablonları",
+      // Engineering Deck
+      "deck-tab-arch": "SaaS Mimarisi",
+      "deck-tab-debug": "Canlı Terminal & Kod",
+      "deck-tab-algo": "Bot & Algo Motoru",
+      "metric-delivery": "Temiz Kod Garantisi",
+      "metric-api": "Ortalama API Yanıtı",
+      "metric-test": "TDD & Test Kapsamı",
+      "debug-status-fixed": "✓ TÜM TESTLER BAŞARILI",
 
-      "card-web-title": "Web & SaaS Geliştirme",
-      "card-web-desc": "Modern, hızlı, SEO uyumlu web uygulamaları ve SaaS platformları geliştiriyoruz. En son web teknolojilerini işinizle buluşturuyoruz.",
-      "card-web-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> React, Next.js ve Tailwind CSS Altyapısı",
-      "card-web-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> REST & GraphQL API Tasarımları",
-      "card-web-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Güvenli Üyelik, Abonelik ve Ödeme Sistemleri",
-      
-      "card-mobile-title": "Mobil Uygulama Geliştirme",
-      "card-mobile-desc": "iOS ve Android platformlarında yüksek performanslı, kullanıcı dostu native veya hibrit mobil uygulamalar tasarlıyoruz.",
-      "card-mobile-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Flutter ile Tek Kod Tabanından Hızlı Geliştirme",
-      "card-mobile-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Push Bildirimleri ve Biyometrik Entegrasyonlar",
-      "card-mobile-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> App Store ve Google Play Store Yayın Süreçleri",
-      
-      "card-api-title": "Entegrasyon & Özel API Çözümleri",
-      "card-api-desc": "Sistemlerinizi birbirine bağlayan, veri akışını otomatikleştiren ve iş süreçlerini hızlandıran özel arka uç sistemleri kuruyoruz.",
-      "card-api-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Node.js, Python ve Go ile Güçlü Backend Yapıları",
-      "card-api-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Webhook Entegrasyonları ve Veri Tabanı Optimizasyonu",
-      "card-api-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Bulut Altyapı Dağıtımı ve Mesajlaşma Kuyrukları",
+      // Trust Bar
+      "trust-1-title": "10+ Yıl Deneyim",
+      "trust-1-desc": "Kıdemli Full-Stack Mühendislik",
+      "trust-2-title": "%100 Teslimat Güvencesi",
+      "trust-2-desc": "Temiz, Dokümante & Sahipli Kod",
+      "trust-3-title": "< 0.5s Yükleme Hızı",
+      "trust-3-desc": "SEO & Reklam Odaklı Performans",
+      "trust-4-title": "Birebir Senior Muhatap",
+      "trust-4-desc": "Sıfır Ajans Bürokrasisi",
 
-      "card-btn-info": "Detaylı Bilgi Al",
-      "card-btn-mufredat": "Müfredatı İncele",
-      
-      // GitHub Section
+      // Solutions Matrix
+      "matrix-subtitle": "Tam Olarak Neye İhtiyacınız Var?",
+      "matrix-title": "Sorununuzun Çözümü Burada",
+      "matrix-desc": "Fikir aşamasından canlıya, kilitlenen kodların kurtarılmasından otomatik yapay zeka ve finansal bot sistemlerine kadar eksiksiz mühendislik desteği.",
+      "badge-web": "Ultra Hızlı Web",
+      "m-web-title": "Modern Web & Landing Page İnşası",
+      "m-web-desc": "Google Ads ve sosyal medya reklamlarınızdan maksimum dönüşüm alan, mobil öncelikli, 0.4s açılış hızına sahip premium kurumsal web siteleri.",
+      "m-web-f1": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Next.js, React & Modern UI Tasarımları",
+      "m-web-f2": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Yüksek Dönüşüm (CRO) & Ads Optimizasyonu",
+      "m-web-f3": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> SEO Uyumlu & Şimşek Hızında Yükleme",
+      "m-btn-select": "Projeyi Başlat",
+
+      "badge-saas": "Fikirden Ürüne",
+      "m-saas-title": "SaaS & Özel Web Uygulaması Mimarisi",
+      "m-saas-desc": "Yazılım fikrinizi MVP'den ölçeklenebilir bir SaaS platformuna dönüştürüyoruz. Üyelik, abonelik ödemeleri, admin panelleri ve güçlü veritabanı altyapısı.",
+      "m-saas-f1": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Çok Kiracılı (Multi-tenant) Mimari & Auth",
+      "m-saas-f2": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Stripe, Iyzico & PayTR Ödeme Sistemleri",
+      "m-saas-f3": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Gelişmiş Müşteri & Yönetim Panelleri",
+
+      "badge-bug": "Acil Müdahale",
+      "m-bug-title": "Kod Çözümleri & Hata Kurtarma",
+      "m-bug-desc": "Yarım kalmış, tıkanmış veya çöken yazılımlarınızı devralıp 24-48 saat içinde ayağa kaldırıyoruz. Kod temizliği, güvenlik açıklarını kapatma ve hızlandırma.",
+      "m-bug-f1": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Kritik Bug Tespiti & Anında Onarım",
+      "m-bug-f2": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Veritabanı Darboğazı & Query İyileştirme",
+      "m-bug-f3": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Kod Refactoring & Modernizasyon",
+
+      "badge-ai": "Yeni Nesil Çözüm",
+      "m-ai-title": "Yapay Zeka, Webhook & API Entegrasyonları",
+      "m-ai-desc": "Şirket içi süreçlerinizi otomatikleştiren özel AI botları, CRM, ERP, ödeme ve kargo sistemlerini birbirine bağlayan sağlam API köprüleri.",
+      "m-ai-f1": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> OpenAI, Claude & Özel LLM Entegrasyonları",
+      "m-ai-f2": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Webhook & Asenkron Kuyruk Sistemleri",
+      "m-ai-f3": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> İki Yönlü Veri Senkronizasyonu",
+
+      "badge-algo": "Yüksek Hassasiyet",
+      "m-algo-title": "Özel Botlar & Algoritmik Mühendislik",
+      "m-algo-desc": "TradingView Pine Script v5 indikatörleri, Python alım-satım botları, arbitraj ve canlı borsa API otomasyonlarında kurumsal düzeyde matematiksel sistemler.",
+      "m-algo-f1": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Pine Script v5 Özel İndikatör & Strateji",
+      "m-algo-f2": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Binance, Bybit vb. Borsa API Bağlantıları",
+      "m-algo-f3": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> 7/24 Kesintisiz Sunucu Otomasyonu",
+
+      "badge-cto": "Stratejik Danışmanlık",
+      "m-cto-title": "Teknik Mimarlık & CTO Danışmanlığı",
+      "m-cto-desc": "Girişiminiz veya şirketiniz için doğru teknoloji yığını seçimi, kod denetimi (code audit), maliyet optimizasyonu ve uçtan uca teknik yol haritası.",
+      "m-cto-f1": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Mimari Tasarım & Teknoloji Seçimi",
+      "m-cto-f2": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Bulut & Sunucu Maliyetlerini Düşürme",
+      "m-cto-f3": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Kod Güvenlik & Performans Denetimi",
+
+      // Wizard
+      "wizard-subtitle": "Akıllı Danışma & Teklif Sihirbazı",
+      "wizard-title": "Projenizi veya Sorununuzu 3 Adımda İletin",
+      "wizard-desc": "İhtiyacınızı seçin; anında bir teknik brif oluşturalım ve Mehmet Şahin ile doğrudan WhatsApp üzerinden iletişime geçin.",
+      "w-step1-title": "Ne Tür Bir Çözüme İhtiyacınız Var?",
+      "w-step2-title": "Projenizin Mevcut Durumu Nedir?",
+      "w-step3-title": "Hedeflenen Zaman & Öncelik?",
+      "w-sum-title": "📋 Teknik Ön-Brifing Özeti",
+      "w-sum-desc": "Seçimlerinize göre otomatik oluşturulan talep özeti:",
+      "w-sum-srv": "Hizmet Türü:",
+      "w-sum-stg": "Proje Durumu:",
+      "w-sum-time": "Zaman Çizelgesi:",
+      "w-sum-note-head": "💡 Mühendis Güvencesi:",
+      "w-sum-note-body": "Talebiniz doğrudan kurucu geliştirici Mehmet Şahin'e iletilir. 30 dakika içinde teknik değerlendirme ve net çözüm planı paylaşıyoruz.",
+      "w-btn-submit": "WhatsApp ile Gönder & Teklif Al",
+
+      // Cases & Compare
+      "cases-subtitle": "Fikirden Canlı Ürüne",
+      "cases-title": "Geliştirdiğimiz Başarı Hikayeleri",
+      "cases-desc": "Müşterilerimizin fikirlerini ve kilitlenen teknik süreçlerini nasıl yüksek performanslı canlı ürünlere dönüştürdük?",
+      "compare-subtitle": "Neden Bizi Seçmelisiniz?",
+      "compare-title": "Geleneksel Hantal Ajanslar vs. TMA Modeli",
+      "compare-desc": "Aracıların ve bitmeyen toplantıların maliyetini değil, doğrudan kıdemli mühendisliğin hızını satın alın.",
+      "cmp-feature": "Kriter / Özellik",
+      "cmp-tma": "🚀 TMA Full-Stack Mühendislik",
+      "cmp-trad": "❌ Geleneksel Hantal Ajanslar",
+
+      // Testimonials & Social
+      "testimonials-subtitle": "Müşteri & Öğrenci Deneyimleri",
+      "testimonials-title": "Bizimle Çalışanlar Ne Diyor?",
+      "testimonials-desc": "Geliştirdiğimiz yazılım projelerinden ve eğitim programlarımızdan gelen geri bildirimler.",
+      "tech-band-label": "Kullandığımız Teknolojiler & Araçlar",
       "github-subtitle": "Açık Kaynak Kodlu Projelerimiz",
       "github-title": "GitHub Yetenek Havuzumuz",
       "github-desc": "Yazılım yeteneklerimizi ve trading algoritmalarımızı sergilediğimiz açık kaynak projelerimiz. Canlı API verisi çekilmektedir.",
       "github-loading": "Projeler yükleniyor...",
-      "github-error": "Projeler yüklenirken hata oluştu. Lütfen daha sonra tekrar deneyin.",
       "github-view-profile": "GitHub Profilimizi İnceleyin",
-      
-      // Blog/Publications Section
-      "blog-subtitle": "Sosyal Medya & Analizler",
-      "blog-title": "Son Paylaşımlarımız & Analizler",
-      "blog-desc": "Sosyal medya hesaplarımızda (X, LinkedIn) paylaştığımız güncel analizler, piyasa yorumları ve en son makalelerimiz.",
-      "blog-loading": "Paylaşımlar yükleniyor...",
-      "blog-error": "Paylaşımlar yüklenirken hata oluştu. Lütfen daha sonra tekrar deneyin.",
-      "blog-view-profile": "Sosyal Medyada Bizi Takip Edin",
-      
-      // CTA Banner
-      "cta-unsure": "Kararsız mı kaldınız?",
-      "cta-desc": "Eğitim sistemimizi ve stratejilerimizi yakından tanımak için ücretsiz bir tanışma dersi planlayabilirsiniz.",
-      "cta-btn": "Ücretsiz İlk Ders Randevusu Al",
-      
-      // Newsletter
-      "newsletter-subtitle": "Bültene Katılın",
-      "newsletter-title": "Finansal Algoritmalar ve Analizler E-Postanıza Gelsin",
-      "newsletter-desc": "Her hafta en yeni Pine Script stratejileri, piyasa yorumları ve yazılım güncellemelerini paylaşıyoruz. Spam yok, dilediğiniz zaman çıkabilirsiniz.",
-      "newsletter-placeholder": "E-Posta adresiniz",
-      "newsletter-btn-text": "Abone Ol",
-      "newsletter-success": "Tebrikler! Bültenimize başarıyla kaydoldunuz.",
-      "newsletter-error-invalid": "Lütfen geçerli bir e-posta adresi girin.",
-      "newsletter-error-generic": "Bir hata oluştu. Lütfen tekrar deneyin.",
-      
-      // Contact Section
-      "contact-subtitle": "Bize Ulaşın",
-      "contact-title": "Geleceğinizi Birlikte Kodlayalım",
-      "contact-desc": "Eğitim içerikleri, yazılım talepleri veya indikatör siparişleri hakkında bilgi almak için formu doldurabilir ya da doğrudan destek kanallarımızdan bize yazabilirsiniz.",
-      "contact-wa": "WhatsApp Destek Hattı",
-      "contact-wa-sub": "Hemen Yazın (Canlı Destek)",
-      "contact-email": "E-Posta Adresi",
-      
-      // Contact Form Labels & Placeholders
+      "blog-subtitle": "Yayınlarımız & Makalelerimiz",
+      "blog-title": "Son LinkedIn Paylaşımlarımız",
+      "blog-desc": "Modern yazılım mimarisi, SaaS geliştirme süreçleri ve algoritmik sistemler üzerine analizlerimiz.",
+      "blog-loading": "Makaleler yükleniyor...",
+      "blog-view-profile": "Bizi LinkedIn'de Takip Edin",
+
+      // Contact & Footer
+      "contact-subtitle": "Doğrudan İletişim",
+      "contact-title": "Projenizi Birlikte Hayata Geçirelim",
+      "contact-desc": "Web, SaaS, hata düzeltme veya bot geliştirme talepleriniz için doğrudan iletişime geçebilirsiniz. İzmir Konak merkezli ofisimizde veya online kanallardan 7/24 hizmetinizdeyiz.",
+      "contact-wa": "1. WhatsApp & Telefon",
+      "contact-email": "Kurumsal E-Posta",
+      "form-title": "Hızlı Proje Talep Formu",
       "form-label-name": "Adınız Soyadınız",
-      "form-label-email": "E-Posta Adresiniz",
-      "form-label-phone": "Telefon Numaranız",
-      "form-label-msg": "Mesajınız / Talep Detayları",
       "form-placeholder-name": "Örn. Ahmet Yılmaz",
+      "form-label-email": "E-Posta Adresiniz",
       "form-placeholder-email": "Örn. ahmet@example.com",
+      "form-label-phone": "Telefon Numaranız",
       "form-placeholder-phone": "Örn. 0532 XXXXXXX",
-      "form-placeholder-msg": "Hangi eğitim veya yazılım paketiyle ilgilendiğinizi belirtebilirsiniz...",
-      "form-submit": "WhatsApp ile Gönder / Başvur",
-      
-      // Footer
-      "footer-desc": "Finansal okuryazarlık ve trading yazılımlarının yanı sıra modern web, mobil ve entegrasyon çözümleriyle işinizi geleceğe taşıyan profesyonel teknoloji akademisi ve yazılım evi.",
+      "form-label-msg": "Projeniz / Çözüm Bekleyen Sorununuz",
+      "form-placeholder-msg": "Web, SaaS, acil hata düzeltmesi veya bot talebiniz hakkında kısaca bilgi verin...",
+      "form-submit": "WhatsApp ile Mehmet Şahin'e İlet",
+      "footer-desc": "Modern web ve SaaS mimarileri, yüksek performanslı kod çözümleri, yapay zeka entegrasyonları ve algoritmik yazılım mühendisliğinde güvenilir çözüm ortağınız.",
       "footer-quick": "Hızlı Linkler",
-      "footer-warning-title": "Yasal Uyarı",
-      "footer-warning-desc": "Trend Master Akademi bünyesinde verilen eğitimler, hazırlanan yazılımlar ve paylaşılan indikatör sinyalleri kesinlikle yatırım danışmanlığı kapsamında değildir. Finansal piyasalar yüksek risk içerir.",
-      "footer-copy": "© 2026 Trend Master Akademi. Tüm Hakları Saklıdır.",
-      
-      // About Page Intro
-      "about-badge": "Eğitim Metodolojimiz",
-      "about-title": "Eğitim & Hakkımızda",
-      "about-breadcrumb-home": "Ana Sayfa",
-      "about-breadcrumb-current": "Eğitim & Hakkımızda",
-      "about-intro-title": "Piyasalarda Uzmanlaşmak İçin Profesyonel Eğitim Stratejileri",
-      "about-intro-desc": "Trend Master Akademi, finansal piyasaların karmaşık yapısını anlaşılır, matematiksel ve test edilebilir stratejilerle basitleştirir. Hedefimiz, yüksek kazanç vaatlerinin arkasından gitmek yerine, yatırımcılara kendi stratejilerini tasarlayabilecek ve uygulayabilecek teknik donanımı kazandırmaktır.",
-      "about-warn-box": "Unutmayın, piyasalarda yüksek kazanç vaadi değil, sadece disiplinli eğitim kazandırır.",
-      
-      // About Page Pillars
-      "about-pillars-subtitle": "Başarımızın Sırrı",
-      "about-pillars-title": "Eğitimimizin 4 Temel Sütunu",
-      "about-pillars-desc": "Müfredatımız, finansal piyasalarda kalıcı ve sürdürülebilir başarı elde etmek için gerekli tüm disiplinleri kapsar.",
-      "pillar1-title": "Piyasa Yapısı ve Stratejik Yaklaşımlar",
-      "pillar1-desc": "Grafikleri okumayı ve büyük oyuncuların izlerini takip etmeyi öğrenin.",
-      "pillar1-f1": "Trend Takipçiliği Metotları",
-      "pillar1-f2": "Price Action (Mum Formasyonları, S/R, MSB)",
-      "pillar1-f3": "Kurumsal Yaklaşım (ICT, SMC, Order Block, FVG)",
-      
-      "pillar2-title": "Risk ve Kasa Yönetimi",
-      "pillar2-desc": "Sermayenizi korumayı ve matematiksel olarak büyütmeyi kavrayın.",
-      "pillar2-f1": "Risk/Reward (R:R) Oranları (1:2 - 1:3 Kuralları)",
-      "pillar2-f2": "İşlem Başına Maksimum %1-2 Risk Kuralları",
-      "pillar2-f3": "Matematiksel Metrikler ve İlerleme Takibi",
-      
-      "pillar3-title": "İndikatörler ve Teknik Onay",
-      "pillar3-desc": "Matematiksel onay mekanizmaları ile işlemlerin başarı oranını artırın.",
-      "pillar3-f1": "RSI, EMA ve MACD Doğru Kombinasyonları",
-      "pillar3-f2": "Pine Script ile Backtest ve Strateji Otomasyonu",
-      "pillar3-f3": "Sinyal Filtreleme ve Yanıltıcı Sinyallerden Kaçınma",
-      
-      "pillar4-title": "Yatırımcı Psikolojisi ve Disiplin",
-      "pillar4-desc": "Sisteminize sadık kalarak duygularınızı yönetmeyi öğrenin.",
-      "pillar4-f1": "FOMO (Fırsatı Kaçırma Korkusu) Yönetimi",
-      "pillar4-f2": "İntikam İşlemlerinden Kaçınma Disiplini",
-      "pillar4-f3": "Ticaret Günlüğü (Journaling) Oluşturma Rutinleri",
-      
-      "about-cta-title": "Birlikte Başaralım",
-      "about-cta-desc": "Eğitim müfredatımız ve size en uygun birebir mentörlük saatleri hakkında detaylı bilgi almak için bizimle iletişime geçin.",
-      "about-cta-btn1": "İletişim Formuna Git",
-      "about-cta-btn2": "WhatsApp Destek",
-
-      // Statistics Section
-      "stat-hours": "Saat Eğitim İçeriği",
-      "stat-students": "Özel Yazılım Projesi",
-      "stat-bots": "Bot & İndikatör Projesi",
-      "stat-satisfaction": "Sistem Çalışma Süresi (Uptime)",
-
-      // Testimonials Section
-      "testimonials-subtitle": "Öğrenci & İş Ortağı Görüşleri",
-      "testimonials-title": "Birlikte Çalıştığımız Kişi ve Kurumların Görüşleri",
-      "testimonials-desc": "Eğitim programlarımızdan mezun olan yatırımcıların ve yazılım çözümlerimizi kullanan iş ortaklarımızın deneyimleri.",
-      "testimonial1-text": '"Pine Script konusunda sıfırdan başladım. 3 ay sonra kendi indikatörümü yazıp TradingView\'da yayınladım. Eğitim metodolojisi gerçekten çok sistematik ve anlaşılır."',
-      "testimonial1-name": "Ahmet K.",
-      "testimonial1-role": "Bireysel Yatırımcı — Pine Script Eğitimi",
-      "testimonial2-text": '"Risk yönetimi eğitimi hayatımı değiştirdi. Eskiden duygusal işlem yapıyordum, şimdi her pozisyonumda %1 risk kuralını uyguluyorum. Kayıplarım dramatik şekilde azaldı."',
-      "testimonial2-name": "Selin Y.",
-      "testimonial2-role": "Forex Trader — Mentörlük Programı",
-      "testimonial3-text": '"Algoritmik trading botumu TMA ekibiyle birlikte geliştirdik. Strateji mantığından API entegrasyonuna kadar her adımda profesyonel destek aldım. Şimdi botum 7/24 çalışıyor."',
-      "testimonial3-name": "Mehmet E.",
-      "testimonial3-role": "Kripto Trader — Bot Geliştirme",
-      "testimonial4-text": '"Smart Money Concepts eğitimi sayesinde piyasaya bakış açım tamamen değişti. Order Block ve FVG kavramlarını gerçek işlemlere nasıl uygulayacağımı artık çok iyi biliyorum."',
-      "testimonial4-name": "Deniz T.",
-      "testimonial4-role": "BIST Trader — SMC Eğitimi",
-      "testimonial5-text": '"Şirketimizin SaaS platformunu sıfırdan kurdular. Hem ölçeklenebilir backend yapısı hem de harika çalışan modern arayüz tasarımı ile beklentilerimizin çok ötesinde bir iş teslim ettiler."',
-      "testimonial5-name": "Hakan B.",
-      "testimonial5-role": "CEO — Fintech SaaS Projesi",
-      "testimonial6-text": '"Mobil uygulamamızın borsa entegrasyonu ve canlı veri akışındaki gecikmeleri çözmek için TMA ile çalıştık. Webhook ve API optimizasyonları sayesinde veri gecikmesini neredeyse sıfıra indirdik."',
-      "testimonial6-name": "Zeynep A.",
-      "testimonial6-role": "CTO — Yatırım Teknolojileri Firması",
-
-      // Tech Band
-      "tech-band-label": "Kullandığımız Teknolojiler",
-
-      // WhatsApp FAB Tooltip
-      "fab-tooltip": "Bize WhatsApp'tan yazın!",
-
-      // Service Tabs / Columns
-      "tab-training-title": "Eğitim Modüllerimiz",
-      
-      // Training Cards
-      "card-train1-title": "Temel & Klasik Teknik Analiz",
-      "card-train1-desc": "Modül 1-4: Grafik okuma temelleri, klasik teknik formasyonlar, market yapısı kırılımları ve fiyatın doğal hareketlerini anlama.",
-      "card-train1-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 1: Finansal Temeller & Grafik Okuma",
-      "card-train1-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 2: Klasik Teknik Analiz Araçları",
-      "card-train1-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 3: Piyasa Yapısı & Kırılımlar (SMC)",
-      "card-train1-feat4": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 4: Price Action Fiyat Stratejileri",
-
-      "card-train2-title": "İleri Düzey Kurumsal Analiz",
-      "card-train2-desc": "Modül 5-8: Hacimli oyuncuların ayak izlerini izleme, likidite mühendisliği, indikatör onayları ve risk yönetimi.",
-      "card-train2-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 5: Smart Money Concepts (SMC)",
-      "card-train2-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 6: Likidite Mühendisliği & Stop Hunt",
-      "card-train2-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 7: Teknik İndikatör Uyumsuzluk Onayları",
-      "card-train2-feat4": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 8: Risk & Kasa Yönetimi (Position Sizing)",
-
-      "card-train3-title": "Algoritma & Bot Entegrasyonu",
-      "card-train3-desc": "Modül 9-12: Yatırımcı psikolojisi, Pine Script v5 programlama ve webhook-API ile strateji otomasyonu.",
-      "card-train3-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 9: Yatırımcı Psikolojisi & İşlem Disiplini",
-      "card-train3-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 10: Algoritmik Ticarete Giriş & Tasarım",
-      "card-train3-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 11: Pine Script v5 ile TV Kodlama",
-      "card-train3-feat4": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Modül 12: Webhook, API & Canlı Bot Otomasyonu"
+      "footer-legal-title": "Güvence & Şeffaflık",
+      "footer-legal-desc": "TMA bünyesinde geliştirilen tüm yazılımlar tam kaynak kod mülkiyeti ile teslim edilir. Eğitimler ve teknik analiz yazılımları yatırım danışmanlığı kapsamında değildir.",
+      "footer-copy": "© 2026 Trend Master Akademi. Kurucu: Mehmet Şahin. Tüm Hakları Saklıdır.",
+      "fab-tooltip": "Doğrudan Mehmet Şahin ile Konuşun!",
+      "sticky-wa": "WhatsApp ile Yazın",
+      "sticky-calc": "Teklif Al"
     },
     en: {
-      "site-title": "Trend Master Academy | Financial Technologies & Custom Software Solutions",
-      "about-site-title": "Technology Strategies & About Us | Trend Master Academy",
+      "site-title": "Trend Master Akademi | Elite Full-Stack Engineering & Digital Product Studio",
+      "about-site-title": "About Us & Engineering Vision | Trend Master Akademi",
       
       // Navbar
-      "logo-text": "TREND MASTER ACADEMY",
+      "logo-text": "TREND MASTER AKADEMİ",
       "nav-home": "Home",
-      "nav-about": "Education & About",
-      "nav-services": "Services",
+      "nav-solutions": "Solutions",
+      "nav-wizard": "Project Estimator",
+      "nav-cases": "Case Studies",
+      "nav-about": "Academy & About",
       "nav-contact": "Contact",
-      "nav-btn": "Book Session",
+      "nav-btn-start": "Start Project",
       
       // Hero
-      "hero-badge": "FinTech & Custom Software Solutions",
-      "hero-title": "Building the Future of Financial and Software Technologies",
-      "hero-desc": "We deliver innovative technology solutions and professional courses, ranging from high-performance algorithmic trading bots to modern web & mobile applications.",
-      "btn-explore": "Explore Solutions",
-      "btn-contact": "Get in Touch",
-      "ticker-status": "LIVE SIMULATION",
+      "hero-typewriter-default": "From Idea to Scaled Web & SaaS Products",
+      "hero-title": "From Idea to Scale: <span class='hero-title-highlight'>Modern Web, SaaS & Full-Stack Architecture</span>",
+      "hero-desc": "Building high-performance web applications and SaaS platforms from scratch, resolving critical code bottlenecks, AI/API integrations, and algorithmic systems. Direct senior engineer guarantee with zero agency fluff.",
+      "btn-hero-wizard": "Explain Your Project / Issue",
+      "btn-hero-whatsapp": "Chat Directly on WhatsApp",
       
-      // Services
-      "services-subtitle": "What We Offer",
-      "services-title": "Our Technology & Software Services",
-      "services-desc": "Custom software solutions, automated trading systems, and training programs designed to elevate your business and investments.",
-      
-      // Service Tabs
-      "tab-fintech-title": "Financial Tech",
-      "tab-software-title": "Software Solutions",
-      
-      // Product Cards
-      "card-algo-title": "Algorithmic Trading Bots",
-      "card-algo-desc": "We convert your Pine Script and Python based strategies into fully automated trading bots. Maintain 24/7 trading discipline with rules defined by you.",
-      "card-algo-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Pine Script & Python Integration",
-      "card-algo-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Backtesting & Optimization Setup",
-      "card-algo-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Webhook and Exchange API Connections",
-      
-      "card-ind-title": "Custom Technical Indicators",
-      "card-ind-desc": "We develop custom technical indicators that simplify complex market data, merging trend directions and volume confirmations into a single panel.",
-      "card-ind-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Multi-Timeframe (MTF) Filtering",
-      "card-ind-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Zero Lag Signal Confirmation Engine",
-      "card-ind-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Customizable Live Alert Systems",
-      
-      "card-ment-title": "1-on-1 Mentorship Program",
-      "card-ment-desc": "An intensive professional mentoring program teaching Price Action, Smart Money Concepts, and systematic risk management practices from scratch.",
-      "card-ment-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Personalized Progress Tracking",
-      "card-ment-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Live Market Analysis & Backtests",
-      "card-ment-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Risk & Portfolio Management Metric Sheets",
+      // Engineering Deck
+      "deck-tab-arch": "SaaS Architecture",
+      "deck-tab-debug": "Live Terminal & Code",
+      "deck-tab-algo": "Algo & Bot Engine",
+      "metric-delivery": "Clean Code Guarantee",
+      "metric-api": "Average API Response",
+      "metric-test": "TDD & Test Coverage",
+      "debug-status-fixed": "✓ ALL TESTS PASSING",
 
-      "card-web-title": "Web & SaaS Development",
-      "card-web-desc": "We build fast, secure, modern, and SEO-friendly web applications and SaaS platforms, bringing the latest tech to your business.",
-      "card-web-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> React, Next.js, and Tailwind CSS Stack",
-      "card-web-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> High-Performance REST & GraphQL API Design",
-      "card-web-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Secure Auth, Subscription & Payment Flows",
-      
-      "card-mobile-title": "Mobile App Development",
-      "card-mobile-desc": "We design and develop high-performance, user-friendly native or hybrid mobile apps running flawlessly on iOS and Android.",
-      "card-mobile-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Cross-Platform Dev with Flutter & React Native",
-      "card-mobile-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Push Notification & Biometric Auth Integration",
-      "card-mobile-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> App Store & Google Play Store Publishing",
-      
-      "card-api-title": "Integration & Custom APIs",
-      "card-api-desc": "We connect systems, automate complex data flows, and build robust backend engines to streamline your business workflows.",
-      "card-api-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Strong Backend with Node.js, Python, and Go",
-      "card-api-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Webhooks Integration & DB Performance Tuning",
-      "card-api-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Cloud Architecture Deployment & Message Queues",
+      // Trust Bar
+      "trust-1-title": "10+ Years Experience",
+      "trust-1-desc": "Senior Full-Stack Engineering",
+      "trust-2-title": "100% Delivery Guarantee",
+      "trust-2-desc": "Clean, Documented & Owned Code",
+      "trust-3-title": "< 0.5s Fast Loading",
+      "trust-3-desc": "SEO & Ads Conversion Optimized",
+      "trust-4-title": "Direct Senior Partner",
+      "trust-4-desc": "Zero Agency Bureaucracy",
 
-      "card-btn-info": "Get Details",
-      "card-btn-mufredat": "View Syllabus",
-      
-      // GitHub Section
-      "github-subtitle": "Our Open Source Projects",
+      // Solutions Matrix
+      "matrix-subtitle": "What Exactly Do You Need?",
+      "matrix-title": "Your Engineering Solution Is Here",
+      "matrix-desc": "From initial idea to live deployment, fixing stuck codebases to automated AI workflows and algorithmic trading engines.",
+      "badge-web": "Ultra Fast Web",
+      "m-web-title": "Modern Web & Landing Page Building",
+      "m-web-desc": "High-converting, mobile-first corporate websites with 0.4s load speed designed to maximize ROI from Google & Social Ads.",
+      "m-web-f1": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Next.js, React & Modern UI Stack",
+      "m-web-f2": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> High Conversion Rate & Ads Ready",
+      "m-web-f3": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Top-Tier SEO & Core Web Vitals",
+      "m-btn-select": "Start Web Project",
+
+      "badge-saas": "Idea to Product",
+      "m-saas-title": "SaaS & Custom Web Application Architecture",
+      "m-saas-desc": "Turning software concepts into scalable SaaS platforms with multi-tenant auth, recurring subscription billing, and robust admin dashboards.",
+      "m-saas-f1": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Multi-tenant Architecture & Secure Auth",
+      "m-saas-f2": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Stripe, Iyzico & Global Payment Gateways",
+      "m-saas-f3": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Comprehensive Admin & Customer Portals",
+
+      "badge-bug": "Emergency Hotfix",
+      "m-bug-title": "Code Solutions & Bug Recovery",
+      "m-bug-desc": "Taking over broken or stalled codebases and restoring them within 24-48 hours. Code cleaning, fixing security vulnerabilities, and database tuning.",
+      "m-bug-f1": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Critical Bug Detection & Quick Hotfix",
+      "m-bug-f2": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Database Bottleneck & Query Tuning",
+      "m-bug-f3": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Complete Refactoring & Modernization",
+
+      "badge-ai": "Next-Gen AI",
+      "m-ai-title": "AI, Webhook & Custom API Integrations",
+      "m-ai-desc": "Custom LLM bots to automate internal workflows, and reliable API bridges linking CRM, ERP, payments, and fulfillment platforms.",
+      "m-ai-f1": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> OpenAI, Claude & Custom LLM Pipelines",
+      "m-ai-f2": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Webhooks & Asynchronous Event Queues",
+      "m-ai-f3": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Bidirectional Data Synchronization",
+
+      "badge-algo": "High Precision",
+      "m-algo-title": "Custom Bots & Algorithmic Engineering",
+      "m-algo-desc": "TradingView Pine Script v5 indicators, Python execution bots, arbitrage algorithms, and high-frequency exchange API automation.",
+      "m-algo-f1": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Pine Script v5 Custom Indicators & Strategies",
+      "m-algo-f2": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Binance, Bybit & Global Exchange APIs",
+      "m-algo-f3": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> 24/7 Autonomous Server Execution",
+
+      "badge-cto": "Strategic Advisory",
+      "m-cto-title": "Technical Architecture & CTO Advisory",
+      "m-cto-desc": "Selecting the optimal tech stack for your startup, code audits, cloud cost optimization, and end-to-end technical roadmaps.",
+      "m-cto-f1": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Architecture Design & Tech Stack Selection",
+      "m-cto-f2": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Cloud & Infrastructure Cost Reduction",
+      "m-cto-f3": "<svg width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Security Audits & Code Performance Tuning",
+
+      // Wizard
+      "wizard-subtitle": "Smart Consultation & Estimator Wizard",
+      "wizard-title": "Submit Your Project or Issue in 3 Steps",
+      "wizard-desc": "Select your requirements to generate an instant technical brief and connect directly with Mehmet Şahin via WhatsApp.",
+      "w-step1-title": "What kind of solution do you need?",
+      "w-step2-title": "What is the current status of your project?",
+      "w-step3-title": "Target timeline and urgency?",
+      "w-sum-title": "📋 Technical Pre-Brief Summary",
+      "w-sum-desc": "Automatically generated summary based on your choices:",
+      "w-sum-srv": "Service Type:",
+      "w-sum-stg": "Project Status:",
+      "w-sum-time": "Timeline:",
+      "w-sum-note-head": "💡 Senior Guarantee:",
+      "w-sum-note-body": "Your request goes directly to Founder & Architect Mehmet Şahin. We provide an initial technical evaluation and roadmap within 30 minutes.",
+      "w-btn-submit": "Send via WhatsApp & Get Quote",
+
+      // Cases & Compare
+      "cases-subtitle": "From Idea to Live Product",
+      "cases-title": "Our Track Record & Success Stories",
+      "cases-desc": "How we transformed client ideas and salvaged stalled codebases into high-performance production systems.",
+      "compare-subtitle": "Why Choose TMA?",
+      "compare-title": "Traditional Bloated Agencies vs. TMA Model",
+      "compare-desc": "Pay for pure senior engineering velocity, not endless middleman meetings and overhead.",
+      "cmp-feature": "Feature / Metric",
+      "cmp-tma": "🚀 TMA Full-Stack Studio",
+      "cmp-trad": "❌ Traditional Slow Agencies",
+
+      // Testimonials & Social
+      "testimonials-subtitle": "Client & Student Testimonials",
+      "testimonials-title": "What Our Partners Say",
+      "testimonials-desc": "Direct feedback from custom software clients and algorithmic academy graduates.",
+      "tech-band-label": "Technologies & Tools We Master",
+      "github-subtitle": "Open Source Repositories",
       "github-title": "GitHub Talent Pool",
-      "github-desc": "Open source projects where we demonstrate our programming skills and trading algorithms. Live API data is retrieved.",
-      "github-loading": "Loading repositories...",
-      "github-error": "Failed to load projects. Please try again later.",
-      "github-view-profile": "View Our GitHub Profile",
-      
-      // Blog/Publications Section
-      "blog-subtitle": "Social Media & Analyses",
-      "blog-title": "Our Latest Social Posts & Analyses",
-      "blog-desc": "Our latest market analyses, updates, and articles shared across our social media platforms (X, LinkedIn).",
+      "github-desc": "Live showcase of our open-source software libraries and algorithmic tools fetched directly via GitHub API.",
+      "github-loading": "Loading projects...",
+      "github-view-profile": "View GitHub Profile",
+      "blog-subtitle": "Insights & Publications",
+      "blog-title": "Recent LinkedIn Insights",
+      "blog-desc": "Our articles and breakdowns on modern software architectures, SaaS development, and algorithmic systems.",
       "blog-loading": "Loading posts...",
-      "blog-error": "Failed to load posts. Please try again later.",
-      "blog-view-profile": "Follow Us on Social Media",
-      
-      // CTA Banner
-      "cta-unsure": "Still Undecided?",
-      "cta-desc": "You can schedule a free introductory session to get to know our education system and strategies up close.",
-      "cta-btn": "Book a Free First Session",
-      
-      // Newsletter
-      "newsletter-subtitle": "Join Our Newsletter",
-      "newsletter-title": "Financial Algorithms and Analyses in Your Inbox",
-      "newsletter-desc": "Every week we share the latest Pine Script strategies, market commentaries, and software updates. No spam, unsubscribe anytime.",
-      "newsletter-placeholder": "Your email address",
-      "newsletter-btn-text": "Subscribe",
-      "newsletter-success": "Congratulations! You have successfully subscribed to our newsletter.",
-      "newsletter-error-invalid": "Please enter a valid email address.",
-      "newsletter-error-generic": "An error occurred. Please try again.",
-      
-      // Contact Section
-      "contact-subtitle": "Get in Touch",
-      "contact-title": "Let's Code Your Future Together",
-      "contact-desc": "Fill out the contact form or message us directly via our support channels to inquire about course curriculum, custom indicator orders, or bot integrations.",
-      "contact-wa": "WhatsApp Support Line",
-      "contact-wa-sub": "Chat Now (Live Help)",
-      "contact-email": "E-Mail Address",
-      
-      // Contact Form Labels & Placeholders
-      "form-label-name": "Your Name",
-      "form-label-email": "Your Email",
-      "form-label-phone": "Your Phone Number",
-      "form-label-msg": "Your Message / Request Details",
+      "blog-view-profile": "Follow Us on LinkedIn",
+
+      // Contact & Footer
+      "contact-subtitle": "Direct Contact",
+      "contact-title": "Let's Build Your Solution Together",
+      "contact-desc": "Reach out directly for custom Web, SaaS, hotfix, or bot development requests. Available 24/7 online and at our İzmir Konak offices.",
+      "contact-wa": "1. WhatsApp & Phone",
+      "contact-email": "Official Email",
+      "form-title": "Quick Project Request Form",
+      "form-label-name": "Full Name",
       "form-placeholder-name": "e.g. John Doe",
+      "form-label-email": "Email Address",
       "form-placeholder-email": "e.g. john@example.com",
-      "form-placeholder-phone": "e.g. +1 (555) 000-0000",
-      "form-placeholder-msg": "Please specify which training program or software package you are interested in...",
-      "form-submit": "Send / Apply via WhatsApp",
-      
-      // Footer
-      "footer-desc": "A professional technology academy and software house empowering your business with modern web, mobile, and integration solutions alongside financial trading systems.",
+      "form-label-phone": "Phone Number",
+      "form-placeholder-phone": "e.g. +1 555 123 4567",
+      "form-label-msg": "Your Project / Problem Summary",
+      "form-placeholder-msg": "Tell us briefly about your web, SaaS, urgent bug fix, or custom bot needs...",
+      "form-submit": "Send to Mehmet Şahin via WhatsApp",
+      "footer-desc": "Your trusted partner in modern web & SaaS architectures, high-performance code debugging, AI integrations, and algorithmic software engineering.",
       "footer-quick": "Quick Links",
-      "footer-warning-title": "Disclaimer",
-      "footer-warning-desc": "Trading education, indicators, and software provided by Trend Master Academy are not investment advice. Financial markets involve significant capital risks.",
-      "footer-copy": "© 2026 Trend Master Academy. All Rights Reserved.",
-      
-      // About Page Intro
-      "about-badge": "Our Methodology",
-      "about-title": "Education & About Us",
-      "about-breadcrumb-home": "Home",
-      "about-breadcrumb-current": "Education & About Us",
-      "about-intro-title": "Professional Education Strategies to Master the Markets",
-      "about-intro-desc": "Trend Master Academy simplifies the complex nature of financial markets through structured, mathematical, and testable strategies. Our target is not chasing empty profit guarantees, but empowering traders to develop, test, and run their own strategies independently.",
-      "about-warn-box": "Remember, not promises of high profits, but only disciplined education will make you win.",
-      
-      // About Page Pillars
-      "about-pillars-subtitle": "Secret to Our Success",
-      "about-pillars-title": "4 Pillars of Our Methodology",
-      "about-pillars-desc": "Our comprehensive curriculum covers all crucial aspects of modern trading to establish long-term consistency.",
-      "pillar1-title": "Market Structure & Strategic Approaches",
-      "pillar1-desc": "Learn to interpret charts and read the footprints of institutional volume makers.",
-      "pillar1-f1": "Trend Following Methodologies",
-      "pillar1-f2": "Price Action Rules (Candles, S/R, MSB)",
-      "pillar1-f3": "Institutional Concepts (ICT, SMC, Order Block, FVG)",
-      
-      "pillar2-title": "Risk & Portfolio Management",
-      "pillar2-desc": "Protect your capital and grow it steadily with metrics-driven mathematical models.",
-      "pillar2-f1": "Risk/Reward (R:R) Ratios (1:2 and 1:3 rules)",
-      "pillar2-f2": "Max 1-2% Capital Risk per Trade Rules",
-      "pillar2-f3": "Mathematical Metrics & Growth Journals",
-      
-      "pillar3-title": "Indicators & Technical Confirmations",
-      "pillar3-desc": "Increase your probability using mathematical and algorithmic filter systems.",
-      "pillar3-f1": "Correct Combinations of RSI, EMA, and MACD",
-      "pillar3-f2": "Pine Script Backtesting & Strategy Automation",
-      "pillar3-f3": "Signal Filtering and Avoiding Bad Market Whiplash",
-      
-      "pillar4-title": "Trader Psychology & Discipline",
-      "pillar4-desc": "Learn to stay committed to your plan and manage your emotions systematically.",
-      "pillar4-f1": "Managing FOMO (Fear of Missing Out)",
-      "pillar4-f2": "Avoiding Revenge Trades & Overtrading",
-      "pillar4-f3": "Trading Journal (Journaling) Routines",
-      
-      "about-cta-title": "Let's Succeed Together",
-      "about-cta-desc": "Get detailed information about our curriculum and schedule the best 1-on-1 mentorship times that suit your calendar.",
-      "about-cta-btn1": "Go to Contact Form",
-      "about-cta-btn2": "WhatsApp Support",
-
-      // Statistics Section
-      "stat-hours": "Hours of Trading Content",
-      "stat-students": "Custom Software Projects",
-      "stat-bots": "Bot & Indicator Projects",
-      "stat-satisfaction": "System Uptime (Uptime Rate)",
-
-      // Testimonials Section
-      "testimonials-subtitle": "Student & Partner Testimonials",
-      "testimonials-title": "What Our Students & Partners Say",
-      "testimonials-desc": "Feedback from traders who completed our education programs and business partners using our custom software solutions.",
-      "testimonial1-text": '"I started from zero in Pine Script. After 3 months, I wrote and published my own indicator on TradingView. The education methodology is truly systematic and easy to understand."',
-      "testimonial1-name": "Ahmet K.",
-      "testimonial1-role": "Individual Investor — Pine Script Training",
-      "testimonial2-text": '"Risk management training changed my life. I used to trade emotionally, now I apply the 1% risk rule on every position. My losses have decreased dramatically."',
-      "testimonial2-name": "Selin Y.",
-      "testimonial2-role": "Forex Trader — Mentorship Program",
-      "testimonial3-text": '"We developed my algorithmic trading bot together with the TMA team. I received professional support at every step from strategy logic to API integration. Now my bot runs 24/7."',
-      "testimonial3-name": "Mehmet E.",
-      "testimonial3-role": "Crypto Trader — Bot Development",
-      "testimonial4-text": '"Thanks to the Smart Money Concepts training, my perspective on the market has completely changed. I now know very well how to apply Order Block and FVG concepts to real trades."',
-      "testimonial4-name": "Deniz T.",
-      "testimonial4-role": "BIST Trader — SMC Training",
-      "testimonial5-text": '"They built our company\'s SaaS platform from scratch. They delivered a job far beyond our expectations with both a scalable backend structure and a wonderfully working modern UI design."',
-      "testimonial5-name": "Hakan B.",
-      "testimonial5-role": "CEO — Fintech SaaS Project",
-      "testimonial6-text": '"We worked with TMA to resolve latency issues in our mobile app\'s exchange integration and live data stream. Thanks to webhook and API optimizations, we reduced data latency to almost zero."',
-      "testimonial6-name": "Zeynep A.",
-      "testimonial6-role": "CTO — Investment Tech Company",
-
-      // Tech Band
-      "tech-band-label": "Technologies We Use",
-
-      // WhatsApp FAB Tooltip
-      "fab-tooltip": "Chat with us on WhatsApp!",
-
-      // Service Tabs / Columns
-      "tab-training-title": "Our Training Modules",
-      
-      // Training Cards
-      "card-train1-title": "Basic & Classical Analysis",
-      "card-train1-desc": "Modules 1-4: Chart reading basics, classical technical patterns, market structure breaks, and understanding natural price movements.",
-      "card-train1-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 1: Financial Basics & Chart Reading",
-      "card-train1-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 2: Classical Technical Analysis Tools",
-      "card-train1-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 3: Market Structure & Breaks (SMC)",
-      "card-train1-feat4": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 4: Price Action Price Strategies",
-
-      "card-train2-title": "Advanced Institutional Analysis",
-      "card-train2-desc": "Modules 5-8: Tracking high-volume players, liquidity engineering, indicator confirmations, and risk management.",
-      "card-train2-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 5: Smart Money Concepts (SMC)",
-      "card-train2-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 6: Liquidity Engineering & Stop Hunt",
-      "card-train2-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 7: Technical Indicator Divergence Confirmations",
-      "card-train2-feat4": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 8: Risk & Capital Management (Position Sizing)",
-
-      "card-train3-title": "Algorithmic Trading & Bots",
-      "card-train3-desc": "Modules 9-12: Trading psychology, Pine Script v5 programming, and webhook-API based strategy automation.",
-      "card-train3-feat1": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 9: Trader Psychology & Discipline",
-      "card-train3-feat2": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 10: Intro to Algorithmic Trading & Design",
-      "card-train3-feat3": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 11: Coding in Pine Script v5",
-      "card-train3-feat4": "<svg width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='3'><polyline points='20 6 9 17 4 12'></polyline></svg> Module 12: Webhook, API & Live Bot Automation"
+      "footer-legal-title": "Transparency & Guarantee",
+      "footer-legal-desc": "All custom software is delivered with 100% full source code ownership. Academy materials and analysis software are not financial investment advice.",
+      "footer-copy": "© 2026 Trend Master Akademi. Founder: Mehmet Şahin. All Rights Reserved.",
+      "fab-tooltip": "Chat directly with Mehmet Şahin!",
+      "sticky-wa": "Chat on WhatsApp",
+      "sticky-calc": "Get Quote"
     }
   };
 
   // ==========================================
-  // 10b. DYNAMIC TESTIMONIALS (SHUFFLE & RENDER)
+  // 2. LANGUAGE SWITCHER LOGIC
   // ==========================================
-  const testimonialsList = [
-    {
-      avatar: "SG",
-      stars: 5,
-      name: "Süleyman G.",
-      role: {
-        tr: "Kripto Para Danışmanı",
-        en: "Cryptocurrency Consultant"
-      },
-      text: {
-        tr: "Trading sistemleri ve indikatör entegyonu konusunda çok donanımlı. İşlemlerimi disipline etmemde büyük yardımı dokundu.",
-        en: "Very knowledgeable in trading systems and indicator integration. Great help in disciplining my trades."
+  const langBtnTr = document.getElementById('langBtnTr');
+  const langBtnEn = document.getElementById('langBtnEn');
+  let currentLang = localStorage.getItem('tma_lang') || 'tr';
+
+  function applyLanguage(lang) {
+    currentLang = lang;
+    localStorage.setItem('tma_lang', lang);
+    document.documentElement.lang = lang;
+
+    if (lang === 'tr') {
+      if (langBtnTr) langBtnTr.classList.add('active');
+      if (langBtnEn) langBtnEn.classList.remove('active');
+    } else {
+      if (langBtnEn) langBtnEn.classList.add('active');
+      if (langBtnTr) langBtnTr.classList.remove('active');
+    }
+
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (translations[lang] && translations[lang][key]) {
+        el.innerHTML = translations[lang][key];
       }
+    });
+
+    const placeholders = document.querySelectorAll('[data-i18n-placeholder]');
+    placeholders.forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (translations[lang] && translations[lang][key]) {
+        el.setAttribute('placeholder', translations[lang][key]);
+      }
+    });
+  }
+
+  if (langBtnTr) langBtnTr.addEventListener('click', () => applyLanguage('tr'));
+  if (langBtnEn) langBtnEn.addEventListener('click', () => applyLanguage('en'));
+  applyLanguage(currentLang);
+
+
+  // ==========================================
+  // 3. DYNAMIC TYPEWRITER PROBLEM-SOLVER TICKER
+  // ==========================================
+  const typewriterElement = document.getElementById('typewriterText');
+  if (typewriterElement) {
+    const headlinesTr = [
+      "Fikirden Canlı Ürüne SaaS ve Web Çözümleri",
+      "Tıkanan Kodlar ve Canlı Hatalar İçin Acil Destek",
+      "Yapay Zeka, Webhook & Özel API Entegrasyonları",
+      "Özel Algoritmik Botlar ve Finansal Mühendislik",
+      "Kıdemli Full-Stack Mühendis Güvencesiyle 0 Bug"
+    ];
+    const headlinesEn = [
+      "From Idea to Scaled Web & SaaS Products",
+      "Emergency Hotfixes for Stalled Codebases",
+      "AI Pipelines, Webhooks & Custom API Bridges",
+      "Autonomous Trading Bots & High-Frequency Logic",
+      "Direct Senior Engineer Guarantee with 0 Bugs"
+    ];
+
+    let headlineIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 70;
+
+    function typeLoop() {
+      const list = currentLang === 'en' ? headlinesEn : headlinesTr;
+      const currentText = list[headlineIndex % list.length];
+
+      if (isDeleting) {
+        typewriterElement.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+        typingSpeed = 35;
+      } else {
+        typewriterElement.textContent = currentText.substring(0, charIndex + 1);
+        charIndex++;
+        typingSpeed = 65;
+      }
+
+      if (!isDeleting && charIndex === currentText.length) {
+        typingSpeed = 2200; // Pause at end
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        headlineIndex++;
+        typingSpeed = 500;
+      }
+
+      setTimeout(typeLoop, typingSpeed);
+    }
+
+    setTimeout(typeLoop, 800);
+  }
+
+
+  // ==========================================
+  // 4. INTERACTIVE 3-TAB ENGINEERING DECK
+  // ==========================================
+  const deckTabBtns = document.querySelectorAll('.deck-tab-btn');
+  const deckPanels = document.querySelectorAll('.deck-panel');
+
+  deckTabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTabId = btn.getAttribute('data-deck-tab');
+      
+      deckTabBtns.forEach(b => b.classList.remove('active'));
+      deckPanels.forEach(p => p.classList.remove('active'));
+
+      btn.classList.add('active');
+      const targetPanel = document.getElementById(targetTabId);
+      if (targetPanel) {
+        targetPanel.classList.add('active');
+      }
+    });
+  });
+
+
+  // ==========================================
+  // 5. INTERACTIVE LEAD WIZARD (HESAPLAYICI)
+  // ==========================================
+  let wizardData = {
+    service: "SaaS & Web Uygulaması",
+    stage: "Sıfırdan Yeni Fikir / Proje",
+    time: "Hemen / Bu Hafta Başlamak İstiyorum"
+  };
+
+  const sumService = document.getElementById('sumService');
+  const sumStage = document.getElementById('sumStage');
+  const sumTime = document.getElementById('sumTime');
+
+  function bindOptionGroup(containerId, dataKey, summaryEl) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    const options = container.querySelectorAll('.wizard-option');
+    options.forEach(opt => {
+      opt.addEventListener('click', () => {
+        options.forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        const val = opt.getAttribute('data-value');
+        wizardData[dataKey] = val;
+        if (summaryEl) summaryEl.textContent = val;
+      });
+    });
+  }
+
+  bindOptionGroup('wizardServiceOptions', 'service', sumService);
+  bindOptionGroup('wizardStageOptions', 'stage', sumStage);
+  bindOptionGroup('wizardTimeOptions', 'time', sumTime);
+
+  // Allow matrix cards to trigger specific wizard services
+  const matrixActionBtns = document.querySelectorAll('[data-wizard-service]');
+  matrixActionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const srvType = btn.getAttribute('data-wizard-service');
+      const wizardServiceContainer = document.getElementById('wizardServiceOptions');
+      if (wizardServiceContainer) {
+        const options = wizardServiceContainer.querySelectorAll('.wizard-option');
+        options.forEach(opt => {
+          const val = opt.getAttribute('data-value').toLowerCase();
+          if (
+            (srvType === 'web' && val.includes('web')) ||
+            (srvType === 'saas' && val.includes('saas')) ||
+            (srvType === 'bugfix' && val.includes('bug')) ||
+            (srvType === 'ai' && val.includes('yapay')) ||
+            (srvType === 'algo' && val.includes('bot')) ||
+            (srvType === 'cto' && val.includes('mimari'))
+          ) {
+            options.forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+            wizardData.service = opt.getAttribute('data-value');
+            if (sumService) sumService.textContent = wizardData.service;
+          }
+        });
+      }
+    });
+  });
+
+  // Wizard Dispatch Button to WhatsApp
+  const btnDispatchWizard = document.getElementById('btnDispatchWizard');
+  if (btnDispatchWizard) {
+    btnDispatchWizard.addEventListener('click', () => {
+      const message = `Merhaba Mehmet Bey,\n\nTrend Master Akademi web sitenizdeki proje sihirbazından teknik bir talep oluşturmak istiyorum:\n\n📌 *İhtiyaç Duyulan Hizmet:* ${wizardData.service}\n📊 *Proje Aşaması:* ${wizardData.stage}\n⏱️ *Zaman / Öncelik:* ${wizardData.time}\n\nBu kapsamda sizinle hızlı bir ön değerlendirme ve teklif görüşmesi yapabilir miyiz?`;
+      const encodedMsg = encodeURIComponent(message);
+      window.open(`https://wa.me/905343713573?text=${encodedMsg}`, '_blank');
+    });
+  }
+
+
+  // ==========================================
+  // 6. CONTACT FORM DISPATCH TO WHATSAPP
+  // ==========================================
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('formName') ? document.getElementById('formName').value : '';
+      const email = document.getElementById('formEmail') ? document.getElementById('formEmail').value : '';
+      const phone = document.getElementById('formPhone') ? document.getElementById('formPhone').value : '';
+      const msg = document.getElementById('formMsg') ? document.getElementById('formMsg').value : '';
+
+      const fullMessage = `Merhaba Mehmet Bey,\n\nWeb sitenizdeki iletişim formundan yeni bir talep gönderiyorum:\n\n👤 *Ad Soyad:* ${name}\n📧 *E-Posta:* ${email}\n📞 *Telefon:* ${phone}\n💬 *Talep Detayı:* ${msg}\n\nDetayları görüşmek üzere dönüşünüzü rica ederim.`;
+      const encodedMsg = encodeURIComponent(fullMessage);
+      window.open(`https://wa.me/905343713573?text=${encodedMsg}`, '_blank');
+    });
+  }
+
+
+  // ==========================================
+  // 7. CHART SIMULATOR (ALGO BOT CANVAS)
+  // ==========================================
+  const canvas = document.getElementById('chartCanvas');
+  if (canvas) {
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let candles = [];
+    const candleCount = 45;
+    let basePrice = 100;
+    
+    function resizeCanvas() {
+      if (!canvas.parentElement) return;
+      width = canvas.parentElement.clientWidth;
+      height = canvas.parentElement.clientHeight || 300;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function initCandles() {
+      candles = [];
+      let current = basePrice;
+      for (let i = 0; i < candleCount; i++) {
+        const change = (Math.random() - 0.48) * 3;
+        const open = current;
+        const close = open + change;
+        const high = Math.max(open, close) + Math.random() * 2;
+        const low = Math.min(open, close) - Math.random() * 2;
+        candles.push({ open, close, high, low });
+        current = close;
+      }
+    }
+    initCandles();
+
+    function drawChart() {
+      if (!width || !height) {
+        resizeCanvas();
+        if (!width) return requestAnimationFrame(drawChart);
+      }
+
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw Grid Lines
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      ctx.lineWidth = 1;
+      for (let y = 40; y < height; y += 40) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      const minPrice = Math.min(...candles.map(c => c.low)) - 2;
+      const maxPrice = Math.max(...candles.map(c => c.high)) + 2;
+      const priceRange = maxPrice - minPrice || 1;
+
+      const candleWidth = (width / candleCount) * 0.65;
+      const spacing = width / candleCount;
+
+      candles.forEach((c, idx) => {
+        const x = idx * spacing + spacing / 2;
+        const openY = height - ((c.open - minPrice) / priceRange) * height;
+        const closeY = height - ((c.close - minPrice) / priceRange) * height;
+        const highY = height - ((c.high - minPrice) / priceRange) * height;
+        const lowY = height - ((c.low - minPrice) / priceRange) * height;
+
+        const isBull = c.close >= c.open;
+        const color = isBull ? '#00e676' : '#ff1744';
+
+        // Draw Wick
+        ctx.strokeStyle = color;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(x, highY);
+        ctx.lineTo(x, lowY);
+        ctx.stroke();
+
+        // Draw Body
+        ctx.fillStyle = color;
+        const bodyY = Math.min(openY, closeY);
+        const bodyHeight = Math.max(Math.abs(closeY - openY), 2);
+        ctx.fillRect(x - candleWidth / 2, bodyY, candleWidth, bodyHeight);
+      });
+
+      // Overlay status tag
+      ctx.fillStyle = 'rgba(0, 229, 255, 0.85)';
+      ctx.font = 'bold 12px monospace';
+      ctx.fillText('⚡ ALGO ENGINE: LIVE SIGNAL [CONFIRMED]', 20, 30);
+    }
+
+    // Step chart smoothly
+    setInterval(() => {
+      const lastCandle = candles[candles.length - 1];
+      const change = (Math.random() - 0.47) * 2.8;
+      const open = lastCandle.close;
+      const close = open + change;
+      const high = Math.max(open, close) + Math.random() * 1.5;
+      const low = Math.min(open, close) - Math.random() * 1.5;
+
+      candles.shift();
+      candles.push({ open, close, high, low });
+      drawChart();
+    }, 1200);
+
+    drawChart();
+  }
+
+
+  // ==========================================
+  // 8. TESTIMONIALS CAROUSEL
+  // ==========================================
+  const testimonials = [
+    {
+      name: "Burak Yılmaz",
+      role: "SaaS Kurucusu & E-Ticaret Girişimcisi",
+      text: "Fikir aşamasındaki SaaS platformumuzu Mehmet Bey ile 40 günde canlıya aldık. Kod kalitesi, Stripe entegrasyonu ve sıfır hata politikası gerçekten Türkiye'de nadir bulunan bir senior mühendislik seviyesi.",
+      rating: 5
     },
     {
-      avatar: "MD",
-      stars: 5,
-      name: "Muammer D.",
-      role: {
-        tr: "Borsa Özel Ders",
-        en: "Stock Market Private Student"
-      },
-      text: {
-        tr: "Mehmet hocamla dersler çok verimli geçiyor. Teknik analiz ve piyasa dinamiklerini pratik örneklerle anlatıyor.",
-        en: "Lessons with teacher Mehmet are extremely productive. He explains technical analysis and market dynamics with practical examples."
-      }
+      name: "Canan Erdem",
+      role: "Pazarlama Ajansı Başkanı",
+      text: "Google Ads açılış hızlarımız berbattı ve reklam bütçemiz eriyordu. TMA ile web sitemizi baştan inşa ettik; açılış hızı 0.35 saniyeye indi ve dönüşüm oranımız 3 katına çıktı. Emeğinize sağlık!",
+      rating: 5
     },
     {
-      avatar: "KY",
-      stars: 5,
-      name: "Kaan Y.",
-      role: {
-        tr: "Kripto Para Danışmanı",
-        en: "Cryptocurrency Consultant"
-      },
-      text: {
-        tr: "Piyasa dilini anlamak, alım-satıma dair tüm detayları öğrenmek ve herkesten önde olmak istiyorsanız doğru tercihi yaparsınız. Hocam gerçekten çok özel bir trader.",
-        en: "If you want to understand the language of the market, learn all the details of buying and selling, and be ahead of everyone, you will make the right choice. My teacher is truly a very special trader."
-      }
+      name: "Murat Demir",
+      role: "Finansal Analist & Bot Geliştirici",
+      text: "TradingView ve Pine Script v5 mentörlüğü sayesinde stratejilerimi kendi algoritmik botlarıma dönüştürdüm. Mehmet Bey sadece kodlamayı değil, arkasındaki matematiksel mimariyi öğretiyor.",
+      rating: 5
     },
     {
-      avatar: "MŞ",
-      stars: 5,
-      name: "Mehmet Ş.",
-      role: {
-        tr: "Forex Eğitimi",
-        en: "Forex Training"
-      },
-      text: {
-        tr: "Mehmet hocamla yaklaşık 1,5 aydır ders yapıyoruz. Kendisinden fazlası ile faydalanıyorum. Mehmet hoca hem piyasa bilgisi hem tecrübesi hem de bilgi aktarımı ile çok kaliteli bir eğitim sunuyor. Her fiyat hareketini nedeni ile birlikte detaylı şekilde açıklıyor.",
-        en: "We have been doing classes with teacher Mehmet for about 1.5 months. I benefit from him more than enough. I receive a very high-quality education thanks to Mehmet teacher's market knowledge, experience, and information transfer. He explains every price movement in detail with its reason."
-      }
-    },
-    {
-      avatar: "ÖÖ",
-      stars: 5,
-      name: "Ömer Efe Ö.",
-      role: {
-        tr: "Borsa Yatırım Danışmanı",
-        en: "Stock Market Investment Advisor"
-      },
-      text: {
-        tr: "Benimle çok iyi ilgilendi ve tüm sorularımı sabırla yanıtladı, sorunlarımı dinledi teşekkürler.",
-        en: "He took great care of me, answered all my questions patiently, and listened to my concerns, thank you."
-      }
-    },
-    {
-      avatar: "MK",
-      stars: 5,
-      name: "Mert K.",
-      role: {
-        tr: "Teknoloji Direktörü — Finans Teknolojileri Sektörü",
-        en: "Technology Director — Financial Technologies Sector"
-      },
-      text: {
-        tr: "Mevcut altyapımızın performans sorunlarını kökten çözdüler. Sistem artık kat kat daha hızlı yanıt veriyor ve ölçeklenme konusunda hiç endişemiz kalmadı.",
-        en: "They solved the performance issues of our current infrastructure from the root. The system now responds times faster and we have no concerns about scaling anymore."
-      }
-    },
-    {
-      avatar: "AY",
-      stars: 5,
-      name: "Ayşe Y.",
-      role: {
-        tr: "Kurucu Ortak — Yatırım Teknolojileri",
-        en: "Co-Founder — Investment Technologies"
-      },
-      text: {
-        tr: "Karmaşık entegrasyon ihtiyaçlarımızı sıfırdan planlayıp uyguladılar. Hem teknik derinlik hem de iletişim tarafında beklentimizin üzerinde bir deneyimdi.",
-        en: "They planned and implemented our complex integration needs from scratch. It was an experience beyond our expectations in both technical depth and communication."
-      }
-    },
-    {
-      avatar: "SD",
-      stars: 5,
-      name: "Suzan D.",
-      role: {
-        tr: "Ürün Sorumlusu — Mobil Uygulama Geliştirme",
-        en: "Product Manager — Mobile App Development"
-      },
-      text: {
-        tr: "Canlı veri akışındaki gecikme sorunlarını API optimizasyonlarıyla neredeyse tamamen ortadan kaldırdılar. Kullanıcı deneyimimiz belirgin şekilde iyileşti.",
-        en: "They almost completely eliminated latency issues in live data stream with API optimizations. Our user experience has improved significantly."
-      }
-    },
-    {
-      avatar: "ET",
-      stars: 5,
-      name: "Emre T.",
-      role: {
-        tr: "CTO — Fintech SaaS",
-        en: "CTO — Fintech SaaS"
-      },
-      text: {
-        tr: "Backend mimarimizi modern ve sürdürülebilir bir yapıya taşıdılar. Ekibin teknik yetkinliği ve çözüm odaklı yaklaşımı fark yaratıyor.",
-        en: "They migrated our backend architecture to a modern and sustainable structure. The technical competence and solution-oriented approach of the team make a difference."
-      }
-    },
-    {
-      avatar: "BC",
-      stars: 5,
-      name: "Burak C.",
-      role: {
-        tr: "Operasyon Direktörü — Yatırım Platformu",
-        en: "Operations Director — Investment Platform"
-      },
-      text: {
-        tr: "Webhook tabanlı otomasyon altyapımızı kurdular; manuel süreçlerimizin büyük kısmını devre dışı bıraktık. Zaman kazancı ciddi oldu.",
-        en: "They built our webhook-based automation infrastructure; we disabled most of our manual processes. The time savings have been significant."
-      }
-    },
-    {
-      avatar: "RA",
-      stars: 5,
-      name: "Rana A.",
-      role: {
-        tr: "Genel Müdür — Teknoloji Danışmanlığı",
-        en: "General Manager — Technology Consulting"
-      },
-      text: {
-        tr: "Projeye başından sonuna kadar profesyonelce yaklaştılar. Teslim süresi, kod kalitesi ve sonrasındaki destek konusunda tam güven verdiler.",
-        en: "They approached the project professionally from start to finish. They gave full confidence regarding delivery time, code quality, and post-delivery support."
-      }
+      name: "Serdar Koç",
+      role: "Teknoloji Direktörü (CTO)",
+      text: "Kilitlenen veritabanı sorgularımız ve çöken backend servislerimiz için acil müdahale aldık. 24 saat içinde sorunu kökünden çözüp tüm sistemi temizlediler. Kesinlikle tavsiye ederim.",
+      rating: 5
     }
   ];
 
-  let shuffledTestimonials = [];
+  const carousel = document.getElementById('testimonialsCarousel');
+  const prevBtn = document.getElementById('testimonialPrev');
+  const nextBtn = document.getElementById('testimonialNext');
+  let currentTestimonialIndex = 0;
 
-  function shuffleTestimonials() {
-    const clone = [...testimonialsList];
-    for (let i = clone.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [clone[i], clone[j]] = [clone[j], clone[i]];
-    }
-    shuffledTestimonials = clone;
-  }
-
-  function renderTestimonials(lang) {
-    const container = document.getElementById('testimonialsCarousel');
-    if (!container) return;
+  function renderTestimonials() {
+    if (!carousel) return;
+    carousel.innerHTML = '';
     
-    container.innerHTML = '';
-    
-    shuffledTestimonials.forEach(t => {
-      const text = t.text[lang] || t.text['tr'];
-      const role = t.role[lang] || t.role['tr'];
-      
+    testimonials.forEach((item, index) => {
       const card = document.createElement('div');
-      card.className = 'testimonial-card';
+      card.className = `testimonial-card ${index === currentTestimonialIndex ? 'active' : ''}`;
       
-      // Star rating display
-      let starsHTML = '';
-      for (let i = 0; i < t.stars; i++) {
-        starsHTML += '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+      let stars = '';
+      for (let i = 0; i < item.rating; i++) {
+        stars += `<svg width="16" height="16" viewBox="0 0 24 24" fill="#ffbd2e" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
       }
-      
+
       card.innerHTML = `
-        <div class="testimonial-stars">
-          ${starsHTML}
-        </div>
-        <svg class="testimonial-quote-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-        <p class="testimonial-text">${text}</p>
+        <div class="testimonial-stars" style="display: flex; gap: 4px; margin-bottom: 16px;">${stars}</div>
+        <p class="testimonial-text" style="font-size: 1rem; color: var(--text-main); line-height: 1.7; margin-bottom: 20px; font-style: italic;">"${item.text}"</p>
         <div class="testimonial-author">
-          <div class="testimonial-avatar">${t.avatar}</div>
-          <div>
-            <div class="testimonial-name">${t.name}</div>
-            <div class="testimonial-role">${role}</div>
-          </div>
+          <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 2px;">${item.name}</h4>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">${item.role}</span>
         </div>
       `;
-      
-      container.appendChild(card);
+      carousel.appendChild(card);
     });
   }
 
-  // Shuffle once on load
-  shuffleTestimonials();
+  function showTestimonial(index) {
+    currentTestimonialIndex = (index + testimonials.length) % testimonials.length;
+    renderTestimonials();
+  }
+
+  if (prevBtn) prevBtn.addEventListener('click', () => showTestimonial(currentTestimonialIndex - 1));
+  if (nextBtn) nextBtn.addEventListener('click', () => showTestimonial(currentTestimonialIndex + 1));
+  renderTestimonials();
+
+  // Auto rotate testimonials
+  setInterval(() => {
+    showTestimonial(currentTestimonialIndex + 1);
+  }, 7000);
 
 
   // ==========================================
-  // 2. LANGUAGE MANAGEMENT (i18n)
+  // 9. GITHUB REPOSITORIES LIVE LOADER
   // ==========================================
-  let currentLang = 'tr';
-  
-  const detectLanguage = () => {
-    // 1. Check local storage first
-    const savedLang = localStorage.getItem('lang');
-    if (savedLang === 'tr' || savedLang === 'en') {
-      return savedLang;
-    }
-    
-    // 2. Check browser navigator language
-    const browserLang = navigator.language || navigator.userLanguage || '';
-    if (browserLang.toLowerCase().startsWith('tr')) {
-      return 'tr';
-    }
-    
-    // 3. Default to english
-    return 'en';
-  };
-  
-  const setLanguage = (lang) => {
-    if (lang !== 'tr' && lang !== 'en') lang = 'tr';
-    currentLang = lang;
-    localStorage.setItem('lang', lang);
-    
-    // Update active state in UI switch buttons
-    const btnTr = document.getElementById('langBtnTr');
-    const btnEn = document.getElementById('langBtnEn');
-    
-    if (btnTr && btnEn) {
-      if (lang === 'tr') {
-        btnTr.classList.add('active');
-        btnEn.classList.remove('active');
-      } else {
-        btnEn.classList.add('active');
-        btnTr.classList.remove('active');
-      }
-    }
-    
-    // Translate text content
-    const elementsToTranslate = document.querySelectorAll('[data-i18n]');
-    elementsToTranslate.forEach(elem => {
-      const key = elem.getAttribute('data-i18n');
-      if (translations[lang] && translations[lang][key]) {
-        // If it contains HTML tags (like SVG), use innerHTML, otherwise textContent
-        if (translations[lang][key].includes('<svg') || translations[lang][key].includes('<span')) {
-          elem.innerHTML = translations[lang][key];
+  const githubContainer = document.getElementById('githubReposContainer');
+  if (githubContainer) {
+    fetch('https://api.github.com/users/trendmasterakademi/repos?sort=updated&per_page=6')
+      .then(res => res.json())
+      .then(repos => {
+        if (Array.isArray(repos) && repos.length > 0) {
+          githubContainer.innerHTML = '';
+          repos.forEach(repo => {
+            const card = document.createElement('div');
+            card.className = 'matrix-card';
+            card.style.padding = '24px';
+            card.innerHTML = `
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+                  <span style="font-family: monospace; font-size: 0.8rem; color: var(--accent-blue);">📦 GitHub Repo</span>
+                  <span style="font-size: 0.75rem; color: var(--accent-green); font-weight: 700;">★ ${repo.stargazers_count || 0} Stars</span>
+                </div>
+                <h4 style="font-size: 1.1rem; margin-bottom: 8px;">${repo.name}</h4>
+                <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+                  ${repo.description || 'Trend Master Akademi açık kaynak kodlu mühendislik ve bot projesi.'}
+                </p>
+              </div>
+              <a href="${repo.html_url}" target="_blank" class="matrix-action-btn" style="margin-top: 10px;">
+                <span>Kodu İncele</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            `;
+            githubContainer.appendChild(card);
+          });
         } else {
-          elem.textContent = translations[lang][key];
+          githubContainer.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">
+              Açık kaynak projelerimizi GitHub profilimiz üzerinden doğrudan inceleyebilirsiniz.
+            </div>
+          `;
         }
-      }
-    });
-    
-    // Translate input placeholders
-    const placeholdersToTranslate = document.querySelectorAll('[data-i18n-placeholder]');
-    placeholdersToTranslate.forEach(input => {
-      const key = input.getAttribute('data-i18n-placeholder');
-      if (translations[lang] && translations[lang][key]) {
-        input.placeholder = translations[lang][key];
-      }
-    });
-    
-    // Special translations for documents (like title attribute or browser window title)
-    if (translations[lang]) {
-      const isAboutPage = window.location.pathname.includes('about.html');
-      document.title = translations[lang][isAboutPage ? "about-site-title" : "site-title"];
-    }
-    
-    // Re-draw GitHub repositories in the correct language
-    const githubGrid = document.getElementById('githubReposContainer');
-    if (githubGrid) {
-      renderGitHubRepos();
-    }
-    
-    // Re-draw Blog articles in the correct language
-    const blogGrid = document.getElementById('blogContainer');
-    if (blogGrid) {
-      renderBlogArticles();
-    }
-
-    // Re-draw Testimonials in the correct language
-    const testimonialsContainer = document.getElementById('testimonialsCarousel');
-    if (testimonialsContainer) {
-      renderTestimonials(lang);
-    }
-  };
+      })
+      .catch(() => {
+        githubContainer.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">
+            Açık kaynak projelerimizi GitHub profilimiz üzerinden doğrudan inceleyebilirsiniz.
+          </div>
+        `;
+      });
+  }
 
 
   // ==========================================
-  // 3. HEADER SCROLL EFFECT
+  // 10. LINKEDIN ARTICLES LOADER
+  // ==========================================
+  const blogContainer = document.getElementById('blogContainer');
+  if (blogContainer) {
+    fetch('articles.json')
+      .then(res => res.json())
+      .then(articles => {
+        if (Array.isArray(articles) && articles.length > 0) {
+          blogContainer.innerHTML = '';
+          articles.slice(0, 3).forEach(art => {
+            const card = document.createElement('div');
+            card.className = 'matrix-card';
+            card.style.padding = '24px';
+            card.innerHTML = `
+              <div>
+                <span style="font-size: 0.75rem; color: var(--accent-blue); font-weight: 700; display: block; margin-bottom: 8px;">ARTICLE & INSIGHT</span>
+                <h4 style="font-size: 1.15rem; margin-bottom: 10px;">${art.title}</h4>
+                <p style="font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 16px;">
+                  ${art.summary || (art.content ? art.content.substring(0, 120) + '...' : '')}
+                </p>
+              </div>
+              <a href="${art.url || 'https://www.linkedin.com/in/trendmasterakademi/'}" target="_blank" class="matrix-action-btn">
+                <span>LinkedIn'de Oku</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              </a>
+            `;
+            blogContainer.appendChild(card);
+          });
+        } else {
+          blogContainer.innerHTML = `
+            <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">
+              En güncel yayınlarımızı ve yazılım analizlerimizi LinkedIn profilimizden takip edebilirsiniz.
+            </div>
+          `;
+        }
+      })
+      .catch(() => {
+        blogContainer.innerHTML = `
+          <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 30px;">
+            En güncel yayınlarımızı ve yazılım analizlerimizi LinkedIn profilimizden takip edebilirsiniz.
+          </div>
+        `;
+      });
+  }
+
+
+  // ==========================================
+  // 11. NAVBAR SCROLL & MOBILE MENU
   // ==========================================
   const header = document.getElementById('header');
-  
-  const handleScroll = () => {
-    if (window.scrollY > 50) {
-      header.classList.add('scrolled');
-    } else {
-      header.classList.remove('scrolled');
-    }
-  };
-  
-  window.addEventListener('scroll', handleScroll);
-  handleScroll();
-
-
-  // ==========================================
-  // 4. MOBILE MENU (HAMBURGER)
-  // ==========================================
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('navMenu');
-  const navLinks = document.querySelectorAll('.nav-link');
-  
+  const backToTop = document.getElementById('backToTop');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      if (header) header.classList.add('scrolled');
+      if (backToTop) backToTop.classList.add('visible');
+    } else {
+      if (header) header.classList.remove('scrolled');
+      if (backToTop) backToTop.classList.remove('visible');
+    }
+  });
+
   if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
       navMenu.classList.toggle('active');
     });
-    
-    navLinks.forEach(link => {
+
+    navMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
@@ -792,860 +841,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-
-  // ==========================================
-  // 5. WHATSAPP CONTACT FORM INTEGRATION
-  // ==========================================
-  const contactForm = document.getElementById('contactForm');
-  
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const name = document.getElementById('formName').value.trim();
-      const email = document.getElementById('formEmail').value.trim();
-      const phone = document.getElementById('formPhone').value.trim();
-      const message = document.getElementById('formMsg').value.trim();
-      
-      const waNumber = '905343713573';
-      const waText = currentLang === 'tr' 
-        ? `Merhaba Trend Master Akademi,\n\nWeb siteniz üzerinden yeni bir başvuru/talep formu doldurdum:\n\n*Ad Soyad:* ${name}\n*E-Posta:* ${email}\n*Telefon:* ${phone}\n*Mesaj:* ${message}`
-        : `Hello Trend Master Academy,\n\nI have submitted a contact form on your website:\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone}\n*Message:* ${message}`;
-      
-      const encodedText = encodeURIComponent(waText);
-      const waUrl = `https://wa.me/${waNumber}?text=${encodedText}`;
-      
-      window.open(waUrl, '_blank');
-      contactForm.reset();
-    });
-  }
-
-
-  // ==========================================
-  // 6. GITHUB REPOSITORIES FETCH & DISPLAY
-  // ==========================================
-  const githubRepos = []; // cache fetched repos
-  
-  // Fallback repositories in case the API limit is hit or account has no public projects
-  const fallbackRepos = [
-    {
-      name: "tma-pine-alerts-connector",
-      description_tr: "TradingView Pine Script alarmlarını gerçek zamanlı olarak Binance, Bybit ve OKX vadeli işlemler borsalarına yönlendiren webhook konnektörü.",
-      description_en: "TradingView Pine Script alert webhook connector to automate Binance, Bybit, and OKX futures trading in real-time.",
-      stargazers_count: 14,
-      forks_count: 5,
-      language: "Python",
-      langColor: "#3572A5"
-    },
-    {
-      name: "tma-fintech-saas-dashboard",
-      description_tr: "Finansal verileri, trading alarmlarını ve kullanıcı portföy yönetimini tek bir arayüzde birleştiren Next.js & Tailwind CSS tabanlı SaaS paneli.",
-      description_en: "A Next.js & Tailwind CSS based SaaS dashboard integrating financial analytics, trading alerts, and user portfolio tracking.",
-      stargazers_count: 31,
-      forks_count: 12,
-      language: "TypeScript",
-      langColor: "#3178c6"
-    },
-    {
-      name: "tma-mobile-trading-companion",
-      description_tr: "Kullanıcıların trading sinyallerini anlık bildirim olarak aldığı ve API anahtarlarını yönettikleri şık Flutter tabanlı mobil uygulama.",
-      description_en: "A sleek Flutter-based iOS/Android mobile companion app for real-time alert notifications and API credential management.",
-      stargazers_count: 19,
-      forks_count: 4,
-      language: "Dart",
-      langColor: "#00B4AB"
-    },
-    {
-      name: "price-action-backtester",
-      description_tr: "Market yapısı kırılımları (MSB), order block (emir blokları) ve FVG modellerini geriye dönük test eden yüksek performanslı Pandas tabanlı backtest motoru.",
-      description_en: "A high-performance algorithmic backtesting engine that simulates market structure breaks, order blocks, and FVG patterns.",
-      stargazers_count: 22,
-      forks_count: 8,
-      language: "Python",
-      langColor: "#3572A5"
-    }
-  ];
-  
-  const getLanguageColor = (lang) => {
-    const colors = {
-      "Python": "#3572A5",
-      "JavaScript": "#f1e05a",
-      "TypeScript": "#3178c6",
-      "Dart": "#00B4AB",
-      "HTML": "#e34c26",
-      "CSS": "#563d7c",
-      "Pine Script": "#00b0ff"
-    };
-    return colors[lang] || "#8b949e";
-  };
-  
-  const renderGitHubRepos = () => {
-    const container = document.getElementById('githubReposContainer');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    
-    // Choose repositories to show: API results if populated, otherwise fallbacks
-    const reposToShow = githubRepos.length > 0 ? githubRepos : fallbackRepos;
-    
-    reposToShow.forEach(repo => {
-      // Resolve description based on active language
-      let desc = '';
-      if (repo.description_tr && repo.description_en) {
-        desc = currentLang === 'tr' ? repo.description_tr : repo.description_en;
-      } else {
-        desc = repo.description || (currentLang === 'tr' ? 'Açıklama bulunmuyor.' : 'No description available.');
-      }
-      
-      const lang = repo.language || 'Pine Script';
-      const langColor = repo.langColor || getLanguageColor(lang);
-      
-      const htmlUrl = repo.html_url || `https://github.com/trendmasterakademi/${repo.name}`;
-      
-      const card = document.createElement('div');
-      card.className = 'repo-card';
-      
-      card.innerHTML = `
-        <div>
-          <div class="repo-header">
-            <svg class="repo-icon-folder" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path></svg>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-          </div>
-          <a href="${htmlUrl}" target="_blank" class="repo-title-link">${repo.name}</a>
-          <p class="repo-desc">${desc}</p>
-        </div>
-        <div class="repo-footer">
-          <div class="repo-lang">
-            <span class="repo-lang-dot" style="background-color: ${langColor};"></span>
-            <span>${lang}</span>
-          </div>
-          <div class="repo-stats">
-            <div class="repo-stat-item">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-              <span>${repo.stargazers_count}</span>
-            </div>
-            <div class="repo-stat-item">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg>
-              <span>${repo.forks_count}</span>
-            </div>
-          </div>
-        </div>
-      `;
-      
-      container.appendChild(card);
-    });
-  };
-  
-  const fetchGitHubRepos = () => {
-    const container = document.getElementById('githubReposContainer');
-    if (!container) return;
-    
-    fetch('https://api.github.com/users/trendmasterakademi/repos')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('API failed');
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (Array.isArray(data) && data.length > 0) {
-          githubRepos.length = 0; // Clear array
-          // Pull top repos
-          data.forEach(r => {
-            githubRepos.push({
-              name: r.name,
-              description: r.description,
-              stargazers_count: r.stargazers_count,
-              forks_count: r.forks,
-              language: r.language,
-              html_url: r.html_url
-            });
-          });
-        }
-        renderGitHubRepos();
-      })
-      .catch(err => {
-        console.warn('GitHub API fetch failed, loading default fallback projects:', err);
-        renderGitHubRepos();
-      });
-  };
-
-
-  // ==========================================
-  // 6b. LINKEDIN & SOCIAL MEDIA EMBEDS FETCH & DISPLAY
-  // ==========================================
-  const blogArticles = []; // cache fetched articles
-
-  // Helper functions for social media embeds
-  const getLinkedInEmbedUrl = (url) => {
-    if (!url) return null;
-    if (url.includes('/embed/')) return url;
-    
-    // Pattern to match standard URNs (e.g. urn:li:activity:123456)
-    const urnMatch = url.match(/urn:li:(activity|share|ugcPost|comment):(\d+)/);
-    if (urnMatch) {
-      return `https://www.linkedin.com/embed/feed/update/${urnMatch[0]}`;
-    }
-    
-    // Pattern to match activity ID in posts
-    const activityMatch = url.match(/activity-(\d+)/);
-    if (activityMatch) {
-      return `https://www.linkedin.com/embed/feed/update/urn:li:activity:${activityMatch[1]}`;
-    }
-    
-    // Pattern to match standard post IDs (e.g. share-123456 or posts/123456)
-    const shareMatch = url.match(/(?:share|posts)-(\d+)/) || url.match(/\/posts\/.*-(\d+)/) || url.match(/-(\d+)(?:\?|$)/) || url.match(/\/posts\/(\d+)/);
-    if (shareMatch) {
-      return `https://www.linkedin.com/embed/feed/update/urn:li:share:${shareMatch[1]}`;
-    }
-    
-    return null;
-  };
-
-  const getYouTubeId = (url) => {
-    if (!url) return null;
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[2].length === 11) ? match[2] : null;
-  };
-
-  const renderBlogArticles = () => {
-    const container = document.getElementById('blogContainer');
-    if (!container) return;
-    
-    container.innerHTML = '';
-    
-    if (blogArticles.length === 0) {
-      container.innerHTML = `
-        <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 40px 0;">
-          ${currentLang === 'tr' ? 'Henüz paylaşım bulunmuyor.' : 'No posts available yet.'}
-        </div>
-      `;
-      return;
-    }
-    
-    // Categorize
-    const linkedinArticles = blogArticles.filter(a => a.link && a.link.includes('linkedin.com'));
-    const youtubeArticles = blogArticles.filter(a => a.link && (a.link.includes('youtube.com') || a.link.includes('youtu.be')));
-    const twitterArticles = blogArticles.filter(a => a.link && (a.link.includes('twitter.com') || a.link.includes('x.com')));
-    
-    const featuredLinkedin = linkedinArticles[0];
-    const featuredYoutube = youtubeArticles[0];
-    const featuredTwitter = twitterArticles[0];
-    
-    // Helper function to build card HTML
-    const createCardHTML = (article) => {
-      const link = article.link || '';
-      const isTwitter = link.includes('twitter.com') || link.includes('x.com');
-      const isYoutube = link.includes('youtube.com') || link.includes('youtu.be');
-      
-      let platformName = 'LinkedIn';
-      let linkText = currentLang === 'tr' ? 'LinkedIn\'de Oku' : 'Read on LinkedIn';
-      let badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`;
-      
-      if (isTwitter) {
-        platformName = 'X (Twitter)';
-        const isStatus = link.includes('/status/');
-        linkText = isStatus
-          ? (currentLang === 'tr' ? 'X\'te Oku' : 'Read on X')
-          : (currentLang === 'tr' ? 'X\'te Takip Et' : 'Follow on X');
-        badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
-      } else if (isYoutube) {
-        platformName = 'YouTube';
-        const isVideo = link.includes('watch?v=') || link.includes('youtu.be/');
-        linkText = isVideo
-          ? (currentLang === 'tr' ? 'YouTube\'da İzle' : 'Watch on YouTube')
-          : (currentLang === 'tr' ? 'Kanala Abone Ol' : 'Subscribe on YouTube');
-        badgeIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.11C19.528 3.545 12 3.545 12 3.545s-7.528 0-9.388.508a3.003 3.003 0 0 0-2.11 2.11C0 8.022 0 12 0 12s0 3.978.502 5.837a3.003 3.003 0 0 0 2.11 2.11c1.86.508 9.388.508 9.388.508s7.528 0 9.388-.508a3.003 3.003 0 0 0 2.11-2.11C24 15.978 24 12 24 12s0-3.978-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
-      }
-
-      // Formatting date if possible
-      let dateString = article.date;
-      try {
-        const dateObj = new Date(article.date);
-        if (!isNaN(dateObj)) {
-          const options = { year: 'numeric', month: 'long', day: 'numeric' };
-          dateString = dateObj.toLocaleDateString(currentLang === 'tr' ? 'tr-TR' : 'en-US', options);
-        }
-      } catch (e) {}
-
-      const title = currentLang === 'tr' && article.title_tr ? article.title_tr : (article.title || '');
-      const summary = currentLang === 'tr' && article.summary_tr ? article.summary_tr : (article.summary || '');
-      const image = article.image || 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800';
-
-      return `
-        <div class="blog-card">
-          <div class="blog-card-image-wrapper">
-            <img src="${image}" alt="${title}" class="blog-card-image" loading="lazy">
-            <div class="blog-card-badge">
-              ${badgeIcon}
-              <span>${platformName}</span>
-            </div>
-          </div>
-          <div class="blog-card-content">
-            <div class="blog-card-date">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-              <span>${dateString}</span>
-            </div>
-            <h3 class="blog-card-title">${title}</h3>
-            <p class="blog-card-desc">${summary}</p>
-            <div class="blog-card-footer">
-              <a href="${link}" target="_blank" class="blog-card-link">
-                <span>${linkText}</span>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      `;
-    };
-    
-    // Render exactly the 3 cards directly to container
-    let htmlContent = '';
-    if (featuredLinkedin) {
-      htmlContent += createCardHTML(featuredLinkedin);
-    }
-    if (featuredYoutube) {
-      htmlContent += createCardHTML(featuredYoutube);
-    }
-    if (featuredTwitter) {
-      htmlContent += createCardHTML(featuredTwitter);
-    }
-    container.innerHTML = htmlContent;
-  };;
-
-  const fetchBlogArticles = () => {
-    const container = document.getElementById('blogContainer');
-    if (!container) return;
-    
-    // Draw skeleton loader
-    container.innerHTML = Array(3).fill(0).map(() => `
-      <div class="blog-skeleton">
-        <div class="skeleton-image"></div>
-        <div class="skeleton-content">
-          <div class="skeleton-text date"></div>
-          <div class="skeleton-text title"></div>
-          <div class="skeleton-text desc-1"></div>
-          <div class="skeleton-text desc-2"></div>
-          <div class="skeleton-text desc-3"></div>
-          <div class="skeleton-text button"></div>
-        </div>
-      </div>
-    `).join('');
-    
-    fetch('articles.json')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Failed to fetch articles.json');
-        }
-        return response.json();
-      })
-      .then(data => {
-        if (Array.isArray(data)) {
-          blogArticles.length = 0;
-          data.forEach(item => blogArticles.push(item));
-        }
-        renderBlogArticles();
-      })
-      .catch(err => {
-        console.error('Error fetching articles.json:', err);
-        container.innerHTML = `
-          <div style="grid-column: 1/-1; text-align: center; color: var(--accent-red); padding: 40px 0;">
-            <p>${currentLang === 'tr' ? 'Paylaşımlar yüklenirken hata oluştu.' : 'Failed to load posts.'}</p>
-          </div>
-        `;
-      });
-  };
-
-
-  // ==========================================
-  // 7. INTERACTIVE TRADING CHART SIMULATION
-  // ==========================================
-  const canvas = document.getElementById('chartCanvas');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let animationFrameId;
-    
-    let candles = [];
-    const maxCandles = 22;
-    let currentPrice = 1450.50;
-    let ticksInCurrentCandle = 0;
-    const ticksPerCandle = 30;
-    
-    const generateInitialData = () => {
-      let price = 1400.00;
-      for (let i = 0; i < maxCandles; i++) {
-        const change = (Math.random() - 0.48) * 15;
-        const open = price;
-        const close = price + change;
-        const high = Math.max(open, close) + Math.random() * 5;
-        const low = Math.min(open, close) - Math.random() * 5;
-        
-        candles.push({ open, high, low, close });
-        price = close;
-      }
-      currentPrice = price;
-    };
-    
-    generateInitialData();
-    
-    const resizeCanvas = () => {
-      const rect = canvas.parentElement.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
-      
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      
-      canvas.style.width = `${rect.width}px`;
-      canvas.style.height = `${rect.height}px`;
-      
-      ctx.scale(dpr, dpr);
-    };
-    
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    
-    const updateMarket = () => {
-      const lastCandleIndex = candles.length - 1;
-      if (lastCandleIndex < 0) return;
-      
-      const tickChange = (Math.random() - 0.5) * 2.2;
-      currentPrice += tickChange;
-      
-      const currentCandle = candles[lastCandleIndex];
-      currentCandle.close = currentPrice;
-      if (currentPrice > currentCandle.high) currentCandle.high = currentPrice;
-      if (currentPrice < currentCandle.low) currentCandle.low = currentPrice;
-      
-      ticksInCurrentCandle++;
-      
-      if (ticksInCurrentCandle >= ticksPerCandle) {
-        ticksInCurrentCandle = 0;
-        candles.shift();
-        
-        const open = currentPrice;
-        const close = open;
-        candles.push({ open, high: open, low: open, close });
-      }
-    };
-    
-    const marketInterval = setInterval(updateMarket, 100);
-    
-    const drawChart = () => {
-      const width = canvas.width / (window.devicePixelRatio || 1);
-      const height = canvas.height / (window.devicePixelRatio || 1);
-      
-      ctx.clearRect(0, 0, width, height);
-      
-      const rightPadding = 60;
-      const bottomPadding = 30;
-      const chartWidth = width - rightPadding;
-      const chartHeight = height - bottomPadding;
-      
-      let minPrice = Infinity;
-      let maxPrice = -Infinity;
-      
-      candles.forEach(c => {
-        if (c.low < minPrice) minPrice = c.low;
-        if (c.high > maxPrice) maxPrice = c.high;
-      });
-      
-      const priceRange = maxPrice - minPrice;
-      minPrice -= priceRange * 0.15;
-      maxPrice += priceRange * 0.15;
-      
-      const getX = (index) => {
-        return (index / (maxCandles - 1)) * (chartWidth - 40) + 20;
-      };
-      
-      const getY = (price) => {
-        return chartHeight - ((price - minPrice) / (maxPrice - minPrice)) * chartHeight;
-      };
-      
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.025)';
-      ctx.lineWidth = 1;
-      
-      const gridLevels = 5;
-      for (let i = 0; i <= gridLevels; i++) {
-        const p = minPrice + (i / gridLevels) * (maxPrice - minPrice);
-        const y = getY(p);
-        
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(chartWidth, y);
-        ctx.stroke();
-        
-        ctx.fillStyle = '#64748b';
-        ctx.font = '10px Inter, sans-serif';
-        ctx.textAlign = 'left';
-        ctx.fillText(p.toFixed(2), chartWidth + 8, y + 3);
-      }
-      
-      const candleWidth = (chartWidth - 40) / maxCandles;
-      candles.forEach((_, i) => {
-        if (i % 4 === 0) {
-          const x = getX(i);
-          ctx.beginPath();
-          ctx.moveTo(x, 0);
-          ctx.lineTo(x, chartHeight);
-          ctx.stroke();
-        }
-      });
-      
-      candles.forEach((c, i) => {
-        const x = getX(i);
-        const yOpen = getY(c.open);
-        const yClose = getY(c.close);
-        const yHigh = getY(c.high);
-        const yLow = getY(c.low);
-        
-        const isBullish = c.close >= c.open;
-        const themeColor = isBullish ? '#00e676' : '#ff1744';
-        
-        ctx.strokeStyle = themeColor;
-        ctx.fillStyle = isBullish ? 'rgba(0, 230, 118, 0.2)' : 'rgba(255, 23, 68, 0.25)';
-        ctx.lineWidth = 1.5;
-        
-        ctx.beginPath();
-        ctx.moveTo(x, yHigh);
-        ctx.lineTo(x, yLow);
-        ctx.stroke();
-        
-        const rectHeight = yClose - yOpen;
-        const rectWidth = candleWidth * 0.75;
-        ctx.fillRect(x - rectWidth / 2, yOpen, rectWidth, rectHeight);
-        ctx.strokeRect(x - rectWidth / 2, yOpen, rectWidth, rectHeight);
-      });
-      
-      const maPeriod = 5;
-      let maPoints = [];
-      
-      for (let i = maPeriod - 1; i < candles.length; i++) {
-        let sum = 0;
-        for (let j = 0; j < maPeriod; j++) {
-          sum += candles[i - j].close;
-        }
-        maPoints.push({
-          x: getX(i),
-          y: getY(sum / maPeriod)
-        });
-      }
-      
-      if (maPoints.length > 1) {
-        ctx.beginPath();
-        ctx.strokeStyle = '#00e5ff';
-        ctx.lineWidth = 2.5;
-        ctx.shadowBlur = 10;
-        ctx.shadowColor = 'rgba(0, 229, 255, 0.4)';
-        
-        ctx.moveTo(maPoints[0].x, maPoints[0].y);
-        for (let i = 1; i < maPoints.length; i++) {
-          ctx.lineTo(maPoints[i].x, maPoints[i].y);
-        }
-        ctx.stroke();
-        ctx.shadowBlur = 0;
-      }
-      
-      const yCurrent = getY(currentPrice);
-      ctx.strokeStyle = 'rgba(0, 229, 255, 0.35)';
-      ctx.setLineDash([4, 4]);
-      ctx.lineWidth = 1;
-      
-      ctx.beginPath();
-      ctx.moveTo(0, yCurrent);
-      ctx.lineTo(chartWidth, yCurrent);
-      ctx.stroke();
-      ctx.setLineDash([]);
-      
-      ctx.fillStyle = '#00e5ff';
-      ctx.beginPath();
-      ctx.rect(chartWidth + 4, yCurrent - 9, 52, 18);
-      ctx.fill();
-      
-      ctx.fillStyle = '#080b11';
-      ctx.font = 'bold 9px Inter, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.fillText(currentPrice.toFixed(2), chartWidth + 30, yCurrent + 4);
-      
-      animationFrameId = requestAnimationFrame(drawChart);
-    };
-    
-    drawChart();
-    
-    window.addEventListener('beforeunload', () => {
-      clearInterval(marketInterval);
-      cancelAnimationFrame(animationFrameId);
-    });
-  }
-
-  // ==========================================
-  // 7b. ANIMATED DEVELOPER TERMINAL SIMULATION
-  // ==========================================
-  const terminal = document.getElementById('softwareTerminalContent');
-  if (terminal) {
-    const logs = [
-      { type: 'command', text: 'npm run build:api-gateway' },
-      { type: 'info', text: 'Building REST & GraphQL microservices...' },
-      { type: 'success', text: '[SUCCESS] Web & SaaS backend compiled. (1.2s)' },
-      { type: 'command', text: 'docker-compose up -d db cache' },
-      { type: 'info', text: 'Launching PostgreSQL and Redis containers...' },
-      { type: 'success', text: '[SUCCESS] Database instances healthy.' },
-      { type: 'command', text: 'python run_bot_agent.py --env live' },
-      { type: 'info', text: 'Authenticating Binance & OKX API keys...' },
-      { type: 'success', text: '[SUCCESS] Algo signature verified. Trading agent live.' },
-      { type: 'info', text: '[WEBHOOK] POST /api/v1/alerts received (Binance ETH Breakout)' },
-      { type: 'info', text: '[DB] Storing order record: Buy 2.5 ETH @ Market' },
-      { type: 'success', text: '[SUCCESS] Telemetry check: 99.9% system uptime' }
-    ];
-
-    let logIndex = 0;
-    let terminalTimeout;
-    
-    const writeLine = (logObj) => {
-      if (!document.getElementById('softwareTerminalContent')) return;
-      const line = document.createElement('div');
-      line.className = 'terminal-line';
-
-      if (logObj.type === 'command') {
-        const prompt = document.createElement('span');
-        prompt.className = 'terminal-prompt-software';
-        prompt.textContent = 'tma-dev@ubuntu:~$';
-        line.appendChild(prompt);
-
-        const textSpan = document.createElement('span');
-        textSpan.className = 'terminal-text';
-        line.appendChild(textSpan);
-
-        let charIndex = 0;
-        const commandText = logObj.text;
-        
-        const typeChar = () => {
-          if (!document.getElementById('softwareTerminalContent')) return;
-          if (charIndex < commandText.length) {
-            textSpan.textContent += commandText[charIndex];
-            charIndex++;
-            terminalTimeout = setTimeout(typeChar, 35);
-          } else {
-            logIndex = (logIndex + 1) % logs.length;
-            terminalTimeout = setTimeout(processNextLog, 1200);
-          }
-        };
-        typeChar();
-      } else {
-        const textSpan = document.createElement('span');
-        textSpan.className = `terminal-text ${logObj.type}`;
-        textSpan.textContent = logObj.text;
-        line.appendChild(textSpan);
-        
-        terminal.appendChild(line);
-        terminal.scrollTop = terminal.scrollHeight;
-        
-        logIndex = (logIndex + 1) % logs.length;
-        terminalTimeout = setTimeout(processNextLog, 1000);
-      }
-
-      if (logObj.type === 'command') {
-        terminal.appendChild(line);
-        terminal.scrollTop = terminal.scrollHeight;
-      }
-    };
-
-    const processNextLog = () => {
-      if (!document.getElementById('softwareTerminalContent')) return;
-      if (terminal.children.length > 9) {
-        terminal.innerHTML = '';
-      }
-      writeLine(logs[logIndex]);
-    };
-
-    const cursor = document.createElement('span');
-    cursor.className = 'terminal-cursor';
-    terminal.appendChild(cursor);
-
-    terminal.innerHTML = '';
-    
-    terminalTimeout = setTimeout(processNextLog, 500);
-
-    window.addEventListener('beforeunload', () => {
-      clearTimeout(terminalTimeout);
-    });
-  }
-
-
-  // ==========================================
-  // 8. INITIALIZATION & BINDINGS (Moved to bottom)
-  // ==========================================
-  // Set up click handlers for language selector
-  const langSwitcherElement = document.getElementById('langSwitcher');
-  if (langSwitcherElement) {
-    langSwitcherElement.addEventListener('click', () => {
-      const nextLang = currentLang === 'tr' ? 'en' : 'tr';
-      setLanguage(nextLang);
-    });
-  }
-
-  // Trigger GitHub fetch if container is present on page load
-  if (document.getElementById('githubReposContainer')) {
-    fetchGitHubRepos();
-  }
-
-  // Trigger Blog articles fetch if container is present on page load
-  if (document.getElementById('blogContainer')) {
-    fetchBlogArticles();
-  }
-  
-  // Initialize language on startup (after all functions are fully defined)
-  const initialLang = detectLanguage();
-  setLanguage(initialLang);
-
-
-  // ==========================================
-  // 9. BACK TO TOP BUTTON
-  // ==========================================
-  const backToTopBtn = document.getElementById('backToTop');
-  if (backToTopBtn) {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 400) {
-        backToTopBtn.classList.add('visible');
-      } else {
-        backToTopBtn.classList.remove('visible');
-      }
-    });
-    
-    backToTopBtn.addEventListener('click', () => {
+  if (backToTop) {
+    backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  }
-
-
-  // ==========================================
-  // 10. ANIMATED STATISTICS COUNTER
-  // ==========================================
-  const animateCounters = () => {
-    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
-    
-    statNumbers.forEach(el => {
-      const target = parseInt(el.getAttribute('data-target'));
-      const suffix = el.getAttribute('data-suffix') || '';
-      const duration = 2000; // ms
-      const startTime = performance.now();
-      
-      const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
-      
-      const updateCounter = (currentTime) => {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        const easedProgress = easeOutQuart(progress);
-        const currentVal = Math.floor(easedProgress * target);
-        
-        el.textContent = currentVal + suffix;
-        
-        if (progress < 1) {
-          requestAnimationFrame(updateCounter);
-        } else {
-          el.textContent = target + suffix;
-        }
-      };
-      
-      requestAnimationFrame(updateCounter);
-    });
-  };
-  
-  const statsSection = document.getElementById('stats');
-  if (statsSection) {
-    let statsAnimated = false;
-    const statsObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !statsAnimated) {
-          statsAnimated = true;
-          animateCounters();
-          statsObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.3 });
-    
-    statsObserver.observe(statsSection);
-  }
-
-  // ==========================================
-  // 11. TESTIMONIALS CAROUSEL NAVIGATION
-  // ==========================================
-  const testimonialsCarousel = document.getElementById('testimonialsCarousel');
-  const prevBtn = document.getElementById('testimonialPrev');
-  const nextBtn = document.getElementById('testimonialNext');
-  
-  if (testimonialsCarousel && prevBtn && nextBtn) {
-    const scrollAmount = 384; // card width + gap
-    
-    prevBtn.addEventListener('click', () => {
-      testimonialsCarousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-    });
-    
-    nextBtn.addEventListener('click', () => {
-      testimonialsCarousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-    });
-  }
-
-  // ==========================================
-  // 12. NEWSLETTER FORM HANDLING
-  // ==========================================
-  const newsletterForm = document.getElementById('newsletterForm');
-  const newsletterEmail = document.getElementById('newsletterEmail');
-  const newsletterStatus = document.getElementById('newsletterStatus');
-  const newsletterBtn = document.getElementById('newsletterBtn');
-
-  if (newsletterForm && newsletterEmail && newsletterStatus && newsletterBtn) {
-    newsletterForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      
-      const emailValue = newsletterEmail.value.trim();
-      
-      // Basic validation
-      if (!emailValue || !emailValue.includes('@')) {
-        showStatus('error', translations[currentLang]['newsletter-error-invalid']);
-        return;
-      }
-      
-      // Update UI for loading state
-      newsletterBtn.disabled = true;
-      const originalBtnHTML = newsletterBtn.innerHTML;
-      newsletterBtn.innerHTML = `
-        <span>...</span>
-      `;
-      
-      // Simulate API submission
-      setTimeout(() => {
-        try {
-          // Save to LocalStorage
-          let subscribers = JSON.parse(localStorage.getItem('tma_subscribers') || '[]');
-          if (!subscribers.includes(emailValue)) {
-            subscribers.push(emailValue);
-            localStorage.setItem('tma_subscribers', JSON.stringify(subscribers));
-          }
-          
-          // Show success
-          showStatus('success', translations[currentLang]['newsletter-success']);
-          newsletterForm.reset();
-        } catch (error) {
-          console.error('Newsletter error:', error);
-          showStatus('error', translations[currentLang]['newsletter-error-generic']);
-        } finally {
-          newsletterBtn.disabled = false;
-          newsletterBtn.innerHTML = originalBtnHTML;
-        }
-      }, 1000);
-    });
-    
-    function showStatus(type, message) {
-      newsletterStatus.className = 'newsletter-status ' + type;
-      newsletterStatus.textContent = message;
-      
-      // Clear message after 5 seconds
-      setTimeout(() => {
-        newsletterStatus.textContent = '';
-        newsletterStatus.className = 'newsletter-status';
-      }, 5000);
-    }
   }
 
 });
