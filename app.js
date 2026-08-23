@@ -1219,14 +1219,77 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 9. NAVBAR SCROLL & MOBILE MENU
+  // 9. NAVBAR SCROLL, SCROLLSPY & MOBILE MENU
   // ==========================================
   const header = document.getElementById('header');
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('navMenu');
   const backToTop = document.getElementById('backToTop');
+  const logoLink = document.getElementById('logoLink');
 
+  // ScrollSpy Section Definitions (Synchronizing navbar with current section)
+  const scrollSpySections = [
+    { id: 'hero', navId: 'navHome' },
+    { id: 'solutions', navId: 'navSolutions' },
+    { id: 'wizard', navId: 'navWizard' },
+    { id: 'cases', navId: 'navCases' },
+    { id: 'contact', navId: 'navContact' }
+  ];
+
+  // Check if we are on a page containing these single-page sections (index.html)
+  const isSinglePage = !!document.getElementById('solutions');
+
+  function updateActiveNavLink() {
+    if (!isSinglePage || !navMenu) return;
+
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    const docHeight = document.documentElement.scrollHeight;
+
+    let activeNavId = 'navHome';
+
+    // 1. If user is at or near the very bottom of the page, activate Contact
+    if (windowHeight + scrollY >= docHeight - 80) {
+      activeNavId = 'navContact';
+    } 
+    // 2. If user is at top of page, activate Home
+    else if (scrollY < 200) {
+      activeNavId = 'navHome';
+    } 
+    // 3. Otherwise calculate section visibility by offset
+    else {
+      const headerHeight = header ? header.offsetHeight : 70;
+      const scrollPos = scrollY + headerHeight + 60; // Focal point for active section
+
+      for (let i = 0; i < scrollSpySections.length; i++) {
+        const item = scrollSpySections[i];
+        const sectionEl = document.getElementById(item.id);
+        if (sectionEl) {
+          const sectionTop = sectionEl.offsetTop;
+          const sectionHeight = sectionEl.offsetHeight;
+
+          if (scrollPos >= sectionTop) {
+            activeNavId = item.navId;
+          }
+        }
+      }
+    }
+
+    // Apply active class to matching nav item, remove from others
+    const navLinks = navMenu.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+      if (link.id === activeNavId) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  // Optimized Scroll Event Listener (RequestAnimationFrame)
+  let isScrolling = false;
   window.addEventListener('scroll', () => {
+    // Header shadow & Back-to-top visibility
     if (window.scrollY > 50) {
       if (header) header.classList.add('scrolled');
       if (backToTop) backToTop.classList.add('visible');
@@ -1234,8 +1297,18 @@ document.addEventListener('DOMContentLoaded', () => {
       if (header) header.classList.remove('scrolled');
       if (backToTop) backToTop.classList.remove('visible');
     }
-  });
 
+    // Run ScrollSpy on animation frame for optimal 60fps performance
+    if (!isScrolling) {
+      window.requestAnimationFrame(() => {
+        updateActiveNavLink();
+        isScrolling = false;
+      });
+      isScrolling = true;
+    }
+  }, { passive: true });
+
+  // Mobile Menu Interaction
   if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
       hamburger.classList.toggle('active');
@@ -1250,13 +1323,63 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Smooth scroll handler for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetHref = this.getAttribute('href');
+      if (!targetHref || targetHref === '#') return;
+
+      const targetId = targetHref.substring(1);
+      
+      if (targetId === 'hero' || targetId === 'top') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+
+      const targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        e.preventDefault();
+        const headerOffset = (header ? header.offsetHeight : 70) + 15;
+        const elementPosition = targetEl.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Logo link smooth scroll to top when on index page
+  if (logoLink && isSinglePage) {
+    logoLink.addEventListener('click', (e) => {
+      const href = logoLink.getAttribute('href');
+      if (href === 'index.html' || href === '#' || href === '#hero') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    });
+  }
+
+  // Back to Top Button
   if (backToTop) {
     backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
 
+  // Window resize handler to recalculate active state
+  window.addEventListener('resize', () => {
+    updateActiveNavLink();
+  }, { passive: true });
+
+  // Initial call on load
+  updateActiveNavLink();
+
   // Initialize language on startup
   applyLanguage(currentLang);
 
 });
+
