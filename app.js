@@ -1,6 +1,77 @@
 document.addEventListener('DOMContentLoaded', () => {
   
   // ==========================================
+  // 0. ADS & TRAFFIC ATTRIBUTION ENGINE (UTM & AD TRACKER)
+  // ==========================================
+  function initAttribution() {
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const source = urlParams.get('utm_source');
+      const medium = urlParams.get('utm_medium');
+      const campaign = urlParams.get('utm_campaign');
+      const gclid = urlParams.get('gclid');
+      const fbclid = urlParams.get('fbclid');
+
+      if (source || gclid || fbclid) {
+        let detectedSource = source || '';
+        let detectedCampaign = campaign || '';
+        
+        if (gclid) {
+          detectedSource = detectedSource || 'Google Ads (Arama/PMax)';
+        }
+        if (fbclid) {
+          detectedSource = detectedSource || 'Instagram / Meta Ads';
+        }
+
+        const attributionData = {
+          source: detectedSource || 'Dijital Reklam / Doğrudan',
+          campaign: detectedCampaign || 'Genel Kampanya',
+          medium: medium || 'cpc',
+          date: new Date().toLocaleDateString('tr-TR')
+        };
+        sessionStorage.setItem('tma_attribution', JSON.stringify(attributionData));
+      }
+    } catch (e) {
+      console.warn('[TMA Tracker] Attribution init error', e);
+    }
+  }
+  initAttribution();
+
+  function getAttributionTag() {
+    try {
+      const saved = sessionStorage.getItem('tma_attribution');
+      if (saved) {
+        const data = JSON.parse(saved);
+        return `\n\n📌 _[Ref Kaynak: ${data.source} | Kampanya: ${data.campaign}]_`;
+      }
+    } catch (e) {}
+    return '';
+  }
+
+  // Universal Conversion Dispatcher (Google Ads & Meta Pixel)
+  window.trackConversion = function(eventName, eventParams = {}) {
+    try {
+      // 1. Google Analytics 4 / Google Ads (gtag.js)
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', eventName, eventParams);
+      }
+      // 2. Meta Pixel (fbq)
+      if (typeof window.fbq === 'function') {
+        const fbEventMap = {
+          'generate_lead': 'Lead',
+          'contact': 'Contact',
+          'view_item': 'ViewContent'
+        };
+        const fbEvent = fbEventMap[eventName] || 'CustomEvent';
+        window.fbq('track', fbEvent, eventParams);
+      }
+      console.log(`[TMA Analytics] Tracked: ${eventName}`, eventParams);
+    } catch (err) {
+      console.warn('[TMA Analytics] Tracking error', err);
+    }
+  };
+
+  // ==========================================
   // 1. COMPREHENSIVE TRANSLATION DICTIONARY (i18n)
   // ==========================================
   const translations = {
@@ -830,6 +901,14 @@ document.addEventListener('DOMContentLoaded', () => {
         message = `Merhaba Mehmet Bey,\n\nTrend Master Akademi web sitenizdeki proje sihirbazından teknik bir talep oluşturmak istiyorum:\n\n📌 *İhtiyaç Duyulan Hizmet:* ${srv}\n📊 *Proje Aşaması:* ${stg}\n⏱️ *Zaman / Öncelik:* ${tim}\n\nBu kapsamda sizinle hızlı bir ön değerlendirme ve teklif görüşmesi yapabilir miyiz?`;
       }
       
+      message += getAttributionTag();
+      trackConversion('generate_lead', {
+        method: 'wizard',
+        service: srv,
+        stage: stg,
+        timeline: tim
+      });
+
       const encodedMsg = encodeURIComponent(message);
       window.open(`https://wa.me/905343713573?text=${encodedMsg}`, '_blank');
     });
@@ -855,10 +934,43 @@ document.addEventListener('DOMContentLoaded', () => {
         fullMessage = `Merhaba Mehmet Bey,\n\nWeb sitenizdeki iletişim formundan yeni bir talep gönderiyorum:\n\n👤 *Ad Soyad:* ${name}\n📧 *E-Posta:* ${email}\n📞 *Telefon:* ${phone}\n💬 *Talep Detayı:* ${msg}\n\nDetayları görüşmek üzere dönüşünüzü rica ederim.`;
       }
 
+      fullMessage += getAttributionTag();
+      trackConversion('contact', {
+        method: 'contact_form',
+        name: name
+      });
+
       const encodedMsg = encodeURIComponent(fullMessage);
       window.open(`https://wa.me/905343713573?text=${encodedMsg}`, '_blank');
     });
   }
+
+  // ==========================================
+  // 6.1 DIRECT WHATSAPP BUTTONS ATTRIBUTION
+  // ==========================================
+  const directWaButtons = [
+    { id: 'whatsappFab', channel: 'floating_fab' },
+    { id: 'btnHeroWhatsApp', channel: 'hero_button' },
+    { id: 'stickyWaLink', channel: 'sticky_mobile_bar' }
+  ];
+
+  directWaButtons.forEach(item => {
+    const el = document.getElementById(item.id);
+    if (el) {
+      el.addEventListener('click', (e) => {
+        trackConversion('generate_lead', { method: 'whatsapp_click', channel: item.channel });
+        const tag = getAttributionTag();
+        if (tag) {
+          e.preventDefault();
+          let defaultMsg = currentLang === 'en'
+            ? 'Hello Mehmet, I am reaching out from your website for technical consultation.'
+            : 'Merhaba Mehmet Bey, web siteniz üzerinden teknik danışmanlık ve bilgi almak için yazıyorum.';
+          defaultMsg += tag;
+          window.open(`https://wa.me/905343713573?text=${encodeURIComponent(defaultMsg)}`, '_blank');
+        }
+      });
+    }
+  });
 
 
   // ==========================================
