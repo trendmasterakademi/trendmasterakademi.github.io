@@ -1376,7 +1376,7 @@ footer {
 
 .whatsapp-fab .fab-tooltip {
   position: absolute;
-  right: 72px;
+  right: 74px;
   background: var(--bg-secondary);
   color: var(--text-main);
   padding: 8px 14px;
@@ -1402,36 +1402,20 @@ footer {
   50% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45), 0 0 0 12px rgba(37, 211, 102, 0); }
 }
 
-@media (max-width: 768px) {
-  .whatsapp-fab {
-    width: 52px;
-    height: 52px;
-    bottom: 20px;
-    right: 20px;
-  }
-  .whatsapp-fab svg {
-    width: 26px;
-    height: 26px;
-  }
-  .whatsapp-fab .fab-tooltip {
-    display: none;
-  }
-}
-
 
 /* =============================================
-   BACK TO TOP BUTTON
+   BACK TO TOP BUTTON (PERFECTLY CENTERED WITH FAB)
 ============================================= */
 .back-to-top {
   position: fixed;
   bottom: 100px;
-  right: 30px;
+  right: 36px; /* Exactly centered with 60px FAB: (28 + 30 - 22 = 36px) */
   z-index: 9998;
   width: 44px;
   height: 44px;
-  border-radius: 12px;
+  border-radius: 50%;
   background: var(--glass-bg);
-  border: 1px solid var(--glass-border);
+  border: 1px solid rgba(0, 229, 255, 0.25);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: var(--accent-blue);
@@ -1443,6 +1427,7 @@ footer {
   opacity: 0;
   visibility: hidden;
   transform: translateY(16px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
 .back-to-top.visible {
@@ -1452,16 +1437,29 @@ footer {
 }
 
 .back-to-top:hover {
-  background: rgba(0, 229, 255, 0.1);
-  border-color: rgba(0, 229, 255, 0.3);
-  transform: translateY(-2px);
+  background: rgba(0, 229, 255, 0.12);
+  border-color: var(--accent-blue);
+  transform: translateY(-3px);
   box-shadow: var(--shadow-glow-blue);
 }
 
 @media (max-width: 768px) {
-  .back-to-top {
-    bottom: 84px;
+  .whatsapp-fab {
+    width: 52px;
+    height: 52px;
+    bottom: 76px;
     right: 20px;
+  }
+  .whatsapp-fab svg {
+    width: 26px;
+    height: 26px;
+  }
+  .whatsapp-fab .fab-tooltip {
+    display: none;
+  }
+  .back-to-top {
+    bottom: 138px;
+    right: 26px; /* Exactly centered with 52px FAB: (20 + 26 - 20 = 26px) */
     width: 40px;
     height: 40px;
   }
