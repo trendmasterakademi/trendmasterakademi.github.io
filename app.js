@@ -640,7 +640,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 3. DYNAMIC TYPEWRITER PROBLEM-SOLVER TICKER
+  // 3. CALM & SMOOTH HEADLINE TICKER (ZERO JITTER)
   // ==========================================
   const typewriterElement = document.getElementById('typewriterText');
   if (typewriterElement) {
@@ -660,37 +660,24 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     let headlineIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 70;
+    typewriterElement.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+    typewriterElement.style.display = 'inline-block';
 
-    function typeLoop() {
+    function rotateHeadline() {
       const list = currentLang === 'en' ? headlinesEn : headlinesTr;
-      const currentText = list[headlineIndex % list.length];
-
-      if (isDeleting) {
-        typewriterElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-        typingSpeed = 35;
-      } else {
-        typewriterElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-        typingSpeed = 65;
-      }
-
-      if (!isDeleting && charIndex === currentText.length) {
-        typingSpeed = 2200; // Pause at end
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        headlineIndex++;
-        typingSpeed = 500;
-      }
-
-      setTimeout(typeLoop, typingSpeed);
+      headlineIndex = (headlineIndex + 1) % list.length;
+      
+      typewriterElement.style.opacity = '0';
+      typewriterElement.style.transform = 'translateY(4px)';
+      
+      setTimeout(() => {
+        typewriterElement.textContent = list[headlineIndex];
+        typewriterElement.style.opacity = '1';
+        typewriterElement.style.transform = 'translateY(0)';
+      }, 350);
     }
 
-    setTimeout(typeLoop, 800);
+    setInterval(rotateHeadline, 3800);
   }
 
 
@@ -711,6 +698,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetPanel = document.getElementById(targetTabId);
       if (targetPanel) {
         targetPanel.classList.add('active');
+      }
+
+      if (targetTabId === 'tabAlgo' && typeof resizeCanvas === 'function') {
+        setTimeout(() => {
+          resizeCanvas();
+          drawChart();
+        }, 50);
       }
     });
   });
@@ -871,6 +865,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // 7. CHART SIMULATOR (ALGO BOT CANVAS)
   // ==========================================
   const canvas = document.getElementById('chartCanvas');
+  let resizeCanvas, drawChart;
+
   if (canvas) {
     const ctx = canvas.getContext('2d');
     let width, height;
@@ -878,13 +874,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const candleCount = 45;
     let basePrice = 100;
     
-    function resizeCanvas() {
+    resizeCanvas = function() {
       if (!canvas.parentElement) return;
       width = canvas.parentElement.clientWidth;
       height = canvas.parentElement.clientHeight || 300;
       canvas.width = width;
       canvas.height = height;
-    }
+    };
     
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
@@ -904,10 +900,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     initCandles();
 
-    function drawChart() {
+    drawChart = function() {
+      if (!canvas.offsetParent) return; // Do not draw if tab is inactive/hidden
       if (!width || !height) {
         resizeCanvas();
-        if (!width) return requestAnimationFrame(drawChart);
+        if (!width) return;
       }
 
       ctx.clearRect(0, 0, width, height);
@@ -958,10 +955,11 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.fillStyle = 'rgba(0, 229, 255, 0.85)';
       ctx.font = 'bold 12px monospace';
       ctx.fillText('⚡ ALGO ENGINE: LIVE SIGNAL [CONFIRMED]', 20, 30);
-    }
+    };
 
-    // Step chart smoothly
+    // Step chart smoothly when active
     setInterval(() => {
+      if (!canvas.offsetParent) return;
       const lastCandle = candles[candles.length - 1];
       const change = (Math.random() - 0.47) * 2.8;
       const open = lastCandle.close;
@@ -972,14 +970,12 @@ document.addEventListener('DOMContentLoaded', () => {
       candles.shift();
       candles.push({ open, close, high, low });
       drawChart();
-    }, 1200);
-
-    drawChart();
+    }, 1500);
   }
 
 
   // ==========================================
-  // 8. BILINGUAL TESTIMONIALS CAROUSEL
+  // 8. BILINGUAL TESTIMONIALS (CLEAN 2x2 GRID)
   // ==========================================
   const testimonialsTr = [
     {
@@ -1036,18 +1032,15 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   const carousel = document.getElementById('testimonialsCarousel');
-  const prevBtn = document.getElementById('testimonialPrev');
-  const nextBtn = document.getElementById('testimonialNext');
-  let currentTestimonialIndex = 0;
 
   function renderTestimonials(lang) {
     if (!carousel) return;
     const list = lang === 'en' ? testimonialsEn : testimonialsTr;
     carousel.innerHTML = '';
     
-    list.forEach((item, index) => {
+    list.forEach((item) => {
       const card = document.createElement('div');
-      card.className = `testimonial-card ${index === currentTestimonialIndex ? 'active' : ''}`;
+      card.className = 'testimonial-card';
       
       let stars = '';
       for (let i = 0; i < item.rating; i++) {
@@ -1055,8 +1048,10 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       card.innerHTML = `
-        <div class="testimonial-stars" style="display: flex; gap: 4px; margin-bottom: 16px;">${stars}</div>
-        <p class="testimonial-text" style="font-size: 1rem; color: var(--text-main); line-height: 1.7; margin-bottom: 20px; font-style: italic;">"${item.text}"</p>
+        <div>
+          <div class="testimonial-stars" style="display: flex; gap: 4px; margin-bottom: 16px;">${stars}</div>
+          <p class="testimonial-text" style="font-size: 0.95rem; color: var(--text-main); line-height: 1.7; margin-bottom: 20px; font-style: italic;">"${item.text}"</p>
+        </div>
         <div class="testimonial-author">
           <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 2px;">${item.name}</h4>
           <span style="font-size: 0.8rem; color: var(--text-muted);">${item.role}</span>
@@ -1065,20 +1060,6 @@ document.addEventListener('DOMContentLoaded', () => {
       carousel.appendChild(card);
     });
   }
-
-  function showTestimonial(index) {
-    const list = currentLang === 'en' ? testimonialsEn : testimonialsTr;
-    currentTestimonialIndex = (index + list.length) % list.length;
-    renderTestimonials(currentLang);
-  }
-
-  if (prevBtn) prevBtn.addEventListener('click', () => showTestimonial(currentTestimonialIndex - 1));
-  if (nextBtn) nextBtn.addEventListener('click', () => showTestimonial(currentTestimonialIndex + 1));
-
-  // Auto rotate testimonials
-  setInterval(() => {
-    showTestimonial(currentTestimonialIndex + 1);
-  }, 7000);
 
 
   // ==========================================
