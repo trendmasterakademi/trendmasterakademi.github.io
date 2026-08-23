@@ -975,58 +975,94 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // ==========================================
-  // 8. BILINGUAL TESTIMONIALS (CLEAN 2x2 GRID)
+  // 8. BILINGUAL TESTIMONIALS (6 PROJECT-ALIGNED CLIENT REVIEWS)
   // ==========================================
   const testimonialsTr = [
     {
-      name: "Burak Yılmaz",
-      role: "SaaS Kurucusu & E-Ticaret Girişimcisi",
-      text: "Fikir aşamasındaki SaaS platformumuzu Mehmet Bey ile 40 günde canlıya aldık. Kod kalitesi, Stripe entegrasyonu ve sıfır hata politikası gerçekten Türkiye'de nadir bulunan bir senior mühendislik seviyesi.",
+      name: "Burak Y.",
+      role: "SaaS Kurucusu (Fintech B2B)",
+      projectTag: "SaaS & Web Uygulaması",
+      text: "Fikir aşamasındaki B2B SaaS platformumuzu Mehmet Bey ile 45 günde canlıya aldık. Stripe abonelik altyapısı, çok kiracılı mimari ve sıfır hata teslimat kalitesi tam anlamıyla üst lig mühendislik örneği.",
       rating: 5
     },
     {
-      name: "Canan Erdem",
-      role: "Pazarlama Ajansı Başkanı",
-      text: "Google Ads açılış hızlarımız berbattı ve reklam bütçemiz eriyordu. TMA ile web sitemizi baştan inşa ettik; açılış hızı 0.35 saniyeye indi ve dönüşüm oranımız 3 katına çıktı. Emeğinize sağlık!",
+      name: "Canan E.",
+      role: "E-Ticaret & Büyüme Direktörü",
+      projectTag: "Modern Web & Landing Page",
+      text: "Google Ads ve sosyal medya reklamlarımız yavaş açılan eski sitemiz yüzünden eriyordu. TMA ile sıfırdan Next.js web sitesi inşa ettik; açılış hızı 0.35 saniyeye indi ve ROAS verimimiz 3 katına çıktı.",
       rating: 5
     },
     {
-      name: "Murat Demir",
-      role: "Finansal Analist & Bot Geliştirici",
-      text: "TradingView ve Pine Script v5 mentörlüğü sayesinde stratejilerimi kendi algoritmik botlarıma dönüştürdüm. Mehmet Bey sadece kodlamayı değil, arkasındaki matematiksel mimariyi öğretiyor.",
-      rating: 5
-    },
-    {
-      name: "Serdar Koç",
+      name: "Serdar K.",
       role: "Teknoloji Direktörü (CTO)",
-      text: "Kilitlenen veritabanı sorgularımız ve çöken backend servislerimiz için acil müdahale aldık. 24 saat içinde sorunu kökünden çözüp tüm sistemi temizlediler. Kesinlikle tavsiye ederim.",
+      projectTag: "Kod Onarımı & Bug Fix",
+      text: "Önceki ekibin yarım bıraktığı ve veri tabanı kilitlenen backend altyapımız için acil destek aldık. Mehmet Bey 24 saat içinde darboğazları giderip tüm sistemi sıfır veri kaybıyla ayağa kaldırdı.",
+      rating: 5
+    },
+    {
+      name: "Emre T.",
+      role: "Operasyon & Yazılım Müdürü",
+      projectTag: "Yapay Zeka & API Entegrasyonu",
+      text: "CRM, ERP ve ödeme sistemlerimiz arasındaki kopuklukları TMA'nın kurduğu asenkron webhook köprüleri ve özel OpenAI otomasyonu ile bağladık. Günlük operasyonel iş yükümüz %70 azaldı.",
+      rating: 5
+    },
+    {
+      name: "Murat D.",
+      role: "Finansal Analist & Kripto Portföy Yöneticisi",
+      projectTag: "Özel Bot & Pine Script",
+      text: "TradingView ve Pine Script v5 danışmanlığı ile discretionary stratejilerimizi tam otomatik borsa botlarına dönüştürdük. 7/24 kesintisiz çalışan, matematiksel risk disiplinine sahip harika bir sistem oldu.",
+      rating: 5
+    },
+    {
+      name: "Selin A.",
+      role: "Girişim Kurucusu & Ürün Yöneticisi",
+      projectTag: "Mimari & CTO Danışmanlığı",
+      text: "Girişimimiz için teknoloji seçimi ve bulut altyapı maliyetleri konusunda Mehmet Bey'in danışmanlığına başvurduk. Yanlış mimari kararlarını önceden engelleyerek sunucu maliyetlerimizi %50 düşürdü.",
       rating: 5
     }
   ];
 
   const testimonialsEn = [
     {
-      name: "Burak Yilmaz",
-      role: "SaaS Founder & E-Commerce Entrepreneur",
-      text: "We launched our SaaS platform from scratch in 40 days with Mehmet. The code quality, Stripe billing architecture, and zero-bug execution represent top-tier full-stack craftsmanship.",
+      name: "Burak Y.",
+      role: "SaaS Founder (Fintech B2B)",
+      projectTag: "SaaS & Web Application",
+      text: "We launched our B2B SaaS platform from scratch in 45 days with Mehmet. Multi-tenant architecture, automated Stripe billing, and zero-bug execution represent top-tier full-stack craftsmanship.",
       rating: 5
     },
     {
-      name: "Canan Erdem",
-      role: "Managing Director, Growth Agency",
-      text: "Our Google Ads landing speed was severely lagging. TMA re-engineered our website from the ground up: load speed plummeted to 0.35 seconds, and our lead conversion rate tripled immediately.",
+      name: "Canan E.",
+      role: "Head of Growth & E-Commerce",
+      projectTag: "Modern Web & Landing Page",
+      text: "Our ad spend was underperforming due to slow landing pages. TMA built a custom Next.js web architecture from scratch: load speed dropped to 0.35s and our conversion ROAS tripled.",
       rating: 5
     },
     {
-      name: "Murat Demir",
-      role: "Quantitative Trader & Bot Developer",
-      text: "Thanks to Mehmet's mentorship in Pine Script v5, I transformed my discretionary strategies into autonomous trading algorithms. He teaches not just syntax, but mathematical risk control.",
-      rating: 5
-    },
-    {
-      name: "Serdar Koc",
+      name: "Serdar K.",
       role: "Chief Technology Officer (CTO)",
-      text: "We requested emergency intervention for locked database queries and failing backend microservices. Mehmet diagnosed and repaired the bottleneck within 24 hours. Highly recommended.",
+      projectTag: "Code Recovery & Bug Fix",
+      text: "We requested urgent intervention for a stalled backend and deadlocked SQL queries left by a previous team. Mehmet diagnosed and restored the entire production system within 24 hours with zero data loss.",
+      rating: 5
+    },
+    {
+      name: "Emre T.",
+      role: "Head of Operations & Digital Systems",
+      projectTag: "AI & API Integration",
+      text: "TMA bridged our disconnected CRM, ERP, and payment platforms using robust asynchronous webhooks and custom LLM workflows, cutting our daily manual operational overhead by 70%.",
+      rating: 5
+    },
+    {
+      name: "Murat D.",
+      role: "Quantitative Analyst & Portfolio Trader",
+      projectTag: "Custom Bots & Pine Script",
+      text: "Through Mehmet's Pine Script v5 engineering, we turned our manual trading rules into 24/7 autonomous exchange bots governed by rigorous mathematical risk management.",
+      rating: 5
+    },
+    {
+      name: "Selin A.",
+      role: "Startup Founder & Product Lead",
+      projectTag: "Architecture & CTO Advisory",
+      text: "Mehmet guided our startup's technology stack selection and cloud architecture. His code audit and scaling roadmap prevented costly architectural mistakes and reduced our cloud burn rate by 50%.",
       rating: 5
     }
   ];
@@ -1044,17 +1080,25 @@ document.addEventListener('DOMContentLoaded', () => {
       
       let stars = '';
       for (let i = 0; i < item.rating; i++) {
-        stars += `<svg width="16" height="16" viewBox="0 0 24 24" fill="#ffbd2e" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
+        stars += `<svg width="15" height="15" viewBox="0 0 24 24" fill="#ffbd2e" stroke="none"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>`;
       }
+
+      const initial = item.name.charAt(0);
 
       card.innerHTML = `
         <div>
-          <div class="testimonial-stars" style="display: flex; gap: 4px; margin-bottom: 16px;">${stars}</div>
-          <p class="testimonial-text" style="font-size: 0.95rem; color: var(--text-main); line-height: 1.7; margin-bottom: 20px; font-style: italic;">"${item.text}"</p>
+          <div class="testimonial-header">
+            <span class="testimonial-tag">${item.projectTag}</span>
+            <div class="testimonial-stars">${stars}</div>
+          </div>
+          <p class="testimonial-text">"${item.text}"</p>
         </div>
         <div class="testimonial-author">
-          <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--accent-blue); margin-bottom: 2px;">${item.name}</h4>
-          <span style="font-size: 0.8rem; color: var(--text-muted);">${item.role}</span>
+          <div class="testimonial-avatar">${initial}</div>
+          <div>
+            <h4 class="testimonial-name">${item.name}</h4>
+            <span class="testimonial-role">${item.role}</span>
+          </div>
         </div>
       `;
       carousel.appendChild(card);
