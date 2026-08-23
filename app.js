@@ -151,9 +151,6 @@ document.addEventListener('DOMContentLoaded', () => {
       "w-sum-srv": "Hizmet Türü:",
       "w-sum-stg": "Proje Durumu:",
       "w-sum-time": "Zaman Çizelgesi:",
-      "sum-default-srv": "SaaS & Web Uygulaması",
-      "sum-default-stg": "Sıfırdan Yeni Fikir",
-      "sum-default-time": "Hemen / Çok Acil",
       "w-sum-note-head": "💡 Geliştirici Güvencesi:",
       "w-sum-note-body": "Talebiniz doğrudan kurucu geliştirici Mehmet Şahin'e iletilir. 30 dakika içinde teknik değerlendirme ve net çözüm planı paylaşıyoruz.",
       "w-btn-submit": "WhatsApp ile Gönder & Teklif Al",
@@ -226,12 +223,11 @@ document.addEventListener('DOMContentLoaded', () => {
       "contact-desc": "Web, SaaS, hata düzeltme veya bot geliştirme talepleriniz için doğrudan iletişime geçebilirsiniz. İzmir Konak merkezli ofisimizde veya online kanallardan 7/24 hizmetinizdeyiz.",
       "contact-founder-name": "Kurucu & Full-Stack Developer: Mehmet Şahin",
       "contact-founder-title": "Senior Full-Stack Developer & Algoritmik Sistemler",
-      "contact-wa": "1. WhatsApp & Telefon",
+      "contact-wa": "WhatsApp & Telefon Hattı",
       "contact-wa-sub": "Canlı Hızlı Destek (30 Sn Yanıt)",
-      "contact-phone2": "2. İletişim Hattı",
       "contact-email": "Kurumsal E-Posta",
-      "contact-address-title": "Ofis Adreslerimiz",
-      "contact-addresses": "1. Zafertepe 547 No:24-26 Konak / İzmir<br>2. Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir",
+      "contact-address-title": "Ofis Adresimiz",
+      "contact-addresses": "Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir",
       "form-title": "Hızlı Proje Talep Formu",
       "form-label-name": "Adınız Soyadınız",
       "form-placeholder-name": "Örn. Ahmet Yılmaz",
@@ -447,9 +443,6 @@ document.addEventListener('DOMContentLoaded', () => {
       "w-sum-srv": "Service Type:",
       "w-sum-stg": "Project Status:",
       "w-sum-time": "Timeline:",
-      "sum-default-srv": "SaaS & Web Application",
-      "sum-default-stg": "New Idea from Scratch",
-      "sum-default-time": "Immediate / Urgent",
       "w-sum-note-head": "💡 Developer Guarantee:",
       "w-sum-note-body": "Your request goes directly to Founder & Senior Developer Mehmet Şahin. We provide an initial technical evaluation and roadmap within 30 minutes.",
       "w-btn-submit": "Send via WhatsApp & Get Quote",
@@ -522,12 +515,11 @@ document.addEventListener('DOMContentLoaded', () => {
       "contact-desc": "Reach out directly for custom Web, SaaS, hotfix, or bot development requests. Available 24/7 online and at our İzmir Konak offices.",
       "contact-founder-name": "Founder & Full-Stack Developer: Mehmet Şahin",
       "contact-founder-title": "Senior Full-Stack Developer & Algorithmic Systems Architect",
-      "contact-wa": "1. WhatsApp & Phone",
+      "contact-wa": "WhatsApp & Direct Phone",
       "contact-wa-sub": "Live Fast Support (30 Sec Response)",
-      "contact-phone2": "2. Direct Line",
       "contact-email": "Official Email",
-      "contact-address-title": "Office Addresses",
-      "contact-addresses": "1. Zafertepe 547 No:24-26 Konak / İzmir, Turkey<br>2. Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir, Turkey",
+      "contact-address-title": "Office Address",
+      "contact-addresses": "Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir, Turkey",
       "form-title": "Quick Project Request Form",
       "form-label-name": "Full Name",
       "form-placeholder-name": "e.g. John Doe",
@@ -636,7 +628,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Update dynamic wizard summary values if present
+    // Update dynamic wizard summary values in active language
     updateWizardSummary(currentLang);
 
     // Re-render testimonials in active language
@@ -796,7 +788,7 @@ document.addEventListener('DOMContentLoaded', () => {
       opt.addEventListener('click', () => {
         options.forEach(o => o.classList.remove('selected'));
         opt.classList.add('selected');
-        const valKey = opt.getAttribute('data-i18n-val') || 'saas';
+        const valKey = opt.getAttribute('data-wizard-val') || 'saas';
         wizardKeys[keyField] = valKey;
         updateWizardSummary(currentLang);
       });
@@ -816,7 +808,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (wizardServiceContainer) {
         const options = wizardServiceContainer.querySelectorAll('.wizard-option');
         options.forEach(opt => {
-          const valKey = opt.getAttribute('data-i18n-val');
+          const valKey = opt.getAttribute('data-wizard-val');
           if (valKey === srvType) {
             options.forEach(o => o.classList.remove('selected'));
             opt.classList.add('selected');
