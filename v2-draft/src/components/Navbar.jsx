@@ -78,41 +78,31 @@ const Navbar = () => {
           ? 'bg-[#080b11]/95 backdrop-blur-xl border-b border-cyan-500/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]' 
           : 'bg-[#080b11]/80 backdrop-blur-md border-b border-white/10'
       }`}>
-        <div className="max-w-7xl mx-auto flex justify-between items-center w-full">
+        <div className="max-w-7xl mx-auto flex justify-between items-center w-full gap-4">
           
-          {/* Brand Logo & Active Indicator */}
-          <div className="flex items-center gap-3 sm:gap-4 min-w-0">
+          {/* Brand Logo */}
+          <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
             <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group">
               <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-black text-lg sm:text-xl group-hover:border-cyan-400 group-hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all flex-shrink-0">
                 T
               </div>
               <div className="flex flex-col">
-                <span className="font-bold text-sm sm:text-base md:text-lg tracking-wide text-white group-hover:text-cyan-400 transition-colors leading-tight truncate">
+                <span className="font-bold text-sm sm:text-base md:text-lg tracking-wide text-white group-hover:text-cyan-400 transition-colors leading-tight whitespace-nowrap">
                   TREND MASTER
                 </span>
                 <span className="text-[8.5px] sm:text-[10px] font-mono tracking-widest text-slate-400">STUDIO & LABS</span>
               </div>
             </Link>
-
-            {/* Desktop Status Badge */}
-            <button
-              onClick={() => setIsSOSOpen(true)}
-              className="hidden lg:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono hover:bg-emerald-500/20 transition-colors cursor-pointer"
-              title={t('nav-status-active')}
-            >
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>{t('nav-status-active')}</span>
-            </button>
           </div>
 
-          {/* Desktop Navigation Links with Live Scroll Synchronisation */}
-          <nav className="hidden md:flex items-center gap-6 text-sm lg:text-base font-medium">
+          {/* Desktop Navigation Links (Visible on Large/XL screens, zero collision) */}
+          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 text-xs xl:text-sm font-medium flex-shrink-0">
             
             {/* Home Link */}
             <Link 
               to="/" 
               onClick={(e) => handleNavClick(e, 'hero')}
-              className={`transition-colors py-1 relative ${
+              className={`transition-colors py-1 relative whitespace-nowrap ${
                 isHome && activeSection === 'hero' 
                   ? 'text-cyan-400 font-bold' 
                   : 'text-slate-300 hover:text-white'
@@ -127,7 +117,7 @@ const Navbar = () => {
             {/* Agency Page Link */}
             <Link 
               to="/agency" 
-              className={`flex items-center gap-1.5 transition-colors py-1 relative ${
+              className={`flex items-center gap-1.5 transition-colors py-1 relative whitespace-nowrap ${
                 location.pathname === '/agency' 
                   ? 'text-cyan-400 font-bold' 
                   : 'text-slate-300 hover:text-cyan-400'
@@ -143,7 +133,7 @@ const Navbar = () => {
             {/* Crash Test Simulator Link */}
             <Link 
               to="/crash-test" 
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all text-xs font-semibold ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all text-xs font-semibold whitespace-nowrap ${
                 location.pathname === '/crash-test'
                   ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 font-bold shadow-[0_0_15px_rgba(0,229,255,0.2)]'
                   : 'bg-white/5 border-white/10 text-slate-300 hover:border-cyan-400/50 hover:text-white'
@@ -157,7 +147,7 @@ const Navbar = () => {
             <a 
               href="/#services" 
               onClick={(e) => handleNavClick(e, 'services')}
-              className={`transition-colors py-1 relative ${
+              className={`transition-colors py-1 relative whitespace-nowrap ${
                 isHome && activeSection === 'services' 
                   ? 'text-cyan-400 font-bold' 
                   : 'text-slate-300 hover:text-cyan-400'
@@ -173,7 +163,7 @@ const Navbar = () => {
             <a 
               href="/#contact" 
               onClick={(e) => handleNavClick(e, 'contact')}
-              className={`transition-colors py-1 relative ${
+              className={`transition-colors py-1 relative whitespace-nowrap ${
                 isHome && activeSection === 'contact' 
                   ? 'text-cyan-400 font-bold' 
                   : 'text-slate-300 hover:text-cyan-400'
@@ -188,7 +178,7 @@ const Navbar = () => {
             {/* SOS Emergency Hotline Button */}
             <button 
               onClick={() => setIsSOSOpen(true)}
-              className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white px-4 py-2 rounded-full font-bold text-xs shadow-lg shadow-red-600/25 flex items-center gap-1.5 cursor-pointer transition-all transform hover:scale-105"
+              className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white px-3.5 py-1.5 rounded-full font-bold text-xs shadow-lg shadow-red-600/25 flex items-center gap-1.5 cursor-pointer transition-all transform hover:scale-105 whitespace-nowrap"
             >
               <AlertTriangle className="w-3.5 h-3.5 animate-pulse" />
               <span>{t('nav-sos')}</span>
@@ -197,16 +187,16 @@ const Navbar = () => {
             {/* Language Switch Button */}
             <button 
               onClick={toggleLang} 
-              className="flex items-center gap-1.5 text-slate-300 hover:text-cyan-400 transition-colors pl-3 border-l border-white/15 cursor-pointer text-xs font-mono font-bold"
+              className="flex items-center gap-1.5 text-slate-300 hover:text-cyan-400 transition-colors pl-2.5 border-l border-white/15 cursor-pointer text-xs font-mono font-bold whitespace-nowrap"
               title="Dili Değiştir / Switch Language"
             >
-              <Globe className="w-4 h-4 text-cyan-400" />
+              <Globe className="w-3.5 h-3.5 text-cyan-400" />
               <span className="uppercase">{i18n.language === 'tr' ? 'EN' : 'TR'}</span>
             </button>
           </nav>
 
-          {/* Mobile Fast Action Buttons */}
-          <div className="flex items-center gap-1.5 sm:gap-2 md:hidden flex-shrink-0">
+          {/* Mobile / Tablet / Zoomed (< 1024px) Action Buttons */}
+          <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden flex-shrink-0">
             <button 
               onClick={toggleLang} 
               className="px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1 cursor-pointer"
@@ -241,7 +231,7 @@ const Navbar = () => {
               initial={{ opacity: 0, y: -15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
-              className="absolute top-full left-0 w-full bg-[#0d121d] border-b border-white/15 py-6 px-6 flex flex-col gap-4 md:hidden shadow-2xl"
+              className="absolute top-full left-0 w-full bg-[#0d121d] border-b border-white/15 py-6 px-6 flex flex-col gap-4 lg:hidden shadow-2xl"
             >
               <Link 
                 to="/" 
