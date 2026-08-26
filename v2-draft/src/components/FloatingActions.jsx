@@ -39,7 +39,7 @@ const FloatingActions = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-4 sm:right-6 z-50 flex flex-col items-end gap-3 pointer-events-none">
+    <div className="fixed bottom-6 right-4 sm:right-6 z-50 flex flex-col items-center gap-3.5 pointer-events-none">
       
       {/* 1. Stylish Scroll-To-Top Button */}
       <AnimatePresence>
