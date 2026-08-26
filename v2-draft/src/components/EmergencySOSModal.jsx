@@ -42,48 +42,50 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto">
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 20 }}
+          initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="w-full max-w-xl bg-[#0d121d] border border-red-500/40 rounded-3xl p-6 sm:p-8 shadow-[0_0_50px_rgba(239,68,68,0.25)] relative overflow-hidden text-slate-100 my-8"
+          exit={{ opacity: 0, scale: 0.95, y: 15 }}
+          className="w-full max-w-xl max-h-[92vh] flex flex-col bg-[#0d121d] border border-red-500/40 rounded-2xl sm:rounded-3xl shadow-[0_0_50px_rgba(239,68,68,0.25)] relative text-slate-100 my-auto overflow-hidden"
         >
-          {/* Top glow */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-pulse"></div>
+          {/* Top glow line */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-pulse z-10"></div>
 
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 p-2.5 rounded-full bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer"
-            aria-label="Kapat"
+            className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 sm:p-2.5 rounded-full bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer z-20"
+            aria-label={isTr ? 'Kapat' : 'Close'}
           >
             <X className="w-5 h-5" />
           </button>
 
-          {/* Header */}
-          <div className="flex items-center gap-3.5 mb-4">
-            <div className="w-12 h-12 rounded-2xl bg-red-500/20 border border-red-500/40 flex items-center justify-center text-red-400 flex-shrink-0">
-              <AlertTriangle className="w-6 h-6 animate-bounce" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-                <span className="text-xs font-mono font-bold tracking-widest text-red-400 uppercase">
-                  TMA Response Desk // 7-24 {isTr ? 'Kriz Masası' : 'Crisis Desk'}
-                </span>
+          {/* Scrollable Modal Body */}
+          <div className="overflow-y-auto p-5 sm:p-7 space-y-4">
+            {/* Header */}
+            <div className="flex items-center gap-3 pr-8 mb-2">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-red-500/20 border border-red-500/40 flex items-center justify-center text-red-400 flex-shrink-0">
+                <AlertTriangle className="w-5 h-5 animate-bounce" />
               </div>
-              <h3 className="text-xl sm:text-2xl font-black text-white">
-                {isTr ? 'Acil Teknik Müdahale & İmdat Butonu' : 'Emergency Technical Intervention & SOS'}
-              </h3>
+              <div>
+                <div className="flex items-center gap-1.5">
+                  <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
+                  <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-red-400 uppercase">
+                    TMA Response Desk // 7-24 {isTr ? 'Kriz Masası' : 'Crisis Desk'}
+                  </span>
+                </div>
+                <h3 className="text-lg sm:text-xl font-black text-white leading-tight">
+                  {isTr ? 'Acil Teknik Müdahale & İmdat Butonu' : 'Emergency Technical Intervention & SOS'}
+                </h3>
+              </div>
             </div>
-          </div>
 
-          <p className="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed">
-            {isTr 
-              ? 'Teslim tarihi sıkışan, geliştiricisi ayrılan veya canlıda kilitlenen projeler için doğrudan kıdemli mühendislik ekibimiz devreye girer.' 
-              : 'Direct senior engineering dispatch for locked codebases, abandoned repos, or mission-critical launch deadlines.'}
-          </p>
+            <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed mb-3">
+              {isTr 
+                ? 'Teslim tarihi sıkışan, geliştiricisi ayrılan veya canlıda kilitlenen projeler için doğrudan kıdemli mühendislik ekibimiz devreye girer.' 
+                : 'Direct senior engineering dispatch for locked codebases, abandoned repos, or mission-critical launch deadlines.'}
+            </p>
 
           {submitted ? (
             <div className="py-8 text-center flex flex-col items-center gap-3">
@@ -198,6 +200,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               </div>
             </form>
           )}
+          </div>
         </motion.div>
       </div>
     </AnimatePresence>

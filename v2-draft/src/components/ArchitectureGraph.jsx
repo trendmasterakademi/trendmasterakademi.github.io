@@ -101,7 +101,7 @@ const ArchitectureGraph = () => {
         </div>
 
         {/* Interactive Architecture Flow Diagram */}
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 mb-8">
           {nodes.map((node, idx) => {
             const Icon = node.icon;
             const isSelected = selectedNode === node.id;
@@ -109,23 +109,23 @@ const ArchitectureGraph = () => {
               <div key={node.id} className="relative flex flex-col">
                 <button
                   onClick={() => setSelectedNode(node.id)}
-                  className={`p-6 rounded-3xl text-left border transition-all duration-300 cursor-pointer flex-1 flex flex-col justify-between ${
+                  className={`p-4 sm:p-5 lg:p-4 xl:p-5 rounded-2xl sm:rounded-3xl text-left border transition-all duration-300 cursor-pointer flex-1 flex flex-col justify-between ${
                     isSelected
                       ? 'bg-gradient-to-b from-[#151f33] to-[#0c121e] border-cyan-400 shadow-[0_0_30px_rgba(0,229,255,0.25)] ring-1 ring-cyan-400/50'
                       : 'bg-[#111827]/80 border-white/10 hover:border-white/25 hover:bg-[#151f33]/60'
                   }`}
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <div className={`w-12 h-12 rounded-2xl flex items-center justify-center border ${node.color}`}>
-                        <Icon className="w-6 h-6" />
+                    <div className="flex items-center justify-between mb-3.5">
+                      <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl flex items-center justify-center border ${node.color}`}>
+                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                       </div>
-                      <span className="text-[10px] font-mono font-bold text-slate-400 bg-white/5 px-2 py-0.5 rounded border border-white/10">
+                      <span className="text-[9.5px] sm:text-[10px] font-mono font-bold text-slate-400 bg-white/5 px-2 py-0.5 rounded border border-white/10">
                         {node.badge}
                       </span>
                     </div>
 
-                    <h3 className="text-base font-bold text-white mb-2 leading-snug">
+                    <h3 className="text-sm sm:text-base font-bold text-white mb-1.5 leading-snug">
                       {node.title[isTr ? 'tr' : 'en']}
                     </h3>
                     <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">

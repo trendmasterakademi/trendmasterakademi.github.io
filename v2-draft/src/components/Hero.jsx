@@ -118,31 +118,12 @@ const ideFiles = [
   }
 ];
 
-// Rich, high-density floating technology tokens (Doubled count to 16, enlarged font & vibrant glowing themes)
+// Clean, non-intrusive floating technology badges contained strictly within the IDE perimeter
 const floatingBadges = [
-  // Top row / edge
-  { text: '{ async / await }', color: 'text-cyan-300 border-cyan-500/50 bg-cyan-500/20 shadow-cyan-500/30', pos: '-top-5 -left-2 sm:-left-6' },
-  { text: 'PostgreSQL::DeadlockFixed', color: 'text-emerald-300 border-emerald-500/50 bg-emerald-500/20 shadow-emerald-500/30', pos: '-top-6 right-6 sm:right-12' },
-  { text: 'Next.js 15::Turbopack', color: 'text-indigo-300 border-indigo-500/50 bg-indigo-500/20 shadow-indigo-500/30', pos: '-top-5 left-1/3' },
-  
-  // Left side flank
-  { text: 'Redis::DistributedMutex', color: 'text-amber-300 border-amber-500/50 bg-amber-500/20 shadow-amber-500/30', pos: 'top-16 -left-5 sm:-left-12' },
-  { text: 'FastAPI::HighConcurrency', color: 'text-teal-300 border-teal-500/50 bg-teal-500/20 shadow-teal-500/30', pos: 'top-36 -left-6 sm:-left-14' },
-  { text: 'Python::AST_Scanner', color: 'text-emerald-300 border-emerald-500/50 bg-emerald-500/20 shadow-emerald-500/30', pos: 'top-56 -left-5 sm:-left-10' },
-  { text: 'Docker::ContainerSandbox', color: 'text-purple-300 border-purple-500/50 bg-purple-500/20 shadow-purple-500/30', pos: 'bottom-28 -left-6 sm:-left-12' },
-  { text: 'Kafka::EventStreams', color: 'text-violet-300 border-violet-500/50 bg-violet-500/20 shadow-violet-500/30', pos: 'bottom-12 -left-4 sm:-left-8' },
-
-  // Right side flank
-  { text: 'MQL5::HFT_Execution', color: 'text-yellow-300 border-yellow-500/50 bg-yellow-500/20 shadow-yellow-500/30', pos: 'top-3 -right-2 sm:-right-6' },
-  { text: 'Stripe::IdempotentWebhook', color: 'text-blue-300 border-blue-500/50 bg-blue-500/20 shadow-blue-500/30', pos: 'top-18 -right-5 sm:-right-10' },
-  { text: 'WebSockets::ZeroLatency', color: 'text-cyan-300 border-cyan-500/50 bg-cyan-500/20 shadow-cyan-500/30', pos: 'top-38 -right-6 sm:-right-12' },
-  { text: 'AWS::BlueGreenCanary', color: 'text-sky-300 border-sky-500/50 bg-sky-500/20 shadow-sky-500/30', pos: 'top-58 -right-5 sm:-right-10' },
-  { text: 'GraphQL::ZeroCascade', color: 'text-pink-300 border-pink-500/50 bg-pink-500/20 shadow-pink-500/30', pos: 'bottom-28 -right-6 sm:-right-12' },
-
-  // Bottom row / edge
-  { text: 'PineScript::AlgoBot', color: 'text-orange-300 border-orange-500/50 bg-orange-500/20 shadow-orange-500/30', pos: '-bottom-5 left-2 sm:left-6' },
-  { text: 'White-Label::NDA 100%', color: 'text-fuchsia-300 border-fuchsia-500/50 bg-fuchsia-500/20 shadow-fuchsia-500/30', pos: '-bottom-6 left-1/3' },
-  { text: '{ SLA: 0-2h SWAT Dispatch }', color: 'text-rose-300 border-rose-500/50 bg-rose-500/20 shadow-rose-500/30', pos: '-bottom-6 right-2 sm:right-8' }
+  { text: '{ async / await }', color: 'text-cyan-300 border-cyan-500/50 bg-cyan-500/20 shadow-cyan-500/30', pos: '-top-3.5 left-4 sm:left-6' },
+  { text: 'PostgreSQL::DeadlockFixed', color: 'text-emerald-300 border-emerald-500/50 bg-emerald-500/20 shadow-emerald-500/30', pos: '-top-3.5 right-4 sm:right-6' },
+  { text: 'FastAPI::HighConcurrency', color: 'text-teal-300 border-teal-500/50 bg-teal-500/20 shadow-teal-500/30', pos: '-bottom-3.5 left-4 sm:left-6' },
+  { text: 'Redis::DistributedMutex', color: 'text-amber-300 border-amber-500/50 bg-amber-500/20 shadow-amber-500/30', pos: '-bottom-3.5 right-4 sm:right-6' }
 ];
 
 const Hero = () => {
@@ -164,19 +145,19 @@ const Hero = () => {
       {/* Background ambient lighting */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[750px] bg-gradient-to-tr from-cyan-500/20 via-blue-600/12 to-purple-600/15 rounded-full blur-[140px] -z-10 pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
         
-        {/* Left Column: Value Proposition (Self-start & Ghost-text container for 0px CLS layout stability) */}
+        {/* Left Column: Value Proposition */}
         <motion.div 
           initial={{ opacity: 0, x: -25 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="lg:col-span-6 xl:col-span-5 flex flex-col gap-6 self-start"
+          className="lg:col-span-6 flex flex-col gap-5 sm:gap-6 self-start"
         >
           {/* Top Pill / Badge */}
           <Link
             to="/agency"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 w-fit text-xs sm:text-sm font-mono font-bold hover:bg-cyan-500/20 transition-all shadow-[0_0_20px_rgba(0,229,255,0.15)] group"
+            className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 w-fit text-xs sm:text-sm font-mono font-bold hover:bg-cyan-500/20 transition-all shadow-[0_0_20px_rgba(0,229,255,0.15)] group"
           >
             <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
             <span>{t('hero-badge')}</span>
@@ -187,7 +168,7 @@ const Hero = () => {
           <div className="relative">
             {/* Invisible ghost text pre-calculates exact dimensions on first render */}
             <h1 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] xl:text-[3.1rem] font-black font-mono leading-[1.2] tracking-tight opacity-0 pointer-events-none select-none aria-hidden" 
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-[2.75rem] font-black font-mono leading-[1.2] tracking-tight opacity-0 pointer-events-none select-none aria-hidden" 
               aria-hidden="true"
             >
               <span className="block">{t('hero-title-line1')}</span>
@@ -196,7 +177,7 @@ const Hero = () => {
             </h1>
 
             {/* Visible animated typewriter strictly overlaid */}
-            <h1 className="absolute inset-0 text-2xl sm:text-3xl md:text-4xl lg:text-[2.6rem] xl:text-[3.1rem] font-black font-mono leading-[1.2] text-white tracking-tight">
+            <h1 className="absolute inset-0 text-2xl sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-[2.75rem] font-black font-mono leading-[1.2] text-white tracking-tight">
               <span className="block text-slate-100">
                 <TypewriterText text={t('hero-title-line1')} speed={30} delay={60} showCursor={false} />
               </span>
@@ -215,7 +196,7 @@ const Hero = () => {
           </p>
           
           {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-4 pt-1">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1">
             <Link
               to="/crash-test"
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center gap-2.5 transition-all transform hover:-translate-y-0.5 min-h-[48px]"
@@ -235,17 +216,17 @@ const Hero = () => {
           </div>
 
           {/* Quick Trust Metrics Bar */}
-          <div className="grid grid-cols-3 gap-4 pt-5 border-t border-white/10 max-w-xl text-left">
+          <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-5 border-t border-white/10 max-w-xl text-left">
             <div>
-              <strong className="block text-lg sm:text-xl font-black text-white">{t('metric-whitelabel')}</strong>
+              <strong className="block text-base sm:text-lg lg:text-xl font-black text-white">{t('metric-whitelabel')}</strong>
               <span className="text-xs text-slate-400">{t('metric-whitelabel-sub')}</span>
             </div>
             <div>
-              <strong className="block text-lg sm:text-xl font-black text-cyan-400">{t('metric-triage')}</strong>
+              <strong className="block text-base sm:text-lg lg:text-xl font-black text-cyan-400">{t('metric-triage')}</strong>
               <span className="text-xs text-slate-400">{t('metric-triage-sub')}</span>
             </div>
             <div>
-              <strong className="block text-lg sm:text-xl font-black text-emerald-400">{t('metric-stack')}</strong>
+              <strong className="block text-base sm:text-lg lg:text-xl font-black text-emerald-400">{t('metric-stack')}</strong>
               <span className="text-xs text-slate-400">{t('metric-stack-sub')}</span>
             </div>
           </div>
@@ -256,7 +237,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="lg:col-span-6 xl:col-span-7 relative w-full self-start lg:sticky lg:top-28 z-20 mt-3 lg:mt-0"
+          className="lg:col-span-6 relative w-full self-start lg:sticky lg:top-28 z-20 mt-3 lg:mt-0"
         >
           {/* Floating High-Tech Holographic Tokens (16 Tokens, Enlarged & Vibrant) */}
           {floatingBadges.map((badge, idx) => (
