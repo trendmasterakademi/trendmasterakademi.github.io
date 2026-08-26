@@ -80,7 +80,7 @@ const Navbar = () => {
       }`}>
         <div className="max-w-7xl mx-auto flex justify-between items-center w-full gap-4">
           
-          {/* Brand Logo */}
+          {/* Brand Logo & Active Response Desk Badge */}
           <div className="flex items-center gap-3 sm:gap-4 flex-shrink-0">
             <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group">
               <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-black text-lg sm:text-xl group-hover:border-cyan-400 group-hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all flex-shrink-0">
@@ -93,10 +93,20 @@ const Navbar = () => {
                 <span className="text-[8.5px] sm:text-[10px] font-mono tracking-widest text-slate-400">STUDIO & LABS</span>
               </div>
             </Link>
+
+            {/* 24/7 Response Desk Live Status Badge */}
+            <button
+              onClick={() => setIsSOSOpen(true)}
+              className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono hover:bg-emerald-500/20 transition-colors cursor-pointer whitespace-nowrap shadow-sm shadow-emerald-500/10"
+              title={t('nav-status-active')}
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>{t('nav-status-active')}</span>
+            </button>
           </div>
 
-          {/* Desktop Navigation Links (Visible on Large/XL screens, zero collision) */}
-          <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 text-xs xl:text-sm font-medium flex-shrink-0">
+          {/* Desktop Navigation Links (Visible on XL screens >= 1280px with full breathing room) */}
+          <nav className="hidden xl:flex items-center gap-4 2xl:gap-5 text-xs 2xl:text-sm font-medium flex-shrink-0">
             
             {/* Home Link */}
             <Link 
@@ -195,8 +205,8 @@ const Navbar = () => {
             </button>
           </nav>
 
-          {/* Mobile / Tablet / Zoomed (< 1024px) Action Buttons */}
-          <div className="flex items-center gap-1.5 sm:gap-2 lg:hidden flex-shrink-0">
+          {/* Mobile / Tablet / Zoomed (< 1280px) Action Buttons */}
+          <div className="flex items-center gap-1.5 sm:gap-2 xl:hidden flex-shrink-0">
             <button 
               onClick={toggleLang} 
               className="px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1 cursor-pointer"
@@ -231,7 +241,7 @@ const Navbar = () => {
               initial={{ opacity: 0, y: -15 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -15 }}
-              className="absolute top-full left-0 w-full bg-[#0d121d] border-b border-white/15 py-6 px-6 flex flex-col gap-4 lg:hidden shadow-2xl"
+              className="absolute top-full left-0 w-full bg-[#0d121d] border-b border-white/15 py-6 px-6 flex flex-col gap-4 xl:hidden shadow-2xl"
             >
               <Link 
                 to="/" 
