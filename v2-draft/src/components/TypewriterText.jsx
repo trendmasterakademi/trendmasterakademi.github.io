@@ -13,7 +13,7 @@ export const TypewriterText = ({
   const [displayedText, setDisplayedText] = useState('');
   const [isDone, setIsDone] = useState(false);
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const isInView = useInView(ref, { once: true, margin: "0px" });
 
   useEffect(() => {
     if (!isInView || !text) return;

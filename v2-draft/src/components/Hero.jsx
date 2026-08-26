@@ -168,7 +168,7 @@ const Hero = () => {
           <div className="relative">
             {/* Invisible ghost text pre-calculates exact dimensions on first render */}
             <h1 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-[2.75rem] font-black font-mono leading-[1.2] tracking-tight opacity-0 pointer-events-none select-none aria-hidden" 
+              className="text-[1.5rem] xs:text-2xl sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-[2.75rem] font-black font-mono leading-[1.2] tracking-tight opacity-0 pointer-events-none select-none aria-hidden" 
               aria-hidden="true"
             >
               <span className="block">{t('hero-title-line1')}</span>
@@ -177,7 +177,7 @@ const Hero = () => {
             </h1>
 
             {/* Visible animated typewriter strictly overlaid */}
-            <h1 className="absolute inset-0 text-2xl sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-[2.75rem] font-black font-mono leading-[1.2] text-white tracking-tight">
+            <h1 className="absolute inset-0 text-[1.5rem] xs:text-2xl sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-[2.75rem] font-black font-mono leading-[1.2] text-white tracking-tight">
               <span className="block text-slate-100">
                 <TypewriterText text={t('hero-title-line1')} speed={30} delay={60} showCursor={false} />
               </span>
@@ -196,10 +196,10 @@ const Hero = () => {
           </p>
           
           {/* Action CTAs */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4 pt-1">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 w-full sm:w-auto">
             <Link
               to="/crash-test"
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center gap-2.5 transition-all transform hover:-translate-y-0.5 min-h-[48px]"
+              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5 min-h-[48px] w-full sm:w-auto text-center"
             >
               <Zap className="w-5 h-5 fill-current" />
               <span>{t('btn-crashtest')}</span>
@@ -208,7 +208,7 @@ const Hero = () => {
 
             <Link
               to="/agency"
-              className="px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl font-bold text-sm sm:text-base border border-white/20 hover:bg-white/5 text-white transition-all flex items-center gap-2 min-h-[48px]"
+              className="px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl font-bold text-sm sm:text-base border border-white/20 hover:bg-white/5 text-white transition-all flex items-center justify-center gap-2 min-h-[48px] w-full sm:w-auto text-center"
             >
               <ShieldCheck className="w-5 h-5 text-cyan-400" />
               <span>{t('btn-agency-model')}</span>
@@ -216,18 +216,18 @@ const Hero = () => {
           </div>
 
           {/* Quick Trust Metrics Bar */}
-          <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-5 border-t border-white/10 max-w-xl text-left">
+          <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-4 sm:pt-5 border-t border-white/10 max-w-xl text-center sm:text-left">
             <div>
-              <strong className="block text-base sm:text-lg lg:text-xl font-black text-white">{t('metric-whitelabel')}</strong>
-              <span className="text-xs text-slate-400">{t('metric-whitelabel-sub')}</span>
+              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-white">{t('metric-whitelabel')}</strong>
+              <span className="text-[10px] sm:text-xs text-slate-400">{t('metric-whitelabel-sub')}</span>
             </div>
             <div>
-              <strong className="block text-base sm:text-lg lg:text-xl font-black text-cyan-400">{t('metric-triage')}</strong>
-              <span className="text-xs text-slate-400">{t('metric-triage-sub')}</span>
+              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-cyan-400">{t('metric-triage')}</strong>
+              <span className="text-[10px] sm:text-xs text-slate-400">{t('metric-triage-sub')}</span>
             </div>
             <div>
-              <strong className="block text-base sm:text-lg lg:text-xl font-black text-emerald-400">{t('metric-stack')}</strong>
-              <span className="text-xs text-slate-400">{t('metric-stack-sub')}</span>
+              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-emerald-400">{t('metric-stack')}</strong>
+              <span className="text-[10px] sm:text-xs text-slate-400">{t('metric-stack-sub')}</span>
             </div>
           </div>
         </motion.div>
@@ -237,15 +237,15 @@ const Hero = () => {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="lg:col-span-6 relative w-full self-start lg:sticky lg:top-28 z-20 mt-3 lg:mt-0"
+          className="lg:col-span-6 relative w-full self-start lg:sticky lg:top-28 z-20 mt-4 lg:mt-0"
         >
-          {/* Floating High-Tech Holographic Tokens (16 Tokens, Enlarged & Vibrant) */}
+          {/* Floating High-Tech Holographic Tokens */}
           {floatingBadges.map((badge, idx) => (
             <motion.div
               key={idx}
-              animate={{ y: [0, -7, 0] }}
+              animate={{ y: [0, -5, 0] }}
               transition={{ repeat: Infinity, duration: 4.2 + (idx % 5) * 0.8, ease: 'easeInOut', delay: (idx % 4) * 0.3 }}
-              className={`hidden sm:inline-flex absolute ${badge.pos} z-30 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs sm:text-[13.5px] font-mono font-bold border backdrop-blur-2xl shadow-xl pointer-events-none transition-all ${badge.color}`}
+              className={`hidden md:inline-flex absolute ${badge.pos} z-30 px-3 py-1.5 rounded-xl text-xs font-mono font-bold border backdrop-blur-2xl shadow-xl pointer-events-none transition-all ${badge.color}`}
             >
               {badge.text}
             </motion.div>
@@ -332,7 +332,7 @@ const Hero = () => {
               </div>
 
               {/* Code Body with Line Numbers */}
-              <div className="font-mono text-[11.5px] sm:text-[13px] leading-relaxed text-slate-300 bg-[#050810] h-[380px] sm:h-[440px] md:h-[480px] overflow-y-auto relative flex">
+              <div className="font-mono text-[11px] sm:text-[12.5px] leading-relaxed text-slate-300 bg-[#050810] h-[310px] sm:h-[380px] md:h-[430px] lg:h-[440px] overflow-y-auto relative flex">
                 
                 {/* Line Numbers Column */}
                 <div className="w-8 sm:w-10 sm:w-12 py-3 sm:py-4 select-none text-right pr-2 sm:pr-3 text-slate-600 border-r border-white/5 bg-[#04060d] flex-shrink-0 font-mono text-[10px] sm:text-[11px]">
