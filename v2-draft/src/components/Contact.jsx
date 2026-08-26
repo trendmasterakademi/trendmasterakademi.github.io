@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
+  const isTr = i18n.language !== 'en';
   const [formData, setFormData] = useState({ 
     name: '', 
     agency: '', 
@@ -13,6 +14,7 @@ const Contact = () => {
     phone: '', 
     message: '' 
   });
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +38,12 @@ const Contact = () => {
     const encodedText = encodeURIComponent(waText);
     const waUrl = `https://wa.me/${waNumber}?text=${encodedText}`;
     window.open(waUrl, '_blank');
+    setIsSubmitted(true);
+  };
+
+  const handleReset = () => {
+    setFormData({ name: '', agency: '', email: '', phone: '', message: '' });
+    setIsSubmitted(false);
   };
 
   return (
@@ -132,87 +140,124 @@ const Contact = () => {
           viewport={{ once: true }}
           className="lg:col-span-7 glass-panel p-7 sm:p-10 rounded-3xl border border-cyan-500/25 bg-[#111827]/85 shadow-2xl"
         >
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-            
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div>
-                <label className="block text-sm font-bold text-slate-200 mb-2">
-                  {t('contact-label-name')} <span className="text-red-400">*</span>
-                </label>
-                <input 
-                  required 
-                  type="text" 
-                  value={formData.name} 
-                  onChange={e => setFormData({...formData, name: e.target.value})} 
-                  className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
-                  placeholder="Adınız Soyadınız" 
-                />
+          {isSubmitted ? (
+            <div className="flex flex-col items-center justify-center text-center py-8 space-y-6">
+              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.3)] animate-bounce">
+                <ShieldCheck className="w-8 h-8" />
               </div>
-              <div>
-                <label className="block text-sm font-bold text-slate-200 mb-2">
-                  {t('contact-label-agency')}
-                </label>
-                <input 
-                  type="text" 
-                  value={formData.agency} 
-                  onChange={e => setFormData({...formData, agency: e.target.value})} 
-                  className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
-                  placeholder="Örn: Acme Creative / Agency" 
-                />
+              
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold text-white">
+                  {isTr ? 'Talebiniz Başarıyla İletildi!' : 'Inquiry Successfully Dispatched!'}
+                </h3>
+                <p className="text-slate-300 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+                  {isTr 
+                    ? 'WhatsApp kriz masası hattımıza yönlendirildiniz. Mühendislik ekibimiz 15-30 dakika içinde geri dönüş sağlayacaktır.' 
+                    : 'You have been redirected to our WhatsApp emergency desk. Our senior engineering squad will respond within 15-30 minutes.'}
+                </p>
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              <div>
-                <label className="block text-sm font-bold text-slate-200 mb-2">
-                  {t('contact-label-email')} <span className="text-red-400">*</span>
-                </label>
-                <input 
-                  required 
-                  type="email" 
-                  value={formData.email} 
-                  onChange={e => setFormData({...formData, email: e.target.value})} 
-                  className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
-                  placeholder="ornek@sirket.com" 
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-bold text-slate-200 mb-2">
-                  {t('contact-label-phone')} <span className="text-red-400">*</span>
-                </label>
-                <input 
-                  required 
-                  type="tel" 
-                  value={formData.phone} 
-                  onChange={e => setFormData({...formData, phone: e.target.value})} 
-                  className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
-                  placeholder="+90 534 000 0000" 
-                />
-              </div>
-            </div>
+              <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+                <a
+                  href="tel:+905343713573"
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/20 hover:opacity-95 transition-all"
+                >
+                  <PhoneCall className="w-4 h-4" />
+                  <span>{isTr ? 'Acil Telefon: +90 534 371 35 73' : 'Hotline: +90 534 371 35 73'}</span>
+                </a>
 
-            <div>
-              <label className="block text-sm font-bold text-slate-200 mb-2">
-                {t('contact-label-message')} <span className="text-red-400">*</span>
-              </label>
-              <textarea 
-                required 
-                rows="4" 
-                value={formData.message} 
-                onChange={e => setFormData({...formData, message: e.target.value})} 
-                className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors resize-none leading-relaxed" 
-                placeholder={t('contact-placeholder-msg')}
-              ></textarea>
+                <button
+                  type="button"
+                  onClick={handleReset}
+                  className="px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-slate-300 text-sm font-semibold transition-colors cursor-pointer"
+                >
+                  {isTr ? 'Yeni Mesaj Gönder' : 'Send Another Inquiry'}
+                </button>
+              </div>
             </div>
-            
-            <button 
-              type="submit" 
-              className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black py-4 px-6 rounded-2xl flex items-center justify-center gap-2.5 transition-all shadow-xl shadow-emerald-500/20 text-base cursor-pointer transform hover:-translate-y-0.5 mt-2"
-            >
-              <Send className="w-5 h-5" />
-              <span>{t('contact-btn-submit')}</span>
-            </button>
-          </form>
+          ) : (
+            <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+              
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-sm font-bold text-slate-200 mb-2">
+                    {t('contact-label-name')} <span className="text-red-400">*</span>
+                  </label>
+                  <input 
+                    required 
+                    type="text" 
+                    value={formData.name} 
+                    onChange={e => setFormData({...formData, name: e.target.value})} 
+                    className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
+                    placeholder="Adınız Soyadınız" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-slate-200 mb-2">
+                    {t('contact-label-agency')}
+                  </label>
+                  <input 
+                    type="text" 
+                    value={formData.agency} 
+                    onChange={e => setFormData({...formData, agency: e.target.value})} 
+                    className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
+                    placeholder="Örn: Acme Creative / Agency" 
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-sm font-bold text-slate-200 mb-2">
+                    {t('contact-label-email')} <span className="text-red-400">*</span>
+                  </label>
+                  <input 
+                    required 
+                    type="email" 
+                    value={formData.email} 
+                    onChange={e => setFormData({...formData, email: e.target.value})} 
+                    className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
+                    placeholder="ornek@sirket.com" 
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-bold text-slate-200 mb-2">
+                    {t('contact-label-phone')} <span className="text-red-400">*</span>
+                  </label>
+                  <input 
+                    required 
+                    type="tel" 
+                    value={formData.phone} 
+                    onChange={e => setFormData({...formData, phone: e.target.value})} 
+                    className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
+                    placeholder="+90 534 000 0000" 
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-bold text-slate-200 mb-2">
+                  {t('contact-label-message')} <span className="text-red-400">*</span>
+                </label>
+                <textarea 
+                  required 
+                  rows="4" 
+                  value={formData.message} 
+                  onChange={e => setFormData({...formData, message: e.target.value})} 
+                  className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors resize-none leading-relaxed" 
+                  placeholder={t('contact-placeholder-msg')}
+                ></textarea>
+              </div>
+              
+              <button 
+                type="submit" 
+                className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black py-4 px-6 rounded-2xl flex items-center justify-center gap-2.5 transition-all shadow-xl shadow-emerald-500/20 text-base cursor-pointer transform hover:-translate-y-0.5 mt-2"
+              >
+                <Send className="w-5 h-5" />
+                <span>{t('contact-btn-submit')}</span>
+              </button>
+            </form>
+          )}
         </motion.div>
         
       </div>

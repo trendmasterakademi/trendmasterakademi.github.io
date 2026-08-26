@@ -21,33 +21,33 @@ const scenarios = [
     color: 'from-red-500/20 to-orange-500/20',
     borderColor: 'border-red-500/40',
     badgeColor: 'text-red-400 bg-red-500/10 border-red-500/30',
-    baseRisk: 88,
+    baseRisk: 48,
     questions: [
       {
         id: 'outageScope',
         label: { tr: 'Kesintinin Kapsamı Nedir?', en: 'What is the scope of the outage?' },
         options: [
-          { value: 'total', label: { tr: 'Tüm sistem çöktü (Beyaz ekran / 500 Internal Server Error)', en: 'Full outage (Blank screen / 500 Internal Server Error)' }, weight: 25 },
-          { value: 'partial', label: { tr: 'Ödeme, üyelik veya kritik bir API çalışmıyor', en: 'Payment, auth, or critical API integration failed' }, weight: 20 },
-          { value: 'slow', label: { tr: 'Aşırı yavaşlık & veritabanı kilitlenmesi yaşanıyor', en: 'Severe degradation & database locks' }, weight: 15 }
+          { value: 'total', label: { tr: 'Tüm sistem çöktü (Beyaz ekran / 500 Internal Server Error)', en: 'Full outage (Blank screen / 500 Internal Server Error)' }, weight: 18 },
+          { value: 'partial', label: { tr: 'Ödeme, üyelik veya kritik bir API çalışmıyor', en: 'Payment, auth, or critical API integration failed' }, weight: 12 },
+          { value: 'slow', label: { tr: 'Aşırı yavaşlık & veritabanı kilitlenmesi yaşanıyor', en: 'Severe degradation & database locks' }, weight: 6 }
         ]
       },
       {
         id: 'accessStatus',
         label: { tr: 'Sunucu ve Kod Erişim Durumunuz Nedir?', en: 'What is your server and codebase access status?' },
         options: [
-          { value: 'full', label: { tr: 'Git repo ve SSH / cPanel / Cloud erişimlerimiz tam', en: 'Full Git repo, SSH / cPanel / Cloud access available' }, weight: -10 },
-          { value: 'gitOnly', label: { tr: 'Yalnızca kaynak kod / Git erişimi var', en: 'Only source code / Git access is available' }, weight: 10 },
-          { value: 'limited', label: { tr: 'Şifreler dağınık, önceki geliştiricide kaldı', en: 'Credentials missing or stuck with former developer' }, weight: 25 }
+          { value: 'full', label: { tr: 'Git repo ve SSH / cPanel / Cloud erişimlerimiz tam', en: 'Full Git repo, SSH / cPanel / Cloud access available' }, weight: -6 },
+          { value: 'gitOnly', label: { tr: 'Yalnızca kaynak kod / Git erişimi var', en: 'Only source code / Git access is available' }, weight: 8 },
+          { value: 'limited', label: { tr: 'Şifreler dağınık, önceki geliştiricide kaldı', en: 'Credentials missing or stuck with former developer' }, weight: 18 }
         ]
       },
       {
         id: 'clientPressure',
         label: { tr: 'Müşteri Tarafındaki Durum Nedir?', en: 'What is the client sentiment level?' },
         options: [
-          { value: 'furious', label: { tr: 'Müşteri aktif ciro kaybediyor / Sözleşme fesih riski', en: 'Client is losing revenue / Risk of contract cancellation' }, weight: 30 },
-          { value: 'waiting', label: { tr: 'Müşteri haber bekliyor, süre kısıtlı', en: 'Client is waiting for updates, tight timeframe' }, weight: 15 },
-          { value: 'internal', label: { tr: 'Kendi şirket içi altyapımız, müşteri henüz fark etmedi', en: 'Internal system, no external client escalations yet' }, weight: 5 }
+          { value: 'furious', label: { tr: 'Müşteri aktif ciro kaybediyor / Sözleşme fesih riski', en: 'Client is losing revenue / Risk of contract cancellation' }, weight: 18 },
+          { value: 'waiting', label: { tr: 'Müşteri haber bekliyor, süre kısıtlı', en: 'Client is waiting for updates, tight timeframe' }, weight: 9 },
+          { value: 'internal', label: { tr: 'Kendi şirket içi altyapımız, müşteri henüz fark etmedi', en: 'Internal system, no external client escalations yet' }, weight: 2 }
         ]
       }
     ]
@@ -62,33 +62,33 @@ const scenarios = [
     color: 'from-amber-500/20 to-yellow-500/20',
     borderColor: 'border-amber-500/40',
     badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-    baseRisk: 75,
+    baseRisk: 40,
     questions: [
       {
         id: 'docState',
         label: { tr: 'Mevcut Kodun Dokümantasyonu ve Durumu Nedir?', en: 'What is the condition and documentation of the code?' },
         options: [
-          { value: 'none', label: { tr: 'Sıfır dokümantasyon, karmaşık spagetti kod', en: 'Zero documentation, tangled spaghetti code' }, weight: 30 },
-          { value: 'partial', label: { tr: 'Kısmen anlaşılır ama kritik kısımlar izole değil', en: 'Partially readable, but critical logic is intertwined' }, weight: 15 },
-          { value: 'clean', label: { tr: 'Modern stack (React, Node, Python), kod okunabilir', en: 'Modern stack (React, Node, Python), readable structure' }, weight: -5 }
+          { value: 'none', label: { tr: 'Sıfır dokümantasyon, karmaşık spagetti kod', en: 'Zero documentation, tangled spaghetti code' }, weight: 20 },
+          { value: 'partial', label: { tr: 'Kısmen anlaşılır ama kritik kısımlar izole değil', en: 'Partially readable, but critical logic is intertwined' }, weight: 10 },
+          { value: 'clean', label: { tr: 'Modern stack (React, Node, Python), kod okunabilir', en: 'Modern stack (React, Node, Python), readable structure' }, weight: -4 }
         ]
       },
       {
         id: 'deadlineGap',
         label: { tr: 'Teslim Tarihine Ne Kadar Süre Var?', en: 'How much time is left until the delivery deadline?' },
         options: [
-          { value: 'passed', label: { tr: 'Teslim tarihi geçti / Müşteri cezai şart işletiyor', en: 'Deadline passed / Client imposing contractual penalties' }, weight: 35 },
-          { value: 'thisWeek', label: { tr: 'Bu hafta içinde teslim edilmesi gerekiyor', en: 'Must be delivered within this week' }, weight: 20 },
-          { value: 'month', label: { tr: '1 aydan fazla süremiz var ama ekip kapasitesi yetersiz', en: 'More than a month, but internal capacity is overloaded' }, weight: 5 }
+          { value: 'passed', label: { tr: 'Teslim tarihi geçti / Müşteri cezai şart işletiyor', en: 'Deadline passed / Client imposing contractual penalties' }, weight: 22 },
+          { value: 'thisWeek', label: { tr: 'Bu hafta içinde teslim edilmesi gerekiyor', en: 'Must be delivered within this week' }, weight: 12 },
+          { value: 'month', label: { tr: '1 aydan fazla süremiz var ama ekip kapasitesi yetersiz', en: 'More than a month, but internal capacity is overloaded' }, weight: 4 }
         ]
       },
       {
         id: 'missingModules',
         label: { tr: 'Eksik Kalan Parça Ne Kadar Büyüklükte?', en: 'How large is the missing piece?' },
         options: [
-          { value: 'core', label: { tr: 'Backend, veri akışı veya kritik entegrasyonlar bitmemiş', en: 'Core backend, data flows, or integrations unfinished' }, weight: 25 },
-          { value: 'ui', label: { tr: 'Sadece frontend / tasarım uyarlamaları eksik', en: 'Only frontend / UI responsive polishing pending' }, weight: 10 },
-          { value: 'bugs', label: { tr: 'Proje bitti sanılıyordu ama her yerden bug fışkırıyor', en: 'Project was thought done, but bugs are everywhere' }, weight: 25 }
+          { value: 'core', label: { tr: 'Backend, veri akışı veya kritik entegrasyonlar bitmemiş', en: 'Core backend, data flows, or integrations unfinished' }, weight: 18 },
+          { value: 'bugs', label: { tr: 'Proje bitti sanılıyordu ama her yerden bug fışkırıyor', en: 'Project was thought done, but bugs are everywhere' }, weight: 14 },
+          { value: 'ui', label: { tr: 'Sadece frontend / tasarım uyarlamaları eksik', en: 'Only frontend / UI responsive polishing pending' }, weight: 5 }
         ]
       }
     ]
@@ -103,32 +103,33 @@ const scenarios = [
     color: 'from-cyan-500/20 to-blue-500/20',
     borderColor: 'border-cyan-500/40',
     badgeColor: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30',
-    baseRisk: 82,
+    baseRisk: 44,
     questions: [
       {
         id: 'remainingWork',
         label: { tr: 'Kalan İşin Tahmini Hacmi Nedir?', en: 'What is the estimated volume of remaining work?' },
         options: [
-          { value: 'heavy', label: { tr: '2-3 deneyimli yazılımcının 24 saat aralıksız çalışması gerek', en: 'Needs 2-3 senior devs working continuously' }, weight: 30 },
-          { value: 'moderate', label: { tr: '1 kıdemli yazılımcının odaklanmış 1-2 günü yeterli', en: '1 senior dev focused for 1-2 days is sufficient' }, weight: 15 },
-          { value: 'polish', label: { tr: 'Hata ayıklama, responsive uyum ve son testler kaldı', en: 'Bug fixes, responsive alignment, and final QA tests' }, weight: 5 }
+          { value: 'heavy', label: { tr: '2-3 deneyimli yazılımcının 24 saat aralıksız çalışması gerek', en: 'Needs 2-3 senior devs working continuously' }, weight: 20 },
+          { value: 'moderate', label: { tr: '1 kıdemli yazılımcının odaklanmış 1-2 günü yeterli', en: '1 senior dev focused for 1-2 days is sufficient' }, weight: 10 },
+          { value: 'polish', label: { tr: 'Hata ayıklama, responsive uyum ve son testler kaldı', en: 'Bug fixes, responsive alignment, and final QA tests' }, weight: 4 }
         ]
       },
       {
         id: 'techStackMatch',
         label: { tr: 'Kullanılan Teknoloji Yığını Nedir?', en: 'What is the technology stack used?' },
         options: [
-          { value: 'modern', label: { tr: 'React / Next.js / Node.js / Python / PostgreSQL', en: 'React / Next.js / Node.js / Python / PostgreSQL' }, weight: -10 },
-          { value: 'custom', label: { tr: 'Özel PHP / Legacy Framework / Dağınık mimari', en: 'Legacy PHP / Custom Framework / Fragmented stack' }, weight: 20 },
-          { value: 'mobile', label: { tr: 'Flutter / React Native Mobil Uygulama', en: 'Flutter / React Native Mobile Application' }, weight: 10 }
+          { value: 'custom', label: { tr: 'Özel PHP / Legacy Framework / Dağınık mimari', en: 'Legacy PHP / Custom Framework / Fragmented stack' }, weight: 18 },
+          { value: 'mobile', label: { tr: 'Flutter / React Native Mobil Uygulama', en: 'Flutter / React Native Mobile Application' }, weight: 10 },
+          { value: 'modern', label: { tr: 'React / Next.js / Node.js / Python / PostgreSQL', en: 'React / Next.js / Node.js / Python / PostgreSQL' }, weight: -5 }
         ]
       },
       {
         id: 'supportModel',
-        label: { tr: 'Nasıl Bir Destek Modelinde Çalışmak İstersiniz?', en: 'Which support model do you prefer?' },
+        label: { tr: 'Teslimat Aciliyeti ve Çalışma Modeli Nedir?', en: 'What is the delivery urgency and preferred model?' },
         options: [
-          { value: 'whitelabel', label: { tr: 'Tamamen White-Label (Ajansınızın personeli gibi arka planda)', en: '100% White-Label (Invisibly as your internal team)' }, weight: 0 },
-          { value: 'swat', label: { tr: 'Doğrudan teknik repo devralma & hotfix teslimi', en: 'Direct repo takeover & rapid hotfix delivery' }, weight: 0 }
+          { value: 'criticalCrunch', label: { tr: 'Kritik Acil: Bugün geceye kadar yetiştirilmeli', en: 'Critical: Must be delivered by tonight' }, weight: 16 },
+          { value: 'whitelabel', label: { tr: 'White-Label (Ajansınızın personeli gibi arka planda)', en: '100% White-Label (Invisibly as your internal team)' }, weight: 6 },
+          { value: 'swat', label: { tr: 'Doğrudan teknik repo devralma & hotfix teslimi', en: 'Direct repo takeover & rapid hotfix delivery' }, weight: 4 }
         ]
       }
     ]
@@ -143,32 +144,32 @@ const scenarios = [
     color: 'from-purple-500/20 to-pink-500/20',
     borderColor: 'border-purple-500/40',
     badgeColor: 'text-purple-400 bg-purple-500/10 border-purple-500/30',
-    baseRisk: 70,
+    baseRisk: 38,
     questions: [
       {
         id: 'specialNeeds',
         label: { tr: 'En Çok Tıkandığınız Özel Alan Hangisi?', en: 'Where is the primary technical bottleneck?' },
         options: [
-          { value: 'ai', label: { tr: 'OpenAI / LLM / RAG / Akıllı Bot & Otomasyon Mimarisi', en: 'OpenAI / LLM / RAG / Intelligent Agent Automation' }, weight: 20 },
-          { value: 'payment', label: { tr: 'Stripe, iyzico, PayTR veya çoklu para birimli abonelik', en: 'Stripe, iyzico, PayTR multi-currency subscriptions' }, weight: 15 },
-          { value: 'algo', label: { tr: 'Yüksek hacimli veri işleme / Algoritmik hesaplama / FinTech', en: 'High-frequency data processing / Algorithmic FinTech' }, weight: 25 },
-          { value: 'scale', label: { tr: 'Sunucu optimizasyonu, Redis caching & Docker CI/CD', en: 'Server tuning, Redis caching & Docker CI/CD pipelines' }, weight: 15 }
+          { value: 'algo', label: { tr: 'Yüksek hacimli veri işleme / Algoritmik hesaplama / FinTech', en: 'High-frequency data processing / Algorithmic FinTech' }, weight: 18 },
+          { value: 'ai', label: { tr: 'OpenAI / LLM / RAG / Akıllı Bot & Otomasyon Mimarisi', en: 'OpenAI / LLM / RAG / Intelligent Agent Automation' }, weight: 14 },
+          { value: 'scale', label: { tr: 'Sunucu optimizasyonu, Redis caching & Docker CI/CD', en: 'Server tuning, Redis caching & Docker CI/CD pipelines' }, weight: 10 },
+          { value: 'payment', label: { tr: 'Stripe, iyzico, PayTR veya çoklu para birimli abonelik', en: 'Stripe, iyzico, PayTR multi-currency subscriptions' }, weight: 8 }
         ]
       },
       {
         id: 'budgetRisk',
         label: { tr: 'Bu İşin Çözülmemesi Ajansınızı Nasıl Etkiler?', en: 'How would leaving this unresolved affect your agency?' },
         options: [
-          { value: 'reputation', label: { tr: 'Büyük ve stratejik bir kurumsal müşteriyi kaybetme riski', en: 'Risk of losing a high-tier enterprise client' }, weight: 30 },
-          { value: 'stalled', label: { tr: 'Proje haftalardır ilerlemiyor, ajans içi vakit kaybı', en: 'Project stalled for weeks, burning internal hours' }, weight: 15 },
-          { value: 'exploration', label: { tr: 'Yeni bir teklif hazırlıyoruz, fizibilite desteği arıyoruz', en: 'Preparing a proposal, seeking feasibility backing' }, weight: 0 }
+          { value: 'reputation', label: { tr: 'Büyük ve stratejik bir kurumsal müşteriyi kaybetme riski', en: 'Risk of losing a high-tier enterprise client' }, weight: 22 },
+          { value: 'stalled', label: { tr: 'Proje haftalardır ilerlemiyor, ajans içi vakit kaybı', en: 'Project stalled for weeks, burning internal hours' }, weight: 12 },
+          { value: 'exploration', label: { tr: 'Yeni bir teklif hazırlıyoruz, fizibilite desteği arıyoruz', en: 'Preparing a proposal, seeking feasibility backing' }, weight: 2 }
         ]
       },
       {
         id: 'deliveryPace',
         label: { tr: 'Hedeflenen Çözüm Süresi Nedir?', en: 'What is your target turnaround time?' },
         options: [
-          { value: 'urgent', label: { tr: '1 - 3 Gün İçinde Çalışır Hale Getirilmeli', en: 'Must be operational within 1 - 3 days' }, weight: 20 },
+          { value: 'urgent', label: { tr: '1 - 3 Gün İçinde Çalışır Hale Getirilmeli', en: 'Must be operational within 1 - 3 days' }, weight: 18 },
           { value: 'standard', label: { tr: '1 - 2 Hafta İçinde Tamamlanmalı', en: 'Can be completed within 1 - 2 weeks' }, weight: 5 }
         ]
       }
@@ -222,7 +223,7 @@ const CrashTest = () => {
         score += ans.weight;
       }
     });
-    return Math.min(Math.max(score, 35), 98);
+    return Math.min(Math.max(score, 38), 98);
   };
 
   const riskScore = calculateScore();
@@ -236,7 +237,7 @@ const CrashTest = () => {
         summary: isTr 
           ? 'Projenin teknik bütünlüğü ve ajansınızın müşteri itibarı yüksek tehlike altında. 0-2 saat içinde acil müdahale önerilir.' 
           : 'Project technical integrity and client reputation are in severe jeopardy. 0-2 hour rapid intervention strongly advised.',
-        dailyLossEst: '₺35.000 - ₺80.000+ / $1,500 - $3,000+',
+        dailyLossEst: '₺45.000 - ₺120.000+ / $1,800 - $4,500+',
         triageTime: isTr ? '15 - 30 Dakika' : '15 - 30 Minutes'
       };
     } else if (score >= 60) {
@@ -247,7 +248,7 @@ const CrashTest = () => {
         summary: isTr 
           ? 'Darboğazlar birikmiş durumda ve teslim tarihine yetişmeme riski belirgin. 24 saat içinde uzman devralması tavsiye edilir.' 
           : 'Bottlenecks are compounding and deadline breach is probable. Senior engineering takeover within 24h recommended.',
-        dailyLossEst: '₺15.000 - ₺35.000 / $500 - $1,500',
+        dailyLossEst: '₺20.000 - ₺45.000 / $800 - $1,800',
         triageTime: isTr ? '1 - 2 Saat' : '1 - 2 Hours'
       };
     } else {
@@ -258,8 +259,8 @@ const CrashTest = () => {
         summary: isTr 
           ? 'Sistem kurtarılabilir aşamada ancak ekibinizin üzerindeki gereksiz yükü hafifletmek için white-label takviyesi fayda sağlar.' 
           : 'Codebase is recoverable; white-label surge support is recommended to relieve internal team strain.',
-        dailyLossEst: '₺5.000 - ₺15.000 / $200 - $500',
-        triageTime: isTr ? 'Aynı Gün' : 'Same Day'
+        dailyLossEst: '₺8.000 - ₺20.000 / $300 - $800',
+        triageTime: isTr ? '2 - 4 Saat' : '2 - 4 Hours'
       };
     }
   };
