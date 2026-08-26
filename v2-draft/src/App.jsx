@@ -11,9 +11,9 @@ import CrashTest from './pages/CrashTest';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-[#080b11] text-slate-200 selection:bg-cyan-500 selection:text-black">
+      <div className="min-h-screen bg-[#080b11] text-slate-200 selection:bg-cyan-500 selection:text-black overflow-x-hidden w-full max-w-full relative">
         <Navbar />
-        <main>
+        <main className="overflow-x-hidden w-full max-w-full">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/agency" element={<Agency />} />

@@ -141,11 +141,11 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="relative pt-24 pb-16 sm:pt-28 md:pt-32 md:pb-24 lg:pt-32 overflow-visible px-4 sm:px-6 md:px-12">
+    <section id="hero" className="relative pt-20 pb-14 sm:pt-28 md:pt-32 md:pb-24 lg:pt-32 overflow-hidden px-4 sm:px-6 md:px-12 w-full max-w-full">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[750px] bg-gradient-to-tr from-cyan-500/20 via-blue-600/12 to-purple-600/15 rounded-full blur-[140px] -z-10 pointer-events-none"></div>
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[500px] sm:max-w-[800px] h-[450px] sm:h-[700px] bg-gradient-to-tr from-cyan-500/20 via-blue-600/12 to-purple-600/15 rounded-full blur-[110px] sm:blur-[140px] -z-10 pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start w-full">
         
         {/* Left Column: Value Proposition */}
         <motion.div 
