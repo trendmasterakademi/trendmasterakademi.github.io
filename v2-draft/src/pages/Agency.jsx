@@ -117,8 +117,8 @@ const capabilities = [
 const situationQuotes = [
   {
     quote: {
-      tr: "“Önceki yazılımcı projeyi yarım bıraktı, hiçbir dokümantasyon yok. Müşteri çok gergin, bunu kurtarabilir misiniz?”",
-      en: "“Our previous developer abandoned the project halfway through with zero documentation. The client is furious, can you rescue this?”"
+      tr: "“Önceki geliştirici projeden beklenmedik şekilde çekildi ve dokümantasyon yok. Müşteri teslimat bekliyor, bu kod tabanını devralıp toparlayabilir misiniz?”",
+      en: "“The previous developer unexpectedly disengaged from the project without documentation. The client expects delivery, can you take over and rescue this codebase?”"
     },
     tag: { tr: "Kod Kurtarma & Devralma", en: "Code Rescue & Takeover" }
   },

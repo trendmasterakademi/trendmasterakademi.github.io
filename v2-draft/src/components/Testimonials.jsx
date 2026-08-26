@@ -21,8 +21,8 @@ const testimonialsList = [
     name: "Selin A.",
     role: { tr: "Operasyon Direktörü — Dijital Ajans", en: "Operations Director — Digital Agency" },
     text: { 
-      tr: "Önceki yazılımcının yarım bıraktığı spagetti Next.js projesini 4 günde toparlayıp eksiksiz dokümante edilmiş şekilde teslim etti. White-label çalışma disiplinleri ve iletişim hızları ajansımıza büyük güven verdi.", 
-      en: "They took over an undocumented spaghetti Next.js codebase abandoned by our former developer and delivered a clean, tested release in 4 days. Flawless white-label discipline and instant communication." 
+      tr: "Önceki geliştirici ekibin devretmeden ayrıldığı karmaşık Next.js projesini 4 günde toparlayıp eksiksiz dokümante edilmiş şekilde teslim ettiler. White-label çalışma disiplinleri ve iletişim hızları ajansımıza büyük güven verdi.", 
+      en: "They took over an undocumented, complex Next.js codebase left without handover and delivered a clean, tested release in 4 days. Flawless white-label discipline and instant communication." 
     }
   },
   {

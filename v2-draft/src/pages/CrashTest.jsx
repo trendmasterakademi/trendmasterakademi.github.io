@@ -56,8 +56,8 @@ const scenarios = [
     id: 'handover',
     code: 'HANDOVER HELL',
     tag: { tr: 'YÜKSEK RİSK', en: 'HIGH RISK' },
-    title: { tr: 'Yazılımcı Projeyi Bıraktı / Ayrıldı', en: 'Developer Left / Abandoned Project' },
-    subtitle: { tr: 'Yarım kalmış kod tabanı · Dokümantasyon yok · Spagetti mimari', en: 'Stranded codebase · No documentation · Spaghetti architecture' },
+    title: { tr: 'Yazılımcı / Ekip Projeden Çekildi', en: 'Developer Disengaged / Stranded Codebase' },
+    subtitle: { tr: 'Yarım kalmış kod tabanı · Dokümantasyon yok · Devir tıkanması', en: 'Stranded codebase · No documentation · Handover bottleneck' },
     icon: Users,
     color: 'from-amber-500/20 to-yellow-500/20',
     borderColor: 'border-amber-500/40',
@@ -195,7 +195,7 @@ const CrashTest = () => {
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", isTr
-        ? "Ajansınız teknik bir krize hazır mı? HTTP 500 kesintisi, kaçan yazılımcı veya T-48H lansman darboğazı için 60 saniyede risk skorunuzu ve eylem planınızı görün."
+        ? "Ajansınız teknik bir krize hazır mı? HTTP 500 kesintisi, geliştirici ani ayrılığı veya T-48H lansman darboğazı için 60 saniyede risk skorunuzu ve eylem planınızı görün."
         : "Is your agency prepared for a technical crisis? Calculate risk scores and get a 3-phase action recovery blueprint in 60 seconds."
       );
     }
@@ -345,8 +345,8 @@ const CrashTest = () => {
             </h1>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
               {isTr 
-                ? 'Kritik kod kilitlenmeleri, kaçan yazılımcılar veya yaklaşan teslimat baskısı altında ajansınızın risk puanını ölçün. Anında ajansınıza özel 3 aşamalı ilk aksiyon planını görün.' 
-                : 'Measure your agency’s risk rating under live outages, abandoned repositories, or tight delivery deadlines. Get an instant 3-phase action recovery blueprint.'}
+                ? 'Kritik kod kilitlenmeleri, devir süreçleri tıkanmış yarım kalan projeler veya yaklaşan teslimat baskısı altında ajansınızın risk puanını ölçün. Anında ajansınıza özel 3 aşamalı ilk aksiyon planını görün.' 
+                : 'Measure your agency’s risk rating under live outages, stranded repositories, or tight delivery deadlines. Get an instant 3-phase action recovery blueprint.'}
             </p>
 
             {/* Quick Guarantees Bar */}

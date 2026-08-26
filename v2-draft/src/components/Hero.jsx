@@ -27,7 +27,7 @@ const ideFiles = [
       { num: 9, text: '  "crisis_diagnosis": {', color: 'text-yellow-300' },
       { num: 10, text: '    "symptom": "504 Gateway Timeout & PostgreSQL Deadlock",', color: 'text-red-300' },
       { num: 11, text: '    "root_cause": "N+1 Cascade Query + Stripe Webhook Race Condition",', color: 'text-red-400' },
-      { num: 12, text: '    "previous_state": "Freelance dev ghosted agency 2 days before launch"', color: 'text-slate-400' },
+      { num: 12, text: '    "previous_state": "Developer disengaged from project without handover"', color: 'text-slate-400' },
       { num: 13, text: '  },', color: 'text-yellow-300' },
       { num: 14, text: '', color: '' },
       { num: 15, text: '  "rescue_actions_applied": [', color: 'text-cyan-300' },
