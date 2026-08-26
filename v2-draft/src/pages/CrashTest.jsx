@@ -186,6 +186,20 @@ const CrashTest = () => {
   const [copied, setCopied] = useState(false);
   const [isSOSOpen, setIsSOSOpen] = useState(false);
 
+  React.useEffect(() => {
+    document.title = isTr
+      ? "Agency Crash Test (60sn) - Kriz & Risk Simülatörü | Trend Master Akademi"
+      : "Agency Crash Test (60s) - Crisis & Risk Simulator | Trend Master Academy";
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", isTr
+        ? "Ajansınız teknik bir krize hazır mı? HTTP 500 kesintisi, kaçan yazılımcı veya T-48H lansman darboğazı için 60 saniyede risk skorunuzu ve eylem planınızı görün."
+        : "Is your agency prepared for a technical crisis? Calculate risk scores and get a 3-phase action recovery blueprint in 60 seconds."
+      );
+    }
+  }, [isTr]);
+
   const handleScenarioSelect = (scenario) => {
     setSelectedScenario(scenario);
     setAnswers({});

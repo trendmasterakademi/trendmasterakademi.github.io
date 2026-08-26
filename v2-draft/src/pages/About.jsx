@@ -8,6 +8,20 @@ const About = () => {
   const { t, i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
 
+  React.useEffect(() => {
+    document.title = isTr
+      ? "Mühendislik Standartlarımız & Hakkımızda | Trend Master Akademi"
+      : "Engineering Standards & About Us | Trend Master Academy";
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", isTr
+        ? "Kurucu & Developer Mehmet Şahin liderliğinde Trend Master Akademi mühendislik standartları, 4 temel prensip ve B2B SWAT vizyonu."
+        : "Trend Master Academy engineering standards, 4 core pillars, and B2B technical SWAT vision led by founder Mehmet Sahin."
+      );
+    }
+  }, [isTr]);
+
   return (
     <div className="pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto text-slate-200">
       

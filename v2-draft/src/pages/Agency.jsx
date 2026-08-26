@@ -164,6 +164,20 @@ const Agency = () => {
   const isTr = i18n.language !== 'en';
   const [isSOSOpen, setIsSOSOpen] = useState(false);
 
+  React.useEffect(() => {
+    document.title = isTr
+      ? "B2B Ajans Çözüm Ortaklığı & White-Label SWAT | Trend Master Akademi"
+      : "B2B Agency Partnership & White-Label SWAT | Trend Master Academy";
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute("content", isTr
+        ? "Dijital ajansların görünmez teknik gücü: %100 White-Label, resmi NDA güvencesi, 20+ teknik yetkinlik ve acil kriz masası."
+        : "Behind-the-scenes engineering firepower for digital agencies: 100% White-Label, binding NDA protection, and emergency SWAT recovery."
+      );
+    }
+  }, [isTr]);
+
   return (
     <div className="min-h-screen pt-28 pb-28 bg-[#080b11] text-slate-200 relative overflow-hidden font-sans">
       
