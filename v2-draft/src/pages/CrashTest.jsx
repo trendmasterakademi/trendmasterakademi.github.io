@@ -269,13 +269,19 @@ const CrashTest = () => {
   };
 
   const openWhatsAppDispatch = () => {
-    const text = encodeURIComponent(
-      `🚨 *TMA CRASH TEST SONUCU & ACİL MÜDAHALE TALEBİ* 🚨\n\n` +
-      `📊 *Seçilen Kriz:* ${selectedScenario.title[isTr ? 'tr' : 'en']} (${selectedScenario.code})\n` +
-      `🔥 *Hesaplanan Risk Skoru:* %${riskScore} (${riskDetails.level})\n` +
-      `⏱️ *Önerilen Triyaj Süresi:* ${riskDetails.triageTime}\n\n` +
-      `Ajansımız için acil teknik destek / white-label müdahale görüşmesi başlatmak istiyoruz.`
-    );
+    const rawText = isTr
+      ? `🚨 *TMA CRASH TEST SONUCU & ACİL MÜDAHALE TALEBİ* 🚨\n\n` +
+        `📊 *Seçilen Kriz:* ${selectedScenario.title.tr} (${selectedScenario.code})\n` +
+        `🔥 *Hesaplanan Risk Skoru:* %${riskScore} (${riskDetails.level})\n` +
+        `⏱️ *Önerilen Triyaj Süresi:* ${riskDetails.triageTime}\n\n` +
+        `Ajansımız için acil teknik destek / white-label müdahale görüşmesi başlatmak istiyoruz.`
+      : `🚨 *TMA CRASH TEST REPORT & EMERGENCY DISPATCH INQUIRY* 🚨\n\n` +
+        `📊 *Selected Incident:* ${selectedScenario.title.en} (${selectedScenario.code})\n` +
+        `🔥 *Calculated Risk Rating:* ${riskScore}% (${riskDetails.level})\n` +
+        `⏱️ *Recommended Triage Window:* ${riskDetails.triageTime}\n\n` +
+        `We would like to initiate an emergency technical support / white-label consultation for our agency.`;
+
+    const text = encodeURIComponent(rawText);
     window.open(`https://wa.me/905343713573?text=${text}`, '_blank');
   };
 

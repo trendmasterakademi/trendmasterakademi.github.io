@@ -71,7 +71,9 @@ const Contact = () => {
                 <MessageSquare className="w-6 h-6" />
               </div>
               <div>
-                <div className="text-white font-bold text-base">WhatsApp Kriz & Destek Hattı</div>
+                <div className="text-white font-bold text-base">
+                  {i18n.language === 'tr' ? 'WhatsApp Kriz & Destek Hattı' : 'WhatsApp Crisis & Support Desk'}
+                </div>
                 <div className="text-emerald-400 text-sm font-mono font-bold">+90 534 371 35 73</div>
               </div>
             </a>
