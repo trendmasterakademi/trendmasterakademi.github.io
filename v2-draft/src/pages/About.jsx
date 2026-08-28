@@ -20,6 +20,11 @@ const About = () => {
         : "Trend Master Academy engineering standards, 4 core pillars, and B2B technical SWAT vision led by founder Mehmet Sahin."
       );
     }
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute('href', 'https://trendmasterakademi.com/about');
+    }
   }, [isTr]);
 
   return (

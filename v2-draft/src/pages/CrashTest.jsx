@@ -199,6 +199,11 @@ const CrashTest = () => {
         : "Is your agency prepared for a technical crisis? Calculate risk scores and get a 3-phase action recovery blueprint in 60 seconds."
       );
     }
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute('href', 'https://trendmasterakademi.com/crash-test');
+    }
   }, [isTr]);
 
   const handleScenarioSelect = (scenario) => {

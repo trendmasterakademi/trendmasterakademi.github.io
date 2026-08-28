@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import EmergencySOSModal from '../components/EmergencySOSModal';
 import CodeDiffShowcase from '../components/CodeDiffShowcase';
+import FAQ from '../components/FAQ';
 import TypewriterText from '../components/TypewriterText';
 
 const capabilities = [
@@ -175,6 +176,11 @@ const Agency = () => {
         ? "Dijital ajansların görünmez teknik gücü: %100 White-Label, resmi NDA güvencesi, 20+ teknik yetkinlik ve acil kriz masası."
         : "Behind-the-scenes engineering firepower for digital agencies: 100% White-Label, binding NDA protection, and emergency SWAT recovery."
       );
+    }
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute('href', 'https://trendmasterakademi.com/agency');
     }
   }, [isTr]);
 
@@ -425,6 +431,9 @@ const Agency = () => {
             ))}
           </div>
         </section>
+
+        {/* FAQ ACCORDION SECTION */}
+        <FAQ />
 
         {/* MEETING INVITATION */}
         <section className="py-16">

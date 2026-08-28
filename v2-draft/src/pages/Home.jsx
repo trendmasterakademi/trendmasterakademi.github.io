@@ -6,6 +6,7 @@ import CodeDiffShowcase from '../components/CodeDiffShowcase';
 import ArchitectureGraph from '../components/ArchitectureGraph';
 import Services from '../components/Services';
 import Testimonials from '../components/Testimonials';
+import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
 
 const Home = () => {
@@ -24,6 +25,11 @@ const Home = () => {
         : "Behind-the-scenes B2B Technical SWAT, White-Label Engineering desk, and emergency code rescue studio for digital agencies and SaaS companies."
       );
     }
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute('href', 'https://trendmasterakademi.com/');
+    }
   }, [i18n.language]);
 
   return (
@@ -34,6 +40,7 @@ const Home = () => {
       <ArchitectureGraph />
       <Services />
       <Testimonials />
+      <FAQ />
       <Contact />
     </>
   );
