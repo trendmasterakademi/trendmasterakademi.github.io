@@ -72,12 +72,12 @@ const Footer = () => {
               <strong className="text-emerald-400 font-mono">Ücretsiz (0 TL)</strong>
             </div>
             <div className="flex justify-between border-b border-white/5 pb-1">
-              <span>Acil Hotfix SWAT Müdahalesi:</span>
-              <strong className="text-cyan-300 font-mono">Önceden Sabit Fiyat</strong>
+              <span>Acil Incident SWAT Hotfix:</span>
+              <strong className="text-cyan-300 font-mono">₺15.000 - ₺35.000 / Sabit</strong>
             </div>
             <div className="flex justify-between">
               <span>White-Label Geliştirme Sprinti:</span>
-              <strong className="text-purple-300 font-mono">Haftalık Sabit Bütçe</strong>
+              <strong className="text-purple-300 font-mono">₺35.000 / Hafta (Sabit)</strong>
             </div>
           </div>
           <div className="pt-2 text-xs space-y-1.5 font-mono text-slate-400">
@@ -102,7 +102,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
         <div className="space-y-1 text-center sm:text-left">
           <p>© 2026 Trend Master Akademi Studio & Labs. {isTr ? 'Tüm hakları saklıdır.' : 'All rights reserved.'}</p>
-          <p className="text-[11px] text-slate-500 font-mono">Trend Master Akademi Yazılım & Danışmanlık · Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir</p>
+          <p className="text-[11px] text-slate-500 font-mono">Trend Master Akademi Yazılım & Bilişim Hizmetleri · Konak V.D. · Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir</p>
         </div>
         <div className="flex items-center gap-4 text-slate-400">
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400"></span> Response Desk: Online</span>

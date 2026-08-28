@@ -53,7 +53,7 @@ const Contact = () => {
       if (response.ok && data.success) {
         setSubmitStatus('success');
         if (window.trackEvent) {
-          window.trackEvent('contact_form_submitted', { agency: formData.agency });
+          window.trackEvent('contact_form_submitted', { form_type: 'b2b_inquiry', has_agency: Boolean(formData.agency) });
         }
       } else {
         throw new Error(data.message || 'Submission failed');

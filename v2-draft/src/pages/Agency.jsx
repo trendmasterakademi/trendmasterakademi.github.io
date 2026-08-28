@@ -431,6 +431,133 @@ const Agency = () => {
           </div>
         </section>
 
+        {/* B2B SWAT CASE STUDIES SECTION */}
+        <section className="py-16 border-t border-white/10">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-cyan-400 uppercase block mb-3">
+              {isTr ? 'Gerçek Müdahale Örnekleri (NDA Güvencesinde)' : 'Real-World Incident Case Studies (Under Strict NDA)'}
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white">
+              {isTr ? 'Ajanslar Adına Kurtarılan & Teslim Edilen Projeler' : 'Rescued & Delivered on Behalf of Partner Agencies'}
+            </h2>
+            <p className="text-sm sm:text-base text-slate-300 mt-4 leading-relaxed">
+              {isTr 
+                ? 'Müşteri gizliliği ve NDA gereği marka isimleri maskelenmiştir; mimari detaylar ve operasyonel metrikler %100 gerçektir.' 
+                : 'Brand identities are masked per mutual NDA covenants; technical architectures and SLA metrics reflect real interventions.'}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Case 01 */}
+            <div className="p-7 rounded-3xl bg-[#111827] border border-red-500/20 hover:border-red-500/40 transition-all flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-red-500/10 text-red-400 border border-red-500/30">
+                    {isTr ? 'Lansman T-24H Kriz SWAT' : 'Launch T-24H SWAT Hotfix'}
+                  </span>
+                  <span className="text-xs font-mono text-slate-400">2.5 {isTr ? 'Saat' : 'Hours'}</span>
+                </div>
+                <h3 className="text-xl font-bold text-white leading-snug">
+                  {isTr ? 'PostgreSQL Deadlock & Ödeme Webhook Kopması' : 'PostgreSQL Deadlock & Payment Webhook Break'}
+                </h3>
+                <div className="text-xs font-mono text-cyan-400">
+                  Next.js · Node.js · PostgreSQL · Redis · Stripe / iyzico
+                </div>
+                <div className="space-y-2 text-xs sm:text-sm text-slate-300">
+                  <p className="border-l-2 border-red-400/60 pl-3 text-slate-300">
+                    <strong className="text-white block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
+                    {isTr 
+                      ? 'Lansman arifesinde 800+ eşzamanlı sepette veritabanı kilitlenmesi ve ödeme callback kayıpları yaşandı.' 
+                      : 'Severe DB row deadlocks and lost payment webhook callbacks occurred on eve of launch with 800+ concurrent checkouts.'}
+                  </p>
+                  <p className="border-l-2 border-emerald-400/60 pl-3 text-slate-300">
+                    <strong className="text-white block">{isTr ? 'TMA Müdahalesi:' : 'TMA Intervention:'}</strong>
+                    {isTr 
+                      ? 'Sandbox staging fork oluşturuldu, row lock yapısı asenkron Redis kuyruğuna taşındı, webhook idempotent yapıldı.' 
+                      : 'Forked to staging sandbox, replaced row locks with async Redis queues, made webhooks fully idempotent.'}
+                  </p>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
+                <span className="text-slate-400">{isTr ? 'Kayıp Oranı:' : 'Loss Rate:'} <strong className="text-emerald-400">%0</strong></span>
+                <span className="text-slate-400">{isTr ? 'Mülkiyet:' : 'Ownership:'} <strong className="text-cyan-300">%100 Ajans</strong></span>
+              </div>
+            </div>
+
+            {/* Case 02 */}
+            <div className="p-7 rounded-3xl bg-[#111827] border border-orange-500/20 hover:border-orange-500/40 transition-all flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/10 text-orange-400 border border-orange-500/30">
+                    {isTr ? 'Yarım Kalan Repo Devralma' : 'Abandoned Codebase Takeover'}
+                  </span>
+                  <span className="text-xs font-mono text-slate-400">6 {isTr ? 'Gün Sprint' : 'Days Sprint'}</span>
+                </div>
+                <h3 className="text-xl font-bold text-white leading-snug">
+                  {isTr ? 'Geliştirici Ayrılığı Sonrası B2B SaaS Mimarisi' : 'B2B SaaS Platform Takeover Post-Dev Departure'}
+                </h3>
+                <div className="text-xs font-mono text-cyan-400">
+                  React · Python / FastAPI · PostgreSQL · Docker · AWS
+                </div>
+                <div className="space-y-2 text-xs sm:text-sm text-slate-300">
+                  <p className="border-l-2 border-orange-400/60 pl-3 text-slate-300">
+                    <strong className="text-white block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
+                    {isTr 
+                      ? 'Önceki ekibin dokümantasyonsuz ayrıldığı, 42 backend uç noktasının yarım kaldığı ve yetkilendirme mimarisinin çöktüğü sistem.' 
+                      : 'Previous dev departed abruptly leaving 42 broken endpoints, missing docs, and failing JWT authorization.'}
+                  </p>
+                  <p className="border-l-2 border-emerald-400/60 pl-3 text-slate-300">
+                    <strong className="text-white block">{isTr ? 'TMA Müdahalesi:' : 'TMA Intervention:'}</strong>
+                    {isTr 
+                      ? 'Mimari haritalandırıldı, eksik REST uçları tamamlandı, OpenAPI şeması üretildi ve tüm spagetti kod refactor edildi.' 
+                      : 'Codebase audited, completed all REST endpoints, auto-generated OpenAPI schemas, and refactored modular backend.'}
+                  </p>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
+                <span className="text-slate-400">{isTr ? 'Teslimat:' : 'Delivery:'} <strong className="text-emerald-400">Zamanında</strong></span>
+                <span className="text-slate-400">{isTr ? 'Dokümantasyon:' : 'Docs:'} <strong className="text-cyan-300">Swagger UI</strong></span>
+              </div>
+            </div>
+
+            {/* Case 03 */}
+            <div className="p-7 rounded-3xl bg-[#111827] border border-cyan-500/20 hover:border-cyan-500/40 transition-all flex flex-col justify-between space-y-6">
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                    {isTr ? 'Trafik & API Ölçekleme' : 'Traffic & Scale Triaging'}
+                  </span>
+                  <span className="text-xs font-mono text-slate-400">14 {isTr ? 'Saat' : 'Hours'}</span>
+                </div>
+                <h3 className="text-xl font-bold text-white leading-snug">
+                  {isTr ? '150K+ Anlık Trafikte Gateway 504 Darboğazı' : '150K+ Concurrent Traffic Gateway 504 Bottleneck'}
+                </h3>
+                <div className="text-xs font-mono text-cyan-400">
+                  Flutter · Node.js · MongoDB · Socket.io · AWS Lambda
+                </div>
+                <div className="space-y-2 text-xs sm:text-sm text-slate-300">
+                  <p className="border-l-2 border-cyan-400/60 pl-3 text-slate-300">
+                    <strong className="text-white block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
+                    {isTr 
+                      ? 'Mobil biletleme kampanyasında HTTP 504 Gateway Timeout ve socket connection kilitlenmeleri yaşandı.' 
+                      : 'Severe HTTP 504 timeouts and websocket connection saturation during sudden live ticketing surges.'}
+                  </p>
+                  <p className="border-l-2 border-emerald-400/60 pl-3 text-slate-300">
+                    <strong className="text-white block">{isTr ? 'TMA Müdahalesi:' : 'TMA Intervention:'}</strong>
+                    {isTr 
+                      ? 'Redis cache katmanı, query indexing ve socket connection throttling devreye alındı; mikroservis yükü dengelendi.' 
+                      : 'Deployed Redis caching, indexed bottleneck queries, and throttled socket reconnections to stabilize Lambda workers.'}
+                  </p>
+                </div>
+              </div>
+              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
+                <span className="text-slate-400">{isTr ? 'Yanıt Süresi:' : 'Latency:'} <strong className="text-emerald-400">4.2s → 120ms</strong></span>
+                <span className="text-slate-400">{isTr ? 'Uptime:' : 'Uptime:'} <strong className="text-cyan-300">%99.98</strong></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ ACCORDION SECTION */}
         <FAQ />
 
