@@ -1,4 +1,4 @@
-﻿import React, { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Lock, ArrowLeft, Mail, PhoneCall, MapPin, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -74,8 +74,8 @@ const Privacy = () => {
           </h2>
           <p>
             {isTr 
-              ? '6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca; Trend Master Akademi Studio & Labs (Kurucu & Kıdemli Geliştirici: Mehmet Şahin, Adres: Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir), veri sorumlusu sıfatıyla hareket etmektedir.' 
-              : 'Under applicable privacy legislation; Trend Master Academy Studio & Labs acts as the Data Controller.'}
+              ? '6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca; Trend Master Akademi Studio & Labs (Adres: Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir, E-posta: info@trendmasterakademi.com), veri sorumlusu sıfatıyla hareket etmektedir.' 
+              : 'Under applicable privacy legislation; Trend Master Academy Studio & Labs (Address: Akdeniz Mah. Heris Tower No:55/091 Konak / Izmir, Email: info@trendmasterakademi.com) acts as the Data Controller.'}
           </p>
         </section>
 
@@ -96,7 +96,7 @@ const Privacy = () => {
           </h2>
           <ul className="space-y-2 list-disc list-inside text-slate-300">
             <li>{isTr ? 'Acil teknik triyaj, kod incelemesi ve eylem planı hazırlanması' : 'Emergency technical triage and blueprint generation'}</li>
-            <li>{isTr ? 'Doğrudan geliştirici (Mehmet Şahin) ile iletişim ve tekliflendirme süreçlerinin yürütülmesi' : 'Direct engineering triage and proposal delivery'}</li>
+            <li>{isTr ? 'Doğrudan kıdemli mühendislik masamız ile iletişim ve tekliflendirme süreçlerinin yürütülmesi' : 'Direct engineering triage and proposal delivery'}</li>
             <li>{isTr ? 'Talep edilen Crash Test analiz raporunun ilgilinin e-posta adresine iletilmesi' : 'Sending requested diagnostics reports'}</li>
             <li>{isTr ? 'Yasal yükümlülüklerin yerine getirilmesi' : 'Fulfilling legal regulatory requirements'}</li>
           </ul>
@@ -115,12 +115,12 @@ const Privacy = () => {
 
         <section className="space-y-3">
           <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <span>5. Çerezler (Cookies)</span>
+            <span>5. Çerezler ve Analitik Araçları (Google Analytics & Microsoft Clarity)</span>
           </h2>
           <p>
             {isTr 
-              ? 'Sitemizde yalnızca kullanıcı deneyimini iyileştirmek, dil tercihini (Türkçe/İngilizce) hatırlamak ve temel analitik ölçüm yapmak amacıyla zorunlu ve işlevsel çerezler kullanılmaktadır.' 
-              : 'Only necessary, functional, and privacy-first analytics cookies are utilized.'}
+              ? 'Sitemizde temel oturum işlevlerinin yanı sıra kullanıcı deneyimini analiz etmek ve hataları teşhis etmek amacıyla Google Analytics 4 (GA4) ve Microsoft Clarity kullanılmaktadır. Bu ölçüm araçları yalnızca kullanıcı çerez bildiriminde "Kabul Et" butonunu tıkladığında (Google Consent Mode v2 standartlarında) aktifleşir. Kullanıcıların formlara girdiği hassas kriz detayları ve özel veriler Microsoft Clarity üzerinde katı bir şekilde maskelenmektedir.' 
+              : 'Our website utilizes Google Analytics 4 (GA4) and Microsoft Clarity for technical diagnostics and experience optimization. Tracking scripts only activate upon explicit consent under Google Consent Mode v2. All sensitive input fields and private form details are strictly masked.'}
           </p>
         </section>
 

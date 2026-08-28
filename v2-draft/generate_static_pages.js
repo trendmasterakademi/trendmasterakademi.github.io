@@ -23,7 +23,7 @@ const pages = [
     canonical: 'https://trendmasterakademi.com/agency/',
     ogUrl: 'https://trendmasterakademi.com/agency/',
     heading: 'Ajansınızın Yerine Değil, Ajansınızın Yanında Güvenilir Mühendislik Masası.',
-    subheading: 'Bir projede teknik olarak tıkandığınızda, teslim tarihi yaklaştığında veya ekibinizin kapasitesi dolduğunda: %100 White-Label, resmi NDA ve doğrudan kıdemli mühendislik desteği (Mehmet Şahin).'
+    subheading: 'Bir projede teknik olarak tıkandığınızda, teslim tarihi yaklaştığında veya ekibinizin kapasitesi dolduğunda: %100 White-Label, resmi NDA ve doğrudan kıdemli mühendislik desteği.'
   },
   {
     dir: 'crash-test',
@@ -37,11 +37,11 @@ const pages = [
   {
     dir: 'about',
     title: 'Mühendislik Standartlarımız & Hakkımızda | Trend Master Akademi',
-    description: 'Kurucu & Developer Mehmet Şahin liderliğinde Trend Master Akademi mühendislik standartları, 4 temel prensip ve B2B SWAT vizyonu.',
+    description: 'Trend Master Akademi mühendislik standartları, 4 temel prensip ve B2B SWAT vizyonu.',
     canonical: 'https://trendmasterakademi.com/about/',
     ogUrl: 'https://trendmasterakademi.com/about/',
     heading: 'Ajansların Güvendiği Arka Plan Mühendislik Masası',
-    subheading: 'Kurucu ve kıdemli geliştirici Mehmet Şahin liderliğinde modern web, SaaS, API mimarileri ve acil kod kurtarma (SWAT) stüdyosu.'
+    subheading: 'Modern web, SaaS, API mimarileri ve acil kod kurtarma (SWAT) stüdyosu.'
   },
   {
     dir: 'privacy',
@@ -95,10 +95,9 @@ pages.forEach(page => {
   // Clean Hreflang for this specific page
   html = html.replace(/<link rel="alternate" hreflang="tr" href=".*?" \/>/i, `<link rel="alternate" hreflang="tr" href="${page.canonical}" />`);
   html = html.replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/i, `<link rel="alternate" hreflang="x-default" href="${page.canonical}" />`);
-  // Remove conflicting hreflang="en"
   html = html.replace(/<link rel="alternate" hreflang="en" href=".*?" \/>\s*/i, '');
 
-  // Ensure Pre-rendered Semantic HTML is visible & cleanly styled (No display:none / No aria-hidden penalty)
+  // Ensure Pre-rendered Semantic HTML is visible & corporate branded
   const semanticBlock = `
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
       <header class="mb-8 border-b border-white/10 pb-6">
@@ -116,7 +115,7 @@ pages.forEach(page => {
         <p class="text-slate-300 text-lg leading-relaxed">${page.subheading}</p>
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-slate-400">Kurucu & Kıdemli Geliştirici: Mehmet Şahin | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
           <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir</p>
         </section>
       </main>

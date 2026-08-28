@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MessageSquare, PhoneCall, Mail, MapPin, ShieldCheck, Send, CheckCircle2, AlertTriangle, RefreshCw } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -52,6 +52,9 @@ const Contact = () => {
       const data = await response.json();
       if (response.ok && data.success) {
         setSubmitStatus('success');
+        if (window.trackEvent) {
+          window.trackEvent('contact_form_submitted', { agency: formData.agency });
+        }
       } else {
         throw new Error(data.message || 'Submission failed');
       }
@@ -64,6 +67,9 @@ const Contact = () => {
   };
 
   const handleOpenWhatsApp = () => {
+    if (window.trackEvent) {
+      window.trackEvent('whatsapp_clicked', { source: 'contact_form' });
+    }
     const waNumber = '905343713573';
     const waText = isTr 
       ? `🚨 *TMA B2B TEKNİK TALEP / İLETİŞİM FORMU* 🚨\n\n` +
@@ -115,9 +121,10 @@ const Contact = () => {
             
             {/* Direct WhatsApp Box */}
             <a 
-              href="https://wa.me/905343713573?text=Merhaba%20Mehmet%20Bey%2C%20TMA%20ile%20proje%20ve%20teknik%20destek%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyoruz." 
+              href="https://wa.me/905343713573?text=Merhaba%2C%20TMA%20ile%20proje%20ve%20teknik%20destek%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyoruz." 
               target="_blank" 
               rel="noreferrer" 
+              onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'contact_box' })}
               className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-emerald-500/30 hover:border-emerald-500/60 hover:bg-white/[0.08] transition-all group shadow-lg"
             >
               <div className="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">

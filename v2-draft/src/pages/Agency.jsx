@@ -305,8 +305,8 @@ const Agency = () => {
               </p>
                 <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
                   {isTr 
-                    ? 'Bu nedenle çalışma modelimizi %100 şeffaf tutuyor; doğrudan kıdemli mühendislik masamız (Mehmet Şahin) üzerinden hızlı, güvenilir ve sürdürülebilir çözümler üretiyoruz.' 
-                    : 'That’s why our model is 100% transparent, executing directly via our senior engineering desk (Mehmet Sahin) with speed and dependable code.'}
+                    ? 'Bu nedenle çalışma modelimizi %100 şeffaf tutuyor; doğrudan kıdemli mühendislik masamız üzerinden hızlı, güvenilir ve sürdürülebilir çözümler üretiyoruz.' 
+                    : 'That’s why our model is 100% transparent, executing directly via our senior engineering desk with speed and dependable code.'}
                 </p>
             </div>
           </div>
@@ -473,6 +473,7 @@ const Agency = () => {
                   href="https://wa.me/905343713573?text=Merhaba%2C%20Trend%20Master%20Akademi%20ile%20ajans%20%C3%A7%C3%B6z%C3%BCm%20ortakl%C4%B1%C4%9F%C4%B1%20ve%20tan%C4%B1%C5%9Fma%20g%C3%B6r%C3%BC%C5%9Fmesi%20hakk%C4%B1nda%20konu%C5%9Fmak%20istiyoruz."
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'agency_intro_call' })}
                   className="px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black text-sm sm:text-base shadow-xl shadow-emerald-500/25 flex items-center gap-3 transition-all transform hover:-translate-y-0.5 min-h-[48px]"
                 >
                   <MessageSquare className="w-5 h-5" />

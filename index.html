@@ -5,23 +5,51 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23080b11'/><text x='50' y='68' font-family='monospace' font-size='60' font-weight='900' fill='%2300e5ff' text-anchor='middle'>T</text></svg>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     
-    <!-- Google Analytics (GA4) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
       gtag('js', new Date());
       gtag('config', 'G-98446GTE0E', { send_page_view: true });
-    </script>
 
-    <!-- Microsoft Clarity Tracking -->
-    <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "qm7350711g");
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
 
     <!-- Google Fonts: JetBrains Mono & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +72,7 @@
     
     <title>Trend Master Akademi | B2B Technical SWAT & White-Label Engineering</title>
     <meta name="description" content="Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), SaaS Mimarisi ve Kriz Çözüm Stüdyosu." />
-    <meta name="author" content="Mehmet Şahin" />
+    <meta name="author" content="Trend Master Akademi" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://trendmasterakademi.com/" />
 
@@ -65,7 +93,7 @@
     <meta property="og:site_name" content="Trend Master Akademi" />
     <meta property="og:locale" content="tr_TR" />
 
-    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Mehmet Şahin Developer, Trend Master Akademi" />
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
 
     <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -91,7 +119,7 @@
           "founder": {
             "@type": "Person",
             "name": "Mehmet Şahin",
-            "jobTitle": "Founder & Senior Full-Stack Engineer",
+            "jobTitle": "Founder & Lead Engineer",
             "url": "https://trendmasterakademi.com/about/"
           },
           "telephone": "+905343713573",
@@ -211,8 +239,8 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-CIygd1PC.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Rlcq2pnr.css">
+    <script type="module" crossorigin src="/assets/index-BnlGWQL0.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DEoGI1f4.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -229,11 +257,11 @@
           </nav>
         </header>
         <main class="space-y-6">
-          <h2 class="text-2xl font-bold text-white">Yazılımcısı Projeden Çekilmiş Ajanslar İçin: Kodu Devralır, Sizin Adınıza Teslim Ederim.</h2>
+          <h2 class="text-2xl font-bold text-white">Yazılımcısı Projeden Çekilmiş Ajanslar İçin: Kodu Devralır, Ajansınız Adına Eksiksiz Teslim Ederiz.</h2>
           <p class="text-slate-300 text-lg leading-relaxed">Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), PostgreSQL Deadlock Onarımı, SaaS Mimarisi ve 7/24 Kriz Çözüm Stüdyosu.</p>
           <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
             <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
-            <p class="text-sm text-slate-400">Kurucu & Kıdemli Geliştirici: Mehmet Şahin | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+            <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
             <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir</p>
           </section>
         </main>

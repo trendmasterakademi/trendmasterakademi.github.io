@@ -186,6 +186,13 @@ const CrashTest = () => {
   const [copied, setCopied] = useState(false);
   const [isSOSOpen, setIsSOSOpen] = useState(false);
 
+  // UTM & Physical Crisis Kit Tracking
+  const [campaignParams, setCampaignParams] = useState({
+    utm_source: '',
+    utm_campaign: '',
+    agency_code: ''
+  });
+
   // Email Lead Capture State
   const [leadName, setLeadName] = useState('');
   const [leadEmail, setLeadEmail] = useState('');
@@ -210,6 +217,16 @@ const CrashTest = () => {
     if (canonical) {
       canonical.setAttribute('href', 'https://trendmasterakademi.com/crash-test/');
     }
+
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const src = params.get('utm_source') || '';
+      const cmp = params.get('utm_campaign') || '';
+      const agency = params.get('a') || params.get('agency') || '';
+      if (src || cmp || agency) {
+        setCampaignParams({ utm_source: src, utm_campaign: cmp, agency_code: agency });
+      }
+    } catch (e) {}
   }, [isTr]);
 
   const handleScenarioSelect = (scenario) => {
@@ -295,16 +312,26 @@ const CrashTest = () => {
   };
 
   const openWhatsAppDispatch = () => {
+    if (window.trackEvent) {
+      window.trackEvent('whatsapp_clicked', {
+        source: 'crash_test_dispatch',
+        scenario: selectedScenario?.code,
+        risk_score: riskScore,
+        agency_code: campaignParams.agency_code
+      });
+    }
+
+    const kitBadge = campaignParams.agency_code ? `\n📦 *Kriz Kiti Ajans Kodu:* #${campaignParams.agency_code}` : '';
     const rawText = isTr
       ? `🚨 *TMA CRASH TEST SONUCU & ACİL MÜDAHALE TALEBİ* 🚨\n\n` +
         `📊 *Seçilen Kriz:* ${selectedScenario.title.tr} (${selectedScenario.code})\n` +
         `🔥 *Hesaplanan Risk Skoru:* %${riskScore} (${riskDetails.level})\n` +
-        `⏱️ *Önerilen Triyaj Süresi:* ${riskDetails.triageTime}\n\n` +
+        `⏱️ *Önerilen Triyaj Süresi:* ${riskDetails.triageTime}${kitBadge}\n\n` +
         `Ajansımız için acil teknik destek / white-label müdahale görüşmesi başlatmak istiyoruz.`
       : `🚨 *TMA CRASH TEST REPORT & EMERGENCY DISPATCH INQUIRY* 🚨\n\n` +
         `📊 *Selected Incident:* ${selectedScenario.title.en} (${selectedScenario.code})\n` +
         `🔥 *Calculated Risk Rating:* ${riskScore}% (${riskDetails.level})\n` +
-        `⏱️ *Recommended Triage Window:* ${riskDetails.triageTime}\n\n` +
+        `⏱️ *Recommended Triage Window:* ${riskDetails.triageTime}${kitBadge}\n\n` +
         `We would like to initiate an emergency technical support / white-label consultation for our agency.`;
 
     const text = encodeURIComponent(rawText);
@@ -452,7 +479,16 @@ const CrashTest = () => {
             {/* Next Action */}
             <div className="flex justify-end pt-4">
               <button
-                onClick={() => setStep(2)}
+                onClick={() => {
+                  setStep(2);
+                  if (window.trackEvent) {
+                    window.trackEvent('crash_test_started', {
+                      scenario: selectedScenario.code,
+                      utm_source: campaignParams.utm_source,
+                      agency_code: campaignParams.agency_code
+                    });
+                  }
+                }}
                 className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm sm:text-base tracking-wide flex items-center gap-3 shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 cursor-pointer min-h-[48px]"
               >
                 <span>{isTr ? 'Durum Teşhisine Geç' : 'Proceed to Diagnosis'}</span>
@@ -537,7 +573,17 @@ const CrashTest = () => {
 
               <button
                 disabled={!isAllAnswered}
-                onClick={() => setStep(3)}
+                onClick={() => {
+                  setStep(3);
+                  if (window.trackEvent) {
+                    window.trackEvent('crash_test_completed', {
+                      scenario: selectedScenario.code,
+                      risk_score: riskScore,
+                      risk_level: riskDetails.level,
+                      agency_code: campaignParams.agency_code
+                    });
+                  }
+                }}
                 className={`px-8 py-4 rounded-2xl font-black text-sm sm:text-base tracking-wide flex items-center gap-3 transition-all cursor-pointer min-h-[48px] ${
                   isAllAnswered
                     ? 'bg-gradient-to-r from-red-500 via-orange-500 to-cyan-400 text-bg-dark shadow-lg shadow-orange-500/25 hover:opacity-95 transform hover:-translate-y-0.5'
@@ -661,8 +707,8 @@ const CrashTest = () => {
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                     {isTr 
-                      ? 'Eksik modüllerin tamamlanması, spagetti kodun temizlenmesi ve kritik API entegrasyonlarının doğrudan kıdemli mühendislik masamızca (Mehmet Şahin) ayağa kaldırılması.' 
-                      : 'Completing missing endpoints, refactoring messy logic, and rebuilding broken API integrations directly with our senior engineering desk (Mehmet Sahin).'}
+                      ? 'Eksik modüllerin tamamlanması, spagetti kodun temizlenmesi ve kritik API entegrasyonlarının doğrudan kıdemli mühendislik masamızca ayağa kaldırılması.' 
+                      : 'Completing missing endpoints, refactoring messy logic, and rebuilding broken API integrations directly with our senior engineering desk.'}
                   </p>
                 </div>
 
@@ -706,7 +752,7 @@ const CrashTest = () => {
               {leadSent === 'success' ? (
                 <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-emerald-300 text-sm font-bold">
                   <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-400" />
-                  <span>{isTr ? 'Rapor talebiniz başarıyla kaydedildi! Kriz masası ekibimiz analizi hazırlayıp iletecektir.' : 'Report request logged successfully! Our SWAT engineers will deliver your blueprint.'}</span>
+                  <span>{isTr ? 'Rapor talebiniz başarıyla kaydedildi! Kriz masamız analizi hazırlayıp iletecektir.' : 'Report request logged successfully! Our SWAT engineers will deliver your blueprint.'}</span>
                 </div>
               ) : leadSent === 'error' ? (
                 <div className="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 space-y-3">
@@ -738,7 +784,7 @@ const CrashTest = () => {
                         body: JSON.stringify({
                           access_key: '64ef0cf5-703c-4cfd-92a4-4f0ba65bb2bb',
                           from_name: 'TMA Crash Test Diagnostic',
-                          subject: `🎯 CRASH TEST RAPOR TALEBİ: ${leadName} (%${riskScore} Risk - ${selectedScenario?.code})`,
+                          subject: `🎯 CRASH TEST RAPOR TALEBİ: ${leadName} (%${riskScore} Risk - ${selectedScenario?.code})${campaignParams.agency_code ? ` [Kutu #${campaignParams.agency_code}]` : ''}`,
                           name: leadName,
                           email: leadEmail,
                           phone: leadPhone,
@@ -746,12 +792,22 @@ const CrashTest = () => {
                           riskScore: `%${riskScore}`,
                           lossRisk: lossRisk,
                           turnaroundSLA: turnaroundSLA,
+                          agencyBoxCode: campaignParams.agency_code || 'N/A',
+                          utm_source: campaignParams.utm_source || 'direct',
+                          utm_campaign: campaignParams.utm_campaign || 'N/A',
                           timestamp: new Date().toISOString()
                         })
                       });
                       const data = await response.json();
                       if (response.ok && data.success) {
                         setLeadSent('success');
+                        if (window.trackEvent) {
+                          window.trackEvent('report_email_submitted', {
+                            scenario: selectedScenario?.code,
+                            email: leadEmail,
+                            agency_code: campaignParams.agency_code
+                          });
+                        }
                       } else {
                         throw new Error(data.message || 'Submission failed');
                       }

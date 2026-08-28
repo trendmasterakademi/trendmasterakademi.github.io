@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { AlertTriangle, X, PhoneCall, ShieldCheck, Clock, Send, CheckCircle2, MessageSquare, RefreshCw } from 'lucide-react';
@@ -67,6 +67,9 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
       const data = await response.json();
       if (response.ok && data.success) {
         setSubmitStatus('success');
+        if (window.trackEvent) {
+          window.trackEvent('sos_form_submitted', { urgency: urgencyLabel });
+        }
         // Automatically trigger WhatsApp forward
         window.open(getWhatsAppUrl(), '_blank');
       } else {
@@ -125,7 +128,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 
             <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed mb-3">
               {isTr 
-                ? 'Teslim tarihi sıkışan, geliştiricisi ayrılan veya canlıda kilitlenen projeler için doğrudan kıdemli mühendislik masamız (Mehmet Şahin) devreye girer.' 
+                ? 'Teslim tarihi sıkışan, geliştiricisi ayrılan veya canlıda kilitlenen projeler için doğrudan kıdemli mühendislik masamız devreye girer.' 
                 : 'Direct senior engineering dispatch for locked codebases, abandoned repos, or mission-critical launch deadlines.'}
             </p>
 
@@ -138,13 +141,14 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                 {isTr ? 'Kriz Bildirimi Kaydedildi & İletildi!' : 'Crisis Ticket Saved & Dispatched!'}
               </h4>
               <p className="text-sm text-slate-300 max-w-md">
-                {isTr ? 'Bildiriminiz kriz masamıza kaydedildi ve WhatsApp üzerinden doğrudan Developer Mehmet Şahin’e aktarıldı.' : 'Your ticket is logged and forwarded directly to Developer Mehmet Sahin.'}
+                {isTr ? 'Bildiriminiz kriz masamıza kaydedildi ve WhatsApp üzerinden kıdemli mühendislik masamıza aktarıldı.' : 'Your ticket is logged and forwarded directly to our senior engineering desk.'}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
                 <a
                   href={getWhatsAppUrl()}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'sos_success_screen' })}
                   className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-xs sm:text-sm flex items-center gap-2"
                 >
                   <MessageSquare className="w-4 h-4" />
@@ -169,7 +173,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               </h4>
               <p className="text-sm text-amber-200 max-w-md">
                 {isTr 
-                  ? 'Kriz bilgileriniz hazırlandı. Aşağıdaki butona basarak doğrudan WhatsApp üzerinden Mehmet Şahin’e anında iletebilirsiniz:' 
+                  ? 'Kriz bilgileriniz hazırlandı. Aşağıdaki butona basarak doğrudan WhatsApp üzerinden kriz masamıza anında iletebilirsiniz:' 
                   : 'Your crisis scope is ready. Dispatch directly via WhatsApp below:'}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
@@ -177,6 +181,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   href={getWhatsAppUrl()}
                   target="_blank"
                   rel="noreferrer"
+                  onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'sos_error_fallback' })}
                   className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/25 animate-pulse"
                 >
                   <MessageSquare className="w-4 h-4" />

@@ -154,11 +154,11 @@ const Hero = () => {
           transition={{ duration: 0.5 }}
           className="lg:col-span-6 flex flex-col gap-5 sm:gap-6 self-start"
         >
-          {/* Founder & Availability Badge */}
+          {/* Studio & Availability Badge */}
           <div className="flex flex-wrap items-center gap-2">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 text-xs sm:text-sm font-mono font-bold shadow-[0_0_20px_rgba(0,229,255,0.15)]">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Mehmet Şahin · Senior Full-Stack & SWAT Engineer</span>
+              <span>B2B Technical SWAT & White-Label Engineering</span>
             </div>
             <span className="text-xs font-mono text-slate-400">İzmir · Uzaktan (TR / EN)</span>
           </div>
@@ -172,7 +172,7 @@ const Hero = () => {
               {isTr ? 'Ajanslar İçin:' : 'Code Taken Over & Rescued,'}
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-300 to-amber-400 text-[0.88em]">
-              {isTr ? 'Kodu Devralır, Sizin Adınıza Teslim Ederim.' : 'Delivered Flawlessly Under Your Name.'}
+              {isTr ? 'Kodu Devralır, Ajansınız Adına Eksiksiz Teslim Ederiz.' : 'Delivered Flawlessly Under Your Agency Brand.'}
             </span>
           </h1>
           
@@ -203,6 +203,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 w-full sm:w-auto">
             <Link
               to="/crash-test"
+              onClick={() => window.trackEvent && window.trackEvent('crash_test_clicked', { source: 'hero_cta' })}
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5 min-h-[48px] w-full sm:w-auto text-center"
             >
               <Zap className="w-5 h-5 fill-current" />
@@ -211,9 +212,10 @@ const Hero = () => {
             </Link>
 
             <a
-              href="https://wa.me/905343713573?text=Merhaba%20Mehmet%20Bey%2C%20ajans%C4%B1m%C4%B1z%20i%C3%A7in%2015-20%20dakikal%C4%B1k%20online%20tan%C4%B1%C5%9Fma%20randevusu%20almak%20istiyoruz."
+              href="https://wa.me/905343713573?text=Merhaba%2C%20ajans%C4%B1m%C4%B1z%20i%C3%A7in%2015-20%20dakikal%C4%B1k%20online%20tan%C4%B1%C5%9Fma%20randevusu%20almak%20istiyoruz."
               target="_blank"
               rel="noreferrer"
+              onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'hero_intro_call' })}
               className="px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl font-bold text-sm sm:text-base border border-white/20 hover:bg-white/5 text-white transition-all flex items-center justify-center gap-2 min-h-[48px] w-full sm:w-auto text-center"
             >
               <Clock className="w-5 h-5 text-cyan-400" />

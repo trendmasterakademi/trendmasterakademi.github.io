@@ -33,8 +33,8 @@ const FloatingActions = () => {
   const getWhatsAppUrl = () => {
     const phone = '905343713573';
     const text = isTr
-      ? '🚨 *TMA ACİL TEKNİK DESTEK / KRİZ HATTI* 🚨\n\nMerhaba Mehmet Bey, web siteniz üzerinden acil teknik müdahale / proje desteği almak için yazıyorum.'
-      : '🚨 *TMA EMERGENCY TECHNICAL DISPATCH* 🚨\n\nHello Mehmet, reaching out via your website for emergency engineering / project support.';
+      ? '🚨 *TMA ACİL TEKNİK DESTEK / KRİZ HATTI* 🚨\n\nMerhaba, web siteniz üzerinden acil teknik müdahale / proje desteği almak için yazıyorum.'
+      : '🚨 *TMA EMERGENCY TECHNICAL DISPATCH* 🚨\n\nHello, reaching out via your website for emergency engineering / project support.';
     return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
   };
 
@@ -93,6 +93,7 @@ const FloatingActions = () => {
           href={getWhatsAppUrl()}
           target="_blank"
           rel="noreferrer"
+          onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'floating_widget' })}
           className="relative w-13 h-13 sm:w-15 sm:h-15 rounded-2xl sm:rounded-3xl bg-gradient-to-br from-emerald-500 to-teal-700 hover:from-emerald-400 hover:to-teal-600 text-white shadow-[0_6px_25px_rgba(16,185,129,0.45)] hover:shadow-[0_0_35px_rgba(16,185,129,0.75)] border border-emerald-300/40 flex items-center justify-center transition-all duration-300 transform hover:scale-105 active:scale-95 group cursor-pointer"
           aria-label="WhatsApp Kriz Hattı"
           title={isTr ? 'WhatsApp ile Kriz Masasına Bağlan' : 'Connect to Response Desk on WhatsApp'}

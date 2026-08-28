@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ShieldCheck, Lock, FileText, CheckCircle2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
@@ -57,7 +57,7 @@ const KVKKModal = ({ isOpen, onClose }) => {
             </h4>
             <p>
               {isTr 
-                ? '6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca; Trend Master Akademi Studio & Labs (Kurucu: Mehmet Şahin, Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir), veri sorumlusu sıfatıyla hareket etmektedir.' 
+                ? '6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca; Trend Master Akademi Studio & Labs (Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir), veri sorumlusu sıfatıyla hareket etmektedir.' 
                 : 'Under applicable Data Protection regulations; Trend Master Academy Studio & Labs operates as the Data Controller.'}
             </p>
 

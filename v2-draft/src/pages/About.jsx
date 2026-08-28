@@ -16,8 +16,8 @@ const About = () => {
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", isTr
-        ? "Kurucu & Developer Mehmet Şahin liderliğinde Trend Master Akademi mühendislik standartları, 4 temel prensip ve B2B SWAT vizyonu."
-        : "Trend Master Academy engineering standards, 4 core pillars, and B2B technical SWAT vision led by founder Mehmet Sahin."
+        ? "Trend Master Akademi mühendislik standartları, 4 temel prensip ve B2B SWAT vizyonu."
+        : "Trend Master Academy engineering standards, 4 core pillars, and B2B technical SWAT vision."
       );
     }
 
@@ -40,8 +40,8 @@ const About = () => {
         </h1>
         <p className="text-slate-300 text-base sm:text-lg md:text-xl leading-relaxed">
           {isTr 
-            ? 'Trend Master Akademi Studio & Labs; kurucu ve developer Mehmet Şahin liderliğinde modern web, SaaS, API mimarileri ve acil kod kurtarma (SWAT) alanında çalışan teknik bir yazılım stüdyosudur.' 
-            : 'Trend Master Academy Studio & Labs is a technical software studio led by founder and developer Mehmet Sahin, specializing in modern web, SaaS architectures, API integrations, and emergency code SWAT rescues.'}
+            ? 'Trend Master Akademi Studio & Labs; modern web, SaaS, API mimarileri ve acil kod kurtarma (SWAT) alanında çalışan teknik bir B2B yazılım stüdyosudur.' 
+            : 'Trend Master Academy Studio & Labs is a technical software studio specializing in modern web, SaaS architectures, API integrations, and emergency code SWAT rescues.'}
         </p>
       </div>
 
@@ -58,12 +58,12 @@ const About = () => {
             01
           </div>
           <h3 className="text-xl sm:text-2xl font-bold text-white">
-            {isTr ? 'Hızlı Triyaj & Şeffaf Teşhis' : 'Rapid Triage & Transparent Diagnosis'}
+            {isTr ? '%100 White-Label & Görünmezlik' : '100% White-Label & Invisibility'}
           </h3>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             {isTr 
-              ? 'Talebi veya kriz durumunu teknik olarak derinlemesine inceliyor; yapılabilecekleri, süreyi ve mimariyi baştan şeffafça ortaya koyuyoruz. Boş vaatler veya gecikmeler yaşatmayız.' 
-              : 'We analyze the codebase or bottleneck thoroughly, establishing exact timelines, feasible solutions, and architectural roadmap upfront with zero ambiguity.'}
+              ? 'Müşterileriniz ile asla doğrudan temas kurmayız. İster ajansınızın kurumsal e-postasıyla ekibiniz gibi çalışırız, ister tamamen görünmez bir arka plan masası oluruz.' 
+              : 'We never contact your clients directly. We operate either under your agency brand email or as an entirely invisible background engineering bench.'}
           </p>
         </motion.div>
 
@@ -78,12 +78,12 @@ const About = () => {
             02
           </div>
           <h3 className="text-xl sm:text-2xl font-bold text-white">
-            {isTr ? '%100 White-Label & NDA Güvencesi' : '100% White-Label & Strict NDA'}
+            {isTr ? 'Resmi NDA & Tam Mülkiyet' : 'Strict NDA & Total Ownership'}
           </h3>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             {isTr 
-              ? 'Müşteriniz daima sizin müşterinizdir. Asla araya girmeyiz; tüm süreçleri ajansınızın personeli gibi arka planda, resmi gizlilik sözleşmesi (NDA) altında yürütürüz.' 
-              : 'Your client remains strictly yours. We operate invisibly behind the scenes as your agency’s dedicated technical force under legally binding mutual NDA.'}
+              ? 'Projeye başlamadan önce bağlayıcı Gizlilik Sözleşmesi (NDA) imzalanır. Geliştirilen tüm kaynak kodlar, mimari ve fikri mülkiyet %100 ajansınıza ve müşterinize aittir.' 
+              : 'Prior to work, a binding NDA is executed. All source code, architecture, and IP belong 100% to your agency and client.'}
           </p>
         </motion.div>
 
@@ -94,16 +94,16 @@ const About = () => {
           transition={{ delay: 0.2 }}
           className="glass-panel p-8 rounded-3xl border border-white/10 bg-[#111827]/70 space-y-4"
         >
-          <div className="w-12 h-12 rounded-2xl bg-orange-500/20 text-orange-400 flex items-center justify-center font-mono font-bold text-lg border border-orange-500/30">
+          <div className="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-400 flex items-center justify-center font-mono font-bold text-lg border border-amber-500/30">
             03
           </div>
           <h3 className="text-xl sm:text-2xl font-bold text-white">
-            {isTr ? 'Temiz, Sürdürülebilir & Bağımsız Kod' : 'Clean, Maintainable & Independent Code'}
+            {isTr ? 'Sabit Fiyat / Haftalık Sprint Şeffaflığı' : 'Fixed-Fee / Sprint Predictability'}
           </h3>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             {isTr 
-              ? 'Geliştiriciye bağımlı bırakan karmaşık spagetti yapılara karşıyız. Teslim ettiğimiz tüm sistemler modüler, modern ve dokümante edilmiş olarak eksiksiz mülkiyet devriyle teslim edilir.' 
-              : 'No developer lock-in or messy dependencies. All code delivered is modular, documented, tested, and handed over with full intellectual property ownership.'}
+              ? 'Sürpriz faturalar veya ucu açık saatlik maliyetler yoktur. Kriz hotfix müdahalelerinde önceden sabit bütçe, kapasite kiralamalarında haftalık sabit sprint ücreti uygulanır.' 
+              : 'No surprise invoices or open-ended hourly traps. Fixed transparent pricing on SWAT hotfixes and predictable weekly sprint rates on dedicated capacity.'}
           </p>
         </motion.div>
 
@@ -118,12 +118,12 @@ const About = () => {
             04
           </div>
           <h3 className="text-xl sm:text-2xl font-bold text-white">
-            {isTr ? 'Doğrudan Developer Muhatabı' : 'Direct Developer Contact'}
+            {isTr ? 'Doğrudan Mühendislik Masası Muhatabı' : 'Direct Senior Engineering Contact'}
           </h3>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             {isTr 
-              ? 'Arada teknik bilgisi olmayan satış temsilcileri veya bürokrasi katmanları yoktur. İletişim doğrudan projeyi geliştiren developer (Mehmet Şahin) üzerinden anlık yürütülür.' 
-              : 'No non-technical sales reps or bureaucratic middlemen. You communicate directly with developer Mehmet Sahin executing your project in real-time.'}
+              ? 'Arada teknik bilgisi olmayan satış temsilcileri veya bürokrasi katmanları yoktur. İletişim doğrudan projeyi yürüten kıdemli mühendislik masamız üzerinden anlık yürütülür.' 
+              : 'No non-technical sales reps or bureaucratic middlemen. You communicate directly with the senior engineering desk executing your project in real-time.'}
           </p>
         </motion.div>
 

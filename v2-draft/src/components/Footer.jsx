@@ -32,7 +32,7 @@ const Footer = () => {
               : 'Senior B2B engineering desk and emergency code SWAT recovery studio for digital agencies under 100% White-Label and strict mutual NDA.'}
           </p>
           <div className="pt-2 text-xs font-mono text-cyan-400 flex flex-wrap items-center gap-3">
-            <span>Kurucu & Geliştirici: <strong>Mehmet Şahin</strong></span>
+            <span>B2B Mühendislik Masası: <strong>Trend Master Akademi Studio & Labs</strong></span>
             <span>•</span>
             <a href="https://github.com/trendmasterakademi" target="_blank" rel="noreferrer" className="hover:text-white underline">GitHub</a>
             <span>•</span>
@@ -100,7 +100,10 @@ const Footer = () => {
       
       {/* Bottom Copyright */}
       <div className="max-w-7xl mx-auto pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
-        <p>© 2026 Trend Master Akademi Studio & Labs. Tüm hakları saklıdır.</p>
+        <div className="space-y-1 text-center sm:text-left">
+          <p>© 2026 Trend Master Akademi Studio & Labs. {isTr ? 'Tüm hakları saklıdır.' : 'All rights reserved.'}</p>
+          <p className="text-[11px] text-slate-500 font-mono">Trend Master Akademi Yazılım & Danışmanlık · Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir</p>
+        </div>
         <div className="flex items-center gap-4 text-slate-400">
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400"></span> Response Desk: Online</span>
           <span>•</span>

@@ -163,13 +163,14 @@ const FAQ = () => {
               {isTr ? 'Aklınıza takılan farklı bir soru mu var?' : 'Have a different question in mind?'}
             </span>
             <span className="text-slate-400 text-xs sm:text-sm">
-              {isTr ? 'Kriz masası ve geliştiricimizle (Mehmet Şahin) doğrudan görüşebilirsiniz.' : 'Reach out directly to senior engineer Mehmet Sahin.'}
+              {isTr ? 'Kriz masası ve kıdemli mühendislik ekibimizle doğrudan görüşebilirsiniz.' : 'Reach out directly to our senior engineering desk.'}
             </span>
           </div>
           <a
             href="https://wa.me/905343713573?text=Merhaba%2C%20TMA%20hakk%C4%B1nda%20teknik%20bir%20sorum%20var."
             target="_blank"
             rel="noreferrer"
+            onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'faq_box' })}
             className="px-6 py-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-300 font-bold text-xs sm:text-sm transition-all whitespace-nowrap"
           >
             {isTr ? 'WhatsApp’tan Sorun →' : 'Ask on WhatsApp →'}

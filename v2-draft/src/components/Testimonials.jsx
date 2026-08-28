@@ -60,8 +60,8 @@ const testimonialsList = [
     name: "Murat B.",
     role: { tr: "Teknoloji Direktörü — Medya & Yazılım Evi", en: "CTO — Media & Software House" },
     text: { 
-      tr: "Ajansımızın masasına gelen zorlu ve alışılmadık teknik taleplerde 'Mehmet Şahin ve TMA ekibine danışalım' demek artık şirketimizin en büyük konforu ve güvencesi oldu.", 
-      en: "Whenever unconventional, high-complexity client briefs arrive at our agency, knowing we can consult Mehmet Sahin & the TMA team is our biggest asset and peace of mind." 
+      tr: "Ajansımızın masasına gelen zorlu ve alışılmadık teknik taleplerde 'Trend Master Akademi mühendislik masasına danışalım' demek şirketimizin en büyük konforu ve güvencesi oldu.", 
+      en: "Whenever unconventional, high-complexity client briefs arrive at our agency, knowing we can consult the Trend Master Academy engineering desk is our biggest asset and peace of mind." 
     }
   }
 ];
