@@ -7,7 +7,6 @@ import {
   Terminal, Lock, Layers, Server, Code2, Users, FileCode, Check, Cpu,
   PhoneCall
 } from 'lucide-react';
-import TypewriterText from '../components/TypewriterText';
 import EmergencySOSModal from '../components/EmergencySOSModal';
 
 const scenarios = [
@@ -187,6 +186,13 @@ const CrashTest = () => {
   const [copied, setCopied] = useState(false);
   const [isSOSOpen, setIsSOSOpen] = useState(false);
 
+  // Email Lead Capture State
+  const [leadName, setLeadName] = useState('');
+  const [leadEmail, setLeadEmail] = useState('');
+  const [leadPhone, setLeadPhone] = useState('');
+  const [leadSent, setLeadSent] = useState(false);
+  const [isSendingLead, setIsSendingLead] = useState(false);
+
   React.useEffect(() => {
     document.title = isTr
       ? "Agency Crash Test (60sn) - Kriz & Risk Simülatörü | Trend Master Akademi"
@@ -342,10 +348,10 @@ const CrashTest = () => {
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono tracking-tight text-white mb-5 leading-tight">
               <span className="block">
-                <TypewriterText text={isTr ? 'Ajansınız teknik bir krize ' : 'Is your agency '} speed={35} delay={100} showCursor={false} />
+                {isTr ? 'Ajansınız teknik bir krize ' : 'Is your agency '}
               </span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-300 to-cyan-400">
-                <TypewriterText text={isTr ? 'gerçekten hazır mı?' : 'truly ready for a technical crisis?'} speed={35} delay={1150} cursorColor="text-red-400" />
+                {isTr ? 'gerçekten hazır mı?' : 'truly ready for a technical crisis?'}
               </span>
             </h1>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
@@ -677,6 +683,95 @@ const CrashTest = () => {
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* Email Lead Capture Card */}
+            <div className="p-8 rounded-3xl bg-[#0e1626] border border-cyan-500/30 text-left space-y-5 shadow-2xl">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                    <Mail className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-bold text-white">
+                      {isTr ? 'Bu Kriz Raporunu & 3 Aşamalı Reçeteyi E-Postama Gönder' : 'Send This Crisis Blueprint & Action Recipe to My Email'}
+                    </h4>
+                    <p className="text-xs text-slate-400">
+                      {isTr ? 'Ajans içi değerlendirme ve teknik ekibinizle paylaşım için hazır PDF/E-posta formatında iletilir.' : 'Sent in a ready-to-share technical blueprint format for your internal stakeholders.'}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {leadSent ? (
+                <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-emerald-300 text-sm font-bold">
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-400" />
+                  <span>{isTr ? 'Rapor talebiniz başarıyla kaydedildi! Kriz masası ekibimiz analizi hazırlayıp iletecektir.' : 'Report request logged successfully! Our SWAT engineers will deliver your blueprint.'}</span>
+                </div>
+              ) : (
+                <form 
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    setIsSendingLead(true);
+                    try {
+                      await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                        body: JSON.stringify({
+                          access_key: '64ef0cf5-703c-4cfd-92a4-4f0ba65bb2bb',
+                          from_name: 'TMA Crash Test Diagnostic',
+                          subject: `🎯 CRASH TEST RAPOR TALEBİ: ${leadName} (%${riskScore} Risk - ${selectedScenario?.code})`,
+                          name: leadName,
+                          email: leadEmail,
+                          phone: leadPhone,
+                          scenario: selectedScenario?.title[isTr ? 'tr' : 'en'],
+                          riskScore: `%${riskScore}`,
+                          lossRisk: lossRisk,
+                          turnaroundSLA: turnaroundSLA,
+                          timestamp: new Date().toISOString()
+                        })
+                      }).catch(err => console.log('Lead err:', err));
+                    } finally {
+                      setIsSendingLead(false);
+                      setLeadSent(true);
+                    }
+                  }} 
+                  className="grid grid-cols-1 sm:grid-cols-3 gap-3.5"
+                >
+                  <input
+                    type="text"
+                    required
+                    placeholder={isTr ? 'Adınız Soyadınız' : 'Your Full Name'}
+                    value={leadName}
+                    onChange={e => setLeadName(e.target.value)}
+                    className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                  />
+                  <input
+                    type="email"
+                    required
+                    placeholder={isTr ? 'Kurumsal E-posta' : 'Corporate Email'}
+                    value={leadEmail}
+                    onChange={e => setLeadEmail(e.target.value)}
+                    className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                  />
+                  <input
+                    type="tel"
+                    required
+                    placeholder={isTr ? 'Telefon / WhatsApp' : 'Phone / WhatsApp'}
+                    value={leadPhone}
+                    onChange={e => setLeadPhone(e.target.value)}
+                    className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    disabled={isSendingLead}
+                    className="sm:col-span-3 py-3.5 px-6 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-black text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg shadow-cyan-500/20 disabled:opacity-50"
+                  >
+                    <Send className="w-4 h-4" />
+                    <span>{isSendingLead ? (isTr ? 'Gönderiliyor...' : 'Sending...') : (isTr ? 'Detaylı Eylem Raporumu Gönder' : 'Send My Custom Blueprint')}</span>
+                  </button>
+                </form>
+              )}
             </div>
 
             {/* Bottom Dispatch CTA */}

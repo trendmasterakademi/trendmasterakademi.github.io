@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MessageSquare, PhoneCall, Mail, MapPin, ShieldCheck, Send, ArrowRight } from 'lucide-react';
-import TypewriterText from './TypewriterText';
+import { MessageSquare, PhoneCall, Mail, MapPin, ShieldCheck, Send, ArrowRight, Clock, CheckCircle2 } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Contact = () => {
@@ -12,14 +11,46 @@ const Contact = () => {
     agency: '', 
     email: '', 
     phone: '', 
-    message: '' 
+    message: '',
+    kvkkConsent: true
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: '64ef0cf5-703c-4cfd-92a4-4f0ba65bb2bb',
+          from_name: 'TMA Lead Desk',
+          subject: `🚨 Yeni TMA İletişim / Ajans Talebi - ${formData.name} (${formData.agency || 'Bireysel'})`,
+          name: formData.name,
+          agency: formData.agency || 'Belirtilmedi',
+          email: formData.email,
+          phone: formData.phone,
+          message: formData.message,
+          timestamp: new Date().toISOString()
+        })
+      }).catch(err => console.log('Lead sync noted:', err));
+    } catch (err) {
+      console.log('Lead capture error:', err);
+    } finally {
+      setIsSubmitting(false);
+      setIsSubmitted(true);
+    }
+  };
+
+  const handleOpenWhatsApp = () => {
     const waNumber = '905343713573';
-    const waText = i18n.language === 'tr' 
+    const waText = isTr 
       ? `🚨 *TMA B2B TEKNİK TALEP / İLETİŞİM FORMU* 🚨\n\n` +
         `👤 *Yetkili / Ad Soyad:* ${formData.name}\n` +
         `🏢 *Ajans / Şirket:* ${formData.agency || 'Belirtilmedi'}\n` +
@@ -38,11 +69,10 @@ const Contact = () => {
     const encodedText = encodeURIComponent(waText);
     const waUrl = `https://wa.me/${waNumber}?text=${encodedText}`;
     window.open(waUrl, '_blank');
-    setIsSubmitted(true);
   };
 
   const handleReset = () => {
-    setFormData({ name: '', agency: '', email: '', phone: '', message: '' });
+    setFormData({ name: '', agency: '', email: '', phone: '', message: '', kvkkConsent: true });
     setIsSubmitted(false);
   };
 
@@ -52,14 +82,14 @@ const Contact = () => {
       
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         
-        {/* Left Column: Direct Channels */}
+        {/* Left Column: Direct Channels & Trust */}
         <div className="lg:col-span-5 space-y-8">
           <div>
             <h4 className="text-cyan-400 font-mono font-bold tracking-widest uppercase text-xs sm:text-sm mb-3">
               {t('contact-subtitle')}
             </h4>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white mb-6">
-              <TypewriterText text={t('contact-title')} speed={18} delay={100} cursorColor="text-cyan-400" />
+              {t('contact-title')}
             </h2>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
               {t('contact-desc')}
@@ -70,7 +100,7 @@ const Contact = () => {
             
             {/* Direct WhatsApp Box */}
             <a 
-              href="https://wa.me/905343713573" 
+              href="https://wa.me/905343713573?text=Merhaba%20Mehmet%20Bey%2C%20TMA%20ile%20proje%20ve%20teknik%20destek%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyoruz." 
               target="_blank" 
               rel="noreferrer" 
               className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-emerald-500/30 hover:border-emerald-500/60 hover:bg-white/[0.08] transition-all group shadow-lg"
@@ -80,7 +110,7 @@ const Contact = () => {
               </div>
               <div>
                 <div className="text-white font-bold text-base">
-                  {i18n.language === 'tr' ? 'WhatsApp Kriz & Destek Hattı' : 'WhatsApp Crisis & Support Desk'}
+                  {isTr ? 'WhatsApp Kriz & Destek Masası' : 'WhatsApp Crisis & Support Desk'}
                 </div>
                 <div className="text-emerald-400 text-sm font-mono font-bold">+90 534 371 35 73</div>
               </div>
@@ -133,7 +163,7 @@ const Contact = () => {
           </div>
         </div>
         
-        {/* Right Column: Contact Form */}
+        {/* Right Column: Contact Form with Backend Lead Capture */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -142,36 +172,45 @@ const Contact = () => {
         >
           {isSubmitted ? (
             <div className="flex flex-col items-center justify-center text-center py-8 space-y-6">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.3)] animate-bounce">
-                <ShieldCheck className="w-8 h-8" />
+              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.3)]">
+                <CheckCircle2 className="w-8 h-8" />
               </div>
               
               <div className="space-y-2">
                 <h3 className="text-2xl font-bold text-white">
-                  {isTr ? 'Talebiniz Başarıyla İletildi!' : 'Inquiry Successfully Dispatched!'}
+                  {isTr ? 'Talebiniz Başarıyla Kaydedildi!' : 'Inquiry Successfully Saved!'}
                 </h3>
                 <p className="text-slate-300 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
                   {isTr 
-                    ? 'WhatsApp kriz masası hattımıza yönlendirildiniz. Mühendislik ekibimiz 15-30 dakika içinde geri dönüş sağlayacaktır.' 
-                    : 'You have been redirected to our WhatsApp emergency desk. Our senior engineering squad will respond within 15-30 minutes.'}
+                    ? 'Talebiniz kriz masası gelen kutumuza ulaştı. Dilerseniz hemen WhatsApp üzerinden mesajı iletebilir veya tanışma randevusu seçebilirsiniz.' 
+                    : 'Your inquiry has reached our engineering triage desk. You can also forward it directly on WhatsApp or book an introductory call.'}
                 </p>
               </div>
 
               <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+                <button
+                  type="button"
+                  onClick={handleOpenWhatsApp}
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/20 hover:opacity-95 transition-all cursor-pointer"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span>{isTr ? 'WhatsApp’tan Şimdi İlet →' : 'Forward to WhatsApp Now →'}</span>
+                </button>
+
                 <a
                   href="tel:+905343713573"
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/20 hover:opacity-95 transition-all"
+                  className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm flex items-center gap-2 transition-colors"
                 >
-                  <PhoneCall className="w-4 h-4" />
-                  <span>{isTr ? 'Acil Telefon: +90 534 371 35 73' : 'Hotline: +90 534 371 35 73'}</span>
+                  <PhoneCall className="w-4 h-4 text-cyan-400" />
+                  <span>+90 534 371 35 73</span>
                 </a>
 
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-slate-300 text-sm font-semibold transition-colors cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl text-slate-400 hover:text-white text-xs font-semibold transition-colors cursor-pointer w-full"
                 >
-                  {isTr ? 'Yeni Mesaj Gönder' : 'Send Another Inquiry'}
+                  {isTr ? '← Yeni Form Doldur' : '← Submit Another Inquiry'}
                 </button>
               </div>
             </div>
@@ -186,6 +225,7 @@ const Contact = () => {
                   <input 
                     required 
                     type="text" 
+                    name="name"
                     value={formData.name} 
                     onChange={e => setFormData({...formData, name: e.target.value})} 
                     className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
@@ -198,6 +238,7 @@ const Contact = () => {
                   </label>
                   <input 
                     type="text" 
+                    name="agency"
                     value={formData.agency} 
                     onChange={e => setFormData({...formData, agency: e.target.value})} 
                     className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
@@ -214,6 +255,7 @@ const Contact = () => {
                   <input 
                     required 
                     type="email" 
+                    name="email"
                     value={formData.email} 
                     onChange={e => setFormData({...formData, email: e.target.value})} 
                     className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
@@ -227,6 +269,7 @@ const Contact = () => {
                   <input 
                     required 
                     type="tel" 
+                    name="phone"
                     value={formData.phone} 
                     onChange={e => setFormData({...formData, phone: e.target.value})} 
                     className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
@@ -242,19 +285,39 @@ const Contact = () => {
                 <textarea 
                   required 
                   rows="4" 
+                  name="message"
                   value={formData.message} 
                   onChange={e => setFormData({...formData, message: e.target.value})} 
                   className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors resize-none leading-relaxed" 
                   placeholder={t('contact-placeholder-msg')}
                 ></textarea>
               </div>
+
+              {/* KVKK Consent Checkbox */}
+              <div className="flex items-start gap-3 pt-1">
+                <input 
+                  type="checkbox" 
+                  id="kvkk"
+                  name="kvkk"
+                  required
+                  checked={formData.kvkkConsent}
+                  onChange={e => setFormData({...formData, kvkkConsent: e.target.checked})}
+                  className="mt-1 w-4 h-4 rounded bg-black/50 border-white/20 text-cyan-500 focus:ring-0 cursor-pointer"
+                />
+                <label htmlFor="kvkk" className="text-xs text-slate-400 leading-relaxed cursor-pointer">
+                  {isTr 
+                    ? 'İletişim bilgilerimin kriz masası değerlendirmesi ve geri dönüş amacıyla işlenmesini onaylıyorum (KVKK ve Gizlilik Politikası uyarınca bilgileriniz 3. taraflarla paylaşılmaz).' 
+                    : 'I consent to the processing of my contact details for triage and response purposes under NDA and Privacy standards.'}
+                </label>
+              </div>
               
               <button 
                 type="submit" 
-                className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black py-4 px-6 rounded-2xl flex items-center justify-center gap-2.5 transition-all shadow-xl shadow-emerald-500/20 text-base cursor-pointer transform hover:-translate-y-0.5 mt-2"
+                disabled={isSubmitting}
+                className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black py-4 px-6 rounded-2xl flex items-center justify-center gap-2.5 transition-all shadow-xl shadow-emerald-500/20 text-base cursor-pointer transform hover:-translate-y-0.5 mt-2 disabled:opacity-50"
               >
                 <Send className="w-5 h-5" />
-                <span>{t('contact-btn-submit')}</span>
+                <span>{isSubmitting ? (isTr ? 'Kaydediliyor...' : 'Submitting...') : t('contact-btn-submit')}</span>
               </button>
             </form>
           )}

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Layers, Server, Database, Cpu, Globe, ShieldCheck, Zap, ArrowRight } from 'lucide-react';
-import TypewriterText from './TypewriterText';
+import { Database, ShieldCheck, Zap, Activity, Cpu, ArrowRight, CheckCircle2, Lock, Radio, Layers, Server, Globe } from 'lucide-react';
 
 const ArchitectureGraph = () => {
   const { i18n } = useTranslation();
@@ -87,10 +86,10 @@ const ArchitectureGraph = () => {
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white tracking-tight leading-tight">
             <span className="block">
-              <TypewriterText text={isTr ? 'Kriz Geçirmez, Yüksek Hızlı' : 'Resilient, High-Speed'} speed={35} delay={100} showCursor={false} />
+              {isTr ? 'Kriz Geçirmez, Yüksek Hızlı' : 'Resilient, High-Speed'}
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">
-              <TypewriterText text={isTr ? "Mühendislik Veri Pipeline'ı" : 'Engineering Data Pipeline'} speed={35} delay={1050} cursorColor="text-cyan-400" />
+              {isTr ? "Mühendislik Veri Pipeline'ı" : 'Engineering Data Pipeline'}
             </span>
           </h2>
           <p className="text-slate-300 text-base sm:text-lg mt-4 leading-relaxed">

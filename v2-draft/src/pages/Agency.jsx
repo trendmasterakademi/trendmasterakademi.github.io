@@ -10,7 +10,6 @@ import {
 import EmergencySOSModal from '../components/EmergencySOSModal';
 import CodeDiffShowcase from '../components/CodeDiffShowcase';
 import FAQ from '../components/FAQ';
-import TypewriterText from '../components/TypewriterText';
 
 const capabilities = [
   { 
@@ -204,10 +203,10 @@ const Agency = () => {
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-black font-mono tracking-tight text-white leading-[1.18] mb-6">
             <span className="block">
-              <TypewriterText text={isTr ? 'Ajansınızın yerine değil,' : 'Not to replace your agency,'} speed={35} delay={100} showCursor={false} />
+              {isTr ? 'Ajansınızın yerine değil,' : 'Not to replace your agency,'}
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">
-              <TypewriterText text={isTr ? 'ajansınızın yanında.' : 'to stand right beside it.'} speed={35} delay={1050} cursorColor="text-cyan-400" />
+              {isTr ? 'ajansınızın yanında.' : 'to stand right beside it.'}
             </span>
           </h1>
 

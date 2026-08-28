@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Quote, ChevronLeft, ChevronRight, Star, ShieldCheck } from 'lucide-react';
-import TypewriterText from './TypewriterText';
+import { Star, ChevronLeft, ChevronRight, Quote, ShieldCheck } from 'lucide-react';
 
 const testimonialsList = [
   {
@@ -91,7 +90,7 @@ const Testimonials = () => {
           {t('testimonials-subtitle')}
         </h4>
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white mb-14">
-          <TypewriterText text={t('testimonials-title')} speed={18} delay={100} cursorColor="text-cyan-400" />
+          {t('testimonials-title')}
         </h2>
 
         {/* Carousel Box */}

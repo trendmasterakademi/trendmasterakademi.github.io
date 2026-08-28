@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { Code2, Zap, CheckCircle2, AlertTriangle, ArrowRight, Sparkles, Terminal } from 'lucide-react';
-import TypewriterText from './TypewriterText';
+import { Code2, ArrowRight, CheckCircle2, AlertTriangle, Sparkles, Terminal, FileCode, Check } from 'lucide-react';
 
 const diffCases = [
   {
@@ -121,10 +120,10 @@ const CodeDiffShowcase = () => {
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white tracking-tight leading-tight">
               <span className="block">
-                <TypewriterText text={isTr ? 'Spagetti Kodu Nasıl' : 'How We Turn Spaghetti Code Into'} speed={35} delay={100} showCursor={false} />
+                {isTr ? 'Spagetti Kodu Nasıl' : 'How We Turn Spaghetti Code Into'}
               </span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
-                <TypewriterText text={isTr ? 'Yüksek Hızlı Mimarilere Dönüştürüyoruz?' : 'High-Performance Architecture.'} speed={35} delay={950} cursorColor="text-emerald-400" />
+                {isTr ? 'Yüksek Hızlı Mimarilere Dönüştürüyoruz?' : 'High-Performance Architecture.'}
               </span>
             </h2>
           </div>

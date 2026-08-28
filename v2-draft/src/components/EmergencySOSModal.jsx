@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { AlertTriangle, X, PhoneCall, ShieldCheck, Clock, Send } from 'lucide-react';
+import { AlertTriangle, X, PhoneCall, ShieldCheck, Clock, Send, CheckCircle2 } from 'lucide-react';
 
 const EmergencySOSModal = ({ isOpen, onClose }) => {
   const { i18n } = useTranslation();
@@ -9,33 +9,59 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 
   const [agencyName, setAgencyName] = useState('');
   const [contactPerson, setContactPerson] = useState('');
+  const [contactPhone, setContactPhone] = useState('');
   const [urgency, setUrgency] = useState('critical');
   const [problemDesc, setProblemDesc] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const phone = "905343713573";
+    setIsSubmitting(true);
+
     const urgencyLabel = urgency === 'critical' 
       ? (isTr ? '🔴 KRİTİK (0-2 Saat Müdahale Gerekli)' : '🔴 CRITICAL (0-2h Immediate Intervention)')
       : urgency === 'high'
       ? (isTr ? '🟠 YÜKSEK (Bugün Çözülmeli / T-48H)' : '🟠 HIGH (Must Be Resolved Today / T-48H)')
       : (isTr ? '🟡 PLANLI DESTEK (Kapasite Artışı)' : '🟡 PLANNED SUPPORT (Capacity Surge)');
 
-    const text = encodeURIComponent(
-      `🚨 *TMA ACİL TEKNİK KRİZ BİLDİRİMİ (SOS)* 🚨\n\n` +
-      `🏢 *${isTr ? 'Ajans / Şirket:' : 'Agency / Company:'}* ${agencyName || (isTr ? 'Belirtilmedi' : 'Not specified')}\n` +
-      `👤 *${isTr ? 'Yetkili:' : 'Contact Person:'}* ${contactPerson || (isTr ? 'Belirtilmedi' : 'Not specified')}\n` +
-      `⚡ *${isTr ? 'Aciliyet Düzeyi:' : 'Urgency Level:'}* ${urgencyLabel}\n` +
-      `📝 *${isTr ? 'Kriz Özeti:' : 'Crisis Scope:'}* ${problemDesc}\n\n` +
-      `_TMA Response Desk üzerinden gönderildi._`
-    );
-    window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      onClose();
-    }, 2500);
+    try {
+      await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          access_key: '64ef0cf5-703c-4cfd-92a4-4f0ba65bb2bb',
+          from_name: 'TMA SOS Dispatch Desk',
+          subject: `🚨 ACİL KRİZ BİLDİRİMİ (SOS) - ${agencyName || 'Ajans'} (${urgencyLabel})`,
+          agency: agencyName || 'Belirtilmedi',
+          contactPerson: contactPerson || 'Belirtilmedi',
+          phone: contactPhone,
+          urgency: urgencyLabel,
+          problemDesc: problemDesc,
+          timestamp: new Date().toISOString()
+        })
+      }).catch(err => console.log('SOS sync noted:', err));
+    } catch (err) {
+      console.log('SOS error:', err);
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+
+      const phone = "905343713573";
+      const text = encodeURIComponent(
+        `🚨 *TMA ACİL TEKNİK KRİZ BİLDİRİMİ (SOS)* 🚨\n\n` +
+        `🏢 *${isTr ? 'Ajans / Şirket:' : 'Agency / Company:'}* ${agencyName || (isTr ? 'Belirtilmedi' : 'Not specified')}\n` +
+        `👤 *${isTr ? 'Yetkili:' : 'Contact Person:'}* ${contactPerson || (isTr ? 'Belirtilmedi' : 'Not specified')}\n` +
+        `📞 *${isTr ? 'Telefon / WhatsApp:' : 'Phone / WhatsApp:'}* ${contactPhone}\n` +
+        `⚡ *${isTr ? 'Aciliyet Düzeyi:' : 'Urgency Level:'}* ${urgencyLabel}\n` +
+        `📝 *${isTr ? 'Kriz Özeti:' : 'Crisis Scope:'}* ${problemDesc}\n\n` +
+        `_TMA Response Desk üzerinden gönderildi._`
+      );
+      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+    }
   };
 
   if (!isOpen) return null;
@@ -90,14 +116,21 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
           {submitted ? (
             <div className="py-8 text-center flex flex-col items-center gap-3">
               <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500 flex items-center justify-center text-emerald-400">
-                <ShieldCheck className="w-8 h-8" />
+                <CheckCircle2 className="w-8 h-8" />
               </div>
               <h4 className="text-xl font-bold text-white">
-                {isTr ? 'Kriz Masasına Aktarılıyorsunuz...' : 'Connecting to Crisis Desk...'}
+                {isTr ? 'Kriz Bildirimi Kaydedildi & İletildi!' : 'Crisis Ticket Saved & Dispatched!'}
               </h4>
-              <p className="text-sm text-slate-400">
-                {isTr ? 'WhatsApp üzerinden doğrudan Developer Mehmet Şahin ile anında canlı bağlantı kuruluyor.' : 'Connecting you directly with Developer Mehmet Sahin via WhatsApp.'}
+              <p className="text-sm text-slate-300 max-w-md">
+                {isTr ? 'Bildiriminiz kriz masamıza kaydedildi ve WhatsApp üzerinden Developer Mehmet Şahin’e doğrudan aktarıldı.' : 'Your ticket is logged and forwarded directly to Developer Mehmet Sahin.'}
               </p>
+              <button
+                type="button"
+                onClick={onClose}
+                className="mt-2 px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold cursor-pointer"
+              >
+                {isTr ? 'Pencereyi Kapat' : 'Close Window'}
+              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -108,6 +141,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   </label>
                   <input
                     type="text"
+                    name="agencyName"
                     required
                     placeholder={isTr ? 'Örn: Acme Creative' : 'e.g. Acme Creative'}
                     value={agencyName}
@@ -121,6 +155,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   </label>
                   <input
                     type="text"
+                    name="contactPerson"
                     required
                     placeholder={isTr ? 'Adınız & Soyadınız' : 'Your Full Name'}
                     value={contactPerson}
@@ -128,6 +163,21 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                     className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base focus:border-red-500 focus:outline-none transition-colors"
                   />
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
+                  {isTr ? 'Telefon / WhatsApp Numarası' : 'Phone / WhatsApp Number'} <span className="text-red-400">*</span>
+                </label>
+                <input
+                  type="tel"
+                  name="contactPhone"
+                  required
+                  placeholder="+90 534 000 0000"
+                  value={contactPhone}
+                  onChange={(e) => setContactPhone(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base focus:border-red-500 focus:outline-none transition-colors"
+                />
               </div>
 
               <div>
@@ -163,6 +213,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                 </label>
                 <textarea
                   rows={3}
+                  name="problemDesc"
                   required
                   placeholder={isTr ? 'Hatanın türü, kilitlenen teknoloji veya teslimat darboğazı hakkında kısaca bilgi verin...' : 'Briefly describe the error, bottleneck, or missing delivery component...'}
                   value={problemDesc}
@@ -184,10 +235,11 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               <div className="pt-2 flex flex-col sm:flex-row gap-3">
                 <button
                   type="submit"
-                  className="flex-1 py-4 rounded-2xl bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-black text-sm sm:text-base shadow-lg shadow-red-600/30 flex items-center justify-center gap-2 transition-all cursor-pointer min-h-[48px]"
+                  disabled={isSubmitting}
+                  className="flex-1 py-4 rounded-2xl bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-black text-sm sm:text-base shadow-lg shadow-red-600/30 flex items-center justify-center gap-2 transition-all cursor-pointer min-h-[48px] disabled:opacity-50"
                 >
                   <Send className="w-4 h-4" />
-                  <span>{isTr ? 'Kriz Masasına Anında Bildir (WhatsApp)' : 'Dispatch Crisis Desk (WhatsApp)'}</span>
+                  <span>{isSubmitting ? (isTr ? 'Kaydediliyor...' : 'Saving...') : (isTr ? 'Kriz Masasına Anında Bildir (WhatsApp)' : 'Dispatch Crisis Desk (WhatsApp)')}</span>
                 </button>
                 <a
                   href="tel:+905343713573"

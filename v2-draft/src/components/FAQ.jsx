@@ -1,8 +1,7 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { HelpCircle, ChevronDown, ShieldCheck, Zap, Lock, Code2, Database } from 'lucide-react';
-import TypewriterText from './TypewriterText';
 
 export const faqData = [
   {
@@ -87,10 +86,10 @@ const FAQ = () => {
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white tracking-tight leading-tight">
             <span className="block">
-              <TypewriterText text={isTr ? 'Ajansların En Çok Merak Ettiği' : 'Key Questions from Partner'} speed={35} delay={100} showCursor={false} />
+              {isTr ? 'Ajansların En Çok Merak Ettiği' : 'Key Questions from Partner'}
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">
-              <TypewriterText text={isTr ? 'Teknik & Operasyonel Sorular' : 'Agencies & Tech Leaders'} speed={35} delay={1050} cursorColor="text-cyan-400" />
+              {isTr ? 'Teknik & Operasyonel Sorular' : 'Agencies & Tech Leaders'}
             </span>
           </h2>
           <p className="text-slate-300 text-base sm:text-lg mt-4 leading-relaxed">

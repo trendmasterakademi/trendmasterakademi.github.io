@@ -4,9 +4,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   ChevronRight, Zap, ArrowRight, ShieldCheck, Terminal, FileCode, 
-  CheckCircle2, Play, Sparkles, Copy, Check, ShieldAlert, Cpu
+  CheckCircle2, Play, Sparkles, Copy, Check, ShieldAlert, Cpu, Clock
 } from 'lucide-react';
-import TypewriterText from './TypewriterText';
 
 const ideFiles = [
   {
@@ -151,49 +150,53 @@ const Hero = () => {
         <motion.div 
           initial={{ opacity: 0, x: -25 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="lg:col-span-6 flex flex-col gap-5 sm:gap-6 self-start"
         >
-          {/* Top Pill / Badge */}
-          <Link
-            to="/agency"
-            className="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 w-fit text-xs sm:text-sm font-mono font-bold hover:bg-cyan-500/20 transition-all shadow-[0_0_20px_rgba(0,229,255,0.15)] group"
-          >
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span>{t('hero-badge')}</span>
-            <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-          </Link>
-          
-          {/* Main Hook Headline: Absolute overlay over invisible static ghost ensures ZERO layout jump */}
-          <div className="relative">
-            {/* Invisible ghost text pre-calculates exact dimensions on first render */}
-            <h1 
-              className="text-[1.5rem] xs:text-2xl sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-[2.75rem] font-black font-mono leading-[1.2] tracking-tight opacity-0 pointer-events-none select-none aria-hidden" 
-              aria-hidden="true"
-            >
-              <span className="block">{t('hero-title-line1')}</span>
-              <span className="block">{t('hero-title-line2')}</span>
-              <span className="block">{t('hero-title-highlight')}</span>
-            </h1>
-
-            {/* Visible animated typewriter strictly overlaid */}
-            <h1 className="absolute inset-0 text-[1.5rem] xs:text-2xl sm:text-3xl md:text-4xl lg:text-[2.25rem] xl:text-[2.75rem] font-black font-mono leading-[1.2] text-white tracking-tight">
-              <span className="block text-slate-100">
-                <TypewriterText text={t('hero-title-line1')} speed={30} delay={60} showCursor={false} />
-              </span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-300 to-amber-400">
-                <TypewriterText text={t('hero-title-line2')} speed={30} delay={950} showCursor={false} />
-              </span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400">
-                <TypewriterText text={t('hero-title-highlight')} speed={28} delay={1850} cursorColor="text-cyan-400" />
-              </span>
-            </h1>
+          {/* Founder & Availability Badge */}
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 text-xs sm:text-sm font-mono font-bold shadow-[0_0_20px_rgba(0,229,255,0.15)]">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>Mehmet Şahin · Senior Full-Stack & SWAT Engineer</span>
+            </div>
+            <span className="text-xs font-mono text-slate-400">İzmir · Uzaktan (TR / EN)</span>
           </div>
+          
+          {/* Main Hook Headline: Static, Crisp, Zero Delay */}
+          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[2.6rem] xl:text-[3rem] font-black font-mono leading-[1.18] tracking-tight text-white">
+            <span className="block text-slate-200">
+              {isTr ? 'Yazılımcısı Projeden Çekilmiş' : 'For Agencies with Disengaged Developers:'}
+            </span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400">
+              {isTr ? 'Ajanslar İçin:' : 'Code Taken Over & Rescued,'}
+            </span>
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-300 to-amber-400 text-[0.88em]">
+              {isTr ? 'Kodu Devralır, Sizin Adınıza Teslim Ederim.' : 'Delivered Flawlessly Under Your Name.'}
+            </span>
+          </h1>
           
           {/* Body Description */}
           <p className="text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed max-w-xl font-normal">
-            {t('hero-desc')}
+            {isTr 
+              ? 'Bir projede teknik olarak tıkandığınızda, teslim tarihi yaklaştığında veya müşteriniz özel bir SaaS mimarisi istediğinde: %100 White-Label, resmi NDA ve doğrudan kıdemli mühendislik masası.' 
+              : 'When you are technically blocked, facing tight delivery crunches, or building custom SaaS pipelines: 100% White-Label, binding NDA protection, and direct senior engineering execution.'}
           </p>
+
+          {/* Above-the-fold Guarantees */}
+          <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs font-mono text-slate-300 py-1">
+            <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
+              <CheckCircle2 className="w-4 h-4" /> %100 White-Label
+            </span>
+            <span className="flex items-center gap-1.5 text-cyan-300 font-bold">
+              <CheckCircle2 className="w-4 h-4" /> Resmi NDA Güvencesi
+            </span>
+            <span className="flex items-center gap-1.5 text-amber-300 font-bold">
+              <CheckCircle2 className="w-4 h-4" /> Tam Kod Mülkiyeti
+            </span>
+            <span className="flex items-center gap-1.5 text-purple-300 font-bold">
+              <CheckCircle2 className="w-4 h-4" /> İlk Teşhis Ücretsiz
+            </span>
+          </div>
           
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 w-full sm:w-auto">
@@ -202,32 +205,34 @@ const Hero = () => {
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5 min-h-[48px] w-full sm:w-auto text-center"
             >
               <Zap className="w-5 h-5 fill-current" />
-              <span>{t('btn-crashtest')}</span>
+              <span>{isTr ? 'Kodunuzu 60sn’de Değerlendirin' : 'Evaluate Code in 60s'}</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
 
-            <Link
-              to="/agency"
+            <a
+              href="https://wa.me/905343713573?text=Merhaba%20Mehmet%20Bey%2C%20ajans%C4%B1m%C4%B1z%20i%C3%A7in%2015-20%20dakikal%C4%B1k%20online%20tan%C4%B1%C5%9Fma%20randevusu%20almak%20istiyoruz."
+              target="_blank"
+              rel="noreferrer"
               className="px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl font-bold text-sm sm:text-base border border-white/20 hover:bg-white/5 text-white transition-all flex items-center justify-center gap-2 min-h-[48px] w-full sm:w-auto text-center"
             >
-              <ShieldCheck className="w-5 h-5 text-cyan-400" />
-              <span>{t('btn-agency-model')}</span>
-            </Link>
+              <Clock className="w-5 h-5 text-cyan-400" />
+              <span>{isTr ? '📅 15-20 Dk Tanışma Randevusu' : '📅 Book 15-20m Intro Call'}</span>
+            </a>
           </div>
 
           {/* Quick Trust Metrics Bar */}
           <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-4 sm:pt-5 border-t border-white/10 max-w-xl text-center sm:text-left">
             <div>
-              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-white">{t('metric-whitelabel')}</strong>
-              <span className="text-[10px] sm:text-xs text-slate-400">{t('metric-whitelabel-sub')}</span>
+              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-white">14+ Yıl</strong>
+              <span className="text-[10px] sm:text-xs text-slate-400">Yazılım & Mimari Deneyimi</span>
             </div>
             <div>
-              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-cyan-400">{t('metric-triage')}</strong>
-              <span className="text-[10px] sm:text-xs text-slate-400">{t('metric-triage-sub')}</span>
+              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-cyan-400">40+ Repo</strong>
+              <span className="text-[10px] sm:text-xs text-slate-400">Devralınan & Çözülen Kod</span>
             </div>
             <div>
-              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-emerald-400">{t('metric-stack')}</strong>
-              <span className="text-[10px] sm:text-xs text-slate-400">{t('metric-stack-sub')}</span>
+              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-emerald-400">0 - 2 Saat</strong>
+              <span className="text-[10px] sm:text-xs text-slate-400">Ortalama İlk Triyaj Hızı</span>
             </div>
           </div>
         </motion.div>

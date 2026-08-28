@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShieldAlert, Server, ArrowRight, CheckCircle2, Bot, Layers, Smartphone, FileCode, Users, Cpu } from 'lucide-react';
-import TypewriterText from './TypewriterText';
+import { 
+  Flame, Server, ShieldCheck, Cpu, Smartphone, Database, CheckCircle2, ArrowRight, Zap, Bot, Lock, Code2 
+} from 'lucide-react';
 
 const Services = () => {
   const { t } = useTranslation();
@@ -62,7 +63,7 @@ const Services = () => {
             {t('services-subtitle')}
           </h4>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white mb-6">
-            <TypewriterText text={t('services-title')} speed={18} delay={100} cursorColor="text-cyan-400" />
+            {t('services-title')}
           </h2>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
             {t('services-desc')}

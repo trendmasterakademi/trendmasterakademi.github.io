@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, PhoneCall, Mail, MapPin, Zap } from 'lucide-react';
+import { ShieldCheck, PhoneCall, Mail, MapPin, Zap, Lock, Globe } from 'lucide-react';
+import KVKKModal from './KVKKModal';
 
 const Footer = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isTr = i18n.language !== 'en';
+  const [isKVKKOpen, setIsKVKKOpen] = useState(false);
 
   return (
     <footer className="border-t border-white/10 bg-[#06080d] pt-16 pb-12 px-4 sm:px-6 md:px-12 text-slate-400 text-sm">
@@ -24,34 +27,59 @@ const Footer = () => {
             </div>
           </Link>
           <p className="text-slate-300 text-sm leading-relaxed max-w-md">
-            {t('footer-desc')}
+            {isTr 
+              ? 'Dijital ajanslar ve teknoloji şirketleri için %100 White-Label, resmi NDA güvencesi altında çalışan kıdemli B2B mühendislik masası ve acil kod kurtarma stüdyosu.' 
+              : 'Senior B2B engineering desk and emergency code SWAT recovery studio for digital agencies under 100% White-Label and strict mutual NDA.'}
           </p>
-          <div className="pt-2 text-xs font-mono text-cyan-400">
-            {t('footer-founder')}
+          <div className="pt-2 text-xs font-mono text-cyan-400 flex flex-wrap items-center gap-3">
+            <span>Kurucu & Geliştirici: <strong>Mehmet Şahin</strong></span>
+            <span>•</span>
+            <a href="https://github.com/trendmasterakademi" target="_blank" rel="noreferrer" className="hover:text-white underline">GitHub</a>
+            <span>•</span>
+            <a href="https://www.linkedin.com/in/mehmet-%C5%9Fahin-9a678917b/" target="_blank" rel="noreferrer" className="hover:text-white underline">LinkedIn</a>
           </div>
         </div>
         
         {/* Navigation Column */}
         <div className="md:col-span-3">
           <h4 className="text-white font-bold text-base mb-4">{t('footer-quick')}</h4>
-          <ul className="space-y-2.5 text-slate-300">
+          <ul className="space-y-2.5 text-slate-300 text-xs sm:text-sm">
             <li><Link to="/" className="hover:text-cyan-400 transition-colors">{t('nav-home')}</Link></li>
             <li><Link to="/agency" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-cyan-400" /> {t('nav-agency')}</Link></li>
             <li><Link to="/crash-test" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-cyan-400" /> {t('nav-crashtest')}</Link></li>
             <li><Link to="/about" className="hover:text-cyan-400 transition-colors">{t('nav-about')}</Link></li>
-            <li><a href="/#services" className="hover:text-cyan-400 transition-colors">{t('nav-services')}</a></li>
+            <li><a href="/#faq" className="hover:text-cyan-400 transition-colors">{isTr ? 'Sıkça Sorulan Sorular (SSS)' : 'FAQ'}</a></li>
             <li><a href="/#contact" className="hover:text-cyan-400 transition-colors">{t('nav-contact')}</a></li>
+            <li>
+              <button 
+                onClick={() => setIsKVKKOpen(true)} 
+                className="hover:text-cyan-400 transition-colors cursor-pointer text-left text-slate-400 text-xs"
+              >
+                {isTr ? '🔒 KVKK & Gizlilik Politikası' : '🔒 Privacy Policy & NDA'}
+              </button>
+            </li>
           </ul>
         </div>
         
         {/* Security & Guarantee Column */}
         <div className="md:col-span-4 space-y-3">
           <h4 className="text-white font-bold text-base flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" /> {t('footer-security-title')}
+            <ShieldCheck className="w-4 h-4 text-emerald-400" /> {isTr ? 'Şeffaf Hizmet & Fiyat Çıpası' : 'Transparent Pricing Anchors'}
           </h4>
-          <p className="text-slate-400 text-xs sm:text-sm leading-relaxed">
-            {t('footer-security-desc')}
-          </p>
+          <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2 text-xs text-slate-300">
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span>İlk Kod Teşhisi & Triyaj:</span>
+              <strong className="text-emerald-400 font-mono">Ücretsiz (0 TL)</strong>
+            </div>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span>Acil Hotfix SWAT Müdahalesi:</span>
+              <strong className="text-cyan-300 font-mono">Önceden Sabit Fiyat</strong>
+            </div>
+            <div className="flex justify-between">
+              <span>White-Label Geliştirme Sprinti:</span>
+              <strong className="text-purple-300 font-mono">Haftalık Sabit Bütçe</strong>
+            </div>
+          </div>
           <div className="pt-2 text-xs space-y-1.5 font-mono text-slate-400">
             <div className="flex items-center gap-2">
               <PhoneCall className="w-3.5 h-3.5 text-cyan-400" />
@@ -63,22 +91,26 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Konak / İzmir, Türkiye</span>
+              <span>Heris Tower No:55/091 Konak / İzmir</span>
             </div>
           </div>
         </div>
 
       </div>
       
-      {/* Bottom Copyright without social links */}
+      {/* Bottom Copyright */}
       <div className="max-w-7xl mx-auto pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
-        <p>{t('footer-copy')}</p>
+        <p>© 2026 Trend Master Akademi Studio & Labs. Tüm hakları saklıdır.</p>
         <div className="flex items-center gap-4 text-slate-400">
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400"></span> Response Desk Active</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400"></span> Response Desk: Online</span>
           <span>•</span>
-          <span>%100 White-Label Partner</span>
+          <button onClick={() => setIsKVKKOpen(true)} className="hover:text-cyan-400 transition-colors cursor-pointer">
+            {isTr ? 'KVKK ve Gizlilik' : 'Privacy & Terms'}
+          </button>
         </div>
       </div>
+
+      <KVKKModal isOpen={isKVKKOpen} onClose={() => setIsKVKKOpen(false)} />
     </footer>
   );
 };

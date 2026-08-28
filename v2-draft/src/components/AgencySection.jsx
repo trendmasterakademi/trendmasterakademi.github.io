@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Flame, Users, Clock, ArrowRight, Zap, Lock, FileCode } from 'lucide-react';
-import TypewriterText from './TypewriterText';
 
 const AgencySection = () => {
   const { t } = useTranslation();
@@ -19,10 +18,10 @@ const AgencySection = () => {
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white tracking-tight leading-tight">
               <span className="block">
-                <TypewriterText text={t('agency-sec-title')} speed={35} delay={100} showCursor={false} />
+                {t('agency-sec-title')}
               </span>
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-                <TypewriterText text={t('agency-sec-title-highlight')} speed={35} delay={1050} cursorColor="text-cyan-400" />
+                {t('agency-sec-title-highlight')}
               </span>
             </h2>
           </div>
