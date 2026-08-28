@@ -36,7 +36,7 @@ const Footer = () => {
             <span>•</span>
             <a href="https://github.com/trendmasterakademi" target="_blank" rel="noreferrer" className="hover:text-white underline">GitHub</a>
             <span>•</span>
-            <a href="https://www.linkedin.com/in/mehmet-%C5%9Fahin-9a678917b/" target="_blank" rel="noreferrer" className="hover:text-white underline">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/trendmasterakademi/" target="_blank" rel="noreferrer" className="hover:text-white underline">LinkedIn</a>
           </div>
         </div>
         
