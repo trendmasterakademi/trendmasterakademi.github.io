@@ -5,7 +5,7 @@ import {
   ShieldAlert, AlertTriangle, CheckCircle2, ArrowRight, ArrowLeft, 
   RotateCcw, Copy, ExternalLink, Flame, Zap, Clock, ShieldCheck, 
   Terminal, Lock, Layers, Server, Code2, Users, FileCode, Check, Cpu,
-  PhoneCall
+  PhoneCall, Mail, Send
 } from 'lucide-react';
 import EmergencySOSModal from '../components/EmergencySOSModal';
 
