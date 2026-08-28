@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  Flame, Server, ShieldCheck, Cpu, Smartphone, Database, CheckCircle2, ArrowRight, Zap, Bot, Lock, Code2 
+  Flame, Server, ShieldCheck, ShieldAlert, Cpu, Smartphone, Database, CheckCircle2, ArrowRight, Zap, Bot, Lock, Code2 
 } from 'lucide-react';
 
 const Services = () => {
