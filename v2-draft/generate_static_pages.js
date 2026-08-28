@@ -1,6 +1,7 @@
-﻿import fs from 'fs';
+import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { glossaryTerms } from './src/data/glossaryData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,7 +16,7 @@ if (!fs.existsSync(templatePath)) {
 
 const template = fs.readFileSync(templatePath, 'utf8');
 
-const pages = [
+const basePages = [
   {
     dir: 'agency',
     title: 'Ajans Çözümleri & B2B White-Label Mühendislik Masası | Trend Master Akademi',
@@ -33,6 +34,33 @@ const pages = [
     ogUrl: 'https://trendmasterakademi.com/crash-test/',
     heading: 'Agency Crash Test // 60 Saniyede Ajans Kriz Dayanıklılık Skoru',
     subheading: 'Kritik kod kilitlenmeleri, devir süreçleri tıkanmış projeler veya yaklaşan teslimat baskısı altında ajansınızın risk puanını ölçün.'
+  },
+  {
+    dir: 'devir-kontrolu',
+    title: 'Devir Hazırlık Kontrolü (12 Kalem) - Yazılımcı Ayrılık Riski | Trend Master Akademi',
+    description: 'Yazılımcınız ayrılıyor veya ayrıldı mı? 12 kritik kalemi kontrol edin, devir risk skorunuzu ve eksik envanterinizi 60 saniyede ücretsiz analiz edin.',
+    canonical: 'https://trendmasterakademi.com/devir-kontrolu/',
+    ogUrl: 'https://trendmasterakademi.com/devir-kontrolu/',
+    heading: 'Devir Hazırlık Kontrolü // 12 Kalemlik Geliştirici Ayrılık Denetimi',
+    subheading: 'Git repo, ortam değişkenleri, DNS ve ödeme anahtarlarınızı ayrılan geliştiriciden eksiksiz devralıp almadığınızı test edin.'
+  },
+  {
+    dir: 'sozluk',
+    title: 'Yazılımcı Dili → Ajans Dili Teknik Terim Sözlüğü | Trend Master Akademi',
+    description: 'Yazılımcınız teknik bir bahane sunduğunda ne anlama geldiğini öğrenin. Deadlock, N+1, Race Condition, Webhook ve 12 temel terimin iş etkisi ve çözümü.',
+    canonical: 'https://trendmasterakademi.com/sozluk/',
+    ogUrl: 'https://trendmasterakademi.com/sozluk/',
+    heading: 'Yazılımcı Dili → Ajans Dili Terim Sözlüğü',
+    subheading: 'Teknik jargonu ajans patronunun diline çeviren pratik rehber.'
+  },
+  {
+    dir: 'kesinti-maliyeti',
+    title: 'Web Sitesi Kesinti Maliyeti Hesaplayıcı (Downtime Calculator) | Trend Master Akademi',
+    description: 'Sunucu çökmesi veya HTTP 500 kesintisinde saatlik ve toplam tahmini ciro kaybınızı hesaplayın. Şeffaf matematik ve kurtarma ROI analizi.',
+    canonical: 'https://trendmasterakademi.com/kesinti-maliyeti/',
+    ogUrl: 'https://trendmasterakademi.com/kesinti-maliyeti/',
+    heading: 'Web Sitesi & API Kesinti Maliyeti Hesaplayıcı',
+    subheading: 'Sistem çöktüğünde geçen her dakikanın ajansınıza ve müşterinize gerçek finansal ve itibar maliyetini hesaplayın.'
   },
   {
     dir: 'about',
@@ -63,6 +91,19 @@ const pages = [
   }
 ];
 
+// Add each glossary term page dynamically
+const glossaryPages = glossaryTerms.map(term => ({
+  dir: `sozluk/${term.slug}`,
+  title: `${term.title} Nedir? Ajanslar İçin Teknik Rehber | Trend Master Akademi`,
+  description: `${term.title}: ${term.shortDef.tr}`,
+  canonical: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
+  ogUrl: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
+  heading: term.title,
+  subheading: `${term.shortDef.tr} ${term.agencyImpact.tr}`
+}));
+
+const pages = [...basePages, ...glossaryPages];
+
 pages.forEach(page => {
   const targetDir = path.join(distDir, page.dir);
   if (!fs.existsSync(targetDir)) {
@@ -92,7 +133,7 @@ pages.forEach(page => {
   html = html.replace(/<meta name="twitter:description" content=".*?" \/>/i, `<meta name="twitter:description" content="${page.description}" />`);
   html = html.replace(/<meta name="twitter:image" content=".*?" \/>/i, `<meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />`);
 
-  // Clean Hreflang for this specific page
+  // Clean Hreflang for this specific page (Self-referencing tr and x-default, NO en)
   html = html.replace(/<link rel="alternate" hreflang="tr" href=".*?" \/>/i, `<link rel="alternate" hreflang="tr" href="${page.canonical}" />`);
   html = html.replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/i, `<link rel="alternate" hreflang="x-default" href="${page.canonical}" />`);
   html = html.replace(/<link rel="alternate" hreflang="en" href=".*?" \/>\s*/i, '');
@@ -106,6 +147,9 @@ pages.forEach(page => {
           <a href="/" class="hover:underline">Ana Sayfa</a>
           <a href="/agency/" class="hover:underline">Ajans Çözümleri</a>
           <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
+          <a href="/sozluk/" class="hover:underline">Terim Sözlüğü</a>
+          <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
           <a href="/about/" class="hover:underline">Hakkımızda</a>
           <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
         </nav>
@@ -129,4 +173,4 @@ pages.forEach(page => {
   console.log(`Generated: ${page.dir}/index.html (200 OK static page ready)`);
 });
 
-console.log('All static sub-pages generated successfully!');
+console.log(`All ${pages.length} static sub-pages generated successfully!`);

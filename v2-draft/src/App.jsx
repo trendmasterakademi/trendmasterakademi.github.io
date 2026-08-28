@@ -8,6 +8,10 @@ import About from './pages/About';
 import Agency from './pages/Agency';
 import CrashTest from './pages/CrashTest';
 import Privacy from './pages/Privacy';
+import DevirKontrolu from './pages/DevirKontrolu';
+import GlossaryIndex from './pages/GlossaryIndex';
+import GlossaryTerm from './pages/GlossaryTerm';
+import KesintiMaliyeti from './pages/KesintiMaliyeti';
 import CookieBanner from './components/CookieBanner';
 
 function App() {
@@ -20,6 +24,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/agency" element={<Agency />} />
             <Route path="/crash-test" element={<CrashTest />} />
+            <Route path="/devir-kontrolu" element={<DevirKontrolu />} />
+            <Route path="/sozluk" element={<GlossaryIndex />} />
+            <Route path="/sozluk/:slug" element={<GlossaryTerm />} />
+            <Route path="/kesinti-maliyeti" element={<KesintiMaliyeti />} />
             <Route path="/about" element={<About />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/gizlilik" element={<Privacy />} />

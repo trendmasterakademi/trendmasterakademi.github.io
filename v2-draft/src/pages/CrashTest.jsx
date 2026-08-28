@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 import { 
   ShieldAlert, AlertTriangle, CheckCircle2, ArrowRight, ArrowLeft, 
   RotateCcw, Copy, ExternalLink, Flame, Zap, Clock, ShieldCheck, 
@@ -735,6 +736,60 @@ const CrashTest = () => {
                 </div>
               </div>
             </div>
+
+            {/* Handover Cross-Link Tool Box */}
+            {selectedScenario?.code === 'SCN-02' && (
+              <div className="p-6 sm:p-7 rounded-3xl bg-cyan-950/40 border border-cyan-500/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+                <div className="space-y-1.5 text-center sm:text-left">
+                  <div className="flex items-center justify-center sm:justify-start gap-2">
+                    <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+                    <span className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wider">
+                      {isTr ? 'ÖZEL DEVİR HAZIRLIK ENVENTERİ' : 'DEDICATED HANDOVER AUDIT'}
+                    </span>
+                  </div>
+                  <h4 className="text-base sm:text-lg font-bold text-white">
+                    {isTr ? 'Ayrılan yazılımcının elindeki 12 kritik kalemi tek tek kontrol edin' : 'Audit 12 critical handover checkpoints before your developer departs'}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-300">
+                    {isTr ? 'Git, DNS, .env, DB yedeği ve ödeme anahtarlarını test eden 60 saniyelik ücretsiz denetim aracı.' : 'Verify Git, DNS, .env secrets, DB dumps, and payment access in 60 seconds.'}
+                  </p>
+                </div>
+                <Link
+                  to="/devir-kontrolu/"
+                  className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-xs sm:text-sm whitespace-nowrap flex items-center gap-2 shadow-lg shadow-cyan-500/25 transition-all cursor-pointer transform hover:-translate-y-0.5"
+                >
+                  <span>{isTr ? '12 Kalemlik Devir Kontrolü →' : '12-Point Handover Audit →'}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            )}
+
+            {/* HTTP 500 Downtime Calculator Cross-Link Tool Box */}
+            {(selectedScenario?.code === 'HTTP 500' || selectedScenario?.code === 'SCN-01') && (
+              <div className="p-6 sm:p-7 rounded-3xl bg-red-950/40 border border-red-500/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
+                <div className="space-y-1.5 text-center sm:text-left">
+                  <div className="flex items-center justify-center sm:justify-start gap-2">
+                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+                    <span className="text-xs font-mono font-bold text-red-300 uppercase tracking-wider">
+                      {isTr ? 'ÖZEL KESİNTİ MALİYETİ SİMÜLATÖRÜ' : 'DEDICATED DOWNTIME LOSS CALCULATOR'}
+                    </span>
+                  </div>
+                  <h4 className="text-base sm:text-lg font-bold text-white">
+                    {isTr ? 'Bu kesintinin saatlik ve toplam ciro kaybını hesaplamak ister misiniz?' : 'Calculate the exact hourly and total turnover loss of this downtime'}
+                  </h4>
+                  <p className="text-xs sm:text-sm text-slate-300">
+                    {isTr ? 'Sektörünüze ve ciro aralığınıza göre tahmini finansal kaybı ve SLA riskini modelleyin.' : 'Model financial loss, churn risk, and SWAT remediation savings in 30 seconds.'}
+                  </p>
+                </div>
+                <Link
+                  to="/kesinti-maliyeti/"
+                  className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-400 hover:to-orange-400 text-bg-dark font-black text-xs sm:text-sm whitespace-nowrap flex items-center gap-2 shadow-lg shadow-red-500/25 transition-all cursor-pointer transform hover:-translate-y-0.5"
+                >
+                  <span>{isTr ? 'Kesinti Maliyeti Hesaplayıcı →' : 'Downtime Loss Calculator →'}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            )}
 
             {/* Email Lead Capture Card */}
             <div className="p-8 rounded-3xl bg-[#0e1626] border border-cyan-500/30 text-left space-y-5 shadow-2xl">
