@@ -179,7 +179,7 @@ const Agency = () => {
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/agency');
+      canonical.setAttribute('href', 'https://trendmasterakademi.com/agency/');
     }
   }, [isTr]);
 
@@ -303,11 +303,11 @@ const Agency = () => {
                   ? 'Ajans tarafında teknik bir iş outsource edildiğinde en büyük problemin yalnızca kod yazılması olmadığını biliyoruz. İletişim kopukluğu, teslim tarihlerinin sürekli ötelenmesi, dokümantasyonsuz kod veya teslimden sonra ulaşılamayan kişiler ajansın itibarını riske atar.' 
                   : 'We understand that outsourcing technical work involves more than code. Poor communication, missed deadlines, spaghetti code, and unresponsive developers risk your agency’s hard-earned client reputation.'}
               </p>
-              <p className="text-white font-semibold pt-4 border-t border-white/10">
-                {isTr 
-                  ? 'Bu nedenle çalışma modelimizi %100 şeffaf tutuyor; doğrudan kıdemli mühendislik ekibimiz üzerinden hızlı, güvenilir ve sürdürülebilir çözümler üretiyoruz.' 
-                  : 'That’s why our model is 100% transparent: you collaborate directly with senior engineers delivering rapid, reliable, and sustainable technical solutions.'}
-              </p>
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+                  {isTr 
+                    ? 'Bu nedenle çalışma modelimizi %100 şeffaf tutuyor; doğrudan kıdemli mühendislik masamız (Mehmet Şahin) üzerinden hızlı, güvenilir ve sürdürülebilir çözümler üretiyoruz.' 
+                    : 'That’s why our model is 100% transparent, executing directly via our senior engineering desk (Mehmet Sahin) with speed and dependable code.'}
+                </p>
             </div>
           </div>
         </section>

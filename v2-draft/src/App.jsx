@@ -7,6 +7,8 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Agency from './pages/Agency';
 import CrashTest from './pages/CrashTest';
+import Privacy from './pages/Privacy';
+import CookieBanner from './components/CookieBanner';
 
 function App() {
   return (
@@ -19,10 +21,14 @@ function App() {
             <Route path="/agency" element={<Agency />} />
             <Route path="/crash-test" element={<CrashTest />} />
             <Route path="/about" element={<About />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/gizlilik" element={<Privacy />} />
+            <Route path="/kvkk" element={<Privacy />} />
           </Routes>
         </main>
         <Footer />
         <FloatingActions />
+        <CookieBanner />
       </div>
     </Router>
   );

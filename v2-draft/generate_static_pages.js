@@ -20,17 +20,17 @@ const pages = [
     dir: 'agency',
     title: 'Ajans Çözümleri & B2B White-Label Mühendislik Masası | Trend Master Akademi',
     description: 'Dijital ajansların görünmez teknik gücü: %100 White-Label, resmi NDA güvencesi, 20+ teknik yetkinlik, acil kriz masası ve kıdemli mühendislik takviyesi.',
-    canonical: 'https://trendmasterakademi.com/agency',
-    ogUrl: 'https://trendmasterakademi.com/agency',
+    canonical: 'https://trendmasterakademi.com/agency/',
+    ogUrl: 'https://trendmasterakademi.com/agency/',
     heading: 'Ajansınızın Yerine Değil, Ajansınızın Yanında Güvenilir Mühendislik Masası.',
-    subheading: 'Bir projede teknik olarak tıkandığınızda, teslim tarihi yaklaştığında veya ekibinizin kapasitesi dolduğunda: %100 White-Label, resmi NDA ve doğrudan kıdemli mühendislik desteği.'
+    subheading: 'Bir projede teknik olarak tıkandığınızda, teslim tarihi yaklaştığında veya ekibinizin kapasitesi dolduğunda: %100 White-Label, resmi NDA ve doğrudan kıdemli mühendislik desteği (Mehmet Şahin).'
   },
   {
     dir: 'crash-test',
     title: 'Agency Crash Test (60sn) - Kriz & Risk Simülatörü | Trend Master Akademi',
     description: 'Ajansınız teknik bir krize hazır mı? HTTP 500 kesintisi, geliştirici ani ayrılığı veya T-48H lansman darboğazı için 60 saniyede risk skorunuzu ve eylem planınızı görün.',
-    canonical: 'https://trendmasterakademi.com/crash-test',
-    ogUrl: 'https://trendmasterakademi.com/crash-test',
+    canonical: 'https://trendmasterakademi.com/crash-test/',
+    ogUrl: 'https://trendmasterakademi.com/crash-test/',
     heading: 'Agency Crash Test // 60 Saniyede Ajans Kriz Dayanıklılık Skoru',
     subheading: 'Kritik kod kilitlenmeleri, devir süreçleri tıkanmış projeler veya yaklaşan teslimat baskısı altında ajansınızın risk puanını ölçün.'
   },
@@ -38,10 +38,28 @@ const pages = [
     dir: 'about',
     title: 'Mühendislik Standartlarımız & Hakkımızda | Trend Master Akademi',
     description: 'Kurucu & Developer Mehmet Şahin liderliğinde Trend Master Akademi mühendislik standartları, 4 temel prensip ve B2B SWAT vizyonu.',
-    canonical: 'https://trendmasterakademi.com/about',
-    ogUrl: 'https://trendmasterakademi.com/about',
+    canonical: 'https://trendmasterakademi.com/about/',
+    ogUrl: 'https://trendmasterakademi.com/about/',
     heading: 'Ajansların Güvendiği Arka Plan Mühendislik Masası',
-    subheading: 'Kurucu ve geliştirici Mehmet Şahin liderliğinde modern web, SaaS, API mimarileri ve acil kod kurtarma (SWAT) stüdyosu.'
+    subheading: 'Kurucu ve kıdemli geliştirici Mehmet Şahin liderliğinde modern web, SaaS, API mimarileri ve acil kod kurtarma (SWAT) stüdyosu.'
+  },
+  {
+    dir: 'privacy',
+    title: 'KVKK Aydınlatma Metni & Gizlilik Politikası | Trend Master Akademi',
+    description: 'Trend Master Akademi KVKK aydınlatma metni, veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik standartları.',
+    canonical: 'https://trendmasterakademi.com/privacy/',
+    ogUrl: 'https://trendmasterakademi.com/privacy/',
+    heading: 'KVKK Aydınlatma Metni & Gizlilik Politikası',
+    subheading: '6698 sayılı KVKK kapsamında veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik ilkeleri.'
+  },
+  {
+    dir: 'gizlilik',
+    title: 'KVKK Aydınlatma Metni & Gizlilik Politikası | Trend Master Akademi',
+    description: 'Trend Master Akademi KVKK aydınlatma metni, veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik standartları.',
+    canonical: 'https://trendmasterakademi.com/privacy/',
+    ogUrl: 'https://trendmasterakademi.com/privacy/',
+    heading: 'KVKK Aydınlatma Metni & Gizlilik Politikası',
+    subheading: '6698 sayılı KVKK kapsamında veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik ilkeleri.'
   }
 ];
 
@@ -66,32 +84,43 @@ pages.forEach(page => {
   html = html.replace(/<meta property="og:title" content=".*?" \/>/i, `<meta property="og:title" content="${page.title}" />`);
   html = html.replace(/<meta property="og:url" content=".*?" \/>/i, `<meta property="og:url" content="${page.ogUrl}" />`);
   html = html.replace(/<meta property="og:description" content=".*?" \/>/i, `<meta property="og:description" content="${page.description}" />`);
+  html = html.replace(/<meta property="og:image" content=".*?" \/>/i, `<meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />`);
 
   // Replace Twitter Title & URL
   html = html.replace(/<meta name="twitter:title" content=".*?" \/>/i, `<meta name="twitter:title" content="${page.title}" />`);
   html = html.replace(/<meta name="twitter:url" content=".*?" \/>/i, `<meta name="twitter:url" content="${page.ogUrl}" />`);
   html = html.replace(/<meta name="twitter:description" content=".*?" \/>/i, `<meta name="twitter:description" content="${page.description}" />`);
+  html = html.replace(/<meta name="twitter:image" content=".*?" \/>/i, `<meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />`);
 
-  // Ensure Pre-rendered Semantic HTML is tailored
+  // Clean Hreflang for this specific page
+  html = html.replace(/<link rel="alternate" hreflang="tr" href=".*?" \/>/i, `<link rel="alternate" hreflang="tr" href="${page.canonical}" />`);
+  html = html.replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/i, `<link rel="alternate" hreflang="x-default" href="${page.canonical}" />`);
+  // Remove conflicting hreflang="en"
+  html = html.replace(/<link rel="alternate" hreflang="en" href=".*?" \/>\s*/i, '');
+
+  // Ensure Pre-rendered Semantic HTML is visible & cleanly styled (No display:none / No aria-hidden penalty)
   const semanticBlock = `
-      <header style="display:none" aria-hidden="true">
-        <h1>${page.title}</h1>
-        <nav>
-          <a href="/">Ana Sayfa</a>
-          <a href="/agency">Ajans Çözümleri</a>
-          <a href="/crash-test">Agency Crash Test (60sn)</a>
-          <a href="/about">Hakkımızda & Mühendislik Standartları</a>
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
+      <header class="mb-8 border-b border-white/10 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">${page.title}</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/agency/" class="hover:underline">Ajans Çözümleri</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/about/" class="hover:underline">Hakkımızda</a>
+          <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
         </nav>
       </header>
-      <main style="display:none" aria-hidden="true">
-        <h2>${page.heading}</h2>
-        <p>${page.subheading}</p>
-        <section>
-          <h3>Trend Master Akademi Studio & Labs</h3>
-          <p>Kurucu & Kıdemli Geliştirici: Mehmet Şahin | Telefon: +90 534 371 35 73 | E-posta: info@trendmasterakademi.com</p>
-          <p>Adres: Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir</p>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-white">${page.heading}</h2>
+        <p class="text-slate-300 text-lg leading-relaxed">${page.subheading}</p>
+        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
+          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-slate-400">Kurucu & Kıdemli Geliştirici: Mehmet Şahin | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir</p>
         </section>
       </main>
+    </div>
   `;
 
   html = html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root">${semanticBlock}</div>`);

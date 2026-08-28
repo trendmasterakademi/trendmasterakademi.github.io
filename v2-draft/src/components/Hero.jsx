@@ -217,7 +217,7 @@ const Hero = () => {
               className="px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl font-bold text-sm sm:text-base border border-white/20 hover:bg-white/5 text-white transition-all flex items-center justify-center gap-2 min-h-[48px] w-full sm:w-auto text-center"
             >
               <Clock className="w-5 h-5 text-cyan-400" />
-              <span>{isTr ? '📅 15-20 Dk Tanışma Randevusu' : '📅 Book 15-20m Intro Call'}</span>
+              <span>{isTr ? '💬 WhatsApp’tan Tanışma Randevusu Al' : '💬 Book Intro Call via WhatsApp'}</span>
             </a>
           </div>
 

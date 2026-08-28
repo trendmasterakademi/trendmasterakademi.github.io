@@ -208,7 +208,7 @@ const CrashTest = () => {
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/crash-test');
+      canonical.setAttribute('href', 'https://trendmasterakademi.com/crash-test/');
     }
   }, [isTr]);
 
@@ -661,8 +661,8 @@ const CrashTest = () => {
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                     {isTr 
-                      ? 'Eksik modüllerin tamamlanması, spagetti kodun temizlenmesi ve kritik API entegrasyonlarının doğrudan kıdemli mühendislik ekibimizce ayağa kaldırılması.' 
-                      : 'Completing missing endpoints, refactoring messy logic, and rebuilding broken API integrations directly with our senior engineering squad.'}
+                      ? 'Eksik modüllerin tamamlanması, spagetti kodun temizlenmesi ve kritik API entegrasyonlarının doğrudan kıdemli mühendislik masamızca (Mehmet Şahin) ayağa kaldırılması.' 
+                      : 'Completing missing endpoints, refactoring messy logic, and rebuilding broken API integrations directly with our senior engineering desk (Mehmet Sahin).'}
                   </p>
                 </div>
 
@@ -703,10 +703,28 @@ const CrashTest = () => {
                 </div>
               </div>
 
-              {leadSent ? (
+              {leadSent === 'success' ? (
                 <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-emerald-300 text-sm font-bold">
                   <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-400" />
                   <span>{isTr ? 'Rapor talebiniz başarıyla kaydedildi! Kriz masası ekibimiz analizi hazırlayıp iletecektir.' : 'Report request logged successfully! Our SWAT engineers will deliver your blueprint.'}</span>
+                </div>
+              ) : leadSent === 'error' ? (
+                <div className="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 space-y-3">
+                  <div className="flex items-center gap-3 text-amber-300 text-sm font-bold">
+                    <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-400" />
+                    <span>{isTr ? 'Ağ kesintisi nedeniyle otomatik iletilemedi.' : 'Network interruption during auto-dispatch.'}</span>
+                  </div>
+                  <p className="text-xs text-slate-300">
+                    {isTr ? 'Analiz skorunuz ve eylem planınız hazır. Aşağıdaki butona tıklayarak WhatsApp üzerinden raporu hemen talep edebilirsiniz:' : 'Your diagnosis is ready. Request your blueprint directly via WhatsApp:'}
+                  </p>
+                  <button
+                    type="button"
+                    onClick={openWhatsAppDispatch}
+                    className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                  >
+                    <PhoneCall className="w-4 h-4" />
+                    <span>{isTr ? 'WhatsApp ile Raporu Talep Et →' : 'Request Blueprint via WhatsApp →'}</span>
+                  </button>
                 </div>
               ) : (
                 <form 
@@ -714,7 +732,7 @@ const CrashTest = () => {
                     e.preventDefault();
                     setIsSendingLead(true);
                     try {
-                      await fetch('https://api.web3forms.com/submit', {
+                      const response = await fetch('https://api.web3forms.com/submit', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
                         body: JSON.stringify({
@@ -730,14 +748,25 @@ const CrashTest = () => {
                           turnaroundSLA: turnaroundSLA,
                           timestamp: new Date().toISOString()
                         })
-                      }).catch(err => console.log('Lead err:', err));
+                      });
+                      const data = await response.json();
+                      if (response.ok && data.success) {
+                        setLeadSent('success');
+                      } else {
+                        throw new Error(data.message || 'Submission failed');
+                      }
+                    } catch (err) {
+                      console.error('Lead err:', err);
+                      setLeadSent('error');
                     } finally {
                       setIsSendingLead(false);
-                      setLeadSent(true);
                     }
                   }} 
                   className="grid grid-cols-1 sm:grid-cols-3 gap-3.5"
                 >
+                  {/* Honeypot */}
+                  <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+
                   <input
                     type="text"
                     required

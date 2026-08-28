@@ -1,7 +1,8 @@
 ﻿import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MessageSquare, PhoneCall, Mail, MapPin, ShieldCheck, Send, ArrowRight, Clock, CheckCircle2 } from 'lucide-react';
+import { MessageSquare, PhoneCall, Mail, MapPin, ShieldCheck, Send, CheckCircle2, AlertTriangle, RefreshCw } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
@@ -12,17 +13,24 @@ const Contact = () => {
     email: '', 
     phone: '', 
     message: '',
-    kvkkConsent: true
+    kvkkConsent: true,
+    botcheck: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (formData.botcheck) {
+      console.warn('Bot detected via honeypot.');
+      return;
+    }
+
     setIsSubmitting(true);
+    setSubmitStatus(null);
 
     try {
-      await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -39,12 +47,19 @@ const Contact = () => {
           message: formData.message,
           timestamp: new Date().toISOString()
         })
-      }).catch(err => console.log('Lead sync noted:', err));
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        setSubmitStatus('success');
+      } else {
+        throw new Error(data.message || 'Submission failed');
+      }
     } catch (err) {
-      console.log('Lead capture error:', err);
+      console.error('Lead capture error:', err);
+      setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
-      setIsSubmitted(true);
     }
   };
 
@@ -72,8 +87,8 @@ const Contact = () => {
   };
 
   const handleReset = () => {
-    setFormData({ name: '', agency: '', email: '', phone: '', message: '', kvkkConsent: true });
-    setIsSubmitted(false);
+    setFormData({ name: '', agency: '', email: '', phone: '', message: '', kvkkConsent: true, botcheck: '' });
+    setSubmitStatus(null);
   };
 
   return (
@@ -170,7 +185,7 @@ const Contact = () => {
           viewport={{ once: true }}
           className="lg:col-span-7 glass-panel p-7 sm:p-10 rounded-3xl border border-cyan-500/25 bg-[#111827]/85 shadow-2xl"
         >
-          {isSubmitted ? (
+          {submitStatus === 'success' ? (
             <div className="flex flex-col items-center justify-center text-center py-8 space-y-6">
               <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.3)]">
                 <CheckCircle2 className="w-8 h-8" />
@@ -182,8 +197,8 @@ const Contact = () => {
                 </h3>
                 <p className="text-slate-300 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
                   {isTr 
-                    ? 'Talebiniz kriz masası gelen kutumuza ulaştı. Dilerseniz hemen WhatsApp üzerinden mesajı iletebilir veya tanışma randevusu seçebilirsiniz.' 
-                    : 'Your inquiry has reached our engineering triage desk. You can also forward it directly on WhatsApp or book an introductory call.'}
+                    ? 'Talebiniz kriz masası gelen kutumuza güvenle ulaştı. Dilerseniz hemen WhatsApp üzerinden doğrudan iletişime geçebilirsiniz.' 
+                    : 'Your inquiry has reached our engineering triage desk. You can also forward it directly on WhatsApp.'}
                 </p>
               </div>
 
@@ -214,9 +229,65 @@ const Contact = () => {
                 </button>
               </div>
             </div>
+          ) : submitStatus === 'error' ? (
+            <div className="flex flex-col items-center justify-center text-center py-8 space-y-6">
+              <div className="w-16 h-16 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.3)]">
+                <AlertTriangle className="w-8 h-8" />
+              </div>
+              
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold text-white">
+                  {isTr ? 'Sunucu Bağlantısı Kurulamadı' : 'Server Connection Interrupted'}
+                </h3>
+                <p className="text-amber-200 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+                  {isTr 
+                    ? 'Ağ kesintisi nedeniyle otomatik kayıt iletilemedi. Ancak bilgileriniz hazır; aşağıdaki butona tıklayarak tek tıkla WhatsApp kriz masasına iletebilirsiniz:' 
+                    : 'Network timeout prevented automated form storage. Your brief is preserved below — dispatch directly via WhatsApp:'}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
+                <button
+                  type="button"
+                  onClick={handleOpenWhatsApp}
+                  className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-sm sm:text-base flex items-center gap-2 shadow-xl shadow-emerald-500/30 hover:opacity-95 transition-all cursor-pointer animate-pulse"
+                >
+                  <MessageSquare className="w-5 h-5" />
+                  <span>{isTr ? 'WhatsApp ile Anında Gönder (Tek Tıkla)' : 'Send via WhatsApp (One-Click)'}</span>
+                </button>
+
+                <a
+                  href="tel:+905343713573"
+                  className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm flex items-center gap-2 transition-colors"
+                >
+                  <PhoneCall className="w-4 h-4 text-cyan-400" />
+                  <span>+90 534 371 35 73</span>
+                </a>
+
+                <button
+                  type="button"
+                  onClick={() => setSubmitStatus(null)}
+                  className="px-5 py-2.5 rounded-xl text-slate-400 hover:text-white text-xs font-semibold transition-colors cursor-pointer w-full flex items-center justify-center gap-1.5"
+                >
+                  <RefreshCw className="w-3.5 h-3.5" />
+                  <span>{isTr ? 'Tekrar Dene' : 'Try Again'}</span>
+                </button>
+              </div>
+            </div>
           ) : (
             <form onSubmit={handleSubmit} className="flex flex-col gap-5">
               
+              {/* Honeypot anti-spam */}
+              <input 
+                type="checkbox" 
+                name="botcheck" 
+                className="hidden" 
+                style={{ display: 'none' }} 
+                tabIndex={-1} 
+                autoComplete="off"
+                onChange={e => setFormData({...formData, botcheck: e.target.checked ? 'bot' : ''})}
+              />
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-bold text-slate-200 mb-2">
@@ -306,8 +377,8 @@ const Contact = () => {
                 />
                 <label htmlFor="kvkk" className="text-xs text-slate-400 leading-relaxed cursor-pointer">
                   {isTr 
-                    ? 'İletişim bilgilerimin kriz masası değerlendirmesi ve geri dönüş amacıyla işlenmesini onaylıyorum (KVKK ve Gizlilik Politikası uyarınca bilgileriniz 3. taraflarla paylaşılmaz).' 
-                    : 'I consent to the processing of my contact details for triage and response purposes under NDA and Privacy standards.'}
+                    ? <>İletişim bilgilerimin kriz masası değerlendirmesi ve geri dönüş amacıyla işlenmesini onaylıyorum (<Link to="/privacy" className="text-cyan-400 underline hover:text-cyan-300">KVKK ve Gizlilik Politikası</Link> uyarınca bilgileriniz 3. taraflarla paylaşılmaz).</>
+                    : <>I consent to the processing of my contact details for triage and response under <Link to="/privacy" className="text-cyan-400 underline hover:text-cyan-300">Privacy Policy</Link> standards.</>}
                 </label>
               </div>
               

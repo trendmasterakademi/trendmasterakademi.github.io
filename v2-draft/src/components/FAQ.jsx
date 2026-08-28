@@ -163,7 +163,7 @@ const FAQ = () => {
               {isTr ? 'Aklınıza takılan farklı bir soru mu var?' : 'Have a different question in mind?'}
             </span>
             <span className="text-slate-400 text-xs sm:text-sm">
-              {isTr ? 'Kriz masası ve teknik ekibimizle anında görüşebilirsiniz.' : 'Reach out directly to our technical triage desk.'}
+              {isTr ? 'Kriz masası ve geliştiricimizle (Mehmet Şahin) doğrudan görüşebilirsiniz.' : 'Reach out directly to senior engineer Mehmet Sahin.'}
             </span>
           </div>
           <a

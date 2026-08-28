@@ -23,7 +23,7 @@ const About = () => {
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/about');
+      canonical.setAttribute('href', 'https://trendmasterakademi.com/about/');
     }
   }, [isTr]);
 

@@ -1,7 +1,7 @@
 ﻿import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { AlertTriangle, X, PhoneCall, ShieldCheck, Clock, Send, CheckCircle2 } from 'lucide-react';
+import { AlertTriangle, X, PhoneCall, ShieldCheck, Clock, Send, CheckCircle2, MessageSquare, RefreshCw } from 'lucide-react';
 
 const EmergencySOSModal = ({ isOpen, onClose }) => {
   const { i18n } = useTranslation();
@@ -13,20 +13,39 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
   const [urgency, setUrgency] = useState('critical');
   const [problemDesc, setProblemDesc] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    const urgencyLabel = urgency === 'critical' 
+  const getUrgencyLabel = () => {
+    return urgency === 'critical' 
       ? (isTr ? '🔴 KRİTİK (0-2 Saat Müdahale Gerekli)' : '🔴 CRITICAL (0-2h Immediate Intervention)')
       : urgency === 'high'
       ? (isTr ? '🟠 YÜKSEK (Bugün Çözülmeli / T-48H)' : '🟠 HIGH (Must Be Resolved Today / T-48H)')
       : (isTr ? '🟡 PLANLI DESTEK (Kapasite Artışı)' : '🟡 PLANNED SUPPORT (Capacity Surge)');
+  };
+
+  const getWhatsAppUrl = () => {
+    const phone = "905343713573";
+    const text = encodeURIComponent(
+      `🚨 *TMA ACİL TEKNİK KRİZ BİLDİRİMİ (SOS)* 🚨\n\n` +
+      `🏢 *${isTr ? 'Ajans / Şirket:' : 'Agency / Company:'}* ${agencyName || (isTr ? 'Belirtilmedi' : 'Not specified')}\n` +
+      `👤 *${isTr ? 'Yetkili:' : 'Contact Person:'}* ${contactPerson || (isTr ? 'Belirtilmedi' : 'Not specified')}\n` +
+      `📞 *${isTr ? 'Telefon / WhatsApp:' : 'Phone / WhatsApp:'}* ${contactPhone}\n` +
+      `⚡ *${isTr ? 'Aciliyet Düzeyi:' : 'Urgency Level:'}* ${getUrgencyLabel()}\n` +
+      `📝 *${isTr ? 'Kriz Özeti:' : 'Crisis Scope:'}* ${problemDesc}\n\n` +
+      `_TMA Response Desk üzerinden gönderildi._`
+    );
+    return `https://wa.me/${phone}?text=${text}`;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+
+    const urgencyLabel = getUrgencyLabel();
 
     try {
-      await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -43,24 +62,21 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
           problemDesc: problemDesc,
           timestamp: new Date().toISOString()
         })
-      }).catch(err => console.log('SOS sync noted:', err));
+      });
+
+      const data = await response.json();
+      if (response.ok && data.success) {
+        setSubmitStatus('success');
+        // Automatically trigger WhatsApp forward
+        window.open(getWhatsAppUrl(), '_blank');
+      } else {
+        throw new Error(data.message || 'SOS dispatch failed');
+      }
     } catch (err) {
-      console.log('SOS error:', err);
+      console.error('SOS submit error:', err);
+      setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
-      setSubmitted(true);
-
-      const phone = "905343713573";
-      const text = encodeURIComponent(
-        `🚨 *TMA ACİL TEKNİK KRİZ BİLDİRİMİ (SOS)* 🚨\n\n` +
-        `🏢 *${isTr ? 'Ajans / Şirket:' : 'Agency / Company:'}* ${agencyName || (isTr ? 'Belirtilmedi' : 'Not specified')}\n` +
-        `👤 *${isTr ? 'Yetkili:' : 'Contact Person:'}* ${contactPerson || (isTr ? 'Belirtilmedi' : 'Not specified')}\n` +
-        `📞 *${isTr ? 'Telefon / WhatsApp:' : 'Phone / WhatsApp:'}* ${contactPhone}\n` +
-        `⚡ *${isTr ? 'Aciliyet Düzeyi:' : 'Urgency Level:'}* ${urgencyLabel}\n` +
-        `📝 *${isTr ? 'Kriz Özeti:' : 'Crisis Scope:'}* ${problemDesc}\n\n` +
-        `_TMA Response Desk üzerinden gönderildi._`
-      );
-      window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
     }
   };
 
@@ -109,12 +125,12 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 
             <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed mb-3">
               {isTr 
-                ? 'Teslim tarihi sıkışan, geliştiricisi ayrılan veya canlıda kilitlenen projeler için doğrudan kıdemli mühendislik ekibimiz devreye girer.' 
+                ? 'Teslim tarihi sıkışan, geliştiricisi ayrılan veya canlıda kilitlenen projeler için doğrudan kıdemli mühendislik masamız (Mehmet Şahin) devreye girer.' 
                 : 'Direct senior engineering dispatch for locked codebases, abandoned repos, or mission-critical launch deadlines.'}
             </p>
 
-          {submitted ? (
-            <div className="py-8 text-center flex flex-col items-center gap-3">
+          {submitStatus === 'success' ? (
+            <div className="py-8 text-center flex flex-col items-center gap-4">
               <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500 flex items-center justify-center text-emerald-400">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
@@ -122,18 +138,65 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                 {isTr ? 'Kriz Bildirimi Kaydedildi & İletildi!' : 'Crisis Ticket Saved & Dispatched!'}
               </h4>
               <p className="text-sm text-slate-300 max-w-md">
-                {isTr ? 'Bildiriminiz kriz masamıza kaydedildi ve WhatsApp üzerinden Developer Mehmet Şahin’e doğrudan aktarıldı.' : 'Your ticket is logged and forwarded directly to Developer Mehmet Sahin.'}
+                {isTr ? 'Bildiriminiz kriz masamıza kaydedildi ve WhatsApp üzerinden doğrudan Developer Mehmet Şahin’e aktarıldı.' : 'Your ticket is logged and forwarded directly to Developer Mehmet Sahin.'}
               </p>
-              <button
-                type="button"
-                onClick={onClose}
-                className="mt-2 px-6 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold cursor-pointer"
-              >
-                {isTr ? 'Pencereyi Kapat' : 'Close Window'}
-              </button>
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <a
+                  href={getWhatsAppUrl()}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-xs sm:text-sm flex items-center gap-2"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span>{isTr ? 'WhatsApp Mesajını Aç' : 'Open WhatsApp'}</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold cursor-pointer"
+                >
+                  {isTr ? 'Pencereyi Kapat' : 'Close Window'}
+                </button>
+              </div>
+            </div>
+          ) : submitStatus === 'error' ? (
+            <div className="py-8 text-center flex flex-col items-center gap-4">
+              <div className="w-16 h-16 rounded-full bg-amber-500/20 border border-amber-500 flex items-center justify-center text-amber-400">
+                <AlertTriangle className="w-8 h-8" />
+              </div>
+              <h4 className="text-xl font-bold text-white">
+                {isTr ? 'Ağ Kesintisi Nedeniyle Otomatik İletilemedi' : 'Network Interruption During Dispatch'}
+              </h4>
+              <p className="text-sm text-amber-200 max-w-md">
+                {isTr 
+                  ? 'Kriz bilgileriniz hazırlandı. Aşağıdaki butona basarak doğrudan WhatsApp üzerinden Mehmet Şahin’e anında iletebilirsiniz:' 
+                  : 'Your crisis scope is ready. Dispatch directly via WhatsApp below:'}
+              </p>
+              <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                <a
+                  href={getWhatsAppUrl()}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/25 animate-pulse"
+                >
+                  <MessageSquare className="w-4 h-4" />
+                  <span>{isTr ? 'WhatsApp ile Anında Gönder (Tek Tıkla)' : 'Send via WhatsApp (One-Click)'}</span>
+                </a>
+                <a
+                  href="tel:+905343713573"
+                  className="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs sm:text-sm flex items-center gap-2"
+                >
+                  <PhoneCall className="w-4 h-4 text-cyan-400" />
+                  <span>+90 534 371 35 73</span>
+                </a>
+              </div>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
+              
+              {/* Honeypot */}
+              <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
                   <label className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">

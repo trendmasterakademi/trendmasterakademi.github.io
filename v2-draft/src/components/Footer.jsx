@@ -51,12 +51,12 @@ const Footer = () => {
             <li><a href="/#faq" className="hover:text-cyan-400 transition-colors">{isTr ? 'Sıkça Sorulan Sorular (SSS)' : 'FAQ'}</a></li>
             <li><a href="/#contact" className="hover:text-cyan-400 transition-colors">{t('nav-contact')}</a></li>
             <li>
-              <button 
-                onClick={() => setIsKVKKOpen(true)} 
-                className="hover:text-cyan-400 transition-colors cursor-pointer text-left text-slate-400 text-xs"
+              <Link 
+                to="/privacy" 
+                className="hover:text-cyan-400 transition-colors flex items-center gap-1 text-slate-400 text-xs"
               >
                 {isTr ? '🔒 KVKK & Gizlilik Politikası' : '🔒 Privacy Policy & NDA'}
-              </button>
+              </Link>
             </li>
           </ul>
         </div>
