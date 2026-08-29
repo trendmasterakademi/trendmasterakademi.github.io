@@ -66,7 +66,7 @@ const CookieBanner = () => {
             {isTr 
               ? 'Sitemizde deneyimi iyileştirmek amacıyla analitik (GA4) ve oturum ölçüm (Clarity) araçları kullanılmaktadır. Formlara yazılan tüm kriz ve kod detayları katı şekilde maskelenir.' 
               : 'We utilize analytics (GA4) and session telemetry (Clarity) for diagnostics. All private form inputs are strictly masked under mutual NDA.'}{' '}
-            <Link to="/privacy" className="text-cyan-400 underline hover:text-cyan-300">
+            <Link to="/privacy/" className="text-cyan-400 underline hover:text-cyan-300">
               {isTr ? 'Ayrıntılı Gizlilik Politikası' : 'Privacy Policy'}
             </Link>
           </p>

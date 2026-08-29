@@ -42,15 +42,33 @@ function App() {
           <Suspense fallback={<PageFallback />}>
             <Routes>
               <Route path="/" element={<Home />} />
+              
+              <Route path="/agency/" element={<Agency />} />
               <Route path="/agency" element={<Agency />} />
+              
+              <Route path="/crash-test/" element={<CrashTest />} />
               <Route path="/crash-test" element={<CrashTest />} />
+              
+              <Route path="/devir-kontrolu/" element={<DevirKontrolu />} />
               <Route path="/devir-kontrolu" element={<DevirKontrolu />} />
+              
+              <Route path="/sozluk/" element={<GlossaryIndex />} />
               <Route path="/sozluk" element={<GlossaryIndex />} />
+              
+              <Route path="/sozluk/:slug/" element={<GlossaryTerm />} />
               <Route path="/sozluk/:slug" element={<GlossaryTerm />} />
+              
+              <Route path="/kesinti-maliyeti/" element={<KesintiMaliyeti />} />
               <Route path="/kesinti-maliyeti" element={<KesintiMaliyeti />} />
+              
+              <Route path="/about/" element={<About />} />
               <Route path="/about" element={<About />} />
+              
+              <Route path="/privacy/" element={<Privacy />} />
               <Route path="/privacy" element={<Privacy />} />
+              <Route path="/gizlilik/" element={<Privacy />} />
               <Route path="/gizlilik" element={<Privacy />} />
+              <Route path="/kvkk/" element={<Privacy />} />
               <Route path="/kvkk" element={<Privacy />} />
             </Routes>
           </Suspense>

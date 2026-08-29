@@ -45,14 +45,14 @@ const Footer = () => {
           <h3 className="text-white font-bold text-base mb-4">{t('footer-quick')}</h3>
           <ul className="space-y-2.5 text-slate-300 text-xs sm:text-sm">
             <li><Link to="/" className="hover:text-cyan-400 transition-colors">{t('nav-home')}</Link></li>
-            <li><Link to="/agency" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-cyan-400" /> {t('nav-agency')}</Link></li>
-            <li><Link to="/crash-test" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-cyan-400" /> {t('nav-crashtest')}</Link></li>
-            <li><Link to="/about" className="hover:text-cyan-400 transition-colors">{t('nav-about')}</Link></li>
+            <li><Link to="/agency/" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-cyan-400" /> {t('nav-agency')}</Link></li>
+            <li><Link to="/crash-test/" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-cyan-400" /> {t('nav-crashtest')}</Link></li>
+            <li><Link to="/about/" className="hover:text-cyan-400 transition-colors">{t('nav-about')}</Link></li>
             <li><a href="/#faq" className="hover:text-cyan-400 transition-colors">{isTr ? 'Sıkça Sorulan Sorular (SSS)' : 'FAQ'}</a></li>
             <li><a href="/#contact" className="hover:text-cyan-400 transition-colors">{t('nav-contact')}</a></li>
             <li>
               <Link 
-                to="/privacy" 
+                to="/privacy/" 
                 className="hover:text-cyan-400 transition-colors flex items-center gap-1 text-slate-400 text-xs"
               >
                 {isTr ? '🔒 KVKK & Gizlilik Politikası' : '🔒 Privacy Policy & NDA'}

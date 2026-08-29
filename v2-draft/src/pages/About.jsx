@@ -124,7 +124,7 @@ const About = () => {
           </div>
           <div className="flex items-center gap-3">
             <Link
-              to="/agency"
+              to="/agency/"
               className="px-6 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm whitespace-nowrap flex items-center gap-2 shadow-lg shadow-cyan-500/25"
             >
               <span>{isTr ? 'Ajans Çözümlerini İncele' : 'Explore Agency Solutions'}</span>

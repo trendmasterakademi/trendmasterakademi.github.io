@@ -201,7 +201,7 @@ const Hero = () => {
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-1 w-full sm:w-auto">
             <Link
-              to="/crash-test"
+              to="/crash-test/"
               onClick={() => window.trackEvent && window.trackEvent('crash_test_clicked', { source: 'hero_cta' })}
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5 min-h-[48px] w-full sm:w-auto text-center"
             >
@@ -388,7 +388,7 @@ const Hero = () => {
                 </div>
 
                 <Link
-                  to="/crash-test"
+                  to="/crash-test/"
                   className="text-cyan-400 hover:text-white font-bold flex items-center gap-1 transition-colors text-[10.5px] sm:text-xs group"
                 >
                   <span>Crash Test Simülatörü</span>

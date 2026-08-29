@@ -218,7 +218,7 @@ const Agency = () => {
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
-              to="/crash-test"
+              to="/crash-test/"
               className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center gap-3 transition-all transform hover:-translate-y-0.5 min-h-[48px]"
             >
               <Zap className="w-5 h-5 fill-current" />
@@ -607,7 +607,7 @@ const Agency = () => {
                 </a>
 
                 <Link
-                  to="/crash-test"
+                  to="/crash-test/"
                   className="px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10 text-white font-bold text-sm sm:text-base flex items-center gap-2 transition-colors min-h-[48px]"
                 >
                   <Zap className="w-5 h-5 text-cyan-400 fill-current" />

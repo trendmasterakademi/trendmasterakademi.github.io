@@ -383,8 +383,8 @@ const Contact = () => {
                 />
                 <label htmlFor="kvkk" className="text-xs text-slate-400 leading-relaxed cursor-pointer">
                   {isTr 
-                    ? <>İletişim bilgilerimin kriz masası değerlendirmesi ve geri dönüş amacıyla işlenmesini onaylıyorum (<Link to="/privacy" className="text-cyan-400 underline hover:text-cyan-300">KVKK ve Gizlilik Politikası</Link> uyarınca bilgileriniz 3. taraflarla paylaşılmaz).</>
-                    : <>I consent to the processing of my contact details for triage and response under <Link to="/privacy" className="text-cyan-400 underline hover:text-cyan-300">Privacy Policy</Link> standards.</>}
+                    ? <>İletişim bilgilerimin kriz masası değerlendirmesi ve geri dönüş amacıyla işlenmesini onaylıyorum (<Link to="/privacy/" className="text-cyan-400 underline hover:text-cyan-300">KVKK ve Gizlilik Politikası</Link> uyarınca bilgileriniz 3. taraflarla paylaşılmaz).</>
+                    : <>I consent to the processing of my contact details for triage and response under <Link to="/privacy/" className="text-cyan-400 underline hover:text-cyan-300">Privacy Policy</Link> standards.</>}
                 </label>
               </div>
               

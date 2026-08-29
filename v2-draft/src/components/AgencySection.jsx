@@ -30,7 +30,7 @@ const AgencySection = () => {
               {t('agency-sec-desc')}
             </p>
             <Link
-              to="/agency"
+              to="/agency/"
               className="text-sm font-mono font-bold text-cyan-400 hover:text-white flex items-center gap-1.5 group transition-colors"
             >
               <span>{t('agency-sec-link')}</span>
@@ -61,7 +61,7 @@ const AgencySection = () => {
               </p>
             </div>
             <Link
-              to="/crash-test"
+              to="/crash-test/"
               className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-red-400 hover:text-white flex items-center justify-between transition-colors"
             >
               <span>{t('crisis-card1-action')}</span>
@@ -87,7 +87,7 @@ const AgencySection = () => {
               </p>
             </div>
             <Link
-              to="/crash-test"
+              to="/crash-test/"
               className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-amber-400 hover:text-white flex items-center justify-between transition-colors"
             >
               <span>{t('crisis-card2-action')}</span>
@@ -113,7 +113,7 @@ const AgencySection = () => {
               </p>
             </div>
             <Link
-              to="/crash-test"
+              to="/crash-test/"
               className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-cyan-400 hover:text-white flex items-center justify-between transition-colors"
             >
               <span>{t('crisis-card3-action')}</span>
@@ -141,7 +141,7 @@ const AgencySection = () => {
 
           <div className="flex items-center gap-3">
             <Link
-              to="/crash-test"
+              to="/crash-test/"
               className="px-6 py-3 rounded-full bg-cyan-500 text-bg-dark font-bold text-sm hover:bg-cyan-400 transition-colors flex items-center gap-2 shadow-lg shadow-cyan-500/20"
             >
               <Zap className="w-4 h-4 fill-current" />
