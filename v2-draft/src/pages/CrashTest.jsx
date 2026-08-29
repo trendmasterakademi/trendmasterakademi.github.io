@@ -417,27 +417,29 @@ const CrashTest = () => {
           </div>
         )}
 
-        {/* Step Indicator */}
-        <div className="flex items-center justify-center gap-2 sm:gap-3 mb-8">
-          {[
-            { s: 1, label: isTr ? '01. Kriz Senaryosu' : '01. Crisis Scenario' },
-            { s: 2, label: isTr ? '02. Durum Teşhisi' : '02. Diagnosis' },
-            { s: 3, label: isTr ? '03. Risk Raporu & Reçete' : '03. Risk Blueprint' }
-          ].map((item) => (
-            <div
-              key={item.s}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-mono transition-all ${
-                step === item.s
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-bold shadow-[0_0_15px_rgba(0,229,255,0.2)]'
-                  : step > item.s
-                  ? 'bg-white/5 text-emerald-400 border border-emerald-500/30'
-                  : 'bg-white/5 text-slate-500 border border-white/5'
-              }`}
-            >
-              <span>{item.label}</span>
-            </div>
-          ))}
-        </div>
+        {/* STEP 1: Breadcrumb Tabs */}
+        {step === 1 && (
+          <div className="flex items-center justify-center gap-2 sm:gap-4 mb-8 flex-wrap">
+            {[
+              { s: 1, label: isTr ? '01. Senaryo Seçimi' : '01. Scenario' },
+              { s: 2, label: isTr ? '02. Durum Teşhisi' : '02. Diagnosis' },
+              { s: 3, label: isTr ? '03. Risk Raporu & Reçete' : '03. Risk Blueprint' }
+            ].map((item) => (
+              <div
+                key={item.s}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-mono transition-all ${
+                  step === item.s
+                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-bold shadow-[0_0_15px_rgba(0,229,255,0.2)]'
+                    : step > item.s
+                    ? 'bg-white/5 text-emerald-400 border border-emerald-500/30'
+                    : 'bg-white/5 text-slate-500 border border-white/5'
+                }`}
+              >
+                <span>{item.label}</span>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* STEP 1: Scenario Selection */}
         {step === 1 && (
@@ -515,28 +517,52 @@ const CrashTest = () => {
           <div
             
             
-            className="space-y-8"
+            className="space-y-6"
           >
-            {/* Sticky Selected Scenario & Progress Mini-Banner */}
-            <div className="sticky top-[72px] sm:top-[92px] md:top-[96px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/98 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_15px_45px_rgba(0,0,0,0.95)] flex flex-wrap items-center justify-between gap-3 transition-all">
-              <div className="flex items-center gap-3">
-                <span className="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-mono font-bold bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
-                  {selectedScenario.code}
-                </span>
-                <div>
-                  <strong className="text-white text-sm sm:text-base block">{selectedScenario.title[isTr ? 'tr' : 'en']}</strong>
-                  <span className="text-xs text-slate-400">
-                    {Object.keys(answers).length} / {currentQuestions.length} {isTr ? 'Soru Yanıtlandı' : 'Answered'}
+            {/* Sticky Unified Scenario & Progress Header */}
+            <div className="sticky top-[64px] sm:top-[74px] md:top-[80px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/98 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_15px_45px_rgba(0,0,0,0.95)] space-y-3.5 transition-all">
+              {/* Eyebrow & Status Bar */}
+              <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-white/10 text-xs font-mono">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
+                  <span className="text-[11px] sm:text-xs text-slate-300 uppercase tracking-wider">
+                    TMA Crash Simulator // {selectedScenario.code}
                   </span>
                 </div>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-red-500/10 text-red-400 border border-red-500/30">
+                  {isTr ? '%100 Güvenli Analiz' : '100% Confidential'}
+                </span>
               </div>
-              <button
-                type="button"
-                onClick={() => setStep(1)}
-                className="text-xs sm:text-sm text-slate-400 hover:text-white underline cursor-pointer"
-              >
-                {isTr ? 'Senaryoyu Değiştir' : 'Change Scenario'}
-              </button>
+
+              {/* Progress & Title Row */}
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <span className="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-mono font-bold bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
+                    {selectedScenario.code}
+                  </span>
+                  <div>
+                    <strong className="text-white text-sm sm:text-base block">{selectedScenario.title[isTr ? 'tr' : 'en']}</strong>
+                    <span className="text-xs text-slate-400">
+                      {Object.keys(answers).length} / {currentQuestions.length} {isTr ? 'Soru Yanıtlandı' : 'Answered'}
+                    </span>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <div className="w-28 sm:w-48 h-2.5 sm:h-3 bg-black/50 rounded-full overflow-hidden border border-white/10">
+                    <div 
+                      className="h-full bg-gradient-to-r from-red-500 to-amber-400 transition-all duration-300"
+                      style={{ width: `${(Object.keys(answers).length / currentQuestions.length) * 100}%` }}
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setStep(1)}
+                    className="text-xs sm:text-sm text-slate-400 hover:text-white underline cursor-pointer whitespace-nowrap"
+                  >
+                    {isTr ? 'Senaryoyu Değiştir' : 'Change Scenario'}
+                  </button>
+                </div>
+              </div>
             </div>
 
             {/* Questions List */}

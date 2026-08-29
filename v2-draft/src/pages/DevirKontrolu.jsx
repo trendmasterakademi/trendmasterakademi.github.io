@@ -426,20 +426,22 @@ const DevirKontrolu = () => {
 
       <div className="max-w-5xl mx-auto">
         
-        {/* Eyebrow & Status Bar */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-white/10">
-          <div className="flex items-center gap-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span className="text-xs sm:text-sm font-mono tracking-widest text-slate-300 uppercase">
-              TMA Diagnostic Tool // Handover Readiness v1.0
-            </span>
+        {/* STEP 1: Eyebrow & Status Bar */}
+        {step === 1 && (
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-white/10">
+            <div className="flex items-center gap-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="text-xs sm:text-sm font-mono tracking-widest text-slate-300 uppercase">
+                TMA Diagnostic Tool // Handover Readiness v1.0
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                %100 Gizlilik Güvencesi
+              </span>
+            </div>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
-              %100 Gizlilik Güvencesi
-            </span>
-          </div>
-        </div>
+        )}
 
         {/* STEP 1: Intro Screen */}
         {step === 1 && (
@@ -517,29 +519,45 @@ const DevirKontrolu = () => {
           <div
             
             
-            className="space-y-8"
+            className="space-y-6"
           >
-            {/* Sticky Progress Header */}
-            <div className="sticky top-[72px] sm:top-[92px] md:top-[96px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/98 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_15px_45px_rgba(0,0,0,0.95)] flex flex-wrap items-center justify-between gap-4 transition-all">
-              <div>
-                <span className="text-[10px] sm:text-xs font-mono uppercase text-cyan-400 font-bold block mb-0.5">
-                  {isTr ? 'Adım 2 / 2 · Canlı İlerleme' : 'Step 2 / 2 · Live Progress'}
-                </span>
-                <h2 className="text-base sm:text-xl font-bold text-white leading-tight">
-                  {isTr ? '12 Kalemlik Devir Kontrol Listesi' : '12-Point Handover Audit Checklist'}
-                </h2>
-                <span className="text-xs font-mono text-slate-300 block mt-1 font-semibold">
-                  <span className="text-cyan-400 font-bold">{answeredCount}</span> / {handoverItems.length} {isTr ? 'Kalem Yanıtlandı' : 'Answered'}
-                  {answeredCount === handoverItems.length && (
-                    <span className="text-emerald-400 ml-2 font-bold">{isTr ? '✓ Hazır' : '✓ Ready'}</span>
-                  )}
+            {/* Sticky Unified Diagnostic & Progress Header */}
+            <div className="sticky top-[64px] sm:top-[74px] md:top-[80px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/98 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_15px_45px_rgba(0,0,0,0.95)] space-y-3.5 transition-all">
+              {/* Eyebrow & Status Bar */}
+              <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-white/10 text-xs font-mono">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span className="text-[11px] sm:text-xs text-slate-300 uppercase tracking-wider">
+                    TMA Diagnostic Tool // Handover Readiness v1.0
+                  </span>
+                </div>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                  %100 Gizlilik Güvencesi
                 </span>
               </div>
-              <div className="w-full sm:w-64 h-3 bg-black/50 rounded-full overflow-hidden border border-white/10 flex-shrink-0">
-                <div 
-                  className="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-300 shadow-[0_0_12px_rgba(0,229,255,0.5)]"
-                  style={{ width: `${(answeredCount / handoverItems.length) * 100}%` }}
-                />
+
+              {/* Progress & Title Row */}
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <span className="text-[10px] sm:text-xs font-mono uppercase text-cyan-400 font-bold block">
+                    {isTr ? 'Adım 2 / 2 · Canlı İlerleme' : 'Step 2 / 2 · Live Progress'}
+                  </span>
+                  <h2 className="text-sm sm:text-lg md:text-xl font-bold text-white leading-tight">
+                    {isTr ? '12 Kalemlik Devir Kontrol Listesi' : '12-Point Handover Audit Checklist'}
+                  </h2>
+                  <span className="text-xs font-mono text-slate-300 block mt-0.5 font-semibold">
+                    <span className="text-cyan-400 font-bold">{answeredCount}</span> / {handoverItems.length} {isTr ? 'Kalem Yanıtlandı' : 'Answered'}
+                    {answeredCount === handoverItems.length && (
+                      <span className="text-emerald-400 ml-2 font-bold">{isTr ? '✓ Analiz Hazır' : '✓ Ready'}</span>
+                    )}
+                  </span>
+                </div>
+                <div className="w-full sm:w-64 h-2.5 sm:h-3 bg-black/50 rounded-full overflow-hidden border border-white/10 flex-shrink-0">
+                  <div 
+                    className="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-300 shadow-[0_0_12px_rgba(0,229,255,0.5)]"
+                    style={{ width: `${(answeredCount / handoverItems.length) * 100}%` }}
+                  />
+                </div>
               </div>
             </div>
 
