@@ -183,7 +183,7 @@ const Agency = () => {
   }, [isTr]);
 
   return (
-    <div className="min-h-screen pt-28 pb-28 bg-[#080b11] text-slate-200 relative overflow-hidden font-sans">
+    <div className="min-h-screen pt-28 pb-28 bg-[#080b11] text-slate-200 relative  font-sans">
       
       {/* Background Cyber Atmosphere */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[650px] bg-gradient-to-b from-cyan-500/10 via-blue-500/5 to-transparent blur-[150px] pointer-events-none -z-10"></div>

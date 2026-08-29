@@ -36,9 +36,9 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#080b11] text-slate-200 selection:bg-cyan-500 selection:text-black overflow-x-hidden w-full max-w-full relative font-sans">
+      <div className="min-h-screen bg-[#080b11] text-slate-200 selection:bg-cyan-500 selection:text-black w-full max-w-full relative font-sans">
         <Navbar />
-        <main className="overflow-x-hidden w-full max-w-full">
+        <main className="w-full max-w-full">
           <Suspense fallback={<PageFallback />}>
             <Routes>
               <Route path="/" element={<Home />} />

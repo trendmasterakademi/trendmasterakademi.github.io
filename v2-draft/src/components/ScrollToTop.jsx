@@ -2,7 +2,7 @@ import { useLayoutEffect, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export const ScrollToTop = () => {
-  const { pathname, hash } = useLocation();
+  const { pathname, search, hash } = useLocation();
 
   useEffect(() => {
     if (typeof window !== 'undefined' && 'scrollRestoration' in window.history) {
@@ -18,25 +18,29 @@ export const ScrollToTop = () => {
         if (el) {
           el.scrollIntoView({ behavior: 'smooth' });
         }
-      }, 60);
+      }, 80);
       return () => clearTimeout(timer);
     }
 
-    const scrollToTop = () => {
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    const forceScrollTop = () => {
+      window.scrollTo(0, 0);
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
     };
 
-    scrollToTop();
-    const rafId = requestAnimationFrame(scrollToTop);
-    const timeoutId = setTimeout(scrollToTop, 50);
+    forceScrollTop();
+    const raf1 = requestAnimationFrame(forceScrollTop);
+    const raf2 = requestAnimationFrame(() => requestAnimationFrame(forceScrollTop));
+    const t1 = setTimeout(forceScrollTop, 30);
+    const t2 = setTimeout(forceScrollTop, 100);
 
     return () => {
-      cancelAnimationFrame(rafId);
-      clearTimeout(timeoutId);
+      cancelAnimationFrame(raf1);
+      cancelAnimationFrame(raf2);
+      clearTimeout(t1);
+      clearTimeout(t2);
     };
-  }, [pathname, hash]);
+  }, [pathname, search, hash]);
 
   return null;
 };
