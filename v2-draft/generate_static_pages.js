@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { glossaryTerms } from './src/data/glossaryData.js';
+import { teshisData } from './src/data/teshisData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -114,6 +115,16 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/nda/',
     ogUrl: 'https://trendmasterakademi.com/nda/',
     subheading: 'Çalışmaya başlamadan önce karşılıklı bir gizlilik ve çalışma sözleşmesi imzalıyoruz. Ne imzalayacağınızı önceden bilmeniz için sözleşmenin ne dediğini burada sade dille anlattık.'
+  },
+  {
+    dir: 'teshis',
+    title: 'Teşhis Kataloğu | Trend Master Akademi',
+    h1: 'Teşhis Kataloğu',
+    description: 'Belirtiden nedene: yazılım arızalarının ajans diliyle teşhis rehberi.',
+    canonical: 'https://trendmasterakademi.com/teshis/',
+    ogUrl: 'https://trendmasterakademi.com/teshis/',
+    heading: 'Teşhis Kataloğu',
+    subheading: 'Okuyucu teknik terimle değil belirtiyle gelir: "aynı stok iki kişiye satıldı", "bulut hesabı askıya alındı". Uzmanlık, aynı belirtiyi üreten farklı nedenleri birbirinden ayırabilmekte görünür.'
   }
 ];
 
@@ -129,7 +140,19 @@ const glossaryPages = glossaryTerms.map(term => ({
   subheading: `${term.shortDef.tr} ${term.agencyImpact.tr}`
 }));
 
-const pages = [...basePages, ...glossaryPages];
+// Add each diagnostic page dynamically
+const teshisPages = teshisData.map(item => ({
+  dir: `teshis/${item.slug}`,
+  title: `${item.baslik.tr} | Trend Master Akademi`,
+  h1: item.baslik.tr,
+  description: item.ozet.tr.split('.')[0] + '.',
+  canonical: `https://trendmasterakademi.com/teshis/${item.slug}/`,
+  ogUrl: `https://trendmasterakademi.com/teshis/${item.slug}/`,
+  heading: item.baslik.tr,
+  subheading: item.ozet.tr
+}));
+
+const pages = [...basePages, ...glossaryPages, ...teshisPages];
 
 pages.forEach(page => {
   const targetDir = path.join(distDir, page.dir);

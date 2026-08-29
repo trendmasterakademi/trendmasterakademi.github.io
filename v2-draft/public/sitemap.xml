@@ -177,4 +177,36 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/nda/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/nda/" />
   </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/" />
+  </url>
 </urlset>
