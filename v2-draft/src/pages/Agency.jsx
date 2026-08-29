@@ -439,11 +439,20 @@ const Agency = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white">
               {isTr ? 'Ajanslar Adına Kurtarılan & Teslim Edilen Projeler' : 'Rescued & Delivered on Behalf of Partner Agencies'}
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 mt-4 leading-relaxed">
+            <p className="text-sm sm:text-base text-slate-300 mt-4 leading-relaxed max-w-2xl mx-auto">
               {isTr 
-                ? 'Müşteri gizliliği ve NDA gereği marka isimleri maskelenmiştir; mimari detaylar ve operasyonel metrikler %100 gerçektir.' 
-                : 'Brand identities are masked per mutual NDA covenants; technical architectures and SLA metrics reflect real interventions.'}
+                ? 'Bu sayfada hiçbir müşterinin adı yazmıyor — sizinki de yazmayacak. Anlatılan senaryolar yürüttüğümüz gerçek projelerden alınmıştır; kimliğe dair her ayrıntı çıkarılmıştır.' 
+                : 'No client is named on this page — and yours never will be. These scenarios are drawn from real engagements; every identifying detail has been removed.'}
             </p>
+            <div className="mt-3.5">
+              <Link
+                to="/about/"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono font-bold text-cyan-400 hover:text-cyan-300 transition-colors underline decoration-cyan-500/40 hover:decoration-cyan-400"
+              >
+                <span>{isTr ? 'Kendi kimliğimizi yayınlıyoruz. Müşterilerimizinkini asla.' : "We publish our own legal identity. Never our clients'."}</span>
+                <span>→</span>
+              </Link>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

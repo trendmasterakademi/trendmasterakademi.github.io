@@ -30,7 +30,6 @@ const Navbar = () => {
 
       const sections = [
         { id: 'contact', el: document.getElementById('contact') },
-        { id: 'testimonials', el: document.getElementById('testimonials') },
         { id: 'services', el: document.getElementById('services') },
         { id: 'agency-preview', el: document.getElementById('agency-preview') },
         { id: 'hero', el: document.getElementById('hero') }
