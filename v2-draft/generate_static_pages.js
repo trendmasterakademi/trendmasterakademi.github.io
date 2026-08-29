@@ -74,6 +74,16 @@ const basePages = [
     description: 'Trend Master Akademi mühendislik standartları, 4 temel prensip ve B2B SWAT vizyonu.',
     canonical: 'https://trendmasterakademi.com/about/',
     ogUrl: 'https://trendmasterakademi.com/about/',
+    heading: 'Ajansların Güvendiği Arka Plan Mühendislik Masası',
+    subheading: 'Modern web, SaaS, API mimarileri ve acil kod kurtarma (SWAT) stüdyosu.'
+  },
+  {
+    dir: 'hikayemiz',
+    title: 'Hikâyemiz & Kuruluş Anlatısı | Trend Master Akademi',
+    h1: "Trend Master Akademi'nin hikâyesi",
+    description: '20 yıllık finansal yazılım tecrübesi, online eğitimden doğan isim ve B2B mühendislik masası vizyonumuz.',
+    canonical: 'https://trendmasterakademi.com/hikayemiz/',
+    ogUrl: 'https://trendmasterakademi.com/hikayemiz/',
     heading: "Trend Master Akademi'nin hikâyesi",
     subheading: 'Aslında bu iş fikri bir online derste doğdu.'
   },

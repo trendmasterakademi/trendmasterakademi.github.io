@@ -15,6 +15,7 @@ const GlossaryIndex = lazy(() => import('./pages/GlossaryIndex'));
 const GlossaryTerm = lazy(() => import('./pages/GlossaryTerm'));
 const KesintiMaliyeti = lazy(() => import('./pages/KesintiMaliyeti'));
 const About = lazy(() => import('./pages/About'));
+const Story = lazy(() => import('./pages/Story'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 
 // Lightweight, thematic skeleton fallback matching pre-render aesthetic
@@ -63,6 +64,11 @@ function App() {
               
               <Route path="/about/" element={<About />} />
               <Route path="/about" element={<About />} />
+              
+              <Route path="/hikayemiz/" element={<Story />} />
+              <Route path="/hikayemiz" element={<Story />} />
+              <Route path="/story/" element={<Story />} />
+              <Route path="/story" element={<Story />} />
               
               <Route path="/privacy/" element={<Privacy />} />
               <Route path="/privacy" element={<Privacy />} />
