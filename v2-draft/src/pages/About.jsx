@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ShieldCheck, Server, Lock, Cpu, ArrowRight, Zap, PhoneCall } from 'lucide-react';
+import { ShieldCheck, Server, Lock, Cpu, ArrowRight, ArrowLeft, Zap, PhoneCall } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const About = () => {
