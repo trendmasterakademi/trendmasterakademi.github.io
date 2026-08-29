@@ -147,15 +147,23 @@
   </url>
   <url>
     <loc>https://trendmasterakademi.com/about/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/about/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/about/" />
   </url>
   <url>
+    <loc>https://trendmasterakademi.com/hikayemiz/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/hikayemiz/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/hikayemiz/" />
+  </url>
+  <url>
     <loc>https://trendmasterakademi.com/privacy/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-08-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/privacy/" />

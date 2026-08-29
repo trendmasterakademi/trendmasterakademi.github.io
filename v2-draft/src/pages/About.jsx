@@ -61,24 +61,43 @@ const About = () => {
           </p>
         </div>
 
-        {/* Brand Story Transition Banner */}
-        <div className="p-5 sm:p-6 rounded-3xl bg-cyan-500/10 border border-cyan-500/30 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-center sm:text-left space-y-1">
-            <h3 className="text-sm sm:text-base font-bold text-cyan-300">
-              {isTr ? 'Trend Master Akademi Adı Nereden Geliyor?' : 'Where Does the Name Trend Master Akademi Come From?'}
-            </h3>
-            <p className="text-xs text-slate-400">
-              {isTr 
-                ? '20 yıllık finansal yazılım geçmişimiz, online derslerden doğan adımız ve kuruluş hikâyemiz.' 
-                : 'Our 20-year software background, roots in online education, and brand story.'}
-            </p>
-          </div>
-          <Link
-            to="/hikayemiz/"
-            className="px-5 py-2.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-black text-xs sm:text-sm flex items-center gap-2 whitespace-nowrap transition-all shadow-md shadow-cyan-500/20"
-          >
-            <span>{isTr ? 'Hikâyemizi Oku →' : 'Read Our Story →'}</span>
-          </Link>
+        {/* Brand Story Teaser Block */}
+        <div className="p-6 sm:p-8 rounded-3xl bg-[#111827]/70 border border-cyan-500/30 space-y-4 max-w-4xl mx-auto">
+          <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
+            {isTr ? 'Trend Master Akademi Adı Nereden Geliyor?' : 'Where Does the Name "Akademi" Come From?'}
+          </h3>
+          
+          {isTr ? (
+            <div className="space-y-3 text-slate-300 text-base sm:text-lg leading-relaxed">
+              <p>
+                Aslında bu iş fikri bir online derste doğdu.
+              </p>
+              <p>
+                Yirmi yıldır finansal piyasaların içerisindeydim. Yazılım hep işimin ayrılmaz bir parçasıydı ama uzun süre yalnızca kendim için: kendi sistemlerimi yazdım, kendi fikirlerimi koda döktüm, kendi hatalarımı kendim ayıkladım.{' '}
+                <Link
+                  to="/hikayemiz/"
+                  className="text-cyan-400 hover:text-cyan-300 font-bold underline underline-offset-4 decoration-cyan-500/40 hover:decoration-cyan-400 transition-colors inline-block"
+                >
+                  Devamı...
+                </Link>
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-3 text-slate-300 text-base sm:text-lg leading-relaxed">
+              <p>
+                This business actually started in an online class.
+              </p>
+              <p>
+                I spent twenty years inside financial markets. Software was always inseparable from that work — but for a long time only for myself: I wrote my own systems, turned my own ideas into code, debugged my own mistakes.{' '}
+                <Link
+                  to="/hikayemiz/"
+                  className="text-cyan-400 hover:text-cyan-300 font-bold underline underline-offset-4 decoration-cyan-500/40 hover:decoration-cyan-400 transition-colors inline-block"
+                >
+                  Read more...
+                </Link>
+              </p>
+            </div>
+          )}
         </div>
 
         {/* 4 Core Pillars Section */}

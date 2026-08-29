@@ -30,13 +30,6 @@ const Footer = () => {
             {isTr 
               ? 'Dijital ajanslar ve teknoloji şirketleri için %100 White-Label, resmi NDA güvencesi altında çalışan kıdemli B2B mühendislik masası ve acil kod kurtarma stüdyosu.' 
               : 'Senior B2B engineering desk and emergency code SWAT recovery studio for digital agencies under 100% White-Label and strict mutual NDA.'}
-            {' '}
-            <Link 
-              to="/hikayemiz/" 
-              className="text-cyan-400 hover:text-cyan-300 font-bold underline decoration-cyan-500/40 hover:decoration-cyan-400 transition-colors inline-block cursor-pointer"
-            >
-              {isTr ? 'Devamı...' : 'Read more...'}
-            </Link>
           </p>
           <div className="pt-2 text-xs font-mono text-cyan-400 flex flex-wrap items-center gap-3">
             <span>B2B Mühendislik Masası: <strong>Trend Master Akademi Studio & Labs</strong></span>

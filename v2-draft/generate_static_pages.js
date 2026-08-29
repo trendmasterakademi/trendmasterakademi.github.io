@@ -84,7 +84,6 @@ const basePages = [
     description: '20 yıllık finansal yazılım tecrübesi, online eğitimden doğan isim ve B2B mühendislik masası vizyonumuz.',
     canonical: 'https://trendmasterakademi.com/hikayemiz/',
     ogUrl: 'https://trendmasterakademi.com/hikayemiz/',
-    heading: "Trend Master Akademi'nin hikâyesi",
     subheading: 'Aslında bu iş fikri bir online derste doğdu.'
   },
   {
@@ -174,7 +173,7 @@ pages.forEach(page => {
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">${page.heading}</h2>
+        ${page.heading ? `<h2 class="text-2xl font-bold text-white">${page.heading}</h2>` : ''}
         <p class="text-slate-300 text-lg leading-relaxed">${page.subheading}</p>
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
