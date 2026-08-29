@@ -558,195 +558,8 @@ export const teshisData = [
     }
   },
   {
-    "slug": "site-yavasladi-sunucu-bos",
-    "no": "04",
-    "baslik": {
-      "tr": "Site yavaşladı ama sunucu boş",
-      "en": "Site Stalled Despite Idle Server Resources"
-    },
-    "diyagramBaslik": {
-      "tr": "Yavaş ama sunucu boş",
-      "en": "Slow with idle server"
-    },
-    "kirinti": {
-      "tr": "Performans",
-      "en": "Performance"
-    },
-    "aciliyet": {
-      "seviye": "yuksek",
-      "etiket": {
-        "tr": "Yüksek · dönüşüm kaybı",
-        "en": "High · conversion loss"
-      }
-    },
-    "ozet": {
-      "tr": "Sayfalar geç açılıyor ama sunucu kaynakları rahat görünüyor. 'Sunucu yetersiz' denip plan yükseltilir, hiçbir şey değişmez. Boş bir sunucuda yavaşlık kaynak sorunu değil, bekleme sorunudur.",
-      "en": "Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation."
-    },
-    "logSatirlari": [
-      "Sayfa başına veritabanı sorgu sayısı: yüzlerce",
-      "Yavaş sorgu log'u: aynı sorgu defalarca tekrarlıyor",
-      "Harici servis çağrısı: 2–8 saniye bekleme",
-      "İlk bayt süresi yüksek, indirme hızlı"
-    ],
-    "logNotu": {
-      "tr": "Sunucu boşken yaşanan yavaşlık, sistemin çalışmadığını değil beklediğini gösterir. Aranacak şey işlemci kullanımı değil, isteğin nerede beklediğidir.",
-      "en": "Latency with low CPU indicates blocking wait states. The metric to investigate is not CPU utilization, but where the thread is blocking."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Sorgu çoğalması",
-          "en": "N+1 query explosion"
-        },
-        "aciklama": {
-          "tr": "Listedeki her satır için ayrı sorgu atılıyor. 10 kayıtla fark edilmez, 500 kayıtla site durur.",
-          "en": "Loop triggers separate SQL queries for each item. Unnoticeable with 10 items, catastrophic with 500."
-        },
-        "kanit": {
-          "tr": "Aynı sorgu defalarca tekrarlıyor → A",
-          "en": "Same query loops hundreds of times → A"
-        },
-        "diyagramAd": {
-          "tr": "Sorgu çoğalması",
-          "en": "N+1 queries"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Aynı sorgu sayfa",
-            "başına defalarca",
-            "mı tekrarlıyor?"
-          ],
-          "en": [
-            "Does same query",
-            "execute hundreds",
-            "of times per hit?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "İlişkileri toplu",
-            "çek · saatler",
-            "içinde biter"
-          ],
-          "en": [
-            "Eager loading +",
-            "batch SQL joins",
-            "· resolved today"
-          ]
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Dizin eksik",
-          "en": "Missing database index"
-        },
-        "aciklama": {
-          "tr": "Sorgu doğru ama tablo baştan sona taranıyor. Veri büyüdükçe süre doğrusal artar.",
-          "en": "Query syntax is clean but triggers full table scans (Seq Scan). Duration grows linearly with table size."
-        },
-        "kanit": {
-          "tr": "Yavaş sorgu tüm tabloyu tarıyor → B",
-          "en": "Full table scan in EXPLAIN log → B"
-        },
-        "diyagramAd": {
-          "tr": "Dizin eksik",
-          "en": "Missing index"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Yavaş sorgu tüm",
-            "tabloyu mu",
-            "tarıyor?"
-          ],
-          "en": [
-            "Does EXPLAIN show",
-            "full table scan",
-            "on large tables?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Dizin ekle ·",
-            "etki anında"
-          ],
-          "en": [
-            "Add composite",
-            "index · instant",
-            "speedup"
-          ]
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Harici bekleme",
-          "en": "Synchronous third-party I/O"
-        },
-        "aciklama": {
-          "tr": "Kargo, ödeme veya stok servisi yavaş yanıt veriyor ve sayfa onu bekliyor.",
-          "en": "Outbound carrier, payment, or ERP API is slow and web process blocks execution."
-        },
-        "kanit": {
-          "tr": "Yavaşlık harici çağrıda yoğunlaşıyor → C",
-          "en": "Latency concentrated in external cURL → C"
-        },
-        "diyagramAd": {
-          "tr": "Harici bekleme",
-          "en": "Third-party wait"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Yavaşlık harici",
-            "çağrıda mı",
-            "yoğunlaşıyor?"
-          ],
-          "en": [
-            "Is TTFB spent on",
-            "outbound 3rd-party",
-            "HTTP requests?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Önbellek + zaman",
-            "aşımı + arka",
-            "plana al"
-          ],
-          "en": [
-            "Redis cache +",
-            "strict timeouts +",
-            "async background"
-          ]
-        }
-      }
-    ],
-    "kimCozer": {
-      "tr": "Kıdemli backend mühendisi. A ve B çoğunlukla aynı gün kapanır ve etkisi anında görülür. C'de asıl mesele harici servisi hızlandırmak değil, sayfanın onu beklememesini sağlamaktır.",
-      "en": "Senior backend engineer. A and B are resolved in hours with instant speedup. For C, the solution is asynchronous decoupling so pages never block on third parties."
-    },
-    "cozulmezse": {
-      "tr": "Yavaşlık dönüşümü doğrudan düşürür ve arama sıralamasında da karşılığı vardır. Sunucu yükseltmek maliyeti artırır, belirtiyi bir süre örter, nedeni bırakır.",
-      "en": "High latency degrades checkout conversion and organic Core Web Vitals. Server upgrades mask symptoms temporarily while increasing cloud spend without fixing root flaws."
-    },
-    "ilgiliTerimler": [
-      "n-plus-1-sorgu",
-      "teknik-borc",
-      "rate-limit"
-    ],
-    "ilgiliHizmet": {
-      "baslik": {
-        "tr": "Kesinti Maliyeti Hesabı",
-        "en": "Downtime Loss Calculator"
-      },
-      "link": "/kesinti-maliyeti/"
-    }
-  },
-  {
     "slug": "islemler-kilitlendi-sayfa-donuyor",
-    "no": "05",
+    "no": "04",
     "baslik": {
       "tr": "İşlemler kilitlendi, sayfa dönüp duruyor",
       "en": "Transactions Deadlocked, Pages Spinning"
@@ -929,370 +742,8 @@ export const teshisData = [
     }
   },
   {
-    "slug": "entegrasyon-429-veriyor",
-    "no": "06",
-    "baslik": {
-      "tr": "Entegrasyon aniden 429 vermeye başladı",
-      "en": "Third-Party Integration Returning HTTP 429"
-    },
-    "diyagramBaslik": {
-      "tr": "Entegrasyon 429 veriyor",
-      "en": "Integration 429 rate limit"
-    },
-    "kirinti": {
-      "tr": "İletişim & Entegrasyon",
-      "en": "Contact & Integrations"
-    },
-    "aciliyet": {
-      "seviye": "yuksek",
-      "etiket": {
-        "tr": "Yüksek · veri akışı durdu",
-        "en": "High · data sync halted"
-      }
-    },
-    "ozet": {
-      "tr": "Aylardır çalışan bir entegrasyon — kargo, pazaryeri, ödeme ya da e-posta — birden hata vermeye başladı ve kod değişmedi. Karşı taraf artık isteklerinizi reddediyor; sorun sizde değil, sizin hızınızda olabilir.",
-      "en": "An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429. The remote host is throttling your traffic due to volumetric burst limits."
-    },
-    "logSatirlari": [
-      "HTTP 429 Too Many Requests",
-      "Retry-After: 60",
-      "X-RateLimit-Remaining: 0",
-      "Sağlayıcı paneli: quota exceeded for this period"
-    ],
-    "logNotu": {
-      "tr": "Retry-After başlığı ne kadar beklemeniz gerektiğini söyler. Bu başlık okunmadan yapılan yeniden denemeler limiti daha da uzatır.",
-      "en": "The Retry-After header indicates the mandatory cooldown interval. Retrying blindly without parsing backoff headers prolongs IP ban windows."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Hacim büyüdü",
-          "en": "Natural volume growth"
-        },
-        "aciklama": {
-          "tr": "İş büyüdü, istek sayısı sessizce limitin üstüne çıktı. Kod aynı, trafik değişti.",
-          "en": "Order volume scaled naturally, exceeding baseline API tier quota without notice."
-        },
-        "kanit": {
-          "tr": "İstek sayısı zamanla artmış → A",
-          "en": "Request rate climbed over time → A"
-        },
-        "diyagramAd": {
-          "tr": "Hacim büyüdü",
-          "en": "Volume growth"
-        },
-        "diyagramTest": {
-          "tr": [
-            "İstek sayısı son",
-            "aylarda arttı mı?"
-          ],
-          "en": [
-            "Has API traffic",
-            "grown steadily in",
-            "recent months?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Toplu istek +",
-            "paket yükseltme"
-          ],
-          "en": [
-            "Batch payloads +",
-            "upgrade API tier"
-          ]
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Döngüsel tekrar",
-          "en": "Retry storm (No backoff)"
-        },
-        "aciklama": {
-          "tr": "Hata sonrası yeniden deneme mantığı beklemeden tekrarlıyor ve limiti kendi kendine dolduruyor.",
-          "en": "Worker catches transient error and immediately hammers API in tight loop, exhausting rate limits."
-        },
-        "kanit": {
-          "tr": "Aynı istek çok kısa aralıkla tekrarlıyor → B",
-          "en": "Rapid repeated requests in log → B"
-        },
-        "diyagramAd": {
-          "tr": "Döngüsel tekrar",
-          "en": "Retry storm"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Aynı istek çok",
-            "kısa aralıkla mı",
-            "tekrarlıyor?"
-          ],
-          "en": [
-            "Are retry requests",
-            "fired without",
-            "backoff delays?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Artan bekleme",
-            "süresi ekle"
-          ],
-          "en": [
-            "Exponential",
-            "backoff + jitter",
-            "retry logic"
-          ]
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Limit değişti",
-          "en": "Provider quota downgrade"
-        },
-        "aciklama": {
-          "tr": "Karşı taraf kotayı değiştirdi ya da fiyat planı düştü. Sizde hiçbir şey değişmedi.",
-          "en": "Upstream provider tightened throttle policy or subscription plan lapsed to free tier."
-        },
-        "kanit": {
-          "tr": "Limit başlığındaki değer düşmüş → C",
-          "en": "X-RateLimit cap dropped in headers → C"
-        },
-        "diyagramAd": {
-          "tr": "Limit değişti",
-          "en": "Quota reduced"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Limit başlığındaki",
-            "değer düştü mü?"
-          ],
-          "en": [
-            "Did rate limit",
-            "header cap drop",
-            "unexpectedly?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Sağlayıcıyla plan",
-            "görüşmesi"
-          ],
-          "en": [
-            "Negotiate higher",
-            "tier with vendor"
-          ]
-        }
-      }
-    ],
-    "kimCozer": {
-      "tr": "Backend mühendisi. Kalıcı çözüm istek sayısını azaltmak ve artan bekleme süresiyle yeniden denemektir. Bu iki yapı kurulduğunda entegrasyon hacim büyüdükçe kendiliğinden uyum sağlar.",
-      "en": "Backend engineer. Permanent resilience combines payload batching with exponential backoff and jitter algorithms. This enables integrations to scale gracefully with traffic spikes."
-    },
-    "cozulmezse": {
-      "tr": "Reddedilen her istek eksik veri demektir: gönderilmeyen kargo bildirimi, güncellenmeyen stok, ulaşmayan e-posta. Sistem çalışıyor görünür ama içerik doğru değildir.",
-      "en": "Throttled requests mean desynchronized operations: tracking numbers unsent, inventory un-updated, customer transactional emails lost in queue."
-    },
-    "ilgiliTerimler": [
-      "rate-limit",
-      "webhook",
-      "idempotency"
-    ],
-    "ilgiliHizmet": {
-      "baslik": {
-        "tr": "B2B White-Label Mühendislik Masası",
-        "en": "B2B White-Label Engineering Desk"
-      },
-      "link": "/agency/"
-    }
-  },
-  {
-    "slug": "sunucu-her-gun-yeniden-baslatiliyor",
-    "no": "07",
-    "baslik": {
-      "tr": "Sunucu her gün yeniden başlatılıyor",
-      "en": "Server Rebooted Daily to Clear Freeze"
-    },
-    "diyagramBaslik": {
-      "tr": "Günlük yeniden başlatma",
-      "en": "Daily server restart"
-    },
-    "kirinti": {
-      "tr": "Altyapı & Erişim",
-      "en": "Infrastructure & Access"
-    },
-    "aciliyet": {
-      "seviye": "yuksek",
-      "etiket": {
-        "tr": "Yüksek · gizlenen arıza",
-        "en": "High · masked defect"
-      }
-    },
-    "ozet": {
-      "tr": "Site günün belirli saatinde yavaşlıyor veya kilitleniyor, sunucu yeniden başlatılınca düzeliyor. Bu bir çözüm değil, arızanın günlük olarak süpürülmesidir — ve her gün biraz erkene kayar.",
-      "en": "The application slows down or freezes predictably every afternoon; rebooting restores normal function. Daily reboots are not a solution but a temporary band-aid — with degradation creeping earlier every day."
-    },
-    "logSatirlari": [
-      "Out of memory: Killed process",
-      "Bellek kullanımı zamanla artıyor, hiç düşmüyor",
-      "Süreç yöneticisi: yeniden başlatma sayısı her gün artıyor",
-      "Yanıt süreleri gün içinde giderek uzuyor"
-    ],
-    "logNotu": {
-      "tr": "Bellek grafiğinin şekli tek başına teşhis koydurur: testere dişi normaldir, sürekli yükselen düz çizgi sızıntıdır.",
-      "en": "Memory utilization graphs provide instant diagnosis: sawtooth patterns reflect healthy garbage collection; monotonic linear ascent proves memory leaks."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Bellek sızıntısı",
-          "en": "Application memory leak"
-        },
-        "aciklama": {
-          "tr": "Uygulama ayırdığı belleği bırakmıyor; kullanım sürekli yükselir ve sistem sonunda süreci öldürür.",
-          "en": "Unbounded caches or unclosed references accumulate until Linux OOM killer terminates the process."
-        },
-        "kanit": {
-          "tr": "Bellek hiç düşmüyor → A",
-          "en": "RAM usage never drops → A"
-        },
-        "diyagramAd": {
-          "tr": "Bellek sızıntısı",
-          "en": "Memory leak"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Bellek grafiği hiç",
-            "düşüyor mu?"
-          ],
-          "en": [
-            "Does RAM graph",
-            "ever drop during",
-            "idle periods?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Sızıntıyı bul ·",
-            "profil çıkar"
-          ],
-          "en": [
-            "Heap dump profile",
-            "+ patch leak"
-          ]
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Büyük veri yükü",
-          "en": "Unbuffered export spike"
-        },
-        "aciklama": {
-          "tr": "Bir rapor veya dışa aktarma tüm kaydı belleğe alıyor. Sızıntı yok, tek seferlik aşırı yük var.",
-          "en": "Bulk CSV export loads entire 500k row database into memory buffer at once, triggering instant OOM."
-        },
-        "kanit": {
-          "tr": "Tepe belirli bir işlemde oluşuyor → B",
-          "en": "Crash coincides with heavy report → B"
-        },
-        "diyagramAd": {
-          "tr": "Büyük veri yükü",
-          "en": "Heavy data load"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Tepe belirli bir",
-            "raporda mı",
-            "oluşuyor?"
-          ],
-          "en": [
-            "Do memory spikes",
-            "correlate with bulk",
-            "export jobs?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Parçalı işleme +",
-            "akış kullan"
-          ],
-          "en": [
-            "Stream chunking",
-            "+ generator buffer"
-          ]
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Kaynak yetersiz",
-          "en": "Genuine capacity ceiling"
-        },
-        "aciklama": {
-          "tr": "Sızıntı yok, iş gerçekten büyüdü. Bu, tek meşru 'sunucu yükselt' hâlidir.",
-          "en": "Zero memory leaks; active concurrent user count simply exceeded instance memory limits."
-        },
-        "kanit": {
-          "tr": "Kullanım sabit yüksek, artmıyor → C",
-          "en": "Stable high load proportional to traffic → C"
-        },
-        "diyagramAd": {
-          "tr": "Kaynak yetersiz",
-          "en": "Capacity limit"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Kullanım sabit",
-            "yüksek ama",
-            "artmıyor mu?"
-          ],
-          "en": [
-            "Is RAM steady high",
-            "proportional to",
-            "active users?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Kaynak artırımı ·",
-            "meşru tek hâl"
-          ],
-          "en": [
-            "Scale instance RAM",
-            "· valid upgrade"
-          ]
-        }
-      }
-    ],
-    "kimCozer": {
-      "tr": "A ve B yazılım tarafıdır; yeniden başlatma ikisini de gizler ama çözmez. C'de sunucu yükseltmek doğru karardır — ama A ve B elenmeden yapılırsa para harcanır, arıza kalır.",
-      "en": "A and B are application bugs; automated cron reboots mask them without fixing. C is legitimate hardware scaling — but upgrading before diagnosing A & B wastes cloud spend while crashes persist."
-    },
-    "cozulmezse": {
-      "tr": "Günlük yeniden başlatma bir gün yetmez hâle gelir ve kesinti tam yoğun saatte yaşanır. Zamanlanmış bir arıza gibidir: ne zaman olacağı bellidir, sadece tarihi bilinmez.",
-      "en": "Daily reboots inevitably degrade into multi-hour crashes during high-traffic campaign peaks. It is a scheduled disaster waiting to execute."
-    },
-    "ilgiliTerimler": [
-      "memory-leak",
-      "teknik-borc",
-      "ci-cd"
-    ],
-    "ilgiliHizmet": {
-      "baslik": {
-        "tr": "Kesinti Maliyeti Hesabı",
-        "en": "Downtime Loss Calculator"
-      },
-      "link": "/kesinti-maliyeti/"
-    }
-  },
-  {
     "slug": "guncelleme-sonrasi-veri-kayboldu",
-    "no": "08",
+    "no": "05",
     "baslik": {
       "tr": "Güncellemeden sonra veri kayboldu sanılıyor",
       "en": "Data Assumed Lost After System Update"
@@ -1478,193 +929,8 @@ export const teshisData = [
     }
   },
   {
-    "slug": "testte-calisiyor-canlida-calismiyor",
-    "no": "09",
-    "baslik": {
-      "tr": "Test ortamında çalışıyor, canlıda çalışmıyor",
-      "en": "Works in Staging, Fails in Production"
-    },
-    "diyagramBaslik": {
-      "tr": "Testte çalışıyor",
-      "en": "Works in staging only"
-    },
-    "kirinti": {
-      "tr": "Devir & Süreklilik",
-      "en": "Handover & Continuity"
-    },
-    "aciliyet": {
-      "seviye": "yuksek",
-      "etiket": {
-        "tr": "Yüksek · teslim engeli",
-        "en": "High · release blocker"
-      }
-    },
-    "ozet": {
-      "tr": "Geliştirici \"bende çalışıyor\" diyor ve haklı. Canlıda aynı kod farklı davranıyor. Bu bir yetenek sorunu değil, iki ortamın birbirinin aynısı olmamasının sonucudur.",
-      "en": "The developer says 'it works on my machine' and they are correct. In production, identical code behaves differently. This is environment drift, not a developer competency flaw."
-    },
-    "logSatirlari": [
-      "Undefined env variable / configuration missing",
-      "Yalnız canlıda 500, testte 200",
-      "Kütüphane sürümleri: kilit dosyası var mı, uyuşuyor mu?",
-      "Permission denied — dosya izni veya yol hatası"
-    ],
-    "logNotu": {
-      "tr": "Fark her zaman üç yerden birindedir: yapılandırma, sürüm, izin. Dördüncü bir yer aramak zaman kaybıdır.",
-      "en": "Environment drift always lives in one of three places: configuration, dependency versions, or file permissions. Searching elsewhere wastes critical incident time."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Yapılandırma farkı",
-          "en": "Configuration drift"
-        },
-        "aciklama": {
-          "tr": "Canlıda bir ortam değişkeni eksik ya da farklı. Kod aynı, girdisi değil.",
-          "en": "Production environment variable missing or set to invalid endpoint. Same code, differing inputs."
-        },
-        "kanit": {
-          "tr": "Canlıda eksik değişken → A",
-          "en": "Missing .env in production → A"
-        },
-        "diyagramAd": {
-          "tr": "Yapılandırma farkı",
-          "en": "Config drift"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Canlıda eksik",
-            "ortam değişkeni",
-            "var mı?"
-          ],
-          "en": [
-            "Is an environment",
-            "variable missing",
-            "in production?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Değişken listesini",
-            "eşitle + örnek",
-            "dosya tut"
-          ],
-          "en": [
-            "Sync .env schema",
-            "+ track .env.example",
-            "in git"
-          ]
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Sürüm farkı",
-          "en": "Dependency / runtime mismatch"
-        },
-        "aciklama": {
-          "tr": "Kütüphane veya dil sürümü iki ortamda farklı. Bağımlılıklar sabitlenmemiş.",
-          "en": "Language or package minor versions differ between environments. Unlocked package versions drifted."
-        },
-        "kanit": {
-          "tr": "Sürümler uyuşmuyor → B",
-          "en": "Version mismatch in lockfile → B"
-        },
-        "diyagramAd": {
-          "tr": "Sürüm farkı",
-          "en": "Version mismatch"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Kilit dosyası var",
-            "ve sürümler",
-            "aynı mı?"
-          ],
-          "en": [
-            "Are lockfile package",
-            "versions identical",
-            "across tiers?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Sürümleri sabitle",
-            "· kilit dosyası"
-          ],
-          "en": [
-            "Commit strict",
-            "package-lock /",
-            "composer.lock"
-          ]
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "İzin / yol farkı",
-          "en": "Permissions / path discrepancy"
-        },
-        "aciklama": {
-          "tr": "Canlıda yazma izni yok ya da dosya yolu farklı. Testte yerel klasör, canlıda kısıtlı dizin.",
-          "en": "Target directory lacks write permissions on production web server, or hardcoded absolute path fails."
-        },
-        "kanit": {
-          "tr": "Permission denied → C",
-          "en": "Permission denied in production log → C"
-        },
-        "diyagramAd": {
-          "tr": "İzin / yol farkı",
-          "en": "Permissions / path"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Log'da izin ya da",
-            "yol hatası var mı?"
-          ],
-          "en": [
-            "Does log show",
-            "EACCES / permission",
-            "denied errors?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "İzinleri ve yolu",
-            "ortamdan oku"
-          ],
-          "en": [
-            "Fix chmod permissions",
-            "+ load dynamic",
-            "paths"
-          ]
-        }
-      }
-    ],
-    "kimCozer": {
-      "tr": "Backend veya sistem tarafı. Kalıcı çözüm farkları tek tek kapatmak değil, iki ortamı aynı tarifle kurmaktır; aksi hâlde her teslimde yeni bir fark çıkar.",
-      "en": "Backend / DevOps. Permanent stability comes from Infrastructure as Code and immutable container recipes; patching discrepancies ad-hoc leaves every future release vulnerable."
-    },
-    "cozulmezse": {
-      "tr": "Her yayın bir kumar hâline gelir. Ekip canlıya çıkmaktan çekinir, teslimler birikir ve tek seferde çıkan büyük paketler riski daha da büyütür.",
-      "en": "Every deployment becomes a high-stakes gamble. Teams dread pushing to prod, backlogs swell, and large batch deploys magnify catastrophic blast radiuses."
-    },
-    "ilgiliTerimler": [
-      "staging-ortami",
-      "ci-cd",
-      "migration"
-    ],
-    "ilgiliHizmet": {
-      "baslik": {
-        "tr": "Devir Hazırlık Kontrolü",
-        "en": "Handover Readiness Audit"
-      },
-      "link": "/devir-kontrolu/"
-    }
-  },
-  {
     "slug": "deploy-sonrasi-site-bozuldu",
-    "no": "10",
+    "no": "06",
     "baslik": {
       "tr": "Deploy sonrası site bozuldu",
       "en": "Website Broke Immediately After Deployment"
@@ -1845,376 +1111,8 @@ export const teshisData = [
     }
   },
   {
-    "slug": "her-yeni-ozellik-oncekini-bozuyor",
-    "no": "11",
-    "baslik": {
-      "tr": "Her yeni özellik bir öncekini bozuyor",
-      "en": "Every New Feature Breaks an Existing Feature"
-    },
-    "diyagramBaslik": {
-      "tr": "Her özellik bozuyor",
-      "en": "New features break old"
-    },
-    "kirinti": {
-      "tr": "Kod Sağlığı",
-      "en": "Code Health"
-    },
-    "aciliyet": {
-      "seviye": "yuksek",
-      "etiket": {
-        "tr": "Yüksek · birikmiş borç",
-        "en": "High · technical debt"
-      }
-    },
-    "ozet": {
-      "tr": "Bir yeri düzeltiyorsunuz, başka bir yer bozuluyor. Ekip aynı hataları tekrar tekrar düzeltiyor. Bu bir dikkatsizlik değil, kod tabanının artık değişimi kaldıramadığının işaretidir.",
-      "en": "Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt."
-    },
-    "logSatirlari": [
-      "Aynı hata kaydının aylar içinde tekrar açılması",
-      "Test yok, ya da var ama çalıştırılmıyor",
-      "Tek bir dosyanın binlerce satır olması",
-      "Aynı mantığın üç ayrı yerde kopyalanmış olması"
-    ],
-    "logNotu": {
-      "tr": "Ölçülebilir tek gösterge tekrar açılan hata sayısıdır. \"Kod kötü\" bir histir; \"aynı hata üç ayda dört kez açıldı\" bir veridir.",
-      "en": "The only objective metric is bug regression frequency. 'Code feels bad' is subjective sentiment; 'the same checkout defect reopened four times in 90 days' is actionable data."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Kopyalanmış mantık",
-          "en": "Duplicated business logic"
-        },
-        "aciklama": {
-          "tr": "Aynı kural birden çok yerde yazılı. Biri düzeltiliyor, diğerleri unutuluyor.",
-          "en": "Identical calculation logic copy-pasted across multiple controllers. Fixing one leaves the others broken."
-        },
-        "kanit": {
-          "tr": "Aynı mantık birden çok yerde → A",
-          "en": "Duplicated algorithms in codebase → A"
-        },
-        "diyagramAd": {
-          "tr": "Kopyalanmış mantık",
-          "en": "Duplicated logic"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Aynı kural birden",
-            "fazla yerde mi",
-            "yazılı?"
-          ],
-          "en": [
-            "Is business logic",
-            "duplicated in multiple",
-            "controllers?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Tek yere topla ·",
-            "kademeli"
-          ],
-          "en": [
-            "Consolidate to single",
-            "service class ·",
-            "incremental"
-          ]
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Test yok",
-          "en": "Missing regression test suite"
-        },
-        "aciklama": {
-          "tr": "Güvenlik ağı yok; bir değişikliğin neyi bozduğu ancak canlıda anlaşılıyor.",
-          "en": "Zero automated unit/integration tests exist; side effects are discovered only after real customers encounter crashes."
-        },
-        "kanit": {
-          "tr": "Otomatik test yok → B",
-          "en": "Zero test coverage in CI pipeline → B"
-        },
-        "diyagramAd": {
-          "tr": "Test yok",
-          "en": "Zero tests"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Kritik akışların",
-            "testi var mı?"
-          ],
-          "en": [
-            "Do automated tests",
-            "cover critical",
-            "checkout paths?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Önce kritik akışa",
-            "test yaz"
-          ],
-          "en": [
-            "Write regression",
-            "tests on critical",
-            "flows FIRST"
-          ]
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Aşırı bağlılık",
-          "en": "High module coupling"
-        },
-        "aciklama": {
-          "tr": "Modüller birbirine sıkı bağlı; bir yeri değiştirmek zinciri kırıyor.",
-          "en": "Tightly coupled components mutate shared global state; altering one class triggers unpredictable cascade breaks."
-        },
-        "kanit": {
-          "tr": "Küçük değişiklik geniş etki yapıyor → C",
-          "en": "Minor patch creates wide blast radius → C"
-        },
-        "diyagramAd": {
-          "tr": "Aşırı bağlılık",
-          "en": "Tight coupling"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Küçük değişiklik",
-            "çok yeri mi",
-            "etkiliyor?"
-          ],
-          "en": [
-            "Does localized edit",
-            "break unrelated",
-            "views?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Sınırları ayır ·",
-            "parça parça"
-          ],
-          "en": [
-            "Decouple boundaries",
-            "via interfaces ·",
-            "step by step"
-          ]
-        }
-      }
-    ],
-    "kimCozer": {
-      "tr": "Kıdemli mühendis. Ama sıra bağlayıcıdır: önce test, sonra düzeltme. Güvenlik ağı olmadan yapılan büyük temizlik, mevcut arızalara yenilerini ekler. Her şeyi baştan yazmak neredeyse hiçbir zaman doğru cevap değildir.",
-      "en": "Senior software architect. Sequence is mandatory: write regression tests FIRST, then refactor. Refactoring without test safety nets introduces secondary defects. Total rewrites from scratch are almost never the correct strategy."
-    },
-    "cozulmezse": {
-      "tr": "Her yeni özelliğin maliyeti bir öncekinden yüksek olur. Ekip aynı işi daha uzun sürede yapmaya başlar ve bu dışarıdan \"yavaşladılar\" gibi görünür.",
-      "en": "Development velocity stalls exponentially. Simple features take weeks, engineering morale plummets, and external stakeholders perceive the engineering team as ineffective."
-    },
-    "ilgiliTerimler": [
-      "teknik-borc",
-      "refactor",
-      "ci-cd"
-    ],
-    "ilgiliHizmet": {
-      "baslik": {
-        "tr": "B2B White-Label Mühendislik Masası",
-        "en": "B2B White-Label Engineering Desk"
-      },
-      "link": "/agency/"
-    }
-  },
-  {
-    "slug": "kucuk-degisiklik-gunler-suruyor",
-    "no": "12",
-    "baslik": {
-      "tr": "Küçük değişiklik günler sürüyor",
-      "en": "Minor Changes Take Days to Deliver"
-    },
-    "diyagramBaslik": {
-      "tr": "Değişiklik çok yavaş",
-      "en": "Trivial change delay"
-    },
-    "kirinti": {
-      "tr": "Kod Sağlığı",
-      "en": "Code Health"
-    },
-    "aciliyet": {
-      "seviye": "orta",
-      "etiket": {
-        "tr": "Orta · hız kaybı",
-        "en": "Medium · velocity loss"
-      }
-    },
-    "ozet": {
-      "tr": "\"Bir buton rengi\" ya da \"bir alan ekle\" gibi işler günlere yayılıyor ve müşteri bunu isteksizlik sanıyor. Gerçek sebep genellikle kodda değil, değişikliği yapmadan önce anlamak için harcanan sürededir.",
-      "en": "Trivial edits like updating button styles or adding a form field drag on for days, leading clients to assume reluctance. The root cause is not developer speed, but the cognitive overhead of deciphering undocumented code."
-    },
-    "logSatirlari": [
-      "Görev süresi: tahmin 2 saat, gerçekleşen 2 gün",
-      "Kurulum: yeni bir geliştirici projeyi kaç günde çalıştırıyor?",
-      "Belge var mı: kurulum notu, mimari şeması, karar kaydı",
-      "Yayın sıklığı: haftada kaç kez canlıya çıkılabiliyor?"
-    ],
-    "logNotu": {
-      "tr": "En açıklayıcı ölçü, yeni bir geliştiricinin projeyi ilk kez çalıştırma süresidir. Bu süre bir günden uzunsa gecikmenin sebebi yetenek değil ortamdır.",
-      "en": "The clearest benchmark is time-to-first-commit for a new developer. If local onboarding takes longer than one day, velocity loss stems from developer experience, not individual talent."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Belgesizlik",
-          "en": "Zero developer documentation"
-        },
-        "aciklama": {
-          "tr": "Bilgi kimsenin yazmadığı yerde, insanların kafasında. Her değişiklik önce arkeoloji gerektiriyor.",
-          "en": "Domain knowledge exists solely in individuals' memories. Every change requires historical code archaeology."
-        },
-        "kanit": {
-          "tr": "Kurulum belgesi yok → A",
-          "en": "Missing README / architecture docs → A"
-        },
-        "diyagramAd": {
-          "tr": "Belgesizlik",
-          "en": "Zero docs"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Yeni biri projeyi",
-            "bir günde ayağa",
-            "kaldırabilir mi?"
-          ],
-          "en": [
-            "Can a new dev boot",
-            "the project locally",
-            "within 1 day?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Kurulum ve karar",
-            "kaydı yaz"
-          ],
-          "en": [
-            "Write README setup",
-            "+ architecture",
-            "decision records"
-          ]
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Elle yayın",
-          "en": "Manual deployment ceremony"
-        },
-        "aciklama": {
-          "tr": "Her teslim elle yapılıyor; küçük bir değişiklik bile uzun bir tören gerektiriyor.",
-          "en": "Deployments rely on manual FTP / SSH commands; tiny tweaks require extensive manual rituals."
-        },
-        "kanit": {
-          "tr": "Yayın elle ve uzun → B",
-          "en": "Manual FTP/SSH release steps → B"
-        },
-        "diyagramAd": {
-          "tr": "Elle yayın",
-          "en": "Manual deploy"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Yayın tek komutla",
-            "yapılabiliyor mu?"
-          ],
-          "en": [
-            "Is deployment",
-            "automated with a",
-            "single command?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Yayını otomatikleştir",
-            "· tek adım"
-          ],
-          "en": [
-            "Automate CI/CD ·",
-            "one-click release",
-            "pipeline"
-          ]
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Karışık yapı",
-          "en": "Unstructured spaghetti architecture"
-        },
-        "aciklama": {
-          "tr": "Değişiklik gereken yeri bulmak zaman alıyor; mantık dağınık, isimlendirme tutarsız.",
-          "en": "Locating which file controls the feature takes hours; scattered business logic and inconsistent naming conventions."
-        },
-        "kanit": {
-          "tr": "Yeri bulmak saatler sürüyor → C",
-          "en": "Hours spent locating source code file → C"
-        },
-        "diyagramAd": {
-          "tr": "Karışık yapı",
-          "en": "Spaghetti logic"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Değişecek yeri",
-            "bulmak saatler",
-            "sürüyor mu?"
-          ],
-          "en": [
-            "Does locating target",
-            "logic require hours",
-            "of grep searching?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Dokunulan yeri",
-            "kademeli düzenle"
-          ],
-          "en": [
-            "Apply Scout Rule:",
-            "clean up target",
-            "module gradually"
-          ]
-        }
-      }
-    ],
-    "kimCozer": {
-      "tr": "Bu üçünün hiçbiri \"daha çok çalışarak\" çözülmez. Yatırımın karşılığı ilk haftada görünmez, ikinci ayda görünür: aynı ekip aynı sürede belirgin biçimde daha çok iş çıkarır.",
-      "en": "None of these are resolved by 'working overtime'. The payoff is felt by month two: identical teams outputting dramatically higher volume with zero overtime."
-    },
-    "cozulmezse": {
-      "tr": "Yavaşlık bileşik büyür ve ilişkiyi aşındırır. Müşteri gecikmeyi ilgisizlik sanır; ekip ise gerçekten çalıştığı hâlde savunmaya geçer.",
-      "en": "Sluggish delivery erodes client relationships. Clients interpret delays as neglect, while engineers burn out operating in an unmaintained codebase."
-    },
-    "ilgiliTerimler": [
-      "refactor",
-      "teknik-borc",
-      "ci-cd"
-    ],
-    "ilgiliHizmet": {
-      "baslik": {
-        "tr": "B2B White-Label Mühendislik Masası",
-        "en": "B2B White-Label Engineering Desk"
-      },
-      "link": "/agency/"
-    }
-  },
-  {
     "slug": "site-500-veriyor-dun-calisiyordu",
-    "no": "13",
+    "no": "07",
     "baslik": {
       "tr": "Site 500 veriyor, dün çalışıyordu",
       "en": "Site Returning 500 Error, Worked Yesterday"
@@ -2393,195 +1291,8 @@ export const teshisData = [
     }
   },
   {
-    "slug": "yazilimci-gitti-koda-girilemiyor",
-    "no": "14",
-    "baslik": {
-      "tr": "Yazılımcı gitti, kimse koda giremiyor",
-      "en": "Developer Departed, Codebase Inaccessible"
-    },
-    "diyagramBaslik": {
-      "tr": "Koda kimse giremiyor",
-      "en": "Codebase inaccessible"
-    },
-    "kirinti": {
-      "tr": "Devir & Süreklilik",
-      "en": "Handover & Continuity"
-    },
-    "aciliyet": {
-      "seviye": "yuksek",
-      "etiket": {
-        "tr": "Yüksek · süreklilik riski",
-        "en": "High · continuity risk"
-      }
-    },
-    "ozet": {
-      "tr": "Projeyi yapan kişi ayrıldı. Site çalışmaya devam ediyor ama değişiklik yapılamıyor: kodun nerede olduğu, sunucuya kimin girebildiği ya da hesapların kime kayıtlı olduğu belirsiz. Bu üç ayrı problemdir ve hangisiyle karşı karşıya olduğunuz ilk saatte belirlenebilir.",
-      "en": "The developer who built the platform departed. The site continues running but cannot be modified: repository location, server SSH credentials, or account ownership remain unknown. These are three distinct bottlenecks, identifiable within hour one."
-    },
-    "logSatirlari": [
-      "git log -1 --format=%cd            ← son commit ne zaman?",
-      "git log --format='%an' | sort -u   ← koda kaç kişi dokunmuş?",
-      "~/.ssh/authorized_keys             ← sunucuya kimin anahtarı var?",
-      "WHOIS + hosting hesabı             ← hangi e-postaya kayıtlı?"
-    ],
-    "logNotu": {
-      "tr": "Bu dört satır, devrin teknik mi yoksa idari bir problem mi olduğunu ayırır. Çoğu vakada sorun kodda değil, hesap sahipliğindedir.",
-      "en": "These four checkpoints determine whether handover failure is technical or administrative. In most cases, the bottleneck is account ownership rather than code."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Erişim kaybı",
-          "en": "Loss of access"
-        },
-        "aciklama": {
-          "tr": "Domain, hosting ve depo kişinin şahsi e-postasına kayıtlı. Kod sağlam, altyapı çalışıyor; devredilmesi gereken şey hesaplar.",
-          "en": "Domain registrar, host, and git repos are registered to personal emails. Code and infrastructure are sound; the bottleneck is credential handover."
-        },
-        "kanit": {
-          "tr": "Hesaplar şahsi adreste → A",
-          "en": "Accounts on personal mail → A"
-        },
-        "diyagramAd": {
-          "tr": "Erişim kaybı",
-          "en": "Access loss"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Hesaplar şirket",
-            "adresine mi",
-            "kayıtlı?"
-          ],
-          "en": [
-            "Are accounts",
-            "tied to company",
-            "domain email?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Hesap devri —",
-            "idari süreç,",
-            "kod işi değil"
-          ],
-          "en": [
-            "Account transfer —",
-            "admin workflow,",
-            "no coding needed"
-          ]
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Kaynak kod kayıp",
-          "en": "Missing source repository"
-        },
-        "aciklama": {
-          "tr": "Sürüm kontrolü hiç kurulmamış. Canlı sunucudaki dosyalar tek kopya. En kırılgan hâl budur.",
-          "en": "Version control was never initialized. Live production server contains the sole surviving copy. The highest-risk state."
-        },
-        "kanit": {
-          "tr": "Depo yok → B",
-          "en": "No remote repo → B"
-        },
-        "diyagramAd": {
-          "tr": "Kod kayıp",
-          "en": "Source lost"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Sürüm kontrolü",
-            "(git) var mı?"
-          ],
-          "en": [
-            "Is version control",
-            "(git remote)",
-            "present?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "ÖNCE canlıdan",
-            "tam yedek,",
-            "SONRA depo"
-          ],
-          "en": [
-            "Full live image",
-            "FIRST, then git",
-            "init setup"
-          ]
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Ortam belgesiz",
-          "en": "Undocumented environment"
-        },
-        "aciklama": {
-          "tr": "Kod var ama çalıştırılamıyor: kurulum adımları, ortam değişkenleri ve bağımlılık sürümleri yazılı değil.",
-          "en": "Repository exists but cannot be booted: setup commands, environment variables, and lockfiles are absent."
-        },
-        "kanit": {
-          "tr": ".env.example / lock yok → C",
-          "en": "Missing .env / lockfile → C"
-        },
-        "diyagramAd": {
-          "tr": "Ortam belgesiz",
-          "en": "No docs / env"
-        },
-        "diyagramTest": {
-          "tr": [
-            "README ve",
-            "bağımlılık kilidi",
-            "var mı?"
-          ],
-          "en": [
-            "Are README and",
-            "package lockfiles",
-            "available?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Ortam yeniden",
-            "inşası +",
-            "belgeleme"
-          ],
-          "en": [
-            "Environment",
-            "rebuild +",
-            "documentation"
-          ]
-        }
-      }
-    ],
-    "kimCozer": {
-      "tr": "A idari bir süreçtir, geliştirici gerekmez. B'de ilk iş kod yazmak değil, canlı sunucudan tam yedek almaktır — bu adım atlanırsa tek kopya risk altında kalır. C, devir teşhisinin ölçtüğü şeydir.",
-      "en": "A is an administrative process, requiring zero coding. For B, the absolute first step is pulling a full live server image, not writing code. C is precisely what a handover code audit diagnoses."
-    },
-    "cozulmezse": {
-      "tr": "Sürüm kontrolü olmayan bir projede canlı sunucu tek kopyadır. Sunucu çökerse veya hesap kapanırsa geri dönüş yoktur. Risk her gün büyür, çünkü kimse yedeğin gerçekten alındığını doğrulamamıştır.",
-      "en": "Without version control, production is a single point of total failure. If the instance crashes, recovery is impossible. Risk compounds daily until full image verification is completed."
-    },
-    "ilgiliTerimler": [
-      "teknik-borc",
-      "staging-ortami",
-      "migration"
-    ],
-    "ilgiliHizmet": {
-      "baslik": {
-        "tr": "Devir Hazırlık Kontrolü",
-        "en": "Handover Readiness Audit"
-      },
-      "link": "/devir-kontrolu/"
-    }
-  },
-  {
     "slug": "bulut-hesabi-askiya-alindi",
-    "no": "15",
+    "no": "08",
     "baslik": {
       "tr": "Bulut hesabı askıya alındı, site kapandı",
       "en": "Cloud Account Suspended, Site Down"
@@ -2767,7 +1478,7 @@ export const teshisData = [
   },
   {
     "slug": "yedek-var-sanildi-yedek-yok",
-    "no": "16",
+    "no": "09",
     "baslik": {
       "tr": "Yedek var sanılıyordu, yedek yok",
       "en": "Backup Assumed to Exist, No Valid Backup"
@@ -2939,6 +1650,1294 @@ export const teshisData = [
       "migration",
       "staging-ortami",
       "teknik-borc"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "Devir Hazırlık Kontrolü",
+        "en": "Handover Readiness Audit"
+      },
+      "link": "/devir-kontrolu/"
+    }
+  },
+  {
+    "slug": "ssl-suresi-doldu",
+    "no": "10",
+    "baslik": {
+      "tr": "SSL süresi doldu, tarayıcı uyarı veriyor",
+      "en": "SSL Certificate Expired, Security Warning Displayed"
+    },
+    "diyagramBaslik": {
+      "tr": "SSL süresi doldu",
+      "en": "SSL certificate expired"
+    },
+    "kirinti": {
+      "tr": "Altyapı & Erişim",
+      "en": "Infrastructure & Access"
+    },
+    "aciliyet": {
+      "seviye": "kritik",
+      "etiket": {
+        "tr": "Kritik · güven kaybı",
+        "en": "Critical · trust loss"
+      }
+    },
+    "ozet": {
+      "tr": "Ziyaretçiler siteye girerken 'bağlantınız gizli değil' uyarısı alıyor. Site aslında çalışıyor, araya giren tarayıcı. Müşteriniz bunu güvenlik ihlali sanır; teknik olarak çoğu zaman basit bir yenileme sorunudur.",
+      "en": "Users are blocked by 'Your connection is not private' browser interstitials. The application is running fine, but the TLS handshake fails. Clients perceive a breach; technically it is usually a stalled renewal script."
+    },
+    "logSatirlari": [
+      "NET::ERR_CERT_DATE_INVALID              ← süre doldu",
+      "NET::ERR_CERT_COMMON_NAME_INVALID       ← alan adı eşleşmiyor",
+      "SSL certificate problem: unable to get local issuer certificate",
+      "certbot renew — hook command failed"
+    ],
+    "logNotu": {
+      "tr": "Tarayıcının verdiği hata kodu nedeni doğrudan söyler. Uyarı ekranındaki 'Gelişmiş' bağlantısı hangi kodun geçerli olduğunu gösterir.",
+      "en": "Browser error codes state the exact root cause directly. The 'Advanced' button reveals whether expiration, domain mismatch, or broken CA chain is at play."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Yenileme durdu",
+          "en": "Auto-renewal stopped"
+        },
+        "aciklama": {
+          "tr": "Kısa ömürlü sertifikalar otomatik yenilenir; yenileme görevi bir noktada sessizce durmuştur.",
+          "en": "Automated 90-day certificates require active cron hooks; the renewal task failed silently without triggering alerts."
+        },
+        "kanit": {
+          "tr": "Yenileme log'unda hata → A",
+          "en": "Certbot renewal error in log → A"
+        },
+        "diyagramAd": {
+          "tr": "Yenileme durdu",
+          "en": "Renewal halted"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Yenileme görevi",
+            "çalışıyor mu?"
+          ],
+          "en": [
+            "Is certbot / ACME",
+            "cron executing",
+            "cleanly?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Görev onarımı +",
+            "süre bildirimi"
+          ],
+          "en": [
+            "Certbot repair +",
+            "expiry monitoring",
+            "webhook"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Kapsam eksik",
+          "en": "Missing SAN / subdomains"
+        },
+        "aciklama": {
+          "tr": "Sertifika ana alan adını kapsıyor ama `www` veya bir alt alan adını kapsamıyor.",
+          "en": "Certificate covers apex domain but lacks SAN coverage for `www` or target subdomains."
+        },
+        "kanit": {
+          "tr": "COMMON_NAME hatası → B",
+          "en": "COMMON_NAME_INVALID error → B"
+        },
+        "diyagramAd": {
+          "tr": "Kapsam eksik",
+          "en": "Missing SAN"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Hata kodu CN /",
+            "alan adı hatası mı?"
+          ],
+          "en": [
+            "Is error code",
+            "COMMON_NAME",
+            "mismatch?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Sertifikayı alt",
+            "alan adlarıyla",
+            "yeniden al"
+          ],
+          "en": [
+            "Re-issue with",
+            "all SAN / www",
+            "subdomains"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Zincir eksik",
+          "en": "Incomplete CA chain"
+        },
+        "aciklama": {
+          "tr": "Sertifika geçerli ama zincir tamamlanmamış. Bazı cihazlarda çalışır, bazılarında çalışmaz — en yanıltıcı hâl budur.",
+          "en": "Leaf certificate is valid but intermediate CA bundle is missing. Works on modern desktops, fails on mobile — the most deceptive failure."
+        },
+        "kanit": {
+          "tr": "unable to get local issuer → C",
+          "en": "unable to get local issuer error → C"
+        },
+        "diyagramAd": {
+          "tr": "Zincir eksik",
+          "en": "Broken CA chain"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Bazı cihazlarda",
+            "çalışıp bazılarında",
+            "çalışmıyor mu?"
+          ],
+          "en": [
+            "Does it fail",
+            "only on specific",
+            "mobile clients?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Ara sertifikayı",
+            "zincire ekle"
+          ],
+          "en": [
+            "Install fullchain",
+            "bundle to web",
+            "server config"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "Sistem yöneticisi · genellikle bir saatin altında. Asıl mesele tekrarını önlemektir: yenileme başarısız olduğunda haber veren bir bildirim kurulmadıkça aynı arıza sertifika ömrü kadar sonra geri gelir.",
+      "en": "DevOps / Sysadmin · resolved in under one hour. The true goal is preventing recurrence: without automated cert expiration monitoring, the issue repeats every 90 days."
+    },
+    "cozulmezse": {
+      "tr": "Tarayıcı uyarısı gören ziyaretçilerin büyük kısmı geri döner. Ödeme sayfasında bu uyarı, o günkü satışların durması demektir.",
+      "en": "Over 90% of visitors bounce immediately upon seeing security interstitials. On e-commerce checkout flows, it halts revenue instantly."
+    },
+    "ilgiliTerimler": [
+      "ci-cd",
+      "staging-ortami"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "Acil Kriz Müdahalesi & Crash Test",
+        "en": "Emergency Incident Triage & Crash Test"
+      },
+      "link": "/crash-test/"
+    }
+  },
+  {
+    "slug": "site-yavasladi-sunucu-bos",
+    "no": "11",
+    "baslik": {
+      "tr": "Site yavaşladı ama sunucu boş",
+      "en": "Site Stalled Despite Idle Server Resources"
+    },
+    "diyagramBaslik": {
+      "tr": "Yavaş ama sunucu boş",
+      "en": "Slow with idle server"
+    },
+    "kirinti": {
+      "tr": "Performans",
+      "en": "Performance"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · dönüşüm kaybı",
+        "en": "High · conversion loss"
+      }
+    },
+    "ozet": {
+      "tr": "Sayfalar geç açılıyor ama sunucu kaynakları rahat görünüyor. 'Sunucu yetersiz' denip plan yükseltilir, hiçbir şey değişmez. Boş bir sunucuda yavaşlık kaynak sorunu değil, bekleme sorunudur.",
+      "en": "Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation."
+    },
+    "logSatirlari": [
+      "Sayfa başına veritabanı sorgu sayısı: yüzlerce",
+      "Yavaş sorgu log'u: aynı sorgu defalarca tekrarlıyor",
+      "Harici servis çağrısı: 2–8 saniye bekleme",
+      "İlk bayt süresi yüksek, indirme hızlı"
+    ],
+    "logNotu": {
+      "tr": "Sunucu boşken yaşanan yavaşlık, sistemin çalışmadığını değil beklediğini gösterir. Aranacak şey işlemci kullanımı değil, isteğin nerede beklediğidir.",
+      "en": "Latency with low CPU indicates blocking wait states. The metric to investigate is not CPU utilization, but where the thread is blocking."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Sorgu çoğalması",
+          "en": "N+1 query explosion"
+        },
+        "aciklama": {
+          "tr": "Listedeki her satır için ayrı sorgu atılıyor. 10 kayıtla fark edilmez, 500 kayıtla site durur.",
+          "en": "Loop triggers separate SQL queries for each item. Unnoticeable with 10 items, catastrophic with 500."
+        },
+        "kanit": {
+          "tr": "Aynı sorgu defalarca tekrarlıyor → A",
+          "en": "Same query loops hundreds of times → A"
+        },
+        "diyagramAd": {
+          "tr": "Sorgu çoğalması",
+          "en": "N+1 queries"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Aynı sorgu sayfa",
+            "başına defalarca",
+            "mı tekrarlıyor?"
+          ],
+          "en": [
+            "Does same query",
+            "execute hundreds",
+            "of times per hit?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "İlişkileri toplu",
+            "çek · saatler",
+            "içinde biter"
+          ],
+          "en": [
+            "Eager loading +",
+            "batch SQL joins",
+            "· resolved today"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Dizin eksik",
+          "en": "Missing database index"
+        },
+        "aciklama": {
+          "tr": "Sorgu doğru ama tablo baştan sona taranıyor. Veri büyüdükçe süre doğrusal artar.",
+          "en": "Query syntax is clean but triggers full table scans (Seq Scan). Duration grows linearly with table size."
+        },
+        "kanit": {
+          "tr": "Yavaş sorgu tüm tabloyu tarıyor → B",
+          "en": "Full table scan in EXPLAIN log → B"
+        },
+        "diyagramAd": {
+          "tr": "Dizin eksik",
+          "en": "Missing index"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Yavaş sorgu tüm",
+            "tabloyu mu",
+            "tarıyor?"
+          ],
+          "en": [
+            "Does EXPLAIN show",
+            "full table scan",
+            "on large tables?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Dizin ekle ·",
+            "etki anında"
+          ],
+          "en": [
+            "Add composite",
+            "index · instant",
+            "speedup"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Harici bekleme",
+          "en": "Synchronous third-party I/O"
+        },
+        "aciklama": {
+          "tr": "Kargo, ödeme veya stok servisi yavaş yanıt veriyor ve sayfa onu bekliyor.",
+          "en": "Outbound carrier, payment, or ERP API is slow and web process blocks execution."
+        },
+        "kanit": {
+          "tr": "Yavaşlık harici çağrıda yoğunlaşıyor → C",
+          "en": "Latency concentrated in external cURL → C"
+        },
+        "diyagramAd": {
+          "tr": "Harici bekleme",
+          "en": "Third-party wait"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Yavaşlık harici",
+            "çağrıda mı",
+            "yoğunlaşıyor?"
+          ],
+          "en": [
+            "Is TTFB spent on",
+            "outbound 3rd-party",
+            "HTTP requests?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Önbellek + zaman",
+            "aşımı + arka",
+            "plana al"
+          ],
+          "en": [
+            "Redis cache +",
+            "strict timeouts +",
+            "async background"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "Kıdemli backend mühendisi. A ve B çoğunlukla aynı gün kapanır ve etkisi anında görülür. C'de asıl mesele harici servisi hızlandırmak değil, sayfanın onu beklememesini sağlamaktır.",
+      "en": "Senior backend engineer. A and B are resolved in hours with instant speedup. For C, the solution is asynchronous decoupling so pages never block on third parties."
+    },
+    "cozulmezse": {
+      "tr": "Yavaşlık dönüşümü doğrudan düşürür ve arama sıralamasında da karşılığı vardır. Sunucu yükseltmek maliyeti artırır, belirtiyi bir süre örter, nedeni bırakır.",
+      "en": "High latency degrades checkout conversion and organic Core Web Vitals. Server upgrades mask symptoms temporarily while increasing cloud spend without fixing root flaws."
+    },
+    "ilgiliTerimler": [
+      "n-plus-1-sorgu",
+      "teknik-borc",
+      "rate-limit"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "Kesinti Maliyeti Hesabı",
+        "en": "Downtime Loss Calculator"
+      },
+      "link": "/kesinti-maliyeti/"
+    }
+  },
+  {
+    "slug": "entegrasyon-429-veriyor",
+    "no": "12",
+    "baslik": {
+      "tr": "Entegrasyon aniden 429 vermeye başladı",
+      "en": "Third-Party Integration Returning HTTP 429"
+    },
+    "diyagramBaslik": {
+      "tr": "Entegrasyon 429 veriyor",
+      "en": "Integration 429 rate limit"
+    },
+    "kirinti": {
+      "tr": "İletişim & Entegrasyon",
+      "en": "Contact & Integrations"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · veri akışı durdu",
+        "en": "High · data sync halted"
+      }
+    },
+    "ozet": {
+      "tr": "Aylardır çalışan bir entegrasyon — kargo, pazaryeri, ödeme ya da e-posta — birden hata vermeye başladı ve kod değişmedi. Karşı taraf artık isteklerinizi reddediyor; sorun sizde değil, sizin hızınızda olabilir.",
+      "en": "An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429. The remote host is throttling your traffic due to volumetric burst limits."
+    },
+    "logSatirlari": [
+      "HTTP 429 Too Many Requests",
+      "Retry-After: 60",
+      "X-RateLimit-Remaining: 0",
+      "Sağlayıcı paneli: quota exceeded for this period"
+    ],
+    "logNotu": {
+      "tr": "Retry-After başlığı ne kadar beklemeniz gerektiğini söyler. Bu başlık okunmadan yapılan yeniden denemeler limiti daha da uzatır.",
+      "en": "The Retry-After header indicates the mandatory cooldown interval. Retrying blindly without parsing backoff headers prolongs IP ban windows."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Hacim büyüdü",
+          "en": "Natural volume growth"
+        },
+        "aciklama": {
+          "tr": "İş büyüdü, istek sayısı sessizce limitin üstüne çıktı. Kod aynı, trafik değişti.",
+          "en": "Order volume scaled naturally, exceeding baseline API tier quota without notice."
+        },
+        "kanit": {
+          "tr": "İstek sayısı zamanla artmış → A",
+          "en": "Request rate climbed over time → A"
+        },
+        "diyagramAd": {
+          "tr": "Hacim büyüdü",
+          "en": "Volume growth"
+        },
+        "diyagramTest": {
+          "tr": [
+            "İstek sayısı son",
+            "aylarda arttı mı?"
+          ],
+          "en": [
+            "Has API traffic",
+            "grown steadily in",
+            "recent months?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Toplu istek +",
+            "paket yükseltme"
+          ],
+          "en": [
+            "Batch payloads +",
+            "upgrade API tier"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Döngüsel tekrar",
+          "en": "Retry storm (No backoff)"
+        },
+        "aciklama": {
+          "tr": "Hata sonrası yeniden deneme mantığı beklemeden tekrarlıyor ve limiti kendi kendine dolduruyor.",
+          "en": "Worker catches transient error and immediately hammers API in tight loop, exhausting rate limits."
+        },
+        "kanit": {
+          "tr": "Aynı istek çok kısa aralıkla tekrarlıyor → B",
+          "en": "Rapid repeated requests in log → B"
+        },
+        "diyagramAd": {
+          "tr": "Döngüsel tekrar",
+          "en": "Retry storm"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Aynı istek çok",
+            "kısa aralıkla mı",
+            "tekrarlıyor?"
+          ],
+          "en": [
+            "Are retry requests",
+            "fired without",
+            "backoff delays?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Artan bekleme",
+            "süresi ekle"
+          ],
+          "en": [
+            "Exponential",
+            "backoff + jitter",
+            "retry logic"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Limit değişti",
+          "en": "Provider quota downgrade"
+        },
+        "aciklama": {
+          "tr": "Karşı taraf kotayı değiştirdi ya da fiyat planı düştü. Sizde hiçbir şey değişmedi.",
+          "en": "Upstream provider tightened throttle policy or subscription plan lapsed to free tier."
+        },
+        "kanit": {
+          "tr": "Limit başlığındaki değer düşmüş → C",
+          "en": "X-RateLimit cap dropped in headers → C"
+        },
+        "diyagramAd": {
+          "tr": "Limit değişti",
+          "en": "Quota reduced"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Limit başlığındaki",
+            "değer düştü mü?"
+          ],
+          "en": [
+            "Did rate limit",
+            "header cap drop",
+            "unexpectedly?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Sağlayıcıyla plan",
+            "görüşmesi"
+          ],
+          "en": [
+            "Negotiate higher",
+            "tier with vendor"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "Backend mühendisi. Kalıcı çözüm istek sayısını azaltmak ve artan bekleme süresiyle yeniden denemektir. Bu iki yapı kurulduğunda entegrasyon hacim büyüdükçe kendiliğinden uyum sağlar.",
+      "en": "Backend engineer. Permanent resilience combines payload batching with exponential backoff and jitter algorithms. This enables integrations to scale gracefully with traffic spikes."
+    },
+    "cozulmezse": {
+      "tr": "Reddedilen her istek eksik veri demektir: gönderilmeyen kargo bildirimi, güncellenmeyen stok, ulaşmayan e-posta. Sistem çalışıyor görünür ama içerik doğru değildir.",
+      "en": "Throttled requests mean desynchronized operations: tracking numbers unsent, inventory un-updated, customer transactional emails lost in queue."
+    },
+    "ilgiliTerimler": [
+      "rate-limit",
+      "webhook",
+      "idempotency"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "B2B White-Label Mühendislik Masası",
+        "en": "B2B White-Label Engineering Desk"
+      },
+      "link": "/agency/"
+    }
+  },
+  {
+    "slug": "sunucu-her-gun-yeniden-baslatiliyor",
+    "no": "13",
+    "baslik": {
+      "tr": "Sunucu her gün yeniden başlatılıyor",
+      "en": "Server Rebooted Daily to Clear Freeze"
+    },
+    "diyagramBaslik": {
+      "tr": "Günlük yeniden başlatma",
+      "en": "Daily server restart"
+    },
+    "kirinti": {
+      "tr": "Altyapı & Erişim",
+      "en": "Infrastructure & Access"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · gizlenen arıza",
+        "en": "High · masked defect"
+      }
+    },
+    "ozet": {
+      "tr": "Site günün belirli saatinde yavaşlıyor veya kilitleniyor, sunucu yeniden başlatılınca düzeliyor. Bu bir çözüm değil, arızanın günlük olarak süpürülmesidir — ve her gün biraz erkene kayar.",
+      "en": "The application slows down or freezes predictably every afternoon; rebooting restores normal function. Daily reboots are not a solution but a temporary band-aid — with degradation creeping earlier every day."
+    },
+    "logSatirlari": [
+      "Out of memory: Killed process",
+      "Bellek kullanımı zamanla artıyor, hiç düşmüyor",
+      "Süreç yöneticisi: yeniden başlatma sayısı her gün artıyor",
+      "Yanıt süreleri gün içinde giderek uzuyor"
+    ],
+    "logNotu": {
+      "tr": "Bellek grafiğinin şekli tek başına teşhis koydurur: testere dişi normaldir, sürekli yükselen düz çizgi sızıntıdır.",
+      "en": "Memory utilization graphs provide instant diagnosis: sawtooth patterns reflect healthy garbage collection; monotonic linear ascent proves memory leaks."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Bellek sızıntısı",
+          "en": "Application memory leak"
+        },
+        "aciklama": {
+          "tr": "Uygulama ayırdığı belleği bırakmıyor; kullanım sürekli yükselir ve sistem sonunda süreci öldürür.",
+          "en": "Unbounded caches or unclosed references accumulate until Linux OOM killer terminates the process."
+        },
+        "kanit": {
+          "tr": "Bellek hiç düşmüyor → A",
+          "en": "RAM usage never drops → A"
+        },
+        "diyagramAd": {
+          "tr": "Bellek sızıntısı",
+          "en": "Memory leak"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Bellek grafiği hiç",
+            "düşüyor mu?"
+          ],
+          "en": [
+            "Does RAM graph",
+            "ever drop during",
+            "idle periods?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Sızıntıyı bul ·",
+            "profil çıkar"
+          ],
+          "en": [
+            "Heap dump profile",
+            "+ patch leak"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Büyük veri yükü",
+          "en": "Unbuffered export spike"
+        },
+        "aciklama": {
+          "tr": "Bir rapor veya dışa aktarma tüm kaydı belleğe alıyor. Sızıntı yok, tek seferlik aşırı yük var.",
+          "en": "Bulk CSV export loads entire 500k row database into memory buffer at once, triggering instant OOM."
+        },
+        "kanit": {
+          "tr": "Tepe belirli bir işlemde oluşuyor → B",
+          "en": "Crash coincides with heavy report → B"
+        },
+        "diyagramAd": {
+          "tr": "Büyük veri yükü",
+          "en": "Heavy data load"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Tepe belirli bir",
+            "raporda mı",
+            "oluşuyor?"
+          ],
+          "en": [
+            "Do memory spikes",
+            "correlate with bulk",
+            "export jobs?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Parçalı işleme +",
+            "akış kullan"
+          ],
+          "en": [
+            "Stream chunking",
+            "+ generator buffer"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Kaynak yetersiz",
+          "en": "Genuine capacity ceiling"
+        },
+        "aciklama": {
+          "tr": "Sızıntı yok, iş gerçekten büyüdü. Bu, tek meşru 'sunucu yükselt' hâlidir.",
+          "en": "Zero memory leaks; active concurrent user count simply exceeded instance memory limits."
+        },
+        "kanit": {
+          "tr": "Kullanım sabit yüksek, artmıyor → C",
+          "en": "Stable high load proportional to traffic → C"
+        },
+        "diyagramAd": {
+          "tr": "Kaynak yetersiz",
+          "en": "Capacity limit"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Kullanım sabit",
+            "yüksek ama",
+            "artmıyor mu?"
+          ],
+          "en": [
+            "Is RAM steady high",
+            "proportional to",
+            "active users?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Kaynak artırımı ·",
+            "meşru tek hâl"
+          ],
+          "en": [
+            "Scale instance RAM",
+            "· valid upgrade"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "A ve B yazılım tarafıdır; yeniden başlatma ikisini de gizler ama çözmez. C'de sunucu yükseltmek doğru karardır — ama A ve B elenmeden yapılırsa para harcanır, arıza kalır.",
+      "en": "A and B are application bugs; automated cron reboots mask them without fixing. C is legitimate hardware scaling — but upgrading before diagnosing A & B wastes cloud spend while crashes persist."
+    },
+    "cozulmezse": {
+      "tr": "Günlük yeniden başlatma bir gün yetmez hâle gelir ve kesinti tam yoğun saatte yaşanır. Zamanlanmış bir arıza gibidir: ne zaman olacağı bellidir, sadece tarihi bilinmez.",
+      "en": "Daily reboots inevitably degrade into multi-hour crashes during high-traffic campaign peaks. It is a scheduled disaster waiting to execute."
+    },
+    "ilgiliTerimler": [
+      "memory-leak",
+      "teknik-borc",
+      "ci-cd"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "Kesinti Maliyeti Hesabı",
+        "en": "Downtime Loss Calculator"
+      },
+      "link": "/kesinti-maliyeti/"
+    }
+  },
+  {
+    "slug": "testte-calisiyor-canlida-calismiyor",
+    "no": "14",
+    "baslik": {
+      "tr": "Test ortamında çalışıyor, canlıda çalışmıyor",
+      "en": "Works in Staging, Fails in Production"
+    },
+    "diyagramBaslik": {
+      "tr": "Testte çalışıyor",
+      "en": "Works in staging only"
+    },
+    "kirinti": {
+      "tr": "Devir & Süreklilik",
+      "en": "Handover & Continuity"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · teslim engeli",
+        "en": "High · release blocker"
+      }
+    },
+    "ozet": {
+      "tr": "Geliştirici \"bende çalışıyor\" diyor ve haklı. Canlıda aynı kod farklı davranıyor. Bu bir yetenek sorunu değil, iki ortamın birbirinin aynısı olmamasının sonucudur.",
+      "en": "The developer says 'it works on my machine' and they are correct. In production, identical code behaves differently. This is environment drift, not a developer competency flaw."
+    },
+    "logSatirlari": [
+      "Undefined env variable / configuration missing",
+      "Yalnız canlıda 500, testte 200",
+      "Kütüphane sürümleri: kilit dosyası var mı, uyuşuyor mu?",
+      "Permission denied — dosya izni veya yol hatası"
+    ],
+    "logNotu": {
+      "tr": "Fark her zaman üç yerden birindedir: yapılandırma, sürüm, izin. Dördüncü bir yer aramak zaman kaybıdır.",
+      "en": "Environment drift always lives in one of three places: configuration, dependency versions, or file permissions. Searching elsewhere wastes critical incident time."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Yapılandırma farkı",
+          "en": "Configuration drift"
+        },
+        "aciklama": {
+          "tr": "Canlıda bir ortam değişkeni eksik ya da farklı. Kod aynı, girdisi değil.",
+          "en": "Production environment variable missing or set to invalid endpoint. Same code, differing inputs."
+        },
+        "kanit": {
+          "tr": "Canlıda eksik değişken → A",
+          "en": "Missing .env in production → A"
+        },
+        "diyagramAd": {
+          "tr": "Yapılandırma farkı",
+          "en": "Config drift"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Canlıda eksik",
+            "ortam değişkeni",
+            "var mı?"
+          ],
+          "en": [
+            "Is an environment",
+            "variable missing",
+            "in production?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Değişken listesini",
+            "eşitle + örnek",
+            "dosya tut"
+          ],
+          "en": [
+            "Sync .env schema",
+            "+ track .env.example",
+            "in git"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Sürüm farkı",
+          "en": "Dependency / runtime mismatch"
+        },
+        "aciklama": {
+          "tr": "Kütüphane veya dil sürümü iki ortamda farklı. Bağımlılıklar sabitlenmemiş.",
+          "en": "Language or package minor versions differ between environments. Unlocked package versions drifted."
+        },
+        "kanit": {
+          "tr": "Sürümler uyuşmuyor → B",
+          "en": "Version mismatch in lockfile → B"
+        },
+        "diyagramAd": {
+          "tr": "Sürüm farkı",
+          "en": "Version mismatch"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Kilit dosyası var",
+            "ve sürümler",
+            "aynı mı?"
+          ],
+          "en": [
+            "Are lockfile package",
+            "versions identical",
+            "across tiers?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Sürümleri sabitle",
+            "· kilit dosyası"
+          ],
+          "en": [
+            "Commit strict",
+            "package-lock /",
+            "composer.lock"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "İzin / yol farkı",
+          "en": "Permissions / path discrepancy"
+        },
+        "aciklama": {
+          "tr": "Canlıda yazma izni yok ya da dosya yolu farklı. Testte yerel klasör, canlıda kısıtlı dizin.",
+          "en": "Target directory lacks write permissions on production web server, or hardcoded absolute path fails."
+        },
+        "kanit": {
+          "tr": "Permission denied → C",
+          "en": "Permission denied in production log → C"
+        },
+        "diyagramAd": {
+          "tr": "İzin / yol farkı",
+          "en": "Permissions / path"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Log'da izin ya da",
+            "yol hatası var mı?"
+          ],
+          "en": [
+            "Does log show",
+            "EACCES / permission",
+            "denied errors?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "İzinleri ve yolu",
+            "ortamdan oku"
+          ],
+          "en": [
+            "Fix chmod permissions",
+            "+ load dynamic",
+            "paths"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "Backend veya sistem tarafı. Kalıcı çözüm farkları tek tek kapatmak değil, iki ortamı aynı tarifle kurmaktır; aksi hâlde her teslimde yeni bir fark çıkar.",
+      "en": "Backend / DevOps. Permanent stability comes from Infrastructure as Code and immutable container recipes; patching discrepancies ad-hoc leaves every future release vulnerable."
+    },
+    "cozulmezse": {
+      "tr": "Her yayın bir kumar hâline gelir. Ekip canlıya çıkmaktan çekinir, teslimler birikir ve tek seferde çıkan büyük paketler riski daha da büyütür.",
+      "en": "Every deployment becomes a high-stakes gamble. Teams dread pushing to prod, backlogs swell, and large batch deploys magnify catastrophic blast radiuses."
+    },
+    "ilgiliTerimler": [
+      "staging-ortami",
+      "ci-cd",
+      "migration"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "Devir Hazırlık Kontrolü",
+        "en": "Handover Readiness Audit"
+      },
+      "link": "/devir-kontrolu/"
+    }
+  },
+  {
+    "slug": "her-yeni-ozellik-oncekini-bozuyor",
+    "no": "15",
+    "baslik": {
+      "tr": "Her yeni özellik bir öncekini bozuyor",
+      "en": "Every New Feature Breaks an Existing Feature"
+    },
+    "diyagramBaslik": {
+      "tr": "Her özellik bozuyor",
+      "en": "New features break old"
+    },
+    "kirinti": {
+      "tr": "Kod Sağlığı",
+      "en": "Code Health"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · birikmiş borç",
+        "en": "High · technical debt"
+      }
+    },
+    "ozet": {
+      "tr": "Bir yeri düzeltiyorsunuz, başka bir yer bozuluyor. Ekip aynı hataları tekrar tekrar düzeltiyor. Bu bir dikkatsizlik değil, kod tabanının artık değişimi kaldıramadığının işaretidir.",
+      "en": "Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt."
+    },
+    "logSatirlari": [
+      "Aynı hata kaydının aylar içinde tekrar açılması",
+      "Test yok, ya da var ama çalıştırılmıyor",
+      "Tek bir dosyanın binlerce satır olması",
+      "Aynı mantığın üç ayrı yerde kopyalanmış olması"
+    ],
+    "logNotu": {
+      "tr": "Ölçülebilir tek gösterge tekrar açılan hata sayısıdır. \"Kod kötü\" bir histir; \"aynı hata üç ayda dört kez açıldı\" bir veridir.",
+      "en": "The only objective metric is bug regression frequency. 'Code feels bad' is subjective sentiment; 'the same checkout defect reopened four times in 90 days' is actionable data."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Kopyalanmış mantık",
+          "en": "Duplicated business logic"
+        },
+        "aciklama": {
+          "tr": "Aynı kural birden çok yerde yazılı. Biri düzeltiliyor, diğerleri unutuluyor.",
+          "en": "Identical calculation logic copy-pasted across multiple controllers. Fixing one leaves the others broken."
+        },
+        "kanit": {
+          "tr": "Aynı mantık birden çok yerde → A",
+          "en": "Duplicated algorithms in codebase → A"
+        },
+        "diyagramAd": {
+          "tr": "Kopyalanmış mantık",
+          "en": "Duplicated logic"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Aynı kural birden",
+            "fazla yerde mi",
+            "yazılı?"
+          ],
+          "en": [
+            "Is business logic",
+            "duplicated in multiple",
+            "controllers?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Tek yere topla ·",
+            "kademeli"
+          ],
+          "en": [
+            "Consolidate to single",
+            "service class ·",
+            "incremental"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Test yok",
+          "en": "Missing regression test suite"
+        },
+        "aciklama": {
+          "tr": "Güvenlik ağı yok; bir değişikliğin neyi bozduğu ancak canlıda anlaşılıyor.",
+          "en": "Zero automated unit/integration tests exist; side effects are discovered only after real customers encounter crashes."
+        },
+        "kanit": {
+          "tr": "Otomatik test yok → B",
+          "en": "Zero test coverage in CI pipeline → B"
+        },
+        "diyagramAd": {
+          "tr": "Test yok",
+          "en": "Zero tests"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Kritik akışların",
+            "testi var mı?"
+          ],
+          "en": [
+            "Do automated tests",
+            "cover critical",
+            "checkout paths?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Önce kritik akışa",
+            "test yaz"
+          ],
+          "en": [
+            "Write regression",
+            "tests on critical",
+            "flows FIRST"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Aşırı bağlılık",
+          "en": "High module coupling"
+        },
+        "aciklama": {
+          "tr": "Modüller birbirine sıkı bağlı; bir yeri değiştirmek zinciri kırıyor.",
+          "en": "Tightly coupled components mutate shared global state; altering one class triggers unpredictable cascade breaks."
+        },
+        "kanit": {
+          "tr": "Küçük değişiklik geniş etki yapıyor → C",
+          "en": "Minor patch creates wide blast radius → C"
+        },
+        "diyagramAd": {
+          "tr": "Aşırı bağlılık",
+          "en": "Tight coupling"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Küçük değişiklik",
+            "çok yeri mi",
+            "etkiliyor?"
+          ],
+          "en": [
+            "Does localized edit",
+            "break unrelated",
+            "views?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Sınırları ayır ·",
+            "parça parça"
+          ],
+          "en": [
+            "Decouple boundaries",
+            "via interfaces ·",
+            "step by step"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "Kıdemli mühendis. Ama sıra bağlayıcıdır: önce test, sonra düzeltme. Güvenlik ağı olmadan yapılan büyük temizlik, mevcut arızalara yenilerini ekler. Her şeyi baştan yazmak neredeyse hiçbir zaman doğru cevap değildir.",
+      "en": "Senior software architect. Sequence is mandatory: write regression tests FIRST, then refactor. Refactoring without test safety nets introduces secondary defects. Total rewrites from scratch are almost never the correct strategy."
+    },
+    "cozulmezse": {
+      "tr": "Her yeni özelliğin maliyeti bir öncekinden yüksek olur. Ekip aynı işi daha uzun sürede yapmaya başlar ve bu dışarıdan \"yavaşladılar\" gibi görünür.",
+      "en": "Development velocity stalls exponentially. Simple features take weeks, engineering morale plummets, and external stakeholders perceive the engineering team as ineffective."
+    },
+    "ilgiliTerimler": [
+      "teknik-borc",
+      "refactor",
+      "ci-cd"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "B2B White-Label Mühendislik Masası",
+        "en": "B2B White-Label Engineering Desk"
+      },
+      "link": "/agency/"
+    }
+  },
+  {
+    "slug": "yazilimci-gitti-koda-girilemiyor",
+    "no": "16",
+    "baslik": {
+      "tr": "Yazılımcı gitti, kimse koda giremiyor",
+      "en": "Developer Departed, Codebase Inaccessible"
+    },
+    "diyagramBaslik": {
+      "tr": "Koda kimse giremiyor",
+      "en": "Codebase inaccessible"
+    },
+    "kirinti": {
+      "tr": "Devir & Süreklilik",
+      "en": "Handover & Continuity"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · süreklilik riski",
+        "en": "High · continuity risk"
+      }
+    },
+    "ozet": {
+      "tr": "Projeyi yapan kişi ayrıldı. Site çalışmaya devam ediyor ama değişiklik yapılamıyor: kodun nerede olduğu, sunucuya kimin girebildiği ya da hesapların kime kayıtlı olduğu belirsiz. Bu üç ayrı problemdir ve hangisiyle karşı karşıya olduğunuz ilk saatte belirlenebilir.",
+      "en": "The developer who built the platform departed. The site continues running but cannot be modified: repository location, server SSH credentials, or account ownership remain unknown. These are three distinct bottlenecks, identifiable within hour one."
+    },
+    "logSatirlari": [
+      "git log -1 --format=%cd            ← son commit ne zaman?",
+      "git log --format='%an' | sort -u   ← koda kaç kişi dokunmuş?",
+      "~/.ssh/authorized_keys             ← sunucuya kimin anahtarı var?",
+      "WHOIS + hosting hesabı             ← hangi e-postaya kayıtlı?"
+    ],
+    "logNotu": {
+      "tr": "Bu dört satır, devrin teknik mi yoksa idari bir problem mi olduğunu ayırır. Çoğu vakada sorun kodda değil, hesap sahipliğindedir.",
+      "en": "These four checkpoints determine whether handover failure is technical or administrative. In most cases, the bottleneck is account ownership rather than code."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Erişim kaybı",
+          "en": "Loss of access"
+        },
+        "aciklama": {
+          "tr": "Domain, hosting ve depo kişinin şahsi e-postasına kayıtlı. Kod sağlam, altyapı çalışıyor; devredilmesi gereken şey hesaplar.",
+          "en": "Domain registrar, host, and git repos are registered to personal emails. Code and infrastructure are sound; the bottleneck is credential handover."
+        },
+        "kanit": {
+          "tr": "Hesaplar şahsi adreste → A",
+          "en": "Accounts on personal mail → A"
+        },
+        "diyagramAd": {
+          "tr": "Erişim kaybı",
+          "en": "Access loss"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Hesaplar şirket",
+            "adresine mi",
+            "kayıtlı?"
+          ],
+          "en": [
+            "Are accounts",
+            "tied to company",
+            "domain email?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Hesap devri —",
+            "idari süreç,",
+            "kod işi değil"
+          ],
+          "en": [
+            "Account transfer —",
+            "admin workflow,",
+            "no coding needed"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Kaynak kod kayıp",
+          "en": "Missing source repository"
+        },
+        "aciklama": {
+          "tr": "Sürüm kontrolü hiç kurulmamış. Canlı sunucudaki dosyalar tek kopya. En kırılgan hâl budur.",
+          "en": "Version control was never initialized. Live production server contains the sole surviving copy. The highest-risk state."
+        },
+        "kanit": {
+          "tr": "Depo yok → B",
+          "en": "No remote repo → B"
+        },
+        "diyagramAd": {
+          "tr": "Kod kayıp",
+          "en": "Source lost"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Sürüm kontrolü",
+            "(git) var mı?"
+          ],
+          "en": [
+            "Is version control",
+            "(git remote)",
+            "present?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "ÖNCE canlıdan",
+            "tam yedek,",
+            "SONRA depo"
+          ],
+          "en": [
+            "Full live image",
+            "FIRST, then git",
+            "init setup"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Ortam belgesiz",
+          "en": "Undocumented environment"
+        },
+        "aciklama": {
+          "tr": "Kod var ama çalıştırılamıyor: kurulum adımları, ortam değişkenleri ve bağımlılık sürümleri yazılı değil.",
+          "en": "Repository exists but cannot be booted: setup commands, environment variables, and lockfiles are absent."
+        },
+        "kanit": {
+          "tr": ".env.example / lock yok → C",
+          "en": "Missing .env / lockfile → C"
+        },
+        "diyagramAd": {
+          "tr": "Ortam belgesiz",
+          "en": "No docs / env"
+        },
+        "diyagramTest": {
+          "tr": [
+            "README ve",
+            "bağımlılık kilidi",
+            "var mı?"
+          ],
+          "en": [
+            "Are README and",
+            "package lockfiles",
+            "available?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Ortam yeniden",
+            "inşası +",
+            "belgeleme"
+          ],
+          "en": [
+            "Environment",
+            "rebuild +",
+            "documentation"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "A idari bir süreçtir, geliştirici gerekmez. B'de ilk iş kod yazmak değil, canlı sunucudan tam yedek almaktır — bu adım atlanırsa tek kopya risk altında kalır. C, devir teşhisinin ölçtüğü şeydir.",
+      "en": "A is an administrative process, requiring zero coding. For B, the absolute first step is pulling a full live server image, not writing code. C is precisely what a handover code audit diagnoses."
+    },
+    "cozulmezse": {
+      "tr": "Sürüm kontrolü olmayan bir projede canlı sunucu tek kopyadır. Sunucu çökerse veya hesap kapanırsa geri dönüş yoktur. Risk her gün büyür, çünkü kimse yedeğin gerçekten alındığını doğrulamamıştır.",
+      "en": "Without version control, production is a single point of total failure. If the instance crashes, recovery is impossible. Risk compounds daily until full image verification is completed."
+    },
+    "ilgiliTerimler": [
+      "teknik-borc",
+      "staging-ortami",
+      "migration"
     ],
     "ilgiliHizmet": {
       "baslik": {
@@ -3134,191 +3133,8 @@ export const teshisData = [
     }
   },
   {
-    "slug": "ssl-suresi-doldu",
-    "no": "18",
-    "baslik": {
-      "tr": "SSL süresi doldu, tarayıcı uyarı veriyor",
-      "en": "SSL Certificate Expired, Security Warning Displayed"
-    },
-    "diyagramBaslik": {
-      "tr": "SSL süresi doldu",
-      "en": "SSL certificate expired"
-    },
-    "kirinti": {
-      "tr": "Altyapı & Erişim",
-      "en": "Infrastructure & Access"
-    },
-    "aciliyet": {
-      "seviye": "kritik",
-      "etiket": {
-        "tr": "Kritik · güven kaybı",
-        "en": "Critical · trust loss"
-      }
-    },
-    "ozet": {
-      "tr": "Ziyaretçiler siteye girerken 'bağlantınız gizli değil' uyarısı alıyor. Site aslında çalışıyor, araya giren tarayıcı. Müşteriniz bunu güvenlik ihlali sanır; teknik olarak çoğu zaman basit bir yenileme sorunudur.",
-      "en": "Users are blocked by 'Your connection is not private' browser interstitials. The application is running fine, but the TLS handshake fails. Clients perceive a breach; technically it is usually a stalled renewal script."
-    },
-    "logSatirlari": [
-      "NET::ERR_CERT_DATE_INVALID              ← süre doldu",
-      "NET::ERR_CERT_COMMON_NAME_INVALID       ← alan adı eşleşmiyor",
-      "SSL certificate problem: unable to get local issuer certificate",
-      "certbot renew — hook command failed"
-    ],
-    "logNotu": {
-      "tr": "Tarayıcının verdiği hata kodu nedeni doğrudan söyler. Uyarı ekranındaki 'Gelişmiş' bağlantısı hangi kodun geçerli olduğunu gösterir.",
-      "en": "Browser error codes state the exact root cause directly. The 'Advanced' button reveals whether expiration, domain mismatch, or broken CA chain is at play."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Yenileme durdu",
-          "en": "Auto-renewal stopped"
-        },
-        "aciklama": {
-          "tr": "Kısa ömürlü sertifikalar otomatik yenilenir; yenileme görevi bir noktada sessizce durmuştur.",
-          "en": "Automated 90-day certificates require active cron hooks; the renewal task failed silently without triggering alerts."
-        },
-        "kanit": {
-          "tr": "Yenileme log'unda hata → A",
-          "en": "Certbot renewal error in log → A"
-        },
-        "diyagramAd": {
-          "tr": "Yenileme durdu",
-          "en": "Renewal halted"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Yenileme görevi",
-            "çalışıyor mu?"
-          ],
-          "en": [
-            "Is certbot / ACME",
-            "cron executing",
-            "cleanly?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Görev onarımı +",
-            "süre bildirimi"
-          ],
-          "en": [
-            "Certbot repair +",
-            "expiry monitoring",
-            "webhook"
-          ]
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Kapsam eksik",
-          "en": "Missing SAN / subdomains"
-        },
-        "aciklama": {
-          "tr": "Sertifika ana alan adını kapsıyor ama `www` veya bir alt alan adını kapsamıyor.",
-          "en": "Certificate covers apex domain but lacks SAN coverage for `www` or target subdomains."
-        },
-        "kanit": {
-          "tr": "COMMON_NAME hatası → B",
-          "en": "COMMON_NAME_INVALID error → B"
-        },
-        "diyagramAd": {
-          "tr": "Kapsam eksik",
-          "en": "Missing SAN"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Hata kodu CN /",
-            "alan adı hatası mı?"
-          ],
-          "en": [
-            "Is error code",
-            "COMMON_NAME",
-            "mismatch?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Sertifikayı alt",
-            "alan adlarıyla",
-            "yeniden al"
-          ],
-          "en": [
-            "Re-issue with",
-            "all SAN / www",
-            "subdomains"
-          ]
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Zincir eksik",
-          "en": "Incomplete CA chain"
-        },
-        "aciklama": {
-          "tr": "Sertifika geçerli ama zincir tamamlanmamış. Bazı cihazlarda çalışır, bazılarında çalışmaz — en yanıltıcı hâl budur.",
-          "en": "Leaf certificate is valid but intermediate CA bundle is missing. Works on modern desktops, fails on mobile — the most deceptive failure."
-        },
-        "kanit": {
-          "tr": "unable to get local issuer → C",
-          "en": "unable to get local issuer error → C"
-        },
-        "diyagramAd": {
-          "tr": "Zincir eksik",
-          "en": "Broken CA chain"
-        },
-        "diyagramTest": {
-          "tr": [
-            "Bazı cihazlarda",
-            "çalışıp bazılarında",
-            "çalışmıyor mu?"
-          ],
-          "en": [
-            "Does it fail",
-            "only on specific",
-            "mobile clients?"
-          ]
-        },
-        "diyagramCozum": {
-          "tr": [
-            "Ara sertifikayı",
-            "zincire ekle"
-          ],
-          "en": [
-            "Install fullchain",
-            "bundle to web",
-            "server config"
-          ]
-        }
-      }
-    ],
-    "kimCozer": {
-      "tr": "Sistem yöneticisi · genellikle bir saatin altında. Asıl mesele tekrarını önlemektir: yenileme başarısız olduğunda haber veren bir bildirim kurulmadıkça aynı arıza sertifika ömrü kadar sonra geri gelir.",
-      "en": "DevOps / Sysadmin · resolved in under one hour. The true goal is preventing recurrence: without automated cert expiration monitoring, the issue repeats every 90 days."
-    },
-    "cozulmezse": {
-      "tr": "Tarayıcı uyarısı gören ziyaretçilerin büyük kısmı geri döner. Ödeme sayfasında bu uyarı, o günkü satışların durması demektir.",
-      "en": "Over 90% of visitors bounce immediately upon seeing security interstitials. On e-commerce checkout flows, it halts revenue instantly."
-    },
-    "ilgiliTerimler": [
-      "ci-cd",
-      "staging-ortami"
-    ],
-    "ilgiliHizmet": {
-      "baslik": {
-        "tr": "Acil Kriz Müdahalesi & Crash Test",
-        "en": "Emergency Incident Triage & Crash Test"
-      },
-      "link": "/crash-test/"
-    }
-  },
-  {
     "slug": "form-gonderiliyor-mail-gelmiyor",
-    "no": "19",
+    "no": "18",
     "baslik": {
       "tr": "Form gönderiliyor ama mail gelmiyor",
       "en": "Form Submits Successfully but No Email Delivered"
@@ -3503,7 +3319,7 @@ export const teshisData = [
   },
   {
     "slug": "site-aramalarda-gorunmez-oldu",
-    "no": "20",
+    "no": "19",
     "baslik": {
       "tr": "Site aramalarda görünmez oldu",
       "en": "Website Dropped from Search Engine Results"
@@ -3684,6 +3500,190 @@ export const teshisData = [
       },
       "link": "/crash-test/"
     }
+  },
+  {
+    "slug": "kucuk-degisiklik-gunler-suruyor",
+    "no": "20",
+    "baslik": {
+      "tr": "Küçük değişiklik günler sürüyor",
+      "en": "Minor Changes Take Days to Deliver"
+    },
+    "diyagramBaslik": {
+      "tr": "Değişiklik çok yavaş",
+      "en": "Trivial change delay"
+    },
+    "kirinti": {
+      "tr": "Kod Sağlığı",
+      "en": "Code Health"
+    },
+    "aciliyet": {
+      "seviye": "orta",
+      "etiket": {
+        "tr": "Orta · hız kaybı",
+        "en": "Medium · velocity loss"
+      }
+    },
+    "ozet": {
+      "tr": "\"Bir buton rengi\" ya da \"bir alan ekle\" gibi işler günlere yayılıyor ve müşteri bunu isteksizlik sanıyor. Gerçek sebep genellikle kodda değil, değişikliği yapmadan önce anlamak için harcanan sürededir.",
+      "en": "Trivial edits like updating button styles or adding a form field drag on for days, leading clients to assume reluctance. The root cause is not developer speed, but the cognitive overhead of deciphering undocumented code."
+    },
+    "logSatirlari": [
+      "Görev süresi: tahmin 2 saat, gerçekleşen 2 gün",
+      "Kurulum: yeni bir geliştirici projeyi kaç günde çalıştırıyor?",
+      "Belge var mı: kurulum notu, mimari şeması, karar kaydı",
+      "Yayın sıklığı: haftada kaç kez canlıya çıkılabiliyor?"
+    ],
+    "logNotu": {
+      "tr": "En açıklayıcı ölçü, yeni bir geliştiricinin projeyi ilk kez çalıştırma süresidir. Bu süre bir günden uzunsa gecikmenin sebebi yetenek değil ortamdır.",
+      "en": "The clearest benchmark is time-to-first-commit for a new developer. If local onboarding takes longer than one day, velocity loss stems from developer experience, not individual talent."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Belgesizlik",
+          "en": "Zero developer documentation"
+        },
+        "aciklama": {
+          "tr": "Bilgi kimsenin yazmadığı yerde, insanların kafasında. Her değişiklik önce arkeoloji gerektiriyor.",
+          "en": "Domain knowledge exists solely in individuals' memories. Every change requires historical code archaeology."
+        },
+        "kanit": {
+          "tr": "Kurulum belgesi yok → A",
+          "en": "Missing README / architecture docs → A"
+        },
+        "diyagramAd": {
+          "tr": "Belgesizlik",
+          "en": "Zero docs"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Yeni biri projeyi",
+            "bir günde ayağa",
+            "kaldırabilir mi?"
+          ],
+          "en": [
+            "Can a new dev boot",
+            "the project locally",
+            "within 1 day?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Kurulum ve karar",
+            "kaydı yaz"
+          ],
+          "en": [
+            "Write README setup",
+            "+ architecture",
+            "decision records"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Elle yayın",
+          "en": "Manual deployment ceremony"
+        },
+        "aciklama": {
+          "tr": "Her teslim elle yapılıyor; küçük bir değişiklik bile uzun bir tören gerektiriyor.",
+          "en": "Deployments rely on manual FTP / SSH commands; tiny tweaks require extensive manual rituals."
+        },
+        "kanit": {
+          "tr": "Yayın elle ve uzun → B",
+          "en": "Manual FTP/SSH release steps → B"
+        },
+        "diyagramAd": {
+          "tr": "Elle yayın",
+          "en": "Manual deploy"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Yayın tek komutla",
+            "yapılabiliyor mu?"
+          ],
+          "en": [
+            "Is deployment",
+            "automated with a",
+            "single command?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Yayını otomatikleştir",
+            "· tek adım"
+          ],
+          "en": [
+            "Automate CI/CD ·",
+            "one-click release",
+            "pipeline"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Karışık yapı",
+          "en": "Unstructured spaghetti architecture"
+        },
+        "aciklama": {
+          "tr": "Değişiklik gereken yeri bulmak zaman alıyor; mantık dağınık, isimlendirme tutarsız.",
+          "en": "Locating which file controls the feature takes hours; scattered business logic and inconsistent naming conventions."
+        },
+        "kanit": {
+          "tr": "Yeri bulmak saatler sürüyor → C",
+          "en": "Hours spent locating source code file → C"
+        },
+        "diyagramAd": {
+          "tr": "Karışık yapı",
+          "en": "Spaghetti logic"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Değişecek yeri",
+            "bulmak saatler",
+            "sürüyor mu?"
+          ],
+          "en": [
+            "Does locating target",
+            "logic require hours",
+            "of grep searching?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Dokunulan yeri",
+            "kademeli düzenle"
+          ],
+          "en": [
+            "Apply Scout Rule:",
+            "clean up target",
+            "module gradually"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "Bu üçünün hiçbiri \"daha çok çalışarak\" çözülmez. Yatırımın karşılığı ilk haftada görünmez, ikinci ayda görünür: aynı ekip aynı sürede belirgin biçimde daha çok iş çıkarır.",
+      "en": "None of these are resolved by 'working overtime'. The payoff is felt by month two: identical teams outputting dramatically higher volume with zero overtime."
+    },
+    "cozulmezse": {
+      "tr": "Yavaşlık bileşik büyür ve ilişkiyi aşındırır. Müşteri gecikmeyi ilgisizlik sanır; ekip ise gerçekten çalıştığı hâlde savunmaya geçer.",
+      "en": "Sluggish delivery erodes client relationships. Clients interpret delays as neglect, while engineers burn out operating in an unmaintained codebase."
+    },
+    "ilgiliTerimler": [
+      "refactor",
+      "teknik-borc",
+      "ci-cd"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "B2B White-Label Mühendislik Masası",
+        "en": "B2B White-Label Engineering Desk"
+      },
+      "link": "/agency/"
+    }
   }
 ];
 export const teshisSummaries = [
@@ -3713,6 +3713,11 @@ export const teshisSummaries = [
       "tr": "Son kalan ürün iki ayrı siparişte çıktı, stok eksiye düştü. Birine iade yapmak zorundasınız. Bu belirtinin üç farklı nedeni var ve üçünün çözümü birbirinden tamamen ayrı — yanlış olanı düzeltmek sorunu geri getirir.",
       "en": "The last item in stock was checked out across two different orders, sending inventory negative. One customer requires a refund. This symptom stems from three distinct root causes, each demanding a completely different fix — addressing the wrong one will cause the defect to recur."
     },
+    "ilgiliTerimler": [
+      "race-condition",
+      "idempotency",
+      "deadlock"
+    ],
     "nedenler": [
       {
         "harf": "A",
@@ -3763,6 +3768,11 @@ export const teshisSummaries = [
       "tr": "Müşterinin kartından para çekildi ama sistemde sipariş yok. Müşteri arıyor, elinizde kayıt yok. Para bankada, sipariş ortada yok — ikisinin arasında kopmuş bir bildirim var.",
       "en": "Customer was charged successfully but no order appears in the system. The client contacts support with no reference on file. Funds are in the bank, order is missing — caused by a severed webhook callback between the two."
     },
+    "ilgiliTerimler": [
+      "webhook",
+      "idempotency",
+      "rate-limit"
+    ],
     "nedenler": [
       {
         "harf": "A",
@@ -3813,6 +3823,11 @@ export const teshisSummaries = [
       "tr": "Müşteriden aynı tutar iki kez tahsil edildi. İade yapmak zorundasınız ama önce hangi katmanda çiftlendiğini bulmalısınız — yanlış katmanı düzeltmek sorunu geri getirir.",
       "en": "The client was billed twice for the same cart. A refund is mandatory, but isolating which tier duplicated the transaction is critical — patching the wrong layer allows duplicates to persist."
     },
+    "ilgiliTerimler": [
+      "idempotency",
+      "webhook",
+      "race-condition"
+    ],
     "nedenler": [
       {
         "harf": "A",
@@ -3838,58 +3853,8 @@ export const teshisSummaries = [
     ]
   },
   {
-    "slug": "site-yavasladi-sunucu-bos",
-    "no": "04",
-    "baslik": {
-      "tr": "Site yavaşladı ama sunucu boş",
-      "en": "Site Stalled Despite Idle Server Resources"
-    },
-    "diyagramBaslik": {
-      "tr": "Yavaş ama sunucu boş",
-      "en": "Slow with idle server"
-    },
-    "kirinti": {
-      "tr": "Performans",
-      "en": "Performance"
-    },
-    "aciliyet": {
-      "seviye": "yuksek",
-      "etiket": {
-        "tr": "Yüksek · dönüşüm kaybı",
-        "en": "High · conversion loss"
-      }
-    },
-    "ozet": {
-      "tr": "Sayfalar geç açılıyor ama sunucu kaynakları rahat görünüyor. 'Sunucu yetersiz' denip plan yükseltilir, hiçbir şey değişmez. Boş bir sunucuda yavaşlık kaynak sorunu değil, bekleme sorunudur.",
-      "en": "Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Sorgu çoğalması",
-          "en": "N+1 query explosion"
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Dizin eksik",
-          "en": "Missing database index"
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Harici bekleme",
-          "en": "Synchronous third-party I/O"
-        }
-      }
-    ]
-  },
-  {
     "slug": "islemler-kilitlendi-sayfa-donuyor",
-    "no": "05",
+    "no": "04",
     "baslik": {
       "tr": "İşlemler kilitlendi, sayfa dönüp duruyor",
       "en": "Transactions Deadlocked, Pages Spinning"
@@ -3913,6 +3878,11 @@ export const teshisSummaries = [
       "tr": "Belirli bir işlem — sipariş onayı, stok güncelleme, toplu güncelleme — sonsuza kadar dönüyor ve sonunda zaman aşımı veriyor. Sistem çökmedi; birbirini bekleyen iki işlem var.",
       "en": "Specific operations — checkout completion, stock updates, or batch imports — hang indefinitely until timeout. The server has not crashed; concurrent transactions are locked waiting for each other."
     },
+    "ilgiliTerimler": [
+      "deadlock",
+      "race-condition",
+      "n-plus-1-sorgu"
+    ],
     "nedenler": [
       {
         "harf": "A",
@@ -3938,108 +3908,8 @@ export const teshisSummaries = [
     ]
   },
   {
-    "slug": "entegrasyon-429-veriyor",
-    "no": "06",
-    "baslik": {
-      "tr": "Entegrasyon aniden 429 vermeye başladı",
-      "en": "Third-Party Integration Returning HTTP 429"
-    },
-    "diyagramBaslik": {
-      "tr": "Entegrasyon 429 veriyor",
-      "en": "Integration 429 rate limit"
-    },
-    "kirinti": {
-      "tr": "İletişim & Entegrasyon",
-      "en": "Contact & Integrations"
-    },
-    "aciliyet": {
-      "seviye": "yuksek",
-      "etiket": {
-        "tr": "Yüksek · veri akışı durdu",
-        "en": "High · data sync halted"
-      }
-    },
-    "ozet": {
-      "tr": "Aylardır çalışan bir entegrasyon — kargo, pazaryeri, ödeme ya da e-posta — birden hata vermeye başladı ve kod değişmedi. Karşı taraf artık isteklerinizi reddediyor; sorun sizde değil, sizin hızınızda olabilir.",
-      "en": "An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429. The remote host is throttling your traffic due to volumetric burst limits."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Hacim büyüdü",
-          "en": "Natural volume growth"
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Döngüsel tekrar",
-          "en": "Retry storm (No backoff)"
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Limit değişti",
-          "en": "Provider quota downgrade"
-        }
-      }
-    ]
-  },
-  {
-    "slug": "sunucu-her-gun-yeniden-baslatiliyor",
-    "no": "07",
-    "baslik": {
-      "tr": "Sunucu her gün yeniden başlatılıyor",
-      "en": "Server Rebooted Daily to Clear Freeze"
-    },
-    "diyagramBaslik": {
-      "tr": "Günlük yeniden başlatma",
-      "en": "Daily server restart"
-    },
-    "kirinti": {
-      "tr": "Altyapı & Erişim",
-      "en": "Infrastructure & Access"
-    },
-    "aciliyet": {
-      "seviye": "yuksek",
-      "etiket": {
-        "tr": "Yüksek · gizlenen arıza",
-        "en": "High · masked defect"
-      }
-    },
-    "ozet": {
-      "tr": "Site günün belirli saatinde yavaşlıyor veya kilitleniyor, sunucu yeniden başlatılınca düzeliyor. Bu bir çözüm değil, arızanın günlük olarak süpürülmesidir — ve her gün biraz erkene kayar.",
-      "en": "The application slows down or freezes predictably every afternoon; rebooting restores normal function. Daily reboots are not a solution but a temporary band-aid — with degradation creeping earlier every day."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Bellek sızıntısı",
-          "en": "Application memory leak"
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Büyük veri yükü",
-          "en": "Unbuffered export spike"
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Kaynak yetersiz",
-          "en": "Genuine capacity ceiling"
-        }
-      }
-    ]
-  },
-  {
     "slug": "guncelleme-sonrasi-veri-kayboldu",
-    "no": "08",
+    "no": "05",
     "baslik": {
       "tr": "Güncellemeden sonra veri kayboldu sanılıyor",
       "en": "Data Assumed Lost After System Update"
@@ -4063,6 +3933,11 @@ export const teshisSummaries = [
       "tr": "Bir güncellemeden sonra kayıtlar görünmüyor ve panik \"veriler silindi\" diye başlıyor. Çoğu vakada veri yerindedir; onu okuyan sorgu değişmiştir. Ama bu doğrulanmadan yapılan her müdahale gerçek kaybı yaratabilir.",
       "en": "Records vanish after a release, triggering data deletion panic. In most incidents, data remains intact; the query reading it mutated. Attempting hasty fixes without proper diagnosis risks causing genuine data loss."
     },
+    "ilgiliTerimler": [
+      "migration",
+      "staging-ortami",
+      "teknik-borc"
+    ],
     "nedenler": [
       {
         "harf": "A",
@@ -4088,58 +3963,8 @@ export const teshisSummaries = [
     ]
   },
   {
-    "slug": "testte-calisiyor-canlida-calismiyor",
-    "no": "09",
-    "baslik": {
-      "tr": "Test ortamında çalışıyor, canlıda çalışmıyor",
-      "en": "Works in Staging, Fails in Production"
-    },
-    "diyagramBaslik": {
-      "tr": "Testte çalışıyor",
-      "en": "Works in staging only"
-    },
-    "kirinti": {
-      "tr": "Devir & Süreklilik",
-      "en": "Handover & Continuity"
-    },
-    "aciliyet": {
-      "seviye": "yuksek",
-      "etiket": {
-        "tr": "Yüksek · teslim engeli",
-        "en": "High · release blocker"
-      }
-    },
-    "ozet": {
-      "tr": "Geliştirici \"bende çalışıyor\" diyor ve haklı. Canlıda aynı kod farklı davranıyor. Bu bir yetenek sorunu değil, iki ortamın birbirinin aynısı olmamasının sonucudur.",
-      "en": "The developer says 'it works on my machine' and they are correct. In production, identical code behaves differently. This is environment drift, not a developer competency flaw."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Yapılandırma farkı",
-          "en": "Configuration drift"
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Sürüm farkı",
-          "en": "Dependency / runtime mismatch"
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "İzin / yol farkı",
-          "en": "Permissions / path discrepancy"
-        }
-      }
-    ]
-  },
-  {
     "slug": "deploy-sonrasi-site-bozuldu",
-    "no": "10",
+    "no": "06",
     "baslik": {
       "tr": "Deploy sonrası site bozuldu",
       "en": "Website Broke Immediately After Deployment"
@@ -4163,6 +3988,11 @@ export const teshisSummaries = [
       "tr": "Yayın alındı ve site bozuldu. Geri almak isteniyor ama nasıl geri alınacağı belli değil. Asıl sorun bozulmanın kendisi değil, geri dönüşün planlanmamış olmasıdır.",
       "en": "A new release went live and the site broke. The team wants to rollback but has no documented rollback plan. The critical failure is not the bug itself, but the lack of an atomic rollback mechanism."
     },
+    "ilgiliTerimler": [
+      "ci-cd",
+      "staging-ortami",
+      "migration"
+    ],
     "nedenler": [
       {
         "harf": "A",
@@ -4188,108 +4018,8 @@ export const teshisSummaries = [
     ]
   },
   {
-    "slug": "her-yeni-ozellik-oncekini-bozuyor",
-    "no": "11",
-    "baslik": {
-      "tr": "Her yeni özellik bir öncekini bozuyor",
-      "en": "Every New Feature Breaks an Existing Feature"
-    },
-    "diyagramBaslik": {
-      "tr": "Her özellik bozuyor",
-      "en": "New features break old"
-    },
-    "kirinti": {
-      "tr": "Kod Sağlığı",
-      "en": "Code Health"
-    },
-    "aciliyet": {
-      "seviye": "yuksek",
-      "etiket": {
-        "tr": "Yüksek · birikmiş borç",
-        "en": "High · technical debt"
-      }
-    },
-    "ozet": {
-      "tr": "Bir yeri düzeltiyorsunuz, başka bir yer bozuluyor. Ekip aynı hataları tekrar tekrar düzeltiyor. Bu bir dikkatsizlik değil, kod tabanının artık değişimi kaldıramadığının işaretidir.",
-      "en": "Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Kopyalanmış mantık",
-          "en": "Duplicated business logic"
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Test yok",
-          "en": "Missing regression test suite"
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Aşırı bağlılık",
-          "en": "High module coupling"
-        }
-      }
-    ]
-  },
-  {
-    "slug": "kucuk-degisiklik-gunler-suruyor",
-    "no": "12",
-    "baslik": {
-      "tr": "Küçük değişiklik günler sürüyor",
-      "en": "Minor Changes Take Days to Deliver"
-    },
-    "diyagramBaslik": {
-      "tr": "Değişiklik çok yavaş",
-      "en": "Trivial change delay"
-    },
-    "kirinti": {
-      "tr": "Kod Sağlığı",
-      "en": "Code Health"
-    },
-    "aciliyet": {
-      "seviye": "orta",
-      "etiket": {
-        "tr": "Orta · hız kaybı",
-        "en": "Medium · velocity loss"
-      }
-    },
-    "ozet": {
-      "tr": "\"Bir buton rengi\" ya da \"bir alan ekle\" gibi işler günlere yayılıyor ve müşteri bunu isteksizlik sanıyor. Gerçek sebep genellikle kodda değil, değişikliği yapmadan önce anlamak için harcanan sürededir.",
-      "en": "Trivial edits like updating button styles or adding a form field drag on for days, leading clients to assume reluctance. The root cause is not developer speed, but the cognitive overhead of deciphering undocumented code."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Belgesizlik",
-          "en": "Zero developer documentation"
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Elle yayın",
-          "en": "Manual deployment ceremony"
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Karışık yapı",
-          "en": "Unstructured spaghetti architecture"
-        }
-      }
-    ]
-  },
-  {
     "slug": "site-500-veriyor-dun-calisiyordu",
-    "no": "13",
+    "no": "07",
     "baslik": {
       "tr": "Site 500 veriyor, dün çalışıyordu",
       "en": "Site Returning 500 Error, Worked Yesterday"
@@ -4313,6 +4043,11 @@ export const teshisSummaries = [
       "tr": "Dün sorunsuz açılan site bugün 500 veriyor ve kimse bir şey değiştirmediğini söylüyor. \"Hiçbir şey değişmedi\" cümlesi neredeyse her zaman yanlıştır — değişen bir şey vardır, sadece kod olmayabilir.",
       "en": "A website that booted flawlessly yesterday throws 500 errors today, with team members insisting nothing changed. \"Nothing changed\" is almost always false — something mutated, just not necessarily code."
     },
+    "ilgiliTerimler": [
+      "ci-cd",
+      "staging-ortami",
+      "memory-leak"
+    ],
     "nedenler": [
       {
         "harf": "A",
@@ -4338,58 +4073,8 @@ export const teshisSummaries = [
     ]
   },
   {
-    "slug": "yazilimci-gitti-koda-girilemiyor",
-    "no": "14",
-    "baslik": {
-      "tr": "Yazılımcı gitti, kimse koda giremiyor",
-      "en": "Developer Departed, Codebase Inaccessible"
-    },
-    "diyagramBaslik": {
-      "tr": "Koda kimse giremiyor",
-      "en": "Codebase inaccessible"
-    },
-    "kirinti": {
-      "tr": "Devir & Süreklilik",
-      "en": "Handover & Continuity"
-    },
-    "aciliyet": {
-      "seviye": "yuksek",
-      "etiket": {
-        "tr": "Yüksek · süreklilik riski",
-        "en": "High · continuity risk"
-      }
-    },
-    "ozet": {
-      "tr": "Projeyi yapan kişi ayrıldı. Site çalışmaya devam ediyor ama değişiklik yapılamıyor: kodun nerede olduğu, sunucuya kimin girebildiği ya da hesapların kime kayıtlı olduğu belirsiz. Bu üç ayrı problemdir ve hangisiyle karşı karşıya olduğunuz ilk saatte belirlenebilir.",
-      "en": "The developer who built the platform departed. The site continues running but cannot be modified: repository location, server SSH credentials, or account ownership remain unknown. These are three distinct bottlenecks, identifiable within hour one."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Erişim kaybı",
-          "en": "Loss of access"
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Kaynak kod kayıp",
-          "en": "Missing source repository"
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Ortam belgesiz",
-          "en": "Undocumented environment"
-        }
-      }
-    ]
-  },
-  {
     "slug": "bulut-hesabi-askiya-alindi",
-    "no": "15",
+    "no": "08",
     "baslik": {
       "tr": "Bulut hesabı askıya alındı, site kapandı",
       "en": "Cloud Account Suspended, Site Down"
@@ -4413,6 +4098,10 @@ export const teshisSummaries = [
       "tr": "Site aniden tamamen erişilemez oldu. Kod değişmedi, deploy yapılmadı, kimse bir şeye dokunmadı. Bu tablonun nedeni çoğu zaman kodda değildir — ve doğru yere bakmadan geçen her saat veri kaybı riskini büyütür.",
       "en": "The application became completely unreachable out of nowhere. No code changes, no deployments, no manual changes. The root cause is almost never within code — and every hour spent looking in the wrong place increases catastrophic data loss risk."
     },
+    "ilgiliTerimler": [
+      "staging-ortami",
+      "ci-cd"
+    ],
     "nedenler": [
       {
         "harf": "A",
@@ -4439,7 +4128,7 @@ export const teshisSummaries = [
   },
   {
     "slug": "yedek-var-sanildi-yedek-yok",
-    "no": "16",
+    "no": "09",
     "baslik": {
       "tr": "Yedek var sanılıyordu, yedek yok",
       "en": "Backup Assumed to Exist, No Valid Backup"
@@ -4463,6 +4152,11 @@ export const teshisSummaries = [
       "tr": "Bir sorun çıktı, yedeğe dönülmek istendi ve yedeğin ya hiç alınmadığı ya da geri yüklenemediği görüldü. Yedeğin var olması ile geri yüklenebilir olması aynı şey değildir; ikincisi denenmeden bilinmez.",
       "en": "An outage occurred, a rollback to backup was requested, only to discover snapshots were never generated or are un-restorable. A backup file existing versus being restorable are entirely different; the latter is unknown until tested."
     },
+    "ilgiliTerimler": [
+      "migration",
+      "staging-ortami",
+      "teknik-borc"
+    ],
     "nedenler": [
       {
         "harf": "A",
@@ -4483,6 +4177,390 @@ export const teshisSummaries = [
         "ad": {
           "tr": "Geri yüklenemiyor",
           "en": "Un-restorable / corrupted"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "ssl-suresi-doldu",
+    "no": "10",
+    "baslik": {
+      "tr": "SSL süresi doldu, tarayıcı uyarı veriyor",
+      "en": "SSL Certificate Expired, Security Warning Displayed"
+    },
+    "diyagramBaslik": {
+      "tr": "SSL süresi doldu",
+      "en": "SSL certificate expired"
+    },
+    "kirinti": {
+      "tr": "Altyapı & Erişim",
+      "en": "Infrastructure & Access"
+    },
+    "aciliyet": {
+      "seviye": "kritik",
+      "etiket": {
+        "tr": "Kritik · güven kaybı",
+        "en": "Critical · trust loss"
+      }
+    },
+    "ozet": {
+      "tr": "Ziyaretçiler siteye girerken 'bağlantınız gizli değil' uyarısı alıyor. Site aslında çalışıyor, araya giren tarayıcı. Müşteriniz bunu güvenlik ihlali sanır; teknik olarak çoğu zaman basit bir yenileme sorunudur.",
+      "en": "Users are blocked by 'Your connection is not private' browser interstitials. The application is running fine, but the TLS handshake fails. Clients perceive a breach; technically it is usually a stalled renewal script."
+    },
+    "ilgiliTerimler": [
+      "ci-cd",
+      "staging-ortami"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Yenileme durdu",
+          "en": "Auto-renewal stopped"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Kapsam eksik",
+          "en": "Missing SAN / subdomains"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Zincir eksik",
+          "en": "Incomplete CA chain"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "site-yavasladi-sunucu-bos",
+    "no": "11",
+    "baslik": {
+      "tr": "Site yavaşladı ama sunucu boş",
+      "en": "Site Stalled Despite Idle Server Resources"
+    },
+    "diyagramBaslik": {
+      "tr": "Yavaş ama sunucu boş",
+      "en": "Slow with idle server"
+    },
+    "kirinti": {
+      "tr": "Performans",
+      "en": "Performance"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · dönüşüm kaybı",
+        "en": "High · conversion loss"
+      }
+    },
+    "ozet": {
+      "tr": "Sayfalar geç açılıyor ama sunucu kaynakları rahat görünüyor. 'Sunucu yetersiz' denip plan yükseltilir, hiçbir şey değişmez. Boş bir sunucuda yavaşlık kaynak sorunu değil, bekleme sorunudur.",
+      "en": "Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation."
+    },
+    "ilgiliTerimler": [
+      "n-plus-1-sorgu",
+      "teknik-borc",
+      "rate-limit"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Sorgu çoğalması",
+          "en": "N+1 query explosion"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Dizin eksik",
+          "en": "Missing database index"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Harici bekleme",
+          "en": "Synchronous third-party I/O"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "entegrasyon-429-veriyor",
+    "no": "12",
+    "baslik": {
+      "tr": "Entegrasyon aniden 429 vermeye başladı",
+      "en": "Third-Party Integration Returning HTTP 429"
+    },
+    "diyagramBaslik": {
+      "tr": "Entegrasyon 429 veriyor",
+      "en": "Integration 429 rate limit"
+    },
+    "kirinti": {
+      "tr": "İletişim & Entegrasyon",
+      "en": "Contact & Integrations"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · veri akışı durdu",
+        "en": "High · data sync halted"
+      }
+    },
+    "ozet": {
+      "tr": "Aylardır çalışan bir entegrasyon — kargo, pazaryeri, ödeme ya da e-posta — birden hata vermeye başladı ve kod değişmedi. Karşı taraf artık isteklerinizi reddediyor; sorun sizde değil, sizin hızınızda olabilir.",
+      "en": "An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429. The remote host is throttling your traffic due to volumetric burst limits."
+    },
+    "ilgiliTerimler": [
+      "rate-limit",
+      "webhook",
+      "idempotency"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Hacim büyüdü",
+          "en": "Natural volume growth"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Döngüsel tekrar",
+          "en": "Retry storm (No backoff)"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Limit değişti",
+          "en": "Provider quota downgrade"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "sunucu-her-gun-yeniden-baslatiliyor",
+    "no": "13",
+    "baslik": {
+      "tr": "Sunucu her gün yeniden başlatılıyor",
+      "en": "Server Rebooted Daily to Clear Freeze"
+    },
+    "diyagramBaslik": {
+      "tr": "Günlük yeniden başlatma",
+      "en": "Daily server restart"
+    },
+    "kirinti": {
+      "tr": "Altyapı & Erişim",
+      "en": "Infrastructure & Access"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · gizlenen arıza",
+        "en": "High · masked defect"
+      }
+    },
+    "ozet": {
+      "tr": "Site günün belirli saatinde yavaşlıyor veya kilitleniyor, sunucu yeniden başlatılınca düzeliyor. Bu bir çözüm değil, arızanın günlük olarak süpürülmesidir — ve her gün biraz erkene kayar.",
+      "en": "The application slows down or freezes predictably every afternoon; rebooting restores normal function. Daily reboots are not a solution but a temporary band-aid — with degradation creeping earlier every day."
+    },
+    "ilgiliTerimler": [
+      "memory-leak",
+      "teknik-borc",
+      "ci-cd"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Bellek sızıntısı",
+          "en": "Application memory leak"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Büyük veri yükü",
+          "en": "Unbuffered export spike"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Kaynak yetersiz",
+          "en": "Genuine capacity ceiling"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "testte-calisiyor-canlida-calismiyor",
+    "no": "14",
+    "baslik": {
+      "tr": "Test ortamında çalışıyor, canlıda çalışmıyor",
+      "en": "Works in Staging, Fails in Production"
+    },
+    "diyagramBaslik": {
+      "tr": "Testte çalışıyor",
+      "en": "Works in staging only"
+    },
+    "kirinti": {
+      "tr": "Devir & Süreklilik",
+      "en": "Handover & Continuity"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · teslim engeli",
+        "en": "High · release blocker"
+      }
+    },
+    "ozet": {
+      "tr": "Geliştirici \"bende çalışıyor\" diyor ve haklı. Canlıda aynı kod farklı davranıyor. Bu bir yetenek sorunu değil, iki ortamın birbirinin aynısı olmamasının sonucudur.",
+      "en": "The developer says 'it works on my machine' and they are correct. In production, identical code behaves differently. This is environment drift, not a developer competency flaw."
+    },
+    "ilgiliTerimler": [
+      "staging-ortami",
+      "ci-cd",
+      "migration"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Yapılandırma farkı",
+          "en": "Configuration drift"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Sürüm farkı",
+          "en": "Dependency / runtime mismatch"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "İzin / yol farkı",
+          "en": "Permissions / path discrepancy"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "her-yeni-ozellik-oncekini-bozuyor",
+    "no": "15",
+    "baslik": {
+      "tr": "Her yeni özellik bir öncekini bozuyor",
+      "en": "Every New Feature Breaks an Existing Feature"
+    },
+    "diyagramBaslik": {
+      "tr": "Her özellik bozuyor",
+      "en": "New features break old"
+    },
+    "kirinti": {
+      "tr": "Kod Sağlığı",
+      "en": "Code Health"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · birikmiş borç",
+        "en": "High · technical debt"
+      }
+    },
+    "ozet": {
+      "tr": "Bir yeri düzeltiyorsunuz, başka bir yer bozuluyor. Ekip aynı hataları tekrar tekrar düzeltiyor. Bu bir dikkatsizlik değil, kod tabanının artık değişimi kaldıramadığının işaretidir.",
+      "en": "Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt."
+    },
+    "ilgiliTerimler": [
+      "teknik-borc",
+      "refactor",
+      "ci-cd"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Kopyalanmış mantık",
+          "en": "Duplicated business logic"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Test yok",
+          "en": "Missing regression test suite"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Aşırı bağlılık",
+          "en": "High module coupling"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "yazilimci-gitti-koda-girilemiyor",
+    "no": "16",
+    "baslik": {
+      "tr": "Yazılımcı gitti, kimse koda giremiyor",
+      "en": "Developer Departed, Codebase Inaccessible"
+    },
+    "diyagramBaslik": {
+      "tr": "Koda kimse giremiyor",
+      "en": "Codebase inaccessible"
+    },
+    "kirinti": {
+      "tr": "Devir & Süreklilik",
+      "en": "Handover & Continuity"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · süreklilik riski",
+        "en": "High · continuity risk"
+      }
+    },
+    "ozet": {
+      "tr": "Projeyi yapan kişi ayrıldı. Site çalışmaya devam ediyor ama değişiklik yapılamıyor: kodun nerede olduğu, sunucuya kimin girebildiği ya da hesapların kime kayıtlı olduğu belirsiz. Bu üç ayrı problemdir ve hangisiyle karşı karşıya olduğunuz ilk saatte belirlenebilir.",
+      "en": "The developer who built the platform departed. The site continues running but cannot be modified: repository location, server SSH credentials, or account ownership remain unknown. These are three distinct bottlenecks, identifiable within hour one."
+    },
+    "ilgiliTerimler": [
+      "teknik-borc",
+      "staging-ortami",
+      "migration"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Erişim kaybı",
+          "en": "Loss of access"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Kaynak kod kayıp",
+          "en": "Missing source repository"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Ortam belgesiz",
+          "en": "Undocumented environment"
         }
       }
     ]
@@ -4513,6 +4591,11 @@ export const teshisSummaries = [
       "tr": "Site çalışıyor ama kimse yönetim paneline giremiyor. Alan adının kime kayıtlı olduğu, hosting faturasının kime gittiği belirsiz. Bu bir yazılım sorunu değil, mülkiyet sorunudur — ve teknik ekip tek başına çözemez.",
       "en": "The website is online but no stakeholder has root panel access. Domain registrant identity and hosting billing recipients are unknown. This is an ownership dispute, not software, requiring administrative escalation."
     },
+    "ilgiliTerimler": [
+      "staging-ortami",
+      "ci-cd",
+      "teknik-borc"
+    ],
     "nedenler": [
       {
         "harf": "A",
@@ -4538,58 +4621,8 @@ export const teshisSummaries = [
     ]
   },
   {
-    "slug": "ssl-suresi-doldu",
-    "no": "18",
-    "baslik": {
-      "tr": "SSL süresi doldu, tarayıcı uyarı veriyor",
-      "en": "SSL Certificate Expired, Security Warning Displayed"
-    },
-    "diyagramBaslik": {
-      "tr": "SSL süresi doldu",
-      "en": "SSL certificate expired"
-    },
-    "kirinti": {
-      "tr": "Altyapı & Erişim",
-      "en": "Infrastructure & Access"
-    },
-    "aciliyet": {
-      "seviye": "kritik",
-      "etiket": {
-        "tr": "Kritik · güven kaybı",
-        "en": "Critical · trust loss"
-      }
-    },
-    "ozet": {
-      "tr": "Ziyaretçiler siteye girerken 'bağlantınız gizli değil' uyarısı alıyor. Site aslında çalışıyor, araya giren tarayıcı. Müşteriniz bunu güvenlik ihlali sanır; teknik olarak çoğu zaman basit bir yenileme sorunudur.",
-      "en": "Users are blocked by 'Your connection is not private' browser interstitials. The application is running fine, but the TLS handshake fails. Clients perceive a breach; technically it is usually a stalled renewal script."
-    },
-    "nedenler": [
-      {
-        "harf": "A",
-        "ad": {
-          "tr": "Yenileme durdu",
-          "en": "Auto-renewal stopped"
-        }
-      },
-      {
-        "harf": "B",
-        "ad": {
-          "tr": "Kapsam eksik",
-          "en": "Missing SAN / subdomains"
-        }
-      },
-      {
-        "harf": "C",
-        "ad": {
-          "tr": "Zincir eksik",
-          "en": "Incomplete CA chain"
-        }
-      }
-    ]
-  },
-  {
     "slug": "form-gonderiliyor-mail-gelmiyor",
-    "no": "19",
+    "no": "18",
     "baslik": {
       "tr": "Form gönderiliyor ama mail gelmiyor",
       "en": "Form Submits Successfully but No Email Delivered"
@@ -4613,6 +4646,11 @@ export const teshisSummaries = [
       "tr": "İletişim veya teklif formu 'gönderildi' diyor ama kimseye mail ulaşmıyor. Bu belirtinin en tehlikeli yanı sessiz olmasıdır: kaç talebin kaybolduğu bilinmez.",
       "en": "Lead or quote forms display 'Submitted successfully' but notifications never arrive in the team inbox. The most insidious defect: silence leaves lost deals completely untracked."
     },
+    "ilgiliTerimler": [
+      "webhook",
+      "rate-limit",
+      "idempotency"
+    ],
     "nedenler": [
       {
         "harf": "A",
@@ -4639,7 +4677,7 @@ export const teshisSummaries = [
   },
   {
     "slug": "site-aramalarda-gorunmez-oldu",
-    "no": "20",
+    "no": "19",
     "baslik": {
       "tr": "Site aramalarda görünmez oldu",
       "en": "Website Dropped from Search Engine Results"
@@ -4663,6 +4701,11 @@ export const teshisSummaries = [
       "tr": "Site açılıyor, her şey normal görünüyor ama arama sonuçlarındaki yerini kaybetti. Bu belirtinin teknik nedenleri, içerik ya da rekabet nedenlerinden çok daha hızlı doğrulanır — önce onlar elenmelidir.",
       "en": "The site is accessible and looks normal, but organic search rankings plummeted. Technical causes can be verified far faster than content or algorithmic penalties — rule them out first."
     },
+    "ilgiliTerimler": [
+      "staging-ortami",
+      "ci-cd",
+      "migration"
+    ],
     "nedenler": [
       {
         "harf": "A",
@@ -4683,6 +4726,61 @@ export const teshisSummaries = [
         "ad": {
           "tr": "Adresler değişti",
           "en": "Broken 301 migrations"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "kucuk-degisiklik-gunler-suruyor",
+    "no": "20",
+    "baslik": {
+      "tr": "Küçük değişiklik günler sürüyor",
+      "en": "Minor Changes Take Days to Deliver"
+    },
+    "diyagramBaslik": {
+      "tr": "Değişiklik çok yavaş",
+      "en": "Trivial change delay"
+    },
+    "kirinti": {
+      "tr": "Kod Sağlığı",
+      "en": "Code Health"
+    },
+    "aciliyet": {
+      "seviye": "orta",
+      "etiket": {
+        "tr": "Orta · hız kaybı",
+        "en": "Medium · velocity loss"
+      }
+    },
+    "ozet": {
+      "tr": "\"Bir buton rengi\" ya da \"bir alan ekle\" gibi işler günlere yayılıyor ve müşteri bunu isteksizlik sanıyor. Gerçek sebep genellikle kodda değil, değişikliği yapmadan önce anlamak için harcanan sürededir.",
+      "en": "Trivial edits like updating button styles or adding a form field drag on for days, leading clients to assume reluctance. The root cause is not developer speed, but the cognitive overhead of deciphering undocumented code."
+    },
+    "ilgiliTerimler": [
+      "refactor",
+      "teknik-borc",
+      "ci-cd"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Belgesizlik",
+          "en": "Zero developer documentation"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Elle yayın",
+          "en": "Manual deployment ceremony"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Karışık yapı",
+          "en": "Unstructured spaghetti architecture"
         }
       }
     ]

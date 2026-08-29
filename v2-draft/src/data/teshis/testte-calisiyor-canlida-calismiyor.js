@@ -1,6 +1,6 @@
 export default {
   "slug": "testte-calisiyor-canlida-calismiyor",
-  "no": "09",
+  "no": "14",
   "baslik": {
     "tr": "Test ortamında çalışıyor, canlıda çalışmıyor",
     "en": "Works in Staging, Fails in Production"

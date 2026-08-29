@@ -1,6 +1,6 @@
 export default {
   "slug": "guncelleme-sonrasi-veri-kayboldu",
-  "no": "08",
+  "no": "05",
   "baslik": {
     "tr": "Güncellemeden sonra veri kayboldu sanılıyor",
     "en": "Data Assumed Lost After System Update"

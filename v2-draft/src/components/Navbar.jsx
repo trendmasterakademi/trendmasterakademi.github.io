@@ -143,17 +143,6 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/sozluk/"
-              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
-                path.startsWith('/sozluk')
-                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              {isTr ? 'Terim Sözlüğü' : 'Glossary'}
-            </Link>
-
-            <Link
               to="/teshis/"
               className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
                 path.startsWith('/teshis')
@@ -286,18 +275,6 @@ const Navbar = () => {
               }`}
             >
               {isTr ? '12 Kalemlik Devir Kontrolü' : 'Handover Readiness Audit'}
-            </Link>
-
-            <Link
-              to="/sozluk/"
-              onClick={() => setIsOpen(false)}
-              className={`block w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold ${
-                path.startsWith('/sozluk')
-                  ? 'text-cyan-400 bg-cyan-500/10'
-                  : 'text-slate-200 hover:bg-white/5'
-              }`}
-            >
-              {isTr ? 'Ajans Terim Sözlüğü' : 'Developer-to-Agency Glossary'}
             </Link>
 
             <Link

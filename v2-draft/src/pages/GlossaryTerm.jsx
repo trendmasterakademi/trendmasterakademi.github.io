@@ -6,6 +6,7 @@ import {
   HelpCircle, CheckCircle2, PhoneCall, BookOpen, ExternalLink, Zap, Calendar
 } from 'lucide-react';
 import { glossaryTerms } from '../data/glossaryData';
+import { teshisSummaries } from '../data/teshis/indexSummary';
 import { getCalendlyUrl } from '../utils/calendly';
 
 const GlossaryTerm = () => {
@@ -15,6 +16,13 @@ const GlossaryTerm = () => {
   const navigate = useNavigate();
 
   const term = glossaryTerms.find(t => t.slug === slug);
+
+  // Dynamic reverse lookup: Diagnostics that reference this term in catalog order (01..20)
+  const referencingDiagnostics = term
+    ? teshisSummaries.filter(item => item.ilgiliTerimler && item.ilgiliTerimler.includes(term.slug))
+    : [];
+  const visibleDiagnostics = referencingDiagnostics.slice(0, 4);
+  const remainingCount = referencingDiagnostics.length - 4;
 
   useEffect(() => {
     if (!term) return;
@@ -134,6 +142,42 @@ const GlossaryTerm = () => {
             </p>
           </div>
         </div>
+
+        {/* Reverse Index: Diagnostic Links referencing this Term */}
+        {referencingDiagnostics.length > 0 && (
+          <div className="p-7 sm:p-8 rounded-3xl bg-[#111827]/90 border border-white/10 shadow-xl space-y-4">
+            <h2 className="text-xl font-bold text-white">
+              {isTr ? 'Bu terim şu belirtilerde çıkar' : 'This term appears in these symptoms'}
+            </h2>
+            <div className="space-y-2.5 pl-1 sm:pl-2">
+              {visibleDiagnostics.map(diag => {
+                const titleText = diag.baslik[isTr ? 'tr' : 'en'] || diag.baslik.tr;
+                return (
+                  <Link
+                    key={diag.slug}
+                    to={`/teshis/${diag.slug}/`}
+                    className="group flex items-start gap-2 text-sm sm:text-base text-slate-300 hover:text-cyan-300 transition-colors"
+                  >
+                    <span className="text-cyan-400 font-mono font-semibold">→</span>
+                    <span className="font-mono text-cyan-400/90 font-bold">{diag.no}</span>
+                    <span className="text-slate-500 font-mono">·</span>
+                    <span className="group-hover:underline underline-offset-4">{titleText}</span>
+                  </Link>
+                );
+              })}
+              {remainingCount > 0 && (
+                <div className="pt-2">
+                  <Link
+                    to="/teshis/"
+                    className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono text-cyan-400 hover:text-cyan-300 transition-colors font-semibold"
+                  >
+                    <span>{isTr ? `ve ${remainingCount} teşhis daha →` : `and ${remainingCount} more diagnostics →`}</span>
+                  </Link>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
 
         {/* Section 3: Related Service Banner */}
         <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-cyan-950/40 via-blue-950/20 to-transparent border border-cyan-500/30 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">

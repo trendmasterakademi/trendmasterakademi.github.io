@@ -1,6 +1,6 @@
 export default {
   "slug": "bulut-hesabi-askiya-alindi",
-  "no": "15",
+  "no": "08",
   "baslik": {
     "tr": "Bulut hesabı askıya alındı, site kapandı",
     "en": "Cloud Account Suspended, Site Down"

@@ -1,6 +1,6 @@
 export default {
   "slug": "kucuk-degisiklik-gunler-suruyor",
-  "no": "12",
+  "no": "20",
   "baslik": {
     "tr": "Küçük değişiklik günler sürüyor",
     "en": "Minor Changes Take Days to Deliver"

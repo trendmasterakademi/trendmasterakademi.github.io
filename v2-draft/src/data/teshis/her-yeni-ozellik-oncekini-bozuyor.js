@@ -1,6 +1,6 @@
 export default {
   "slug": "her-yeni-ozellik-oncekini-bozuyor",
-  "no": "11",
+  "no": "15",
   "baslik": {
     "tr": "Her yeni özellik bir öncekini bozuyor",
     "en": "Every New Feature Breaks an Existing Feature"

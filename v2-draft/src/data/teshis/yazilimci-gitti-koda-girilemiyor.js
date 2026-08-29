@@ -1,6 +1,6 @@
 export default {
   "slug": "yazilimci-gitti-koda-girilemiyor",
-  "no": "14",
+  "no": "16",
   "baslik": {
     "tr": "Yazılımcı gitti, kimse koda giremiyor",
     "en": "Developer Departed, Codebase Inaccessible"

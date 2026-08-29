@@ -1,6 +1,6 @@
 export default {
   "slug": "entegrasyon-429-veriyor",
-  "no": "06",
+  "no": "12",
   "baslik": {
     "tr": "Entegrasyon aniden 429 vermeye başladı",
     "en": "Third-Party Integration Returning HTTP 429"

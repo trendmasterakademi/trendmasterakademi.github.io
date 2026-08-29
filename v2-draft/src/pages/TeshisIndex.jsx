@@ -132,6 +132,16 @@ const TeshisIndex = () => {
         })}
       </div>
 
+      {/* Glossary Reference Link */}
+      <div className="mt-12 text-center pt-8 border-t border-white/10">
+        <Link 
+          to="/sozluk/" 
+          className="text-xs sm:text-sm font-mono text-slate-400 hover:text-cyan-400 transition-colors inline-flex items-center gap-1.5"
+        >
+          <span>{isTr ? 'Teknik terimlerin kısa karşılıkları için → Terim Sözlüğü' : 'Short definitions of the technical terms → Glossary'}</span>
+        </Link>
+      </div>
+
     </div>
   );
 };

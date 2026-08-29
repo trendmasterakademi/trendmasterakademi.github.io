@@ -1,6 +1,6 @@
 export default {
   "slug": "sunucu-her-gun-yeniden-baslatiliyor",
-  "no": "07",
+  "no": "13",
   "baslik": {
     "tr": "Sunucu her gün yeniden başlatılıyor",
     "en": "Server Rebooted Daily to Clear Freeze"

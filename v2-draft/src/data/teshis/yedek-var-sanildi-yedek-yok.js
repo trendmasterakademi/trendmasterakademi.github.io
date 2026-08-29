@@ -1,6 +1,6 @@
 export default {
   "slug": "yedek-var-sanildi-yedek-yok",
-  "no": "16",
+  "no": "09",
   "baslik": {
     "tr": "Yedek var sanılıyordu, yedek yok",
     "en": "Backup Assumed to Exist, No Valid Backup"

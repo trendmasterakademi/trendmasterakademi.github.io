@@ -1,6 +1,6 @@
 export default {
   "slug": "site-500-veriyor-dun-calisiyordu",
-  "no": "13",
+  "no": "07",
   "baslik": {
     "tr": "Site 500 veriyor, dün çalışıyordu",
     "en": "Site Returning 500 Error, Worked Yesterday"

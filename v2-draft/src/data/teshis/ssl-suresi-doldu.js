@@ -1,6 +1,6 @@
 export default {
   "slug": "ssl-suresi-doldu",
-  "no": "18",
+  "no": "10",
   "baslik": {
     "tr": "SSL süresi doldu, tarayıcı uyarı veriyor",
     "en": "SSL Certificate Expired, Security Warning Displayed"

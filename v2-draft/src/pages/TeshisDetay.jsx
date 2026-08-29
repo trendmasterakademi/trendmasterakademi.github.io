@@ -142,6 +142,9 @@ const TeshisDetay = () => {
           {/* Header & Meta */}
           <div className="space-y-4 border-b border-white/10 pb-8">
             <div className="flex flex-wrap items-center gap-3">
+              <span className="font-mono text-xs text-slate-400 font-bold">
+                #{teshis.no}
+              </span>
               <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg font-mono text-xs font-semibold uppercase tracking-wider ${
                 isKritik 
                   ? 'bg-red-500/10 border border-red-500/30 text-red-400' 

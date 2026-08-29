@@ -1,6 +1,6 @@
 export default {
   "slug": "deploy-sonrasi-site-bozuldu",
-  "no": "10",
+  "no": "06",
   "baslik": {
     "tr": "Deploy sonrası site bozuldu",
     "en": "Website Broke Immediately After Deployment"

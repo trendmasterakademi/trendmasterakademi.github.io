@@ -1,6 +1,6 @@
 export default {
   "slug": "site-aramalarda-gorunmez-oldu",
-  "no": "20",
+  "no": "19",
   "baslik": {
     "tr": "Site aramalarda görünmez oldu",
     "en": "Website Dropped from Search Engine Results"

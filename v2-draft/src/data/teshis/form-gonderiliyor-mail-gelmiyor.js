@@ -1,6 +1,6 @@
 export default {
   "slug": "form-gonderiliyor-mail-gelmiyor",
-  "no": "19",
+  "no": "18",
   "baslik": {
     "tr": "Form gönderiliyor ama mail gelmiyor",
     "en": "Form Submits Successfully but No Email Delivered"

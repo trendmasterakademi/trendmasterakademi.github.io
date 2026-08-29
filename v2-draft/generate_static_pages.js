@@ -129,16 +129,36 @@ const basePages = [
 ];
 
 // Add each glossary term page dynamically
-const glossaryPages = glossaryTerms.map(term => ({
-  dir: `sozluk/${term.slug}`,
-  title: `${term.title} Nedir? Ajanslar İçin Teknik Rehber | Trend Master Akademi`,
-  h1: `${term.title} Nedir?`,
-  description: `${term.title}: ${term.shortDef.tr}`,
-  canonical: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
-  ogUrl: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
-  heading: term.title,
-  subheading: `${term.shortDef.tr} ${term.agencyImpact.tr}`
-}));
+const glossaryPages = glossaryTerms.map(term => {
+  const matching = teshisData.filter(d => d.ilgiliTerimler && d.ilgiliTerimler.includes(term.slug));
+  const visible = matching.slice(0, 4);
+  const remaining = matching.length - 4;
+  
+  let reverseBlock = '';
+  if (matching.length > 0) {
+    reverseBlock = `
+      <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3 mt-6">
+        <h2 class="text-xl font-bold text-white">Bu terim şu belirtilerde çıkar</h2>
+        <ul class="space-y-2 font-mono text-sm text-cyan-300">
+          ${visible.map(d => `<li><a href="/teshis/${d.slug}/" class="hover:underline">→ ${d.no} · ${d.baslik.tr}</a></li>`).join('\n')}
+        </ul>
+        ${remaining > 0 ? `<p class="text-xs text-slate-400 pt-1"><a href="/teshis/" class="text-cyan-400 hover:underline">ve ${remaining} teşhis daha →</a></p>` : ''}
+      </section>
+    `;
+  }
+
+  return {
+    dir: `sozluk/${term.slug}`,
+    title: `${term.title} Nedir? Ajanslar İçin Teknik Rehber | Trend Master Akademi`,
+    h1: `${term.title} Nedir?`,
+    description: `${term.title}: ${term.shortDef.tr}`,
+    canonical: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
+    ogUrl: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
+    heading: term.title,
+    subheading: `${term.shortDef.tr} ${term.agencyImpact.tr}`,
+    extraContent: reverseBlock
+  };
+});
 
 // Add each diagnostic page dynamically
 const teshisPages = teshisData.map(item => ({
@@ -198,7 +218,7 @@ pages.forEach(page => {
           <a href="/agency/" class="hover:underline">Ajans Çözümleri</a>
           <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
           <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
-          <a href="/sozluk/" class="hover:underline">Terim Sözlüğü</a>
+          <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
           <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
           <a href="/about/" class="hover:underline">Hakkımızda</a>
           <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
@@ -207,6 +227,7 @@ pages.forEach(page => {
       <main class="space-y-6">
         ${page.heading ? `<h2 class="text-2xl font-bold text-white">${page.heading}</h2>` : ''}
         <p class="text-slate-300 text-lg leading-relaxed">${page.subheading}</p>
+        ${page.extraContent || ''}
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>

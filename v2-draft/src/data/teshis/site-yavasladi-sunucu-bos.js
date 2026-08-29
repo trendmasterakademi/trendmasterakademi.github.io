@@ -1,6 +1,6 @@
 export default {
   "slug": "site-yavasladi-sunucu-bos",
-  "no": "04",
+  "no": "11",
   "baslik": {
     "tr": "Site yavaşladı ama sunucu boş",
     "en": "Site Stalled Despite Idle Server Resources"

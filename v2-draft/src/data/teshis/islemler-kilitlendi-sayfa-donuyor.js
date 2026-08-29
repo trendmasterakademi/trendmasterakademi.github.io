@@ -1,6 +1,6 @@
 export default {
   "slug": "islemler-kilitlendi-sayfa-donuyor",
-  "no": "05",
+  "no": "04",
   "baslik": {
     "tr": "İşlemler kilitlendi, sayfa dönüp duruyor",
     "en": "Transactions Deadlocked, Pages Spinning"
