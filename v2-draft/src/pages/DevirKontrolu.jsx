@@ -522,7 +522,7 @@ const DevirKontrolu = () => {
             className="space-y-6"
           >
             {/* Sticky Unified Diagnostic & Progress Header */}
-            <div className="sticky top-[64px] sm:top-[74px] md:top-[80px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/98 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_15px_45px_rgba(0,0,0,0.95)] space-y-3.5 transition-all">
+            <div className="sticky top-[78px] sm:top-[92px] md:top-[100px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/98 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_15px_45px_rgba(0,0,0,0.95)] space-y-3.5 transition-all">
               {/* Eyebrow & Status Bar */}
               <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-white/10 text-xs font-mono">
                 <div className="flex items-center gap-2">
