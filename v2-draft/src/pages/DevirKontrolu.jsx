@@ -460,9 +460,9 @@ const DevirKontrolu = () => {
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <div className="space-y-1">
-                  <h3 className="text-base font-bold text-white">
+                  <h2 className="text-base font-bold text-white">
                     {isTr ? 'Sisteminize Bağlanmaz, Şifre veya Erişim İstemez' : 'Zero System Access, No Passwords Required'}
-                  </h3>
+                  </h2>
                   <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                     {isTr 
                       ? 'Bu araç yalnızca durumunuzu anlamanıza yardımcı bir karar matrisidir. Hiçbir teknik şifre, anahtar veya sunucu bilgisi girmeniz gerekmez.' 
@@ -512,11 +512,14 @@ const DevirKontrolu = () => {
             <div className="p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-wrap items-center justify-between gap-4">
               <div>
                 <span className="text-xs font-mono uppercase text-slate-400 block mb-1">
-                  {isTr ? 'Kontrol Listesi İlerlemesi' : 'Checklist Progress'}
+                  {isTr ? 'Adım 2 / 2' : 'Step 2 / 2'}
                 </span>
-                <strong className="text-lg font-bold text-white">
+                <h2 className="text-lg sm:text-xl font-bold text-white">
+                  {isTr ? '12 Kalemlik Devir Kontrol Listesi' : '12-Point Handover Audit Checklist'}
+                </h2>
+                <span className="text-xs font-mono text-cyan-400 block mt-1">
                   {answeredCount} / {handoverItems.length} {isTr ? 'Kalem Yanıtlandı' : 'Answered'}
-                </strong>
+                </span>
               </div>
               <div className="w-full sm:w-64 h-3 bg-black/40 rounded-full overflow-hidden border border-white/10">
                 <div 
@@ -677,9 +680,9 @@ const DevirKontrolu = () => {
                   <span className="text-xs text-slate-400 block mt-1">{criticalMissing.length} {isTr ? 'kritik erişim kalemi' : 'critical items'}</span>
                 </div>
                 <div className="p-5 rounded-2xl bg-white/5 border border-cyan-500/30 bg-cyan-500/5">
-                  <span className="text-xs sm:text-sm text-cyan-300 font-bold block mb-1">{isTr ? 'TMA Toparlama Fiyat Çıpası' : 'TMA Remediation Anchor'}</span>
-                  <strong className="text-base sm:text-lg font-bold text-white font-mono">{isTr ? '₺15.000 - ₺35.000 / Sabit' : '₺15,000 - ₺35,000 / Fixed'}</strong>
-                  <span className="text-xs text-cyan-400/80 block mt-1">{isTr ? 'Önceden sabit, sürpriz faturasız' : 'Zero surprise billing'}</span>
+                  <span className="text-xs sm:text-sm text-cyan-300 font-bold block mb-1">{isTr ? 'İlk Teşhis & Triyaj' : 'Initial Triage'}</span>
+                  <strong className="text-base sm:text-lg font-bold text-emerald-400 font-mono">{isTr ? 'Ücretsiz' : 'Free'}</strong>
+                  <span className="text-xs text-cyan-400/80 block mt-1">{isTr ? 'Sonraki adımlar kapsama göre belirlenir' : 'Next steps scoped per project'}</span>
                 </div>
                 <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
                   <span className="text-xs sm:text-sm text-slate-400 block mb-1">{isTr ? 'Önerilen Devir SLA' : 'Recommended SLA'}</span>

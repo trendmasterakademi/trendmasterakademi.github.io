@@ -378,7 +378,7 @@ const KesintiMaliyeti = () => {
                   {isTr ? ' net ciro kurtarılır.' : ' in net revenue.'}
                 </p>
                 <div className="pt-1 text-[11px] font-mono text-emerald-400/80">
-                  TMA Hotfix Maliyeti: <strong>Önceden Sabit ₺15.000 - ₺35.000</strong>
+                  {isTr ? 'İlk Teşhis & Triyaj:' : 'Initial Triage:'} <strong>{isTr ? 'Ücretsiz · Kapsama Göre Teklif' : 'Free · Scoped per project'}</strong>
                 </div>
               </div>
 

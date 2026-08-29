@@ -646,9 +646,9 @@ const CrashTest = () => {
                   <span className="text-xs text-slate-400 block mt-1">{isTr ? 'Cezai şart ve müşteri kaybı dahil' : 'Contract penalties & client churn factored'}</span>
                 </div>
                 <div className="p-5 rounded-2xl bg-white/5 border border-cyan-500/30 bg-cyan-500/5">
-                  <span className="text-xs sm:text-sm text-cyan-300 font-bold block mb-1">{isTr ? 'TMA Çözüm & Fiyat Çıpası' : 'TMA Solution Price Anchor'}</span>
-                  <strong className="text-base sm:text-lg font-bold text-white font-mono">{isTr ? '₺15.000 - ₺35.000 / Sabit' : '₺15,000 - ₺35,000 / Fixed'}</strong>
-                  <span className="text-xs text-cyan-400/80 block mt-1">{isTr ? 'Önceden sabit, sürpriz faturasız' : 'Pre-fixed, zero surprise invoicing'}</span>
+                  <span className="text-xs sm:text-sm text-cyan-300 font-bold block mb-1">{isTr ? 'İlk Teşhis & Triyaj' : 'Initial Triage'}</span>
+                  <strong className="text-base sm:text-lg font-bold text-emerald-400 font-mono">{isTr ? 'Ücretsiz' : 'Free'}</strong>
+                  <span className="text-xs text-cyan-400/80 block mt-1">{isTr ? 'Sonraki adımlar kapsama göre belirlenir' : 'Next steps scoped per project'}</span>
                 </div>
                 <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
                   <span className="text-xs sm:text-sm text-slate-400 block mb-1">{isTr ? 'Acil Triyaj & Teşhis Süresi' : 'Rapid Triage Turnaround'}</span>

@@ -61,24 +61,23 @@ const Footer = () => {
           </ul>
         </div>
         
-        {/* Security & Guarantee Column */}
+        {/* Security & Pricing Column */}
         <div className="md:col-span-4 space-y-3">
           <h4 className="text-white font-bold text-base flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-400" /> {isTr ? 'Şeffaf Hizmet & Fiyat Çıpası' : 'Transparent Pricing Anchors'}
+            <ShieldCheck className="w-4 h-4 text-emerald-400" /> {isTr ? 'Ücretlendirme' : 'Pricing'}
           </h4>
           <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2 text-xs text-slate-300">
             <div className="flex justify-between border-b border-white/5 pb-1">
-              <span>İlk Kod Teşhisi & Triyaj:</span>
-              <strong className="text-emerald-400 font-mono">Ücretsiz (0 TL)</strong>
+              <span>{isTr ? 'İlk Kod Teşhisi & Triyaj:' : 'Initial Code Triage:'}</span>
+              <strong className="text-emerald-400 font-mono">{isTr ? 'Ücretsiz' : 'Free'}</strong>
             </div>
             <div className="flex justify-between border-b border-white/5 pb-1">
-              <span>Acil Incident SWAT Hotfix:</span>
-              <strong className="text-cyan-300 font-mono">₺15.000 - ₺35.000 / Sabit</strong>
+              <span>{isTr ? 'Diğer tüm çalışmalar:' : 'All other work:'}</span>
+              <strong className="text-slate-200 font-mono">{isTr ? 'Projeye göre belirlenir' : 'Scoped per project'}</strong>
             </div>
-            <div className="flex justify-between">
-              <span>White-Label Geliştirme Sprinti:</span>
-              <strong className="text-purple-300 font-mono">₺35.000 / Hafta (Sabit)</strong>
-            </div>
+            <p className="text-[11px] text-slate-400 pt-1 leading-relaxed">
+              {isTr ? 'Kapsam netleştikten sonra işe özel teklif iletilir.' : 'A tailored quote follows once scope is defined.'}
+            </p>
           </div>
           <div className="pt-2 text-xs space-y-1.5 font-mono text-slate-400">
             <div className="flex items-center gap-2">

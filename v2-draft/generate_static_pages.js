@@ -20,6 +20,7 @@ const basePages = [
   {
     dir: 'agency',
     title: 'Ajans Çözümleri & B2B White-Label Mühendislik Masası | Trend Master Akademi',
+    h1: 'Ajans Çözümleri & B2B Mühendislik Masası',
     description: 'Dijital ajansların görünmez teknik gücü: %100 White-Label, resmi NDA güvencesi, 20+ teknik yetkinlik, acil kriz masası ve kıdemli mühendislik takviyesi.',
     canonical: 'https://trendmasterakademi.com/agency/',
     ogUrl: 'https://trendmasterakademi.com/agency/',
@@ -29,6 +30,7 @@ const basePages = [
   {
     dir: 'crash-test',
     title: 'Agency Crash Test (60sn) - Kriz & Risk Simülatörü | Trend Master Akademi',
+    h1: 'Agency Crash Test (60sn)',
     description: 'Ajansınız teknik bir krize hazır mı? HTTP 500 kesintisi, geliştirici ani ayrılığı veya T-48H lansman darboğazı için 60 saniyede risk skorunuzu ve eylem planınızı görün.',
     canonical: 'https://trendmasterakademi.com/crash-test/',
     ogUrl: 'https://trendmasterakademi.com/crash-test/',
@@ -38,6 +40,7 @@ const basePages = [
   {
     dir: 'devir-kontrolu',
     title: 'Devir Hazırlık Kontrolü (12 Kalem) - Yazılımcı Ayrılık Riski | Trend Master Akademi',
+    h1: 'Devir Hazırlık Kontrolü',
     description: 'Yazılımcınız ayrılıyor veya ayrıldı mı? 12 kritik kalemi kontrol edin, devir risk skorunuzu ve eksik envanterinizi 60 saniyede ücretsiz analiz edin.',
     canonical: 'https://trendmasterakademi.com/devir-kontrolu/',
     ogUrl: 'https://trendmasterakademi.com/devir-kontrolu/',
@@ -47,6 +50,7 @@ const basePages = [
   {
     dir: 'sozluk',
     title: 'Yazılımcı Dili → Ajans Dili Teknik Terim Sözlüğü | Trend Master Akademi',
+    h1: 'Teknik Terim Sözlüğü',
     description: 'Yazılımcınız teknik bir bahane sunduğunda ne anlama geldiğini öğrenin. Deadlock, N+1, Race Condition, Webhook ve 12 temel terimin iş etkisi ve çözümü.',
     canonical: 'https://trendmasterakademi.com/sozluk/',
     ogUrl: 'https://trendmasterakademi.com/sozluk/',
@@ -56,6 +60,7 @@ const basePages = [
   {
     dir: 'kesinti-maliyeti',
     title: 'Web Sitesi Kesinti Maliyeti Hesaplayıcı (Downtime Calculator) | Trend Master Akademi',
+    h1: 'Kesinti Maliyeti Hesaplayıcı',
     description: 'Sunucu çökmesi veya HTTP 500 kesintisinde saatlik ve toplam tahmini ciro kaybınızı hesaplayın. Şeffaf matematik ve kurtarma ROI analizi.',
     canonical: 'https://trendmasterakademi.com/kesinti-maliyeti/',
     ogUrl: 'https://trendmasterakademi.com/kesinti-maliyeti/',
@@ -65,6 +70,7 @@ const basePages = [
   {
     dir: 'about',
     title: 'Mühendislik Standartlarımız & Hakkımızda | Trend Master Akademi',
+    h1: 'Mühendislik Standartlarımız & Hakkımızda',
     description: 'Trend Master Akademi mühendislik standartları, 4 temel prensip ve B2B SWAT vizyonu.',
     canonical: 'https://trendmasterakademi.com/about/',
     ogUrl: 'https://trendmasterakademi.com/about/',
@@ -74,6 +80,7 @@ const basePages = [
   {
     dir: 'privacy',
     title: 'KVKK Aydınlatma Metni & Gizlilik Politikası | Trend Master Akademi',
+    h1: 'KVKK Aydınlatma Metni & Gizlilik Politikası',
     description: 'Trend Master Akademi KVKK aydınlatma metni, veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik standartları.',
     canonical: 'https://trendmasterakademi.com/privacy/',
     ogUrl: 'https://trendmasterakademi.com/privacy/',
@@ -83,6 +90,7 @@ const basePages = [
   {
     dir: 'gizlilik',
     title: 'KVKK Aydınlatma Metni & Gizlilik Politikası | Trend Master Akademi',
+    h1: 'KVKK Aydınlatma Metni & Gizlilik Politikası',
     description: 'Trend Master Akademi KVKK aydınlatma metni, veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik standartları.',
     canonical: 'https://trendmasterakademi.com/privacy/',
     ogUrl: 'https://trendmasterakademi.com/privacy/',
@@ -95,6 +103,7 @@ const basePages = [
 const glossaryPages = glossaryTerms.map(term => ({
   dir: `sozluk/${term.slug}`,
   title: `${term.title} Nedir? Ajanslar İçin Teknik Rehber | Trend Master Akademi`,
+  h1: `${term.title} Nedir?`,
   description: `${term.title}: ${term.shortDef.tr}`,
   canonical: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
   ogUrl: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
@@ -138,11 +147,11 @@ pages.forEach(page => {
   html = html.replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/i, `<link rel="alternate" hreflang="x-default" href="${page.canonical}" />`);
   html = html.replace(/<link rel="alternate" hreflang="en" href=".*?" \/>\s*/i, '');
 
-  // Ensure Pre-rendered Semantic HTML is visible & corporate branded
+  // Ensure Pre-rendered Semantic HTML is visible & corporate branded with distinct h1
   const semanticBlock = `
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
       <header class="mb-8 border-b border-white/10 pb-6">
-        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">${page.title}</h1>
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">${page.h1}</h1>
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
           <a href="/" class="hover:underline">Ana Sayfa</a>
           <a href="/agency/" class="hover:underline">Ajans Çözümleri</a>

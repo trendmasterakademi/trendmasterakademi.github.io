@@ -98,12 +98,12 @@ const About = () => {
             03
           </div>
           <h3 className="text-xl sm:text-2xl font-bold text-white">
-            {isTr ? 'Sabit Fiyat / Haftalık Sprint Şeffaflığı' : 'Fixed-Fee / Sprint Predictability'}
+            {isTr ? 'Şeffaf Ücretlendirme' : 'Transparent Pricing'}
           </h3>
           <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
             {isTr 
-              ? 'Sürpriz faturalar veya ucu açık saatlik maliyetler yoktur. Kriz hotfix müdahalelerinde önceden sabit bütçe, kapasite kiralamalarında haftalık sabit sprint ücreti uygulanır.' 
-              : 'No surprise invoices or open-ended hourly traps. Fixed transparent pricing on SWAT hotfixes and predictable weekly sprint rates on dedicated capacity.'}
+              ? 'İlk kod teşhisi ve triyaj ücretsizdir. Sonraki çalışmanın kapsamı ve bedeli, teşhis tamamlandıktan sonra işe özel olarak belirlenir ve çalışma başlamadan önce yazılı olarak netleşir.' 
+              : 'Initial code triage is free. Scope and pricing for subsequent work are tailored after diagnosis and established in writing before work begins.'}
           </p>
         </motion.div>
 
