@@ -520,7 +520,7 @@ const DevirKontrolu = () => {
             className="space-y-8"
           >
             {/* Sticky Progress Header */}
-            <div className="sticky top-[64px] sm:top-[80px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/95 backdrop-blur-xl border border-cyan-500/40 shadow-[0_12px_40px_rgba(0,0,0,0.9)] flex flex-wrap items-center justify-between gap-4 transition-all">
+            <div className="sticky top-[72px] sm:top-[92px] md:top-[96px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/98 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_15px_45px_rgba(0,0,0,0.95)] flex flex-wrap items-center justify-between gap-4 transition-all">
               <div>
                 <span className="text-[10px] sm:text-xs font-mono uppercase text-cyan-400 font-bold block mb-0.5">
                   {isTr ? 'Adım 2 / 2 · Canlı İlerleme' : 'Step 2 / 2 · Live Progress'}

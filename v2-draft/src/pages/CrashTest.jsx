@@ -518,7 +518,7 @@ const CrashTest = () => {
             className="space-y-8"
           >
             {/* Sticky Selected Scenario & Progress Mini-Banner */}
-            <div className="sticky top-[64px] sm:top-[80px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/95 backdrop-blur-xl border border-cyan-500/40 shadow-[0_12px_40px_rgba(0,0,0,0.9)] flex flex-wrap items-center justify-between gap-3 transition-all">
+            <div className="sticky top-[72px] sm:top-[92px] md:top-[96px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/98 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_15px_45px_rgba(0,0,0,0.95)] flex flex-wrap items-center justify-between gap-3 transition-all">
               <div className="flex items-center gap-3">
                 <span className="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-mono font-bold bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
                   {selectedScenario.code}
