@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, PhoneCall, Mail, MapPin, Zap, Lock, Globe } from 'lucide-react';
+import { ShieldCheck, PhoneCall, Mail, Zap, Lock, Globe } from 'lucide-react';
 import KVKKModal from './KVKKModal';
 
 const Footer = () => {
@@ -96,10 +96,6 @@ const Footer = () => {
               <Mail className="w-3.5 h-3.5 text-cyan-400" />
               <a href="mailto:info@trendmasterakademi.com" className="hover:text-white">info@trendmasterakademi.com</a>
             </div>
-            <div className="flex items-center gap-2">
-              <MapPin className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</span>
-            </div>
           </div>
 
           {/* Yasal Bilgiler / Legal Information */}
@@ -126,10 +122,9 @@ const Footer = () => {
       
       {/* Bottom Copyright */}
       <div className="max-w-7xl mx-auto pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
-        <div className="space-y-1 text-center sm:text-left">
-          <p>© 2026 Trend Master Akademi Studio & Labs. {isTr ? 'Tüm hakları saklıdır.' : 'All rights reserved.'}</p>
-          <p className="text-[11px] text-slate-500 font-mono">Trend Master Akademi · Konak V.D. · Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
-        </div>
+        <p className="text-center sm:text-left">
+          © {new Date().getFullYear()} Trend Master Akademi Studio & Labs. {isTr ? 'Tüm hakları saklıdır.' : 'All rights reserved.'}
+        </p>
         <div className="flex items-center gap-4 text-slate-400">
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400"></span> Response Desk: Online</span>
           <span>•</span>
