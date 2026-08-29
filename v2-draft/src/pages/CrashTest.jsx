@@ -186,6 +186,10 @@ const CrashTest = () => {
   const [copied, setCopied] = useState(false);
   const [isSOSOpen, setIsSOSOpen] = useState(false);
 
+  React.useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [step]);
+
   // UTM & Physical Crisis Kit Tracking
   const [campaignParams, setCampaignParams] = useState({
     utm_source: '',

@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
 import CookieBanner from './components/CookieBanner';
+import ScrollToTop from './components/ScrollToTop';
 
 // Route-based code-split components
 const Home = lazy(() => import('./pages/Home'));
@@ -34,6 +35,7 @@ const PageFallback = () => (
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="min-h-screen bg-[#080b11] text-slate-200 selection:bg-cyan-500 selection:text-black overflow-x-hidden w-full max-w-full relative font-sans">
         <Navbar />
         <main className="overflow-x-hidden w-full max-w-full">

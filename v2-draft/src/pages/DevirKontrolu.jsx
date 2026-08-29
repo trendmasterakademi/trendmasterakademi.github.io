@@ -195,6 +195,10 @@ const DevirKontrolu = () => {
   const [answers, setAnswers] = useState({});
   const [copied, setCopied] = useState(false);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [step]);
+
   const [campaignParams, setCampaignParams] = useState({
     utm_source: '',
     utm_campaign: '',
