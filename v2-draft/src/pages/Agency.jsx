@@ -634,7 +634,7 @@ const Agency = () => {
                       {isTr ? 'ACİL MÜDAHALE' : 'EMERGENCY RESPONSE'}
                     </span>
                     <span className="text-xs font-mono font-bold text-cyan-300 bg-cyan-500/10 px-2.5 py-1 rounded-lg border border-cyan-500/30">
-                      {isTr ? "₺50.000'den başlar · işin kapsamına göre" : 'From ₺50,000 · depending on scope'}
+                      {isTr ? 'Sabit bedel · işin kapsamına göre' : 'Fixed fee · depending on scope'}
                     </span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
@@ -676,13 +676,24 @@ const Agency = () => {
                   </p>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-                  <div className="text-white font-bold text-sm sm:text-base">
-                    {isTr ? 'Siz teklif verirsiniz' : 'You quote'}
+                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3 flex flex-col justify-between">
+                  <div className="space-y-1">
+                    <div className="text-white font-bold text-sm sm:text-base">
+                      {isTr ? 'Siz teklif verirsiniz' : 'You quote'}
+                    </div>
+                    <p className="text-xs sm:text-sm text-slate-300">
+                      {isTr ? 'Bütçenizi söylersiniz, kapsamı ona göre konuşuruz.' : 'You name your budget, we shape the scope around it.'}
+                    </p>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-300">
-                    {isTr ? 'Bütçenizi söylersiniz, kapsamı ona göre konuşuruz.' : 'You name your budget, we shape the scope around it.'}
-                  </p>
+                  <div className="pt-2 border-t border-white/10">
+                    <button
+                      type="button"
+                      onClick={() => window.dispatchEvent(new CustomEvent('open-sos-modal'))}
+                      className="text-emerald-400 font-mono font-bold text-xs sm:text-sm hover:underline focus:outline-none focus:ring-1 focus:ring-emerald-400 rounded cursor-pointer transition-colors text-left"
+                    >
+                      {isTr ? 'Bütçenizi iletin →' : 'Send us your budget →'}
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

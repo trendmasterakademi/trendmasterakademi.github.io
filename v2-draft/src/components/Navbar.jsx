@@ -20,6 +20,12 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    const handleOpenSOS = () => setIsSOSOpen(true);
+    window.addEventListener('open-sos-modal', handleOpenSOS);
+    return () => window.removeEventListener('open-sos-modal', handleOpenSOS);
+  }, []);
+
+  useEffect(() => {
     if (location.pathname !== '/' && location.pathname !== '') {
       return;
     }

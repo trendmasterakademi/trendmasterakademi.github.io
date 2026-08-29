@@ -86,11 +86,17 @@ const Footer = () => {
             </div>
             <div className="flex justify-between border-b border-white/5 pb-1">
               <span>{isTr ? 'Acil müdahale' : 'Emergency response'}</span>
-              <strong className="text-cyan-400 font-mono">{isTr ? "₺50.000'den başlar" : 'Starts from ₺50,000'}</strong>
+              <strong className="text-cyan-400 font-mono">{isTr ? 'Teşhisle aynı anda' : 'Priced with the diagnosis'}</strong>
             </div>
-            <div className="flex justify-between pt-0.5">
+            <div className="flex justify-between pt-0.5 items-center">
               <span>{isTr ? 'Acil teklif hattı' : 'Urgent quote line'}</span>
-              <strong className="text-emerald-400 font-mono">{isTr ? 'Teklif iki taraftan' : 'Quotes from either side'}</strong>
+              <button
+                type="button"
+                onClick={() => window.dispatchEvent(new CustomEvent('open-sos-modal'))}
+                className="text-emerald-400 font-mono font-bold hover:underline focus:outline-none focus:ring-1 focus:ring-emerald-400 rounded cursor-pointer transition-colors text-right"
+              >
+                {isTr ? 'Teklif iki taraftan' : 'Quotes from either side'}
+              </button>
             </div>
           </div>
           <div className="pt-2 text-xs space-y-1.5 font-mono text-slate-400">

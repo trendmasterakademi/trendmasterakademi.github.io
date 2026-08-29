@@ -160,8 +160,8 @@ const About = () => {
               </h3>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
                 {isTr 
-                  ? "İlk kod teşhisi ve triyaj ücretsizdir. Sonraki çalışmanın kapsamı ve bedeli, teşhis tamamlandıktan sonra işe özel olarak belirlenir ve çalışma başlamadan önce yazılı olarak netleşir. Acil müdahalelerde teşhis ve sabit bedel birlikte iletilir; bu işler ₺50.000'den başlar." 
-                  : 'Initial code triage is free. Scope and pricing for subsequent work are tailored after diagnosis and established in writing before work begins. In emergency responses, diagnosis and fixed fee are delivered together; these engagements start from ₺50,000.'}
+                  ? 'İlk kod teşhisi ve triyaj ücretsizdir. Sonraki çalışmanın kapsamı ve bedeli, teşhis tamamlandıktan sonra işe özel olarak belirlenir ve çalışma başlamadan önce yazılı olarak netleşir. Acil müdahalelerde teşhis ve sabit bedel birlikte iletilir.' 
+                  : 'Initial code triage is free. Scope and pricing for subsequent work are tailored after diagnosis and established in writing before work begins. In emergency responses, diagnosis and fixed fee are delivered together.'}
               </p>
             </div>
 
@@ -199,17 +199,17 @@ const About = () => {
               target="_blank"
               rel="noreferrer"
               onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'about_cta' })}
-              className="px-6 py-4 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-black text-sm whitespace-nowrap flex items-center gap-2 shadow-lg shadow-cyan-500/25 transition-all"
+              className="w-full sm:w-auto px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-black text-xs sm:text-sm sm:whitespace-nowrap flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 transition-all text-center"
             >
-              <Calendar className="w-4 h-4" />
+              <Calendar className="w-4 h-4 flex-shrink-0" />
               <span>{isTr ? 'Takvimden 30 Dakikalık Görüşme Seç' : 'Schedule a 30-Minute Call'}</span>
             </a>
             <Link
               to="/agency/"
-              className="px-6 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-sm whitespace-nowrap flex items-center gap-2 transition-colors"
+              className="w-full sm:w-auto px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs sm:text-sm sm:whitespace-nowrap flex items-center justify-center gap-2 transition-colors text-center"
             >
               <span>{isTr ? 'Ajans Çözümlerini İncele' : 'Explore Agency Solutions'}</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 flex-shrink-0" />
             </Link>
           </div>
         </div>
