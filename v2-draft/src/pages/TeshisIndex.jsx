@@ -54,7 +54,7 @@ const TeshisIndex = () => {
             {isTr ? 'İsim: Teşhis Kataloğu' : 'Format: Diagnostic Catalog'}
           </span>
           <span className="px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold">
-            {isTr ? 'İlk 3 Teşhis Yayında (20 Hedef)' : '3 Diagnostics Live (20 Total)'}
+            {isTr ? '9 Teşhis Yayında (20 Hedef)' : '9 Diagnostics Live (20 Total)'}
           </span>
           <span className="px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 font-semibold">
             {isTr ? 'Her teşhiste akış + diyagram' : 'Interactive Flowchart per Defect'}
@@ -64,7 +64,12 @@ const TeshisIndex = () => {
 
       {/* Diagnostics Grid */}
       <div className="space-y-6">
-        {teshisData.map((item) => {
+        {[...teshisData].sort((a, b) => {
+          const order = { kritik: 1, yuksek: 2, orta: 3 };
+          const diff = (order[a.aciliyet.seviye] || 99) - (order[b.aciliyet.seviye] || 99);
+          if (diff !== 0) return diff;
+          return parseInt(a.no, 10) - parseInt(b.no, 10);
+        }).map((item) => {
           const baslikText = item.baslik[lang] || item.baslik.tr;
           const kirintiText = item.kirinti[lang] || item.kirinti.tr;
           const aciliyetText = item.aciliyet.etiket[lang] || item.aciliyet.etiket.tr;

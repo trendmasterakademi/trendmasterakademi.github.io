@@ -262,6 +262,402 @@ export const teshisData = [
     }
   },
   {
+    slug: 'site-500-veriyor-dun-calisiyordu',
+    no: '13',
+    baslik: {
+      tr: 'Site 500 veriyor, dün çalışıyordu',
+      en: 'Site Returning 500 Error, Worked Yesterday'
+    },
+    kirinti: {
+      tr: 'Canlı Arıza',
+      en: 'Live Outage'
+    },
+    aciliyet: {
+      seviye: 'kritik',
+      etiket: {
+        tr: 'Kritik · site kapalı',
+        en: 'Critical · outage'
+      }
+    },
+    ozet: {
+      tr: 'Dün sorunsuz açılan site bugün 500 veriyor ve kimse bir şey değiştirmediğini söylüyor. "Hiçbir şey değişmedi" cümlesi neredeyse her zaman yanlıştır — değişen bir şey vardır, sadece kod olmayabilir.',
+      en: 'A website that booted flawlessly yesterday throws 500 errors today, with team members insisting nothing changed. "Nothing changed" is almost always false — something mutated, just not necessarily code.'
+    },
+    logSatirlari: [
+      'PHP Fatal error / Uncaught Error        ← uygulama log\'u',
+      '502 Bad Gateway · upstream prematurely closed connection',
+      'No space left on device',
+      'SQLSTATE[HY000] [2002] Connection refused'
+    ],
+    logNotu: {
+      tr: "500 bir teşhis değil, bir kapaktır. Gerçek neden uygulama log'unda, bir alt satırdadır. Sunucu log'una bakılmadan yapılan her tahmin zaman kaybıdır.",
+      en: 'HTTP 500 is not a diagnosis; it is a generic wrapper. The actual root cause lives in application error logs one line below. Any guesswork without log inspection is wasted downtime.'
+    },
+    nedenler: [
+      {
+        harf: 'A',
+        ad: {
+          tr: 'Kimlik süresi doldu',
+          en: 'Expired credentials'
+        },
+        aciklama: {
+          tr: 'Bir API anahtarı, veritabanı parolası veya servis hesabı süresi doldu. Kod değişmedi ama sistem artık bağlanamıyor.',
+          en: 'An API key, database secret, or service account credential expired. Code remains untouched, but upstream authentication is failing.'
+        },
+        kanit: {
+          tr: "Log'da authentication failed → A",
+          en: 'Authentication failed in log → A'
+        },
+        diyagramAd: {
+          tr: 'Kimlik süresi doldu',
+          en: 'Expired credentials'
+        },
+        diyagramTest: {
+          tr: ["Log'da 401 / auth", 'hatası var mı?'],
+          en: ['Is there a 401 /', 'auth failure in', 'system logs?']
+        },
+        diyagramCozum: {
+          tr: ['Anahtar yenileme', '· dakikalar'],
+          en: ['Secret rotation', '· fixed in mins']
+        }
+      },
+      {
+        harf: 'B',
+        ad: {
+          tr: 'Disk veya bellek doldu',
+          en: 'Disk / memory exhausted'
+        },
+        aciklama: {
+          tr: 'Log dosyaları, yedekler ya da geçici dosyalar diski doldurdu; uygulama yazamıyor.',
+          en: 'Log files, automated dumps, or temp caches filled the disk partition; runtime writes fail.'
+        },
+        kanit: {
+          tr: 'No space left on device → B',
+          en: 'No space left on device → B'
+        },
+        diyagramAd: {
+          tr: 'Disk / bellek doldu',
+          en: 'Disk / memory full'
+        },
+        diyagramTest: {
+          tr: ['df -h çıktısında', '%100 var mı?'],
+          en: ['Does df -h output', 'show 100% disk', 'utilization?']
+        },
+        diyagramCozum: {
+          tr: ['Temizlik +', 'log rotasyonu'],
+          en: ['Disk sanitize +', 'logrotate cron']
+        }
+      },
+      {
+        harf: 'C',
+        ad: {
+          tr: 'Otomatik güncelleme',
+          en: 'Unattended OS update'
+        },
+        aciklama: {
+          tr: 'Sunucu, kütüphane veya eklenti kendiliğinden güncellendi. "Kimse dokunmadı" doğrudur; dokunan sistemin kendisidir.',
+          en: 'OS packages, shared libraries, or plugins auto-updated overnight. "Nobody touched it" is true; the daemon did.'
+        },
+        kanit: {
+          tr: "Paket log'unda gece güncellemesi → C",
+          en: 'Nightly auto-update in apt/yum log → C'
+        },
+        diyagramAd: {
+          tr: 'Otomatik güncelleme',
+          en: 'Auto update'
+        },
+        diyagramTest: {
+          tr: ["Sistem log'unda", 'dün gece update', 'var mı?'],
+          en: ['Did unattended', 'upgrades execute', 'last night?']
+        },
+        diyagramCozum: {
+          tr: ['Sürüm sabitleme', '+ geri alma'],
+          en: ['Package pinning', '+ rollback patch']
+        }
+      }
+    ],
+    kimCozer: {
+      tr: "A ve B sistem yöneticisi işidir ve çoğu zaman bir saatin altında kapanır. C'de geri alma yapılmadan önce hangi paketin güncellendiği tespit edilmelidir; yanlış paketi geri almak ikinci bir arıza üretir.",
+      en: 'A and B are sysadmin operations, typically resolved in under one hour. For C, the exact mutated package must be identified before executing rollbacks; reverting the wrong library causes secondary outages.'
+    },
+    cozulmezse: {
+      tr: '500 veren sayfayı arama motorları da görür. Kesinti uzadıkça dizin kaybı başlar ve geri gelmesi kesintinin kendisinden uzun sürer.',
+      en: 'Search engine crawlers index HTTP 500 responses immediately. Prolonged downtime induces organic de-indexing, which takes far longer to recover than resolving the incident.'
+    },
+    ilgiliTerimler: ['ci-cd', 'staging-ortami', 'memory-leak'],
+    ilgiliHizmet: {
+      baslik: {
+        tr: 'Kesinti Maliyeti Hesabı',
+        en: 'Downtime Loss Calculator'
+      },
+      link: '/kesinti-maliyeti/'
+    }
+  },
+  {
+    slug: 'yedek-var-sanildi-yedek-yok',
+    no: '16',
+    baslik: {
+      tr: 'Yedek var sanılıyordu, yedek yok',
+      en: 'Backup Assumed to Exist, No Valid Backup'
+    },
+    kirinti: {
+      tr: 'Devir & Süreklilik',
+      en: 'Handover & Continuity'
+    },
+    aciliyet: {
+      seviye: 'kritik',
+      etiket: {
+        tr: 'Kritik · veri riski',
+        en: 'Critical · data loss risk'
+      }
+    },
+    ozet: {
+      tr: 'Bir sorun çıktı, yedeğe dönülmek istendi ve yedeğin ya hiç alınmadığı ya da geri yüklenemediği görüldü. Yedeğin var olması ile geri yüklenebilir olması aynı şey değildir; ikincisi denenmeden bilinmez.',
+      en: 'An outage occurred, a rollback to backup was requested, only to discover snapshots were never generated or are un-restorable. A backup file existing versus being restorable are entirely different; the latter is unknown until tested.'
+    },
+    logSatirlari: [
+      'Yedek klasöründeki son dosyanın tarihi   ← aylar öncesi mi?',
+      'cron log: backup job — exit status 1',
+      'Yedek dosya boyutu 0 byte / birkaç KB',
+      'Depolama sağlayıcısı: quota exceeded'
+    ],
+    logNotu: {
+      tr: 'Yedek işi çoğu zaman sessizce başarısız olur. Hata bir yere düşer ama kimse okumaz; klasörde dosya göründüğü için sorun fark edilmez.',
+      en: 'Backup routines fail silently most of the time. Errors are emitted to unmonitored logs while stale files in the folder give a false sense of security.'
+    },
+    nedenler: [
+      {
+        harf: 'A',
+        ad: {
+          tr: 'Yedek alınmıyor',
+          en: 'Backups not running'
+        },
+        aciklama: {
+          tr: 'Görev kurulmuş ama çalışmıyor: zamanlayıcı durmuş, kimlik değişmiş ya da hedef dolmuş.',
+          en: 'Cron was configured but terminated: scheduler daemon died, auth expired, or target bucket filled up.'
+        },
+        kanit: {
+          tr: 'Son yedek tarihi çok eski → A',
+          en: 'Latest backup date is stale → A'
+        },
+        diyagramAd: {
+          tr: 'Yedek alınmıyor',
+          en: 'Backups failing'
+        },
+        diyagramTest: {
+          tr: ['Son yedek dosyası', 'kaç günlük?'],
+          en: ['How old is the', 'latest backup file', 'in storage?']
+        },
+        diyagramCozum: {
+          tr: ['Görev onarımı +', 'başarısızlık', 'bildirimi'],
+          en: ['Cron repair +', 'dead-man switch', 'alerts']
+        }
+      },
+      {
+        harf: 'B',
+        ad: {
+          tr: 'Yedek eksik alınıyor',
+          en: 'Partial / incomplete dump'
+        },
+        aciklama: {
+          tr: 'Dosyalar var ama veritabanı yok, ya da tersi. Kısmi yedek olay anında tam geri dönüş sağlamaz.',
+          en: 'Uploaded assets exist without SQL dumps, or vice versa. Partial snapshots prevent full recovery during disaster recovery.'
+        },
+        kanit: {
+          tr: 'Yedekte veritabanı dökümü yok → B',
+          en: 'Missing SQL dump in archive → B'
+        },
+        diyagramAd: {
+          tr: 'Yedek eksik',
+          en: 'Incomplete dump'
+        },
+        diyagramTest: {
+          tr: ['Yedekte veritabanı', 'dökümü var mı?'],
+          en: ['Does archive', 'contain valid SQL', 'dump file?']
+        },
+        diyagramCozum: {
+          tr: ['Kapsam genişletme', '+ boyut kontrolü'],
+          en: ['Full scope dump', '+ file size', 'threshold check']
+        }
+      },
+      {
+        harf: 'C',
+        ad: {
+          tr: 'Geri yüklenemiyor',
+          en: 'Un-restorable / corrupted'
+        },
+        aciklama: {
+          tr: 'Dosya bozuk, şifresi kayıp ya da sürüm uyumsuz. Hiç denenmediği için bugüne kadar bilinmiyordu.',
+          en: 'Archive is corrupt, decryption key is missing, or schema versions clash. Never tested until live disaster hit.'
+        },
+        kanit: {
+          tr: 'Test geri yükleme başarısız → C',
+          en: 'Test sandbox restore failed → C'
+        },
+        diyagramAd: {
+          tr: 'Geri yüklenemiyor',
+          en: 'Un-restorable'
+        },
+        diyagramTest: {
+          tr: ['Boş ortama geri', 'yükleme denendi mi?'],
+          en: ['Was restore', 'tested in clean', 'sandbox env?']
+        },
+        diyagramCozum: {
+          tr: ['Düzenli geri', 'yükleme provası'],
+          en: ['Automated drill', 'restoration in', 'staging sandbox']
+        }
+      }
+    ],
+    kimCozer: {
+      tr: 'Sistem yöneticisi. Ama asıl çözüm teknik değil rutinseldir: yedek başarısız olduğunda haber veren bir bildirim ve düzenli aralıklarla yapılan geri yükleme provası. Denenmemiş yedek, yedek sayılmaz.',
+      en: 'Sysadmin / DevOps. But the true solution is procedural: dead-man failure alerts and scheduled sandbox restoration drills. An untested backup is not a backup.'
+    },
+    cozulmezse: {
+      tr: 'Yedeksiz geçen her gün, tek bir donanım arızasının ya da yanlış komutun projeyi tamamen bitirebileceği bir gündür. Bu riskin bedeli ancak gerçekleştiğinde görülür.',
+      en: 'Every day operating without restorable backups is a single disk crash or rogue query away from total business termination.'
+    },
+    ilgiliTerimler: ['migration', 'staging-ortami', 'teknik-borc'],
+    ilgiliHizmet: {
+      baslik: {
+        tr: 'Devir Hazırlık Kontrolü',
+        en: 'Handover Readiness Audit'
+      },
+      link: '/devir-kontrolu/'
+    }
+  },
+  {
+    slug: 'ssl-suresi-doldu',
+    no: '18',
+    baslik: {
+      tr: 'SSL süresi doldu, tarayıcı uyarı veriyor',
+      en: 'SSL Certificate Expired, Security Warning Displayed'
+    },
+    kirinti: {
+      tr: 'Altyapı & Erişim',
+      en: 'Infrastructure & Access'
+    },
+    aciliyet: {
+      seviye: 'kritik',
+      etiket: {
+        tr: 'Kritik · güven kaybı',
+        en: 'Critical · trust loss'
+      }
+    },
+    ozet: {
+      tr: 'Ziyaretçiler siteye girerken "bağlantınız gizli değil" uyarısı alıyor. Site aslında çalışıyor, araya giren tarayıcı. Müşteriniz bunu güvenlik ihlali sanır; teknik olarak çoğu zaman basit bir yenileme sorunudur.',
+      en: 'Users are blocked by "Your connection is not private" browser interstitials. The application is running fine, but the TLS handshake fails. Clients perceive a breach; technically it is usually a stalled renewal script.'
+    },
+    logSatirlari: [
+      'NET::ERR_CERT_DATE_INVALID              ← süre doldu',
+      'NET::ERR_CERT_COMMON_NAME_INVALID       ← alan adı eşleşmiyor',
+      'SSL certificate problem: unable to get local issuer certificate',
+      'certbot renew — hook command failed'
+    ],
+    logNotu: {
+      tr: 'Tarayıcının verdiği hata kodu nedeni doğrudan söyler. Uyarı ekranındaki "Gelişmiş" bağlantısı hangi kodun geçerli olduğunu gösterir.',
+      en: 'Browser error codes state the exact root cause directly. The "Advanced" button reveals whether expiration, domain mismatch, or broken CA chain is at play.'
+    },
+    nedenler: [
+      {
+        harf: 'A',
+        ad: {
+          tr: 'Yenileme durdu',
+          en: 'Auto-renewal stopped'
+        },
+        aciklama: {
+          tr: 'Kısa ömürlü sertifikalar otomatik yenilenir; yenileme görevi bir noktada sessizce durmuştur.',
+          en: 'Automated 90-day certificates require active cron hooks; the renewal task failed silently without triggering alerts.'
+        },
+        kanit: {
+          tr: "Yenileme log'unda hata → A",
+          en: 'Certbot renewal error in log → A'
+        },
+        diyagramAd: {
+          tr: 'Yenileme durdu',
+          en: 'Renewal halted'
+        },
+        diyagramTest: {
+          tr: ['Yenileme görevi', 'çalışıyor mu?'],
+          en: ['Is certbot / ACME', 'cron executing', 'cleanly?']
+        },
+        diyagramCozum: {
+          tr: ['Görev onarımı +', 'süre bildirimi'],
+          en: ['Certbot repair +', 'expiry monitoring', 'webhook']
+        }
+      },
+      {
+        harf: 'B',
+        ad: {
+          tr: 'Kapsam eksik',
+          en: 'Missing SAN / subdomains'
+        },
+        aciklama: {
+          tr: 'Sertifika ana alan adını kapsıyor ama `www` veya bir alt alan adını kapsamıyor.',
+          en: 'Certificate covers apex domain but lacks SAN coverage for `www` or target subdomains.'
+        },
+        kanit: {
+          tr: 'COMMON_NAME hatası → B',
+          en: 'COMMON_NAME_INVALID error → B'
+        },
+        diyagramAd: {
+          tr: 'Kapsam eksik',
+          en: 'Missing SAN'
+        },
+        diyagramTest: {
+          tr: ['Hata kodu CN /', 'alan adı hatası mı?'],
+          en: ['Is error code', 'COMMON_NAME', 'mismatch?']
+        },
+        diyagramCozum: {
+          tr: ['Sertifikayı alt', 'alan adlarıyla', 'yeniden al'],
+          en: ['Re-issue with', 'all SAN / www', 'subdomains']
+        }
+      },
+      {
+        harf: 'C',
+        ad: {
+          tr: 'Zincir eksik',
+          en: 'Incomplete CA chain'
+        },
+        aciklama: {
+          tr: 'Sertifika geçerli ama zincir tamamlanmamış. Bazı cihazlarda çalışır, bazılarında çalışmaz — en yanıltıcı hâl budur.',
+          en: 'Leaf certificate is valid but intermediate CA bundle is missing. Works on modern desktops, fails on mobile — the most deceptive failure.'
+        },
+        kanit: {
+          tr: 'unable to get local issuer → C',
+          en: 'unable to get local issuer error → C'
+        },
+        diyagramAd: {
+          tr: 'Zincir eksik',
+          en: 'Broken CA chain'
+        },
+        diyagramTest: {
+          tr: ['Bazı cihazlarda', 'çalışıp bazılarında', 'çalışmıyor mu?'],
+          en: ['Does it fail', 'only on specific', 'mobile clients?']
+        },
+        diyagramCozum: {
+          tr: ['Ara sertifikayı', 'zincire ekle'],
+          en: ['Install fullchain', 'bundle to web', 'server config']
+        }
+      }
+    ],
+    kimCozer: {
+      tr: 'Sistem yöneticisi · genellikle bir saatin altında. Asıl mesele tekrarını önlemektir: yenileme başarısız olduğunda haber veren bir bildirim kurulmadıkça aynı arıza sertifika ömrü kadar sonra geri gelir.',
+      en: 'DevOps / Sysadmin · resolved in under one hour. The true goal is preventing recurrence: without automated cert expiration monitoring, the issue repeats every 90 days.'
+    },
+    cozulmezse: {
+      tr: 'Tarayıcı uyarısı gören ziyaretçilerin büyük kısmı geri döner. Ödeme sayfasında bu uyarı, o günkü satışların durması demektir.',
+      en: 'Over 90% of visitors bounce immediately upon seeing security interstitials. On e-commerce checkout flows, it halts revenue instantly.'
+    },
+    ilgiliTerimler: ['ci-cd', 'staging-ortami'],
+    ilgiliHizmet: {
+      baslik: {
+        tr: 'Acil Kriz Müdahalesi & Crash Test',
+        en: 'Emergency Incident Triage & Crash Test'
+      },
+      link: '/crash-test/'
+    }
+  },
+  {
     slug: 'yazilimci-gitti-koda-girilemiyor',
     no: '14',
     baslik: {
@@ -391,6 +787,402 @@ export const teshisData = [
         en: 'Handover Readiness Audit'
       },
       link: '/devir-kontrolu/'
+    }
+  },
+  {
+    slug: 'domain-hosting-erisimi-yok',
+    no: '17',
+    baslik: {
+      tr: 'Domain ve hosting erişimi kimsede yok',
+      en: 'Zero Access to Domain Registrar and Hosting'
+    },
+    kirinti: {
+      tr: 'Devir & Süreklilik',
+      en: 'Handover & Continuity'
+    },
+    aciliyet: {
+      seviye: 'yuksek',
+      etiket: {
+        tr: 'Yüksek · mülkiyet riski',
+        en: 'High · ownership risk'
+      }
+    },
+    ozet: {
+      tr: 'Site çalışıyor ama kimse yönetim paneline giremiyor. Alan adının kime kayıtlı olduğu, hosting faturasının kime gittiği belirsiz. Bu bir yazılım sorunu değil, mülkiyet sorunudur — ve teknik ekip tek başına çözemez.',
+      en: 'The website is online but no stakeholder has root panel access. Domain registrant identity and hosting billing recipients are unknown. This is an ownership dispute, not software, requiring administrative escalation.'
+    },
+    logSatirlari: [
+      'WHOIS sorgusu → kayıt sahibi e-postası kim?',
+      'Hosting / bulut faturası hangi adrese gidiyor?',
+      'DNS kayıtları hangi sağlayıcıda tutuluyor?',
+      'Alan adının son kullanma tarihi'
+    ],
+    logNotu: {
+      tr: 'Bu dört bilgi bir saat içinde toplanabilir ve devrin mümkün olup olmadığını doğrudan gösterir. Erişim kurtarma süreçleri günler sürdüğü için beklemek pahalıdır.',
+      en: 'These four data points can be extracted within one hour, showing whether transfer is straightforward or requires registrar dispute arbitration.'
+    },
+    nedenler: [
+      {
+        harf: 'A',
+        ad: {
+          tr: 'Ayrılan kişide',
+          en: 'Former employee holds auth'
+        },
+        aciklama: {
+          tr: 'Hesaplar eski geliştiricinin veya eski bir çalışanın şahsi adresine kayıtlı. İyi niyet varsa devir kolaydır.',
+          en: 'Registrar accounts reside under a former freelancer or employee personal email. If cooperative, handover is simple.'
+        },
+        kanit: {
+          tr: "WHOIS'te şahsi adres → A",
+          en: 'Personal email in WHOIS → A'
+        },
+        diyagramAd: {
+          tr: 'Ayrılan kişide',
+          en: 'Former staff email'
+        },
+        diyagramTest: {
+          tr: ['Kayıtlı e-posta', 'şirkete mi ait?'],
+          en: ['Is registrant email', 'under corporate', 'domain?']
+        },
+        diyagramCozum: {
+          tr: ['Devir talebi ·', 'iletişim varsa', 'hızlı'],
+          en: ['Direct transfer ·', 'fast if contact', 'is open']
+        }
+      },
+      {
+        harf: 'B',
+        ad: {
+          tr: 'Aracı firmada',
+          en: 'Held by third-party agency'
+        },
+        aciklama: {
+          tr: 'Alan adını bir ajans ya da bayi kendi hesabından almış. Sizin adınıza değil, onun portföyünde duruyor.',
+          en: 'Domain purchased via third-party agency reseller pool. Owned in their account rather than client direct legal entity.'
+        },
+        kanit: {
+          tr: 'Kayıt sahibi bir firma → B',
+          en: 'Registrant is reseller entity → B'
+        },
+        diyagramAd: {
+          tr: 'Aracı firmada',
+          en: 'Reseller agency'
+        },
+        diyagramTest: {
+          tr: ['Kayıt sahibi firma', 'adına mı?'],
+          en: ['Is registrar tied', 'to reseller', 'agency name?']
+        },
+        diyagramCozum: {
+          tr: ['Transfer kodu', 'talebi + kayıt', 'değişikliği'],
+          en: ['EPP auth code +', 'registrant', 'transfer request']
+        }
+      },
+      {
+        harf: 'C',
+        ad: {
+          tr: 'Ulaşılamıyor',
+          en: 'Unreachable registrant'
+        },
+        aciklama: {
+          tr: 'Kayıtlı adres çalışmıyor, kişiye erişilemiyor. Sağlayıcının resmi erişim kurtarma sürecine girilmesi gerekir.',
+          en: 'Registrant mailbox abandoned, account holder unresponsive. Official registrar legal escalation required.'
+        },
+        kanit: {
+          tr: 'Kayıtlı adrese ulaşılamıyor → C',
+          en: 'Bouncing mailbox / ghosted → C'
+        },
+        diyagramAd: {
+          tr: 'Ulaşılamıyor',
+          en: 'Unreachable'
+        },
+        diyagramTest: {
+          tr: ['Kayıtlı adrese', 'mail ulaşıyor mu?'],
+          en: ['Does registrant', 'mailbox receive', 'inbound mail?']
+        },
+        diyagramCozum: {
+          tr: ['Sağlayıcı kurtarma', 'süreci · belge', 'gerekir'],
+          en: ['Registrar recovery', '· corporate legal', 'docs required']
+        }
+      }
+    ],
+    kimCozer: {
+      tr: 'Bu bir idare ve hukuk işidir; geliştirici gerekmez. Şirket belgeleri, fatura kayıtları ve marka sahipliği kanıtları süreci hızlandırır. Teknik ekibin katkısı ancak DNS ve barındırma taşınmasında başlar.',
+      en: 'This is an administrative and legal challenge; developers are not required initially. Corporate tax registration, invoice trails, and trademark certificates accelerate registrar transfer.'
+    },
+    cozulmezse: {
+      tr: 'Alan adının süresi dolduğunda site bir gecede kapanır ve ad üçüncü kişiler tarafından alınabilir. Geri kazanmak çoğu zaman mümkün olmaz.',
+      en: 'When domain expiration hits, the website drops overnight and can be snapped up by domain squatters, permanently destroying brand equity.'
+    },
+    ilgiliTerimler: ['staging-ortami', 'ci-cd', 'teknik-borc'],
+    ilgiliHizmet: {
+      baslik: {
+        tr: 'Devir Hazırlık Kontrolü',
+        en: 'Handover Readiness Audit'
+      },
+      link: '/devir-kontrolu/'
+    }
+  },
+  {
+    slug: 'form-gonderiliyor-mail-gelmiyor',
+    no: '19',
+    baslik: {
+      tr: 'Form gönderiliyor ama mail gelmiyor',
+      en: 'Form Submits Successfully but No Email Delivered'
+    },
+    kirinti: {
+      tr: 'İletişim & Entegrasyon',
+      en: 'Contact & Integrations'
+    },
+    aciliyet: {
+      seviye: 'yuksek',
+      etiket: {
+        tr: 'Yüksek · kayıp talep',
+        en: 'High · lost leads'
+      }
+    },
+    ozet: {
+      tr: 'İletişim veya teklif formu "gönderildi" diyor ama kimseye mail ulaşmıyor. Bu belirtinin en tehlikeli yanı sessiz olmasıdır: kaç talebin kaybolduğu bilinmez.',
+      en: 'Lead or quote forms display "Submitted successfully" but notifications never arrive in the team inbox. The most insidious defect: silence leaves lost deals completely untracked.'
+    },
+    logSatirlari: [
+      'SMTP error 535 Authentication failed',
+      '550 5.7.1 Message rejected · SPF / DKIM',
+      'Mail kuyruğu: deferred / stuck',
+      'Uygulama log\'u: "mail sent"    ← ama teslim edilmedi'
+    ],
+    logNotu: {
+      tr: '"Gönderildi" mesajı çoğu zaman uygulamanın kendi iddiasıdır, teslim kanıtı değildir. Gerçek cevap sunucunun mail kuyruğunda veya sağlayıcı panelindedir.',
+      en: '"Message sent" in UI only reflects dispatch, not inbox delivery. Truth resides in server mail queues (Postfix/Exim) or transactional ESP dashboards (SendGrid/Postmark).'
+    },
+    nedenler: [
+      {
+        harf: 'A',
+        ad: {
+          tr: 'SMTP kimliği',
+          en: 'SMTP auth failure'
+        },
+        aciklama: {
+          tr: 'Parola değişti ya da sağlayıcı uygulama şifresi zorunlu kıldı. Mail hiç çıkmıyor.',
+          en: 'Mailbox password expired or ESP enforced App Passwords/OAuth. Dispatch fails at origin.'
+        },
+        kanit: {
+          tr: 'SMTP 535 hatası → A',
+          en: 'SMTP 535 Authentication failed in log → A'
+        },
+        diyagramAd: {
+          tr: 'SMTP kimliği',
+          en: 'SMTP auth'
+        },
+        diyagramTest: {
+          tr: ["Log'da 535 auth", 'hatası var mı?'],
+          en: ['Is there an SMTP', '535 auth error', 'in system logs?']
+        },
+        diyagramCozum: {
+          tr: ['Uygulama şifresi', '+ ayar güncelleme'],
+          en: ['App Password +', 'config update', 'in .env']
+        }
+      },
+      {
+        harf: 'B',
+        ad: {
+          tr: 'SPF / DKIM eksik',
+          en: 'Missing SPF / DKIM'
+        },
+        aciklama: {
+          tr: 'Mail çıkıyor ama alıcı sunucu reddediyor veya spam\'e atıyor. Alan adı doğrulama kayıtları yok.',
+          en: 'Mail leaves server but destination MX rejects or junk-folders it due to missing SPF/DKIM/DMARC TXT records.'
+        },
+        kanit: {
+          tr: '550 SPF/DKIM reddi → B',
+          en: '550 5.7.1 SPF/DKIM rejected → B'
+        },
+        diyagramAd: {
+          tr: 'SPF / DKIM eksik',
+          en: 'SPF / DKIM missing'
+        },
+        diyagramTest: {
+          tr: ["DNS'te SPF ve", 'DKIM kaydı var mı?'],
+          en: ['Are SPF and', 'DKIM TXT records', 'active in DNS?']
+        },
+        diyagramCozum: {
+          tr: ['DNS kayıtlarını', 'ekle · teslimat', 'düzelir'],
+          en: ['Add DNS records ·', 'deliverability', 'restored']
+        }
+      },
+      {
+        harf: 'C',
+        ad: {
+          tr: 'Form arkada hatalı',
+          en: 'False positive frontend'
+        },
+        aciklama: {
+          tr: 'Gönderim isteği başarısız oluyor ama arayüz yine de başarı mesajı gösteriyor.',
+          en: 'AJAX endpoint returns 4xx/5xx but frontend ignores HTTP status and shows optimistic success alert.'
+        },
+        kanit: {
+          tr: 'Ağ sekmesinde 4xx/5xx → C',
+          en: 'Network tab shows 4xx/5xx → C'
+        },
+        diyagramAd: {
+          tr: 'Form arkada hatalı',
+          en: 'Frontend false OK'
+        },
+        diyagramTest: {
+          tr: ['Ağ sekmesinde', 'gönderim isteği', 'başarılı mı?'],
+          en: ['Does network tab', 'show HTTP 200 on', 'POST request?']
+        },
+        diyagramCozum: {
+          tr: ['Gerçek yanıtı', 'kontrol et ·', 'hata göster'],
+          en: ['Handle status ·', 'render error UI', 'on failure']
+        }
+      }
+    ],
+    kimCozer: {
+      tr: 'A ve B sistem ve DNS tarafıdır. C bir yazılım hatasıdır ve önce o düzeltilmelidir: kullanıcıya yalan söyleyen bir başarı mesajı, sorunun aylarca fark edilmemesinin sebebidir.',
+      en: 'A and B are DNS/Sysadmin issues. C is frontend defect that must be solved first: false-positive success toasts hide lead bleed for months.'
+    },
+    cozulmezse: {
+      tr: 'Gelmeyen her form bir kayıp müşteridir ve kimse kaybettiğini bilmez. Bu arıza kendini göstermez; aranmadıkça bulunmaz.',
+      en: 'Every lost form is a lost deal that nobody knows was missed. This defect never announces itself; it bleeds revenue in silence.'
+    },
+    ilgiliTerimler: ['webhook', 'rate-limit', 'idempotency'],
+    ilgiliHizmet: {
+      baslik: {
+        tr: 'B2B White-Label Mühendislik Masası',
+        en: 'B2B White-Label Engineering Desk'
+      },
+      link: '/agency/'
+    }
+  },
+  {
+    slug: 'site-aramalarda-gorunmez-oldu',
+    no: '20',
+    baslik: {
+      tr: 'Site aramalarda görünmez oldu',
+      en: 'Website Dropped from Search Engine Results'
+    },
+    kirinti: {
+      tr: 'Görünürlük',
+      en: 'Visibility'
+    },
+    aciliyet: {
+      seviye: 'yuksek',
+      etiket: {
+        tr: 'Yüksek · trafik kaybı',
+        en: 'High · traffic loss'
+      }
+    },
+    ozet: {
+      tr: 'Site açılıyor, her şey normal görünüyor ama arama sonuçlarındaki yerini kaybetti. Bu belirtinin teknik nedenleri, içerik ya da rekabet nedenlerinden çok daha hızlı doğrulanır — önce onlar elenmelidir.',
+      en: 'The site is accessible and looks normal, but organic search rankings plummeted. Technical causes can be verified far faster than content or algorithmic penalties — rule them out first.'
+    },
+    logSatirlari: [
+      'robots.txt → Disallow: /',
+      '<meta name="robots" content="noindex">',
+      'Sunucu yanıtı: 5xx veya çok yavaş ilk bayt süresi',
+      'Yönlendirme zinciri: 302 → 302 → 200'
+    ],
+    logNotu: {
+      tr: 'İlk iki satır tek başına tüm siteyi arama sonuçlarından çıkarır ve genellikle test ortamından canlıya yanlışlıkla taşınır. Kontrolü saniyeler sürer.',
+      en: 'The first two directives wipe an entire domain from Google index within days, typically leaked accidentally during staging deployments. Takes seconds to verify.'
+    },
+    nedenler: [
+      {
+        harf: 'A',
+        ad: {
+          tr: 'noindex kalmış',
+          en: 'Staging noindex leaked'
+        },
+        aciklama: {
+          tr: 'Test ortamında arama motorlarını engellemek için konan etiket yayına da gitmiş.',
+          en: 'Robots noindex tag used to hide staging was mistakenly deployed to production release.'
+        },
+        kanit: {
+          tr: 'Sayfa kaynağında noindex → A',
+          en: 'Meta noindex found in DOM → A'
+        },
+        diyagramAd: {
+          tr: 'noindex kalmış',
+          en: 'noindex leaked'
+        },
+        diyagramTest: {
+          tr: ['Sayfa kaynağında', 'noindex var mı?'],
+          en: ['Is <meta noindex>', 'present in HTML', 'source?']
+        },
+        diyagramCozum: {
+          tr: ['Etiketi kaldır +', 'yeniden dizinleme', 'iste'],
+          en: ['Strip tag +', 'request Google', 're-indexing']
+        }
+      },
+      {
+        harf: 'B',
+        ad: {
+          tr: 'robots.txt kapalı',
+          en: 'robots.txt blocked'
+        },
+        aciklama: {
+          tr: 'Dosya tüm siteyi tarayıcılara kapatmış durumda.',
+          en: 'robots.txt file instructs all crawlers to disallow indexation across root.'
+        },
+        kanit: {
+          tr: 'robots.txt Disallow: / → B',
+          en: 'robots.txt Disallow: / → B'
+        },
+        diyagramAd: {
+          tr: 'robots.txt kapalı',
+          en: 'robots.txt blocked'
+        },
+        diyagramTest: {
+          tr: ['/robots.txt', 'Disallow: / mi?'],
+          en: ['Does robots.txt', 'contain Disallow:', 'root slash?']
+        },
+        diyagramCozum: {
+          tr: ['Kuralı düzelt ·', 'etki günler', 'içinde'],
+          en: ['Fix rule ·', 'crawl recovery', 'in days']
+        }
+      },
+      {
+        harf: 'C',
+        ad: {
+          tr: 'Adresler değişti',
+          en: 'Broken 301 migrations'
+        },
+        aciklama: {
+          tr: 'Sayfa adresleri yönlendirme kurulmadan değiştirildi. Eski adresler 404 veriyor, birikmiş değer kayboldu.',
+          en: 'URL architecture was revamped without 301 redirects. Legacy URLs return 404, wiping historical domain authority.'
+        },
+        kanit: {
+          tr: 'Eski adresler 404 veriyor → C',
+          en: 'Legacy URLs return 404 → C'
+        },
+        diyagramAd: {
+          tr: 'Adresler değişti',
+          en: 'URLs changed'
+        },
+        diyagramTest: {
+          tr: ['Eski adresler 301', 'veriyor mu?'],
+          en: ['Do legacy URLs', 'return 301 to new', 'counterparts?']
+        },
+        diyagramCozum: {
+          tr: ['Eski → yeni 301', 'haritası kur'],
+          en: ['Deploy complete', '301 redirect map', 'table']
+        }
+      }
+    ],
+    kimCozer: {
+      tr: 'A ve B dakikalar içinde düzeltilir; etkisi arama motoru siteyi yeniden tarayınca görünür ve bu günler alır. C daha ağırdır: eski adreslerin yenilerine eşleştiği bir yönlendirme haritası çıkarılmalıdır.',
+      en: 'A and B are fixed in minutes; index restoration occurs when search engines re-crawl (days). C requires comprehensive URL mapping tables to preserve link equity.'
+    },
+    cozulmezse: {
+      tr: 'Arama görünürlüğü kaybı bileşik büyür. Kaybı geri kazanmak, kaybın sürdüğü süreden uzun sürer — erken fark edilmesi doğrudan para kazandırır.',
+      en: 'Organic visibility drop compounds over time. Re-ranking takes significantly longer than the downtime duration — early mitigation protects top-line revenue.'
+    },
+    ilgiliTerimler: ['staging-ortami', 'ci-cd', 'migration'],
+    ilgiliHizmet: {
+      baslik: {
+        tr: 'Acil Kriz Müdahalesi & Crash Test',
+        en: 'Emergency Incident Triage & Crash Test'
+      },
+      link: '/crash-test/'
     }
   }
 ];
