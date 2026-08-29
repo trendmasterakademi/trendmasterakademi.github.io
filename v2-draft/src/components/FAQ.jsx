@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Link, useLocation } from 'react-router-dom';
 import { HelpCircle, ChevronDown, ShieldCheck, Zap, Lock, Code2, Database, Calendar } from 'lucide-react';
 import { getCalendlyUrl } from '../utils/calendly';
 
@@ -69,6 +70,8 @@ export const faqData = [
 const FAQ = () => {
   const { i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
+  const location = useLocation();
+  const isHomePage = location.pathname === '/' || location.pathname === '';
   const [openIdx, setOpenIdx] = useState(0);
 
   const toggleAccordion = (idx) => {
@@ -140,14 +143,19 @@ const FAQ = () => {
 
                 <React.Fragment>
                   {isOpen && (
-                    <div
-                      
-                      
-                      
-                      
-                    >
-                      <div className="px-6 sm:px-7 pb-6 sm:pb-7 pt-1 text-slate-300 text-sm sm:text-base leading-relaxed border-t border-white/5 ml-14 sm:ml-14">
-                        {item.answer[isTr ? 'tr' : 'en']}
+                    <div>
+                      <div className="px-6 sm:px-7 pb-6 sm:pb-7 pt-1 text-slate-300 text-sm sm:text-base leading-relaxed border-t border-white/5 ml-14 sm:ml-14 space-y-3">
+                        <p>{item.answer[isTr ? 'tr' : 'en']}</p>
+                        {isHomePage && item.id === 'whitelabel-model' && (
+                          <div className="pt-1">
+                            <Link 
+                              to="/nda/" 
+                              className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-mono text-xs sm:text-sm font-bold transition-colors"
+                            >
+                              {isTr ? 'Sözleşmeyi okuyun →' : 'Read the agreement →'}
+                            </Link>
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}

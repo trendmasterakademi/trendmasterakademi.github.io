@@ -309,7 +309,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               {/* Trust Badges */}
               <div className="flex flex-wrap items-center justify-between text-xs text-slate-300 pt-2 border-t border-white/10 gap-2">
                 <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400" /> %100 White-Label & NDA
+                  <ShieldCheck className="w-4 h-4 text-emerald-400" /> %100 White-Label & <a href="/nda/" target="_blank" rel="noopener" className="underline hover:text-white transition-colors">NDA</a>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4 text-cyan-400" /> {isTr ? 'İlk Yanıt: ~15 Dakika' : 'First Response: ~15 Mins'}

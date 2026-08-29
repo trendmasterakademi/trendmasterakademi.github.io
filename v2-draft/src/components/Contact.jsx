@@ -202,7 +202,13 @@ const Contact = () => {
 
           <div className="p-4 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs sm:text-sm flex items-center gap-2.5">
             <ShieldCheck className="w-5 h-5 flex-shrink-0 text-cyan-400" />
-            <span>{t('contact-nda-badge')}</span>
+            <span>
+              {isTr ? (
+                <>Tüm başvurular ve görüşmeler <Link to="/nda/" className="underline hover:text-white transition-colors">gizlilik sözleşmesi (NDA)</Link> kapsamındadır.</>
+              ) : (
+                <>All inquiries and consultations are protected under <Link to="/nda/" className="underline hover:text-white transition-colors">mutual non-disclosure agreement (NDA)</Link>.</>
+              )}
+            </span>
           </div>
         </div>
         

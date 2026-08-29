@@ -53,7 +53,7 @@ const Privacy = () => {
       </div>
 
       {/* NDA Guarantee Box */}
-      <div className="p-6 rounded-3xl bg-cyan-500/10 border border-cyan-500/30 mb-12 space-y-2">
+      <div className="p-6 rounded-3xl bg-cyan-500/10 border border-cyan-500/30 mb-12 space-y-3">
         <div className="flex items-center gap-2 text-cyan-300 font-bold text-base sm:text-lg">
           <Lock className="w-5 h-5 text-cyan-400" />
           <span>{isTr ? '%100 White-Label & Katı Gizlilik Sözleşmesi (NDA) Güvencesi' : '100% White-Label & Strict Mutual NDA'}</span>
@@ -63,6 +63,14 @@ const Privacy = () => {
             ? 'Ajansınızın ve müşterilerinizin teknik verileri, kaynak kodları, veri modelleri ve ticari sırları resmi NDA kapsamında korunur. Müşterileriniz ile asla doğrudan temas kurulmaz; tüm süreçler ajansınızın arka plan mühendislik masası olarak yürütülür.' 
             : 'All agency and client technical repositories, database schemas, and intellectual assets are protected under mutually binding NDA covenants.'}
         </p>
+        <div className="pt-1">
+          <Link 
+            to="/nda/" 
+            className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-mono text-xs sm:text-sm font-bold transition-colors"
+          >
+            {isTr ? 'Sözleşmeyi okuyun →' : 'Read the agreement →'}
+          </Link>
+        </div>
       </div>
 
       {/* Policy Sections */}
