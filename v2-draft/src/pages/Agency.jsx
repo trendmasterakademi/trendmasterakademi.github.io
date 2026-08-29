@@ -7,7 +7,6 @@ import {
   PhoneCall, Mail, MessageSquare, Lock, Layers, HelpCircle, Terminal, Calendar
 } from 'lucide-react';
 import EmergencySOSModal from '../components/EmergencySOSModal';
-import CodeDiffShowcase from '../components/CodeDiffShowcase';
 import FAQ from '../components/FAQ';
 import { getCalendlyUrl } from '../utils/calendly';
 
@@ -94,7 +93,7 @@ const capabilities = [
   },
   { 
     title: { tr: 'Kritik Canlı Hata & Hotfix Müdahalesi', en: 'Critical Live Outage Hotfix SWAT' }, 
-    desc: { tr: 'Canlı kesintilerinde (HTTP 500, crash, data bozulması) 7/24 hızlı SWAT onarımı.', en: '24/7 rapid SWAT intervention for live crashes, HTTP 500s, and data corruption.' }, 
+    desc: { tr: 'Canlı kesintilerinde (HTTP 500, crash, data bozulması) hızlı SWAT onarımı.', en: 'Rapid SWAT intervention for live crashes, HTTP 500s, and data corruption.' }, 
     cat: 'Rescue' 
   },
   { 
@@ -345,9 +344,6 @@ const Agency = () => {
             ))}
           </div>
         </section>
-
-        {/* LIVE CODE DIFF & BENCHMARK SHOWCASE */}
-        <CodeDiffShowcase />
 
         {/* 20 CAPABILITIES MATRIX */}
         <section className="py-16 border-t border-white/10">

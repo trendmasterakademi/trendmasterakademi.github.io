@@ -48,7 +48,7 @@
 
   "crisis-card1-tag": "HTTP 500 / LIVE OUTAGE",
   "crisis-card1-title": "Client Website Down & Locked",
-  "crisis-card1-desc": "24/7 emergency hotfix dispatch for sudden traffic surges, database deadlocks, or payment API disruptions.",
+  "crisis-card1-desc": "Emergency hotfix dispatch for sudden traffic surges, database deadlocks, or payment API disruptions.",
   "crisis-card1-action": "Simulate in Crash Test →",
 
   "crisis-card2-tag": "HANDOVER HELL",

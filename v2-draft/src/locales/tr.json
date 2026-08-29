@@ -48,7 +48,7 @@
 
   "crisis-card1-tag": "HTTP 500 / CANLI KESİNTİ",
   "crisis-card1-title": "Müşteri Sitesi Çöktü & Kilitlendi",
-  "crisis-card1-desc": "Trafik artışı, veritabanı kilitlenmesi veya ödeme API kopması anında canlı sisteme 7/24 hotfix müdahalesi.",
+  "crisis-card1-desc": "Trafik artışı, veritabanı kilitlenmesi veya ödeme API kopması anında canlı sisteme hotfix müdahalesi.",
   "crisis-card1-action": "Crash Test'te Simüle Et →",
 
   "crisis-card2-tag": "HANDOVER HELL",

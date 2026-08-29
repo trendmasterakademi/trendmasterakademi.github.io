@@ -25,8 +25,8 @@ const ArchitectureGraph = () => {
       badge: 'EDGE ROUTING',
       icon: Layers,
       desc: { 
-        tr: 'SSR, ISR, küresel önbellek ve DDoS kalkanı ile ilk yükleme süresi 0.35s.', 
-        en: 'SSR, ISR, global caching and DDoS mitigation with 0.35s first contentful paint.' 
+        tr: 'SSR, ISR, küresel önbellek ve DDoS kalkanı.', 
+        en: 'SSR, ISR, global caching and DDoS mitigation.' 
       },
       color: 'border-cyan-500/40 text-cyan-400 bg-cyan-500/10'
     },
@@ -142,9 +142,9 @@ const ArchitectureGraph = () => {
         <div className="p-6 sm:p-8 rounded-3xl bg-[#0c121e] border border-cyan-500/30 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
               <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest">
-                TELEMETRY INSPECTOR // NODE_ID: 0{selectedNode + 1}
+                {isTr ? 'SEÇİLİ KATMAN' : 'SELECTED LAYER'}
               </span>
             </div>
             <h4 className="text-xl sm:text-2xl font-bold text-white">

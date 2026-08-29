@@ -99,7 +99,7 @@ const Navbar = () => {
               </div>
             </Link>
 
-            {/* 24/7 Response Desk Live Status Badge */}
+            {/* Response Desk Live Status Badge */}
             <button
               type="button"
               onClick={() => setIsSOSOpen(true)}

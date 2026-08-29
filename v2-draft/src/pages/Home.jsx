@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Hero from '../components/Hero';
 import AgencySection from '../components/AgencySection';
-import CodeDiffShowcase from '../components/CodeDiffShowcase';
 import ArchitectureGraph from '../components/ArchitectureGraph';
 import Services from '../components/Services';
 import CaseStudySection from '../components/CaseStudySection';
@@ -36,7 +35,6 @@ const Home = () => {
     <>
       <Hero />
       <AgencySection />
-      <CodeDiffShowcase />
       <ArchitectureGraph />
       <Services />
       <CaseStudySection />
