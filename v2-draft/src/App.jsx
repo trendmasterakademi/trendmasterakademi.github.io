@@ -17,6 +17,7 @@ const KesintiMaliyeti = lazy(() => import('./pages/KesintiMaliyeti'));
 const About = lazy(() => import('./pages/About'));
 const Story = lazy(() => import('./pages/Story'));
 const Privacy = lazy(() => import('./pages/Privacy'));
+const Nda = lazy(() => import('./pages/Nda'));
 
 // Lightweight, thematic skeleton fallback matching pre-render aesthetic
 const PageFallback = () => (
@@ -76,6 +77,9 @@ function App() {
               <Route path="/gizlilik" element={<Privacy />} />
               <Route path="/kvkk/" element={<Privacy />} />
               <Route path="/kvkk" element={<Privacy />} />
+              
+              <Route path="/nda/" element={<Nda />} />
+              <Route path="/nda" element={<Nda />} />
             </Routes>
           </Suspense>
         </main>

@@ -690,9 +690,11 @@ const Agency = () => {
             {/* Alt not */}
             <div className="text-center pt-2">
               <p className="text-xs sm:text-sm text-slate-400 font-mono">
-                {isTr 
-                  ? 'Tüm çalışmalar resmi NDA kapsamındadır; kaynak kod ve fikri mülkiyet %100 ajansınıza aittir.' 
-                  : 'All work is covered by a formal NDA; source code and IP belong 100% to your agency.'}
+                <Link to="/nda/" className="hover:text-cyan-300 underline underline-offset-4 decoration-cyan-500/40 transition-colors">
+                  {isTr 
+                    ? 'Tüm çalışmalar resmi NDA kapsamındadır; kaynak kod ve fikri mülkiyet %100 ajansınıza aittir.' 
+                    : 'All work is covered by a formal NDA; source code and IP belong 100% to your agency.'}
+                </Link>
               </p>
             </div>
 

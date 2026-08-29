@@ -169,4 +169,12 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/privacy/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/privacy/" />
   </url>
+  <url>
+    <loc>https://trendmasterakademi.com/nda/</loc>
+    <lastmod>2026-08-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/nda/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/nda/" />
+  </url>
 </urlset>

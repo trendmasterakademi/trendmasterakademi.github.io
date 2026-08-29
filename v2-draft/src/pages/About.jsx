@@ -141,6 +141,14 @@ const About = () => {
                   ? 'Projeye başlamadan önce bağlayıcı Gizlilik Sözleşmesi (NDA) imzalanır. Geliştirilen tüm kaynak kodlar, mimari ve fikri mülkiyet %100 ajansınıza ve müşterinize aittir.' 
                   : 'Prior to work, a binding NDA is executed. All source code, architecture, and IP belong 100% to your agency and client.'}
               </p>
+              <div className="pt-1">
+                <Link 
+                  to="/nda/" 
+                  className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-mono text-xs sm:text-sm font-bold transition-colors"
+                >
+                  {isTr ? 'Sözleşmeyi okuyun →' : 'Read the agreement →'}
+                </Link>
+              </div>
             </div>
 
             <div className="glass-panel p-8 rounded-3xl border border-white/10 bg-[#111827]/70 space-y-4">

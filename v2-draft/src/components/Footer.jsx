@@ -56,7 +56,15 @@ const Footer = () => {
                 to="/privacy/" 
                 className="hover:text-cyan-400 transition-colors flex items-center gap-1 text-slate-400 text-xs"
               >
-                {isTr ? '🔒 KVKK & Gizlilik Politikası' : '🔒 Privacy Policy & NDA'}
+                {isTr ? '🔒 KVKK & Gizlilik Politikası' : '🔒 Privacy Policy & KVKK'}
+              </Link>
+            </li>
+            <li>
+              <Link 
+                to="/nda/" 
+                className="hover:text-cyan-400 transition-colors flex items-center gap-1 text-slate-400 text-xs"
+              >
+                {isTr ? '📄 Gizlilik ve Çalışma Sözleşmesi' : '📄 Confidentiality Agreement (NDA)'}
               </Link>
             </li>
           </ul>

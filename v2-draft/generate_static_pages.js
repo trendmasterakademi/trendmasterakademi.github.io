@@ -105,6 +105,15 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/privacy/',
     heading: 'KVKK Aydınlatma Metni & Gizlilik Politikası',
     subheading: '6698 sayılı KVKK kapsamında veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik ilkeleri.'
+  },
+  {
+    dir: 'nda',
+    title: 'Gizlilik ve Çalışma Sözleşmesi | Trend Master Akademi',
+    h1: 'Gizlilik ve Çalışma Sözleşmesi',
+    description: 'Çalışmaya başlamadan önce imzaladığımız karşılıklı gizlilik ve çalışma sözleşmesinin tam metni ve sade dilli özeti.',
+    canonical: 'https://trendmasterakademi.com/nda/',
+    ogUrl: 'https://trendmasterakademi.com/nda/',
+    subheading: 'Çalışmaya başlamadan önce karşılıklı bir gizlilik ve çalışma sözleşmesi imzalıyoruz. Ne imzalayacağınızı önceden bilmeniz için sözleşmenin ne dediğini burada sade dille anlattık.'
   }
 ];
 
