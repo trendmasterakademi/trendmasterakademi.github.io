@@ -56,8 +56,8 @@ const KVKKModal = ({ isOpen, onClose }) => {
             </h4>
             <p>
               {isTr 
-                ? '6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) uyarınca; Trend Master Akademi Studio & Labs (Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir), veri sorumlusu sıfatıyla hareket etmektedir.' 
-                : 'Under applicable Data Protection regulations; Trend Master Academy Studio & Labs operates as the Data Controller.'}
+                ? '6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca; Trend Master Akademi markası altında faaliyet gösteren Mehmet Şahin (Şahıs İşletmesi, Konak Vergi Dairesi, VKN: 7930336132, Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir), veri sorumlusu sıfatıyla hareket etmektedir.' 
+                : 'Under applicable Data Protection regulations; Mehmet Şahin operating under the brand Trend Master Akademi (Sole Proprietorship, Konak Tax Office, Tax ID: 7930336132, Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / Izmir) operates as the Data Controller.'}
             </p>
 
             <h4 className="text-white font-bold text-sm sm:text-base pt-2">

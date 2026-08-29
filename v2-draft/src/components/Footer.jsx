@@ -90,8 +90,27 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-2">
               <MapPin className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Heris Tower No:55/091 Konak / İzmir</span>
+              <span>Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</span>
             </div>
+          </div>
+
+          {/* Yasal Bilgiler / Legal Information */}
+          <div className="pt-3 mt-2 border-t border-white/10 text-xs font-mono text-slate-400 space-y-1">
+            <span className="text-[11px] font-bold text-slate-300 block uppercase tracking-wider">
+              {isTr ? 'Yasal Bilgiler' : 'Legal Information'}
+            </span>
+            <p className="text-slate-300">
+              {isTr ? 'Mehmet Şahin — Şahıs İşletmesi' : 'Mehmet Şahin — Sole Proprietorship'}
+            </p>
+            <p>
+              {isTr ? 'Konak Vergi Dairesi' : 'Konak Tax Office'} · {isTr ? 'VKN' : 'Tax ID'}: 7930336132
+            </p>
+            <p>
+              {isTr ? 'Faaliyet Kodu: 621000 — Bilgisayar Programlama Faaliyetleri' : 'Activity Code: 621000 — Computer Programming Activities'}
+            </p>
+            <p className="text-[11px] leading-relaxed text-slate-400">
+              Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir
+            </p>
           </div>
         </div>
 
@@ -101,7 +120,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500 text-xs">
         <div className="space-y-1 text-center sm:text-left">
           <p>© 2026 Trend Master Akademi Studio & Labs. {isTr ? 'Tüm hakları saklıdır.' : 'All rights reserved.'}</p>
-          <p className="text-[11px] text-slate-500 font-mono">Trend Master Akademi Yazılım & Bilişim Hizmetleri · Konak V.D. · Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir</p>
+          <p className="text-[11px] text-slate-500 font-mono">Trend Master Akademi · Konak V.D. · Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
         </div>
         <div className="flex items-center gap-4 text-slate-400">
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400"></span> Response Desk: Online</span>

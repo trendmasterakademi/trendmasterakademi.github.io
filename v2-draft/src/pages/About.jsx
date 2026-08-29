@@ -133,6 +133,84 @@ const About = () => {
           </div>
         </div>
 
+        {/* Legal Information Section / Yasal Bilgiler */}
+        <div className="glass-panel p-8 sm:p-10 rounded-3xl border border-white/10 bg-[#111827]/70 space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center border border-cyan-500/30">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-white">
+                {isTr ? 'Yasal Bilgiler' : 'Legal Information'}
+              </h2>
+              <span className="text-xs font-mono text-cyan-400">
+                {isTr ? 'Doğrulanabilir Resmi Mükellefiyet Künyesi' : 'Verifiable Tax & Business Registration Data'}
+              </span>
+            </div>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs sm:text-sm font-mono border-collapse">
+              <tbody className="divide-y divide-white/10">
+                <tr className="border-b border-white/10">
+                  <td className="py-3.5 px-2 sm:px-4 text-slate-400 font-semibold w-1/3">
+                    {isTr ? 'Mükellef / İşletme Türü' : 'Entity / Structure'}
+                  </td>
+                  <td className="py-3.5 px-2 sm:px-4 text-white font-bold">
+                    {isTr ? 'Mehmet Şahin — Şahıs İşletmesi' : 'Mehmet Şahin — Sole Proprietorship'}
+                  </td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-3.5 px-2 sm:px-4 text-slate-400 font-semibold">
+                    {isTr ? 'Vergi Dairesi' : 'Tax Office'}
+                  </td>
+                  <td className="py-3.5 px-2 sm:px-4 text-slate-200">
+                    {isTr ? 'Konak Vergi Dairesi' : 'Konak Tax Office'}
+                  </td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-3.5 px-2 sm:px-4 text-slate-400 font-semibold">
+                    {isTr ? 'Vergi Kimlik No (VKN)' : 'Tax ID (VKN)'}
+                  </td>
+                  <td className="py-3.5 px-2 sm:px-4 text-cyan-400 font-bold tracking-wider">
+                    7930336132
+                  </td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-3.5 px-2 sm:px-4 text-slate-400 font-semibold">
+                    {isTr ? 'Ana Faaliyet Kodu' : 'Activity Code'}
+                  </td>
+                  <td className="py-3.5 px-2 sm:px-4 text-slate-200">
+                    {isTr ? '621000 — Bilgisayar Programlama Faaliyetleri' : '621000 — Computer Programming Activities'}
+                  </td>
+                </tr>
+                <tr className="border-b border-white/10">
+                  <td className="py-3.5 px-2 sm:px-4 text-slate-400 font-semibold">
+                    {isTr ? 'Yasal İş Yeri Adresi' : 'Official Registered Address'}
+                  </td>
+                  <td className="py-3.5 px-2 sm:px-4 text-slate-200 leading-relaxed">
+                    Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir
+                  </td>
+                </tr>
+                <tr>
+                  <td className="py-3.5 px-2 sm:px-4 text-slate-400 font-semibold">
+                    {isTr ? 'Resmi İletişim' : 'Official Contact'}
+                  </td>
+                  <td className="py-3.5 px-2 sm:px-4 text-slate-200">
+                    +90 534 371 35 73 · info@trendmasterakademi.com
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-xs sm:text-sm text-cyan-300 font-mono">
+            {isTr 
+              ? 'Faaliyet belgesi ve vergi levhası, sözleşme öncesi talep üzerine ibraz edilir.' 
+              : 'Certificate of activity and tax registration plate are presented upon request prior to agreement.'}
+          </div>
+        </div>
+
       </div>
     </div>
   );
