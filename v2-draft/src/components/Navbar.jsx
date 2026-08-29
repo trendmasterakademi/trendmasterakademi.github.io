@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Globe, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import EmergencySOSModal from './EmergencySOSModal';
+
+const EmergencySOSModal = lazy(() => import('./EmergencySOSModal'));
 
 const Navbar = () => {
   const { t, i18n } = useTranslation();
@@ -19,7 +19,6 @@ const Navbar = () => {
     i18n.changeLanguage(newLang);
   };
 
-  // ScrollSpy to detect active section when on Homepage
   useEffect(() => {
     if (location.pathname !== '/') {
       return;
@@ -64,12 +63,12 @@ const Navbar = () => {
       }
       setIsOpen(false);
     } else {
-      // If on another page, navigate to homepage anchor
       setIsOpen(false);
     }
   };
 
   const isHome = location.pathname === '/';
+  const isTr = i18n.language !== 'en';
 
   return (
     <>
@@ -98,221 +97,209 @@ const Navbar = () => {
             <button
               onClick={() => setIsSOSOpen(true)}
               className="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono hover:bg-emerald-500/20 transition-colors cursor-pointer whitespace-nowrap shadow-sm shadow-emerald-500/10"
-              title={t('nav-status-active')}
+              title={isTr ? "Acil Incident & Kriz Müdahale Masası" : "Emergency Engineering & Crisis Desk"}
             >
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>{t('nav-status-active')}</span>
+              <span>{isTr ? "Canlı Kriz Masası" : "Live SWAT Desk"}</span>
             </button>
           </div>
 
-          {/* Desktop Navigation Links (Visible on XL screens >= 1280px with full breathing room) */}
-          <nav className="hidden xl:flex items-center gap-4 2xl:gap-5 text-xs 2xl:text-sm font-medium flex-shrink-0">
-            
-            {/* Home Link */}
-            <Link 
-              to="/" 
-              onClick={(e) => handleNavClick(e, 'hero')}
-              className={`transition-colors py-1 relative whitespace-nowrap ${
-                isHome && activeSection === 'hero' 
-                  ? 'text-cyan-400 font-bold' 
-                  : 'text-slate-300 hover:text-white'
-              }`}
-            >
-              <span>{t('nav-home')}</span>
-              {isHome && activeSection === 'hero' && (
-                <motion.span layoutId="navIndicator" className="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-400 rounded-full shadow-[0_0_8px_rgba(0,229,255,0.8)]" />
-              )}
-            </Link>
-
-            {/* Agency Page Link */}
-            <Link 
-              to="/agency" 
-              className={`flex items-center gap-1.5 transition-colors py-1 relative whitespace-nowrap ${
-                location.pathname === '/agency' 
-                  ? 'text-cyan-400 font-bold' 
-                  : 'text-slate-300 hover:text-cyan-400'
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+            <Link
+              to="/agency"
+              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1.5 ${
+                location.pathname === '/agency'
+                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
               <ShieldCheck className="w-4 h-4 text-cyan-400" />
               <span>{t('nav-agency')}</span>
-              {location.pathname === '/agency' && (
-                <motion.span layoutId="navIndicator" className="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-400 rounded-full shadow-[0_0_8px_rgba(0,229,255,0.8)]" />
-              )}
             </Link>
 
-            {/* Crash Test Simulator Link */}
-            <Link 
-              to="/crash-test" 
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full border transition-all text-xs font-semibold whitespace-nowrap ${
+            <Link
+              to="/crash-test"
+              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1.5 ${
                 location.pathname === '/crash-test'
-                  ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300 font-bold shadow-[0_0_15px_rgba(0,229,255,0.2)]'
-                  : 'bg-white/5 border-white/10 text-slate-300 hover:border-cyan-400/50 hover:text-white'
+                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
-              <Zap className="w-3.5 h-3.5 text-cyan-400 fill-current" />
+              <Zap className="w-4 h-4 text-cyan-400" />
               <span>{t('nav-crashtest')}</span>
             </Link>
 
-            {/* Services Anchor Link */}
-            <a 
-              href="/#services" 
-              onClick={(e) => handleNavClick(e, 'services')}
-              className={`transition-colors py-1 relative whitespace-nowrap ${
-                isHome && activeSection === 'services' 
-                  ? 'text-cyan-400 font-bold' 
-                  : 'text-slate-300 hover:text-cyan-400'
+            <Link
+              to="/devir-kontrolu"
+              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
+                location.pathname === '/devir-kontrolu'
+                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
-              <span>{t('nav-services')}</span>
-              {isHome && activeSection === 'services' && (
-                <motion.span layoutId="navIndicator" className="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-400 rounded-full shadow-[0_0_8px_rgba(0,229,255,0.8)]" />
-              )}
-            </a>
+              {isTr ? 'Devir Kontrolü' : 'Handover Audit'}
+            </Link>
 
-            {/* Contact Anchor Link */}
-            <a 
-              href="/#contact" 
-              onClick={(e) => handleNavClick(e, 'contact')}
-              className={`transition-colors py-1 relative whitespace-nowrap ${
-                isHome && activeSection === 'contact' 
-                  ? 'text-cyan-400 font-bold' 
-                  : 'text-slate-300 hover:text-cyan-400'
+            <Link
+              to="/sozluk"
+              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
+                location.pathname.startsWith('/sozluk')
+                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
-              <span>{t('nav-contact')}</span>
-              {isHome && activeSection === 'contact' && (
-                <motion.span layoutId="navIndicator" className="absolute bottom-0 left-0 w-full h-0.5 bg-cyan-400 rounded-full shadow-[0_0_8px_rgba(0,229,255,0.8)]" />
-              )}
-            </a>
-            
-            {/* SOS Emergency Hotline Button */}
-            <button 
-              onClick={() => setIsSOSOpen(true)}
-              className="bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white px-3.5 py-1.5 rounded-full font-bold text-xs shadow-lg shadow-red-600/25 flex items-center gap-1.5 cursor-pointer transition-all transform hover:scale-105 whitespace-nowrap"
-            >
-              <AlertTriangle className="w-3.5 h-3.5 animate-pulse" />
-              <span>{t('nav-sos')}</span>
-            </button>
+              {isTr ? 'Terim Sözlüğü' : 'Glossary'}
+            </Link>
 
-            {/* Language Switch Button */}
-            <button 
-              onClick={toggleLang} 
-              className="flex items-center gap-1.5 text-slate-300 hover:text-cyan-400 transition-colors pl-2.5 border-l border-white/15 cursor-pointer text-xs font-mono font-bold whitespace-nowrap"
-              title="Dili Değiştir / Switch Language"
+            <Link
+              to="/kesinti-maliyeti"
+              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
+                location.pathname === '/kesinti-maliyeti'
+                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+              }`}
             >
-              <Globe className="w-3.5 h-3.5 text-cyan-400" />
-              <span className="uppercase">{i18n.language === 'tr' ? 'EN' : 'TR'}</span>
-            </button>
+              {isTr ? 'Kesinti Maliyeti' : 'Downtime Calc'}
+            </Link>
+
+            <Link
+              to="/about"
+              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
+                location.pathname === '/about'
+                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              {t('nav-about')}
+            </Link>
+
+            {isHome ? (
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, 'contact')}
+                className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
+                  activeSection === 'contact'
+                    ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                }`}
+              >
+                {t('nav-contact')}
+              </a>
+            ) : (
+              <Link
+                to="/#contact"
+                className="px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-all"
+              >
+                {t('nav-contact')}
+              </Link>
+            )}
           </nav>
 
-          {/* Mobile / Tablet / Zoomed (< 1280px) Action Buttons */}
-          <div className="flex items-center gap-1.5 sm:gap-2 xl:hidden flex-shrink-0">
-            <button 
-              onClick={toggleLang} 
-              className="px-2 sm:px-2.5 py-1 sm:py-1.5 rounded-lg bg-white/5 border border-white/10 text-slate-300 text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1 cursor-pointer"
+          {/* Action CTAs: Emergency SOS Button & Language Switcher */}
+          <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+            
+            {/* SOS Emergency Button */}
+            <button
+              onClick={() => setIsSOSOpen(true)}
+              className="px-3 sm:px-4 py-2 rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/40 text-red-400 hover:text-red-300 text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap shadow-sm shadow-red-500/20"
+            >
+              <AlertTriangle className="w-3.5 h-3.5 text-red-400 animate-bounce" />
+              <span>{isTr ? 'Acil Kriz (SOS)' : 'Emergency SOS'}</span>
+            </button>
+
+            {/* Language Switcher */}
+            <button
+              onClick={toggleLang}
+              className="px-2.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white text-xs font-mono font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+              title={isTr ? 'Switch to English' : 'Türkçe Dil Seçeneği'}
             >
               <Globe className="w-3.5 h-3.5 text-cyan-400" />
               <span>{i18n.language === 'tr' ? 'EN' : 'TR'}</span>
             </button>
 
+            {/* Mobile Hamburger Toggle */}
             <button
-              onClick={() => setIsSOSOpen(true)}
-              className="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-red-500/20 border border-red-500/40 text-red-400 text-[11px] sm:text-xs font-bold flex items-center gap-1 cursor-pointer shadow-sm shadow-red-500/20"
-            >
-              <AlertTriangle className="w-3.5 h-3.5" />
-              <span>SOS</span>
-            </button>
-
-            <button 
-              className="text-white p-1.5 sm:p-2 rounded-xl bg-white/5 border border-white/10 focus:outline-none cursor-pointer" 
               onClick={() => setIsOpen(!isOpen)}
-              aria-label="Menü"
+              className="lg:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white transition-colors cursor-pointer"
+              aria-label="Toggle menu"
             >
-              {isOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
+              {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
 
         </div>
 
         {/* Mobile Navigation Drawer */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div 
-              initial={{ opacity: 0, y: -15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              className="absolute top-full left-0 w-full bg-[#0d121d] border-b border-white/15 py-6 px-6 flex flex-col gap-4 xl:hidden shadow-2xl"
+        {isOpen && (
+          <div className="lg:hidden pt-4 pb-6 px-4 border-t border-white/10 mt-3 space-y-2 bg-[#080b11]/98 backdrop-blur-2xl rounded-2xl animate-in fade-in slide-in-from-top-2 duration-200">
+            <Link
+              to="/agency"
+              onClick={() => setIsOpen(false)}
+              className="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400"
             >
-              <Link 
-                to="/" 
-                className={`text-lg font-semibold ${isHome && activeSection === 'hero' ? 'text-cyan-400' : 'text-white'}`} 
-                onClick={(e) => handleNavClick(e, 'hero')}
-              >
-                {t('nav-home')}
-              </Link>
+              <ShieldCheck className="w-4 h-4 text-cyan-400" />
+              <span>{t('nav-agency')}</span>
+            </Link>
 
-              <Link 
-                to="/agency" 
-                className={`text-lg font-semibold flex items-center gap-2 ${location.pathname === '/agency' ? 'text-cyan-400' : 'text-slate-200'}`} 
-                onClick={() => setIsOpen(false)}
-              >
-                <ShieldCheck className="w-5 h-5 text-cyan-400" />
-                <span>{t('nav-agency')}</span>
-              </Link>
+            <Link
+              to="/crash-test"
+              onClick={() => setIsOpen(false)}
+              className="w-full text-left px-4 py-3 rounded-xl text-sm font-semibold flex items-center gap-2 bg-cyan-500/10 border border-cyan-500/30 text-cyan-400"
+            >
+              <Zap className="w-4 h-4 text-cyan-400" />
+              <span>{t('nav-crashtest')}</span>
+            </Link>
 
-              <Link 
-                to="/crash-test" 
-                className="text-orange-400 text-lg font-semibold flex items-center gap-2" 
-                onClick={() => setIsOpen(false)}
-              >
-                <Zap className="w-5 h-5 fill-current" />
-                <span>{t('nav-crashtest')}</span>
-              </Link>
+            <Link
+              to="/devir-kontrolu"
+              onClick={() => setIsOpen(false)}
+              className="block w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-white/5"
+            >
+              {isTr ? '12 Kalemlik Devir Kontrolü' : 'Handover Readiness Audit'}
+            </Link>
 
-              <a 
-                href="/#services" 
-                className={`text-lg font-medium ${isHome && activeSection === 'services' ? 'text-cyan-400 font-bold' : 'text-slate-200'}`} 
-                onClick={(e) => handleNavClick(e, 'services')}
-              >
-                {t('nav-services')}
-              </a>
+            <Link
+              to="/sozluk"
+              onClick={() => setIsOpen(false)}
+              className="block w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-white/5"
+            >
+              {isTr ? 'Ajans Terim Sözlüğü' : 'Developer-to-Agency Glossary'}
+            </Link>
 
-              <a 
-                href="/#contact" 
-                className={`text-lg font-medium ${isHome && activeSection === 'contact' ? 'text-cyan-400 font-bold' : 'text-slate-200'}`} 
-                onClick={(e) => handleNavClick(e, 'contact')}
-              >
-                {t('nav-contact')}
-              </a>
-              
-              <button 
-                onClick={() => {
-                  setIsOpen(false);
-                  setIsSOSOpen(true);
-                }}
-                className="bg-red-500 hover:bg-red-600 text-white py-3.5 rounded-2xl font-bold text-center w-full flex items-center justify-center gap-2 mt-2 shadow-lg shadow-red-500/20"
-              >
-                <AlertTriangle className="w-5 h-5" />
-                <span>{t('nav-sos')}</span>
-              </button>
+            <Link
+              to="/kesinti-maliyeti"
+              onClick={() => setIsOpen(false)}
+              className="block w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-white/5"
+            >
+              {isTr ? 'Kesinti Maliyeti Hesaplayıcı' : 'Downtime Loss Calculator'}
+            </Link>
 
-              <button 
-                onClick={() => {
-                  toggleLang();
-                  setIsOpen(false);
-                }} 
-                className="flex items-center gap-2 justify-center w-full py-3 border border-white/10 rounded-xl text-slate-300 text-sm font-semibold"
-              >
-                <Globe className="w-4 h-4 text-cyan-400" />
-                <span>{t('nav-switch-lang')}</span>
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <Link
+              to="/about"
+              onClick={() => setIsOpen(false)}
+              className="block w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-white/5"
+            >
+              {t('nav-about')}
+            </Link>
+
+            <a
+              href="/#contact"
+              onClick={(e) => handleNavClick(e, 'contact')}
+              className="block w-full text-left px-4 py-2.5 rounded-xl text-sm font-semibold text-slate-200 hover:bg-white/5"
+            >
+              {t('nav-contact')}
+            </a>
+          </div>
+        )}
       </header>
 
-      {/* Global Emergency Modal */}
-      <EmergencySOSModal isOpen={isSOSOpen} onClose={() => setIsSOSOpen(false)} />
+      {/* Emergency SOS Modal (Lazy Loaded) */}
+      {isSOSOpen && (
+        <Suspense fallback={null}>
+          <EmergencySOSModal isOpen={isSOSOpen} onClose={() => setIsSOSOpen(false)} />
+        </Suspense>
+      )}
     </>
   );
 };

@@ -4,6 +4,11 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   plugins: [react()],
   build: {
+    modulePreload: {
+      resolveDependencies(filename, deps, context) {
+        return deps.filter(dep => !dep.includes('vendor-framer'));
+      }
+    },
     rollupOptions: {
       output: {
         manualChunks(id) {

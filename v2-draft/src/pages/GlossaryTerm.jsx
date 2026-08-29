@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useParams, Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { 
   ArrowLeft, ArrowRight, ShieldCheck, AlertTriangle, 
   HelpCircle, CheckCircle2, PhoneCall, BookOpen, ExternalLink, Zap
@@ -50,7 +49,6 @@ const GlossaryTerm = () => {
     );
   }
 
-  // Find related terms objects
   const relatedTermObjects = term.relatedTerms
     .map(relSlug => glossaryTerms.find(t => t.slug === relSlug))
     .filter(Boolean);
@@ -142,7 +140,7 @@ const GlossaryTerm = () => {
             <span className="text-xs font-mono font-bold text-cyan-400 uppercase">
               {isTr ? 'İLGİLİ TMA ÇÖZÜMÜ' : 'RELATED TMA SOLUTION'}
             </span>
-            <h4 className="text-lg font-bold text-white">{term.relatedService.title}</h4>
+            <h3 className="text-lg font-bold text-white">{term.relatedService.title}</h3>
             <p className="text-xs sm:text-sm text-slate-300">
               {isTr ? 'Ajansınız adına %100 White-Label ve resmi NDA altında mühendislik desteği.' : '%100 White-Label engineering support under mutual NDA.'}
             </p>

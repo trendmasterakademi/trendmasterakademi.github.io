@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
 import { 
   BookOpen, Search, ArrowRight, ShieldCheck, AlertTriangle, 
   Terminal, Sparkles, HelpCircle 
@@ -80,10 +79,8 @@ const GlossaryIndex = () => {
         {/* Terms Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredTerms.map((term) => (
-            <motion.div
+            <div
               key={term.slug}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
               className="p-6 sm:p-7 rounded-3xl bg-[#111827]/80 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between space-y-5 shadow-xl group"
             >
               <div className="space-y-3">
@@ -114,7 +111,7 @@ const GlossaryIndex = () => {
                   <ArrowRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

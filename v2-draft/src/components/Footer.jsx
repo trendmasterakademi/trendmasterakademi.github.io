@@ -42,7 +42,7 @@ const Footer = () => {
         
         {/* Navigation Column */}
         <div className="md:col-span-3">
-          <h4 className="text-white font-bold text-base mb-4">{t('footer-quick')}</h4>
+          <h3 className="text-white font-bold text-base mb-4">{t('footer-quick')}</h3>
           <ul className="space-y-2.5 text-slate-300 text-xs sm:text-sm">
             <li><Link to="/" className="hover:text-cyan-400 transition-colors">{t('nav-home')}</Link></li>
             <li><Link to="/agency" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-cyan-400" /> {t('nav-agency')}</Link></li>
@@ -63,9 +63,9 @@ const Footer = () => {
         
         {/* Security & Pricing Column */}
         <div className="md:col-span-4 space-y-3">
-          <h4 className="text-white font-bold text-base flex items-center gap-2">
+          <h3 className="text-white font-bold text-base flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-emerald-400" /> {isTr ? 'Ücretlendirme' : 'Pricing'}
-          </h4>
+          </h3>
           <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2 text-xs text-slate-300">
             <div className="flex justify-between border-b border-white/5 pb-1">
               <span>{isTr ? 'İlk Kod Teşhisi & Triyaj:' : 'Initial Code Triage:'}</span>
