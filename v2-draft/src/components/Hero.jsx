@@ -97,7 +97,8 @@ const Hero = () => {
   const { t, i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
   const [isDesktop, setIsDesktop] = useState(true);
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
+  const [displayCounterIndex, setDisplayCounterIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
@@ -111,7 +112,8 @@ const Hero = () => {
 
   // Reset index when switching viewport mode
   useEffect(() => {
-    setActiveIndex(0);
+    setActiveCardIndex(0);
+    setDisplayCounterIndex(0);
   }, [isDesktop]);
 
   useEffect(() => {
@@ -126,7 +128,13 @@ const Hero = () => {
     const duration = isDesktop ? 6000 : 4500;
 
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % total);
+      setActiveCardIndex((prev) => {
+        const next = (prev + 1) % total;
+        setTimeout(() => {
+          setDisplayCounterIndex(next);
+        }, 350);
+        return next;
+      });
     }, duration);
 
     return () => clearInterval(interval);
@@ -216,15 +224,23 @@ const Hero = () => {
           <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-4 sm:pt-5 border-t border-white/10 max-w-xl text-center sm:text-left">
             <div>
               <strong className="block text-sm sm:text-lg lg:text-xl font-black text-white">14+ Yıl</strong>
-              <span className="text-[10px] sm:text-xs text-slate-400">Yazılım & Mimari Deneyimi</span>
+              <span className="text-[10px] sm:text-xs text-slate-400">
+                {isTr ? 'Yazılım & Mimari Deneyimi' : 'Engineering Experience'}
+              </span>
             </div>
             <div>
               <strong className="block text-sm sm:text-lg lg:text-xl font-black text-cyan-400">40+ Repo</strong>
-              <span className="text-[10px] sm:text-xs text-slate-400">Devralınan & Çözülen Kod</span>
+              <span className="text-[10px] sm:text-xs text-slate-400">
+                {isTr ? 'Devralınan & Çözülen Kod' : 'Codebases Rescued'}
+              </span>
             </div>
             <div>
-              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-emerald-400">0 - 2 Saat</strong>
-              <span className="text-[10px] sm:text-xs text-slate-400">Ortalama İlk Triyaj Hızı</span>
+              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-emerald-400">
+                {isTr ? '20 Teşhis' : '20 Diagnostics'}
+              </strong>
+              <span className="text-[10px] sm:text-xs text-slate-400">
+                {isTr ? 'Yayınlanmış Arıza Kataloğu' : 'Published Fault Catalog'}
+              </span>
             </div>
           </div>
         </div>
@@ -248,7 +264,7 @@ const Hero = () => {
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
                   <span className="text-[10px] font-mono text-slate-400">
-                    {activeIndex + 1} / {currentTotal}
+                    {displayCounterIndex + 1} / {currentTotal}
                   </span>
                 </div>
               </div>
@@ -258,11 +274,11 @@ const Hero = () => {
                 /* Desktop: 4 Pairs of 2 stacked cards */
                 <div className="relative min-h-[220px] flex items-center">
                   {desktopPairs.map((pair, idx) => {
-                    const isActive = activeIndex === idx;
+                    const isActive = activeCardIndex === idx;
                     return (
                       <div
                         key={idx}
-                        className={`transition-opacity duration-500 w-full flex flex-col gap-3 ${
+                        className={`transition-opacity duration-300 w-full flex flex-col gap-3 ${
                           isActive 
                             ? 'opacity-100 relative pointer-events-auto z-10' 
                             : 'opacity-0 absolute inset-0 pointer-events-none -z-10'
@@ -294,11 +310,11 @@ const Hero = () => {
                 /* Mobile: 8 Individual cards */
                 <div className="relative min-h-[140px] flex items-center">
                   {diagnosticLogs.map((item, idx) => {
-                    const isActive = activeIndex === idx;
+                    const isActive = activeCardIndex === idx;
                     return (
                       <div
                         key={idx}
-                        className={`transition-opacity duration-500 w-full ${
+                        className={`transition-opacity duration-300 w-full ${
                           isActive 
                             ? 'opacity-100 relative pointer-events-auto z-10' 
                             : 'opacity-0 absolute inset-0 pointer-events-none -z-10'

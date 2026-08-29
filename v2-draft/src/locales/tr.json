@@ -23,15 +23,14 @@
   "btn-contact-quick": "Doğrudan İletişime Geç",
   "metric-whitelabel": "%100 White-Label",
   "metric-whitelabel-sub": "Resmi NDA & Gizlilik",
-  "metric-triage": "0 - 2 Saat",
-  "metric-triage-sub": "Acil Triyaj & Teşhis",
+  "metric-triage": "20 Teşhis",
+  "metric-triage-sub": "Yayınlanmış Arıza Kataloğu",
   "metric-stack": "Kıdemli Kadro",
   "metric-stack-sub": "Full-Stack Mühendislik",
 
   "terminal-header": "TMA_COMMAND_DESK",
   "terminal-status": "CANLI MASADA AKTİF",
   "terminal-stream-title": "CANLI MÜDAHALE AKIŞI",
-  "terminal-stream-latency": "GECİKME: 12ms",
   "terminal-line1": "> [BİLDİRİM] Ajans acil müdahale çağrısı alındı.",
   "terminal-line2": "> Senaryo: T-48H Lansman / Ödeme API & DB Darboğazı",
   "terminal-line3": "> Durum: Önceki geliştirici projeyi yarım bıraktı.",
@@ -81,7 +80,7 @@
 
   "card-hotfix-title": "Canlı Sistem Hotfix & Performans Darboğazı",
   "card-hotfix-desc": "HTTP 500 hataları, veritabanı kilitlenmeleri, yavaşlayan API'ler ve ödeme kopmalarında acil müdahale ile kesintiyi sıfırlıyoruz.",
-  "card-hotfix-feat1": "0 - 2 Saat İçinde Hızlı Triyaj & Hata İzolasyonu",
+  "card-hotfix-feat1": "Hızlı Triyaj & Hata İzolasyonu",
   "card-hotfix-feat2": "PostgreSQL, Redis & Sunucu Yük Dengeleme",
   "card-hotfix-feat3": "Stripe, iyzico & PayTR Webhook Onarımları",
 

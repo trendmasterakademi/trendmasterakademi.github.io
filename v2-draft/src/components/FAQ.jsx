@@ -21,12 +21,12 @@ export const faqData = [
     id: 'sla-response',
     icon: Zap,
     question: {
-      tr: "Acil kod kurtarma (Incident SWAT) müdahale süresi (SLA) nedir?",
-      en: "What is the response SLA for emergency code rescue (Incident SWAT)?"
+      tr: "Acil kod kurtarmada süreç nasıl işliyor?",
+      en: "How does the emergency code rescue process work?"
     },
     answer: {
-      tr: "Canlı sistem kesintilerinde (HTTP 500, veritabanı kilitlenmesi, ödeme API kopması), 0-2 saat içinde repoyu izole sandbox ortamına alarak acil triyaj ve ilk hotfix müdahalesini başlatıyoruz. Kritik lansman darboğazlarında (T-48h) aynı gün içinde kıdemli geliştirici kapasite takviyesi devreye girer.",
-      en: "For live production outages (HTTP 500, DB deadlocks, payment API failures), we isolate the repository into a sandbox within 0-2 hours for immediate triage and hotfix dispatch. For T-48h launch crunches, we deploy same-day senior engineering surge capacity."
+      tr: "Canlı sistem kesintilerinde (HTTP 500, veritabanı kilitlenmesi, ödeme API kopması) önce repoyu izole bir sandbox ortamına alır, teşhisi orada yaparız. Teşhis ve sabit bedel birlikte iletilir. Süre taahhüdü vermiyoruz — her arızanın kapsamı farklıdır ve tutulamayacak bir söz vermek işe yaramaz.",
+      en: "For live production outages (HTTP 500, database deadlocks, payment API failures), we first isolate the repository into a sandbox environment and perform the diagnosis there. Diagnosis and fixed fee are delivered together. We do not provide time commitments — the scope of each incident differs, and making promises that cannot be kept helps no one."
     }
   },
   {

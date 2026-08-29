@@ -17,7 +17,6 @@ const ArchitectureGraph = () => {
         tr: 'Yüksek hacimli web, mobil (iOS/Android) ve 3. parti API istekleri.', 
         en: 'High-volume web, mobile (iOS/Android) and 3rd party API requests.' 
       },
-      stats: { latency: '0.2ms', throughput: '10K+ req/s', status: 'HEALTHY' },
       color: 'border-blue-500/40 text-blue-400 bg-blue-500/10'
     },
     {
@@ -29,7 +28,6 @@ const ArchitectureGraph = () => {
         tr: 'SSR, ISR, küresel önbellek ve DDoS kalkanı ile ilk yükleme süresi 0.35s.', 
         en: 'SSR, ISR, global caching and DDoS mitigation with 0.35s first contentful paint.' 
       },
-      stats: { latency: '12ms', cacheHit: '98.6%', status: 'SHIELDED' },
       color: 'border-cyan-500/40 text-cyan-400 bg-cyan-500/10'
     },
     {
@@ -41,7 +39,6 @@ const ArchitectureGraph = () => {
         tr: 'Asenkron mikroservisler, yetkilendirme, iş mantığı ve acil hotfix koruması.', 
         en: 'Asynchronous microservices, authentication, business logic, and hotfix isolation.' 
       },
-      stats: { latency: '4ms', workers: '16 Pods', status: 'ACTIVE' },
       color: 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10'
     },
     {
@@ -53,7 +50,6 @@ const ArchitectureGraph = () => {
         tr: 'B-Tree indeksleme, bağlantı havuzlama (Pooling) ve mikro-saniye caching.', 
         en: 'B-Tree indexed partitions, connection pooling, and sub-millisecond in-memory cache.' 
       },
-      stats: { queryTime: '0.8ms', lockRate: '0.00%', status: 'OPTIMIZED' },
       color: 'border-purple-500/40 text-purple-400 bg-purple-500/10'
     },
     {
@@ -65,7 +61,6 @@ const ArchitectureGraph = () => {
         tr: "OpenAI/LLM otomasyonları, Stripe/iyzico idempotent güvenli ödeme pipeline'ları.", 
         en: 'OpenAI/LLM pipelines, Stripe/iyzico idempotent atomic webhook queues.' 
       },
-      stats: { successRate: '99.99%', retryRate: '0.01%', status: 'ISOLATED' },
       color: 'border-amber-500/40 text-amber-400 bg-amber-500/10'
     }
   ];
@@ -130,11 +125,6 @@ const ArchitectureGraph = () => {
                       {node.desc[isTr ? 'tr' : 'en']}
                     </p>
                   </div>
-
-                  <div className="pt-4 mt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
-                    <span className="text-slate-500">LATENCY</span>
-                    <span className="font-bold text-emerald-400">{node.stats.latency || node.stats.queryTime || '0.04ms'}</span>
-                  </div>
                 </button>
 
                 {/* Arrow Connector on desktop between columns */}
@@ -163,17 +153,6 @@ const ArchitectureGraph = () => {
             <p className="text-sm text-slate-300 max-w-2xl leading-relaxed">
               {nodes[selectedNode].desc[isTr ? 'tr' : 'en']}
             </p>
-          </div>
-
-          <div className="flex flex-wrap items-center gap-3 font-mono text-xs">
-            <div className="px-4 py-3 rounded-xl bg-white/5 border border-white/10">
-              <span className="text-slate-500 block text-[10px]">SYSTEM_STATUS</span>
-              <span className="text-emerald-400 font-bold text-sm">ONLINE (0 FAILS)</span>
-            </div>
-            <div className="px-4 py-3 rounded-xl bg-white/5 border border-white/10">
-              <span className="text-slate-500 block text-[10px]">UPTIME_RATING</span>
-              <span className="text-cyan-400 font-bold text-sm">99.99% SLA</span>
-            </div>
           </div>
         </div>
 

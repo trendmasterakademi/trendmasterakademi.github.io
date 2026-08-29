@@ -23,15 +23,14 @@
   "btn-contact-quick": "Direct Technical Contact",
   "metric-whitelabel": "100% White-Label",
   "metric-whitelabel-sub": "Official NDA & Privacy",
-  "metric-triage": "0 - 2 Hours",
-  "metric-triage-sub": "Emergency Triage & Diagnosis",
+  "metric-triage": "20 Diagnostics",
+  "metric-triage-sub": "Published Fault Catalog",
   "metric-stack": "Senior Squad",
   "metric-stack-sub": "Full-Stack Engineering",
 
   "terminal-header": "TMA_COMMAND_DESK",
   "terminal-status": "ACTIVE ON COMMAND DESK",
   "terminal-stream-title": "LIVE INCIDENT STREAM",
-  "terminal-stream-latency": "LATENCY: 12ms",
   "terminal-line1": "> [ALERT] Incoming Agency Dispatch Received.",
   "terminal-line2": "> Scenario: T-48H Launch / Payment API & DB Bottleneck",
   "terminal-line3": "> Status: Previous developer abandoned the project.",
@@ -81,7 +80,7 @@
 
   "card-hotfix-title": "Live Hotfix & Database Performance Tuning",
   "card-hotfix-desc": "Zero out downtime during HTTP 500 crashes, database locks, slowing APIs, and payment integration failures with rapid intervention.",
-  "card-hotfix-feat1": "Fast Triage & Bug Isolation Within 0 - 2 Hours",
+  "card-hotfix-feat1": "Fast Triage & Bug Isolation",
   "card-hotfix-feat2": "PostgreSQL, Redis & Server Load Balancing",
   "card-hotfix-feat3": "Stripe, iyzico & PayTR Webhook Fixes",
 
