@@ -54,7 +54,7 @@ const TeshisIndex = () => {
             {isTr ? 'İsim: Teşhis Kataloğu' : 'Format: Diagnostic Catalog'}
           </span>
           <span className="px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold">
-            {isTr ? '15 Teşhis Yayında (20 Hedef)' : '15 Diagnostics Live (20 Total)'}
+            {isTr ? '20 Teşhis Yayında (20 Hedef)' : '20 Diagnostics Live (20 Total)'}
           </span>
           <span className="px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 font-semibold">
             {isTr ? 'Her teşhiste akış + diyagram' : 'Interactive Flowchart per Defect'}

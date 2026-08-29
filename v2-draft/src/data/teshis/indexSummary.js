@@ -350,6 +350,256 @@ export const teshisSummaries = [
     ]
   },
   {
+    "slug": "guncelleme-sonrasi-veri-kayboldu",
+    "no": "08",
+    "baslik": {
+      "tr": "Güncellemeden sonra veri kayboldu sanılıyor",
+      "en": "Data Assumed Lost After System Update"
+    },
+    "diyagramBaslik": {
+      "tr": "Veri kayboldu sanısı",
+      "en": "Perceived data loss"
+    },
+    "kirinti": {
+      "tr": "Veri & Devir",
+      "en": "Data & Migration"
+    },
+    "aciliyet": {
+      "seviye": "kritik",
+      "etiket": {
+        "tr": "Kritik · veri paniği",
+        "en": "Critical · data panic"
+      }
+    },
+    "ozet": {
+      "tr": "Bir güncellemeden sonra kayıtlar görünmüyor ve panik \"veriler silindi\" diye başlıyor. Çoğu vakada veri yerindedir; onu okuyan sorgu değişmiştir. Ama bu doğrulanmadan yapılan her müdahale gerçek kaybı yaratabilir.",
+      "en": "Records vanish after a release, triggering data deletion panic. In most incidents, data remains intact; the query reading it mutated. Attempting hasty fixes without proper diagnosis risks causing genuine data loss."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Filtre değişti",
+          "en": "Default query filter changed"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Göç yarıda kaldı",
+          "en": "Interrupted schema migration"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Gerçek silme",
+          "en": "Genuine bulk deletion"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "testte-calisiyor-canlida-calismiyor",
+    "no": "09",
+    "baslik": {
+      "tr": "Test ortamında çalışıyor, canlıda çalışmıyor",
+      "en": "Works in Staging, Fails in Production"
+    },
+    "diyagramBaslik": {
+      "tr": "Testte çalışıyor",
+      "en": "Works in staging only"
+    },
+    "kirinti": {
+      "tr": "Devir & Süreklilik",
+      "en": "Handover & Continuity"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · teslim engeli",
+        "en": "High · release blocker"
+      }
+    },
+    "ozet": {
+      "tr": "Geliştirici \"bende çalışıyor\" diyor ve haklı. Canlıda aynı kod farklı davranıyor. Bu bir yetenek sorunu değil, iki ortamın birbirinin aynısı olmamasının sonucudur.",
+      "en": "The developer says 'it works on my machine' and they are correct. In production, identical code behaves differently. This is environment drift, not a developer competency flaw."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Yapılandırma farkı",
+          "en": "Configuration drift"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Sürüm farkı",
+          "en": "Dependency / runtime mismatch"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "İzin / yol farkı",
+          "en": "Permissions / path discrepancy"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "deploy-sonrasi-site-bozuldu",
+    "no": "10",
+    "baslik": {
+      "tr": "Deploy sonrası site bozuldu",
+      "en": "Website Broke Immediately After Deployment"
+    },
+    "diyagramBaslik": {
+      "tr": "Deploy sonrası bozuldu",
+      "en": "Post-deploy break"
+    },
+    "kirinti": {
+      "tr": "Canlı Arıza",
+      "en": "Live Outage"
+    },
+    "aciliyet": {
+      "seviye": "kritik",
+      "etiket": {
+        "tr": "Kritik · yayın hatası",
+        "en": "Critical · deploy failure"
+      }
+    },
+    "ozet": {
+      "tr": "Yayın alındı ve site bozuldu. Geri almak isteniyor ama nasıl geri alınacağı belli değil. Asıl sorun bozulmanın kendisi değil, geri dönüşün planlanmamış olmasıdır.",
+      "en": "A new release went live and the site broke. The team wants to rollback but has no documented rollback plan. The critical failure is not the bug itself, but the lack of an atomic rollback mechanism."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Eksik dosya",
+          "en": "Missing build asset / vendor"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Önbellek eskisi",
+          "en": "Stale client / CDN cache"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Şema uyuşmazlığı",
+          "en": "Database schema desync"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "her-yeni-ozellik-oncekini-bozuyor",
+    "no": "11",
+    "baslik": {
+      "tr": "Her yeni özellik bir öncekini bozuyor",
+      "en": "Every New Feature Breaks an Existing Feature"
+    },
+    "diyagramBaslik": {
+      "tr": "Her özellik bozuyor",
+      "en": "New features break old"
+    },
+    "kirinti": {
+      "tr": "Kod Sağlığı",
+      "en": "Code Health"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · birikmiş borç",
+        "en": "High · technical debt"
+      }
+    },
+    "ozet": {
+      "tr": "Bir yeri düzeltiyorsunuz, başka bir yer bozuluyor. Ekip aynı hataları tekrar tekrar düzeltiyor. Bu bir dikkatsizlik değil, kod tabanının artık değişimi kaldıramadığının işaretidir.",
+      "en": "Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Kopyalanmış mantık",
+          "en": "Duplicated business logic"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Test yok",
+          "en": "Missing regression test suite"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Aşırı bağlılık",
+          "en": "High module coupling"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "kucuk-degisiklik-gunler-suruyor",
+    "no": "12",
+    "baslik": {
+      "tr": "Küçük değişiklik günler sürüyor",
+      "en": "Minor Changes Take Days to Deliver"
+    },
+    "diyagramBaslik": {
+      "tr": "Değişiklik çok yavaş",
+      "en": "Trivial change delay"
+    },
+    "kirinti": {
+      "tr": "Kod Sağlığı",
+      "en": "Code Health"
+    },
+    "aciliyet": {
+      "seviye": "orta",
+      "etiket": {
+        "tr": "Orta · hız kaybı",
+        "en": "Medium · velocity loss"
+      }
+    },
+    "ozet": {
+      "tr": "\"Bir buton rengi\" ya da \"bir alan ekle\" gibi işler günlere yayılıyor ve müşteri bunu isteksizlik sanıyor. Gerçek sebep genellikle kodda değil, değişikliği yapmadan önce anlamak için harcanan sürededir.",
+      "en": "Trivial edits like updating button styles or adding a form field drag on for days, leading clients to assume reluctance. The root cause is not developer speed, but the cognitive overhead of deciphering undocumented code."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Belgesizlik",
+          "en": "Zero developer documentation"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Elle yayın",
+          "en": "Manual deployment ceremony"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Karışık yapı",
+          "en": "Unstructured spaghetti architecture"
+        }
+      }
+    ]
+  },
+  {
     "slug": "site-500-veriyor-dun-calisiyordu",
     "no": "13",
     "baslik": {

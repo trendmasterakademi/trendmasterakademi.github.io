@@ -1291,6 +1291,928 @@ export const teshisData = [
     }
   },
   {
+    "slug": "guncelleme-sonrasi-veri-kayboldu",
+    "no": "08",
+    "baslik": {
+      "tr": "Güncellemeden sonra veri kayboldu sanılıyor",
+      "en": "Data Assumed Lost After System Update"
+    },
+    "diyagramBaslik": {
+      "tr": "Veri kayboldu sanısı",
+      "en": "Perceived data loss"
+    },
+    "kirinti": {
+      "tr": "Veri & Devir",
+      "en": "Data & Migration"
+    },
+    "aciliyet": {
+      "seviye": "kritik",
+      "etiket": {
+        "tr": "Kritik · veri paniği",
+        "en": "Critical · data panic"
+      }
+    },
+    "ozet": {
+      "tr": "Bir güncellemeden sonra kayıtlar görünmüyor ve panik \"veriler silindi\" diye başlıyor. Çoğu vakada veri yerindedir; onu okuyan sorgu değişmiştir. Ama bu doğrulanmadan yapılan her müdahale gerçek kaybı yaratabilir.",
+      "en": "Records vanish after a release, triggering data deletion panic. In most incidents, data remains intact; the query reading it mutated. Attempting hasty fixes without proper diagnosis risks causing genuine data loss."
+    },
+    "logSatirlari": [
+      "Göç log'u: rolled back veya yarıda kesilmiş",
+      "Column not found / Unknown column in field list",
+      "Kayıt sayısı: tablodaki satır sayısı hâlâ eski değerde mi?",
+      "Durum veya silme alanı toplu güncellenmiş mi?"
+    ],
+    "logNotu": {
+      "tr": "İlk yapılacak iş kayıt saymaktır. Tabloda satır duruyorsa veri kaybolmamıştır, görünürlüğü kaybolmuştur. Bu ayrım müdahalenin yönünü tamamen değiştirir.",
+      "en": "The first step is counting table rows directly. If row counts match, data is not erased; its visibility is filtered out. This distinction fundamentally changes the incident response vector."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Filtre değişti",
+          "en": "Default query filter changed"
+        },
+        "aciklama": {
+          "tr": "Yeni bir durum alanı veya yumuşak silme kolonu eklendi; eski kayıtlar varsayılan filtrenin dışında kaldı.",
+          "en": "A new status column or soft-delete flag was added; legacy rows fail the default WHERE clause."
+        },
+        "kanit": {
+          "tr": "Satır sayısı eskisiyle aynı → A",
+          "en": "Row count unchanged in DB → A"
+        },
+        "diyagramAd": {
+          "tr": "Filtre değişti",
+          "en": "Filter changed"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Tablodaki satır",
+            "sayısı eskisiyle",
+            "aynı mı?"
+          ],
+          "en": [
+            "Is database row",
+            "count identical to",
+            "baseline?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Varsayılan değeri",
+            "geriye dönük ata"
+          ],
+          "en": [
+            "Backfill default",
+            "flag on legacy",
+            "records"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Göç yarıda kaldı",
+          "en": "Interrupted schema migration"
+        },
+        "aciklama": {
+          "tr": "Şema değişikliği kesildi; bazı tablolar yeni, bazıları eski hâlde. Uygulama ikisini birden okuyamıyor.",
+          "en": "DDL migration halted mid-stream; half the tables are upgraded, causing joins to fail."
+        },
+        "kanit": {
+          "tr": "Göç log'unda kesinti → B",
+          "en": "Migration abort in deploy log → B"
+        },
+        "diyagramAd": {
+          "tr": "Göç yarıda kaldı",
+          "en": "Partial migration"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Göç log'unda",
+            "yarıda kesilme",
+            "var mı?"
+          ],
+          "en": [
+            "Did migration log",
+            "terminate with an",
+            "unhandled error?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Yedekten dön ·",
+            "göçü baştan",
+            "çalıştır"
+          ],
+          "en": [
+            "Restore snapshot ·",
+            "re-run clean",
+            "migration script"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Gerçek silme",
+          "en": "Genuine bulk deletion"
+        },
+        "aciklama": {
+          "tr": "Bir toplu işlem kayıtları gerçekten sildi. Üçü içinde en az görüleni ama tek gerçek kayıp hâli budur.",
+          "en": "A runaway script or bad WHERE clause executed actual hard DELETE. Rare, but the only true data loss scenario."
+        },
+        "kanit": {
+          "tr": "Satır sayısı gerçekten düşmüş → C",
+          "en": "Row count decreased in DB → C"
+        },
+        "diyagramAd": {
+          "tr": "Gerçek silme",
+          "en": "Actual deletion"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Satır sayısı",
+            "gerçekten düştü",
+            "mü?"
+          ],
+          "en": [
+            "Did physical row",
+            "count actually",
+            "drop?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Yedekten geri",
+            "yükleme · süre",
+            "kritik"
+          ],
+          "en": [
+            "Point-in-time",
+            "backup restore ·",
+            "time critical"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "İlk adım geliştirici çağırmak değil, hiçbir şeye yazmamaktır. Yeni kayıt eklemek ve tablo değiştirmek geri dönüş seçeneklerini daraltır. A dakikalar içinde kapanır, B yedekten yürütülür, C'de her saat önemlidir.",
+      "en": "The absolute first rule is freezing all writes. Writing new data or altering schemas destroys recovery options. A is resolved in minutes, B via atomic rollback, C requires immediate point-in-time snapshot recovery."
+    },
+    "cozulmezse": {
+      "tr": "Gerçek silme hâlinde geri dönüş penceresi yedek politikanız kadardır. En sık yapılan hata, teşhis konmadan \"düzeltmeye\" başlamak ve kurtarılabilir veriyi üzerine yazmaktır.",
+      "en": "Under true deletion, the recovery window equals snapshot retention. The most frequent catastrophe is attempting blind repairs that overwrite restorable blocks."
+    },
+    "ilgiliTerimler": [
+      "migration",
+      "staging-ortami",
+      "teknik-borc"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "Devir Hazırlık Kontrolü",
+        "en": "Handover Readiness Audit"
+      },
+      "link": "/devir-kontrolu/"
+    }
+  },
+  {
+    "slug": "testte-calisiyor-canlida-calismiyor",
+    "no": "09",
+    "baslik": {
+      "tr": "Test ortamında çalışıyor, canlıda çalışmıyor",
+      "en": "Works in Staging, Fails in Production"
+    },
+    "diyagramBaslik": {
+      "tr": "Testte çalışıyor",
+      "en": "Works in staging only"
+    },
+    "kirinti": {
+      "tr": "Devir & Süreklilik",
+      "en": "Handover & Continuity"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · teslim engeli",
+        "en": "High · release blocker"
+      }
+    },
+    "ozet": {
+      "tr": "Geliştirici \"bende çalışıyor\" diyor ve haklı. Canlıda aynı kod farklı davranıyor. Bu bir yetenek sorunu değil, iki ortamın birbirinin aynısı olmamasının sonucudur.",
+      "en": "The developer says 'it works on my machine' and they are correct. In production, identical code behaves differently. This is environment drift, not a developer competency flaw."
+    },
+    "logSatirlari": [
+      "Undefined env variable / configuration missing",
+      "Yalnız canlıda 500, testte 200",
+      "Kütüphane sürümleri: kilit dosyası var mı, uyuşuyor mu?",
+      "Permission denied — dosya izni veya yol hatası"
+    ],
+    "logNotu": {
+      "tr": "Fark her zaman üç yerden birindedir: yapılandırma, sürüm, izin. Dördüncü bir yer aramak zaman kaybıdır.",
+      "en": "Environment drift always lives in one of three places: configuration, dependency versions, or file permissions. Searching elsewhere wastes critical incident time."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Yapılandırma farkı",
+          "en": "Configuration drift"
+        },
+        "aciklama": {
+          "tr": "Canlıda bir ortam değişkeni eksik ya da farklı. Kod aynı, girdisi değil.",
+          "en": "Production environment variable missing or set to invalid endpoint. Same code, differing inputs."
+        },
+        "kanit": {
+          "tr": "Canlıda eksik değişken → A",
+          "en": "Missing .env in production → A"
+        },
+        "diyagramAd": {
+          "tr": "Yapılandırma farkı",
+          "en": "Config drift"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Canlıda eksik",
+            "ortam değişkeni",
+            "var mı?"
+          ],
+          "en": [
+            "Is an environment",
+            "variable missing",
+            "in production?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Değişken listesini",
+            "eşitle + örnek",
+            "dosya tut"
+          ],
+          "en": [
+            "Sync .env schema",
+            "+ track .env.example",
+            "in git"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Sürüm farkı",
+          "en": "Dependency / runtime mismatch"
+        },
+        "aciklama": {
+          "tr": "Kütüphane veya dil sürümü iki ortamda farklı. Bağımlılıklar sabitlenmemiş.",
+          "en": "Language or package minor versions differ between environments. Unlocked package versions drifted."
+        },
+        "kanit": {
+          "tr": "Sürümler uyuşmuyor → B",
+          "en": "Version mismatch in lockfile → B"
+        },
+        "diyagramAd": {
+          "tr": "Sürüm farkı",
+          "en": "Version mismatch"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Kilit dosyası var",
+            "ve sürümler",
+            "aynı mı?"
+          ],
+          "en": [
+            "Are lockfile package",
+            "versions identical",
+            "across tiers?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Sürümleri sabitle",
+            "· kilit dosyası"
+          ],
+          "en": [
+            "Commit strict",
+            "package-lock /",
+            "composer.lock"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "İzin / yol farkı",
+          "en": "Permissions / path discrepancy"
+        },
+        "aciklama": {
+          "tr": "Canlıda yazma izni yok ya da dosya yolu farklı. Testte yerel klasör, canlıda kısıtlı dizin.",
+          "en": "Target directory lacks write permissions on production web server, or hardcoded absolute path fails."
+        },
+        "kanit": {
+          "tr": "Permission denied → C",
+          "en": "Permission denied in production log → C"
+        },
+        "diyagramAd": {
+          "tr": "İzin / yol farkı",
+          "en": "Permissions / path"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Log'da izin ya da",
+            "yol hatası var mı?"
+          ],
+          "en": [
+            "Does log show",
+            "EACCES / permission",
+            "denied errors?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "İzinleri ve yolu",
+            "ortamdan oku"
+          ],
+          "en": [
+            "Fix chmod permissions",
+            "+ load dynamic",
+            "paths"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "Backend veya sistem tarafı. Kalıcı çözüm farkları tek tek kapatmak değil, iki ortamı aynı tarifle kurmaktır; aksi hâlde her teslimde yeni bir fark çıkar.",
+      "en": "Backend / DevOps. Permanent stability comes from Infrastructure as Code and immutable container recipes; patching discrepancies ad-hoc leaves every future release vulnerable."
+    },
+    "cozulmezse": {
+      "tr": "Her yayın bir kumar hâline gelir. Ekip canlıya çıkmaktan çekinir, teslimler birikir ve tek seferde çıkan büyük paketler riski daha da büyütür.",
+      "en": "Every deployment becomes a high-stakes gamble. Teams dread pushing to prod, backlogs swell, and large batch deploys magnify catastrophic blast radiuses."
+    },
+    "ilgiliTerimler": [
+      "staging-ortami",
+      "ci-cd",
+      "migration"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "Devir Hazırlık Kontrolü",
+        "en": "Handover Readiness Audit"
+      },
+      "link": "/devir-kontrolu/"
+    }
+  },
+  {
+    "slug": "deploy-sonrasi-site-bozuldu",
+    "no": "10",
+    "baslik": {
+      "tr": "Deploy sonrası site bozuldu",
+      "en": "Website Broke Immediately After Deployment"
+    },
+    "diyagramBaslik": {
+      "tr": "Deploy sonrası bozuldu",
+      "en": "Post-deploy break"
+    },
+    "kirinti": {
+      "tr": "Canlı Arıza",
+      "en": "Live Outage"
+    },
+    "aciliyet": {
+      "seviye": "kritik",
+      "etiket": {
+        "tr": "Kritik · yayın hatası",
+        "en": "Critical · deploy failure"
+      }
+    },
+    "ozet": {
+      "tr": "Yayın alındı ve site bozuldu. Geri almak isteniyor ama nasıl geri alınacağı belli değil. Asıl sorun bozulmanın kendisi değil, geri dönüşün planlanmamış olmasıdır.",
+      "en": "A new release went live and the site broke. The team wants to rollback but has no documented rollback plan. The critical failure is not the bug itself, but the lack of an atomic rollback mechanism."
+    },
+    "logSatirlari": [
+      "Yayın kaydı: hangi sürüm, ne zaman, kim tarafından?",
+      "Yeni hata mesajları yayın saatinde mi başlıyor?",
+      "Statik dosyalar eski sürümde kalmış (önbellek)",
+      "Veritabanı göçü yayınla birlikte çalıştı mı?"
+    ],
+    "logNotu": {
+      "tr": "Bozulmanın yayın saatiyle çakışması tek başına sebep kanıtı değildir ama aramayı doğru yere odaklar. İlk soru \"ne değişti\" değil, \"geri alabiliyor muyuz\"dur.",
+      "en": "A crash coinciding with deployment timestamp pinpoints where to investigate. The primary question is never 'what changed', but 'can we immediately roll back'."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Eksik dosya",
+          "en": "Missing build asset / vendor"
+        },
+        "aciklama": {
+          "tr": "Yayın paketinde bir şey eksik kaldı; yerelde var, sunucuda yok.",
+          "en": "Artifact or composer/npm dependency omitted from build bundle. Present locally, missing on server."
+        },
+        "kanit": {
+          "tr": "Log'da dosya veya modül bulunamadı → A",
+          "en": "Class / file not found in logs → A"
+        },
+        "diyagramAd": {
+          "tr": "Eksik dosya",
+          "en": "Missing file"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Log'da bulunamadı",
+            "hatası var mı?"
+          ],
+          "en": [
+            "Do logs show 404 /",
+            "missing module",
+            "fatal errors?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Paketi tam yayınla",
+            "· geri alma hazır"
+          ],
+          "en": [
+            "Deploy complete",
+            "bundle · one-click",
+            "rollback ready"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Önbellek eskisi",
+          "en": "Stale client / CDN cache"
+        },
+        "aciklama": {
+          "tr": "Kod yeni, tarayıcı veya sunucu önbelleği eski. Kısmi bozulma tipik belirtisidir.",
+          "en": "HTML references new JS bundles while CDN or browser serves cached legacy files, causing partial rendering crashes."
+        },
+        "kanit": {
+          "tr": "Zorla yenilemede düzeliyor → B",
+          "en": "Hard refresh resolves visual glitch → B"
+        },
+        "diyagramAd": {
+          "tr": "Önbellek eskisi",
+          "en": "Stale cache"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Zorla yenilemede",
+            "düzeliyor mu?"
+          ],
+          "en": [
+            "Does Shift+F5 hard",
+            "reload fix the",
+            "page layout?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Sürümlü dosya adı",
+            "+ önbellek temizle"
+          ],
+          "en": [
+            "Content hashing +",
+            "automated CDN cache",
+            "purge on deploy"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Şema uyuşmazlığı",
+          "en": "Database schema desync"
+        },
+        "aciklama": {
+          "tr": "Kod yeni şemayı bekliyor ama göç çalışmadı, ya da tersi. Geri alma tek başına yetmez.",
+          "en": "Code expects newly added table columns but migration failed to run, or vice versa. Code rollback alone is insufficient."
+        },
+        "kanit": {
+          "tr": "Kolon veya tablo hatası var → C",
+          "en": "Column not found SQL errors → C"
+        },
+        "diyagramAd": {
+          "tr": "Şema uyuşmazlığı",
+          "en": "Schema mismatch"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Kolon veya tablo",
+            "hatası var mı?"
+          ],
+          "en": [
+            "Are SQL schema /",
+            "missing column",
+            "errors present?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Kod ve göçü",
+            "birlikte geri al"
+          ],
+          "en": [
+            "Rollback schema +",
+            "revert code",
+            "synchronously"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "Kalıcı çözüm daha dikkatli yayın yapmak değil, her yayının geri alınabilir olmasıdır: sürüm etiketi, ayrı statik dosya adları ve göçün koddan bağımsız geri alınabilmesi. Bu üçü kurulduğunda bozuk yayın bir kriz değil, dakikalık bir işlem olur.",
+      "en": "Permanent reliability requires automated rollbacks: immutable git releases, content-hashed assets, and backward-compatible database migrations. When in place, a bad deploy is resolved in 60 seconds."
+    },
+    "cozulmezse": {
+      "tr": "Geri alınamayan her yayın ekibi yayın yapmaktan korkutur. Korku teslimleri yavaşlatır ve biriken değişiklikler bir sonraki yayını daha da riskli yapar.",
+      "en": "Un-rollbackable deployments breed release terror. Fear slows iteration cadence, causing massive batch releases that exponentially increase risk."
+    },
+    "ilgiliTerimler": [
+      "ci-cd",
+      "staging-ortami",
+      "migration"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "Acil Kriz Müdahalesi & Crash Test",
+        "en": "Emergency Incident Triage & Crash Test"
+      },
+      "link": "/crash-test/"
+    }
+  },
+  {
+    "slug": "her-yeni-ozellik-oncekini-bozuyor",
+    "no": "11",
+    "baslik": {
+      "tr": "Her yeni özellik bir öncekini bozuyor",
+      "en": "Every New Feature Breaks an Existing Feature"
+    },
+    "diyagramBaslik": {
+      "tr": "Her özellik bozuyor",
+      "en": "New features break old"
+    },
+    "kirinti": {
+      "tr": "Kod Sağlığı",
+      "en": "Code Health"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · birikmiş borç",
+        "en": "High · technical debt"
+      }
+    },
+    "ozet": {
+      "tr": "Bir yeri düzeltiyorsunuz, başka bir yer bozuluyor. Ekip aynı hataları tekrar tekrar düzeltiyor. Bu bir dikkatsizlik değil, kod tabanının artık değişimi kaldıramadığının işaretidir.",
+      "en": "Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt."
+    },
+    "logSatirlari": [
+      "Aynı hata kaydının aylar içinde tekrar açılması",
+      "Test yok, ya da var ama çalıştırılmıyor",
+      "Tek bir dosyanın binlerce satır olması",
+      "Aynı mantığın üç ayrı yerde kopyalanmış olması"
+    ],
+    "logNotu": {
+      "tr": "Ölçülebilir tek gösterge tekrar açılan hata sayısıdır. \"Kod kötü\" bir histir; \"aynı hata üç ayda dört kez açıldı\" bir veridir.",
+      "en": "The only objective metric is bug regression frequency. 'Code feels bad' is subjective sentiment; 'the same checkout defect reopened four times in 90 days' is actionable data."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Kopyalanmış mantık",
+          "en": "Duplicated business logic"
+        },
+        "aciklama": {
+          "tr": "Aynı kural birden çok yerde yazılı. Biri düzeltiliyor, diğerleri unutuluyor.",
+          "en": "Identical calculation logic copy-pasted across multiple controllers. Fixing one leaves the others broken."
+        },
+        "kanit": {
+          "tr": "Aynı mantık birden çok yerde → A",
+          "en": "Duplicated algorithms in codebase → A"
+        },
+        "diyagramAd": {
+          "tr": "Kopyalanmış mantık",
+          "en": "Duplicated logic"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Aynı kural birden",
+            "fazla yerde mi",
+            "yazılı?"
+          ],
+          "en": [
+            "Is business logic",
+            "duplicated in multiple",
+            "controllers?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Tek yere topla ·",
+            "kademeli"
+          ],
+          "en": [
+            "Consolidate to single",
+            "service class ·",
+            "incremental"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Test yok",
+          "en": "Missing regression test suite"
+        },
+        "aciklama": {
+          "tr": "Güvenlik ağı yok; bir değişikliğin neyi bozduğu ancak canlıda anlaşılıyor.",
+          "en": "Zero automated unit/integration tests exist; side effects are discovered only after real customers encounter crashes."
+        },
+        "kanit": {
+          "tr": "Otomatik test yok → B",
+          "en": "Zero test coverage in CI pipeline → B"
+        },
+        "diyagramAd": {
+          "tr": "Test yok",
+          "en": "Zero tests"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Kritik akışların",
+            "testi var mı?"
+          ],
+          "en": [
+            "Do automated tests",
+            "cover critical",
+            "checkout paths?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Önce kritik akışa",
+            "test yaz"
+          ],
+          "en": [
+            "Write regression",
+            "tests on critical",
+            "flows FIRST"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Aşırı bağlılık",
+          "en": "High module coupling"
+        },
+        "aciklama": {
+          "tr": "Modüller birbirine sıkı bağlı; bir yeri değiştirmek zinciri kırıyor.",
+          "en": "Tightly coupled components mutate shared global state; altering one class triggers unpredictable cascade breaks."
+        },
+        "kanit": {
+          "tr": "Küçük değişiklik geniş etki yapıyor → C",
+          "en": "Minor patch creates wide blast radius → C"
+        },
+        "diyagramAd": {
+          "tr": "Aşırı bağlılık",
+          "en": "Tight coupling"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Küçük değişiklik",
+            "çok yeri mi",
+            "etkiliyor?"
+          ],
+          "en": [
+            "Does localized edit",
+            "break unrelated",
+            "views?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Sınırları ayır ·",
+            "parça parça"
+          ],
+          "en": [
+            "Decouple boundaries",
+            "via interfaces ·",
+            "step by step"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "Kıdemli mühendis. Ama sıra bağlayıcıdır: önce test, sonra düzeltme. Güvenlik ağı olmadan yapılan büyük temizlik, mevcut arızalara yenilerini ekler. Her şeyi baştan yazmak neredeyse hiçbir zaman doğru cevap değildir.",
+      "en": "Senior software architect. Sequence is mandatory: write regression tests FIRST, then refactor. Refactoring without test safety nets introduces secondary defects. Total rewrites from scratch are almost never the correct strategy."
+    },
+    "cozulmezse": {
+      "tr": "Her yeni özelliğin maliyeti bir öncekinden yüksek olur. Ekip aynı işi daha uzun sürede yapmaya başlar ve bu dışarıdan \"yavaşladılar\" gibi görünür.",
+      "en": "Development velocity stalls exponentially. Simple features take weeks, engineering morale plummets, and external stakeholders perceive the engineering team as ineffective."
+    },
+    "ilgiliTerimler": [
+      "teknik-borc",
+      "refactor",
+      "ci-cd"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "B2B White-Label Mühendislik Masası",
+        "en": "B2B White-Label Engineering Desk"
+      },
+      "link": "/agency/"
+    }
+  },
+  {
+    "slug": "kucuk-degisiklik-gunler-suruyor",
+    "no": "12",
+    "baslik": {
+      "tr": "Küçük değişiklik günler sürüyor",
+      "en": "Minor Changes Take Days to Deliver"
+    },
+    "diyagramBaslik": {
+      "tr": "Değişiklik çok yavaş",
+      "en": "Trivial change delay"
+    },
+    "kirinti": {
+      "tr": "Kod Sağlığı",
+      "en": "Code Health"
+    },
+    "aciliyet": {
+      "seviye": "orta",
+      "etiket": {
+        "tr": "Orta · hız kaybı",
+        "en": "Medium · velocity loss"
+      }
+    },
+    "ozet": {
+      "tr": "\"Bir buton rengi\" ya da \"bir alan ekle\" gibi işler günlere yayılıyor ve müşteri bunu isteksizlik sanıyor. Gerçek sebep genellikle kodda değil, değişikliği yapmadan önce anlamak için harcanan sürededir.",
+      "en": "Trivial edits like updating button styles or adding a form field drag on for days, leading clients to assume reluctance. The root cause is not developer speed, but the cognitive overhead of deciphering undocumented code."
+    },
+    "logSatirlari": [
+      "Görev süresi: tahmin 2 saat, gerçekleşen 2 gün",
+      "Kurulum: yeni bir geliştirici projeyi kaç günde çalıştırıyor?",
+      "Belge var mı: kurulum notu, mimari şeması, karar kaydı",
+      "Yayın sıklığı: haftada kaç kez canlıya çıkılabiliyor?"
+    ],
+    "logNotu": {
+      "tr": "En açıklayıcı ölçü, yeni bir geliştiricinin projeyi ilk kez çalıştırma süresidir. Bu süre bir günden uzunsa gecikmenin sebebi yetenek değil ortamdır.",
+      "en": "The clearest benchmark is time-to-first-commit for a new developer. If local onboarding takes longer than one day, velocity loss stems from developer experience, not individual talent."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Belgesizlik",
+          "en": "Zero developer documentation"
+        },
+        "aciklama": {
+          "tr": "Bilgi kimsenin yazmadığı yerde, insanların kafasında. Her değişiklik önce arkeoloji gerektiriyor.",
+          "en": "Domain knowledge exists solely in individuals' memories. Every change requires historical code archaeology."
+        },
+        "kanit": {
+          "tr": "Kurulum belgesi yok → A",
+          "en": "Missing README / architecture docs → A"
+        },
+        "diyagramAd": {
+          "tr": "Belgesizlik",
+          "en": "Zero docs"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Yeni biri projeyi",
+            "bir günde ayağa",
+            "kaldırabilir mi?"
+          ],
+          "en": [
+            "Can a new dev boot",
+            "the project locally",
+            "within 1 day?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Kurulum ve karar",
+            "kaydı yaz"
+          ],
+          "en": [
+            "Write README setup",
+            "+ architecture",
+            "decision records"
+          ]
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Elle yayın",
+          "en": "Manual deployment ceremony"
+        },
+        "aciklama": {
+          "tr": "Her teslim elle yapılıyor; küçük bir değişiklik bile uzun bir tören gerektiriyor.",
+          "en": "Deployments rely on manual FTP / SSH commands; tiny tweaks require extensive manual rituals."
+        },
+        "kanit": {
+          "tr": "Yayın elle ve uzun → B",
+          "en": "Manual FTP/SSH release steps → B"
+        },
+        "diyagramAd": {
+          "tr": "Elle yayın",
+          "en": "Manual deploy"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Yayın tek komutla",
+            "yapılabiliyor mu?"
+          ],
+          "en": [
+            "Is deployment",
+            "automated with a",
+            "single command?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Yayını otomatikleştir",
+            "· tek adım"
+          ],
+          "en": [
+            "Automate CI/CD ·",
+            "one-click release",
+            "pipeline"
+          ]
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Karışık yapı",
+          "en": "Unstructured spaghetti architecture"
+        },
+        "aciklama": {
+          "tr": "Değişiklik gereken yeri bulmak zaman alıyor; mantık dağınık, isimlendirme tutarsız.",
+          "en": "Locating which file controls the feature takes hours; scattered business logic and inconsistent naming conventions."
+        },
+        "kanit": {
+          "tr": "Yeri bulmak saatler sürüyor → C",
+          "en": "Hours spent locating source code file → C"
+        },
+        "diyagramAd": {
+          "tr": "Karışık yapı",
+          "en": "Spaghetti logic"
+        },
+        "diyagramTest": {
+          "tr": [
+            "Değişecek yeri",
+            "bulmak saatler",
+            "sürüyor mu?"
+          ],
+          "en": [
+            "Does locating target",
+            "logic require hours",
+            "of grep searching?"
+          ]
+        },
+        "diyagramCozum": {
+          "tr": [
+            "Dokunulan yeri",
+            "kademeli düzenle"
+          ],
+          "en": [
+            "Apply Scout Rule:",
+            "clean up target",
+            "module gradually"
+          ]
+        }
+      }
+    ],
+    "kimCozer": {
+      "tr": "Bu üçünün hiçbiri \"daha çok çalışarak\" çözülmez. Yatırımın karşılığı ilk haftada görünmez, ikinci ayda görünür: aynı ekip aynı sürede belirgin biçimde daha çok iş çıkarır.",
+      "en": "None of these are resolved by 'working overtime'. The payoff is felt by month two: identical teams outputting dramatically higher volume with zero overtime."
+    },
+    "cozulmezse": {
+      "tr": "Yavaşlık bileşik büyür ve ilişkiyi aşındırır. Müşteri gecikmeyi ilgisizlik sanır; ekip ise gerçekten çalıştığı hâlde savunmaya geçer.",
+      "en": "Sluggish delivery erodes client relationships. Clients interpret delays as neglect, while engineers burn out operating in an unmaintained codebase."
+    },
+    "ilgiliTerimler": [
+      "refactor",
+      "teknik-borc",
+      "ci-cd"
+    ],
+    "ilgiliHizmet": {
+      "baslik": {
+        "tr": "B2B White-Label Mühendislik Masası",
+        "en": "B2B White-Label Engineering Desk"
+      },
+      "link": "/agency/"
+    }
+  },
+  {
     "slug": "site-500-veriyor-dun-calisiyordu",
     "no": "13",
     "baslik": {
@@ -3111,6 +4033,256 @@ export const teshisSummaries = [
         "ad": {
           "tr": "Kaynak yetersiz",
           "en": "Genuine capacity ceiling"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "guncelleme-sonrasi-veri-kayboldu",
+    "no": "08",
+    "baslik": {
+      "tr": "Güncellemeden sonra veri kayboldu sanılıyor",
+      "en": "Data Assumed Lost After System Update"
+    },
+    "diyagramBaslik": {
+      "tr": "Veri kayboldu sanısı",
+      "en": "Perceived data loss"
+    },
+    "kirinti": {
+      "tr": "Veri & Devir",
+      "en": "Data & Migration"
+    },
+    "aciliyet": {
+      "seviye": "kritik",
+      "etiket": {
+        "tr": "Kritik · veri paniği",
+        "en": "Critical · data panic"
+      }
+    },
+    "ozet": {
+      "tr": "Bir güncellemeden sonra kayıtlar görünmüyor ve panik \"veriler silindi\" diye başlıyor. Çoğu vakada veri yerindedir; onu okuyan sorgu değişmiştir. Ama bu doğrulanmadan yapılan her müdahale gerçek kaybı yaratabilir.",
+      "en": "Records vanish after a release, triggering data deletion panic. In most incidents, data remains intact; the query reading it mutated. Attempting hasty fixes without proper diagnosis risks causing genuine data loss."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Filtre değişti",
+          "en": "Default query filter changed"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Göç yarıda kaldı",
+          "en": "Interrupted schema migration"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Gerçek silme",
+          "en": "Genuine bulk deletion"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "testte-calisiyor-canlida-calismiyor",
+    "no": "09",
+    "baslik": {
+      "tr": "Test ortamında çalışıyor, canlıda çalışmıyor",
+      "en": "Works in Staging, Fails in Production"
+    },
+    "diyagramBaslik": {
+      "tr": "Testte çalışıyor",
+      "en": "Works in staging only"
+    },
+    "kirinti": {
+      "tr": "Devir & Süreklilik",
+      "en": "Handover & Continuity"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · teslim engeli",
+        "en": "High · release blocker"
+      }
+    },
+    "ozet": {
+      "tr": "Geliştirici \"bende çalışıyor\" diyor ve haklı. Canlıda aynı kod farklı davranıyor. Bu bir yetenek sorunu değil, iki ortamın birbirinin aynısı olmamasının sonucudur.",
+      "en": "The developer says 'it works on my machine' and they are correct. In production, identical code behaves differently. This is environment drift, not a developer competency flaw."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Yapılandırma farkı",
+          "en": "Configuration drift"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Sürüm farkı",
+          "en": "Dependency / runtime mismatch"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "İzin / yol farkı",
+          "en": "Permissions / path discrepancy"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "deploy-sonrasi-site-bozuldu",
+    "no": "10",
+    "baslik": {
+      "tr": "Deploy sonrası site bozuldu",
+      "en": "Website Broke Immediately After Deployment"
+    },
+    "diyagramBaslik": {
+      "tr": "Deploy sonrası bozuldu",
+      "en": "Post-deploy break"
+    },
+    "kirinti": {
+      "tr": "Canlı Arıza",
+      "en": "Live Outage"
+    },
+    "aciliyet": {
+      "seviye": "kritik",
+      "etiket": {
+        "tr": "Kritik · yayın hatası",
+        "en": "Critical · deploy failure"
+      }
+    },
+    "ozet": {
+      "tr": "Yayın alındı ve site bozuldu. Geri almak isteniyor ama nasıl geri alınacağı belli değil. Asıl sorun bozulmanın kendisi değil, geri dönüşün planlanmamış olmasıdır.",
+      "en": "A new release went live and the site broke. The team wants to rollback but has no documented rollback plan. The critical failure is not the bug itself, but the lack of an atomic rollback mechanism."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Eksik dosya",
+          "en": "Missing build asset / vendor"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Önbellek eskisi",
+          "en": "Stale client / CDN cache"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Şema uyuşmazlığı",
+          "en": "Database schema desync"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "her-yeni-ozellik-oncekini-bozuyor",
+    "no": "11",
+    "baslik": {
+      "tr": "Her yeni özellik bir öncekini bozuyor",
+      "en": "Every New Feature Breaks an Existing Feature"
+    },
+    "diyagramBaslik": {
+      "tr": "Her özellik bozuyor",
+      "en": "New features break old"
+    },
+    "kirinti": {
+      "tr": "Kod Sağlığı",
+      "en": "Code Health"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · birikmiş borç",
+        "en": "High · technical debt"
+      }
+    },
+    "ozet": {
+      "tr": "Bir yeri düzeltiyorsunuz, başka bir yer bozuluyor. Ekip aynı hataları tekrar tekrar düzeltiyor. Bu bir dikkatsizlik değil, kod tabanının artık değişimi kaldıramadığının işaretidir.",
+      "en": "Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Kopyalanmış mantık",
+          "en": "Duplicated business logic"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Test yok",
+          "en": "Missing regression test suite"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Aşırı bağlılık",
+          "en": "High module coupling"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "kucuk-degisiklik-gunler-suruyor",
+    "no": "12",
+    "baslik": {
+      "tr": "Küçük değişiklik günler sürüyor",
+      "en": "Minor Changes Take Days to Deliver"
+    },
+    "diyagramBaslik": {
+      "tr": "Değişiklik çok yavaş",
+      "en": "Trivial change delay"
+    },
+    "kirinti": {
+      "tr": "Kod Sağlığı",
+      "en": "Code Health"
+    },
+    "aciliyet": {
+      "seviye": "orta",
+      "etiket": {
+        "tr": "Orta · hız kaybı",
+        "en": "Medium · velocity loss"
+      }
+    },
+    "ozet": {
+      "tr": "\"Bir buton rengi\" ya da \"bir alan ekle\" gibi işler günlere yayılıyor ve müşteri bunu isteksizlik sanıyor. Gerçek sebep genellikle kodda değil, değişikliği yapmadan önce anlamak için harcanan sürededir.",
+      "en": "Trivial edits like updating button styles or adding a form field drag on for days, leading clients to assume reluctance. The root cause is not developer speed, but the cognitive overhead of deciphering undocumented code."
+    },
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Belgesizlik",
+          "en": "Zero developer documentation"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Elle yayın",
+          "en": "Manual deployment ceremony"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Karışık yapı",
+          "en": "Unstructured spaghetti architecture"
         }
       }
     ]
