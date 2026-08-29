@@ -4,11 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { 
   ShieldCheck, AlertTriangle, Code2, Cpu, Zap, Server, Database, 
   Smartphone, Bot, Clock, FileCode, CheckCircle2, ArrowRight, 
-  PhoneCall, Mail, MessageSquare, Lock, Layers, HelpCircle, Terminal 
+  PhoneCall, Mail, MessageSquare, Lock, Layers, HelpCircle, Terminal, Calendar
 } from 'lucide-react';
 import EmergencySOSModal from '../components/EmergencySOSModal';
 import CodeDiffShowcase from '../components/CodeDiffShowcase';
 import FAQ from '../components/FAQ';
+import { getCalendlyUrl } from '../utils/calendly';
 
 const capabilities = [
   { 
@@ -590,7 +591,7 @@ const Agency = () => {
 
               <div className="p-6 rounded-2xl bg-white/5 border border-white/10 max-w-xl mx-auto text-left space-y-3">
                 <h4 className="text-base font-bold text-white flex items-center gap-2">
-                  <Clock className="w-5 h-5 text-cyan-400" /> {isTr ? '15–20 Dakikalık Online Tanışma Görüşmesi' : '15–20 Minute Online Introductory Call'}
+                  <Calendar className="w-5 h-5 text-cyan-400" /> {isTr ? '30 Dakikalık Online Tanışma Görüşmesi' : '30-Minute Online Introductory Call'}
                 </h4>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
                   {isTr 
@@ -605,19 +606,30 @@ const Agency = () => {
 
               <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
                 <a
-                  href="https://wa.me/905343713573?text=Merhaba%2C%20Trend%20Master%20Akademi%20ile%20ajans%20%C3%A7%C3%B6z%C3%BCm%20ortakl%C4%B1%C4%9F%C4%B1%20ve%20tan%C4%B1%C5%9Fma%20g%C3%B6r%C3%BC%C5%9Fmesi%20hakk%C4%B1nda%20konu%C5%9Fmak%20istiyoruz."
+                  href={getCalendlyUrl('agency_card')}
                   target="_blank"
-                  rel="noreferrer"
-                  onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'agency_intro_call' })}
+                  rel="noopener noreferrer"
+                  onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'agency_card' })}
                   className="px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black text-sm sm:text-base shadow-xl shadow-emerald-500/25 flex items-center gap-3 transition-all transform hover:-translate-y-0.5 min-h-[48px]"
                 >
-                  <MessageSquare className="w-5 h-5" />
+                  <Calendar className="w-5 h-5" />
+                  <span>{isTr ? 'Takvimden Randevu Seç' : 'Select Time from Calendar'}</span>
+                </a>
+
+                <a
+                  href="https://wa.me/905343713573?text=Merhaba%2C%20Trend%20Master%20Akademi%20ile%20ajans%20%C3%A7%C3%B6z%C3%BCm%20ortakl%C4%B1%C4%9F%C4%B1%20ve%20tan%C4%B1%C5%9Fma%20g%C3%B6r%C3%BC%C5%9Fmesi%20hakk%C4%B1nda%20konu%C5%9Fmak%20istiyoruz."
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'agency_intro_call' })}
+                  className="px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm sm:text-base flex items-center gap-2.5 transition-colors min-h-[48px]"
+                >
+                  <MessageSquare className="w-5 h-5 text-emerald-400" />
                   <span>{isTr ? 'Tanışma Randevusu Al (WhatsApp)' : 'Book Intro Call (WhatsApp)'}</span>
                 </a>
 
                 <Link
                   to="/crash-test/"
-                  className="px-8 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10 text-white font-bold text-sm sm:text-base flex items-center gap-2 transition-colors min-h-[48px]"
+                  className="px-6 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white font-semibold text-sm sm:text-base flex items-center gap-2 transition-colors min-h-[48px]"
                 >
                   <Zap className="w-5 h-5 text-cyan-400 fill-current" />
                   <span>{isTr ? "Crash Test'i Çalıştır" : "Run Crash Test"}</span>

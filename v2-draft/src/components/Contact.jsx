@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { MessageSquare, PhoneCall, Mail, MapPin, ShieldCheck, Send, CheckCircle2, AlertTriangle, RefreshCw } from 'lucide-react';
+import { MessageSquare, PhoneCall, Mail, MapPin, ShieldCheck, Send, CheckCircle2, AlertTriangle, RefreshCw, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getCalendlyUrl } from '../utils/calendly';
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
@@ -174,6 +175,24 @@ const Contact = () => {
                 <div className="text-white font-bold text-base">{t('contact-direct-address')}</div>
                 <div className="text-slate-400 text-xs sm:text-sm">{t('contact-address-text')}</div>
               </div>
+            </div>
+
+            {/* Calendly Booking Link Alternative */}
+            <div className="pt-2">
+              <a
+                href={getCalendlyUrl('contact_section')}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'contact_section' })}
+                className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-cyan-400 hover:text-cyan-300 transition-colors underline decoration-cyan-500/40 hover:decoration-cyan-400"
+              >
+                <Calendar className="w-4 h-4 flex-shrink-0" />
+                <span>
+                  {isTr 
+                    ? 'Yazmak yerine konuşmayı tercih ederseniz: 30 dakikalık teknik tanışma görüşmesi →' 
+                    : 'Prefer talking over writing: 30-minute technical intro call →'}
+                </span>
+              </a>
             </div>
 
           </div>

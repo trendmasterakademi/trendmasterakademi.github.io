@@ -4,9 +4,10 @@ import {
   ShieldCheck, AlertTriangle, CheckCircle2, Copy, Check, 
   ArrowRight, ArrowLeft, RefreshCw, Mail, PhoneCall,
   Key, Lock, Server, Database, Globe, CreditCard, GitBranch,
-  Terminal, FileText, Layers, AlertCircle, HelpCircle
+  Terminal, FileText, Layers, AlertCircle, HelpCircle, Calendar
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getCalendlyUrl } from '../utils/calendly';
 
 /**
  * 12 Kalemlik Devir Hazırlık Kontrolü (Handover Readiness Checklist)
@@ -908,7 +909,7 @@ const DevirKontrolu = () => {
               )}
             </div>
 
-            {/* Direct WhatsApp Call to Action */}
+            {/* Direct Action Area */}
             <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-emerald-950/40 via-teal-950/20 to-transparent border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-6">
               <div className="space-y-1 text-center sm:text-left">
                 <h4 className="text-lg sm:text-xl font-bold text-white">
@@ -918,14 +919,27 @@ const DevirKontrolu = () => {
                   {isTr ? 'Geliştiricinizle aranıza girmeden, %100 White-Label ve resmi NDA altında teknik denetimi yürütüyoruz.' : 'We audit codebase completeness invisibly under strict mutual NDA.'}
                 </p>
               </div>
-              <button
-                type="button"
-                onClick={openWhatsAppDispatch}
-                className="px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black text-sm sm:text-base flex items-center gap-2 whitespace-nowrap shadow-xl shadow-emerald-500/25 cursor-pointer transform hover:-translate-y-0.5 transition-all min-h-[48px]"
-              >
-                <PhoneCall className="w-4 h-4" />
-                <span>{isTr ? 'WhatsApp’tan Devir Destek Masası' : 'Handover SWAT on WhatsApp'}</span>
-              </button>
+              <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 flex-shrink-0">
+                <a
+                  href={getCalendlyUrl('handover_result', { agency_code: campaignParams.agency_code })}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'handover_result', agency_code: campaignParams.agency_code })}
+                  className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm sm:text-base flex items-center gap-2 whitespace-nowrap shadow-xl shadow-cyan-500/25 cursor-pointer transform hover:-translate-y-0.5 transition-all min-h-[48px]"
+                >
+                  <Calendar className="w-4 h-4" />
+                  <span>{isTr ? 'Takvimden 30 Dakikalık Görüşme Seç' : 'Book a 30-Minute Intro Call'}</span>
+                </a>
+
+                <button
+                  type="button"
+                  onClick={openWhatsAppDispatch}
+                  className="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm flex items-center gap-2 whitespace-nowrap cursor-pointer transition-colors min-h-[48px]"
+                >
+                  <PhoneCall className="w-4 h-4 text-emerald-400" />
+                  <span>{isTr ? 'WhatsApp ile Danışın' : 'Consult via WhatsApp'}</span>
+                </button>
+              </div>
             </div>
 
             {/* Restart Button */}

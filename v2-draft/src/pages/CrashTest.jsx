@@ -5,9 +5,10 @@ import {
   ShieldAlert, AlertTriangle, CheckCircle2, ArrowRight, ArrowLeft, 
   RotateCcw, Copy, ExternalLink, Flame, Zap, Clock, ShieldCheck, 
   Terminal, Lock, Layers, Server, Code2, Users, FileCode, Check, Cpu,
-  PhoneCall, Mail, Send
+  PhoneCall, Mail, Send, Calendar
 } from 'lucide-react';
 import EmergencySOSModal from '../components/EmergencySOSModal';
+import { getCalendlyUrl } from '../utils/calendly';
 
 const scenarios = [
   {
@@ -970,17 +971,55 @@ const CrashTest = () => {
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-                <button
-                  onClick={openWhatsAppDispatch}
-                  className="px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black text-sm sm:text-base shadow-xl shadow-emerald-500/25 flex items-center gap-3 transition-all transform hover:-translate-y-0.5 cursor-pointer min-h-[48px]"
-                >
-                  <PhoneCall className="w-5 h-5" />
-                  <span>{isTr ? 'Kriz Masasını Devreye Sok (WhatsApp)' : 'Deploy Crisis Desk (WhatsApp)'}</span>
-                </button>
+                {selectedScenario?.id === 'http500' || selectedScenario?.id === 't48h' ? (
+                  <>
+                    {/* Crisis Scenario: Primary = WhatsApp, Secondary = Takvim */}
+                    <button
+                      onClick={openWhatsAppDispatch}
+                      className="px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black text-sm sm:text-base shadow-xl shadow-emerald-500/25 flex items-center gap-3 transition-all transform hover:-translate-y-0.5 cursor-pointer min-h-[48px]"
+                    >
+                      <PhoneCall className="w-5 h-5" />
+                      <span>{isTr ? 'Kriz Masasını Devreye Sok (WhatsApp)' : 'Deploy Crisis Desk (WhatsApp)'}</span>
+                    </button>
+
+                    <a
+                      href={getCalendlyUrl('crash_test', { scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'crash_test_result', scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
+                      className="px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm sm:text-base flex items-center gap-2.5 transition-colors min-h-[48px]"
+                    >
+                      <Calendar className="w-5 h-5 text-cyan-400" />
+                      <span>{isTr ? 'Takvimden Randevu Seç' : 'Book Call from Calendar'}</span>
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    {/* Planning Scenario (HANDOVER, SPECIAL): Primary = Takvim, Secondary = WhatsApp */}
+                    <a
+                      href={getCalendlyUrl('crash_test', { scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'crash_test_result', scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
+                      className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center gap-3 transition-all transform hover:-translate-y-0.5 min-h-[48px]"
+                    >
+                      <Calendar className="w-5 h-5" />
+                      <span>{isTr ? 'Takvimden 30 Dakikalık Görüşme Seç' : 'Book a 30-Minute Intro Call'}</span>
+                    </a>
+
+                    <button
+                      onClick={openWhatsAppDispatch}
+                      className="px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm sm:text-base flex items-center gap-2.5 transition-colors cursor-pointer min-h-[48px]"
+                    >
+                      <PhoneCall className="w-5 h-5 text-emerald-400" />
+                      <span>{isTr ? 'WhatsApp ile Danışın' : 'Consult via WhatsApp'}</span>
+                    </button>
+                  </>
+                )}
 
                 <button
                   onClick={() => setIsSOSOpen(true)}
-                  className="px-8 py-4 rounded-2xl bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-red-300 font-bold text-sm sm:text-base flex items-center gap-2 transition-colors cursor-pointer min-h-[48px]"
+                  className="px-6 py-4 rounded-2xl bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-red-300 font-bold text-sm sm:text-base flex items-center gap-2 transition-colors cursor-pointer min-h-[48px]"
                 >
                   <AlertTriangle className="w-5 h-5 text-red-400" />
                   <span>{isTr ? 'Acil SOS Formu Gönder' : 'Send Emergency SOS Ticket'}</span>
@@ -997,6 +1036,12 @@ const CrashTest = () => {
                   <span>{isTr ? 'Yeniden Test Et' : 'Restart Test'}</span>
                 </button>
               </div>
+
+              {(selectedScenario?.id === 'http500' || selectedScenario?.id === 't48h') && (
+                <p className="text-xs text-slate-400 font-mono">
+                  {isTr ? 'Acil değilse takvimden 30 dakikalık görüşme seçebilirsiniz.' : 'If not critical, you can book a 30-minute call from the calendar.'}
+                </p>
+              )}
 
               {/* Direct Info */}
               <div className="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-slate-400 border-t border-white/10">

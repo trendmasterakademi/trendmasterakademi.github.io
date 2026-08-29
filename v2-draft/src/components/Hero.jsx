@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { 
   ChevronRight, Zap, ArrowRight, ShieldCheck, Terminal, FileCode, 
-  CheckCircle2, Play, Sparkles, Copy, Check, ShieldAlert, Cpu, Clock
+  CheckCircle2, Play, Sparkles, Copy, Check, ShieldAlert, Cpu, Clock, Calendar
 } from 'lucide-react';
+import { getCalendlyUrl } from '../utils/calendly';
 
 const ideFiles = [
   {
@@ -211,14 +212,14 @@ const Hero = () => {
             </Link>
 
             <a
-              href="https://wa.me/905343713573?text=Merhaba%2C%20ajans%C4%B1m%C4%B1z%20i%C3%A7in%2015-20%20dakikal%C4%B1k%20online%20tan%C4%B1%C5%9Fma%20randevusu%20almak%20istiyoruz."
+              href={getCalendlyUrl('hero')}
               target="_blank"
-              rel="noreferrer"
-              onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'hero_intro_call' })}
+              rel="noopener noreferrer"
+              onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'hero' })}
               className="px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl font-bold text-sm sm:text-base border border-white/20 hover:bg-white/5 text-white transition-all flex items-center justify-center gap-2 min-h-[48px] w-full sm:w-auto text-center"
             >
-              <Clock className="w-5 h-5 text-cyan-400" />
-              <span>{isTr ? '💬 WhatsApp’tan Tanışma Randevusu Al' : '💬 Book Intro Call via WhatsApp'}</span>
+              <Calendar className="w-5 h-5 text-cyan-400" />
+              <span>{isTr ? '30 Dakikalık Teknik Tanışma — Takvimden Seçin' : 'Book a 30-Minute Technical Intro'}</span>
             </a>
           </div>
 
