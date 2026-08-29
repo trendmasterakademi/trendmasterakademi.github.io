@@ -1,14 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { 
   ShieldAlert, AlertTriangle, CheckCircle2, ArrowRight, ArrowLeft, 
   RotateCcw, Copy, Flame, Clock, ShieldCheck, 
   Code2, Users, Check, Cpu,
-  PhoneCall, Mail, Send, Calendar, Stethoscope, Search, Layers, FileText
+  PhoneCall, Mail, Send, Calendar, Stethoscope, Loader2
 } from 'lucide-react';
 import EmergencySOSModal from '../components/EmergencySOSModal';
 import { getCalendlyUrl } from '../utils/calendly';
+
+// Dynamic code-split loaders: Each diagnostic chunk is loaded strictly on demand!
+const teshisLoaders = {
+  'ayni-stok-iki-musteriye-satildi': () => import('../data/teshis/ayni-stok-iki-musteriye-satildi.js'),
+  'odeme-alindi-siparis-olusmadi': () => import('../data/teshis/odeme-alindi-siparis-olusmadi.js'),
+  'odeme-iki-kez-alindi': () => import('../data/teshis/odeme-iki-kez-alindi.js'),
+  'site-yavasladi-sunucu-bos': () => import('../data/teshis/site-yavasladi-sunucu-bos.js'),
+  'islemler-kilitlendi-sayfa-donuyor': () => import('../data/teshis/islemler-kilitlendi-sayfa-donuyor.js'),
+  'entegrasyon-429-veriyor': () => import('../data/teshis/entegrasyon-429-veriyor.js'),
+  'sunucu-her-gun-yeniden-baslatiliyor': () => import('../data/teshis/sunucu-her-gun-yeniden-baslatiliyor.js'),
+  'guncelleme-sonrasi-veri-kayboldu': () => import('../data/teshis/guncelleme-sonrasi-veri-kayboldu.js'),
+  'testte-calisiyor-canlida-calismiyor': () => import('../data/teshis/testte-calisiyor-canlida-calismiyor.js'),
+  'deploy-sonrasi-site-bozuldu': () => import('../data/teshis/deploy-sonrasi-site-bozuldu.js'),
+  'her-yeni-ozellik-oncekini-bozuyor': () => import('../data/teshis/her-yeni-ozellik-oncekini-bozuyor.js'),
+  'kucuk-degisiklik-gunler-suruyor': () => import('../data/teshis/kucuk-degisiklik-gunler-suruyor.js'),
+  'site-500-veriyor-dun-calisiyordu': () => import('../data/teshis/site-500-veriyor-dun-calisiyordu.js'),
+  'yazilimci-gitti-koda-girilemiyor': () => import('../data/teshis/yazilimci-gitti-koda-girilemiyor.js'),
+  'bulut-hesabi-askiya-alindi': () => import('../data/teshis/bulut-hesabi-askiya-alindi.js'),
+  'yedek-var-sanildi-yedek-yok': () => import('../data/teshis/yedek-var-sanildi-yedek-yok.js'),
+  'domain-hosting-erisimi-yok': () => import('../data/teshis/domain-hosting-erisimi-yok.js'),
+  'ssl-suresi-doldu': () => import('../data/teshis/ssl-suresi-doldu.js'),
+  'form-gonderiliyor-mail-gelmiyor': () => import('../data/teshis/form-gonderiliyor-mail-gelmiyor.js'),
+  'site-aramalarda-gorunmez-oldu': () => import('../data/teshis/site-aramalarda-gorunmez-oldu.js')
+};
 
 const scenarios = [
   {
@@ -180,118 +204,21 @@ function getMatchedDiagnosis(scenarioId, answers) {
     if (answers.accessStatus?.value === 'limited') {
       return {
         matched: true,
+        slug: 'domain-hosting-erisimi-yok',
         priorityReason: {
           tr: 'Erişim olmadan hiçbir arıza giderilemez; önce bu çözülmeli.',
           en: 'Without access no fault can be repaired; this must be resolved first.'
-        },
-        slug: 'domain-hosting-erisimi-yok',
-        no: '17',
-        title: {
-          tr: 'Domain ve hosting erişimi kimsede yok',
-          en: 'No Access to Domain and Hosting Accounts'
-        },
-        aciliyet: {
-          tr: 'Orta · idari engel',
-          en: 'Medium · admin blocker'
-        },
-        badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-        tests: {
-          tr: [
-            'WHOIS sorgusunda registrar / yetkili kim görünüyor?',
-            'DNS yönetim paneline (Cloudflare, AWS vb.) erişim var mı?',
-            'Fatura / abonelik ödeme e-postası kime gidiyor?'
-          ],
-          en: [
-            'Who is listed as registrar / admin contact on WHOIS?',
-            'Is there root access to DNS panels (Cloudflare, Route53)?',
-            'Where are infrastructure billing and renewal emails sent?'
-          ]
         }
       };
     }
 
     const scope = answers.outageScope?.value;
     if (scope === 'total') {
-      return {
-        matched: true,
-        slug: 'site-500-veriyor-dun-calisiyordu',
-        no: '07',
-        title: {
-          tr: 'Site 500 veriyor, dün çalışıyordu',
-          en: 'Site Returning 500 Error, Worked Yesterday'
-        },
-        aciliyet: {
-          tr: 'Kritik · site kapalı',
-          en: 'Critical · outage'
-        },
-        badgeColor: 'text-red-400 bg-red-500/10 border-red-500/30',
-        tests: {
-          tr: [
-            "Log'da 401 / auth hatası var mı?",
-            "df -h çıktısında %100 var mı?",
-            "Sistem log'unda dün gece update var mı?"
-          ],
-          en: [
-            "Is there a 401 / auth failure in system logs?",
-            "Does df -h output show 100% disk usage?",
-            "Is there an unannounced system update in logs?"
-          ]
-        }
-      };
+      return { matched: true, slug: 'site-500-veriyor-dun-calisiyordu' };
     } else if (scope === 'partial') {
-      return {
-        matched: true,
-        slug: 'odeme-alindi-siparis-olusmadi',
-        no: '02',
-        title: {
-          tr: 'Ödeme alındı, sipariş oluşmadı',
-          en: 'Payment Charged but Order Not Created'
-        },
-        aciliyet: {
-          tr: 'Kritik · ticari kayıp',
-          en: 'Critical · commercial loss'
-        },
-        badgeColor: 'text-red-400 bg-red-500/10 border-red-500/30',
-        tests: {
-          tr: [
-            "Ödeme sağlayıcı webhook logunda 200 OK var mı?",
-            "Veritabanı işleminde kilit / deadlock yaşandı mı?",
-            "API entegrasyonu rate limit veya zaman aşımına mı takıldı?"
-          ],
-          en: [
-            "Does payment gateway webhook log show 200 OK?",
-            "Did database transactions encounter a lock/deadlock?",
-            "Did the API integration hit rate limits or timeouts?"
-          ]
-        }
-      };
+      return { matched: true, slug: 'odeme-alindi-siparis-olusmadi' };
     } else if (scope === 'slow') {
-      return {
-        matched: true,
-        slug: 'islemler-kilitlendi-sayfa-donuyor',
-        no: '04',
-        title: {
-          tr: 'İşlemler kilitlendi, sayfa dönüp duruyor',
-          en: 'Transactions Deadlocked, Pages Spinning'
-        },
-        aciliyet: {
-          tr: 'Kritik · işlem durdu',
-          en: 'Critical · transaction halt'
-        },
-        badgeColor: 'text-red-400 bg-red-500/10 border-red-500/30',
-        tests: {
-          tr: [
-            "Veritabanında bekleyen lock / deadlock tablosu var mı?",
-            "Sunucuda CPU %100 mü yoksa I/O wait mi yüksek?",
-            "Veritabanı bağlantı havuzu (connection pool) tükendi mi?"
-          ],
-          en: [
-            "Is there an active lock / deadlock table in database?",
-            "Is server load driven by 100% CPU or high I/O wait?",
-            "Is the database connection pool completely exhausted?"
-          ]
-        }
-      };
+      return { matched: true, slug: 'islemler-kilitlendi-sayfa-donuyor' };
     }
   }
 
@@ -299,89 +226,14 @@ function getMatchedDiagnosis(scenarioId, answers) {
   if (scenarioId === 'handover') {
     // ⚠️ Priority rule: missingModules === 'bugs'
     if (answers.missingModules?.value === 'bugs') {
-      return {
-        matched: true,
-        slug: 'her-yeni-ozellik-oncekini-bozuyor',
-        no: '15',
-        title: {
-          tr: 'Her yeni özellik bir öncekini bozuyor',
-          en: 'Every New Feature Breaks an Existing One'
-        },
-        aciliyet: {
-          tr: 'Yüksek · stabilite riski',
-          en: 'High · stability risk'
-        },
-        badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-        tests: {
-          tr: [
-            "Regression test veya e2e test suite mevcut mu?",
-            "Modüller arası paylaşılan global state / side-effect var mı?",
-            "Geri alma (rollback) mekanizması çalışıyor mu?"
-          ],
-          en: [
-            "Are automated regression and e2e test suites present?",
-            "Is there uncontrolled global state / side-effects between modules?",
-            "Is there an instantaneous, working rollback mechanism?"
-          ]
-        }
-      };
+      return { matched: true, slug: 'her-yeni-ozellik-oncekini-bozuyor' };
     }
 
     const doc = answers.docState?.value;
     if (doc === 'none') {
-      return {
-        matched: true,
-        slug: 'yazilimci-gitti-koda-girilemiyor',
-        no: '16',
-        title: {
-          tr: 'Yazılımcı gitti, kimse koda giremiyor',
-          en: 'Developer Disengaged, Codebase Inaccessible'
-        },
-        aciliyet: {
-          tr: 'Yüksek · süreklilik riski',
-          en: 'High · continuity risk'
-        },
-        badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-        tests: {
-          tr: [
-            "Git commit logunda son aktif yazar kim?",
-            "Ortam değişkenleri (.env / secrets) repoda veya sunucuda mevcut mu?",
-            "Kod lokal ortamda derlenip ayağa kalkıyor mu?"
-          ],
-          en: [
-            "Who is the last active author in Git commit history?",
-            "Are environment variables (.env / secrets) accessible?",
-            "Does the codebase build and run in a local clean sandbox?"
-          ]
-        }
-      };
+      return { matched: true, slug: 'yazilimci-gitti-koda-girilemiyor' };
     } else {
-      return {
-        matched: true,
-        slug: 'kucuk-degisiklik-gunler-suruyor',
-        no: '20',
-        title: {
-          tr: 'Küçük değişiklik günler sürüyor',
-          en: 'Small Changes Take Days to Deploy'
-        },
-        aciliyet: {
-          tr: 'Orta · verimsizlik',
-          en: 'Medium · inefficiency'
-        },
-        badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-        tests: {
-          tr: [
-            "Tek satırlık değişiklikte testler / derleme dakikalarca sürüyor mu?",
-            "Kod tabanında yoğun tight coupling ve döngüsel bağımlılık var mı?",
-            "CI/CD hattı veya otomatik test suite eksik mi?"
-          ],
-          en: [
-            "Do builds/tests take unreasonable minutes for single-line edits?",
-            "Is there severe tight coupling and circular dependencies?",
-            "Is an automated test suite / CI-CD pipeline missing?"
-          ]
-        }
-      };
+      return { matched: true, slug: 'kucuk-degisiklik-gunler-suruyor' };
     }
   }
 
@@ -389,86 +241,11 @@ function getMatchedDiagnosis(scenarioId, answers) {
   if (scenarioId === 'complex') {
     const need = answers.specialNeeds?.value;
     if (need === 'payment') {
-      return {
-        matched: true,
-        slug: 'odeme-alindi-siparis-olusmadi',
-        no: '02',
-        title: {
-          tr: 'Ödeme alındı, sipariş oluşmadı',
-          en: 'Payment Charged but Order Not Created'
-        },
-        aciliyet: {
-          tr: 'Kritik · ticari kayıp',
-          en: 'Critical · commercial loss'
-        },
-        badgeColor: 'text-red-400 bg-red-500/10 border-red-500/30',
-        tests: {
-          tr: [
-            "Ödeme sağlayıcı webhook logunda 200 OK var mı?",
-            "Veritabanı işleminde kilit / deadlock yaşandı mı?",
-            "API entegrasyonu rate limit veya zaman aşımına mı takıldı?"
-          ],
-          en: [
-            "Does payment gateway webhook log show 200 OK?",
-            "Did database transactions encounter a lock/deadlock?",
-            "Did the API integration hit rate limits or timeouts?"
-          ]
-        }
-      };
+      return { matched: true, slug: 'odeme-alindi-siparis-olusmadi' };
     } else if (need === 'scale') {
-      return {
-        matched: true,
-        slug: 'sunucu-her-gun-yeniden-baslatiliyor',
-        no: '13',
-        title: {
-          tr: 'Sunucu her gün yeniden başlatılıyor',
-          en: 'Server Restarted Daily as Workaround'
-        },
-        aciliyet: {
-          tr: 'Yüksek · stabilite riski',
-          en: 'High · stability risk'
-        },
-        badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-        tests: {
-          tr: [
-            "RAM kullanımı zamanla sürekli artıyor mu (memory leak)?",
-            "Process manager (PM2 / systemd / k8s) restart logunda OOM var mı?",
-            "Veritabanı bağlantıları kapanmadan askıda mı kalıyor?"
-          ],
-          en: [
-            "Does memory consumption steadily grow over time (memory leak)?",
-            "Do process manager logs indicate Out-Of-Memory restarts?",
-            "Are database connections hanging unclosed in pool?"
-          ]
-        }
-      };
+      return { matched: true, slug: 'sunucu-her-gun-yeniden-baslatiliyor' };
     } else if (need === 'algo') {
-      return {
-        matched: true,
-        slug: 'site-yavasladi-sunucu-bos',
-        no: '11',
-        title: {
-          tr: 'Site yavaşladı ama sunucu boş',
-          en: 'Site Stalled but Server Idling'
-        },
-        aciliyet: {
-          tr: 'Yüksek · performans kaybı',
-          en: 'High · performance loss'
-        },
-        badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-        tests: {
-          tr: [
-            "Slow query logunda N+1 veya full table scan var mı?",
-            "Dış API çağrıları asenkron mu yoksa ana thread'i blokluyor mu?",
-            "Redis / In-memory cache miss oranı yüksek mi?"
-          ],
-          en: [
-            "Does slow query log show N+1 or unindexed full table scans?",
-            "Are third-party API calls blocking the main execution thread?",
-            "Is the cache miss ratio abnormally high on hot routes?"
-          ]
-        }
-      };
+      return { matched: true, slug: 'site-yavasladi-sunucu-bos' };
     }
   }
 
@@ -487,6 +264,38 @@ const CrashTest = () => {
   const [answers, setAnswers] = useState({});
   const [copied, setCopied] = useState(false);
   const [isSOSOpen, setIsSOSOpen] = useState(false);
+
+  // Dynamic Diagnosis Data State
+  const [diagData, setDiagData] = useState(null);
+  const [isLoadingDiag, setIsLoadingDiag] = useState(false);
+  const [diagError, setDiagError] = useState(false);
+
+  const matchResult = getMatchedDiagnosis(selectedScenario.id, answers);
+
+  useEffect(() => {
+    if (step === 3 && matchResult.matched && matchResult.slug) {
+      if (teshisLoaders[matchResult.slug]) {
+        setIsLoadingDiag(true);
+        setDiagError(false);
+        teshisLoaders[matchResult.slug]()
+          .then((mod) => {
+            setDiagData(mod.default || mod);
+            setIsLoadingDiag(false);
+          })
+          .catch((err) => {
+            console.error('Diagnosis data load failed:', err);
+            setDiagError(true);
+            setIsLoadingDiag(false);
+          });
+      } else {
+        setDiagError(true);
+      }
+    } else {
+      setDiagData(null);
+      setIsLoadingDiag(false);
+      setDiagError(false);
+    }
+  }, [step, matchResult.matched, matchResult.slug]);
 
   React.useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -558,17 +367,20 @@ const CrashTest = () => {
   const currentQuestions = selectedScenario.questions;
   const isAllAnswered = currentQuestions.length > 0 && currentQuestions.every(q => answers[q.id]);
 
-  const matchResult = getMatchedDiagnosis(selectedScenario.id, answers);
-
   const copyActionPlan = () => {
     const header = `=== TMA AGENCY CRASH TEST REPORT ===\n` +
       `Scenario: ${selectedScenario.title[isTr ? 'tr' : 'en']} (${selectedScenario.code})\n`;
 
-    const body = matchResult.matched
-      ? `Matched Diagnosis: #${matchResult.no} · ${matchResult.title[isTr ? 'tr' : 'en']}\n` +
-        `Severity: ${matchResult.aciliyet[isTr ? 'tr' : 'en']}\n` +
+    const body = matchResult.matched && diagData
+      ? `Matched Diagnosis: #${diagData.no} · ${diagData.baslik[isTr ? 'tr' : 'en']}\n` +
+        `Severity: ${diagData.aciliyet?.etiket?.[isTr ? 'tr' : 'en'] || ''}\n` +
         `Diagnostic Tests:\n` +
-        matchResult.tests[isTr ? 'tr' : 'en'].map(t => `  - ${t}`).join('\n') + `\n\n`
+        (diagData.nedenler || []).map(n => {
+          const t = n.diyagramTest?.[isTr ? 'tr' : 'en'];
+          return `  - ${Array.isArray(t) ? t.join(' ') : (t || '')}`;
+        }).join('\n') + `\n\n`
+      : matchResult.matched
+      ? `Matched Diagnosis: ${matchResult.slug}\n\n`
       : `Result: Capacity and timeline scoping required.\n\n`;
 
     const protocol = `ACTION RECOVERY PROTOCOL:\n` +
@@ -593,17 +405,21 @@ const CrashTest = () => {
     }
 
     const kitBadge = campaignParams.agency_code ? `\n📦 *Kriz Kiti Ajans Kodu:* #${campaignParams.agency_code}` : '';
+    const diagTitle = diagData?.baslik?.[isTr ? 'tr' : 'en'];
+    const diagNo = diagData?.no;
+    const diagSeverity = diagData?.aciliyet?.etiket?.[isTr ? 'tr' : 'en'];
+
     const rawText = matchResult.matched
       ? (isTr
           ? `🚨 *TMA CRASH TEST TEŞHİS EŞLEŞMESİ* 🚨\n\n` +
             `📊 *Seçilen Kriz:* ${selectedScenario.title.tr} (${selectedScenario.code})\n` +
-            `🎯 *Eşleşen Teşhis:* #${matchResult.no} · ${matchResult.title.tr}\n` +
-            `⚡ *Aciliyet:* ${matchResult.aciliyet.tr}${kitBadge}\n\n` +
+            `🎯 *Eşleşen Teşhis:* ${diagNo ? `#${diagNo} · ` : ''}${diagTitle || matchResult.slug}\n` +
+            (diagSeverity ? `⚡ *Aciliyet:* ${diagSeverity}${kitBadge}\n\n` : `${kitBadge}\n\n`) +
             `Bu arıza tablosu için TMA'dan acil teknik destek / teşhis görüşmesi talep ediyoruz.`
           : `🚨 *TMA CRASH TEST DIAGNOSTIC MATCH* 🚨\n\n` +
             `📊 *Selected Incident:* ${selectedScenario.title.en} (${selectedScenario.code})\n` +
-            `🎯 *Matched Diagnosis:* #${matchResult.no} · ${matchResult.title.en}\n` +
-            `⚡ *Severity:* ${matchResult.aciliyet.en}${kitBadge}\n\n` +
+            `🎯 *Matched Diagnosis:* ${diagNo ? `#${diagNo} · ` : ''}${diagTitle || matchResult.slug}\n` +
+            (diagSeverity ? `⚡ *Severity:* ${diagSeverity}${kitBadge}\n\n` : `${kitBadge}\n\n`) +
             `We request an emergency technical consultation / diagnosis from TMA for this incident.`)
       : (isTr
           ? `⏱️ *TMA CRASH TEST KAPASİTE & DEVİR TALEBİ* ⏱️\n\n` +
@@ -907,63 +723,104 @@ const CrashTest = () => {
                   </div>
                 )}
 
-                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-white/10">
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
-                      <span className="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase">
-                        {isTr ? 'TEŞHİS KATALOĞU EŞLEŞMESİ' : 'DIAGNOSTIC CATALOG MATCH'} // {selectedScenario.code}
-                      </span>
-                    </div>
-                    <span className="text-xs sm:text-sm font-mono text-slate-400 block">
-                      {isTr ? 'Verdiğiniz cevaplar şu tabloyla örtüşüyor:' : 'Your answers match the following failure profile:'}
-                    </span>
-                    <h2 className="text-2xl sm:text-3xl font-black text-white flex flex-wrap items-center gap-3">
-                      <span className="text-cyan-400 font-mono">#{matchResult.no}</span>
-                      <span>·</span>
-                      <span>{matchResult.title[isTr ? 'tr' : 'en']}</span>
-                    </h2>
-                  </div>
-
-                  {/* Urgency Badge directly from diagnostic */}
-                  <div className="flex-shrink-0">
-                    <span className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-mono font-bold border inline-flex items-center gap-2 ${matchResult.badgeColor}`}>
-                      <span className="w-2 h-2 rounded-full bg-current"></span>
-                      <span>{matchResult.aciliyet[isTr ? 'tr' : 'en']}</span>
+                {isLoadingDiag ? (
+                  /* Loading State (No dummy text / no fake badges) */
+                  <div className="py-12 flex flex-col items-center justify-center gap-3 text-cyan-400">
+                    <Loader2 className="w-8 h-8 animate-spin" />
+                    <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                      {isTr ? 'Teşhis Verisi Yükleniyor...' : 'Loading Diagnostic Data...'}
                     </span>
                   </div>
-                </div>
-
-                {/* Distinguishing Tests Box */}
-                <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 space-y-4">
-                  <div className="flex items-center gap-2 text-sm font-mono font-bold text-slate-300">
-                    <Stethoscope className="w-4 h-4 text-cyan-400" />
-                    <span>
-                      {isTr 
-                        ? 'Bu arızanın üç olası nedeni var ve ayırt edici testleri şunlar:' 
-                        : 'This symptom has three root causes with the following distinguishing diagnostic tests:'}
-                    </span>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                    {matchResult.tests[isTr ? 'tr' : 'en'].map((testText, tIdx) => (
-                      <div key={tIdx} className="p-4 rounded-xl bg-black/40 border border-white/10 flex items-start gap-2.5">
-                        <ArrowRight className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
-                        <span className="text-xs sm:text-sm text-slate-200 leading-relaxed font-mono">{testText}</span>
+                ) : (
+                  <>
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-white/10">
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                          <span className="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase">
+                            {isTr ? 'TEŞHİS KATALOĞU EŞLEŞMESİ' : 'DIAGNOSTIC CATALOG MATCH'} // {selectedScenario.code}
+                          </span>
+                        </div>
+                        <span className="text-xs sm:text-sm font-mono text-slate-400 block">
+                          {isTr ? 'Verdiğiniz cevaplar şu tabloyla örtüşüyor:' : 'Your answers match the following failure profile:'}
+                        </span>
+                        <h2 className="text-2xl sm:text-3xl font-black text-white flex flex-wrap items-center gap-3">
+                          {diagData?.no && (
+                            <>
+                              <span className="text-cyan-400 font-mono">#{diagData.no}</span>
+                              <span>·</span>
+                            </>
+                          )}
+                          <span>{diagData?.baslik?.[isTr ? 'tr' : 'en'] || matchResult.slug}</span>
+                        </h2>
                       </div>
-                    ))}
-                  </div>
 
-                  <div className="pt-2 flex justify-start">
-                    <Link
-                      to={`/teshis/${matchResult.slug}/`}
-                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer group"
-                    >
-                      <span>{isTr ? 'Teşhisin tamamını okuyun' : 'Read the complete diagnosis'}</span>
-                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </div>
+                      {/* Urgency Badge strictly from diagnostic data */}
+                      {!diagError && diagData?.aciliyet?.etiket && (
+                        <div className="flex-shrink-0">
+                          <span className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-mono font-bold border inline-flex items-center gap-2 ${
+                            diagData.aciliyet.seviye === 'kritik'
+                              ? 'text-red-400 bg-red-500/10 border-red-500/30'
+                              : 'text-amber-400 bg-amber-500/10 border-amber-500/30'
+                          }`}>
+                            <span className="w-2 h-2 rounded-full bg-current"></span>
+                            <span>{diagData.aciliyet.etiket[isTr ? 'tr' : 'en']}</span>
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Distinguishing Tests Box strictly from diagnostic data */}
+                    {!diagError && diagData?.nedenler && diagData.nedenler.length > 0 && (
+                      <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 space-y-4">
+                        <div className="flex items-center gap-2 text-sm font-mono font-bold text-slate-300">
+                          <Stethoscope className="w-4 h-4 text-cyan-400" />
+                          <span>
+                            {isTr 
+                              ? 'Bu arızanın üç olası nedeni var ve ayırt edici testleri şunlar:' 
+                              : 'This symptom has three root causes with the following distinguishing diagnostic tests:'}
+                          </span>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                          {diagData.nedenler.map((neden, tIdx) => {
+                            const rawTest = neden.diyagramTest?.[isTr ? 'tr' : 'en'];
+                            const testText = Array.isArray(rawTest) ? rawTest.join(' ') : (rawTest || '');
+                            return (
+                              <div key={tIdx} className="p-4 rounded-xl bg-black/40 border border-white/10 flex items-start gap-2.5">
+                                <ArrowRight className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                                <span className="text-xs sm:text-sm text-slate-200 leading-relaxed font-mono">{testText}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+
+                        <div className="pt-2 flex justify-start">
+                          <Link
+                            to={`/teshis/${matchResult.slug}/`}
+                            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer group"
+                          >
+                            <span>{isTr ? 'Teşhisin tamamını okuyun' : 'Read the complete diagnosis'}</span>
+                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                          </Link>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* If error loading data, still provide diagnosis link without fake badges/tests */}
+                    {diagError && (
+                      <div className="pt-2 flex justify-start">
+                        <Link
+                          to={`/teshis/${matchResult.slug}/`}
+                          className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer group"
+                        >
+                          <span>{isTr ? 'Teşhisin tamamını okuyun' : 'Read the complete diagnosis'}</span>
+                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </Link>
+                      </div>
+                    )}
+                  </>
+                )}
 
               </div>
             ) : (
@@ -1079,7 +936,7 @@ const CrashTest = () => {
               <div className="p-6 sm:p-7 rounded-3xl bg-cyan-950/40 border border-cyan-500/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
                 <div className="space-y-1.5 text-center sm:text-left">
                   <div className="flex items-center justify-center sm:justify-start gap-2">
-                    <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
+                    <span className="w-2-h-2 rounded-full bg-cyan-400"></span>
                     <span className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wider">
                       {isTr ? 'ÖZEL DEVİR HAZIRLIK ENVANTERİ' : 'DEDICATED HANDOVER AUDIT'}
                     </span>
@@ -1181,13 +1038,13 @@ const CrashTest = () => {
                         body: JSON.stringify({
                           access_key: '64ef0cf5-703c-4cfd-92a4-4f0ba65bb2bb',
                           from_name: 'TMA Crash Test Diagnostic',
-                          subject: `🎯 CRASH TEST TEŞHİS TALEBİ: ${leadName} (${selectedScenario?.code} - ${matchResult.matched ? `#${matchResult.no}` : 'Kapsam Görüşmesi'})${campaignParams.agency_code ? ` [Kutu #${campaignParams.agency_code}]` : ''}`,
+                          subject: `🎯 CRASH TEST TEŞHİS TALEBİ: ${leadName} (${selectedScenario?.code} - ${matchResult.matched ? (diagData ? `#${diagData.no}` : matchResult.slug) : 'Kapsam Görüşmesi'})${campaignParams.agency_code ? ` [Kutu #${campaignParams.agency_code}]` : ''}`,
                           name: leadName,
                           email: leadEmail,
                           phone: leadPhone,
                           scenario: selectedScenario?.title[isTr ? 'tr' : 'en'],
-                          matchedDiagnosis: matchResult.matched ? `#${matchResult.no} · ${matchResult.title[isTr ? 'tr' : 'en']}` : 'Kapsam ve Kapasite Görüşmesi',
-                          severity: matchResult.matched ? matchResult.aciliyet[isTr ? 'tr' : 'en'] : 'Kapsam Görüşmesi',
+                          matchedDiagnosis: matchResult.matched ? (diagData ? `#${diagData.no} · ${diagData.baslik[isTr ? 'tr' : 'en']}` : matchResult.slug) : 'Kapsam ve Kapasite Görüşmesi',
+                          severity: matchResult.matched ? (diagData?.aciliyet?.etiket?.[isTr ? 'tr' : 'en'] || 'N/A') : 'Kapsam Görüşmesi',
                           agencyBoxCode: campaignParams.agency_code || 'N/A',
                           utm_source: campaignParams.utm_source || 'direct',
                           utm_campaign: campaignParams.utm_campaign || 'N/A',
