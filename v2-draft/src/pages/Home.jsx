@@ -5,6 +5,7 @@ import AgencySection from '../components/AgencySection';
 import CodeDiffShowcase from '../components/CodeDiffShowcase';
 import ArchitectureGraph from '../components/ArchitectureGraph';
 import Services from '../components/Services';
+import CaseStudySection from '../components/CaseStudySection';
 import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
 
@@ -38,6 +39,7 @@ const Home = () => {
       <CodeDiffShowcase />
       <ArchitectureGraph />
       <Services />
+      <CaseStudySection />
       <FAQ />
       <Contact />
     </>
