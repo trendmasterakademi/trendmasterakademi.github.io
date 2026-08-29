@@ -163,10 +163,10 @@ const Hero = () => {
           {/* Main Hook Headline */}
           <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[2.6rem] xl:text-[3rem] font-black font-mono leading-[1.18] tracking-tight text-white">
             <span className="block text-slate-200">
-              {isTr ? 'Yazılımcısı Projeden Çekilmiş' : 'For Agencies with Disengaged Developers:'}
+              {isTr ? 'Teknik olarak projesi tıkanmış' : 'For Agencies with Blocked Projects:'}
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400">
-              {isTr ? 'Ajanslar İçin:' : 'Code Taken Over & Rescued,'}
+              {isTr ? 'ajanslar için:' : 'Code Taken Over & Rescued,'}
             </span>
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-300 to-amber-400 text-[0.88em]">
               {isTr ? 'Kodu Devralır, Ajansınız Adına Eksiksiz Teslim Ederiz.' : 'Delivered Flawlessly Under Your Agency Brand.'}
