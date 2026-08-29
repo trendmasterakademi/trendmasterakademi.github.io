@@ -1,47 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { 
-  Calculator, DollarSign, Clock, AlertTriangle, ShieldCheck, 
-  ArrowRight, PhoneCall, TrendingDown, Info, CheckCircle2,
-  Layers, ShoppingBag, Globe, Server, RefreshCw, Calendar
+  Calculator, Info, Calendar, PhoneCall, ShoppingBag, 
+  Clock, TrendingDown, DollarSign
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
-
-const sectors = [
-  {
-    id: 'ecommerce',
-    title: { tr: 'E-Ticaret / D2C Mağaza', en: 'E-Commerce / D2C Store' },
-    desc: { tr: 'Doğrudan sepete atma ve anlık checkout akışı', en: 'Direct add-to-cart and instant checkout' },
-    icon: ShoppingBag,
-    multiplier: 1.4,
-    reputationFactor: 0.25
-  },
-  {
-    id: 'saas',
-    title: { tr: 'B2B SaaS / Web Yazılımı', en: 'B2B SaaS / Cloud Platform' },
-    desc: { tr: 'Abonelik, SLA taahhütleri ve kurumsal veri akışı', en: 'Subscriptions, SLA commitments, enterprise data' },
-    icon: Server,
-    multiplier: 1.25,
-    reputationFactor: 0.35
-  },
-  {
-    id: 'marketplace',
-    title: { tr: 'Pazaryeri / Çok Satıcılı Sistem', en: 'Marketplace / Multi-Vendor' },
-    desc: { tr: 'Alıcı ve satıcı çift taraflı komisyon ve sipariş hacmi', en: 'Two-sided transaction and vendor commission volume' },
-    icon: Layers,
-    multiplier: 1.6,
-    reputationFactor: 0.40
-  },
-  {
-    id: 'corporate',
-    title: { tr: 'Kurumsal / B2B Lead Sitesi', en: 'Corporate / B2B Lead Engine' },
-    desc: { tr: 'Teklif formları, katalog ve müşteri ilişkileri', en: 'Quote requests, product catalogs, RFP funnels' },
-    icon: Globe,
-    multiplier: 0.85,
-    reputationFactor: 0.20
-  }
-];
 
 const revenueTiers = [
   { id: 't1', label: '₺250.000 - ₺500.000 / ay', monthlyAvg: 375000 },
@@ -50,20 +13,23 @@ const revenueTiers = [
   { id: 't4', label: '₺5.000.000 - ₺15.000.000+ / ay', monthlyAvg: 10000000 }
 ];
 
-const timeSlots = [
-  { id: 'peak', label: { tr: 'Zirve Saatler (10:00 - 22:00)', en: 'Peak Hours (10:00 - 22:00)' }, factor: 1.5 },
-  { id: 'normal', label: { tr: 'Normal Saatler (08:00 - 10:00 / 22:00 - 00:00)', en: 'Normal Hours' }, factor: 1.0 },
-  { id: 'night', label: { tr: 'Gece Saatleri (00:00 - 08:00)', en: 'Off-Peak / Night' }, factor: 0.5 }
+const peakPresets = [
+  { id: 'peak', label: { tr: 'Zirve Saat', en: 'Peak Hours' }, factor: 2.0 },
+  { id: 'normal', label: { tr: 'Normal Saat', en: 'Normal Hours' }, factor: 1.0 },
+  { id: 'night', label: { tr: 'Gece', en: 'Night' }, factor: 0.5 }
 ];
+
+const AVERAGE_BASKET_TRY = 1268;
 
 const KesintiMaliyeti = () => {
   const { i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
 
-  const [selectedSector, setSelectedSector] = useState('ecommerce');
+  const [inputMode, setInputMode] = useState('tier'); // 'tier', 'custom', 'orders'
   const [selectedTier, setSelectedTier] = useState('t2');
   const [customRevenue, setCustomRevenue] = useState('');
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState('peak');
+  const [dailyOrders, setDailyOrders] = useState('');
+  const [peakFactor, setPeakFactor] = useState(2.0);
   const [durationHours, setDurationHours] = useState(4);
 
   const [campaignParams, setCampaignParams] = useState({
@@ -80,8 +46,8 @@ const KesintiMaliyeti = () => {
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", isTr
-        ? "Sunucu çökmesi veya HTTP 500 kesintisinde saatlik ve toplam tahmini ciro kaybınızı hesaplayın. Şeffaf matematik ve kurtarma ROI analizi."
-        : "Calculate estimated revenue loss during website outages. Transparent formula, reputation risk metrics, and SWAT recovery ROI."
+        ? "Sunucu çökmesi veya HTTP 500 kesintisinde saatlik ve toplam tahmini ciro kaybınızı hesaplayın. Şeffaf matematik ve doğrudan ciro kaybı simülasyonu."
+        : "Calculate estimated direct revenue loss during website outages. Transparent arithmetic, no hidden multipliers."
       );
     }
 
@@ -101,78 +67,69 @@ const KesintiMaliyeti = () => {
     } catch (e) {}
   }, [isTr]);
 
-  // Calculations
-  const sectorObj = sectors.find(s => s.id === selectedSector) || sectors[0];
-  const tierObj = revenueTiers.find(t => t.id === selectedTier) || revenueTiers[1];
-  const timeSlotObj = timeSlots.find(ts => ts.id === selectedTimeSlot) || timeSlots[0];
+  // Determine monthly revenue based on selected input mode
+  let monthlyRev = 1000000;
+  if (inputMode === 'orders') {
+    const orders = parseFloat(dailyOrders) || 0;
+    monthlyRev = orders * 30 * AVERAGE_BASKET_TRY;
+  } else if (inputMode === 'custom' || customRevenue) {
+    monthlyRev = parseFloat(customRevenue) || 0;
+  } else {
+    const tierObj = revenueTiers.find(t => t.id === selectedTier) || revenueTiers[1];
+    monthlyRev = tierObj.monthlyAvg;
+  }
 
-  const monthlyRev = customRevenue ? parseFloat(customRevenue) || tierObj.monthlyAvg : tierObj.monthlyAvg;
+  // 1 Month = 730 Hours (365 days * 24 / 12)
+  const hourlyRev = monthlyRev / 730;
   
-  // Base hourly revenue (Assuming 720 hours per month)
-  const baseHourlyRev = monthlyRev / 720;
-  
-  // Weighted Hourly Loss
-  const hourlyLoss = baseHourlyRev * timeSlotObj.factor * sectorObj.multiplier;
-  
-  // Direct Revenue Loss during Outage
-  const directLoss = hourlyLoss * durationHours;
-  
-  // Reputation & SLA / Churn Penalty Risk
-  const reputationRisk = directLoss * sectorObj.reputationFactor;
-  
-  // Total Compound Risk
-  const totalRisk = directLoss + reputationRisk;
-
-  // Saved if SWAT triaged in 2.5 hours vs long duration
-  const swatDuration = 2.5;
-  const potentialProlongedHours = Math.max(durationHours, 18);
-  const prolongedLoss = (hourlyLoss * potentialProlongedHours) * (1 + sectorObj.reputationFactor);
-  const swatLoss = (hourlyLoss * swatDuration) * (1 + sectorObj.reputationFactor);
-  const savedAmount = Math.max(prolongedLoss - swatLoss, 15000);
+  // Direct Revenue Loss during Outage = hourlyRev * duration * peakFactor
+  const directLoss = hourlyRev * durationHours * peakFactor;
 
   // Track telemetry upon calculation change
   useEffect(() => {
     if (window.trackEvent) {
-      const lossBand = totalRisk > 100000 ? 'high_100k_plus' : totalRisk > 30000 ? 'mid_30k_100k' : 'under_30k';
+      const lossBand = directLoss > 100000 ? 'high_100k_plus' : directLoss > 30000 ? 'mid_30k_100k' : 'under_30k';
       window.trackEvent('downtime_calc_completed', {
-        sector: selectedSector,
         loss_band: lossBand,
         agency_code: campaignParams.agency_code
       });
     }
-  }, [selectedSector, selectedTier, customRevenue, selectedTimeSlot, durationHours]);
+  }, [inputMode, selectedTier, customRevenue, dailyOrders, peakFactor, durationHours]);
 
   const formatCurrency = (val) => {
-    return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(val);
+    return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(Math.round(val));
   };
 
   const openWhatsApp = () => {
     if (window.trackEvent) {
       window.trackEvent('whatsapp_clicked', {
         source: 'downtime_calc',
-        sector: selectedSector,
         agency_code: campaignParams.agency_code
       });
     }
 
     const kitBadge = campaignParams.agency_code ? `\n📦 *Kriz Kiti Ajans Kodu:* #${campaignParams.agency_code}` : '';
+    const factorStr = peakFactor.toLocaleString(isTr ? 'tr-TR' : 'en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+    
     const text = isTr
-      ? `⏱️ *TMA KESİNTİ MALİYETİ HESAPLAMA ÇIKTISI* ⏱️\n\n` +
-        `🏢 *Sektör:* ${sectorObj.title.tr}\n` +
-        `⏳ *Kesinti Süresi:* ${durationHours} Saat\n` +
-        `📉 *Tahmini Toplam Kayıp:* ${formatCurrency(totalRisk)}${kitBadge}\n\n` +
-        `Canlı sistemdeki kesintiyi en hızlı şekilde sonlandırmak için acil TMA SWAT müdahalesi talep ediyoruz.`
-      : `⏱️ *TMA DOWNTIME COST ASSESSMENT* ⏱️\n\n` +
-        `🏢 *Sector:* ${sectorObj.title.en}\n` +
-        `⏳ *Duration:* ${durationHours} Hours\n` +
-        `📉 *Estimated Risk Loss:* ${formatCurrency(totalRisk)}${kitBadge}\n\n` +
-        `We request emergency SWAT intervention to resolve our production outage immediately.`;
+      ? `⏱️ *TMA KESİNTİ MALİYETİ HESABI*\n\n` +
+        `⏳ Kesinti süresi: ${durationHours} saat\n` +
+        `📊 Aylık ciro: ${formatCurrency(monthlyRev)}\n` +
+        `⚙️ Zirve katsayısı: ${factorStr} (varsayım)\n` +
+        `📉 Tahmini doğrudan ciro kaybı: ${formatCurrency(directLoss)}${kitBadge}\n\n` +
+        `Canlı sistemdeki kesinti için TMA'dan teşhis talep ediyoruz.`
+      : `⏱️ *TMA DOWNTIME COST ASSESSMENT*\n\n` +
+        `⏳ Outage duration: ${durationHours} hours\n` +
+        `📊 Monthly revenue: ${formatCurrency(monthlyRev)}\n` +
+        `⚙️ Peak factor: ${factorStr} (assumption)\n` +
+        `📉 Estimated direct revenue loss: ${formatCurrency(directLoss)}${kitBadge}\n\n` +
+        `We request a diagnosis from TMA for our live system outage.`;
 
     window.open(`https://wa.me/905343713573?text=${encodeURIComponent(text)}`, '_blank');
   };
 
   return (
-    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[#080b11] text-slate-200 relative  font-sans">
+    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[#080b11] text-slate-200 relative font-sans">
       {/* Background Ambience */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-gradient-to-b from-red-500/10 via-amber-500/5 to-transparent blur-[140px] pointer-events-none -z-10"></div>
       <div className="absolute inset-0 bg-[radial-gradient(#1f293d_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none -z-10"></div>
@@ -191,8 +148,8 @@ const KesintiMaliyeti = () => {
 
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
             {isTr 
-              ? 'Sistem çöktüğünde veya sipariş akışı tıkandığında geçen her dakikanın ajansınıza ve müşterinize gerçek maliyetini hesaplayın.' 
-              : 'Estimate real financial revenue loss, SLA penalties, and customer churn impact during live production outages.'}
+              ? 'Sistem çöktüğünde veya sipariş akışı tıkandığında geçen sürenin doğrudan ciro kaybını şeffaf matematikle hesaplayın.' 
+              : 'Estimate direct revenue loss during live production outages with transparent, verifiable arithmetic.'}
           </p>
         </div>
 
@@ -202,124 +159,177 @@ const KesintiMaliyeti = () => {
           {/* Left Column: Interactive Inputs (7 Cols) */}
           <div className="lg:col-span-7 space-y-6">
             
-            {/* Input 1: Sector */}
+            {/* Input 1: Monthly Revenue or Daily Orders */}
             <div className="p-6 sm:p-7 rounded-3xl bg-[#111827]/90 border border-white/10 space-y-4 shadow-xl">
-              <label className="text-sm font-mono uppercase text-slate-400 font-bold block">
-                1. {isTr ? 'Projenin Sektörü & İş Modeli' : 'Business Model & Sector'}
-              </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {sectors.map(sec => {
-                  const Icon = sec.icon;
-                  const isSelected = selectedSector === sec.id;
-                  return (
-                    <button
-                      key={sec.id}
-                      type="button"
-                      onClick={() => setSelectedSector(sec.id)}
-                      className={`p-4 rounded-2xl border text-left flex items-start gap-3 transition-all cursor-pointer min-h-[48px] ${
-                        isSelected 
-                          ? 'bg-cyan-500/15 border-cyan-400 text-white shadow-[0_0_15px_rgba(0,229,255,0.15)]' 
-                          : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
-                      }`}
-                    >
-                      <Icon className={`w-5 h-5 flex-shrink-0 mt-0.5 ${isSelected ? 'text-cyan-400' : 'text-slate-400'}`} />
-                      <div>
-                        <strong className="block text-xs sm:text-sm font-bold">{sec.title[isTr ? 'tr' : 'en']}</strong>
-                        <span className="text-[11px] text-slate-400 leading-tight block mt-0.5">{sec.desc[isTr ? 'tr' : 'en']}</span>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Input 2: Monthly Revenue Tier */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-[#111827]/90 border border-white/10 space-y-4 shadow-xl">
-              <label className="text-sm font-mono uppercase text-slate-400 font-bold block">
-                2. {isTr ? 'Müşterinin / Sistemin Ortalama Aylık Cirosu' : 'Average Monthly Revenue'}
-              </label>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                {revenueTiers.map(t => (
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <label className="text-sm font-mono uppercase text-slate-400 font-bold block">
+                  1. {isTr ? 'Aylık Ciro veya Sipariş Hacmi' : 'Monthly Revenue or Order Volume'}
+                </label>
+                <div className="flex items-center gap-1.5 bg-black/40 p-1 rounded-xl border border-white/10 text-xs font-mono">
                   <button
-                    key={t.id}
                     type="button"
-                    onClick={() => { setSelectedTier(t.id); setCustomRevenue(''); }}
-                    className={`py-3 px-4 rounded-xl border text-xs sm:text-sm font-bold text-left transition-all cursor-pointer min-h-[48px] ${
-                      selectedTier === t.id && !customRevenue
-                        ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300'
-                        : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
+                    onClick={() => { setInputMode('tier'); setDailyOrders(''); }}
+                    className={`px-3 py-1 rounded-lg transition-colors cursor-pointer ${
+                      inputMode !== 'orders' ? 'bg-cyan-500 text-bg-dark font-bold' : 'text-slate-400 hover:text-white'
                     }`}
                   >
-                    {t.label}
+                    {isTr ? 'Aylık Ciro' : 'Monthly Revenue'}
                   </button>
-                ))}
+                  <button
+                    type="button"
+                    onClick={() => { setInputMode('orders'); setCustomRevenue(''); }}
+                    className={`px-3 py-1 rounded-lg transition-colors cursor-pointer ${
+                      inputMode === 'orders' ? 'bg-cyan-500 text-bg-dark font-bold' : 'text-slate-400 hover:text-white'
+                    }`}
+                  >
+                    {isTr ? 'Günlük Sipariş' : 'Daily Orders'}
+                  </button>
+                </div>
               </div>
-              <div className="pt-2">
-                <input
-                  type="number"
-                  placeholder={isTr ? 'Veya net aylık ciro girin (örn: 2500000)' : 'Or specify exact monthly revenue (e.g. 2500000)'}
-                  value={customRevenue}
-                  onChange={e => setCustomRevenue(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-xs sm:text-sm focus:border-cyan-400 focus:outline-none"
-                />
+
+              {inputMode === 'orders' ? (
+                /* Daily Orders Mode */
+                <div className="space-y-3 pt-1">
+                  <div>
+                    <label className="text-xs text-slate-400 mb-1.5 block">
+                      {isTr ? 'Tahmini Günlük Sipariş Adedi:' : 'Estimated Daily Orders:'}
+                    </label>
+                    <input
+                      type="number"
+                      placeholder={isTr ? 'Örn: 100 sipariş/gün' : 'e.g. 100 orders/day'}
+                      value={dailyOrders}
+                      onChange={e => setDailyOrders(e.target.value)}
+                      className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none font-mono"
+                    />
+                  </div>
+                  <div className="p-3.5 rounded-xl bg-cyan-500/10 border border-cyan-500/20 text-xs text-cyan-300 leading-relaxed font-mono">
+                    {isTr ? (
+                      <>
+                        Hesaplanan Aylık Ciro: <strong className="text-white">{formatCurrency(monthlyRev)}</strong>
+                        <span className="block text-[11px] text-slate-400 mt-1 font-sans">
+                          * Ortalama sepet ₺1.268 — T.C. Ticaret Bakanlığı ETBİS 2025 verisinden: ₺2,46 trilyon perakende e-ticaret hacmi ÷ 1,94 milyar işlem.
+                        </span>
+                      </>
+                    ) : (
+                      <>
+                        Calculated Monthly Revenue: <strong className="text-white">{formatCurrency(monthlyRev)}</strong>
+                        <span className="block text-[11px] text-slate-400 mt-1 font-sans">
+                          * Average basket ₺1,268 — from Ministry of Commerce ETBİS 2025 data: ₺2.46 trillion retail e-commerce volume ÷ 1.94 billion transactions.
+                        </span>
+                      </>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                /* Monthly Revenue Tiers & Custom Input */
+                <div className="space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {revenueTiers.map(t => (
+                      <button
+                        key={t.id}
+                        type="button"
+                        onClick={() => { setSelectedTier(t.id); setCustomRevenue(''); setInputMode('tier'); }}
+                        className={`py-3 px-4 rounded-xl border text-xs sm:text-sm font-bold text-left transition-all cursor-pointer min-h-[48px] ${
+                          selectedTier === t.id && !customRevenue && inputMode === 'tier'
+                            ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300'
+                            : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
+                        }`}
+                      >
+                        {t.label}
+                      </button>
+                    ))}
+                  </div>
+                  <div>
+                    <input
+                      type="number"
+                      placeholder={isTr ? 'Veya net aylık ciro girin (örn: 1500000)' : 'Or specify exact monthly revenue (e.g. 1500000)'}
+                      value={customRevenue}
+                      onChange={e => { setCustomRevenue(e.target.value); setInputMode('custom'); }}
+                      className="w-full px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-xs sm:text-sm focus:border-cyan-400 focus:outline-none font-mono"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Input 2: Duration Slider */}
+            <div className="p-6 sm:p-7 rounded-3xl bg-[#111827]/90 border border-white/10 space-y-4 shadow-xl">
+              <div className="flex items-center justify-between">
+                <label className="text-sm font-mono uppercase text-slate-400 font-bold">
+                  2. {isTr ? 'Tahmini Kesinti Süresi' : 'Estimated Outage Duration'}
+                </label>
+                <span className="text-lg font-black font-mono text-cyan-400">
+                  {durationHours} {isTr ? 'Saat' : 'Hours'}
+                </span>
+              </div>
+              <input
+                type="range"
+                min="1"
+                max="48"
+                step="1"
+                value={durationHours}
+                onChange={e => setDurationHours(parseInt(e.target.value))}
+                className="w-full h-2 bg-black/50 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+              />
+              <div className="flex justify-between text-[10px] font-mono text-slate-500">
+                <span>1 Saat</span>
+                <span>12 Saat</span>
+                <span>24 Saat</span>
+                <span>48 Saat</span>
               </div>
             </div>
 
-            {/* Input 3: Time Slot & Duration Slider */}
-            <div className="p-6 sm:p-7 rounded-3xl bg-[#111827]/90 border border-white/10 space-y-5 shadow-xl">
-              <div className="space-y-3">
-                <label className="text-sm font-mono uppercase text-slate-400 font-bold block">
-                  3. {isTr ? 'Kesintinin Yaşandığı Zaman Dilimi' : 'Time Window of Outage'}
+            {/* Input 3: Peak Factor (Visible and Adjustable) */}
+            <div className="p-6 sm:p-7 rounded-3xl bg-[#111827]/90 border border-white/10 space-y-4 shadow-xl">
+              <div className="flex flex-wrap items-center justify-between gap-2">
+                <label className="text-sm font-mono uppercase text-slate-400 font-bold">
+                  3. {isTr ? 'Zirve Katsayısı (Trafik Yoğunluğu)' : 'Peak Factor (Traffic Intensity)'}
                 </label>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-                  {timeSlots.map(ts => (
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-slate-400 font-mono">Katsayı:</span>
+                  <input
+                    type="number"
+                    step="0.1"
+                    min="0.1"
+                    max="10.0"
+                    value={peakFactor}
+                    onChange={e => setPeakFactor(parseFloat(e.target.value) || 1.0)}
+                    className="w-20 px-3 py-1 rounded-lg bg-black/40 border border-cyan-400/50 text-cyan-300 font-mono font-bold text-center text-sm focus:outline-none"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-2">
+                {peakPresets.map(preset => {
+                  const isSelected = Math.abs(peakFactor - preset.factor) < 0.01;
+                  return (
                     <button
-                      key={ts.id}
+                      key={preset.id}
                       type="button"
-                      onClick={() => setSelectedTimeSlot(ts.id)}
-                      className={`py-2.5 px-3 rounded-xl border text-[11px] sm:text-xs font-bold text-center transition-all cursor-pointer min-h-[48px] ${
-                        selectedTimeSlot === ts.id
+                      onClick={() => setPeakFactor(preset.factor)}
+                      className={`py-2 px-3 rounded-xl border text-xs font-bold text-center transition-all cursor-pointer min-h-[48px] flex flex-col justify-center items-center gap-0.5 ${
+                        isSelected
                           ? 'bg-cyan-500/20 border-cyan-400 text-cyan-300'
                           : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
                       }`}
                     >
-                      {ts.label[isTr ? 'tr' : 'en']}
+                      <span>{preset.label[isTr ? 'tr' : 'en']}</span>
+                      <span className="font-mono text-[10px] opacity-75">× {preset.factor.toFixed(1)}</span>
                     </button>
-                  ))}
-                </div>
+                  );
+                })}
               </div>
 
-              {/* Slider Duration */}
-              <div className="space-y-3 pt-3 border-t border-white/10">
-                <div className="flex items-center justify-between">
-                  <label className="text-sm font-mono uppercase text-slate-400 font-bold">
-                    4. {isTr ? 'Tahmini Kesinti Süresi' : 'Estimated Outage Duration'}
-                  </label>
-                  <span className="text-lg font-black font-mono text-cyan-400">
-                    {durationHours} {isTr ? 'Saat' : 'Hours'}
-                  </span>
-                </div>
-                <input
-                  type="range"
-                  min="1"
-                  max="48"
-                  step="1"
-                  value={durationHours}
-                  onChange={e => setDurationHours(parseInt(e.target.value))}
-                  className="w-full h-2 bg-black/50 rounded-lg appearance-none cursor-pointer accent-cyan-400"
-                />
-                <div className="flex justify-between text-[10px] font-mono text-slate-500">
-                  <span>1 Saat (Hotfix)</span>
-                  <span>12 Saat (Yarım Gün)</span>
-                  <span>24 Saat (1 Gün)</span>
-                  <span>48 Saat (Kriz)</span>
-                </div>
-              </div>
+              <p className="text-[11px] text-slate-400 leading-relaxed italic">
+                {isTr 
+                  ? 'Bu bir varsayımdır. Kendi trafik dağılımınızı biliyorsanız değiştirin.' 
+                  : 'This is an assumption. Adjust if you know your specific traffic distribution.'}
+              </p>
             </div>
 
           </div>
 
-          {/* Right Column: Realtime Financial Blueprint Output (5 Cols) */}
+          {/* Right Column: Realtime Arithmetic Blueprint Output (5 Cols) */}
           <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28">
             
             <div className="p-7 sm:p-8 rounded-3xl bg-gradient-to-br from-[#111827] via-[#0d131f] to-[#151f33] border border-red-500/40 shadow-2xl space-y-6 relative overflow-hidden">
@@ -336,54 +346,41 @@ const KesintiMaliyeti = () => {
               {/* Total Estimated Loss Hero */}
               <div className="space-y-1 text-center sm:text-left">
                 <span className="text-xs font-mono uppercase text-slate-400 block">
-                  {isTr ? 'Toplam Tahmini Bileşik Risk' : 'Total Estimated Compound Loss'}
+                  {isTr ? 'Tahmini Doğrudan Ciro Kaybı' : 'Estimated Direct Revenue Loss'}
                 </span>
                 <strong className="text-3xl sm:text-4xl font-black font-mono text-red-400 block tracking-tight">
-                  {formatCurrency(totalRisk)}
+                  {formatCurrency(directLoss)}
                 </strong>
-                <span className="text-[11px] text-slate-400 block">
-                  {isTr ? 'Doğrudan ciro kaybı + itibar ve müşteri churn riski dahil' : 'Direct turnover loss + client churn risk factor'}
-                </span>
               </div>
 
-              {/* Loss Breakdown Cards */}
-              <div className="space-y-2.5 pt-2 text-xs">
-                <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center">
-                  <span className="text-slate-400">{isTr ? 'Saatlik Tahmini Ciro Kaybı:' : 'Hourly Revenue Loss:'}</span>
-                  <strong className="text-white font-mono text-sm">{formatCurrency(hourlyLoss)}/saat</strong>
+              {/* Step-by-Step Arithmetic Table */}
+              <div className="space-y-3 pt-3 text-xs sm:text-sm font-mono border-t border-white/10">
+                <div className="flex justify-between items-center text-slate-300">
+                  <span>{isTr ? 'Aylık ciro' : 'Monthly revenue'}</span>
+                  <span className="font-bold text-white">{formatCurrency(monthlyRev)}</span>
                 </div>
-                <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center">
-                  <span className="text-slate-400">{isTr ? 'Doğrudan Sipariş / Fırsat Kaybı:' : 'Direct Lost Orders:'}</span>
-                  <strong className="text-white font-mono text-sm">{formatCurrency(directLoss)}</strong>
+                <div className="flex justify-between items-center text-slate-300">
+                  <span>{isTr ? 'Saat başına  (÷ 730 saat)' : 'Per hour  (÷ 730 hours)'}</span>
+                  <span className="font-bold text-slate-200">{formatCurrency(hourlyRev)}</span>
                 </div>
-                <div className="p-3.5 rounded-xl bg-white/5 border border-white/10 flex justify-between items-center">
-                  <span className="text-slate-400">{isTr ? 'SLA Ceza & Churn İtibar Riski:' : 'SLA Penalty & Churn Factor:'}</span>
-                  <strong className="text-amber-400 font-mono text-sm">{formatCurrency(reputationRisk)}</strong>
+                <div className="flex justify-between items-center text-slate-300">
+                  <span>{isTr ? 'Kesinti süresi' : 'Outage duration'}</span>
+                  <span className="font-bold text-slate-200">{durationHours} {isTr ? 'saat' : 'hours'}</span>
                 </div>
-              </div>
-
-              {/* SWAT Recovery Comparison Box */}
-              <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 space-y-2">
-                <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                  <strong className="text-xs font-bold text-emerald-300 uppercase font-mono">
-                    {isTr ? 'TMA SWAT İle Kurtarılan Tutar' : 'Saved via TMA SWAT Intervention'}
-                  </strong>
+                <div className="flex justify-between items-center text-slate-300">
+                  <span className="text-[11px] sm:text-xs">
+                    {isTr ? 'Zirve katsayısı  (varsayım · değiştirilebilir)' : 'Peak factor  (assumption · adjustable)'}
+                  </span>
+                  <span className="font-bold text-cyan-400">× {peakFactor.toLocaleString(isTr ? 'tr-TR' : 'en-US', { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</span>
                 </div>
-                <p className="text-xs text-slate-300 leading-relaxed">
-                  {isTr 
-                    ? `Bu kesinti 24-48 saat uzamak yerine 2.5 saatlik SWAT müdahalesiyle çözüldüğünde tahmini `
-                    : `Resolving this outage within 2.5h instead of prolonged 24h downtime saves approximately `}
-                  <strong className="text-emerald-400 font-mono font-bold">{formatCurrency(savedAmount)}</strong>
-                  {isTr ? ' net ciro kurtarılır.' : ' in net revenue.'}
-                </p>
-                <div className="pt-1 text-[11px] font-mono text-emerald-400/80">
-                  {isTr ? 'İlk Teşhis & Triyaj:' : 'Initial Triage:'} <strong>{isTr ? 'Ücretsiz · Kapsama Göre Teklif' : 'Free · Scoped per project'}</strong>
+                <div className="pt-3 border-t border-dashed border-white/20 flex justify-between items-center text-sm sm:text-base">
+                  <span className="font-bold text-white">{isTr ? 'Tahmini doğrudan ciro kaybı' : 'Estimated direct revenue loss'}</span>
+                  <strong className="text-xl sm:text-2xl font-black text-red-400 font-mono">{formatCurrency(directLoss)}</strong>
                 </div>
               </div>
 
               {/* Planning CTAs: Primary = Takvim, Secondary = WhatsApp */}
-              <div className="space-y-3 pt-1">
+              <div className="space-y-3 pt-2">
                 <a
                   href={getCalendlyUrl('downtime_result')}
                   target="_blank"
@@ -410,22 +407,40 @@ const KesintiMaliyeti = () => {
 
         </div>
 
-        {/* Section 3: Transparent Formula & Calculation Disclaimer */}
+        {/* Section 3: Transparent Formula & Calculation Methodology */}
         <div className="p-6 sm:p-8 rounded-3xl bg-[#111827] border border-white/10 space-y-4 text-xs sm:text-sm text-slate-300">
           <div className="flex items-center gap-2 text-white font-bold">
             <Info className="w-4 h-4 text-cyan-400" />
-            <h3 className="text-base font-bold">{isTr ? 'Şeffaf Hesaplama Modeli & Formül Metodolojisi' : 'Calculation Methodology & Transparency Disclosure'}</h3>
+            <h3 className="text-base font-bold">
+              {isTr ? 'Hesaplama Metodolojisi & Şeffaflık Beyanı' : 'Calculation Methodology & Transparency Disclosure'}
+            </h3>
           </div>
+          
           <div className="p-4 rounded-xl bg-black/40 border border-white/10 font-mono text-cyan-300 text-xs overflow-x-auto">
             <code>
-              Tahmini Kayıp = (Aylık Ciro / 720 Saat) × Kesinti Süresi (Saat) × Zaman Dilimi Katsayısı × Sektörel Dönüşüm Çarpanı + İtibar/Ceza Riski
+              {isTr 
+                ? 'Tahmini Doğrudan Kayıp = (Aylık Ciro ÷ 730 Saat) × Kesinti Süresi (Saat) × Zirve Katsayısı'
+                : 'Estimated Direct Loss = (Monthly Revenue ÷ 730 Hours) × Outage Duration (Hours) × Peak Factor'}
             </code>
           </div>
-          <p className="leading-relaxed text-slate-400 text-xs">
-            {isTr 
-              ? '* Hesaplanan tutarlar sektörel sepet terk oranları, B2B SLA gecikme cezaları ve ortalama saatlik trafik hacimlerine dayalı **tahmini** değerlerdir. Uydurma kesinlik vaat edilmez; kriz anındaki olası ciro ve itibar hasarını ajans patronunun görmesi amacıyla modellenmiştir.' 
-              : '* Figures represent estimated risk ranges based on standard industry checkout drop-off rates and B2B SLA penalty benchmarks.'}
-          </p>
+
+          <div className="space-y-3 leading-relaxed text-slate-300 text-xs sm:text-sm">
+            <p>
+              {isTr 
+                ? 'Bu hesap tek bir formülden ibarettir: aylık cironuz 730 saate bölünür, kesinti süresiyle ve seçtiğiniz zirve katsayısıyla çarpılır. Gizli çarpan yoktur; yukarıdaki her adım ekranda görünür ve katsayıyı siz değiştirirsiniz.'
+                : 'This calculation is a single formula: your monthly revenue divided by 730 hours, multiplied by the outage duration and the peak factor you choose. There are no hidden multipliers; every step above is shown on screen and you control the factor.'}
+            </p>
+            <p>
+              {isTr 
+                ? 'Sektöre göre çarpan, itibar kaybı oranı veya "müdahale edilmezse" senaryosu kullanmıyoruz — bunlar güvenilir biçimde ölçülemez. Dolaşan saatlik kesinti maliyeti rakamlarının çoğu kurumsal veri merkezi örneklemine dayanır ve ajans müşterisi ölçeğinde anlamsızdır.'
+                : 'We do not use sector multipliers, reputation-loss ratios or "what if nobody intervened" scenarios — those cannot be measured reliably. Most published hourly downtime figures come from enterprise data-centre samples and do not apply at agency-client scale.'}
+            </p>
+            <p>
+              {isTr 
+                ? 'Sonuç doğrudan ciro kaybının tahminidir; iade, kargo, destek yükü ve müşteri kaybı gibi dolaylı etkileri içermez.'
+                : 'The result estimates direct revenue loss only; it excludes refunds, shipping, support load and customer churn.'}
+            </p>
+          </div>
         </div>
 
       </div>
