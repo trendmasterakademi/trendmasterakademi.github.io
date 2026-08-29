@@ -81,11 +81,38 @@ const diagnosticLogs = [
   }
 ];
 
+// Desktop: 4 distinct pairs from different diagnostic families
+const desktopPairs = [
+  // Pair 1: #01 (Database) + #10 (SSL/Security)
+  [diagnosticLogs[0], diagnosticLogs[3]],
+  // Pair 2: #04 (Lock/Performance) + #18 (Email/Integration)
+  [diagnosticLogs[1], diagnosticLogs[6]],
+  // Pair 3: #07 (Server/Gateway) + #19 (SEO/Search)
+  [diagnosticLogs[2], diagnosticLogs[7]],
+  // Pair 4: #12 (API/Rate Limit) + #13 (Memory/Infra)
+  [diagnosticLogs[4], diagnosticLogs[5]]
+];
+
 const Hero = () => {
   const { t, i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
+  const [isDesktop, setIsDesktop] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+    return () => window.removeEventListener('resize', checkDesktop);
+  }, []);
+
+  // Reset index when switching viewport mode
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [isDesktop]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -95,12 +122,17 @@ const Hero = () => {
 
     if (isPaused) return;
 
+    const total = isDesktop ? desktopPairs.length : diagnosticLogs.length;
+    const duration = isDesktop ? 6000 : 4500;
+
     const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % diagnosticLogs.length);
-    }, 4500);
+      setActiveIndex((prev) => (prev + 1) % total);
+    }, duration);
 
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, isDesktop]);
+
+  const currentTotal = isDesktop ? desktopPairs.length : diagnosticLogs.length;
 
   return (
     <section id="hero" className="relative pt-20 pb-14 sm:pt-28 md:pt-32 md:pb-24 lg:pt-32 overflow-hidden px-4 sm:px-6 md:px-12 w-full max-w-full">
@@ -206,56 +238,95 @@ const Hero = () => {
             onFocus={() => setIsPaused(true)}
             onBlur={() => setIsPaused(false)}
           >
-            <div className="bg-[#080c16]/98 backdrop-blur-2xl rounded-[18px] sm:rounded-[22px] p-6 sm:p-8 border border-white/10 relative overflow-hidden">
+            <div className="bg-[#080c16]/98 backdrop-blur-2xl rounded-[18px] sm:rounded-[22px] p-5 sm:p-7 border border-white/10 relative overflow-hidden">
               
               {/* Top Header Label */}
-              <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-4 mb-6">
+              <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3.5 mb-5">
                 <span className="text-[11px] sm:text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase">
                   {isTr ? 'SİSTEMİNİZDE BUNU GÖRÜYORSANIZ' : 'IF YOU SEE THIS IN YOUR SYSTEM'}
                 </span>
                 <div className="flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
                   <span className="text-[10px] font-mono text-slate-400">
-                    {activeIndex + 1} / {diagnosticLogs.length}
+                    {activeIndex + 1} / {currentTotal}
                   </span>
                 </div>
               </div>
 
               {/* Rotating Logs Container (All 8 links rendered in DOM for SEO and Accessibility) */}
-              <div className="relative min-h-[150px] sm:min-h-[130px] flex items-center">
-                {diagnosticLogs.map((item, idx) => {
-                  const isActive = activeIndex === idx;
-                  return (
-                    <div
-                      key={idx}
-                      className={`transition-opacity duration-500 w-full ${
-                        isActive 
-                          ? 'opacity-100 relative pointer-events-auto z-10' 
-                          : 'opacity-0 absolute inset-0 pointer-events-none -z-10'
-                      }`}
-                      aria-hidden={!isActive}
-                    >
-                      <Link
-                        to={item.href}
-                        className="block group p-4 sm:p-5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-cyan-500/40 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400"
+              {isDesktop ? (
+                /* Desktop: 4 Pairs of 2 stacked cards */
+                <div className="relative min-h-[220px] flex items-center">
+                  {desktopPairs.map((pair, idx) => {
+                    const isActive = activeIndex === idx;
+                    return (
+                      <div
+                        key={idx}
+                        className={`transition-opacity duration-500 w-full flex flex-col gap-3 ${
+                          isActive 
+                            ? 'opacity-100 relative pointer-events-auto z-10' 
+                            : 'opacity-0 absolute inset-0 pointer-events-none -z-10'
+                        }`}
+                        aria-hidden={!isActive}
                       >
-                        <div className="font-mono text-xs sm:text-sm md:text-base text-cyan-300 font-semibold mb-3 leading-snug break-words">
-                          {item.log}
-                        </div>
-                        <div className="flex items-center gap-2 text-xs sm:text-sm font-mono text-slate-300 group-hover:text-white transition-colors">
-                          <span className="text-cyan-400">→</span>
-                          <span className="group-hover:underline underline-offset-4">
-                            {isTr ? item.title.tr : item.title.en}
-                          </span>
-                        </div>
-                      </Link>
-                    </div>
-                  );
-                })}
-              </div>
+                        {pair.map((item, pIdx) => (
+                          <Link
+                            key={pIdx}
+                            to={item.href}
+                            className="block group p-3.5 sm:p-4 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-cyan-500/40 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                          >
+                            <div className="font-mono text-xs sm:text-sm text-cyan-300 font-semibold mb-1.5 leading-snug break-words">
+                              {item.log}
+                            </div>
+                            <div className="flex items-center gap-1.5 text-xs font-mono text-slate-300 group-hover:text-white transition-colors">
+                              <span className="text-cyan-400">→</span>
+                              <span className="group-hover:underline underline-offset-4">
+                                {isTr ? item.title.tr : item.title.en}
+                              </span>
+                            </div>
+                          </Link>
+                        ))}
+                      </div>
+                    );
+                  })}
+                </div>
+              ) : (
+                /* Mobile: 8 Individual cards */
+                <div className="relative min-h-[140px] flex items-center">
+                  {diagnosticLogs.map((item, idx) => {
+                    const isActive = activeIndex === idx;
+                    return (
+                      <div
+                        key={idx}
+                        className={`transition-opacity duration-500 w-full ${
+                          isActive 
+                            ? 'opacity-100 relative pointer-events-auto z-10' 
+                            : 'opacity-0 absolute inset-0 pointer-events-none -z-10'
+                        }`}
+                        aria-hidden={!isActive}
+                      >
+                        <Link
+                          to={item.href}
+                          className="block group p-4 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-cyan-500/40 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                        >
+                          <div className="font-mono text-xs sm:text-sm text-cyan-300 font-semibold mb-3 leading-snug break-words">
+                            {item.log}
+                          </div>
+                          <div className="flex items-center gap-2 text-xs sm:text-sm font-mono text-slate-300 group-hover:text-white transition-colors">
+                            <span className="text-cyan-400">→</span>
+                            <span className="group-hover:underline underline-offset-4">
+                              {isTr ? item.title.tr : item.title.en}
+                            </span>
+                          </div>
+                        </Link>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
 
               {/* Bottom Catalog Link */}
-              <div className="pt-4 mt-6 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+              <div className="pt-3.5 mt-5 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
                 <Link
                   to="/teshis/"
                   className="text-cyan-400 hover:text-cyan-300 font-bold transition-colors flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded"
@@ -278,3 +349,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
