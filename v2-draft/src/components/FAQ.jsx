@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { HelpCircle, ChevronDown, ShieldCheck, Zap, Lock, Code2, Database } from 'lucide-react';
+import { HelpCircle, ChevronDown, ShieldCheck, Zap, Lock, Code2, Database, Calendar } from 'lucide-react';
+import { getCalendlyUrl } from '../utils/calendly';
 
 export const faqData = [
   {
@@ -156,7 +157,7 @@ const FAQ = () => {
           })}
         </div>
 
-        <div className="mt-12 p-6 rounded-2xl bg-white/5 border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
           <div>
             <span className="text-white font-bold text-sm sm:text-base block">
               {isTr ? 'Aklınıza takılan farklı bir soru mu var?' : 'Have a different question in mind?'}
@@ -165,15 +166,27 @@ const FAQ = () => {
               {isTr ? 'Kriz masası ve kıdemli mühendislik ekibimizle doğrudan görüşebilirsiniz.' : 'Reach out directly to our senior engineering desk.'}
             </span>
           </div>
-          <a
-            href="https://wa.me/905343713573?text=Merhaba%2C%20TMA%20hakk%C4%B1nda%20teknik%20bir%20sorum%20var."
-            target="_blank"
-            rel="noreferrer"
-            onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'faq_box' })}
-            className="px-6 py-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-300 font-bold text-xs sm:text-sm transition-all whitespace-nowrap"
-          >
-            {isTr ? 'WhatsApp’tan Sorun →' : 'Ask on WhatsApp →'}
-          </a>
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={getCalendlyUrl('faq_box')}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'faq_box' })}
+              className="px-5 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-bold text-xs sm:text-sm transition-all whitespace-nowrap flex items-center gap-2 shadow-lg shadow-cyan-500/20"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>{isTr ? '30 Dakikalık Randevu Seç →' : 'Schedule 30-Min Call →'}</span>
+            </a>
+            <a
+              href="https://wa.me/905343713573?text=Merhaba%2C%20TMA%20hakk%C4%B1nda%20teknik%20bir%20sorum%20var."
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'faq_box' })}
+              className="px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-emerald-400 font-bold text-xs sm:text-sm transition-all whitespace-nowrap flex items-center gap-2"
+            >
+              <span>{isTr ? 'WhatsApp’tan Sorun →' : 'Ask on WhatsApp →'}</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

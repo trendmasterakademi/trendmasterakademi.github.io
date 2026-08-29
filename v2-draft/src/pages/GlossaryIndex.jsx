@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { 
   BookOpen, Search, ArrowRight, ShieldCheck, AlertTriangle, 
-  Terminal, Sparkles, HelpCircle 
+  Terminal, Sparkles, HelpCircle, Calendar 
 } from 'lucide-react';
 import { glossaryTerms } from '../data/glossaryData';
+import { getCalendlyUrl } from '../utils/calendly';
 
 const GlossaryIndex = () => {
   const { i18n } = useTranslation();
@@ -138,6 +139,23 @@ const GlossaryIndex = () => {
             >
               <span>{isTr ? 'Ajans Çözümleri Masası' : 'Agency Engineering Desk'}</span>
             </Link>
+          </div>
+
+          {/* Calm Calendly Line */}
+          <div className="pt-2">
+            <a
+              href={getCalendlyUrl('glossary_index')}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'glossary_index' })}
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-cyan-400 hover:text-cyan-300 transition-colors underline decoration-cyan-500/40 hover:decoration-cyan-400"
+            >
+              <span>
+                {isTr 
+                  ? 'Aradığınız terimi bulamadınız mı? 30 dakikalık teknik tanışma görüşmesi →' 
+                  : "Can't find the term you're looking for? 30-minute technical intro call →"}
+              </span>
+            </a>
           </div>
         </div>
 

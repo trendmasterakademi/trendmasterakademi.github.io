@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, BookOpen, ShieldCheck, ArrowRight } from 'lucide-react';
+import { ArrowLeft, BookOpen, ShieldCheck, ArrowRight, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getCalendlyUrl } from '../utils/calendly';
 
 const Story = () => {
   const { i18n } = useTranslation();
@@ -131,23 +132,46 @@ const Story = () => {
           )}
         </section>
 
-        {/* Transition Card to Standards */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-[#111827] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="space-y-1 text-center sm:text-left">
-            <h3 className="text-lg font-bold text-white">
-              {isTr ? 'Mühendislik Standartlarımızı İnceleyin' : 'Explore Our Engineering Standards'}
-            </h3>
-            <p className="text-xs sm:text-sm text-slate-400">
-              {isTr ? '%100 White-Label, Resmi NDA, Şeffaf Ücretlendirme ve Doğrudan Mühendislik Masası prensiplerimiz.' : '100% White-Label, Binding NDA, Transparent Pricing and Direct Engineering Desk.'}
-            </p>
+        {/* Transition Cards to Standards & Calendly */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="p-6 sm:p-8 rounded-3xl bg-[#111827] border border-white/10 flex flex-col justify-between gap-4">
+            <div className="space-y-1 text-left">
+              <h3 className="text-lg font-bold text-white">
+                {isTr ? 'Mühendislik Standartlarımızı İnceleyin' : 'Explore Our Engineering Standards'}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-400">
+                {isTr ? '%100 White-Label, Resmi NDA, Şeffaf Ücretlendirme ve Doğrudan Mühendislik Masası prensiplerimiz.' : '100% White-Label, Binding NDA, Transparent Pricing and Direct Engineering Desk.'}
+              </p>
+            </div>
+            <Link
+              to="/about/"
+              className="px-6 py-3.5 rounded-2xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 hover:text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors w-full sm:w-fit"
+            >
+              <span>{isTr ? 'Standartlarımızı Görün' : 'View Standards'}</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
-          <Link
-            to="/about/"
-            className="px-6 py-3.5 rounded-2xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 hover:text-white font-bold text-xs sm:text-sm flex items-center gap-2 whitespace-nowrap transition-colors"
-          >
-            <span>{isTr ? 'Standartlarımızı Görün' : 'View Standards'}</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+
+          <div className="p-6 sm:p-8 rounded-3xl bg-cyan-500/10 border border-cyan-500/30 flex flex-col justify-between gap-4">
+            <div className="space-y-1 text-left">
+              <h3 className="text-lg font-bold text-white">
+                {isTr ? 'Birlikte Çalışmayı Konuşalım' : "Let's Discuss Working Together"}
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-300">
+                {isTr ? 'Ekibiniz veya projeniz için uygun zamanı belirleyin, doğrudan teknik masa ile görüşün.' : 'Select a time for your agency or project to consult directly with senior engineering.'}
+              </p>
+            </div>
+            <a
+              href={getCalendlyUrl('story_end')}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'story_end' })}
+              className="px-6 py-3.5 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition-all shadow-lg shadow-cyan-500/20 w-full sm:w-fit"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>{isTr ? '30 dakikalık teknik tanışma görüşmesi →' : '30-minute technical intro call →'}</span>
+            </a>
+          </div>
         </div>
 
       </div>

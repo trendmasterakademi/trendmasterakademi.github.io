@@ -166,6 +166,27 @@ const Contact = () => {
               </div>
             </a>
 
+            {/* 30-Minute Meeting Box */}
+            <a 
+              href={getCalendlyUrl('contact_card')} 
+              target="_blank" 
+              rel="noreferrer"
+              onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'contact_card' })}
+              className="flex items-center gap-4 p-5 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-500/20 transition-all group shadow-lg"
+            >
+              <div className="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                <Calendar className="w-6 h-6" />
+              </div>
+              <div>
+                <div className="text-white font-bold text-base">
+                  {isTr ? '30 Dakikalık Tanışma Randevusu' : '30-Minute Intro Meeting'}
+                </div>
+                <div className="text-cyan-400 text-xs sm:text-sm font-mono">
+                  {isTr ? 'Takvimden uygun saati seçin' : 'Pick a time on our calendar'}
+                </div>
+              </div>
+            </a>
+
             {/* Address Box */}
             <div className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 text-slate-300">
               <div className="w-12 h-12 rounded-xl bg-white/10 text-slate-400 flex items-center justify-center flex-shrink-0">
@@ -175,24 +196,6 @@ const Contact = () => {
                 <div className="text-white font-bold text-base">{t('contact-direct-address')}</div>
                 <div className="text-slate-400 text-xs sm:text-sm">{t('contact-address-text')}</div>
               </div>
-            </div>
-
-            {/* Calendly Booking Link Alternative */}
-            <div className="pt-2">
-              <a
-                href={getCalendlyUrl('contact_section')}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'contact_section' })}
-                className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-cyan-400 hover:text-cyan-300 transition-colors underline decoration-cyan-500/40 hover:decoration-cyan-400"
-              >
-                <Calendar className="w-4 h-4 flex-shrink-0" />
-                <span>
-                  {isTr 
-                    ? 'Yazmak yerine konuşmayı tercih ederseniz: 30 dakikalık teknik tanışma görüşmesi →' 
-                    : 'Prefer talking over writing: 30-minute technical intro call →'}
-                </span>
-              </a>
             </div>
 
           </div>

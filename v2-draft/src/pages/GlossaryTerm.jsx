@@ -3,9 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { 
   ArrowLeft, ArrowRight, ShieldCheck, AlertTriangle, 
-  HelpCircle, CheckCircle2, PhoneCall, BookOpen, ExternalLink, Zap
+  HelpCircle, CheckCircle2, PhoneCall, BookOpen, ExternalLink, Zap, Calendar
 } from 'lucide-react';
 import { glossaryTerms } from '../data/glossaryData';
+import { getCalendlyUrl } from '../utils/calendly';
 
 const GlossaryTerm = () => {
   const { slug } = useParams();
@@ -145,7 +146,7 @@ const GlossaryTerm = () => {
               {isTr ? 'Ajansınız adına %100 White-Label ve resmi NDA altında mühendislik desteği.' : '%100 White-Label engineering support under mutual NDA.'}
             </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3">
             <Link
               to={term.relatedService.link}
               className="px-6 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-black text-xs sm:text-sm whitespace-nowrap flex items-center gap-2 shadow-lg shadow-cyan-500/25"
@@ -161,6 +162,15 @@ const GlossaryTerm = () => {
               <PhoneCall className="w-4 h-4" />
               <span>{isTr ? 'Acil SWAT' : 'Emergency SWAT'}</span>
             </button>
+            <a
+              href={getCalendlyUrl('glossary_term', { utm_campaign: term.slug })}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'glossary_term', term: term.slug })}
+              className="px-4 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white font-mono text-xs sm:text-sm flex items-center gap-2 transition-colors whitespace-nowrap"
+            >
+              <span>{isTr ? '30 Dakikalık Teknik Tanışma →' : '30-Minute Technical Intro →'}</span>
+            </a>
           </div>
         </div>
 

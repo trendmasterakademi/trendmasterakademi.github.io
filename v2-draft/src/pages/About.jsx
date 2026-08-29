@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ShieldCheck, Server, Lock, Cpu, ArrowRight, ArrowLeft, Zap, PhoneCall } from 'lucide-react';
+import { ShieldCheck, Server, Lock, Cpu, ArrowRight, ArrowLeft, Zap, PhoneCall, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { getCalendlyUrl } from '../utils/calendly';
 
 const About = () => {
   const { i18n } = useTranslation();
@@ -184,10 +185,20 @@ const About = () => {
                 : 'Deploy reliable senior engineering power for your agency projects under mutual NDA.'}
             </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <a
+              href={getCalendlyUrl('about_cta')}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'about_cta' })}
+              className="px-6 py-4 rounded-2xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-black text-sm whitespace-nowrap flex items-center gap-2 shadow-lg shadow-cyan-500/25 transition-all"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>{isTr ? 'Takvimden 30 Dakikalık Görüşme Seç' : 'Schedule a 30-Minute Call'}</span>
+            </a>
             <Link
               to="/agency/"
-              className="px-6 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm whitespace-nowrap flex items-center gap-2 shadow-lg shadow-cyan-500/25"
+              className="px-6 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-sm whitespace-nowrap flex items-center gap-2 transition-colors"
             >
               <span>{isTr ? 'Ajans Çözümlerini İncele' : 'Explore Agency Solutions'}</span>
               <ArrowRight className="w-4 h-4" />
