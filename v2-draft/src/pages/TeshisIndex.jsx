@@ -44,20 +44,17 @@ const TeshisIndex = () => {
 
         <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl">
           {isTr 
-            ? 'Okuyucu teknik terimle değil belirtiyle gelir: "aynı stok iki kişiye satıldı", "bulut hesabı askıya alındı". Uzmanlık, aynı belirtiyi üreten farklı nedenleri birbirinden ayırabilmekte görünür.'
-            : 'Engineers and agency leaders arrive with symptoms rather than abstract terms. True engineering expertise is proven by distinguishing multiple root causes from the same defect.'}
+            ? 'Belirtiyi görüyorsunuz ama nedenini bilmiyorsunuz. Buradaki her teşhis bir belirtiyle başlar, aynı belirtiyi üretebilecek nedenleri ayırır ve hangisiyle karşı karşıya olduğunuzu nasıl anlayacağınızı gösterir.'
+            : 'You can see the symptom but not the cause. Each entry starts from a symptom, separates the causes that could produce it, and shows you how to tell which one you are facing.'}
         </p>
 
         {/* Feature Badges */}
         <div className="flex flex-wrap gap-2.5 pt-2 font-mono text-xs">
           <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold">
-            {isTr ? 'İsim: Teşhis Kataloğu' : 'Format: Diagnostic Catalog'}
+            {isTr ? '20 belirti' : '20 symptoms'}
           </span>
           <span className="px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold">
-            {isTr ? '20 Teşhis Yayında (20 Hedef)' : '20 Diagnostics Live (20 Total)'}
-          </span>
-          <span className="px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 font-semibold">
-            {isTr ? 'Her teşhiste akış + diyagram' : 'Interactive Flowchart per Defect'}
+            {isTr ? 'İlk teşhis ücretsiz' : 'First diagnosis is free'}
           </span>
         </div>
       </header>

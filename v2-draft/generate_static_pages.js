@@ -124,7 +124,7 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/teshis/',
     ogUrl: 'https://trendmasterakademi.com/teshis/',
     heading: 'Teşhis Kataloğu',
-    subheading: 'Okuyucu teknik terimle değil belirtiyle gelir: "aynı stok iki kişiye satıldı", "bulut hesabı askıya alındı". Uzmanlık, aynı belirtiyi üreten farklı nedenleri birbirinden ayırabilmekte görünür.'
+    subheading: 'Belirtiyi görüyorsunuz ama nedenini bilmiyorsunuz. Buradaki her teşhis bir belirtiyle başlar, aynı belirtiyi üretebilecek nedenleri ayırır ve hangisiyle karşı karşıya olduğunuzu nasıl anlayacağınızı gösterir.'
   }
 ];
 
