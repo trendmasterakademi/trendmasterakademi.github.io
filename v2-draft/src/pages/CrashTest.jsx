@@ -3,9 +3,9 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { 
   ShieldAlert, AlertTriangle, CheckCircle2, ArrowRight, ArrowLeft, 
-  RotateCcw, Copy, ExternalLink, Flame, Zap, Clock, ShieldCheck, 
-  Terminal, Lock, Layers, Server, Code2, Users, FileCode, Check, Cpu,
-  PhoneCall, Mail, Send, Calendar
+  RotateCcw, Copy, Flame, Clock, ShieldCheck, 
+  Code2, Users, Check, Cpu,
+  PhoneCall, Mail, Send, Calendar, Stethoscope, Search, Layers, FileText
 } from 'lucide-react';
 import EmergencySOSModal from '../components/EmergencySOSModal';
 import { getCalendlyUrl } from '../utils/calendly';
@@ -21,33 +21,32 @@ const scenarios = [
     color: 'from-red-500/20 to-orange-500/20',
     borderColor: 'border-red-500/40',
     badgeColor: 'text-red-400 bg-red-500/10 border-red-500/30',
-    baseRisk: 48,
     questions: [
       {
         id: 'outageScope',
         label: { tr: 'Kesintinin Kapsamı Nedir?', en: 'What is the scope of the outage?' },
         options: [
-          { value: 'total', label: { tr: 'Tüm sistem çöktü (Beyaz ekran / 500 Internal Server Error)', en: 'Full outage (Blank screen / 500 Internal Server Error)' }, weight: 18 },
-          { value: 'partial', label: { tr: 'Ödeme, üyelik veya kritik bir API çalışmıyor', en: 'Payment, auth, or critical API integration failed' }, weight: 12 },
-          { value: 'slow', label: { tr: 'Aşırı yavaşlık & veritabanı kilitlenmesi yaşanıyor', en: 'Severe degradation & database locks' }, weight: 6 }
+          { value: 'total', label: { tr: 'Tüm sistem çöktü (Beyaz ekran / 500 Internal Server Error)', en: 'Full outage (Blank screen / 500 Internal Server Error)' } },
+          { value: 'partial', label: { tr: 'Ödeme, üyelik veya kritik bir API çalışmıyor', en: 'Payment, auth, or critical API integration failed' } },
+          { value: 'slow', label: { tr: 'Aşırı yavaşlık & veritabanı kilitlenmesi yaşanıyor', en: 'Severe degradation & database locks' } }
         ]
       },
       {
         id: 'accessStatus',
         label: { tr: 'Sunucu ve Kod Erişim Durumunuz Nedir?', en: 'What is your server and codebase access status?' },
         options: [
-          { value: 'full', label: { tr: 'Git repo ve SSH / cPanel / Cloud erişimlerimiz tam', en: 'Full Git repo, SSH / cPanel / Cloud access available' }, weight: -6 },
-          { value: 'gitOnly', label: { tr: 'Yalnızca kaynak kod / Git erişimi var', en: 'Only source code / Git access is available' }, weight: 8 },
-          { value: 'limited', label: { tr: 'Şifreler dağınık, önceki geliştiricide kaldı', en: 'Credentials missing or stuck with former developer' }, weight: 18 }
+          { value: 'full', label: { tr: 'Git repo ve SSH / cPanel / Cloud erişimlerimiz tam', en: 'Full Git repo, SSH / cPanel / Cloud access available' } },
+          { value: 'gitOnly', label: { tr: 'Yalnızca kaynak kod / Git erişimi var', en: 'Only source code / Git access is available' } },
+          { value: 'limited', label: { tr: 'Şifreler dağınık, önceki geliştiricide kaldı', en: 'Credentials missing or stuck with former developer' } }
         ]
       },
       {
         id: 'clientPressure',
         label: { tr: 'Müşteri Tarafındaki Durum Nedir?', en: 'What is the client sentiment level?' },
         options: [
-          { value: 'furious', label: { tr: 'Müşteri aktif ciro kaybediyor / Sözleşme fesih riski', en: 'Client is losing revenue / Risk of contract cancellation' }, weight: 18 },
-          { value: 'waiting', label: { tr: 'Müşteri haber bekliyor, süre kısıtlı', en: 'Client is waiting for updates, tight timeframe' }, weight: 9 },
-          { value: 'internal', label: { tr: 'Kendi şirket içi altyapımız, müşteri henüz fark etmedi', en: 'Internal system, no external client escalations yet' }, weight: 2 }
+          { value: 'furious', label: { tr: 'Müşteri aktif ciro kaybediyor / Sözleşme fesih riski', en: 'Client is losing revenue / Risk of contract cancellation' } },
+          { value: 'waiting', label: { tr: 'Müşteri haber bekliyor, süre kısıtlı', en: 'Client is waiting for updates, tight timeframe' } },
+          { value: 'internal', label: { tr: 'Kendi şirket içi altyapımız, müşteri henüz fark etmedi', en: 'Internal system, no external client escalations yet' } }
         ]
       }
     ]
@@ -62,33 +61,32 @@ const scenarios = [
     color: 'from-amber-500/20 to-yellow-500/20',
     borderColor: 'border-amber-500/40',
     badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
-    baseRisk: 40,
     questions: [
       {
         id: 'docState',
         label: { tr: 'Mevcut Kodun Dokümantasyonu ve Durumu Nedir?', en: 'What is the condition and documentation of the code?' },
         options: [
-          { value: 'none', label: { tr: 'Sıfır dokümantasyon, karmaşık spagetti kod', en: 'Zero documentation, tangled spaghetti code' }, weight: 20 },
-          { value: 'partial', label: { tr: 'Kısmen anlaşılır ama kritik kısımlar izole değil', en: 'Partially readable, but critical logic is intertwined' }, weight: 10 },
-          { value: 'clean', label: { tr: 'Modern stack (React, Node, Python), kod okunabilir', en: 'Modern stack (React, Node, Python), readable structure' }, weight: -4 }
+          { value: 'none', label: { tr: 'Sıfır dokümantasyon, karmaşık spagetti kod', en: 'Zero documentation, tangled spaghetti code' } },
+          { value: 'partial', label: { tr: 'Kısmen anlaşılır ama kritik kısımlar izole değil', en: 'Partially readable, but critical logic is intertwined' } },
+          { value: 'clean', label: { tr: 'Modern stack (React, Node, Python), kod okunabilir', en: 'Modern stack (React, Node, Python), readable structure' } }
         ]
       },
       {
         id: 'deadlineGap',
         label: { tr: 'Teslim Tarihine Ne Kadar Süre Var?', en: 'How much time is left until the delivery deadline?' },
         options: [
-          { value: 'passed', label: { tr: 'Teslim tarihi geçti / Müşteri cezai şart işletiyor', en: 'Deadline passed / Client imposing contractual penalties' }, weight: 22 },
-          { value: 'thisWeek', label: { tr: 'Bu hafta içinde teslim edilmesi gerekiyor', en: 'Must be delivered within this week' }, weight: 12 },
-          { value: 'month', label: { tr: '1 aydan fazla süremiz var ama ekip kapasitesi yetersiz', en: 'More than a month, but internal capacity is overloaded' }, weight: 4 }
+          { value: 'passed', label: { tr: 'Teslim tarihi geçti / Müşteri cezai şart işletiyor', en: 'Deadline passed / Client imposing contractual penalties' } },
+          { value: 'thisWeek', label: { tr: 'Bu hafta içinde teslim edilmesi gerekiyor', en: 'Must be delivered within this week' } },
+          { value: 'month', label: { tr: '1 aydan fazla süremiz var ama ekip kapasitesi yetersiz', en: 'More than a month, but internal capacity is overloaded' } }
         ]
       },
       {
         id: 'missingModules',
         label: { tr: 'Eksik Kalan Parça Ne Kadar Büyüklükte?', en: 'How large is the missing piece?' },
         options: [
-          { value: 'core', label: { tr: 'Backend, veri akışı veya kritik entegrasyonlar bitmemiş', en: 'Core backend, data flows, or integrations unfinished' }, weight: 18 },
-          { value: 'bugs', label: { tr: 'Proje bitti sanılıyordu ama her yerden bug fışkırıyor', en: 'Project was thought done, but bugs are everywhere' }, weight: 14 },
-          { value: 'ui', label: { tr: 'Sadece frontend / tasarım uyarlamaları eksik', en: 'Only frontend / UI responsive polishing pending' }, weight: 5 }
+          { value: 'core', label: { tr: 'Backend, veri akışı veya kritik entegrasyonlar bitmemiş', en: 'Core backend, data flows, or integrations unfinished' } },
+          { value: 'bugs', label: { tr: 'Proje bitti sanılıyordu ama her yerden bug fışkırıyor', en: 'Project was thought done, but bugs are everywhere' } },
+          { value: 'ui', label: { tr: 'Sadece frontend / tasarım uyarlamaları eksik', en: 'Only frontend / UI responsive polishing pending' } }
         ]
       }
     ]
@@ -103,33 +101,32 @@ const scenarios = [
     color: 'from-cyan-500/20 to-blue-500/20',
     borderColor: 'border-cyan-500/40',
     badgeColor: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30',
-    baseRisk: 44,
     questions: [
       {
         id: 'remainingWork',
         label: { tr: 'Kalan İşin Tahmini Hacmi Nedir?', en: 'What is the estimated volume of remaining work?' },
         options: [
-          { value: 'heavy', label: { tr: '2-3 deneyimli yazılımcının 24 saat aralıksız çalışması gerek', en: 'Needs 2-3 senior devs working continuously' }, weight: 20 },
-          { value: 'moderate', label: { tr: '1 kıdemli yazılımcının odaklanmış 1-2 günü yeterli', en: '1 senior dev focused for 1-2 days is sufficient' }, weight: 10 },
-          { value: 'polish', label: { tr: 'Hata ayıklama, responsive uyum ve son testler kaldı', en: 'Bug fixes, responsive alignment, and final QA tests' }, weight: 4 }
+          { value: 'heavy', label: { tr: '2-3 deneyimli yazılımcının 24 saat aralıksız çalışması gerek', en: 'Needs 2-3 senior devs working continuously' } },
+          { value: 'moderate', label: { tr: '1 kıdemli yazılımcının odaklanmış 1-2 günü yeterli', en: '1 senior dev focused for 1-2 days is sufficient' } },
+          { value: 'polish', label: { tr: 'Hata ayıklama, responsive uyum ve son testler kaldı', en: 'Bug fixes, responsive alignment, and final QA tests' } }
         ]
       },
       {
         id: 'techStackMatch',
         label: { tr: 'Kullanılan Teknoloji Yığını Nedir?', en: 'What is the technology stack used?' },
         options: [
-          { value: 'custom', label: { tr: 'Özel PHP / Legacy Framework / Dağınık mimari', en: 'Legacy PHP / Custom Framework / Fragmented stack' }, weight: 18 },
-          { value: 'mobile', label: { tr: 'Flutter / React Native Mobil Uygulama', en: 'Flutter / React Native Mobile Application' }, weight: 10 },
-          { value: 'modern', label: { tr: 'React / Next.js / Node.js / Python / PostgreSQL', en: 'React / Next.js / Node.js / Python / PostgreSQL' }, weight: -5 }
+          { value: 'custom', label: { tr: 'Özel PHP / Legacy Framework / Dağınık mimari', en: 'Legacy PHP / Custom Framework / Fragmented stack' } },
+          { value: 'mobile', label: { tr: 'Flutter / React Native Mobil Uygulama', en: 'Flutter / React Native Mobile Application' } },
+          { value: 'modern', label: { tr: 'React / Next.js / Node.js / Python / PostgreSQL', en: 'React / Next.js / Node.js / Python / PostgreSQL' } }
         ]
       },
       {
         id: 'supportModel',
         label: { tr: 'Teslimat Aciliyeti ve Çalışma Modeli Nedir?', en: 'What is the delivery urgency and preferred model?' },
         options: [
-          { value: 'criticalCrunch', label: { tr: 'Kritik Acil: Bugün geceye kadar yetiştirilmeli', en: 'Critical: Must be delivered by tonight' }, weight: 16 },
-          { value: 'whitelabel', label: { tr: 'White-Label (Ajansınızın personeli gibi arka planda)', en: '100% White-Label (Invisibly as your internal team)' }, weight: 6 },
-          { value: 'swat', label: { tr: 'Doğrudan teknik repo devralma & hotfix teslimi', en: 'Direct repo takeover & rapid hotfix delivery' }, weight: 4 }
+          { value: 'criticalCrunch', label: { tr: 'Kritik Acil: Bugün geceye kadar yetiştirilmeli', en: 'Critical: Must be delivered by tonight' } },
+          { value: 'whitelabel', label: { tr: 'White-Label (Ajansınızın personeli gibi arka planda)', en: '100% White-Label (Invisibly as your internal team)' } },
+          { value: 'swat', label: { tr: 'Doğrudan teknik repo devralma & hotfix teslimi', en: 'Direct repo takeover & rapid hotfix delivery' } }
         ]
       }
     ]
@@ -144,38 +141,342 @@ const scenarios = [
     color: 'from-purple-500/20 to-pink-500/20',
     borderColor: 'border-purple-500/40',
     badgeColor: 'text-purple-400 bg-purple-500/10 border-purple-500/30',
-    baseRisk: 38,
     questions: [
       {
         id: 'specialNeeds',
         label: { tr: 'En Çok Tıkandığınız Özel Alan Hangisi?', en: 'Where is the primary technical bottleneck?' },
         options: [
-          { value: 'algo', label: { tr: 'Yüksek hacimli veri işleme / Algoritmik hesaplama / FinTech', en: 'High-frequency data processing / Algorithmic FinTech' }, weight: 18 },
-          { value: 'ai', label: { tr: 'OpenAI / LLM / RAG / Akıllı Bot & Otomasyon Mimarisi', en: 'OpenAI / LLM / RAG / Intelligent Agent Automation' }, weight: 14 },
-          { value: 'scale', label: { tr: 'Sunucu optimizasyonu, Redis caching & Docker CI/CD', en: 'Server tuning, Redis caching & Docker CI/CD pipelines' }, weight: 10 },
-          { value: 'payment', label: { tr: 'Stripe, iyzico, PayTR veya çoklu para birimli abonelik', en: 'Stripe, iyzico, PayTR multi-currency subscriptions' }, weight: 8 }
+          { value: 'algo', label: { tr: 'Yüksek hacimli veri işleme / Algoritmik hesaplama / FinTech', en: 'High-frequency data processing / Algorithmic FinTech' } },
+          { value: 'ai', label: { tr: 'OpenAI / LLM / RAG / Akıllı Bot & Otomasyon Mimarisi', en: 'OpenAI / LLM / RAG / Intelligent Agent Automation' } },
+          { value: 'scale', label: { tr: 'Sunucu optimizasyonu, Redis caching & Docker CI/CD', en: 'Server tuning, Redis caching & Docker CI/CD pipelines' } },
+          { value: 'payment', label: { tr: 'Stripe, iyzico, PayTR veya çoklu para birimli abonelik', en: 'Stripe, iyzico, PayTR multi-currency subscriptions' } }
         ]
       },
       {
         id: 'budgetRisk',
         label: { tr: 'Bu İşin Çözülmemesi Ajansınızı Nasıl Etkiler?', en: 'How would leaving this unresolved affect your agency?' },
         options: [
-          { value: 'reputation', label: { tr: 'Büyük ve stratejik bir kurumsal müşteriyi kaybetme riski', en: 'Risk of losing a high-tier enterprise client' }, weight: 22 },
-          { value: 'stalled', label: { tr: 'Proje haftalardır ilerlemiyor, ajans içi vakit kaybı', en: 'Project stalled for weeks, burning internal hours' }, weight: 12 },
-          { value: 'exploration', label: { tr: 'Yeni bir teklif hazırlıyoruz, fizibilite desteği arıyoruz', en: 'Preparing a proposal, seeking feasibility backing' }, weight: 2 }
+          { value: 'reputation', label: { tr: 'Büyük ve stratejik bir kurumsal müşteriyi kaybetme riski', en: 'Risk of losing a high-tier enterprise client' } },
+          { value: 'stalled', label: { tr: 'Proje haftalardır ilerlemiyor, ajans içi vakit kaybı', en: 'Project stalled for weeks, burning internal hours' } },
+          { value: 'exploration', label: { tr: 'Yeni bir teklif hazırlıyoruz, fizibilite desteği arıyoruz', en: 'Preparing a proposal, seeking feasibility backing' } }
         ]
       },
       {
         id: 'deliveryPace',
         label: { tr: 'Hedeflenen Çözüm Süresi Nedir?', en: 'What is your target turnaround time?' },
         options: [
-          { value: 'urgent', label: { tr: '1 - 3 Gün İçinde Çalışır Hale Getirilmeli', en: 'Must be operational within 1 - 3 days' }, weight: 18 },
-          { value: 'standard', label: { tr: '1 - 2 Hafta İçinde Tamamlanmalı', en: 'Can be completed within 1 - 2 weeks' }, weight: 5 }
+          { value: 'urgent', label: { tr: '1 - 3 Gün İçinde Çalışır Hale Getirilmeli', en: 'Must be operational within 1 - 3 days' } },
+          { value: 'standard', label: { tr: '1 - 2 Hafta İçinde Tamamlanmalı', en: 'Can be completed within 1 - 2 weeks' } }
         ]
       }
     ]
   }
 ];
+
+function getMatchedDiagnosis(scenarioId, answers) {
+  // Scenario 1: http500
+  if (scenarioId === 'http500') {
+    // ⚠️ Priority rule: accessStatus === 'limited'
+    if (answers.accessStatus?.value === 'limited') {
+      return {
+        matched: true,
+        priorityReason: {
+          tr: 'Erişim olmadan hiçbir arıza giderilemez; önce bu çözülmeli.',
+          en: 'Without access no fault can be repaired; this must be resolved first.'
+        },
+        slug: 'domain-hosting-erisimi-yok',
+        no: '17',
+        title: {
+          tr: 'Domain ve hosting erişimi kimsede yok',
+          en: 'No Access to Domain and Hosting Accounts'
+        },
+        aciliyet: {
+          tr: 'Orta · idari engel',
+          en: 'Medium · admin blocker'
+        },
+        badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+        tests: {
+          tr: [
+            'WHOIS sorgusunda registrar / yetkili kim görünüyor?',
+            'DNS yönetim paneline (Cloudflare, AWS vb.) erişim var mı?',
+            'Fatura / abonelik ödeme e-postası kime gidiyor?'
+          ],
+          en: [
+            'Who is listed as registrar / admin contact on WHOIS?',
+            'Is there root access to DNS panels (Cloudflare, Route53)?',
+            'Where are infrastructure billing and renewal emails sent?'
+          ]
+        }
+      };
+    }
+
+    const scope = answers.outageScope?.value;
+    if (scope === 'total') {
+      return {
+        matched: true,
+        slug: 'site-500-veriyor-dun-calisiyordu',
+        no: '07',
+        title: {
+          tr: 'Site 500 veriyor, dün çalışıyordu',
+          en: 'Site Returning 500 Error, Worked Yesterday'
+        },
+        aciliyet: {
+          tr: 'Kritik · site kapalı',
+          en: 'Critical · outage'
+        },
+        badgeColor: 'text-red-400 bg-red-500/10 border-red-500/30',
+        tests: {
+          tr: [
+            "Log'da 401 / auth hatası var mı?",
+            "df -h çıktısında %100 var mı?",
+            "Sistem log'unda dün gece update var mı?"
+          ],
+          en: [
+            "Is there a 401 / auth failure in system logs?",
+            "Does df -h output show 100% disk usage?",
+            "Is there an unannounced system update in logs?"
+          ]
+        }
+      };
+    } else if (scope === 'partial') {
+      return {
+        matched: true,
+        slug: 'odeme-alindi-siparis-olusmadi',
+        no: '02',
+        title: {
+          tr: 'Ödeme alındı, sipariş oluşmadı',
+          en: 'Payment Charged but Order Not Created'
+        },
+        aciliyet: {
+          tr: 'Kritik · ticari kayıp',
+          en: 'Critical · commercial loss'
+        },
+        badgeColor: 'text-red-400 bg-red-500/10 border-red-500/30',
+        tests: {
+          tr: [
+            "Ödeme sağlayıcı webhook logunda 200 OK var mı?",
+            "Veritabanı işleminde kilit / deadlock yaşandı mı?",
+            "API entegrasyonu rate limit veya zaman aşımına mı takıldı?"
+          ],
+          en: [
+            "Does payment gateway webhook log show 200 OK?",
+            "Did database transactions encounter a lock/deadlock?",
+            "Did the API integration hit rate limits or timeouts?"
+          ]
+        }
+      };
+    } else if (scope === 'slow') {
+      return {
+        matched: true,
+        slug: 'islemler-kilitlendi-sayfa-donuyor',
+        no: '04',
+        title: {
+          tr: 'İşlemler kilitlendi, sayfa dönüp duruyor',
+          en: 'Transactions Deadlocked, Pages Spinning'
+        },
+        aciliyet: {
+          tr: 'Kritik · işlem durdu',
+          en: 'Critical · transaction halt'
+        },
+        badgeColor: 'text-red-400 bg-red-500/10 border-red-500/30',
+        tests: {
+          tr: [
+            "Veritabanında bekleyen lock / deadlock tablosu var mı?",
+            "Sunucuda CPU %100 mü yoksa I/O wait mi yüksek?",
+            "Veritabanı bağlantı havuzu (connection pool) tükendi mi?"
+          ],
+          en: [
+            "Is there an active lock / deadlock table in database?",
+            "Is server load driven by 100% CPU or high I/O wait?",
+            "Is the database connection pool completely exhausted?"
+          ]
+        }
+      };
+    }
+  }
+
+  // Scenario 2: handover
+  if (scenarioId === 'handover') {
+    // ⚠️ Priority rule: missingModules === 'bugs'
+    if (answers.missingModules?.value === 'bugs') {
+      return {
+        matched: true,
+        slug: 'her-yeni-ozellik-oncekini-bozuyor',
+        no: '15',
+        title: {
+          tr: 'Her yeni özellik bir öncekini bozuyor',
+          en: 'Every New Feature Breaks an Existing One'
+        },
+        aciliyet: {
+          tr: 'Yüksek · stabilite riski',
+          en: 'High · stability risk'
+        },
+        badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+        tests: {
+          tr: [
+            "Regression test veya e2e test suite mevcut mu?",
+            "Modüller arası paylaşılan global state / side-effect var mı?",
+            "Geri alma (rollback) mekanizması çalışıyor mu?"
+          ],
+          en: [
+            "Are automated regression and e2e test suites present?",
+            "Is there uncontrolled global state / side-effects between modules?",
+            "Is there an instantaneous, working rollback mechanism?"
+          ]
+        }
+      };
+    }
+
+    const doc = answers.docState?.value;
+    if (doc === 'none') {
+      return {
+        matched: true,
+        slug: 'yazilimci-gitti-koda-girilemiyor',
+        no: '16',
+        title: {
+          tr: 'Yazılımcı gitti, kimse koda giremiyor',
+          en: 'Developer Disengaged, Codebase Inaccessible'
+        },
+        aciliyet: {
+          tr: 'Yüksek · süreklilik riski',
+          en: 'High · continuity risk'
+        },
+        badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+        tests: {
+          tr: [
+            "Git commit logunda son aktif yazar kim?",
+            "Ortam değişkenleri (.env / secrets) repoda veya sunucuda mevcut mu?",
+            "Kod lokal ortamda derlenip ayağa kalkıyor mu?"
+          ],
+          en: [
+            "Who is the last active author in Git commit history?",
+            "Are environment variables (.env / secrets) accessible?",
+            "Does the codebase build and run in a local clean sandbox?"
+          ]
+        }
+      };
+    } else {
+      return {
+        matched: true,
+        slug: 'kucuk-degisiklik-gunler-suruyor',
+        no: '20',
+        title: {
+          tr: 'Küçük değişiklik günler sürüyor',
+          en: 'Small Changes Take Days to Deploy'
+        },
+        aciliyet: {
+          tr: 'Orta · verimsizlik',
+          en: 'Medium · inefficiency'
+        },
+        badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+        tests: {
+          tr: [
+            "Tek satırlık değişiklikte testler / derleme dakikalarca sürüyor mu?",
+            "Kod tabanında yoğun tight coupling ve döngüsel bağımlılık var mı?",
+            "CI/CD hattı veya otomatik test suite eksik mi?"
+          ],
+          en: [
+            "Do builds/tests take unreasonable minutes for single-line edits?",
+            "Is there severe tight coupling and circular dependencies?",
+            "Is an automated test suite / CI-CD pipeline missing?"
+          ]
+        }
+      };
+    }
+  }
+
+  // Scenario 3: complex
+  if (scenarioId === 'complex') {
+    const need = answers.specialNeeds?.value;
+    if (need === 'payment') {
+      return {
+        matched: true,
+        slug: 'odeme-alindi-siparis-olusmadi',
+        no: '02',
+        title: {
+          tr: 'Ödeme alındı, sipariş oluşmadı',
+          en: 'Payment Charged but Order Not Created'
+        },
+        aciliyet: {
+          tr: 'Kritik · ticari kayıp',
+          en: 'Critical · commercial loss'
+        },
+        badgeColor: 'text-red-400 bg-red-500/10 border-red-500/30',
+        tests: {
+          tr: [
+            "Ödeme sağlayıcı webhook logunda 200 OK var mı?",
+            "Veritabanı işleminde kilit / deadlock yaşandı mı?",
+            "API entegrasyonu rate limit veya zaman aşımına mı takıldı?"
+          ],
+          en: [
+            "Does payment gateway webhook log show 200 OK?",
+            "Did database transactions encounter a lock/deadlock?",
+            "Did the API integration hit rate limits or timeouts?"
+          ]
+        }
+      };
+    } else if (need === 'scale') {
+      return {
+        matched: true,
+        slug: 'sunucu-her-gun-yeniden-baslatiliyor',
+        no: '13',
+        title: {
+          tr: 'Sunucu her gün yeniden başlatılıyor',
+          en: 'Server Restarted Daily as Workaround'
+        },
+        aciliyet: {
+          tr: 'Yüksek · stabilite riski',
+          en: 'High · stability risk'
+        },
+        badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+        tests: {
+          tr: [
+            "RAM kullanımı zamanla sürekli artıyor mu (memory leak)?",
+            "Process manager (PM2 / systemd / k8s) restart logunda OOM var mı?",
+            "Veritabanı bağlantıları kapanmadan askıda mı kalıyor?"
+          ],
+          en: [
+            "Does memory consumption steadily grow over time (memory leak)?",
+            "Do process manager logs indicate Out-Of-Memory restarts?",
+            "Are database connections hanging unclosed in pool?"
+          ]
+        }
+      };
+    } else if (need === 'algo') {
+      return {
+        matched: true,
+        slug: 'site-yavasladi-sunucu-bos',
+        no: '11',
+        title: {
+          tr: 'Site yavaşladı ama sunucu boş',
+          en: 'Site Stalled but Server Idling'
+        },
+        aciliyet: {
+          tr: 'Yüksek · performans kaybı',
+          en: 'High · performance loss'
+        },
+        badgeColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+        tests: {
+          tr: [
+            "Slow query logunda N+1 veya full table scan var mı?",
+            "Dış API çağrıları asenkron mu yoksa ana thread'i blokluyor mu?",
+            "Redis / In-memory cache miss oranı yüksek mi?"
+          ],
+          en: [
+            "Does slow query log show N+1 or unindexed full table scans?",
+            "Are third-party API calls blocking the main execution thread?",
+            "Is the cache miss ratio abnormally high on hot routes?"
+          ]
+        }
+      };
+    }
+  }
+
+  // Scenario 4: t48h OR complex/ai (no match)
+  return {
+    matched: false
+  };
+}
 
 const CrashTest = () => {
   const { i18n } = useTranslation();
@@ -215,14 +516,14 @@ const CrashTest = () => {
 
   React.useEffect(() => {
     document.title = isTr
-      ? "Agency Crash Test (60sn) - Kriz & Risk Simülatörü | Trend Master Akademi"
-      : "Agency Crash Test (60s) - Crisis & Risk Simulator | Trend Master Academy";
+      ? "Agency Crash Test (60sn) - Kriz & Teşhis Simülatörü | Trend Master Akademi"
+      : "Agency Crash Test (60s) - Crisis & Diagnostic Simulator | Trend Master Academy";
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", isTr
-        ? "Ajansınız teknik bir krize hazır mı? HTTP 500 kesintisi, geliştirici ani ayrılığı veya T-48H lansman darboğazı için 60 saniyede risk skorunuzu ve eylem planınızı görün."
-        : "Is your agency prepared for a technical crisis? Calculate risk scores and get a 3-phase action recovery blueprint in 60 seconds."
+        ? "Ajansınız teknik bir krize hazır mı? HTTP 500 kesintisi, geliştirici ani ayrılığı veya T-48H lansman darboğazı için 60 saniyede durumunuzu teşhis edin ve eylem planınızı görün."
+        : "Is your agency prepared for a technical crisis? Diagnose your situation and get a 3-phase action recovery blueprint in 60 seconds."
       );
     }
 
@@ -255,71 +556,28 @@ const CrashTest = () => {
   };
 
   const currentQuestions = selectedScenario.questions;
-  const isAllAnswered = currentQuestions.every(q => answers[q.id]);
+  const isAllAnswered = currentQuestions.length > 0 && currentQuestions.every(q => answers[q.id]);
 
-  const calculateScore = () => {
-    let score = selectedScenario.baseRisk;
-    Object.values(answers).forEach(ans => {
-      if (ans && typeof ans.weight === 'number') {
-        score += ans.weight;
-      }
-    });
-    return Math.min(Math.max(score, 38), 98);
-  };
-
-  const riskScore = calculateScore();
-
-  const getRiskDetails = (score) => {
-    if (score >= 80) {
-      return {
-        level: isTr ? 'KRİTİK RİSK (SEVİYE 1)' : 'CRITICAL RISK (LEVEL 1)',
-        color: 'text-red-400',
-        bgColor: 'bg-red-500/10 border-red-500/30',
-        summary: isTr 
-          ? 'Projenin teknik bütünlüğü ve ajansınızın müşteri itibarı yüksek tehlike altında. 0-2 saat içinde acil müdahale önerilir.' 
-          : 'Project technical integrity and client reputation are in severe jeopardy. 0-2 hour rapid intervention strongly advised.',
-        dailyLossEst: '₺45.000 - ₺120.000+ / $1,800 - $4,500+',
-        triageTime: isTr ? '15 - 30 Dakika' : '15 - 30 Minutes'
-      };
-    } else if (score >= 60) {
-      return {
-        level: isTr ? 'YÜKSEK TEHLİKE (SEVİYE 2)' : 'ELEVATED RISK (LEVEL 2)',
-        color: 'text-amber-400',
-        bgColor: 'bg-amber-500/10 border-amber-500/30',
-        summary: isTr 
-          ? 'Darboğazlar birikmiş durumda ve teslim tarihine yetişmeme riski belirgin. 24 saat içinde uzman devralması tavsiye edilir.' 
-          : 'Bottlenecks are compounding and deadline breach is probable. Senior engineering takeover within 24h recommended.',
-        dailyLossEst: '₺20.000 - ₺45.000 / $800 - $1,800',
-        triageTime: isTr ? '1 - 2 Saat' : '1 - 2 Hours'
-      };
-    } else {
-      return {
-        level: isTr ? 'KONTROLLÜ RİSK (SEVİYE 3)' : 'CONTROLLED RISK (LEVEL 3)',
-        color: 'text-cyan-400',
-        bgColor: 'bg-cyan-500/10 border-cyan-500/30',
-        summary: isTr 
-          ? 'Sistem kurtarılabilir aşamada ancak ekibinizin üzerindeki gereksiz yükü hafifletmek için white-label takviyesi fayda sağlar.' 
-          : 'Codebase is recoverable; white-label surge support is recommended to relieve internal team strain.',
-        dailyLossEst: '₺8.000 - ₺20.000 / $300 - $800',
-        triageTime: isTr ? '2 - 4 Saat' : '2 - 4 Hours'
-      };
-    }
-  };
-
-  const riskDetails = getRiskDetails(riskScore);
+  const matchResult = getMatchedDiagnosis(selectedScenario.id, answers);
 
   const copyActionPlan = () => {
-    const text = `=== TMA AGENCY CRASH TEST REPORT ===\n` +
-      `Scenario: ${selectedScenario.title[isTr ? 'tr' : 'en']} (${selectedScenario.code})\n` +
-      `Risk Rating: %${riskScore} - ${riskDetails.level}\n` +
-      `Estimated Daily Loss Risk: ${riskDetails.dailyLossEst}\n` +
-      `Emergency Triage Turnaround: ${riskDetails.triageTime}\n\n` +
-      `ACTION RECOVERY PROTOCOL:\n` +
-      `Phase 1 (0-2h): Repo Isolation, Git Fork & Deadlock Log Audits\n` +
-      `Phase 2 (2-12h): White-Label Hotfix, Database & API Re-architecture\n` +
-      `Phase 3 (12-24h): Production Deployment, Stress Testing & Clean Handover\n\n` +
+    const header = `=== TMA AGENCY CRASH TEST REPORT ===\n` +
+      `Scenario: ${selectedScenario.title[isTr ? 'tr' : 'en']} (${selectedScenario.code})\n`;
+
+    const body = matchResult.matched
+      ? `Matched Diagnosis: #${matchResult.no} · ${matchResult.title[isTr ? 'tr' : 'en']}\n` +
+        `Severity: ${matchResult.aciliyet[isTr ? 'tr' : 'en']}\n` +
+        `Diagnostic Tests:\n` +
+        matchResult.tests[isTr ? 'tr' : 'en'].map(t => `  - ${t}`).join('\n') + `\n\n`
+      : `Result: Capacity and timeline scoping required.\n\n`;
+
+    const protocol = `ACTION RECOVERY PROTOCOL:\n` +
+      `Phase 1: Code Freeze, Repo Isolation & Diagnostics\n` +
+      `Phase 2: White-Label Hotfix & Repair\n` +
+      `Phase 3: Production Deployment & Clean Handover\n\n` +
       `TMA Response Desk: +90 534 371 35 73 | info@trendmasterakademi.com`;
-    navigator.clipboard.writeText(text);
+
+    navigator.clipboard.writeText(header + body + protocol);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -329,30 +587,38 @@ const CrashTest = () => {
       window.trackEvent('whatsapp_clicked', {
         source: 'crash_test_dispatch',
         scenario: selectedScenario?.code,
-        risk_score: riskScore,
+        diagnosis: matchResult.matched ? matchResult.slug : 'capacity_scoping',
         agency_code: campaignParams.agency_code
       });
     }
 
     const kitBadge = campaignParams.agency_code ? `\n📦 *Kriz Kiti Ajans Kodu:* #${campaignParams.agency_code}` : '';
-    const rawText = isTr
-      ? `🚨 *TMA CRASH TEST SONUCU & ACİL MÜDAHALE TALEBİ* 🚨\n\n` +
-        `📊 *Seçilen Kriz:* ${selectedScenario.title.tr} (${selectedScenario.code})\n` +
-        `🔥 *Hesaplanan Risk Skoru:* %${riskScore} (${riskDetails.level})\n` +
-        `⏱️ *Önerilen Triyaj Süresi:* ${riskDetails.triageTime}${kitBadge}\n\n` +
-        `Ajansımız için acil teknik destek / white-label müdahale görüşmesi başlatmak istiyoruz.`
-      : `🚨 *TMA CRASH TEST REPORT & EMERGENCY DISPATCH INQUIRY* 🚨\n\n` +
-        `📊 *Selected Incident:* ${selectedScenario.title.en} (${selectedScenario.code})\n` +
-        `🔥 *Calculated Risk Rating:* ${riskScore}% (${riskDetails.level})\n` +
-        `⏱️ *Recommended Triage Window:* ${riskDetails.triageTime}${kitBadge}\n\n` +
-        `We would like to initiate an emergency technical support / white-label consultation for our agency.`;
+    const rawText = matchResult.matched
+      ? (isTr
+          ? `🚨 *TMA CRASH TEST TEŞHİS EŞLEŞMESİ* 🚨\n\n` +
+            `📊 *Seçilen Kriz:* ${selectedScenario.title.tr} (${selectedScenario.code})\n` +
+            `🎯 *Eşleşen Teşhis:* #${matchResult.no} · ${matchResult.title.tr}\n` +
+            `⚡ *Aciliyet:* ${matchResult.aciliyet.tr}${kitBadge}\n\n` +
+            `Bu arıza tablosu için TMA'dan acil teknik destek / teşhis görüşmesi talep ediyoruz.`
+          : `🚨 *TMA CRASH TEST DIAGNOSTIC MATCH* 🚨\n\n` +
+            `📊 *Selected Incident:* ${selectedScenario.title.en} (${selectedScenario.code})\n` +
+            `🎯 *Matched Diagnosis:* #${matchResult.no} · ${matchResult.title.en}\n` +
+            `⚡ *Severity:* ${matchResult.aciliyet.en}${kitBadge}\n\n` +
+            `We request an emergency technical consultation / diagnosis from TMA for this incident.`)
+      : (isTr
+          ? `⏱️ *TMA CRASH TEST KAPASİTE & DEVİR TALEBİ* ⏱️\n\n` +
+            `📊 *Seçilen Durum:* ${selectedScenario.title.tr} (${selectedScenario.code})${kitBadge}\n\n` +
+            `Kalan iş hacmi ve teslimat takvimi için teknik kapsam görüşmesi talep ediyoruz.`
+          : `⏱️ *TMA CRASH TEST CAPACITY & SCOPING INQUIRY* ⏱️\n\n` +
+            `📊 *Selected Scenario:* ${selectedScenario.title.en} (${selectedScenario.code})${kitBadge}\n\n` +
+            `We request a technical scoping consultation for remaining work volume and timeline.`);
 
     const text = encodeURIComponent(rawText);
     window.open(`https://wa.me/905343713573?text=${text}`, '_blank');
   };
 
   return (
-    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[#080b11] text-slate-200 relative  font-sans">
+    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[#080b11] text-slate-200 relative font-sans">
       {/* Background Glows */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-gradient-to-b from-cyan-500/10 via-red-500/5 to-transparent blur-[140px] pointer-events-none -z-10"></div>
       <div className="absolute inset-0 bg-[radial-gradient(#1f293d_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none -z-10"></div>
@@ -364,7 +630,7 @@ const CrashTest = () => {
           <div className="flex items-center gap-3">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
             <span className="text-xs sm:text-sm font-mono tracking-widest text-slate-300 uppercase">
-              TMA Response Desk // Diagnostic Engine v2.5
+              TMA Response Desk // Diagnostic Engine
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -384,7 +650,7 @@ const CrashTest = () => {
         {step < 3 && (
           <div className="text-center max-w-3xl mx-auto mb-12">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-mono font-bold uppercase tracking-wider mb-4">
-              <ShieldAlert className="w-4 h-4" /> {isTr ? 'Ajans Kriz Dayanıklılık & Risk Testi' : 'Agency Crisis Resilience & Risk Test'}
+              <ShieldAlert className="w-4 h-4" /> {isTr ? 'Ajans Kriz Dayanıklılık & Teşhis Testi' : 'Agency Crisis Resilience & Diagnostic Test'}
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono tracking-tight text-white mb-5 leading-tight">
               <span className="block">
@@ -396,8 +662,8 @@ const CrashTest = () => {
             </h1>
             <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
               {isTr 
-                ? 'Kritik kod kilitlenmeleri, devir süreçleri tıkanmış yarım kalan projeler veya yaklaşan teslimat baskısı altında ajansınızın risk puanını ölçün. Anında ajansınıza özel 3 aşamalı ilk aksiyon planını görün.' 
-                : 'Measure your agency’s risk rating under live outages, stranded repositories, or tight delivery deadlines. Get an instant 3-phase action recovery blueprint.'}
+                ? 'Kritik kod kilitlenmeleri, devir süreçleri tıkanmış yarım kalan projeler veya yaklaşan teslimat baskısı altında durumunuzu doğrudan teşhis edin. Eşleşen arıza tablosunu ve 3 aşamalı eylem reçetesini görün.' 
+                : 'Diagnose your situation under live outages, stranded repositories, or tight delivery deadlines. Review the matching fault blueprint and your 3-phase action recovery recipe.'}
             </p>
 
             {/* Quick Guarantees Bar */}
@@ -411,8 +677,8 @@ const CrashTest = () => {
                 <span className="text-slate-400 text-xs">{isTr ? 'Şifre / Repo İstemez' : 'Zero Repo/Credentials'}</span>
               </div>
               <div className="text-center">
-                <strong className="block text-cyan-400 font-bold text-sm sm:text-base">1 {isTr ? 'Plan' : 'Plan'}</strong>
-                <span className="text-slate-400 text-xs">{isTr ? 'Anında Eylem Reçetesi' : 'Instant Action Plan'}</span>
+                <strong className="block text-cyan-400 font-bold text-sm sm:text-base">1 {isTr ? 'Teşhis' : 'Diagnosis'}</strong>
+                <span className="text-slate-400 text-xs">{isTr ? 'Doğrudan Eşleşme' : 'Direct Blueprint Match'}</span>
               </div>
             </div>
           </div>
@@ -424,7 +690,7 @@ const CrashTest = () => {
             {[
               { s: 1, label: isTr ? '01. Senaryo Seçimi' : '01. Scenario' },
               { s: 2, label: isTr ? '02. Durum Teşhisi' : '02. Diagnosis' },
-              { s: 3, label: isTr ? '03. Risk Raporu & Reçete' : '03. Risk Blueprint' }
+              { s: 3, label: isTr ? '03. Teşhis Eşleşmesi & Reçete' : '03. Diagnosis & Blueprint' }
             ].map((item) => (
               <div
                 key={item.s}
@@ -444,11 +710,7 @@ const CrashTest = () => {
 
         {/* STEP 1: Scenario Selection */}
         {step === 1 && (
-          <div
-            
-            
-            className="space-y-8"
-          >
+          <div className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {scenarios.map((sc) => {
                 const IconComponent = sc.icon;
@@ -478,14 +740,9 @@ const CrashTest = () => {
                     <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
                       {sc.title[isTr ? 'tr' : 'en']}
                     </h3>
-                    <p className="text-sm text-slate-300 leading-relaxed mb-5">
+                    <p className="text-sm text-slate-300 leading-relaxed">
                       {sc.subtitle[isTr ? 'tr' : 'en']}
                     </p>
-
-                    <div className="flex items-center justify-between text-xs sm:text-sm pt-4 border-t border-white/10">
-                      <span className="text-slate-400">{isTr ? 'Temel Risk İndeksi' : 'Base Risk Index'}</span>
-                      <span className="font-mono font-bold text-white">%{sc.baseRisk}</span>
-                    </div>
                   </button>
                 );
               })}
@@ -515,11 +772,7 @@ const CrashTest = () => {
 
         {/* STEP 2: Questions */}
         {step === 2 && (
-          <div
-            
-            
-            className="space-y-6"
-          >
+          <div className="space-y-6">
             {/* Sticky Unified Scenario & Progress Header */}
             <div className="sticky top-[78px] sm:top-[92px] md:top-[100px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/98 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_15px_45px_rgba(0,0,0,0.95)] space-y-3.5 transition-all">
               {/* Eyebrow & Status Bar */}
@@ -551,7 +804,7 @@ const CrashTest = () => {
                 <div className="flex items-center gap-3">
                   <div className="w-28 sm:w-48 h-2.5 sm:h-3 bg-black/50 rounded-full overflow-hidden border border-white/10">
                     <div 
-                      className="h-full bg-gradient-to-r from-red-500 to-amber-400 transition-all duration-300"
+                      className="h-full bg-gradient-to-r from-red-500 to-cyan-400 transition-all duration-300"
                       style={{ width: `${(Object.keys(answers).length / currentQuestions.length) * 100}%` }}
                     />
                   </div>
@@ -620,8 +873,8 @@ const CrashTest = () => {
                   if (window.trackEvent) {
                     window.trackEvent('crash_test_completed', {
                       scenario: selectedScenario.code,
-                      risk_score: riskScore,
-                      risk_level: riskDetails.level,
+                      diagnosis_matched: matchResult.matched,
+                      diagnosis_slug: matchResult.matched ? matchResult.slug : 'capacity_scoping',
                       agency_code: campaignParams.agency_code
                     });
                   }
@@ -632,7 +885,7 @@ const CrashTest = () => {
                     : 'bg-white/10 text-slate-500 cursor-not-allowed'
                 }`}
               >
-                <span>{isTr ? 'Risk Raporunu & Aksiyon Planını Üret' : 'Generate Risk Blueprint & Action Plan'}</span>
+                <span>{isTr ? 'Teşhis Eşleşmesini & Aksiyon Planını Üret' : 'Generate Diagnostic Match & Action Plan'}</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
@@ -641,75 +894,118 @@ const CrashTest = () => {
 
         {/* STEP 3: Results & Protocol */}
         {step === 3 && (
-          <div
-            
-            
-            className="space-y-8"
-          >
-            {/* Header Risk Card */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#111827] via-[#0d131f] to-[#1a0e14] border border-red-500/30 shadow-[0_0_50px_rgba(239,68,68,0.15)] relative overflow-hidden">
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-white/10">
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
-                    <span className="text-xs font-mono font-bold tracking-widest text-red-400 uppercase">
-                      {isTr ? 'TMA TEŞHİS RAPORU' : 'TMA DIAGNOSTIC BLUEPRINT'} // {selectedScenario.code}
+          <div className="space-y-8">
+            {/* Header / Diagnosis Matching Card */}
+            {matchResult.matched ? (
+              <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#111827] via-[#0d131f] to-[#151d2f] border border-cyan-500/30 shadow-[0_0_50px_rgba(0,229,255,0.1)] relative overflow-hidden space-y-6">
+                
+                {/* Priority Rule Banner (if applicable) */}
+                {matchResult.priorityReason && (
+                  <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center gap-3 text-amber-300 text-sm">
+                    <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-400" />
+                    <span className="font-semibold">{matchResult.priorityReason[isTr ? 'tr' : 'en']}</span>
+                  </div>
+                )}
+
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-white/10">
+                  <div className="space-y-2">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                      <span className="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase">
+                        {isTr ? 'TEŞHİS KATALOĞU EŞLEŞMESİ' : 'DIAGNOSTIC CATALOG MATCH'} // {selectedScenario.code}
+                      </span>
+                    </div>
+                    <span className="text-xs sm:text-sm font-mono text-slate-400 block">
+                      {isTr ? 'Verdiğiniz cevaplar şu tabloyla örtüşüyor:' : 'Your answers match the following failure profile:'}
+                    </span>
+                    <h2 className="text-2xl sm:text-3xl font-black text-white flex flex-wrap items-center gap-3">
+                      <span className="text-cyan-400 font-mono">#{matchResult.no}</span>
+                      <span>·</span>
+                      <span>{matchResult.title[isTr ? 'tr' : 'en']}</span>
+                    </h2>
+                  </div>
+
+                  {/* Urgency Badge directly from diagnostic */}
+                  <div className="flex-shrink-0">
+                    <span className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-mono font-bold border inline-flex items-center gap-2 ${matchResult.badgeColor}`}>
+                      <span className="w-2 h-2 rounded-full bg-current"></span>
+                      <span>{matchResult.aciliyet[isTr ? 'tr' : 'en']}</span>
                     </span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white">
+                </div>
+
+                {/* Distinguishing Tests Box */}
+                <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 space-y-4">
+                  <div className="flex items-center gap-2 text-sm font-mono font-bold text-slate-300">
+                    <Stethoscope className="w-4 h-4 text-cyan-400" />
+                    <span>
+                      {isTr 
+                        ? 'Bu arızanın üç olası nedeni var ve ayırt edici testleri şunlar:' 
+                        : 'This symptom has three root causes with the following distinguishing diagnostic tests:'}
+                    </span>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                    {matchResult.tests[isTr ? 'tr' : 'en'].map((testText, tIdx) => (
+                      <div key={tIdx} className="p-4 rounded-xl bg-black/40 border border-white/10 flex items-start gap-2.5">
+                        <ArrowRight className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
+                        <span className="text-xs sm:text-sm text-slate-200 leading-relaxed font-mono">{testText}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="pt-2 flex justify-start">
+                    <Link
+                      to={`/teshis/${matchResult.slug}/`}
+                      className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer group"
+                    >
+                      <span>{isTr ? 'Teşhisin tamamını okuyun' : 'Read the complete diagnosis'}</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
+                </div>
+
+              </div>
+            ) : (
+              /* Non-matching case: t48h or complex/ai */
+              <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#111827] via-[#0d131f] to-[#151d2f] border border-cyan-500/30 shadow-[0_0_50px_rgba(0,229,255,0.1)] relative overflow-hidden space-y-6">
+                <div className="space-y-2 pb-4 border-b border-white/10">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+                    <span className="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase">
+                      {isTr ? 'KAPASİTE & DEVİR DEĞERLENDİRMESİ' : 'CAPACITY & TIMELINE ASSESSMENT'} // {selectedScenario.code}
+                    </span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-black text-white">
                     {selectedScenario.title[isTr ? 'tr' : 'en']}
                   </h2>
-                  <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-xl leading-relaxed">
-                    {riskDetails.summary}
+                </div>
+
+                <div className="p-6 rounded-2xl bg-cyan-950/20 border border-cyan-500/30 space-y-5">
+                  <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
+                    {isTr 
+                      ? 'Bu bir arıza değil, kapasite ve zaman sorunu. Teşhis Kataloğu yayında olan 20 arızayı kapsıyor; sizinki onlardan biri değil. Bu durumda yapılacak şey teşhis değil, kapsamı konuşmak: ne kadar iş kaldığını ve ne kadar sürede kapatılabileceğini birlikte çıkarırız.'
+                      : 'This is a capacity and timeline problem, not a fault. The Diagnostic Catalog covers 20 published failures and yours is not one of them. What you need here is not a diagnosis but a scoping conversation: we work out together how much work remains and how quickly it can be closed.'}
                   </p>
-                </div>
 
-                {/* Score Gauge */}
-                <div className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10 flex-shrink-0">
-                  <div className="text-right">
-                    <span className="text-xs font-mono uppercase text-slate-400 block">{isTr ? 'Kriz & Risk Skoru' : 'Crisis Risk Index'}</span>
-                    <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${riskDetails.bgColor} ${riskDetails.color}`}>
-                      {riskDetails.level}
-                    </span>
-                  </div>
-                  <div className="w-20 h-20 rounded-2xl bg-black/40 border border-red-500/40 flex flex-col items-center justify-center shadow-inner">
-                    <span className="text-3xl font-black font-mono text-white">%{riskScore}</span>
-                    <span className="text-[9px] font-mono text-red-400">RATING</span>
+                  <div>
+                    <Link
+                      to="/agency/"
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-xs sm:text-sm shadow-lg shadow-cyan-500/25 transition-all cursor-pointer transform hover:-translate-y-0.5"
+                    >
+                      <span>{isTr ? 'Ajans Çözümlerini İnceleyin →' : 'Explore Agency Solutions →'}</span>
+                    </Link>
                   </div>
                 </div>
               </div>
-
-              {/* Metric Highlights with Pricing Anchor */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-6">
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-                  <span className="text-xs sm:text-sm text-slate-400 block mb-1">{isTr ? 'Tahmini Günlük Risk & Kayıp' : 'Estimated Daily Risk Loss'}</span>
-                  <strong className="text-base sm:text-lg font-bold text-red-400">{riskDetails.dailyLossEst}</strong>
-                  <span className="text-xs text-slate-400 block mt-1">{isTr ? 'Cezai şart ve müşteri kaybı dahil' : 'Contract penalties & client churn factored'}</span>
-                </div>
-                <div className="p-5 rounded-2xl bg-white/5 border border-cyan-500/30 bg-cyan-500/5">
-                  <span className="text-xs sm:text-sm text-cyan-300 font-bold block mb-1">{isTr ? 'İlk Teşhis & Triyaj' : 'Initial Triage'}</span>
-                  <strong className="text-base sm:text-lg font-bold text-emerald-400 font-mono">{isTr ? 'Ücretsiz' : 'Free'}</strong>
-                  <span className="text-xs text-cyan-400/80 block mt-1">{isTr ? 'Sonraki adımlar kapsama göre belirlenir' : 'Next steps scoped per project'}</span>
-                </div>
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-                  <span className="text-xs sm:text-sm text-slate-400 block mb-1">{isTr ? 'Acil Triyaj & Teşhis Süresi' : 'Rapid Triage Turnaround'}</span>
-                  <strong className="text-base sm:text-lg font-bold text-cyan-400">{riskDetails.triageTime}</strong>
-                  <span className="text-xs text-slate-400 block mt-1">{isTr ? 'İlk kod analizi ve yapılabilirlik raporu' : 'Initial audit and feasibility report'}</span>
-                </div>
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-                  <span className="text-xs sm:text-sm text-slate-400 block mb-1">{isTr ? 'TMA Çalışma Güvencesi' : 'TMA Engagement Guarantee'}</span>
-                  <strong className="text-base sm:text-lg font-bold text-emerald-400">%100 White-Label</strong>
-                  <span className="text-xs text-slate-400 block mt-1">{isTr ? 'Resmi Gizlilik Sözleşmesi (NDA) ile' : 'Protected under Mutual NDA'}</span>
-                </div>
-              </div>
-            </div>
+            )}
 
             {/* 3-Phase Action Protocol */}
             <div className="p-6 sm:p-8 rounded-3xl bg-[#111827] border border-white/10 shadow-xl space-y-6">
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div>
                   <span className="text-xs sm:text-sm font-mono font-bold text-cyan-400 uppercase tracking-wider block">
-                    {isTr ? 'Acil Müdahale Protokolü' : 'Emergency SWAT Protocol'}
+                    {isTr ? 'Müdahale Protokolü' : 'Action Protocol'}
                   </span>
                   <h3 className="text-xl sm:text-2xl font-bold text-white">
                     {isTr ? 'Ajansınıza Özel 3 Aşamalı İlk Kurtarma Reçetesi' : 'Your Bespoke 3-Phase Recovery Blueprint'}
@@ -719,7 +1015,7 @@ const CrashTest = () => {
                   onClick={copyActionPlan}
                   className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 flex items-center gap-2 transition-colors cursor-pointer"
                 >
-                  {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                  {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-slate-400" />}
                   <span>{copied ? (isTr ? 'Kopyalandı!' : 'Copied!') : (isTr ? 'Raporu Kopyala' : 'Copy Blueprint')}</span>
                 </button>
               </div>
@@ -728,7 +1024,7 @@ const CrashTest = () => {
                 <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
-                      {isTr ? 'AŞAMA 01 (0 - 2 Saat)' : 'PHASE 01 (0 - 2 Hours)'}
+                      {isTr ? 'AŞAMA 01' : 'PHASE 01'}
                     </span>
                     <Clock className="w-4 h-4 text-cyan-400" />
                   </div>
@@ -745,7 +1041,7 @@ const CrashTest = () => {
                 <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-orange-500/10 text-orange-400 border border-orange-500/30">
-                      {isTr ? 'AŞAMA 02 (2 - 12 Saat)' : 'PHASE 02 (2 - 12 Hours)'}
+                      {isTr ? 'AŞAMA 02' : 'PHASE 02'}
                     </span>
                     <Code2 className="w-4 h-4 text-orange-400" />
                   </div>
@@ -762,7 +1058,7 @@ const CrashTest = () => {
                 <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
-                      {isTr ? 'AŞAMA 03 (12 - 24 Saat)' : 'PHASE 03 (12 - 24 Hours)'}
+                      {isTr ? 'AŞAMA 03' : 'PHASE 03'}
                     </span>
                     <ShieldCheck className="w-4 h-4 text-emerald-400" />
                   </div>
@@ -779,13 +1075,13 @@ const CrashTest = () => {
             </div>
 
             {/* Handover Cross-Link Tool Box */}
-            {selectedScenario?.code === 'SCN-02' && (
+            {selectedScenario?.code === 'HANDOVER HELL' && (
               <div className="p-6 sm:p-7 rounded-3xl bg-cyan-950/40 border border-cyan-500/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
                 <div className="space-y-1.5 text-center sm:text-left">
                   <div className="flex items-center justify-center sm:justify-start gap-2">
                     <span className="w-2 h-2 rounded-full bg-cyan-400"></span>
                     <span className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wider">
-                      {isTr ? 'ÖZEL DEVİR HAZIRLIK ENVENTERİ' : 'DEDICATED HANDOVER AUDIT'}
+                      {isTr ? 'ÖZEL DEVİR HAZIRLIK ENVANTERİ' : 'DEDICATED HANDOVER AUDIT'}
                     </span>
                   </div>
                   <h4 className="text-base sm:text-lg font-bold text-white">
@@ -806,20 +1102,20 @@ const CrashTest = () => {
             )}
 
             {/* HTTP 500 Downtime Calculator Cross-Link Tool Box */}
-            {(selectedScenario?.code === 'HTTP 500' || selectedScenario?.code === 'SCN-01') && (
+            {selectedScenario?.code === 'HTTP 500' && (
               <div className="p-6 sm:p-7 rounded-3xl bg-red-950/40 border border-red-500/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
                 <div className="space-y-1.5 text-center sm:text-left">
                   <div className="flex items-center justify-center sm:justify-start gap-2">
                     <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
                     <span className="text-xs font-mono font-bold text-red-300 uppercase tracking-wider">
-                      {isTr ? 'ÖZEL KESİNTİ MALİYETİ SİMÜLATÖRÜ' : 'DEDICATED DOWNTIME LOSS CALCULATOR'}
+                      {isTr ? 'ÖZEL KESİNTİ MALİYETİ HESAPLAYICI' : 'DEDICATED DOWNTIME LOSS CALCULATOR'}
                     </span>
                   </div>
                   <h4 className="text-base sm:text-lg font-bold text-white">
                     {isTr ? 'Bu kesintinin saatlik ve toplam ciro kaybını hesaplamak ister misiniz?' : 'Calculate the exact hourly and total turnover loss of this downtime'}
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-300">
-                    {isTr ? 'Sektörünüze ve ciro aralığınıza göre tahmini finansal kaybı ve SLA riskini modelleyin.' : 'Model financial loss, churn risk, and SWAT remediation savings in 30 seconds.'}
+                    {isTr ? 'Aylık cironuz veya günlük sipariş adedinize göre doğrudan ciro kaybını şeffafça hesaplayın.' : 'Model direct turnover loss transparently per monthly revenue or daily order count.'}
                   </p>
                 </div>
                 <Link
@@ -841,7 +1137,7 @@ const CrashTest = () => {
                   </div>
                   <div>
                     <h4 className="text-lg font-bold text-white">
-                      {isTr ? 'Bu Kriz Raporunu & 3 Aşamalı Reçeteyi E-Postama Gönder' : 'Send This Crisis Blueprint & Action Recipe to My Email'}
+                      {isTr ? 'Bu Teşhis Raporunu & Reçeteyi E-Postama Gönder' : 'Send This Diagnostic Blueprint & Action Recipe to My Email'}
                     </h4>
                     <p className="text-xs text-slate-400">
                       {isTr ? 'Ajans içi değerlendirme ve teknik ekibinizle paylaşım için hazır PDF/E-posta formatında iletilir.' : 'Sent in a ready-to-share technical blueprint format for your internal stakeholders.'}
@@ -853,7 +1149,7 @@ const CrashTest = () => {
               {leadSent === 'success' ? (
                 <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-emerald-300 text-sm font-bold">
                   <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-400" />
-                  <span>{isTr ? 'Rapor talebiniz başarıyla kaydedildi! Kriz masamız analizi hazırlayıp iletecektir.' : 'Report request logged successfully! Our SWAT engineers will deliver your blueprint.'}</span>
+                  <span>{isTr ? 'Rapor talebiniz başarıyla kaydedildi! Kriz masamız analizi hazırlayıp iletecektir.' : 'Report request logged successfully! Our engineers will deliver your blueprint.'}</span>
                 </div>
               ) : leadSent === 'error' ? (
                 <div className="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 space-y-3">
@@ -862,7 +1158,7 @@ const CrashTest = () => {
                     <span>{isTr ? 'Ağ kesintisi nedeniyle otomatik iletilemedi.' : 'Network interruption during auto-dispatch.'}</span>
                   </div>
                   <p className="text-xs text-slate-300">
-                    {isTr ? 'Analiz skorunuz ve eylem planınız hazır. Aşağıdaki butona tıklayarak WhatsApp üzerinden raporu hemen talep edebilirsiniz:' : 'Your diagnosis is ready. Request your blueprint directly via WhatsApp:'}
+                    {isTr ? 'Teşhis raporunuz hazır. Aşağıdaki butona tıklayarak WhatsApp üzerinden raporu hemen talep edebilirsiniz:' : 'Your diagnosis is ready. Request your blueprint directly via WhatsApp:'}
                   </p>
                   <button
                     type="button"
@@ -885,14 +1181,13 @@ const CrashTest = () => {
                         body: JSON.stringify({
                           access_key: '64ef0cf5-703c-4cfd-92a4-4f0ba65bb2bb',
                           from_name: 'TMA Crash Test Diagnostic',
-                          subject: `🎯 CRASH TEST RAPOR TALEBİ: ${leadName} (%${riskScore} Risk - ${selectedScenario?.code})${campaignParams.agency_code ? ` [Kutu #${campaignParams.agency_code}]` : ''}`,
+                          subject: `🎯 CRASH TEST TEŞHİS TALEBİ: ${leadName} (${selectedScenario?.code} - ${matchResult.matched ? `#${matchResult.no}` : 'Kapsam Görüşmesi'})${campaignParams.agency_code ? ` [Kutu #${campaignParams.agency_code}]` : ''}`,
                           name: leadName,
                           email: leadEmail,
                           phone: leadPhone,
                           scenario: selectedScenario?.title[isTr ? 'tr' : 'en'],
-                          riskScore: `%${riskScore}`,
-                          lossRisk: lossRisk,
-                          turnaroundSLA: turnaroundSLA,
+                          matchedDiagnosis: matchResult.matched ? `#${matchResult.no} · ${matchResult.title[isTr ? 'tr' : 'en']}` : 'Kapsam ve Kapasite Görüşmesi',
+                          severity: matchResult.matched ? matchResult.aciliyet[isTr ? 'tr' : 'en'] : 'Kapsam Görüşmesi',
                           agencyBoxCode: campaignParams.agency_code || 'N/A',
                           utm_source: campaignParams.utm_source || 'direct',
                           utm_campaign: campaignParams.utm_campaign || 'N/A',
@@ -962,12 +1257,12 @@ const CrashTest = () => {
             {/* Bottom Dispatch CTA */}
             <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-red-950/40 via-[#111827] to-cyan-950/40 border border-cyan-500/30 text-center space-y-6">
               <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white">
-                {isTr ? 'Bu Krizi Birlikte 24 Saat İçinde Çözelim' : 'Let’s Resolve This Crunch Together in 24 Hours'}
+                {isTr ? 'Bu Krizi Birlikte Çözelim' : 'Let’s Resolve This Together'}
               </h3>
               <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                 {isTr 
-                  ? 'Müşteriniz sizin müşteriniz olarak kalırken; arka planda ihtiyacınız olan teknik gücü ve kurtarma mühendisliğini anında devreye alalım.' 
-                  : 'While your client remains strictly yours; let us deploy the invisible engineering rescue power you need immediately.'}
+                  ? 'Müşteriniz sizin müşteriniz olarak kalırken; arka planda ihtiyacınız olan teknik gücü ve kurtarma mühendisliğini doğrudan devreye alalım.' 
+                  : 'While your client remains strictly yours; let us deploy the invisible engineering rescue power you need directly.'}
               </p>
 
               <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
