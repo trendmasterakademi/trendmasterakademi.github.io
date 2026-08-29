@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { AlertTriangle, X, PhoneCall, ShieldCheck, Clock, Send, CheckCircle2, MessageSquare, RefreshCw } from 'lucide-react';
 
@@ -86,12 +85,12 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
+    <React.Fragment>
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 15 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 15 }}
+        <div
+          
+          
+          
           className="w-full max-w-xl max-h-[92vh] flex flex-col bg-[#0d121d] border border-red-500/40 rounded-2xl sm:rounded-3xl shadow-[0_0_50px_rgba(239,68,68,0.25)] relative text-slate-100 my-auto overflow-hidden"
         >
           {/* Top glow line */}
@@ -321,9 +320,9 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
             </form>
           )}
           </div>
-        </motion.div>
+        </div>
       </div>
-    </AnimatePresence>
+    </React.Fragment>
   );
 };
 

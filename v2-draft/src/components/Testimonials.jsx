@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, Quote, ShieldCheck } from 'lucide-react';
 
 const testimonialsList = [
@@ -95,13 +94,13 @@ const Testimonials = () => {
 
         {/* Carousel Box */}
         <div className="relative min-h-[360px] sm:min-h-[320px] flex items-center justify-center">
-          <AnimatePresence mode="wait">
-            <motion.div
+          <React.Fragment>
+            <div
               key={currentIndex}
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.35 }}
+              
+              
+              
+              
               className="glass-panel p-8 sm:p-12 rounded-3xl border border-white/10 w-full bg-[#111827]/80 shadow-2xl relative"
             >
               <div className="flex items-center justify-center gap-1 mb-6">
@@ -126,8 +125,8 @@ const Testimonials = () => {
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </AnimatePresence>
+            </div>
+          </React.Fragment>
 
           {/* Navigation Arrows */}
           <button 

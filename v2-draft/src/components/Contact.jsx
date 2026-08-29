@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MessageSquare, PhoneCall, Mail, MapPin, ShieldCheck, Send, CheckCircle2, AlertTriangle, RefreshCw } from 'lucide-react';
-import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Contact = () => {
@@ -186,10 +185,10 @@ const Contact = () => {
         </div>
         
         {/* Right Column: Contact Form with Backend Lead Capture */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+        <div 
+          
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          
           className="lg:col-span-7 glass-panel p-7 sm:p-10 rounded-3xl border border-cyan-500/25 bg-[#111827]/85 shadow-2xl"
         >
           {submitStatus === 'success' ? (
@@ -399,7 +398,7 @@ const Contact = () => {
               </button>
             </form>
           )}
-        </motion.div>
+        </div>
         
       </div>
     </section>

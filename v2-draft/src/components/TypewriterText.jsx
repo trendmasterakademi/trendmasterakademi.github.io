@@ -1,5 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { useInView } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+
+export const useInView = (ref, options = { once: true }) => {
+  const [isInView, setIsInView] = useState(false);
+  useEffect(() => {
+    if (!ref.current) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        setIsInView(true);
+        if (options.once) observer.disconnect();
+      } else if (!options.once) {
+        setIsInView(false);
+      }
+    }, options);
+    observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [ref, options.once]);
+  return isInView;
+};
 
 export const TypewriterText = ({ 
   text, 
@@ -12,8 +29,8 @@ export const TypewriterText = ({
 }) => {
   const [displayedText, setDisplayedText] = useState('');
   const [isDone, setIsDone] = useState(false);
-  const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "0px" });
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (!isInView || !text) return;
@@ -38,15 +55,13 @@ export const TypewriterText = ({
     }, delay);
 
     return () => clearTimeout(startTimeout);
-  }, [isInView, text, speed, delay]);
+  }, [isInView, text, speed, delay, onComplete]);
 
   return (
-    <span ref={ref} className={`font-mono inline ${className}`}>
-      <span>{displayedText}</span>
-      {showCursor && (
-        <span className={`inline-block font-mono font-black ml-0.5 ${cursorColor} ${isDone ? 'animate-cursor opacity-80' : 'opacity-100'}`}>
-          _
-        </span>
+    <span ref={ref} className={`inline-block ${className}`}>
+      {displayedText}
+      {showCursor && !isDone && (
+        <span className={`inline-block w-2 h-4 sm:h-5 ml-1 bg-cyan-400 animate-pulse ${cursorColor} align-middle`} />
       )}
     </span>
   );

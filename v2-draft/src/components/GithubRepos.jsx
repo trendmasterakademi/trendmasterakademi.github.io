@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FolderGit2, Star, GitFork } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 const fallbackRepos = [
   {
@@ -121,15 +120,15 @@ const GithubRepos = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {repos.map((repo, idx) => (
-              <motion.a
+              <a
                 href={repo.html_url}
                 target="_blank"
                 rel="noreferrer"
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
+                
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                
+                
                 className="glass-panel p-6 rounded-2xl flex flex-col hover:-translate-y-2 hover:border-primary/40 transition-all group"
               >
                 <FolderGit2 className="w-8 h-8 text-primary mb-4 group-hover:scale-110 transition-transform" />
@@ -146,7 +145,7 @@ const GithubRepos = () => {
                     <span className="flex items-center gap-1 hover:text-white transition-colors"><GitFork className="w-4 h-4" /> {repo.forks_count}</span>
                   </div>
                 </div>
-              </motion.a>
+              </a>
             ))}
           </div>
         )}

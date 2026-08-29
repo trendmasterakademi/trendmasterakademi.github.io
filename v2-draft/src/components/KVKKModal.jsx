@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { X, ShieldCheck, Lock, FileText, CheckCircle2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
@@ -10,12 +9,12 @@ const KVKKModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
+    <React.Fragment>
       <div className="fixed inset-0 z-[110] flex items-center justify-center p-4 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: 15 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: 15 }}
+        <div
+          
+          
+          
           className="w-full max-w-2xl max-h-[85vh] flex flex-col bg-[#0d121d] border border-cyan-500/30 rounded-3xl shadow-[0_0_50px_rgba(0,229,255,0.15)] relative text-slate-200 overflow-hidden"
         >
           {/* Header */}
@@ -98,9 +97,9 @@ const KVKKModal = ({ isOpen, onClose }) => {
               {isTr ? 'Anladım ve Kapat' : 'Got it & Close'}
             </button>
           </div>
-        </motion.div>
+        </div>
       </div>
-    </AnimatePresence>
+    </React.Fragment>
   );
 };
 

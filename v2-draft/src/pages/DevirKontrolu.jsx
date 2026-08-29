@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
 import { 
   ShieldCheck, AlertTriangle, CheckCircle2, Copy, Check, 
   ArrowRight, ArrowLeft, RefreshCw, Mail, PhoneCall,
@@ -432,9 +431,9 @@ const DevirKontrolu = () => {
 
         {/* STEP 1: Intro Screen */}
         {step === 1 && (
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
+            
+            
             className="space-y-8"
           >
             <div className="text-center max-w-3xl mx-auto space-y-4">
@@ -498,14 +497,14 @@ const DevirKontrolu = () => {
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {/* STEP 2: 12-Item Checklist */}
         {step === 2 && (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+          <div
+            
+            
             className="space-y-8"
           >
             {/* Progress Header */}
@@ -629,14 +628,14 @@ const DevirKontrolu = () => {
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {/* STEP 3: Results, Missing Items & Action Protocol */}
         {step === 3 && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
+          <div
+            
+            
             className="space-y-8"
           >
             {/* Header Result Card */}
@@ -912,7 +911,7 @@ const DevirKontrolu = () => {
               </button>
             </div>
 
-          </motion.div>
+          </div>
         )}
 
       </div>

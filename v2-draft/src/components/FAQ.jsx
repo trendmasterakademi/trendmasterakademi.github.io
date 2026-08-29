@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { HelpCircle, ChevronDown, ShieldCheck, Zap, Lock, Code2, Database } from 'lucide-react';
 
@@ -138,20 +137,20 @@ const FAQ = () => {
                   </div>
                 </button>
 
-                <AnimatePresence initial={false}>
+                <React.Fragment>
                   {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                    <div
+                      
+                      
+                      
+                      
                     >
                       <div className="px-6 sm:px-7 pb-6 sm:pb-7 pt-1 text-slate-300 text-sm sm:text-base leading-relaxed border-t border-white/5 ml-14 sm:ml-14">
                         {item.answer[isTr ? 'tr' : 'en']}
                       </div>
-                    </motion.div>
+                    </div>
                   )}
-                </AnimatePresence>
+                </React.Fragment>
               </div>
             );
           })}

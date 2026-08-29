@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Code2, ArrowRight, CheckCircle2, AlertTriangle, Sparkles, Terminal, FileCode, Check } from 'lucide-react';
 

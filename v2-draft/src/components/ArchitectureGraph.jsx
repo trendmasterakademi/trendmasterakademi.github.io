@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Database, ShieldCheck, Zap, Activity, Cpu, ArrowRight, CheckCircle2, Lock, Radio, Layers, Server, Globe } from 'lucide-react';
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
   ChevronRight, Zap, ArrowRight, ShieldCheck, Terminal, FileCode, 
@@ -148,10 +147,10 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start w-full">
         
         {/* Left Column: Value Proposition */}
-        <motion.div 
-          initial={{ opacity: 0, x: -25 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
+        <div 
+          
+          
+          
           className="lg:col-span-6 flex flex-col gap-5 sm:gap-6 self-start"
         >
           {/* Studio & Availability Badge */}
@@ -238,25 +237,25 @@ const Hero = () => {
               <span className="text-[10px] sm:text-xs text-slate-400">Ortalama İlk Triyaj Hızı</span>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Right Column: Anchored High-Tech Glowing IDE Window */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.15 }}
+        <div 
+          
+          
+          
           className="lg:col-span-6 relative w-full self-start lg:sticky lg:top-28 z-20 mt-4 lg:mt-0"
         >
           {/* Floating High-Tech Holographic Tokens */}
           {floatingBadges.map((badge, idx) => (
-            <motion.div
+            <div
               key={idx}
-              animate={{ y: [0, -5, 0] }}
-              transition={{ repeat: Infinity, duration: 4.2 + (idx % 5) * 0.8, ease: 'easeInOut', delay: (idx % 4) * 0.3 }}
+              
+              
               className={`hidden md:inline-flex absolute ${badge.pos} z-30 px-3 py-1.5 rounded-xl text-xs font-mono font-bold border backdrop-blur-2xl shadow-xl pointer-events-none transition-all ${badge.color}`}
             >
               {badge.text}
-            </motion.div>
+            </div>
           ))}
 
           {/* Premium Glowing Ambient Aura Frame */}
@@ -353,13 +352,13 @@ const Hero = () => {
 
                 {/* Code Lines Content */}
                 <div className="p-3 sm:p-4 flex-1 overflow-x-auto">
-                  <AnimatePresence mode="wait">
-                    <motion.div
+                  <React.Fragment>
+                    <div
                       key={activeFile.name}
-                      initial={{ opacity: 0, y: 3 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -3 }}
-                      transition={{ duration: 0.15 }}
+                      
+                      
+                      
+                      
                       className="space-y-0"
                     >
                       {activeFile.lines.map((line, idx) => (
@@ -370,8 +369,8 @@ const Hero = () => {
                           )}
                         </div>
                       ))}
-                    </motion.div>
-                  </AnimatePresence>
+                    </div>
+                  </React.Fragment>
                 </div>
 
               </div>
@@ -400,7 +399,7 @@ const Hero = () => {
             </div>
 
           </div>
-        </motion.div>
+        </div>
 
       </div>
     </section>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Flame, Server, ShieldCheck, ShieldAlert, Cpu, Smartphone, Database, CheckCircle2, ArrowRight, Zap, Bot, Lock, Code2 
 } from 'lucide-react';
@@ -100,14 +99,14 @@ const Services = () => {
 
         {/* Services Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <AnimatePresence mode="wait">
+          <React.Fragment>
             {activeServices.map((service, index) => (
-              <motion.div
+              <div
                 key={service.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.35, delay: index * 0.1 }}
+                
+                
+                
+                
                 className="glass-panel rounded-3xl p-7 md:p-8 hover:border-cyan-500/50 transition-all group flex flex-col justify-between bg-[#111827]/70 shadow-xl"
               >
                 <div>
@@ -135,9 +134,9 @@ const Services = () => {
                   <span>{t('card-btn-contact')}</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
-              </motion.div>
+              </div>
             ))}
-          </AnimatePresence>
+          </React.Fragment>
         </div>
 
       </div>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { 
@@ -430,9 +429,9 @@ const CrashTest = () => {
 
         {/* STEP 1: Scenario Selection */}
         {step === 1 && (
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
+          <div
+            
+            
             className="space-y-8"
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -496,14 +495,14 @@ const CrashTest = () => {
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {/* STEP 2: Questions */}
         {step === 2 && (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+          <div
+            
+            
             className="space-y-8"
           >
             {/* Selected Scenario Mini-Banner */}
@@ -595,14 +594,14 @@ const CrashTest = () => {
                 <ArrowRight className="w-5 h-5" />
               </button>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {/* STEP 3: Results & Protocol */}
         {step === 3 && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
+          <div
+            
+            
             className="space-y-8"
           >
             {/* Header Risk Card */}
@@ -965,7 +964,7 @@ const CrashTest = () => {
                 <span>📍 Konak / İzmir & Global Remote</span>
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
 
       </div>
