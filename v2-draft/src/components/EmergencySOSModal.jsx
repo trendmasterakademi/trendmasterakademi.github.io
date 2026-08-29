@@ -10,6 +10,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
   const [contactPerson, setContactPerson] = useState('');
   const [contactPhone, setContactPhone] = useState('');
   const [urgency, setUrgency] = useState('critical');
+  const [budget, setBudget] = useState('');
   const [problemDesc, setProblemDesc] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
@@ -30,6 +31,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
       `👤 *${isTr ? 'Yetkili:' : 'Contact Person:'}* ${contactPerson || (isTr ? 'Belirtilmedi' : 'Not specified')}\n` +
       `📞 *${isTr ? 'Telefon / WhatsApp:' : 'Phone / WhatsApp:'}* ${contactPhone}\n` +
       `⚡ *${isTr ? 'Aciliyet Düzeyi:' : 'Urgency Level:'}* ${getUrgencyLabel()}\n` +
+      (budget ? `💰 *${isTr ? 'Bütçe Aralığı:' : 'Budget Range:'}* ${budget}\n` : '') +
       `📝 *${isTr ? 'Kriz Özeti:' : 'Crisis Scope:'}* ${problemDesc}\n\n` +
       `_TMA Response Desk üzerinden gönderildi._`
     );
@@ -58,6 +60,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
           contactPerson: contactPerson || 'Belirtilmedi',
           phone: contactPhone,
           urgency: urgencyLabel,
+          budget: budget || 'Belirtilmedi',
           problemDesc: problemDesc,
           timestamp: new Date().toISOString()
         })
@@ -272,6 +275,20 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                     </button>
                   ))}
                 </div>
+              </div>
+
+              <div>
+                <label className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
+                  {isTr ? 'Bütçe aralığınız (opsiyonel)' : 'Budget range (optional)'}
+                </label>
+                <input
+                  type="text"
+                  name="budget"
+                  placeholder={isTr ? 'Örn. 40.000 – 60.000 ₺ / henüz netleşmedi' : 'e.g. 40,000 – 60,000 ₺ / not finalized yet'}
+                  value={budget}
+                  onChange={(e) => setBudget(e.target.value)}
+                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base focus:border-red-500 focus:outline-none transition-colors"
+                />
               </div>
 
               <div>

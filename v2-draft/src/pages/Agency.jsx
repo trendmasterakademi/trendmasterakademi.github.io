@@ -567,6 +567,138 @@ const Agency = () => {
           </div>
         </section>
 
+        {/* TRANSPARENT PRICING SECTION / ÜCRETLENDİRME MODELİ */}
+        <section className="py-16 border-t border-white/10">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-emerald-400 uppercase block mb-3">
+              {isTr ? 'ŞEFFAF ÜCRETLENDİRME' : 'TRANSPARENT PRICING'}
+            </span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white">
+              {isTr ? 'Bedeli teşhisten sonra, yazılı ve sabit veriyoruz' : 'We quote after diagnosis — fixed and in writing'}
+            </h2>
+          </div>
+
+          <div className="max-w-5xl mx-auto space-y-8">
+            {/* 3 Layers Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              
+              {/* Katman 01 */}
+              <div className="p-7 rounded-3xl bg-[#111827] border-2 border-emerald-500/40 relative flex flex-col justify-between space-y-6 shadow-xl">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                      {isTr ? 'HER İŞTE' : 'EVERY ENGAGEMENT'}
+                    </span>
+                    <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20">
+                      {isTr ? 'Ücretsiz · taahhüt yok' : 'Free · no commitment'}
+                    </span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
+                    {isTr ? 'İlk teşhis ücretsizdir — ve yüzeysel değildir.' : "The initial diagnosis is free — and it isn't superficial."}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    {isTr 
+                      ? 'Kod tabanını, altyapıyı ve devir durumunu inceler; sorunun gerçekte nerede olduğunu, ne gerektirdiğini ve ne kadar süreceğini yazılı olarak iletiriz. Bu aşamada ücret talep edilmez, taahhüt istenmez.' 
+                      : 'We review the codebase, the infrastructure and the handover state, then set out in writing where the fault actually is, what it takes to fix, and how long it will take. No fee, no commitment at this stage.'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Katman 02 */}
+              <div className="p-7 rounded-3xl bg-[#111827] border border-white/10 relative flex flex-col justify-between space-y-6 shadow-xl">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/10 text-slate-300 border border-white/20">
+                      {isTr ? 'PLANLI İŞLER' : 'PLANNED WORK'}
+                    </span>
+                    <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded-lg border border-cyan-500/20">
+                      {isTr ? 'Sabit teklif · kapsam netleşince' : 'Fixed quote · once scope is defined'}
+                    </span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
+                    {isTr ? 'Bedel teşhisten sonra belirlenir.' : 'The fee follows the diagnosis.'}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    {isTr 
+                      ? <>Devralma, kapasite takviyesi ve mimari işlerde kapsam netleştikten sonra sabit teklif iletilir; çalışma başlamadan önce bedel yazılı olarak nettir. <strong className="text-white">Saatlik ve ucu açık çalışmıyoruz.</strong></>
+                      : <>For takeovers, capacity support and architecture work, a fixed quote follows once scope is defined; the fee is confirmed in writing before work starts. <strong className="text-white">We don't bill hourly or open-ended.</strong></>}
+                  </p>
+                </div>
+              </div>
+
+              {/* Katman 03 */}
+              <div className="p-7 rounded-3xl bg-[#111827] border border-cyan-500/30 relative flex flex-col justify-between space-y-6 shadow-xl">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                      {isTr ? 'ACİL MÜDAHALE' : 'EMERGENCY RESPONSE'}
+                    </span>
+                    <span className="text-xs font-mono font-bold text-cyan-300 bg-cyan-500/10 px-2.5 py-1 rounded-lg border border-cyan-500/30">
+                      {isTr ? "₺50.000'den başlar · işin kapsamına göre" : 'From ₺50,000 · depending on scope'}
+                    </span>
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
+                    {isTr ? 'Teşhis ve bedel aynı anda verilir.' : 'Diagnosis and price arrive together.'}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    {isTr 
+                      ? 'Saatler içinde çözülmesi gereken durumlarda teşhisi beklemek anlamsızdır; teşhis ve sabit bedel birlikte iletilir.' 
+                      : 'When something has to be resolved within hours, waiting for a diagnosis makes no sense: we deliver the diagnosis and a fixed fee at the same time.'}
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+            {/* Acil Teklif Hattı (3 katmanın ALTINDA, ayrı ve yeşil çerçeveli) */}
+            <div className="p-7 sm:p-9 rounded-3xl bg-emerald-950/20 border-2 border-emerald-500/40 space-y-6 shadow-xl">
+              <div className="space-y-2">
+                <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+                  {isTr ? 'ACİL TEKLİF HATTI' : 'URGENT QUOTE LINE'}
+                </span>
+                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                  {isTr ? 'Teklif iki taraftan da gelebilir.' : 'A quote can come from either side.'}
+                </h3>
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl">
+                  {isTr 
+                    ? <>Tanımadığınız birine kriz anında rakam taahhüt etmek zorunda değilsiniz. Kapsamı görüp bedeli biz veririz; <strong className="text-white">siz de kendi bütçenizi iletebilirsiniz.</strong> İki durumda da net cevap alırsınız: yapılır ya da yapılmaz.</>
+                    : <>You shouldn't have to commit to a figure with someone you don't know, mid-crisis. We can review the scope and quote it; <strong className="text-white">or you can tell us your budget.</strong> Either way you get a straight answer: we can do it, or we can't.</>}
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1">
+                  <div className="text-white font-bold text-sm sm:text-base">
+                    {isTr ? 'Biz teklif veririz' : 'We quote'}
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-300">
+                    {isTr ? 'Teşhisi yapar, sabit bedeli iletiriz.' : 'We run the diagnosis and give you a fixed fee.'}
+                  </p>
+                </div>
+
+                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1">
+                  <div className="text-white font-bold text-sm sm:text-base">
+                    {isTr ? 'Siz teklif verirsiniz' : 'You quote'}
+                  </div>
+                  <p className="text-xs sm:text-sm text-slate-300">
+                    {isTr ? 'Bütçenizi söylersiniz, kapsamı ona göre konuşuruz.' : 'You name your budget, we shape the scope around it.'}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Alt not */}
+            <div className="text-center pt-2">
+              <p className="text-xs sm:text-sm text-slate-400 font-mono">
+                {isTr 
+                  ? 'Tüm çalışmalar resmi NDA kapsamındadır; kaynak kod ve fikri mülkiyet %100 ajansınıza aittir.' 
+                  : 'All work is covered by a formal NDA; source code and IP belong 100% to your agency.'}
+              </p>
+            </div>
+
+          </div>
+        </section>
+
         {/* FAQ ACCORDION SECTION */}
         <FAQ />
 

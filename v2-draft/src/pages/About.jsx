@@ -152,8 +152,8 @@ const About = () => {
               </h3>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
                 {isTr 
-                  ? 'İlk kod teşhisi ve triyaj ücretsizdir. Sonraki çalışmanın kapsamı ve bedeli, teşhis tamamlandıktan sonra işe özel olarak belirlenir ve çalışma başlamadan önce yazılı olarak netleşir.' 
-                  : 'Initial code triage is free. Scope and pricing for subsequent work are tailored after diagnosis and established in writing before work begins.'}
+                  ? "İlk kod teşhisi ve triyaj ücretsizdir. Sonraki çalışmanın kapsamı ve bedeli, teşhis tamamlandıktan sonra işe özel olarak belirlenir ve çalışma başlamadan önce yazılı olarak netleşir. Acil müdahalelerde teşhis ve sabit bedel birlikte iletilir; bu işler ₺50.000'den başlar." 
+                  : 'Initial code triage is free. Scope and pricing for subsequent work are tailored after diagnosis and established in writing before work begins. In emergency responses, diagnosis and fixed fee are delivered together; these engagements start from ₺50,000.'}
               </p>
             </div>
 

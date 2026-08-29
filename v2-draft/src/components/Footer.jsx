@@ -69,16 +69,21 @@ const Footer = () => {
           </h3>
           <div className="p-4 rounded-2xl bg-white/5 border border-white/10 space-y-2 text-xs text-slate-300">
             <div className="flex justify-between border-b border-white/5 pb-1">
-              <span>{isTr ? 'İlk Kod Teşhisi & Triyaj:' : 'Initial Code Triage:'}</span>
+              <span>{isTr ? 'İlk teşhis & triyaj' : 'Initial diagnosis & triage'}</span>
               <strong className="text-emerald-400 font-mono">{isTr ? 'Ücretsiz' : 'Free'}</strong>
             </div>
             <div className="flex justify-between border-b border-white/5 pb-1">
-              <span>{isTr ? 'Diğer tüm çalışmalar:' : 'All other work:'}</span>
-              <strong className="text-slate-200 font-mono">{isTr ? 'Projeye göre belirlenir' : 'Scoped per project'}</strong>
+              <span>{isTr ? 'Planlı işler' : 'Planned work'}</span>
+              <strong className="text-slate-200 font-mono">{isTr ? 'Teşhis sonrası sabit teklif' : 'Fixed quote after diagnosis'}</strong>
             </div>
-            <p className="text-[11px] text-slate-400 pt-1 leading-relaxed">
-              {isTr ? 'Kapsam netleştikten sonra işe özel teklif iletilir.' : 'A tailored quote follows once scope is defined.'}
-            </p>
+            <div className="flex justify-between border-b border-white/5 pb-1">
+              <span>{isTr ? 'Acil müdahale' : 'Emergency response'}</span>
+              <strong className="text-cyan-400 font-mono">{isTr ? "₺50.000'den başlar" : 'Starts from ₺50,000'}</strong>
+            </div>
+            <div className="flex justify-between pt-0.5">
+              <span>{isTr ? 'Acil teklif hattı' : 'Urgent quote line'}</span>
+              <strong className="text-emerald-400 font-mono">{isTr ? 'Teklif iki taraftan' : 'Quotes from either side'}</strong>
+            </div>
           </div>
           <div className="pt-2 text-xs space-y-1.5 font-mono text-slate-400">
             <div className="flex items-center gap-2">
