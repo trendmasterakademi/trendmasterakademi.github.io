@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { AlertTriangle, ArrowRight, ShieldCheck, Terminal, Stethoscope } from 'lucide-react';
-import { teshisData } from '../data/teshisData';
+import { AlertTriangle, ArrowRight, Stethoscope } from 'lucide-react';
+import { teshisSummaries } from '../data/teshis/indexSummary';
 
 const TeshisIndex = () => {
   const { i18n } = useTranslation();
@@ -54,7 +54,7 @@ const TeshisIndex = () => {
             {isTr ? 'İsim: Teşhis Kataloğu' : 'Format: Diagnostic Catalog'}
           </span>
           <span className="px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold">
-            {isTr ? '9 Teşhis Yayında (20 Hedef)' : '9 Diagnostics Live (20 Total)'}
+            {isTr ? '15 Teşhis Yayında (20 Hedef)' : '15 Diagnostics Live (20 Total)'}
           </span>
           <span className="px-3 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-400 font-semibold">
             {isTr ? 'Her teşhiste akış + diyagram' : 'Interactive Flowchart per Defect'}
@@ -64,7 +64,7 @@ const TeshisIndex = () => {
 
       {/* Diagnostics Grid */}
       <div className="space-y-6">
-        {[...teshisData].sort((a, b) => {
+        {[...teshisSummaries].sort((a, b) => {
           const order = { kritik: 1, yuksek: 2, orta: 3 };
           const diff = (order[a.aciliyet.seviye] || 99) - (order[b.aciliyet.seviye] || 99);
           if (diff !== 0) return diff;

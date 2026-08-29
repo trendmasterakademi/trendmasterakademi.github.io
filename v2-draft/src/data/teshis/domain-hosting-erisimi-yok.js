@@ -1,0 +1,185 @@
+export default {
+  "slug": "domain-hosting-erisimi-yok",
+  "no": "17",
+  "baslik": {
+    "tr": "Domain ve hosting erişimi kimsede yok",
+    "en": "Zero Access to Domain Registrar and Hosting"
+  },
+  "diyagramBaslik": {
+    "tr": "Erişim kimsede yok",
+    "en": "No root hosting access"
+  },
+  "kirinti": {
+    "tr": "Devir & Süreklilik",
+    "en": "Handover & Continuity"
+  },
+  "aciliyet": {
+    "seviye": "yuksek",
+    "etiket": {
+      "tr": "Yüksek · mülkiyet riski",
+      "en": "High · ownership risk"
+    }
+  },
+  "ozet": {
+    "tr": "Site çalışıyor ama kimse yönetim paneline giremiyor. Alan adının kime kayıtlı olduğu, hosting faturasının kime gittiği belirsiz. Bu bir yazılım sorunu değil, mülkiyet sorunudur — ve teknik ekip tek başına çözemez.",
+    "en": "The website is online but no stakeholder has root panel access. Domain registrant identity and hosting billing recipients are unknown. This is an ownership dispute, not software, requiring administrative escalation."
+  },
+  "logSatirlari": [
+    "WHOIS sorgusu → kayıt sahibi e-postası kim?",
+    "Hosting / bulut faturası hangi adrese gidiyor?",
+    "DNS kayıtları hangi sağlayıcıda tutuluyor?",
+    "Alan adının son kullanma tarihi"
+  ],
+  "logNotu": {
+    "tr": "Bu dört bilgi bir saat içinde toplanabilir ve devrin mümkün olup olmadığını doğrudan gösterir. Erişim kurtarma süreçleri günler sürdüğü için beklemek pahalıdır.",
+    "en": "These four data points can be extracted within one hour, showing whether transfer is straightforward or requires registrar dispute arbitration."
+  },
+  "nedenler": [
+    {
+      "harf": "A",
+      "ad": {
+        "tr": "Ayrılan kişide",
+        "en": "Former employee holds auth"
+      },
+      "aciklama": {
+        "tr": "Hesaplar eski geliştiricinin veya eski bir çalışanın şahsi adresine kayıtlı. İyi niyet varsa devir kolaydır.",
+        "en": "Registrar accounts reside under a former freelancer or employee personal email. If cooperative, handover is simple."
+      },
+      "kanit": {
+        "tr": "WHOIS'te şahsi adres → A",
+        "en": "Personal email in WHOIS → A"
+      },
+      "diyagramAd": {
+        "tr": "Ayrılan kişide",
+        "en": "Former staff email"
+      },
+      "diyagramTest": {
+        "tr": [
+          "Kayıtlı e-posta",
+          "şirkete mi ait?"
+        ],
+        "en": [
+          "Is registrant email",
+          "under corporate",
+          "domain?"
+        ]
+      },
+      "diyagramCozum": {
+        "tr": [
+          "Devir talebi ·",
+          "iletişim varsa",
+          "hızlı"
+        ],
+        "en": [
+          "Direct transfer ·",
+          "fast if contact",
+          "is open"
+        ]
+      }
+    },
+    {
+      "harf": "B",
+      "ad": {
+        "tr": "Aracı firmada",
+        "en": "Held by third-party agency"
+      },
+      "aciklama": {
+        "tr": "Alan adını bir ajans ya da bayi kendi hesabından almış. Sizin adınıza değil, onun portföyünde duruyor.",
+        "en": "Domain purchased via third-party agency reseller pool. Owned in their account rather than client direct legal entity."
+      },
+      "kanit": {
+        "tr": "Kayıt sahibi bir firma → B",
+        "en": "Registrant is reseller entity → B"
+      },
+      "diyagramAd": {
+        "tr": "Aracı firmada",
+        "en": "Reseller agency"
+      },
+      "diyagramTest": {
+        "tr": [
+          "Kayıt sahibi firma",
+          "adına mı?"
+        ],
+        "en": [
+          "Is registrar tied",
+          "to reseller",
+          "agency name?"
+        ]
+      },
+      "diyagramCozum": {
+        "tr": [
+          "Transfer kodu",
+          "talebi + kayıt",
+          "değişikliği"
+        ],
+        "en": [
+          "EPP auth code +",
+          "registrant",
+          "transfer request"
+        ]
+      }
+    },
+    {
+      "harf": "C",
+      "ad": {
+        "tr": "Ulaşılamıyor",
+        "en": "Unreachable registrant"
+      },
+      "aciklama": {
+        "tr": "Kayıtlı adres çalışmıyor, kişiye erişilemiyor. Sağlayıcının resmi erişim kurtarma sürecine girilmesi gerekir.",
+        "en": "Registrant mailbox abandoned, account holder unresponsive. Official registrar legal escalation required."
+      },
+      "kanit": {
+        "tr": "Kayıtlı adrese ulaşılamıyor → C",
+        "en": "Bouncing mailbox / ghosted → C"
+      },
+      "diyagramAd": {
+        "tr": "Ulaşılamıyor",
+        "en": "Unreachable"
+      },
+      "diyagramTest": {
+        "tr": [
+          "Kayıtlı adrese",
+          "mail ulaşıyor mu?"
+        ],
+        "en": [
+          "Does registrant",
+          "mailbox receive",
+          "inbound mail?"
+        ]
+      },
+      "diyagramCozum": {
+        "tr": [
+          "Sağlayıcı kurtarma",
+          "süreci · belge",
+          "gerekir"
+        ],
+        "en": [
+          "Registrar recovery",
+          "· corporate legal",
+          "docs required"
+        ]
+      }
+    }
+  ],
+  "kimCozer": {
+    "tr": "Bu bir idare ve hukuk işidir; geliştirici gerekmez. Şirket belgeleri, fatura kayıtları ve marka sahipliği kanıtları süreci hızlandırır. Teknik ekibin katkısı ancak DNS ve barındırma taşınmasında başlar.",
+    "en": "This is an administrative and legal challenge; developers are not required initially. Corporate tax registration, invoice trails, and trademark certificates accelerate registrar transfer."
+  },
+  "cozulmezse": {
+    "tr": "Alan adının süresi dolduğunda site bir gecede kapanır ve ad üçüncü kişiler tarafından alınabilir. Geri kazanmak çoğu zaman mümkün olmaz.",
+    "en": "When domain expiration hits, the website drops overnight and can be snapped up by domain squatters, permanently destroying brand equity."
+  },
+  "ilgiliTerimler": [
+    "staging-ortami",
+    "ci-cd",
+    "teknik-borc"
+  ],
+  "ilgiliHizmet": {
+    "baslik": {
+      "tr": "Devir Hazırlık Kontrolü",
+      "en": "Handover Readiness Audit"
+    },
+    "link": "/devir-kontrolu/"
+  }
+};

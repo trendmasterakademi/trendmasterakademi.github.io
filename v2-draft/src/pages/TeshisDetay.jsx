@@ -1,9 +1,27 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, AlertTriangle, ShieldCheck, Clock, Terminal, ArrowRight } from 'lucide-react';
-import { teshisData } from '../data/teshisData';
+import { ArrowLeft, AlertTriangle, Terminal } from 'lucide-react';
 import TeshisDiyagram from '../components/TeshisDiyagram';
+
+// Dynamic code-split loaders: Each diagnostic chunk is loaded strictly on demand!
+const teshisLoaders = {
+  'ayni-stok-iki-musteriye-satildi': () => import('../data/teshis/ayni-stok-iki-musteriye-satildi.js'),
+  'odeme-alindi-siparis-olusmadi': () => import('../data/teshis/odeme-alindi-siparis-olusmadi.js'),
+  'odeme-iki-kez-alindi': () => import('../data/teshis/odeme-iki-kez-alindi.js'),
+  'site-yavasladi-sunucu-bos': () => import('../data/teshis/site-yavasladi-sunucu-bos.js'),
+  'islemler-kilitlendi-sayfa-donuyor': () => import('../data/teshis/islemler-kilitlendi-sayfa-donuyor.js'),
+  'entegrasyon-429-veriyor': () => import('../data/teshis/entegrasyon-429-veriyor.js'),
+  'sunucu-her-gun-yeniden-baslatiliyor': () => import('../data/teshis/sunucu-her-gun-yeniden-baslatiliyor.js'),
+  'site-500-veriyor-dun-calisiyordu': () => import('../data/teshis/site-500-veriyor-dun-calisiyordu.js'),
+  'yazilimci-gitti-koda-girilemiyor': () => import('../data/teshis/yazilimci-gitti-koda-girilemiyor.js'),
+  'bulut-hesabi-askiya-alindi': () => import('../data/teshis/bulut-hesabi-askiya-alindi.js'),
+  'yedek-var-sanildi-yedek-yok': () => import('../data/teshis/yedek-var-sanildi-yedek-yok.js'),
+  'domain-hosting-erisimi-yok': () => import('../data/teshis/domain-hosting-erisimi-yok.js'),
+  'ssl-suresi-doldu': () => import('../data/teshis/ssl-suresi-doldu.js'),
+  'form-gonderiliyor-mail-gelmiyor': () => import('../data/teshis/form-gonderiliyor-mail-gelmiyor.js'),
+  'site-aramalarda-gorunmez-oldu': () => import('../data/teshis/site-aramalarda-gorunmez-oldu.js')
+};
 
 const HARF_BG_COLORS = {
   A: 'bg-red-400',
@@ -18,7 +36,31 @@ const TeshisDetay = () => {
   const isTr = i18n.language !== 'en';
   const lang = isTr ? 'tr' : 'en';
 
-  const teshis = teshisData.find((t) => t.slug === slug);
+  const [teshis, setTeshis] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
+
+  useEffect(() => {
+    if (!slug || !teshisLoaders[slug]) {
+      setNotFound(true);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
+    setNotFound(false);
+
+    teshisLoaders[slug]()
+      .then((mod) => {
+        setTeshis(mod.default || mod);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error('Failed to load diagnostic module:', err);
+        setNotFound(true);
+        setLoading(false);
+      });
+  }, [slug]);
 
   useEffect(() => {
     if (!teshis) return;
@@ -40,8 +82,18 @@ const TeshisDetay = () => {
     }
   }, [teshis, lang]);
 
-  if (!teshis) {
+  if (notFound) {
     return <Navigate to="/teshis/" replace />;
+  }
+
+  if (loading || !teshis) {
+    return (
+      <div className="min-h-[70vh] pt-32 pb-24 px-4 max-w-5xl mx-auto flex flex-col items-center justify-center text-center space-y-6 animate-pulse">
+        <div className="w-48 h-6 bg-cyan-500/20 rounded-full border border-cyan-500/30"></div>
+        <div className="w-3/4 max-w-lg h-10 bg-white/10 rounded-2xl"></div>
+        <div className="w-full max-w-md h-4 bg-white/5 rounded-lg"></div>
+      </div>
+    );
   }
 
   const baslikText = teshis.baslik[lang] || teshis.baslik.tr;
@@ -137,7 +189,11 @@ const TeshisDetay = () => {
             <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
               {isTr ? 'Teşhis akışı' : 'Diagnostic flow'}
             </h2>
-            <TeshisDiyagram baslik={teshis.baslik} nedenler={teshis.nedenler} />
+            <TeshisDiyagram 
+              baslik={teshis.baslik} 
+              diyagramBaslik={teshis.diyagramBaslik}
+              nedenler={teshis.nedenler} 
+            />
           </section>
 
           {/* Section 3: Ayırt edici testler (Neden Kartları) */}

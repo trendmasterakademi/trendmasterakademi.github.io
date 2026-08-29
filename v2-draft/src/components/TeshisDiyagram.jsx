@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 const DAL_COLORS = ['#f87171', '#fbbf24', '#a78bfa', '#22d3ee'];
 
-const TeshisDiyagram = ({ baslik, nedenler }) => {
+const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
   const { i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
   const lang = isTr ? 'tr' : 'en';
@@ -26,7 +26,8 @@ const TeshisDiyagram = ({ baslik, nedenler }) => {
   const lastCx = colPositions.length > 0 ? colPositions[colPositions.length - 1].cx : 680;
   const centerCx = totalWidth / 2;
 
-  const symptomTitle = typeof baslik === 'object' ? (baslik[lang] || baslik.tr) : baslik;
+  const titleSource = diyagramBaslik || baslik;
+  const symptomTitle = typeof titleSource === 'object' ? (titleSource[lang] || titleSource.tr) : titleSource;
   const ariaLabel = isTr
     ? `Belirtiden ${N} olası nedene, her nedenin ayırt edici testine ve çözüme giden teşhis akış diyagramı`
     : `Diagnostic flowchart from symptom to ${N} root causes, differential tests, and solutions`;

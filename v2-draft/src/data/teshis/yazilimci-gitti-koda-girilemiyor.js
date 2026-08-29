@@ -1,0 +1,187 @@
+export default {
+  "slug": "yazilimci-gitti-koda-girilemiyor",
+  "no": "14",
+  "baslik": {
+    "tr": "Yazılımcı gitti, kimse koda giremiyor",
+    "en": "Developer Departed, Codebase Inaccessible"
+  },
+  "diyagramBaslik": {
+    "tr": "Koda kimse giremiyor",
+    "en": "Codebase inaccessible"
+  },
+  "kirinti": {
+    "tr": "Devir & Süreklilik",
+    "en": "Handover & Continuity"
+  },
+  "aciliyet": {
+    "seviye": "yuksek",
+    "etiket": {
+      "tr": "Yüksek · süreklilik riski",
+      "en": "High · continuity risk"
+    }
+  },
+  "ozet": {
+    "tr": "Projeyi yapan kişi ayrıldı. Site çalışmaya devam ediyor ama değişiklik yapılamıyor: kodun nerede olduğu, sunucuya kimin girebildiği ya da hesapların kime kayıtlı olduğu belirsiz. Bu üç ayrı problemdir ve hangisiyle karşı karşıya olduğunuz ilk saatte belirlenebilir.",
+    "en": "The developer who built the platform departed. The site continues running but cannot be modified: repository location, server SSH credentials, or account ownership remain unknown. These are three distinct bottlenecks, identifiable within hour one."
+  },
+  "logSatirlari": [
+    "git log -1 --format=%cd            ← son commit ne zaman?",
+    "git log --format='%an' | sort -u   ← koda kaç kişi dokunmuş?",
+    "~/.ssh/authorized_keys             ← sunucuya kimin anahtarı var?",
+    "WHOIS + hosting hesabı             ← hangi e-postaya kayıtlı?"
+  ],
+  "logNotu": {
+    "tr": "Bu dört satır, devrin teknik mi yoksa idari bir problem mi olduğunu ayırır. Çoğu vakada sorun kodda değil, hesap sahipliğindedir.",
+    "en": "These four checkpoints determine whether handover failure is technical or administrative. In most cases, the bottleneck is account ownership rather than code."
+  },
+  "nedenler": [
+    {
+      "harf": "A",
+      "ad": {
+        "tr": "Erişim kaybı",
+        "en": "Loss of access"
+      },
+      "aciklama": {
+        "tr": "Domain, hosting ve depo kişinin şahsi e-postasına kayıtlı. Kod sağlam, altyapı çalışıyor; devredilmesi gereken şey hesaplar.",
+        "en": "Domain registrar, host, and git repos are registered to personal emails. Code and infrastructure are sound; the bottleneck is credential handover."
+      },
+      "kanit": {
+        "tr": "Hesaplar şahsi adreste → A",
+        "en": "Accounts on personal mail → A"
+      },
+      "diyagramAd": {
+        "tr": "Erişim kaybı",
+        "en": "Access loss"
+      },
+      "diyagramTest": {
+        "tr": [
+          "Hesaplar şirket",
+          "adresine mi",
+          "kayıtlı?"
+        ],
+        "en": [
+          "Are accounts",
+          "tied to company",
+          "domain email?"
+        ]
+      },
+      "diyagramCozum": {
+        "tr": [
+          "Hesap devri —",
+          "idari süreç,",
+          "kod işi değil"
+        ],
+        "en": [
+          "Account transfer —",
+          "admin workflow,",
+          "no coding needed"
+        ]
+      }
+    },
+    {
+      "harf": "B",
+      "ad": {
+        "tr": "Kaynak kod kayıp",
+        "en": "Missing source repository"
+      },
+      "aciklama": {
+        "tr": "Sürüm kontrolü hiç kurulmamış. Canlı sunucudaki dosyalar tek kopya. En kırılgan hâl budur.",
+        "en": "Version control was never initialized. Live production server contains the sole surviving copy. The highest-risk state."
+      },
+      "kanit": {
+        "tr": "Depo yok → B",
+        "en": "No remote repo → B"
+      },
+      "diyagramAd": {
+        "tr": "Kod kayıp",
+        "en": "Source lost"
+      },
+      "diyagramTest": {
+        "tr": [
+          "Sürüm kontrolü",
+          "(git) var mı?"
+        ],
+        "en": [
+          "Is version control",
+          "(git remote)",
+          "present?"
+        ]
+      },
+      "diyagramCozum": {
+        "tr": [
+          "ÖNCE canlıdan",
+          "tam yedek,",
+          "SONRA depo"
+        ],
+        "en": [
+          "Full live image",
+          "FIRST, then git",
+          "init setup"
+        ]
+      }
+    },
+    {
+      "harf": "C",
+      "ad": {
+        "tr": "Ortam belgesiz",
+        "en": "Undocumented environment"
+      },
+      "aciklama": {
+        "tr": "Kod var ama çalıştırılamıyor: kurulum adımları, ortam değişkenleri ve bağımlılık sürümleri yazılı değil.",
+        "en": "Repository exists but cannot be booted: setup commands, environment variables, and lockfiles are absent."
+      },
+      "kanit": {
+        "tr": ".env.example / lock yok → C",
+        "en": "Missing .env / lockfile → C"
+      },
+      "diyagramAd": {
+        "tr": "Ortam belgesiz",
+        "en": "No docs / env"
+      },
+      "diyagramTest": {
+        "tr": [
+          "README ve",
+          "bağımlılık kilidi",
+          "var mı?"
+        ],
+        "en": [
+          "Are README and",
+          "package lockfiles",
+          "available?"
+        ]
+      },
+      "diyagramCozum": {
+        "tr": [
+          "Ortam yeniden",
+          "inşası +",
+          "belgeleme"
+        ],
+        "en": [
+          "Environment",
+          "rebuild +",
+          "documentation"
+        ]
+      }
+    }
+  ],
+  "kimCozer": {
+    "tr": "A idari bir süreçtir, geliştirici gerekmez. B'de ilk iş kod yazmak değil, canlı sunucudan tam yedek almaktır — bu adım atlanırsa tek kopya risk altında kalır. C, devir teşhisinin ölçtüğü şeydir.",
+    "en": "A is an administrative process, requiring zero coding. For B, the absolute first step is pulling a full live server image, not writing code. C is precisely what a handover code audit diagnoses."
+  },
+  "cozulmezse": {
+    "tr": "Sürüm kontrolü olmayan bir projede canlı sunucu tek kopyadır. Sunucu çökerse veya hesap kapanırsa geri dönüş yoktur. Risk her gün büyür, çünkü kimse yedeğin gerçekten alındığını doğrulamamıştır.",
+    "en": "Without version control, production is a single point of total failure. If the instance crashes, recovery is impossible. Risk compounds daily until full image verification is completed."
+  },
+  "ilgiliTerimler": [
+    "teknik-borc",
+    "staging-ortami",
+    "migration"
+  ],
+  "ilgiliHizmet": {
+    "baslik": {
+      "tr": "Devir Hazırlık Kontrolü",
+      "en": "Handover Readiness Audit"
+    },
+    "link": "/devir-kontrolu/"
+  }
+};
