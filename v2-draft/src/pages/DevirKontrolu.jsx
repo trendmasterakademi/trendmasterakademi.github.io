@@ -196,7 +196,15 @@ const DevirKontrolu = () => {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    const timer = setTimeout(() => {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 40);
+    return () => clearTimeout(timer);
   }, [step]);
 
   const [campaignParams, setCampaignParams] = useState({
@@ -511,22 +519,25 @@ const DevirKontrolu = () => {
             
             className="space-y-8"
           >
-            {/* Progress Header */}
-            <div className="p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-wrap items-center justify-between gap-4">
+            {/* Sticky Progress Header */}
+            <div className="sticky top-14 sm:top-20 z-30 p-4 sm:p-5 rounded-2xl bg-[#080b11]/95 backdrop-blur-xl border border-cyan-500/30 shadow-[0_10px_35px_rgba(0,0,0,0.85)] flex flex-wrap items-center justify-between gap-4 transition-all">
               <div>
-                <span className="text-xs font-mono uppercase text-slate-400 block mb-1">
-                  {isTr ? 'Adım 2 / 2' : 'Step 2 / 2'}
+                <span className="text-[10px] sm:text-xs font-mono uppercase text-cyan-400 font-bold block mb-0.5">
+                  {isTr ? 'Adım 2 / 2 · Canlı İlerleme' : 'Step 2 / 2 · Live Progress'}
                 </span>
-                <h2 className="text-lg sm:text-xl font-bold text-white">
+                <h2 className="text-base sm:text-xl font-bold text-white leading-tight">
                   {isTr ? '12 Kalemlik Devir Kontrol Listesi' : '12-Point Handover Audit Checklist'}
                 </h2>
-                <span className="text-xs font-mono text-cyan-400 block mt-1">
-                  {answeredCount} / {handoverItems.length} {isTr ? 'Kalem Yanıtlandı' : 'Answered'}
+                <span className="text-xs font-mono text-slate-300 block mt-1 font-semibold">
+                  <span className="text-cyan-400 font-bold">{answeredCount}</span> / {handoverItems.length} {isTr ? 'Kalem Yanıtlandı' : 'Answered'}
+                  {answeredCount === handoverItems.length && (
+                    <span className="text-emerald-400 ml-2 font-bold">{isTr ? '✓ Hazır' : '✓ Ready'}</span>
+                  )}
                 </span>
               </div>
-              <div className="w-full sm:w-64 h-3 bg-black/40 rounded-full overflow-hidden border border-white/10">
+              <div className="w-full sm:w-64 h-3 bg-black/50 rounded-full overflow-hidden border border-white/10 flex-shrink-0">
                 <div 
-                  className="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-300"
+                  className="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-300 shadow-[0_0_12px_rgba(0,229,255,0.5)]"
                   style={{ width: `${(answeredCount / handoverItems.length) * 100}%` }}
                 />
               </div>

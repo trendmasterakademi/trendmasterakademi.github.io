@@ -187,7 +187,15 @@ const CrashTest = () => {
   const [isSOSOpen, setIsSOSOpen] = useState(false);
 
   React.useEffect(() => {
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
     window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    const timer = setTimeout(() => {
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, 40);
+    return () => clearTimeout(timer);
   }, [step]);
 
   // UTM & Physical Crisis Kit Tracking
@@ -509,18 +517,21 @@ const CrashTest = () => {
             
             className="space-y-8"
           >
-            {/* Selected Scenario Mini-Banner */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-white/5 border border-white/10 flex flex-wrap items-center justify-between gap-3">
+            {/* Sticky Selected Scenario & Progress Mini-Banner */}
+            <div className="sticky top-14 sm:top-20 z-30 p-4 sm:p-5 rounded-2xl bg-[#080b11]/95 backdrop-blur-xl border border-cyan-500/30 shadow-[0_10px_35px_rgba(0,0,0,0.85)] flex flex-wrap items-center justify-between gap-3 transition-all">
               <div className="flex items-center gap-3">
-                <span className="px-3 py-1 rounded-lg text-xs sm:text-sm font-mono font-bold bg-white/10 text-cyan-300">
+                <span className="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-mono font-bold bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
                   {selectedScenario.code}
                 </span>
                 <div>
-                  <strong className="text-white text-base block">{selectedScenario.title[isTr ? 'tr' : 'en']}</strong>
-                  <span className="text-xs sm:text-sm text-slate-400">{selectedScenario.subtitle[isTr ? 'tr' : 'en']}</span>
+                  <strong className="text-white text-sm sm:text-base block">{selectedScenario.title[isTr ? 'tr' : 'en']}</strong>
+                  <span className="text-xs text-slate-400">
+                    {Object.keys(answers).length} / {currentQuestions.length} {isTr ? 'Soru Yanıtlandı' : 'Answered'}
+                  </span>
                 </div>
               </div>
               <button
+                type="button"
                 onClick={() => setStep(1)}
                 className="text-xs sm:text-sm text-slate-400 hover:text-white underline cursor-pointer"
               >
