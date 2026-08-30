@@ -34,8 +34,6 @@ const Footer = () => {
           <div className="pt-2 text-xs font-mono text-cyan-400 flex flex-wrap items-center gap-3">
             <span>B2B Mühendislik Masası: <strong>Trend Master Akademi Studio & Labs</strong></span>
             <span>•</span>
-            <a href="https://github.com/trendmasterakademi" target="_blank" rel="noreferrer" className="hover:text-white underline">GitHub</a>
-            <span>•</span>
             <a href="https://www.linkedin.com/in/trendmasterakademi/" target="_blank" rel="noreferrer" className="hover:text-white underline">LinkedIn</a>
           </div>
         </div>
