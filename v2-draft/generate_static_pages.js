@@ -17,7 +17,16 @@ if (!fs.existsSync(templatePath)) {
 
 const template = fs.readFileSync(templatePath, 'utf8');
 
-// 3.4 — HTML Kaçış Fonksiyonu
+// 2.0 — Kaynak tekilleştirme: Hero.jsx ve FAQ.jsx'ten verileri doğrudan oku
+const heroContent = fs.readFileSync(path.join(__dirname, 'src/components/Hero.jsx'), 'utf8');
+const heroMatch = heroContent.match(/export const diagnosticLogs = (\[[\s\S]*?\]);\s*\/\//);
+const diagnosticLogs = heroMatch ? new Function('return ' + heroMatch[1])() : [];
+
+const faqContent = fs.readFileSync(path.join(__dirname, 'src/components/FAQ.jsx'), 'utf8');
+const cleanFaq = faqContent.match(/export const faqData = (\[[\s\S]*?\]);\s*const FAQ/)[1].replace(/icon:\s*[A-Za-z0-9_]+,/g, '');
+const faqData = new Function('return ' + cleanFaq)();
+
+// 3.4 — HTML Kaçış Fonksiyonu (Yalnızca HTML gövdesi için)
 function escapeHtml(str) {
   if (str == null) return '';
   return String(str)
@@ -50,6 +59,94 @@ for (const item of teshisData) {
     }
   }
 }
+
+// Ortak Kurumsal JSON-LD Düğümleri
+const professionalServiceNode = {
+  "@type": "ProfessionalService",
+  "@id": "https://trendmasterakademi.com/#organization",
+  "name": "Trend Master Akademi",
+  "alternateName": "TMA Studio & Labs",
+  "legalName": "Mehmet Şahin",
+  "taxID": "7930336132",
+  "url": "https://trendmasterakademi.com",
+  "logo": "https://trendmasterakademi.com/favicon.svg",
+  "image": "https://trendmasterakademi.com/og-image.jpg",
+  "description": "Dijital ajanslar, SaaS girişimleri ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), API Entegrasyonu ve Özel Yazılım Geliştirme Stüdyosu.",
+  "founder": {
+    "@type": "Person",
+    "name": "Mehmet Şahin",
+    "jobTitle": "Founder & Lead Engineer",
+    "url": "https://trendmasterakademi.com/about/"
+  },
+  "telephone": "+905343713573",
+  "email": "info@trendmasterakademi.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091",
+    "addressLocality": "Konak",
+    "addressRegion": "İzmir",
+    "addressCountry": "TR"
+  },
+  "priceRange": "$$$",
+  "openingHours": "Mo-Su 00:00-23:59",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "B2B SWAT & Mühendislik Hizmetleri",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Acil Kod Kurtarma & Canlı Sistem Hotfix (Incident SWAT)",
+          "description": "HTTP 500 hataları, veritabanı kilitlenmeleri ve ödeme API kopmalarında 0-2 saat içinde acil müdahale."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Yarım Kalan Proje Devralma (Abandoned Codebase Takeover)",
+          "description": "Önceki geliştiriciden kalan dokümantasyonsuz ve spagetti kod tabanlarının onarılması ve yayına alınması."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "B2B %100 White-Label Mühendislik & Kapasite Takviyesi",
+          "description": "Ajansların arka planında görünmez teknik ekip olarak resmi NDA altında proje teslimi."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "SaaS & Özel Web Uygulaması Mimarisi",
+          "description": "React, Next.js, Python/FastAPI ve Node.js ile sıfırdan ölçeklenebilir web ve bulut sistemleri."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Yapay Zeka, LLM & Akıllı Otomasyon Entegrasyonları",
+          "description": "OpenAI, LLM, RAG ve akıllı agent iş akışlarının şirket içi süreçlere entegrasyonu."
+        }
+      }
+    ]
+  }
+};
+
+const webSiteNode = {
+  "@type": "WebSite",
+  "@id": "https://trendmasterakademi.com/#website",
+  "url": "https://trendmasterakademi.com",
+  "name": "Trend Master Akademi",
+  "publisher": {
+    "@id": "https://trendmasterakademi.com/#organization"
+  },
+  "inLanguage": ["tr-TR"]
+};
 
 // 2.1 — /teshis/ Katalog Hub'ı İçeriği (20 Teşhis)
 const teshisHubExtraContent = `
@@ -91,53 +188,19 @@ const glossaryHubExtraContent = `
   </section>
 `;
 
-// 2.3 — Ana Sayfa Şerit Log Eşleşmeleri (Hero.jsx ile birebir aynı 8 kayıt)
-const homeHeroLogs = [
-  {
-    log: 'SQLSTATE[40001]: Serialization failure: 1213 Deadlock found',
-    slug: 'ayni-stok-iki-musteriye-satildi'
-  },
-  {
-    log: 'Lock wait timeout exceeded; try restarting transaction',
-    slug: 'islemler-kilitlendi-sayfa-donuyor'
-  },
-  {
-    log: '502 Bad Gateway · upstream prematurely closed connection',
-    slug: 'site-500-veriyor-dun-calisiyordu'
-  },
-  {
-    log: 'NET::ERR_CERT_DATE_INVALID',
-    slug: 'ssl-suresi-doldu'
-  },
-  {
-    log: 'HTTP 429 Too Many Requests',
-    slug: 'entegrasyon-429-veriyor'
-  },
-  {
-    log: 'Out of memory: Killed process',
-    slug: 'sunucu-her-gun-yeniden-baslatiliyor'
-  },
-  {
-    log: 'SMTP error 535 Authentication failed',
-    slug: 'form-gonderiliyor-mail-gelmiyor'
-  },
-  {
-    log: 'robots.txt → Disallow: /',
-    slug: 'site-aramalarda-gorunmez-oldu'
-  }
-];
-
+// 2.3 — Ana Sayfa Şerit Log Eşleşmeleri (Hero.jsx'ten okunan 8 kayıt)
 const homePageExtraContent = `
   <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
     <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
     <ul class="space-y-3">
-      ${homeHeroLogs.map(entry => {
-        const item = teshisData.find(d => d.slug === entry.slug);
-        const titleText = item ? `${item.no} · ${item.baslik.tr}` : entry.slug;
+      ${diagnosticLogs.map(entry => {
+        const slug = entry.href.replace(/^\/teshis\/|\/$/g, '');
+        const item = teshisData.find(d => d.slug === slug);
+        const titleText = item ? `${item.no} · ${item.baslik.tr}` : (entry.title?.tr || slug);
         return `
         <li class="p-3 rounded-xl bg-black/40 border border-white/10 space-y-1 font-mono text-sm">
           <div class="text-slate-400"><code>${escapeHtml(entry.log)}</code></div>
-          <div><a href="/teshis/${escapeHtml(entry.slug)}/" class="text-cyan-300 hover:underline font-bold">→ ${escapeHtml(titleText)}</a></div>
+          <div><a href="/teshis/${escapeHtml(slug)}/" class="text-cyan-300 hover:underline font-bold">→ ${escapeHtml(titleText)}</a></div>
         </li>`;
       }).join('\n      ')}
     </ul>
@@ -157,7 +220,26 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/',
     heading: 'Teknik olarak projesi tıkanmış ajanslar için: Kodu Devralır, Ajansınız Adına Eksiksiz Teslim Ederiz.',
     subheading: 'Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), PostgreSQL Deadlock Onarımı, SaaS Mimarisi ve 7/24 Kriz Çözüm Stüdyosu.',
-    extraContent: homePageExtraContent
+    extraContent: homePageExtraContent,
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        {
+          "@type": "FAQPage",
+          "@id": "https://trendmasterakademi.com/#faq",
+          "mainEntity": faqData.map(f => ({
+            "@type": "Question",
+            "name": f.question.tr,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": f.answer.tr
+            }
+          }))
+        },
+        webSiteNode
+      ]
+    }
   },
   {
     dir: 'agency',
@@ -167,7 +249,21 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/agency/',
     ogUrl: 'https://trendmasterakademi.com/agency/',
     heading: 'Ajansınızın Yerine Değil, Ajansınızın Yanında Güvenilir Mühendislik Masası.',
-    subheading: 'Bir projede teknik olarak tıkandığınızda, teslim tarihi yaklaştığında veya ekibinizin kapasitesi dolduğunda: %100 White-Label, resmi NDA ve doğrudan kıdemli mühendislik desteği.'
+    subheading: 'Bir projede teknik olarak tıkandığınızda, teslim tarihi yaklaştığında veya ekibinizin kapasitesi dolduğunda: %100 White-Label, resmi NDA ve doğrudan kıdemli mühendislik desteği.',
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Ajans Çözümleri & B2B Mühendislik Masası", "item": "https://trendmasterakademi.com/agency/" }
+          ]
+        }
+      ]
+    }
   },
   {
     dir: 'crash-test',
@@ -177,7 +273,21 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/crash-test/',
     ogUrl: 'https://trendmasterakademi.com/crash-test/',
     heading: 'Agency Crash Test // 60 Saniyede Ajans Kriz Dayanıklılık Skoru',
-    subheading: 'Kritik kod kilitlenmeleri, devir süreçleri tıkanmış projeler veya yaklaşan teslimat baskısı altında ajansınızın risk puanını ölçün.'
+    subheading: 'Kritik kod kilitlenmeleri, devir süreçleri tıkanmış projeler veya yaklaşan teslimat baskısı altında ajansınızın risk puanını ölçün.',
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Agency Crash Test (60sn)", "item": "https://trendmasterakademi.com/crash-test/" }
+          ]
+        }
+      ]
+    }
   },
   {
     dir: 'devir-kontrolu',
@@ -187,7 +297,21 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/devir-kontrolu/',
     ogUrl: 'https://trendmasterakademi.com/devir-kontrolu/',
     heading: 'Devir Hazırlık Kontrolü // 12 Kalemlik Geliştirici Ayrılık Denetimi',
-    subheading: 'Git repo, ortam değişkenleri, DNS ve ödeme anahtarlarınızı ayrılan geliştiriciden eksiksiz devralıp almadığınızı test edin.'
+    subheading: 'Git repo, ortam değişkenleri, DNS ve ödeme anahtarlarınızı ayrılan geliştiriciden eksiksiz devralıp almadığınızı test edin.',
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Devir Hazırlık Kontrolü", "item": "https://trendmasterakademi.com/devir-kontrolu/" }
+          ]
+        }
+      ]
+    }
   },
   {
     dir: 'sozluk',
@@ -198,7 +322,35 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/sozluk/',
     heading: 'Yazılımcı Dili → Ajans Dili Terim Sözlüğü',
     subheading: 'Teknik jargonu ajans patronunun diline çeviren pratik rehber.',
-    extraContent: glossaryHubExtraContent
+    extraContent: glossaryHubExtraContent,
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CollectionPage",
+          "name": "Teknik Terim Sözlüğü",
+          "description": "Yazılımcınız teknik bir bahane sunduğunda ne anlama geldiğini öğrenin. Deadlock, N+1, Race Condition, Webhook ve 12 temel terimin iş etkisi ve çözümü.",
+          "url": "https://trendmasterakademi.com/sozluk/"
+        },
+        {
+          "@type": "ItemList",
+          "numberOfItems": glossaryTerms.length,
+          "itemListElement": glossaryTerms.map((term, idx) => ({
+            "@type": "ListItem",
+            "position": idx + 1,
+            "name": term.title,
+            "url": `https://trendmasterakademi.com/sozluk/${term.slug}/`
+          }))
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Teknik Terim Sözlüğü", "item": "https://trendmasterakademi.com/sozluk/" }
+          ]
+        }
+      ]
+    }
   },
   {
     dir: 'kesinti-maliyeti',
@@ -208,7 +360,21 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/kesinti-maliyeti/',
     ogUrl: 'https://trendmasterakademi.com/kesinti-maliyeti/',
     heading: 'Web Sitesi & API Kesinti Maliyeti Hesaplayıcı',
-    subheading: 'Sistem çöktüğünde geçen her dakikanın ajansınıza ve müşterinize gerçek finansal ve itibar maliyetini hesaplayın.'
+    subheading: 'Sistem çöktüğünde geçen her dakikanın ajansınıza ve müşterinize gerçek finansal ve itibar maliyetini hesaplayın.',
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Kesinti Maliyeti Hesaplayıcı", "item": "https://trendmasterakademi.com/kesinti-maliyeti/" }
+          ]
+        }
+      ]
+    }
   },
   {
     dir: 'about',
@@ -218,7 +384,21 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/about/',
     ogUrl: 'https://trendmasterakademi.com/about/',
     heading: 'Ajansların Güvendiği Arka Plan Mühendislik Masası',
-    subheading: 'Modern web, SaaS, API mimarileri ve acil kod kurtarma (SWAT) stüdyosu.'
+    subheading: 'Modern web, SaaS, API mimarileri ve acil kod kurtarma (SWAT) stüdyosu.',
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Mühendislik Standartlarımız & Hakkımızda", "item": "https://trendmasterakademi.com/about/" }
+          ]
+        }
+      ]
+    }
   },
   {
     dir: 'hikayemiz',
@@ -227,7 +407,21 @@ const basePages = [
     description: '20 yıllık finansal yazılım tecrübesi, online eğitimden doğan isim ve B2B mühendislik masası vizyonumuz.',
     canonical: 'https://trendmasterakademi.com/hikayemiz/',
     ogUrl: 'https://trendmasterakademi.com/hikayemiz/',
-    subheading: 'Aslında bu iş fikri bir online derste doğdu.'
+    subheading: 'Aslında bu iş fikri bir online derste doğdu.',
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Trend Master Akademi'nin hikâyesi", "item": "https://trendmasterakademi.com/hikayemiz/" }
+          ]
+        }
+      ]
+    }
   },
   {
     dir: 'privacy',
@@ -237,7 +431,21 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/privacy/',
     ogUrl: 'https://trendmasterakademi.com/privacy/',
     heading: 'KVKK Aydınlatma Metni & Gizlilik Politikası',
-    subheading: '6698 sayılı KVKK kapsamında veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik ilkeleri.'
+    subheading: '6698 sayılı KVKK kapsamında veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik ilkeleri.',
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "KVKK Aydınlatma Metni & Gizlilik Politikası", "item": "https://trendmasterakademi.com/privacy/" }
+          ]
+        }
+      ]
+    }
   },
   {
     dir: 'gizlilik',
@@ -247,7 +455,21 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/privacy/',
     ogUrl: 'https://trendmasterakademi.com/privacy/',
     heading: 'KVKK Aydınlatma Metni & Gizlilik Politikası',
-    subheading: '6698 sayılı KVKK kapsamında veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik ilkeleri.'
+    subheading: '6698 sayılı KVKK kapsamında veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik ilkeleri.',
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "KVKK Aydınlatma Metni & Gizlilik Politikası", "item": "https://trendmasterakademi.com/privacy/" }
+          ]
+        }
+      ]
+    }
   },
   {
     dir: 'nda',
@@ -256,7 +478,21 @@ const basePages = [
     description: 'Çalışmaya başlamadan önce imzaladığımız karşılıklı gizlilik ve çalışma sözleşmesinin tam metni ve sade dilli özeti.',
     canonical: 'https://trendmasterakademi.com/nda/',
     ogUrl: 'https://trendmasterakademi.com/nda/',
-    subheading: 'Çalışmaya başlamadan önce karşılıklı bir gizlilik ve çalışma sözleşmesi imzalıyoruz. Ne imzalayacağınızı önceden bilmeniz için sözleşmenin ne dediğini burada sade dille anlattık.'
+    subheading: 'Çalışmaya başlamadan önce karşılıklı bir gizlilik ve çalışma sözleşmesi imzalıyoruz. Ne imzalayacağınızı önceden bilmeniz için sözleşmenin ne dediğini burada sade dille anlattık.',
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Gizlilik ve Çalışma Sözleşmesi", "item": "https://trendmasterakademi.com/nda/" }
+          ]
+        }
+      ]
+    }
   },
   {
     dir: 'teshis',
@@ -267,11 +503,39 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/teshis/',
     heading: 'Teşhis Kataloğu',
     subheading: 'Belirtiyi görüyorsunuz ama nedenini bilmiyorsunuz. Buradaki her teşhis bir belirtiyle başlar, aynı belirtiyi üretebilecek nedenleri ayırır ve hangisiyle karşı karşıya olduğunuzu nasıl anlayacağınızı gösterir.',
-    extraContent: teshisHubExtraContent
+    extraContent: teshisHubExtraContent,
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "CollectionPage",
+          "name": "Teşhis Kataloğu",
+          "description": "Belirtiden nedene: yazılım arızalarının ajans diliyle teşhis rehberi.",
+          "url": "https://trendmasterakademi.com/teshis/"
+        },
+        {
+          "@type": "ItemList",
+          "numberOfItems": teshisData.length,
+          "itemListElement": teshisData.map((item, idx) => ({
+            "@type": "ListItem",
+            "position": idx + 1,
+            "name": `${item.no} · ${item.baslik.tr}`,
+            "url": `https://trendmasterakademi.com/teshis/${item.slug}/`
+          }))
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Teşhis Kataloğu", "item": "https://trendmasterakademi.com/teshis/" }
+          ]
+        }
+      ]
+    }
   }
 ];
 
-// 3.3 — Add each glossary term page dynamically with extraContent
+// 3.3 — Add each glossary term page dynamically with extraContent and schema
 const glossaryPages = glossaryTerms.map(term => {
   const matching = teshisData.filter(d => d.ilgiliTerimler && d.ilgiliTerimler.includes(term.slug));
   const visible = matching.slice(0, 4);
@@ -335,6 +599,31 @@ const glossaryPages = glossaryTerms.map(term => {
 
   const extraContent = `${mainGlossaryContent}\n${reverseBlock}`;
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "DefinedTerm",
+        "name": term.title,
+        "description": term.shortDef.tr,
+        "inDefinedTermSet": {
+          "@type": "DefinedTermSet",
+          "name": "Teknik Terim Sözlüğü",
+          "url": "https://trendmasterakademi.com/sozluk/"
+        },
+        "url": `https://trendmasterakademi.com/sozluk/${term.slug}/`
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Teknik Terim Sözlüğü", "item": "https://trendmasterakademi.com/sozluk/" },
+          { "@type": "ListItem", "position": 3, "name": term.title, "item": `https://trendmasterakademi.com/sozluk/${term.slug}/` }
+        ]
+      }
+    ]
+  };
+
   return {
     dir: `sozluk/${term.slug}`,
     title: `${term.title} Nedir? Ajanslar İçin Teknik Rehber | Trend Master Akademi`,
@@ -344,11 +633,12 @@ const glossaryPages = glossaryTerms.map(term => {
     ogUrl: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
     heading: term.title,
     subheading: `${term.shortDef.tr} ${term.agencyImpact.tr}`,
-    extraContent
+    extraContent,
+    schema
   };
 });
 
-// 3.1 & 3.2 — Add each diagnostic page dynamically with full extraContent and NO heading (prevents h1 duplicate)
+// 3.1 & 3.2 — Add each diagnostic page dynamically with full extraContent and schema
 const teshisPages = teshisData.map(item => {
   const logRowsHtml = item.logSatirlari && item.logSatirlari.length > 0
     ? `
@@ -423,6 +713,49 @@ const teshisPages = teshisData.map(item => {
     </section>
   `;
 
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "TechArticle",
+        "headline": item.baslik.tr,
+        "description": item.ozet.tr,
+        "url": `https://trendmasterakademi.com/teshis/${item.slug}/`,
+        "mainEntityOfPage": `https://trendmasterakademi.com/teshis/${item.slug}/`,
+        "inLanguage": "tr-TR",
+        "about": item.kirinti.tr,
+        "publisher": {
+          "@type": "Organization",
+          "name": "Trend Master Akademi",
+          "url": "https://trendmasterakademi.com"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": (item.nedenler || []).map(n => {
+          const testStr = Array.isArray(n.diyagramTest?.tr) ? n.diyagramTest.tr.join(' ') : (n.diyagramTest?.tr || '');
+          const cozumStr = Array.isArray(n.diyagramCozum?.tr) ? n.diyagramCozum.tr.join(' ') : (n.diyagramCozum?.tr || '');
+          return {
+            "@type": "Question",
+            "name": testStr,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": `${n.ad.tr} — ${n.aciklama.tr} Kanıt: ${n.kanit.tr} Çözüm: ${cozumStr}`
+            }
+          };
+        })
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Teşhis Kataloğu", "item": "https://trendmasterakademi.com/teshis/" },
+          { "@type": "ListItem", "position": 3, "name": item.baslik.tr, "item": `https://trendmasterakademi.com/teshis/${item.slug}/` }
+        ]
+      }
+    ]
+  };
+
   return {
     dir: `teshis/${item.slug}`,
     title: `${item.baslik.tr} | Trend Master Akademi`,
@@ -431,7 +764,8 @@ const teshisPages = teshisData.map(item => {
     canonical: `https://trendmasterakademi.com/teshis/${item.slug}/`,
     ogUrl: `https://trendmasterakademi.com/teshis/${item.slug}/`,
     subheading: item.ozet.tr,
-    extraContent
+    extraContent,
+    schema
   };
 });
 
@@ -470,6 +804,12 @@ pages.forEach(page => {
   html = html.replace(/<link rel="alternate" hreflang="tr" href=".*?" \/>/i, `<link rel="alternate" hreflang="tr" href="${page.canonical}" />`);
   html = html.replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/i, `<link rel="alternate" hreflang="x-default" href="${page.canonical}" />`);
   html = html.replace(/<link rel="alternate" hreflang="en" href=".*?" \/>\s*/i, '');
+
+  // Replace JSON-LD Structured Data for this specific page
+  if (page.schema) {
+    const jsonLdString = JSON.stringify(page.schema, null, 2).replace(/<\/script>/gi, '<\\/script>');
+    html = html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/i, `<script type="application/ld+json">\n${jsonLdString}\n    </script>`);
+  }
 
   // Ensure Pre-rendered Semantic HTML is visible & corporate branded with distinct h1
   const semanticBlock = `

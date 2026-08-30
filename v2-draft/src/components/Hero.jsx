@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { getCalendlyUrl } from '../utils/calendly';
 
-const diagnosticLogs = [
+export const diagnosticLogs = [
   {
     no: '#01',
     log: 'SQLSTATE[40001]: Serialization failure: 1213 Deadlock found',
