@@ -1,0 +1,15 @@
+# Sohbet / oturum kayitlari — tutulmuyor (bkz. .agents/AGENTS.md)
+sohbet_gecmisi.md
+sohbet_gunlugu.md
+dunku_sohbet_gecmisi.md
+*sohbet*.md
+ANTIGRAVITY_WORKSPACE_STATE.md
+
+# Kok dizindeki yardimci betikler — yayina acik oldugu icin depoda tutulmuyor
+/add_article.py
+/extract_transcript.py
+/fetch_linkedin_posts.py
+/update_sohbet_gunlugu.py
+
+node_modules/
+.DS_Store
