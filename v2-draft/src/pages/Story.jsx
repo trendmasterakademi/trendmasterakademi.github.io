@@ -3,15 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, BookOpen, ShieldCheck, ArrowRight, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 const Story = () => {
   const { i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
 
   useEffect(() => {
-    document.title = isTr 
+    document.title = formatDocumentTitle(isTr 
       ? "Hikâyemiz & Kuruluş Anlatısı | Trend Master Akademi"
-      : "Our Story & Origins | Trend Master Academy";
+      : "Our Story & Origins | Trend Master Academy");
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

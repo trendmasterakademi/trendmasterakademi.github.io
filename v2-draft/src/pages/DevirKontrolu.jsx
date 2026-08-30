@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 /**
  * 12 Kalemlik Devir Hazırlık Kontrolü (Handover Readiness Checklist)
@@ -221,9 +222,9 @@ const DevirKontrolu = () => {
   const [isSendingLead, setIsSendingLead] = useState(false);
 
   useEffect(() => {
-    document.title = isTr
-      ? "Devir Hazırlık Kontrolü (12 Kalem) - Yazılımcı Ayrılık Riski | Trend Master Akademi"
-      : "Developer Handover Readiness Audit (12-Point Checklist) | Trend Master Academy";
+    document.title = formatDocumentTitle(isTr
+      ? "Devir Hazırlık Kontrolü (12 Kalem) | Trend Master Akademi"
+      : "Developer Handover Readiness Audit (12-Point Checklist) | Trend Master Academy");
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

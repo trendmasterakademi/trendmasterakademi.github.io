@@ -8,6 +8,7 @@ import {
 import { glossaryTerms } from '../data/glossaryData';
 import { teshisSummaries } from '../data/teshis/indexSummary';
 import { getCalendlyUrl } from '../utils/calendly';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 const GlossaryTerm = () => {
   const { slug } = useParams();
@@ -27,9 +28,9 @@ const GlossaryTerm = () => {
   useEffect(() => {
     if (!term) return;
 
-    document.title = isTr
-      ? `${term.title} Nedir? Ajanslar İçin Teknik Rehber | Trend Master Akademi`
-      : `${term.title} - Agency Executive Guide | Trend Master Academy`;
+    document.title = formatDocumentTitle(isTr
+      ? `${term.title} Nedir? | Trend Master Akademi`
+      : `${term.title} - Agency Executive Guide | Trend Master Academy`);
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

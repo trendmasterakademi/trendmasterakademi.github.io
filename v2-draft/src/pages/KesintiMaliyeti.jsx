@@ -5,6 +5,7 @@ import {
   Clock, TrendingDown, DollarSign
 } from 'lucide-react';
 import { getCalendlyUrl } from '../utils/calendly';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 const revenueTiers = [
   { id: 't1', label: '₺250.000 - ₺500.000 / ay', monthlyAvg: 375000 },
@@ -39,9 +40,9 @@ const KesintiMaliyeti = () => {
   });
 
   useEffect(() => {
-    document.title = isTr
-      ? "Web Sitesi Kesinti Maliyeti Hesaplayıcı (Downtime Calculator) | Trend Master Akademi"
-      : "Website Downtime Cost Calculator | Trend Master Academy";
+    document.title = formatDocumentTitle(isTr
+      ? "Kesinti Maliyeti Hesaplayıcı | Trend Master Akademi"
+      : "Website Downtime Cost Calculator | Trend Master Academy");
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

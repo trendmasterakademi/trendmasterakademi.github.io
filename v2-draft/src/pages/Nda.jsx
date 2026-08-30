@@ -2,15 +2,16 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Download, ArrowLeft, Scale } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 const Nda = () => {
   const { i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
 
   useEffect(() => {
-    document.title = isTr 
+    document.title = formatDocumentTitle(isTr 
       ? "Gizlilik ve Çalışma Sözleşmesi | Trend Master Akademi"
-      : "Confidentiality and Engagement Agreement | Trend Master Academy";
+      : "Confidentiality and Engagement Agreement | Trend Master Academy");
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

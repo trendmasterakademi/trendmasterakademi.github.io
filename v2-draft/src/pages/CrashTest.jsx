@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import EmergencySOSModal from '../components/EmergencySOSModal';
 import { getCalendlyUrl } from '../utils/calendly';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 // Dynamic code-split loaders: Each diagnostic chunk is loaded strictly on demand!
 const teshisLoaders = {
@@ -324,9 +325,9 @@ const CrashTest = () => {
   const [isSendingLead, setIsSendingLead] = useState(false);
 
   React.useEffect(() => {
-    document.title = isTr
-      ? "Agency Crash Test (60sn) - Kriz & Teşhis Simülatörü | Trend Master Akademi"
-      : "Agency Crash Test (60s) - Crisis & Diagnostic Simulator | Trend Master Academy";
+    document.title = formatDocumentTitle(isTr
+      ? "Agency Crash Test (60 sn) | Trend Master Akademi"
+      : "Agency Crash Test (60s) - Crisis & Diagnostic Simulator | Trend Master Academy");
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

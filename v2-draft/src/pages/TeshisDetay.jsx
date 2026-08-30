@@ -3,6 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, AlertTriangle, Terminal } from 'lucide-react';
 import TeshisDiyagram from '../components/TeshisDiyagram';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 // Dynamic code-split loaders: Each diagnostic chunk is loaded strictly on demand!
 const teshisLoaders = {
@@ -74,7 +75,9 @@ const TeshisDetay = () => {
     const ozetText = teshis.ozet[lang] || teshis.ozet.tr;
     const firstSentence = ozetText.split('.')[0] + '.';
 
-    document.title = `${baslikText} | Trend Master Akademi`;
+    document.title = formatDocumentTitle(isTr
+      ? `${baslikText} | Trend Master Akademi`
+      : `${baslikText} | Trend Master Academy`);
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

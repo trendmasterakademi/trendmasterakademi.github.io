@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AlertTriangle, ArrowRight, Stethoscope } from 'lucide-react';
 import { teshisSummaries } from '../data/teshis/indexSummary';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 const TeshisIndex = () => {
   const { i18n } = useTranslation();
@@ -10,9 +11,9 @@ const TeshisIndex = () => {
   const lang = isTr ? 'tr' : 'en';
 
   useEffect(() => {
-    document.title = isTr 
+    document.title = formatDocumentTitle(isTr 
       ? 'Teşhis Kataloğu | Trend Master Akademi'
-      : 'Diagnostic Catalog | Trend Master Academy';
+      : 'Diagnostic Catalog | Trend Master Academy');
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

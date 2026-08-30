@@ -3,15 +3,16 @@ import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Server, Lock, Cpu, ArrowRight, ArrowLeft, Zap, PhoneCall, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 const About = () => {
   const { i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
 
   useEffect(() => {
-    document.title = isTr 
-      ? "Mühendislik Standartlarımız & Hakkımızda | Trend Master Akademi"
-      : "Engineering Standards & About | Trend Master Academy";
+    document.title = formatDocumentTitle(isTr 
+      ? "Mühendislik Standartlarımız | Trend Master Akademi"
+      : "Engineering Standards & About | Trend Master Academy");
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

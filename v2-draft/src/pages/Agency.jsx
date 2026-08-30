@@ -9,6 +9,7 @@ import {
 import EmergencySOSModal from '../components/EmergencySOSModal';
 import FAQ from '../components/FAQ';
 import { getCalendlyUrl } from '../utils/calendly';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 const capabilities = [
   { 
@@ -164,9 +165,9 @@ const Agency = () => {
   const [isSOSOpen, setIsSOSOpen] = useState(false);
 
   React.useEffect(() => {
-    document.title = isTr
-      ? "B2B Ajans Çözüm Ortaklığı & White-Label SWAT | Trend Master Akademi"
-      : "B2B Agency Partnership & White-Label SWAT | Trend Master Academy";
+    document.title = formatDocumentTitle(isTr
+      ? "Ajanslar İçin White-Label Mühendislik | Trend Master Akademi"
+      : "B2B Agency Partnership & White-Label SWAT | Trend Master Academy");
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

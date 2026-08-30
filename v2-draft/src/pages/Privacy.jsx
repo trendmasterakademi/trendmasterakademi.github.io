@@ -2,15 +2,16 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Lock, ArrowLeft, Mail, PhoneCall, MapPin, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 const Privacy = () => {
   const { i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
 
   useEffect(() => {
-    document.title = isTr 
-      ? "KVKK Aydınlatma Metni & Gizlilik Politikası | Trend Master Akademi"
-      : "Privacy Policy & NDA Commitment | Trend Master Academy";
+    document.title = formatDocumentTitle(isTr 
+      ? "KVKK & Gizlilik Politikası | Trend Master Akademi"
+      : "Privacy Policy & NDA Commitment | Trend Master Academy");
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

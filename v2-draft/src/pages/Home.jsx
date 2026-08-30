@@ -7,6 +7,7 @@ import Services from '../components/Services';
 import CaseStudySection from '../components/CaseStudySection';
 import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 const Home = () => {
   const { i18n } = useTranslation();
@@ -14,8 +15,8 @@ const Home = () => {
   useEffect(() => {
     const isTr = i18n.language !== 'en';
     document.title = isTr
-      ? "Trend Master Akademi | B2B Technical SWAT & White-Label Engineering"
-      : "Trend Master Academy | B2B Technical SWAT & White-Label Engineering";
+      ? "Trend Master Akademi | B2B Mühendislik & Kod Kurtarma"
+      : formatDocumentTitle("Trend Master Academy | B2B Technical SWAT & White-Label Engineering");
     
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

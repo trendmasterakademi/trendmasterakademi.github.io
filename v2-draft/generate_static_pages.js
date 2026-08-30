@@ -455,7 +455,7 @@ const basePages = [
   },
   {
     dir: 'hikayemiz',
-    title: 'Hikayemiz | Trend Master Akademi',
+    title: 'Hikâyemiz & Kuruluş Anlatısı | Trend Master Akademi',
     h1: "Trend Master Akademi'nin hikâyesi",
     description: '20 yıllık finansal yazılım tecrübesi, online eğitimden doğan isim ve B2B mühendislik masası vizyonumuz.',
     canonical: 'https://trendmasterakademi.com/hikayemiz/',
@@ -526,7 +526,7 @@ const basePages = [
   },
   {
     dir: 'nda',
-    title: 'Gizlilik Sözleşmesi (NDA) | Trend Master Akademi',
+    title: 'Gizlilik ve Çalışma Sözleşmesi | Trend Master Akademi',
     h1: 'Gizlilik ve Çalışma Sözleşmesi',
     description: 'Çalışmaya başlamadan önce imzaladığımız karşılıklı gizlilik ve çalışma sözleşmesinin tam metni ve sade dilli özeti.',
     canonical: 'https://trendmasterakademi.com/nda/',

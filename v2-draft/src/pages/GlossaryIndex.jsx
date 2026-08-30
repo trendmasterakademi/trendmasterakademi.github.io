@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { glossaryTerms } from '../data/glossaryData';
 import { getCalendlyUrl } from '../utils/calendly';
+import { formatDocumentTitle } from '../utils/pageTitle';
 
 const GlossaryIndex = () => {
   const { i18n } = useTranslation();
@@ -14,9 +15,9 @@ const GlossaryIndex = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    document.title = isTr
-      ? "Yazılımcı Dili → Ajans Dili Teknik Terim Sözlüğü | Trend Master Akademi"
-      : "Developer-to-Agency Tech Glossary | Trend Master Academy";
+    document.title = formatDocumentTitle(isTr
+      ? "Teknik Terim Sözlüğü | Trend Master Akademi"
+      : "Developer-to-Agency Tech Glossary | Trend Master Academy");
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

@@ -1,0 +1,1 @@
+function e(e){if(!e||e.length<=60)return e;for(let t of[` | Trend Master Akademi`,` | Trend Master Academy`])if(e.endsWith(t))return e.slice(0,-t.length);return e}export{e as t};
