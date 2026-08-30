@@ -29,6 +29,15 @@ function cleanLogForQuestion(log) {
   return log.split('←')[0].replace(/\s+/g, ' ').trim();
 }
 
+function formatPageTitle(baseTitle) {
+  const brandSuffix = ' | Trend Master Akademi';
+  const fullTitle = `${baseTitle}${brandSuffix}`;
+  if (fullTitle.length <= 60) {
+    return fullTitle;
+  }
+  return baseTitle;
+}
+
 const distDir = path.join(__dirname, 'dist');
 const templatePath = path.join(distDir, 'index.html');
 
@@ -257,7 +266,7 @@ const homePageExtraContent = `
 const basePages = [
   {
     dir: '',
-    title: 'Trend Master Akademi | B2B Technical SWAT & White-Label Engineering',
+    title: 'Trend Master Akademi | B2B Mühendislik & Kod Kurtarma',
     h1: 'Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio',
     description: 'Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), SaaS Mimarisi ve Kriz Çözüm Stüdyosu.',
     canonical: 'https://trendmasterakademi.com/',
@@ -287,7 +296,7 @@ const basePages = [
   },
   {
     dir: 'agency',
-    title: 'Ajans Çözümleri & B2B White-Label Mühendislik Masası | Trend Master Akademi',
+    title: 'Ajanslar İçin White-Label Mühendislik | Trend Master Akademi',
     h1: 'Ajans Çözümleri & B2B Mühendislik Masası',
     description: 'Dijital ajansların görünmez teknik gücü: %100 White-Label, resmi NDA güvencesi, 20+ teknik yetkinlik, acil kriz masası ve kıdemli mühendislik takviyesi.',
     canonical: 'https://trendmasterakademi.com/agency/',
@@ -311,7 +320,7 @@ const basePages = [
   },
   {
     dir: 'crash-test',
-    title: 'Agency Crash Test (60sn) - Kriz & Risk Simülatörü | Trend Master Akademi',
+    title: 'Agency Crash Test (60 sn) | Trend Master Akademi',
     h1: 'Agency Crash Test (60sn)',
     description: 'Ajansınız teknik bir krize hazır mı? HTTP 500 kesintisi, geliştirici ani ayrılığı veya T-48H lansman darboğazı için 60 saniyede risk skorunuzu ve eylem planınızı görün.',
     canonical: 'https://trendmasterakademi.com/crash-test/',
@@ -335,7 +344,7 @@ const basePages = [
   },
   {
     dir: 'devir-kontrolu',
-    title: 'Devir Hazırlık Kontrolü (12 Kalem) - Yazılımcı Ayrılık Riski | Trend Master Akademi',
+    title: 'Devir Hazırlık Kontrolü (12 Kalem) | Trend Master Akademi',
     h1: 'Devir Hazırlık Kontrolü',
     description: 'Yazılımcınız ayrılıyor veya ayrıldı mı? 12 kritik kalemi kontrol edin, devir risk skorunuzu ve eksik envanterinizi 60 saniyede ücretsiz analiz edin.',
     canonical: 'https://trendmasterakademi.com/devir-kontrolu/',
@@ -359,7 +368,7 @@ const basePages = [
   },
   {
     dir: 'sozluk',
-    title: 'Yazılımcı Dili → Ajans Dili Teknik Terim Sözlüğü | Trend Master Akademi',
+    title: 'Teknik Terim Sözlüğü | Trend Master Akademi',
     h1: 'Teknik Terim Sözlüğü',
     description: 'Yazılımcınız teknik bir bahane sunduğunda ne anlama geldiğini öğrenin. Deadlock, N+1, Race Condition, Webhook ve 12 temel terimin iş etkisi ve çözümü.',
     canonical: 'https://trendmasterakademi.com/sozluk/',
@@ -398,7 +407,7 @@ const basePages = [
   },
   {
     dir: 'kesinti-maliyeti',
-    title: 'Web Sitesi Kesinti Maliyeti Hesaplayıcı (Downtime Calculator) | Trend Master Akademi',
+    title: 'Kesinti Maliyeti Hesaplayıcı | Trend Master Akademi',
     h1: 'Kesinti Maliyeti Hesaplayıcı',
     description: 'Sunucu çökmesi veya HTTP 500 kesintisinde saatlik ve toplam tahmini ciro kaybınızı hesaplayın. Şeffaf matematik ve kurtarma ROI analizi.',
     canonical: 'https://trendmasterakademi.com/kesinti-maliyeti/',
@@ -422,7 +431,7 @@ const basePages = [
   },
   {
     dir: 'about',
-    title: 'Mühendislik Standartlarımız & Hakkımızda | Trend Master Akademi',
+    title: 'Mühendislik Standartlarımız | Trend Master Akademi',
     h1: 'Mühendislik Standartlarımız & Hakkımızda',
     description: 'Trend Master Akademi mühendislik standartları, 4 temel prensip ve B2B SWAT vizyonu.',
     canonical: 'https://trendmasterakademi.com/about/',
@@ -446,7 +455,7 @@ const basePages = [
   },
   {
     dir: 'hikayemiz',
-    title: 'Hikâyemiz & Kuruluş Anlatısı | Trend Master Akademi',
+    title: 'Hikayemiz | Trend Master Akademi',
     h1: "Trend Master Akademi'nin hikâyesi",
     description: '20 yıllık finansal yazılım tecrübesi, online eğitimden doğan isim ve B2B mühendislik masası vizyonumuz.',
     canonical: 'https://trendmasterakademi.com/hikayemiz/',
@@ -469,7 +478,7 @@ const basePages = [
   },
   {
     dir: 'privacy',
-    title: 'KVKK Aydınlatma Metni & Gizlilik Politikası | Trend Master Akademi',
+    title: 'KVKK & Gizlilik Politikası | Trend Master Akademi',
     h1: 'KVKK Aydınlatma Metni & Gizlilik Politikası',
     description: 'Trend Master Akademi KVKK aydınlatma metni, veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik standartları.',
     canonical: 'https://trendmasterakademi.com/privacy/',
@@ -493,7 +502,7 @@ const basePages = [
   },
   {
     dir: 'gizlilik',
-    title: 'KVKK Aydınlatma Metni & Gizlilik Politikası | Trend Master Akademi',
+    title: 'KVKK & Gizlilik Politikası | Trend Master Akademi',
     h1: 'KVKK Aydınlatma Metni & Gizlilik Politikası',
     description: 'Trend Master Akademi KVKK aydınlatma metni, veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik standartları.',
     canonical: 'https://trendmasterakademi.com/privacy/',
@@ -517,7 +526,7 @@ const basePages = [
   },
   {
     dir: 'nda',
-    title: 'Gizlilik ve Çalışma Sözleşmesi | Trend Master Akademi',
+    title: 'Gizlilik Sözleşmesi (NDA) | Trend Master Akademi',
     h1: 'Gizlilik ve Çalışma Sözleşmesi',
     description: 'Çalışmaya başlamadan önce imzaladığımız karşılıklı gizlilik ve çalışma sözleşmesinin tam metni ve sade dilli özeti.',
     canonical: 'https://trendmasterakademi.com/nda/',
@@ -679,7 +688,7 @@ const glossaryPages = glossaryTerms.map(term => {
 
   return {
     dir: `sozluk/${term.slug}`,
-    title: `${term.title} Nedir? Ajanslar İçin Teknik Rehber | Trend Master Akademi`,
+    title: formatPageTitle(`${term.title} Nedir?`),
     h1: `${term.title} Nedir?`,
     description: `${term.title}: ${term.shortDef.tr}`,
     canonical: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
@@ -848,7 +857,7 @@ const teshisPages = teshisData.map(item => {
 
   return {
     dir: `teshis/${item.slug}`,
-    title: `${item.baslik.tr} | Trend Master Akademi`,
+    title: formatPageTitle(item.baslik.tr),
     h1: item.baslik.tr,
     description: item.ozet.tr.split('.')[0] + '.',
     canonical: `https://trendmasterakademi.com/teshis/${item.slug}/`,
@@ -870,29 +879,29 @@ pages.forEach(page => {
   let html = template;
 
   // Replace Title
-  html = html.replace(/<title>.*?<\/title>/i, `<title>${page.title}</title>`);
+  html = html.replace(/<title>.*?<\/title>/i, `<title>${escapeHtml(page.title)}</title>`);
   
   // Replace Meta Description
-  html = html.replace(/<meta name="description" content=".*?" \/>/i, `<meta name="description" content="${page.description}" />`);
+  html = html.replace(/<meta name="description" content=".*?" \/>/i, `<meta name="description" content="${escapeHtml(page.description)}" />`);
   
   // Replace Canonical
-  html = html.replace(/<link rel="canonical" href=".*?" \/>/i, `<link rel="canonical" href="${page.canonical}" />`);
+  html = html.replace(/<link rel="canonical" href=".*?" \/>/i, `<link rel="canonical" href="${escapeHtml(page.canonical)}" />`);
   
   // Replace OpenGraph Title & URL
-  html = html.replace(/<meta property="og:title" content=".*?" \/>/i, `<meta property="og:title" content="${page.title}" />`);
-  html = html.replace(/<meta property="og:url" content=".*?" \/>/i, `<meta property="og:url" content="${page.ogUrl}" />`);
-  html = html.replace(/<meta property="og:description" content=".*?" \/>/i, `<meta property="og:description" content="${page.description}" />`);
+  html = html.replace(/<meta property="og:title" content=".*?" \/>/i, `<meta property="og:title" content="${escapeHtml(page.title)}" />`);
+  html = html.replace(/<meta property="og:url" content=".*?" \/>/i, `<meta property="og:url" content="${escapeHtml(page.ogUrl)}" />`);
+  html = html.replace(/<meta property="og:description" content=".*?" \/>/i, `<meta property="og:description" content="${escapeHtml(page.description)}" />`);
   html = html.replace(/<meta property="og:image" content=".*?" \/>/i, `<meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />`);
 
   // Replace Twitter Title & URL
-  html = html.replace(/<meta name="twitter:title" content=".*?" \/>/i, `<meta name="twitter:title" content="${page.title}" />`);
-  html = html.replace(/<meta name="twitter:url" content=".*?" \/>/i, `<meta name="twitter:url" content="${page.ogUrl}" />`);
-  html = html.replace(/<meta name="twitter:description" content=".*?" \/>/i, `<meta name="twitter:description" content="${page.description}" />`);
+  html = html.replace(/<meta name="twitter:title" content=".*?" \/>/i, `<meta name="twitter:title" content="${escapeHtml(page.title)}" />`);
+  html = html.replace(/<meta name="twitter:url" content=".*?" \/>/i, `<meta name="twitter:url" content="${escapeHtml(page.ogUrl)}" />`);
+  html = html.replace(/<meta name="twitter:description" content=".*?" \/>/i, `<meta name="twitter:description" content="${escapeHtml(page.description)}" />`);
   html = html.replace(/<meta name="twitter:image" content=".*?" \/>/i, `<meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />`);
 
   // Clean Hreflang for this specific page (Self-referencing tr and x-default, NO en)
-  html = html.replace(/<link rel="alternate" hreflang="tr" href=".*?" \/>/i, `<link rel="alternate" hreflang="tr" href="${page.canonical}" />`);
-  html = html.replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/i, `<link rel="alternate" hreflang="x-default" href="${page.canonical}" />`);
+  html = html.replace(/<link rel="alternate" hreflang="tr" href=".*?" \/>/i, `<link rel="alternate" hreflang="tr" href="${escapeHtml(page.canonical)}" />`);
+  html = html.replace(/<link rel="alternate" hreflang="x-default" href=".*?" \/>/i, `<link rel="alternate" hreflang="x-default" href="${escapeHtml(page.canonical)}" />`);
   html = html.replace(/<link rel="alternate" hreflang="en" href=".*?" \/>\s*/i, '');
 
   // Replace JSON-LD Structured Data for this specific page

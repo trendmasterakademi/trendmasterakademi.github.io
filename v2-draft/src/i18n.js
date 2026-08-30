@@ -19,9 +19,16 @@ i18n
     }
   });
 
+if (typeof document !== 'undefined') {
+  document.documentElement.lang = savedLang;
+}
+
 i18n.on('languageChanged', (lng) => {
   if (typeof window !== 'undefined') {
     localStorage.setItem('tma_lang', lng);
+  }
+  if (typeof document !== 'undefined') {
+    document.documentElement.lang = lng;
   }
 });
 
