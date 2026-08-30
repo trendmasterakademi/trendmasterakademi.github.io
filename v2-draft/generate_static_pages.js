@@ -1,11 +1,33 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { execSync } from 'child_process';
 import { glossaryTerms } from './src/data/glossaryData.js';
 import { teshisData } from './src/data/teshisData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const repoRoot = path.resolve(__dirname, '..');
+
+function getGitDates(relativeFilePath) {
+  try {
+    const mod = execSync(`git log -1 --format=%cI -- "${relativeFilePath}"`, { cwd: repoRoot, encoding: 'utf8' }).trim();
+    const pubOut = execSync(`git log --diff-filter=A --format=%cI -- "${relativeFilePath}"`, { cwd: repoRoot, encoding: 'utf8' }).trim();
+    const pub = pubOut.split('\n').filter(Boolean).pop() || mod;
+    return {
+      dateModified: mod || null,
+      datePublished: pub || null
+    };
+  } catch (err) {
+    console.warn(`[GIT DATE WARNING] Could not read git dates for ${relativeFilePath}: ${err.message}`);
+    return { dateModified: null, datePublished: null };
+  }
+}
+
+function cleanLogForQuestion(log) {
+  if (!log) return '';
+  return log.split('←')[0].replace(/\s+/g, ' ').trim();
+}
 
 const distDir = path.join(__dirname, 'dist');
 const templatePath = path.join(distDir, 'index.html');
@@ -88,7 +110,14 @@ const professionalServiceNode = {
     "addressCountry": "TR"
   },
   "priceRange": "$$$",
-  "openingHours": "Mo-Su 00:00-23:59",
+  "openingHours": "Mo-Su 09:00-24:00",
+  "sameAs": [
+    "https://www.linkedin.com/in/trendmasterakademi/"
+  ],
+  "areaServed": {
+    "@type": "Country",
+    "name": "Türkiye"
+  },
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "B2B SWAT & Mühendislik Hizmetleri",
@@ -599,20 +628,29 @@ const glossaryPages = glossaryTerms.map(term => {
 
   const extraContent = `${mainGlossaryContent}\n${reverseBlock}`;
 
+  const glossaryDates = getGitDates('v2-draft/src/data/glossaryData.js');
+
+  const definedTermNode = {
+    "@type": "DefinedTerm",
+    "name": term.title,
+    "description": term.shortDef.tr,
+    "inDefinedTermSet": {
+      "@type": "DefinedTermSet",
+      "name": "Teknik Terim Sözlüğü",
+      "url": "https://trendmasterakademi.com/sozluk/"
+    },
+    "url": `https://trendmasterakademi.com/sozluk/${term.slug}/`,
+    "inLanguage": "tr-TR"
+  };
+
+  if (glossaryDates.dateModified) {
+    definedTermNode.dateModified = glossaryDates.dateModified;
+  }
+
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "DefinedTerm",
-        "name": term.title,
-        "description": term.shortDef.tr,
-        "inDefinedTermSet": {
-          "@type": "DefinedTermSet",
-          "name": "Teknik Terim Sözlüğü",
-          "url": "https://trendmasterakademi.com/sozluk/"
-        },
-        "url": `https://trendmasterakademi.com/sozluk/${term.slug}/`
-      },
+      definedTermNode,
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
@@ -740,7 +778,7 @@ const teshisPages = teshisData.map(item => {
         const cozumStr = Array.isArray(neden.diyagramCozum?.tr) ? neden.diyagramCozum.tr.join(' ') : (neden.diyagramCozum?.tr || '');
         faqQuestions.push({
           "@type": "Question",
-          "name": `«${logSatiri}» görüyorsam nedeni ne?`,
+          "name": `«${cleanLogForQuestion(logSatiri)}» görüyorsam nedeni ne?`,
           "acceptedAnswer": {
             "@type": "Answer",
             "text": `${neden.harf} · ${neden.ad.tr} — ${neden.aciklama.tr} Çözüm: ${cozumStr}`
@@ -750,23 +788,34 @@ const teshisPages = teshisData.map(item => {
     }
   }
 
+  const teshisDates = getGitDates(`v2-draft/src/data/teshis/${item.slug}.js`);
+
+  const techArticleNode = {
+    "@type": "TechArticle",
+    "headline": item.baslik.tr,
+    "description": item.ozet.tr,
+    "url": `https://trendmasterakademi.com/teshis/${item.slug}/`,
+    "mainEntityOfPage": `https://trendmasterakademi.com/teshis/${item.slug}/`,
+    "inLanguage": "tr-TR",
+    "about": item.kirinti.tr,
+    "publisher": {
+      "@type": "Organization",
+      "name": "Trend Master Akademi",
+      "url": "https://trendmasterakademi.com"
+    }
+  };
+
+  if (teshisDates.datePublished) {
+    techArticleNode.datePublished = teshisDates.datePublished;
+  }
+  if (teshisDates.dateModified) {
+    techArticleNode.dateModified = teshisDates.dateModified;
+  }
+
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "TechArticle",
-        "headline": item.baslik.tr,
-        "description": item.ozet.tr,
-        "url": `https://trendmasterakademi.com/teshis/${item.slug}/`,
-        "mainEntityOfPage": `https://trendmasterakademi.com/teshis/${item.slug}/`,
-        "inLanguage": "tr-TR",
-        "about": item.kirinti.tr,
-        "publisher": {
-          "@type": "Organization",
-          "name": "Trend Master Akademi",
-          "url": "https://trendmasterakademi.com"
-        }
-      },
+      techArticleNode,
       {
         "@type": "FAQPage",
         "mainEntity": faqQuestions
@@ -874,3 +923,67 @@ pages.forEach(page => {
 });
 
 console.log(`All ${pages.length} static sub-pages generated successfully!`);
+
+// B3 — sitemap.xml <lastmod> güncellemesi (git tarihlerinden)
+const sitemapPageSourceMap = {
+  'https://trendmasterakademi.com/': 'v2-draft/src/pages/Home.jsx',
+  'https://trendmasterakademi.com/agency/': 'v2-draft/src/pages/Agency.jsx',
+  'https://trendmasterakademi.com/crash-test/': 'v2-draft/src/pages/CrashTest.jsx',
+  'https://trendmasterakademi.com/devir-kontrolu/': 'v2-draft/src/pages/DevirKontrolu.jsx',
+  'https://trendmasterakademi.com/sozluk/': 'v2-draft/src/data/glossaryData.js',
+  'https://trendmasterakademi.com/kesinti-maliyeti/': 'v2-draft/src/pages/KesintiMaliyeti.jsx',
+  'https://trendmasterakademi.com/about/': 'v2-draft/src/pages/About.jsx',
+  'https://trendmasterakademi.com/hikayemiz/': 'v2-draft/src/pages/Story.jsx',
+  'https://trendmasterakademi.com/privacy/': 'v2-draft/src/pages/Privacy.jsx',
+  'https://trendmasterakademi.com/gizlilik/': 'v2-draft/src/pages/Privacy.jsx',
+  'https://trendmasterakademi.com/nda/': 'v2-draft/src/pages/Nda.jsx',
+  'https://trendmasterakademi.com/teshis/': 'v2-draft/src/data/teshisData.js'
+};
+
+for (const term of glossaryTerms) {
+  sitemapPageSourceMap[`https://trendmasterakademi.com/sozluk/${term.slug}/`] = 'v2-draft/src/data/glossaryData.js';
+}
+
+for (const item of teshisData) {
+  sitemapPageSourceMap[`https://trendmasterakademi.com/teshis/${item.slug}/`] = `v2-draft/src/data/teshis/${item.slug}.js`;
+}
+
+function updateSitemapLastmod() {
+  const publicSitemapPath = path.join(__dirname, 'public/sitemap.xml');
+  const distSitemapPath = path.join(__dirname, 'dist/sitemap.xml');
+  const rootSitemapPath = path.join(repoRoot, 'sitemap.xml');
+
+  if (!fs.existsSync(publicSitemapPath)) {
+    console.warn('[SITEMAP WARNING] public/sitemap.xml not found');
+    return;
+  }
+
+  let content = fs.readFileSync(publicSitemapPath, 'utf8');
+  let updatedCount = 0;
+
+  content = content.replace(/<url>([\s\S]*?)<\/url>/g, (match, urlInner) => {
+    const locMatch = urlInner.match(/<loc>(.*?)<\/loc>/);
+    if (!locMatch) return match;
+    const loc = locMatch[1].trim();
+    const sourceFile = sitemapPageSourceMap[loc];
+    if (!sourceFile) return match;
+
+    const dates = getGitDates(sourceFile);
+    if (!dates.dateModified) return match;
+
+    const lastmodDate = dates.dateModified.slice(0, 10);
+    updatedCount++;
+    return match.replace(/<lastmod>.*?<\/lastmod>/, `<lastmod>${lastmodDate}</lastmod>`);
+  });
+
+  fs.writeFileSync(publicSitemapPath, content, 'utf8');
+  if (fs.existsSync(distSitemapPath)) {
+    fs.writeFileSync(distSitemapPath, content, 'utf8');
+  }
+  if (fs.existsSync(rootSitemapPath)) {
+    fs.writeFileSync(rootSitemapPath, content, 'utf8');
+  }
+  console.log(`sitemap.xml updated with git lastmod dates (${updatedCount} URLs)`);
+}
+
+updateSitemapLastmod();
