@@ -1203,7 +1203,14 @@ const CrashTest = () => {
 
               {/* Direct Info */}
               <div className="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-slate-400 border-t border-white/10">
-                <span>📞 {isTr ? 'Kriz Hattı · her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt: 15 dakika' : 'Response Desk · daily 09:00 – 24:00 · typical first reply to emergencies: 15 minutes'}: <a href="tel:+905343713573" className="text-white font-mono hover:text-cyan-400 font-bold">+90 534 371 35 73</a></span>
+                <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-0.5">
+                  <span>📞 {isTr ? 'Kriz Hattı' : 'Response Desk'}: <a href="tel:+905343713573" className="text-white font-mono hover:text-cyan-400 font-bold">+90 534 371 35 73</a></span>
+                  <span className="text-[11px] text-slate-500 font-mono">
+                    {isTr 
+                      ? 'her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt 15 dakika' 
+                      : 'daily 09:00 – 24:00 · typical first reply to emergencies 15 minutes'}
+                  </span>
+                </div>
                 <span>✉️ {isTr ? 'E-posta' : 'Email'}: <a href="mailto:info@trendmasterakademi.com" className="text-white font-mono hover:text-cyan-400 font-bold">info@trendmasterakademi.com</a></span>
                 <span>📍 Konak / İzmir & Global Remote</span>
               </div>
