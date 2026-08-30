@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -265,9 +265,78 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Aynı stok iki müşteriye satıldı</h2>
+        
         <p class="text-slate-300 text-lg leading-relaxed">Son kalan ürün iki ayrı siparişte çıktı, stok eksiye düştü. Birine iade yapmak zorundasınız. Bu belirtinin üç farklı nedeni var ve üçünün çözümü birbirinden tamamen ayrı — yanlış olanı düzeltmek sorunu geri getirir.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · ticari kayıp · Kategori: Sipariş &amp; Ödeme</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>SQLSTATE[40001]: Serialization failure: 1213 Deadlock found</code></li>
+        <li><code>Duplicate entry &#039;...&#039; for key &#039;orders_reference_unique&#039;</code></li>
+        <li><code>UPDATE products SET stock = stock - 1  ← kontrol ve yazma ayrı</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">Bu satırlardan hangisinin göründüğü, hangi nedenle karşı karşıya olduğunuzu daha ilk bakışta daraltır.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Race condition</h3>
+            <p class="text-slate-300 leading-relaxed">Aynı anda gelen iki istek stoğu eşzamanlı düşürdü. Kontrol ile yazma arasında boşluk var.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> İki siparişin created_at farkı &lt; 1 sn mi?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> created_at farkı &lt; 1sn → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Atomik UPDATE + etkilenen satır kontrolü</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Idempotency yok</h3>
+            <p class="text-slate-300 leading-relaxed">Tek bir ödeme iki kez işlendi; müşteri iki kez tıkladı ya da webhook tekrar geldi. Eşzamanlılık yok, tekrar var.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> payment_reference değerleri aynı mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> payment_reference aynı → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> unique index + idempotency anahtarı</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Stok senkronu</h3>
+            <p class="text-slate-300 leading-relaxed">Stoğun kaynağı ERP veya pazaryeri. Yarış sitede değil, iki sistem arasındaki gecikmede.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Son ERP senkronu satıştan önce mi?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Senkron satıştan eski → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Rezervasyon mantığı + senkron sıklığı</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">Kıdemli backend mühendisi · 2–4 saat. Doğru neden belirlendikten sonra üçü de kalıcı olarak kapanır. Teşhis olmadan yapılan düzeltme belirtiyi bastırır, kaynağı bırakır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Her çift satış bir iade, bir kargo maliyeti ve bir olumsuz yorum riski. Kampanya günlerinde eşzamanlı trafik arttığı için sıklık katlanarak büyür.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/race-condition/" class="hover:underline">→ Race Condition (Yarış Durumu)</a></li>
+        <li><a href="/sozluk/idempotency/" class="hover:underline">→ Idempotency (Çift İşlem Koruması)</a></li>
+        <li><a href="/sozluk/deadlock/" class="hover:underline">→ Deadlock (Veritabanı Kilitlenmesi)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/crash-test/" class="text-cyan-400 hover:underline font-bold">→ Acil Kriz Müdahalesi &amp; Crash Test</a></p>
+      </section>
+    </section>
+  
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
@@ -276,6 +345,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>

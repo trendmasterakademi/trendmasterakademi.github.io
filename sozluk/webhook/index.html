@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -268,13 +268,45 @@
         <h2 class="text-2xl font-bold text-white">Webhook (Sistemler Arası Anlık Bildirim)</h2>
         <p class="text-slate-300 text-lg leading-relaxed">Bir sistemde olay gerçekleştiğinde (örn. ödeme alındığında) diğer sistemi beklemeden anında uyaran otomatik HTTP callback mekanizmasıdır. Ajans için ne anlama gelir? Müşteri iyzico/Stripe ile ödeme yaptığında sitenizin siparişi otomatik "Ödendi"ye çekmesini sağlar. Webhook koptuğunda para tahsil edilir ama sipariş düşmez.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik (P0)</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Tanım</h2>
+        <p class="text-slate-300 leading-relaxed">Bir sistemde olay gerçekleştiğinde (örn. ödeme alındığında) diğer sistemi beklemeden anında uyaran otomatik HTTP callback mekanizmasıdır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Ajans için ne anlama gelir</h2>
+        <p class="text-slate-300 leading-relaxed">Ajans için ne anlama gelir? Müşteri iyzico/Stripe ile ödeme yaptığında sitenizin siparişi otomatik &quot;Ödendi&quot;ye çekmesini sağlar. Webhook koptuğunda para tahsil edilir ama sipariş düşmez.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer</h2>
+        <p class="text-slate-300 leading-relaxed">Entegrasyon Mühendisi. Webhook signing secret doğrulaması, payload parsing ve retry mekanizmalarıyla devreye alınır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/idempotency/" class="hover:underline">→ Idempotency (Çift İşlem Koruması)</a></li>
+        <li><a href="/sozluk/rate-limit/" class="hover:underline">→ Rate Limiting (Trafik &amp; İstek Sınırlandırma)</a></li>
+        <li><a href="/sozluk/ci-cd/" class="hover:underline">→ CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/agency/" class="text-cyan-400 hover:underline font-bold">→ White-Label Kriz SWAT Desteği</a></p>
+      </section>
+    </section>
+  
+
       <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3 mt-6">
         <h2 class="text-xl font-bold text-white">Bu terim şu belirtilerde çıkar</h2>
         <ul class="space-y-2 font-mono text-sm text-cyan-300">
           <li><a href="/teshis/odeme-alindi-siparis-olusmadi/" class="hover:underline">→ 02 · Ödeme alındı, sipariş oluşmadı</a></li>
-<li><a href="/teshis/odeme-iki-kez-alindi/" class="hover:underline">→ 03 · Ödeme iki kez alındı</a></li>
-<li><a href="/teshis/entegrasyon-429-veriyor/" class="hover:underline">→ 12 · Entegrasyon aniden 429 vermeye başladı</a></li>
-<li><a href="/teshis/form-gonderiliyor-mail-gelmiyor/" class="hover:underline">→ 18 · Form gönderiliyor ama mail gelmiyor</a></li>
+          <li><a href="/teshis/odeme-iki-kez-alindi/" class="hover:underline">→ 03 · Ödeme iki kez alındı</a></li>
+          <li><a href="/teshis/entegrasyon-429-veriyor/" class="hover:underline">→ 12 · Entegrasyon aniden 429 vermeye başladı</a></li>
+          <li><a href="/teshis/form-gonderiliyor-mail-gelmiyor/" class="hover:underline">→ 18 · Form gönderiliyor ama mail gelmiyor</a></li>
         </ul>
         
       </section>
@@ -287,6 +319,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>

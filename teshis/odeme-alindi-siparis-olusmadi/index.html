@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -265,9 +265,79 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Ödeme alındı, sipariş oluşmadı</h2>
+        
         <p class="text-slate-300 text-lg leading-relaxed">Müşterinin kartından para çekildi ama sistemde sipariş yok. Müşteri arıyor, elinizde kayıt yok. Para bankada, sipariş ortada yok — ikisinin arasında kopmuş bir bildirim var.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · ticari kayıp · Kategori: Sipariş &amp; Ödeme</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>Webhook adresi: 404 / 500 / zaman aşımı</code></li>
+        <li><code>Ödeme sağlayıcı paneli: callback failed · retry 3/3</code></li>
+        <li><code>Uygulama log&#039;unda ödeme referansı hiç geçmiyor</code></li>
+        <li><code>HTTP 302 — bildirim yönlendirmeyi takip etmiyor</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">Ödeme sağlayıcısının panelinde her bildirim denemesinin kaydı vardır. Cevabı orada aramak kodda aramaktan hızlıdır: sağlayıcı size kaç kez denediğini ve ne cevap aldığını söyler.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Bildirim ulaşmadı</h3>
+            <p class="text-slate-300 leading-relaxed">Sağlayıcı bildirimi gönderdi ama adres yanlış, kapalı ya da güvenlik duvarı engelledi.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Sağlayıcı panelinde deneme kaydı var mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Sağlayıcı panelinde 404 / zaman aşımı → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Adres ve güvenlik duvarı düzeltme</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · İşlenemedi</h3>
+            <p class="text-slate-300 leading-relaxed">Bildirim geldi, uygulama hata verdi. Sağlayıcı tekrar denedi, aynı hata tekrarlandı.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Log&#039;da bildirim geldi ama hata verdi mi?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Log&#039;da 500 + tekrar denemeler → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Hatayı düzelt + kuyruğa al</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Kaydedilmedi</h3>
+            <p class="text-slate-300 leading-relaxed">Bildirim başarıyla döndü ama sipariş yazılmadı. Genellikle bir doğrulama hatası kayıt oluşturmayı sessizce engeller.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Bildirime 200 dönmüş ama kayıt yok mu?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> 200 dönmüş ama kayıt yok → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Doğrulama hatasını logla + kaydı garanti et</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">Backend mühendisi. Kalıcı çözüm bildirimi doğrudan işlemek değil, önce kuyruğa yazıp sonra işlemektir; böylece uygulama hata verse bile bildirim kaybolmaz. Bu yapı kurulmadan aynı arıza her yoğun günde geri gelir.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Her kayıp bildirim, parası alınmış ama siparişi olmayan bir müşteri demektir. Bunlar genellikle müşteri şikâyet edene kadar fark edilmez — şikâyet etmeyenler hiç bilinmez.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/webhook/" class="hover:underline">→ Webhook (Sistemler Arası Anlık Bildirim)</a></li>
+        <li><a href="/sozluk/idempotency/" class="hover:underline">→ Idempotency (Çift İşlem Koruması)</a></li>
+        <li><a href="/sozluk/rate-limit/" class="hover:underline">→ Rate Limiting (Trafik &amp; İstek Sınırlandırma)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/crash-test/" class="text-cyan-400 hover:underline font-bold">→ Acil Kriz Müdahalesi &amp; Crash Test</a></p>
+      </section>
+    </section>
+  
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
@@ -276,6 +346,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>

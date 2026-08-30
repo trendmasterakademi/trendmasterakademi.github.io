@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -265,9 +265,79 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Site 500 veriyor, dün çalışıyordu</h2>
+        
         <p class="text-slate-300 text-lg leading-relaxed">Dün sorunsuz açılan site bugün 500 veriyor ve kimse bir şey değiştirmediğini söylüyor. "Hiçbir şey değişmedi" cümlesi neredeyse her zaman yanlıştır — değişen bir şey vardır, sadece kod olmayabilir.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · site kapalı · Kategori: Canlı Arıza</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>PHP Fatal error / Uncaught Error        ← uygulama log&#039;u</code></li>
+        <li><code>502 Bad Gateway · upstream prematurely closed connection</code></li>
+        <li><code>No space left on device</code></li>
+        <li><code>SQLSTATE[HY000] [2002] Connection refused</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">500 bir teşhis değil, bir kapaktır. Gerçek neden uygulama log&#039;unda, bir alt satırdadır. Sunucu log&#039;una bakılmadan yapılan her tahmin zaman kaybıdır.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Kimlik süresi doldu</h3>
+            <p class="text-slate-300 leading-relaxed">Bir API anahtarı, veritabanı parolası veya servis hesabı süresi doldu. Kod değişmedi ama sistem artık bağlanamıyor.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Log&#039;da 401 / auth hatası var mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Log&#039;da authentication failed → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Anahtar yenileme · dakikalar</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Disk veya bellek doldu</h3>
+            <p class="text-slate-300 leading-relaxed">Log dosyaları, yedekler ya da geçici dosyalar diski doldurdu; uygulama yazamıyor.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> df -h çıktısında %100 var mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> No space left on device → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Temizlik + log rotasyonu</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Otomatik güncelleme</h3>
+            <p class="text-slate-300 leading-relaxed">Sunucu, kütüphane veya eklenti kendiliğinden güncellendi. &quot;Kimse dokunmadı&quot; doğrudur; dokunan sistemin kendisidir.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Sistem log&#039;unda dün gece update var mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Paket log&#039;unda gece güncellemesi → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Sürüm sabitleme + geri alma</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">A ve B sistem yöneticisi işidir ve çoğu zaman bir saatin altında kapanır. C&#039;de geri alma yapılmadan önce hangi paketin güncellendiği tespit edilmelidir; yanlış paketi geri almak ikinci bir arıza üretir.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">500 veren sayfayı arama motorları da görür. Kesinti uzadıkça dizin kaybı başlar ve geri gelmesi kesintinin kendisinden uzun sürer.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/ci-cd/" class="hover:underline">→ CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)</a></li>
+        <li><a href="/sozluk/staging-ortami/" class="hover:underline">→ Staging Ortamı (Canlı Öncesi Test Ortamı)</a></li>
+        <li><a href="/sozluk/memory-leak/" class="hover:underline">→ Memory Leak (Bellek Sızıntısı)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/kesinti-maliyeti/" class="text-cyan-400 hover:underline font-bold">→ Kesinti Maliyeti Hesabı</a></p>
+      </section>
+    </section>
+  
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
@@ -276,6 +346,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>

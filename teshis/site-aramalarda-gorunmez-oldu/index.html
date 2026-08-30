@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -265,9 +265,79 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Site aramalarda görünmez oldu</h2>
+        
         <p class="text-slate-300 text-lg leading-relaxed">Site açılıyor, her şey normal görünüyor ama arama sonuçlarındaki yerini kaybetti. Bu belirtinin teknik nedenleri, içerik ya da rekabet nedenlerinden çok daha hızlı doğrulanır — önce onlar elenmelidir.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Yüksek · trafik kaybı · Kategori: Görünürlük</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>robots.txt → Disallow: /</code></li>
+        <li><code>&lt;meta name=&quot;robots&quot; content=&quot;noindex&quot;&gt;</code></li>
+        <li><code>Sunucu yanıtı: 5xx veya çok yavaş ilk bayt süresi</code></li>
+        <li><code>Yönlendirme zinciri: 302 → 302 → 200</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">İlk iki satır tek başına tüm siteyi arama sonuçlarından çıkarır ve genellikle test ortamından canlıya yanlışlıkla taşınır. Kontrolü saniyeler sürer.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · noindex kalmış</h3>
+            <p class="text-slate-300 leading-relaxed">Test ortamında arama motorlarını engellemek için konan etiket yayına da gitmiş.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Sayfa kaynağında noindex var mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Sayfa kaynağında noindex → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Etiketi kaldır + yeniden dizinleme iste</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · robots.txt kapalı</h3>
+            <p class="text-slate-300 leading-relaxed">Dosya tüm siteyi tarayıcılara kapatmış durumda.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> /robots.txt Disallow: / mi?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> robots.txt Disallow: / → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Kuralı düzelt · etki günler içinde</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Adresler değişti</h3>
+            <p class="text-slate-300 leading-relaxed">Sayfa adresleri yönlendirme kurulmadan değiştirildi. Eski adresler 404 veriyor, birikmiş değer kayboldu.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Eski adresler 301 veriyor mu?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Eski adresler 404 veriyor → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Eski → yeni 301 haritası kur</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">A ve B dakikalar içinde düzeltilir; etkisi arama motoru siteyi yeniden tarayınca görünür ve bu günler alır. C daha ağırdır: eski adreslerin yenilerine eşleştiği bir yönlendirme haritası çıkarılmalıdır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Arama görünürlüğü kaybı bileşik büyür. Kaybı geri kazanmak, kaybın sürdüğü süreden uzun sürer — erken fark edilmesi doğrudan para kazandırır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/staging-ortami/" class="hover:underline">→ Staging Ortamı (Canlı Öncesi Test Ortamı)</a></li>
+        <li><a href="/sozluk/ci-cd/" class="hover:underline">→ CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)</a></li>
+        <li><a href="/sozluk/migration/" class="hover:underline">→ Migration (Veritabanı Şema Geçişi)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/crash-test/" class="text-cyan-400 hover:underline font-bold">→ Acil Kriz Müdahalesi &amp; Crash Test</a></p>
+      </section>
+    </section>
+  
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
@@ -276,6 +346,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>

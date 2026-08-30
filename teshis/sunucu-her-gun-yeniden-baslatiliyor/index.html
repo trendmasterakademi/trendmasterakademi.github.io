@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -265,9 +265,79 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Sunucu her gün yeniden başlatılıyor</h2>
+        
         <p class="text-slate-300 text-lg leading-relaxed">Site günün belirli saatinde yavaşlıyor veya kilitleniyor, sunucu yeniden başlatılınca düzeliyor. Bu bir çözüm değil, arızanın günlük olarak süpürülmesidir — ve her gün biraz erkene kayar.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Yüksek · gizlenen arıza · Kategori: Altyapı &amp; Erişim</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>Out of memory: Killed process</code></li>
+        <li><code>Bellek kullanımı zamanla artıyor, hiç düşmüyor</code></li>
+        <li><code>Süreç yöneticisi: yeniden başlatma sayısı her gün artıyor</code></li>
+        <li><code>Yanıt süreleri gün içinde giderek uzuyor</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">Bellek grafiğinin şekli tek başına teşhis koydurur: testere dişi normaldir, sürekli yükselen düz çizgi sızıntıdır.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Bellek sızıntısı</h3>
+            <p class="text-slate-300 leading-relaxed">Uygulama ayırdığı belleği bırakmıyor; kullanım sürekli yükselir ve sistem sonunda süreci öldürür.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Bellek grafiği hiç düşüyor mu?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Bellek hiç düşmüyor → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Sızıntıyı bul · profil çıkar</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Büyük veri yükü</h3>
+            <p class="text-slate-300 leading-relaxed">Bir rapor veya dışa aktarma tüm kaydı belleğe alıyor. Sızıntı yok, tek seferlik aşırı yük var.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Tepe belirli bir raporda mı oluşuyor?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Tepe belirli bir işlemde oluşuyor → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Parçalı işleme + akış kullan</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Kaynak yetersiz</h3>
+            <p class="text-slate-300 leading-relaxed">Sızıntı yok, iş gerçekten büyüdü. Bu, tek meşru &#039;sunucu yükselt&#039; hâlidir.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Kullanım sabit yüksek ama artmıyor mu?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Kullanım sabit yüksek, artmıyor → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Kaynak artırımı · meşru tek hâl</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">A ve B yazılım tarafıdır; yeniden başlatma ikisini de gizler ama çözmez. C&#039;de sunucu yükseltmek doğru karardır — ama A ve B elenmeden yapılırsa para harcanır, arıza kalır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Günlük yeniden başlatma bir gün yetmez hâle gelir ve kesinti tam yoğun saatte yaşanır. Zamanlanmış bir arıza gibidir: ne zaman olacağı bellidir, sadece tarihi bilinmez.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/memory-leak/" class="hover:underline">→ Memory Leak (Bellek Sızıntısı)</a></li>
+        <li><a href="/sozluk/teknik-borc/" class="hover:underline">→ Teknik Borç (Technical Debt)</a></li>
+        <li><a href="/sozluk/ci-cd/" class="hover:underline">→ CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/kesinti-maliyeti/" class="text-cyan-400 hover:underline font-bold">→ Kesinti Maliyeti Hesabı</a></p>
+      </section>
+    </section>
+  
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
@@ -276,6 +346,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>

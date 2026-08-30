@@ -17,6 +17,40 @@ if (!fs.existsSync(templatePath)) {
 
 const template = fs.readFileSync(templatePath, 'utf8');
 
+// 3.4 — HTML Kaçış Fonksiyonu
+function escapeHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+// 3.5 — Veri Kaynağı Sapma Kontrolü (teshisData.js vs src/data/teshis/<slug>.js)
+for (const item of teshisData) {
+  const singleFilePath = path.join(__dirname, 'src', 'data', 'teshis', `${item.slug}.js`);
+  if (fs.existsSync(singleFilePath)) {
+    try {
+      const singleModule = await import(`./src/data/teshis/${item.slug}.js`);
+      const singleData = singleModule.default;
+      const diffFields = [];
+      const keys = Array.from(new Set([...Object.keys(item), ...Object.keys(singleData)]));
+      for (const k of keys) {
+        if (JSON.stringify(item[k]) !== JSON.stringify(singleData[k])) {
+          diffFields.push(k);
+        }
+      }
+      if (diffFields.length > 0) {
+        console.warn(`UYARI: teshisData.js ile src/data/teshis/${item.slug}.js farklı — alanlar: ${diffFields.join(', ')}`);
+      }
+    } catch (err) {
+      console.warn(`UYARI: src/data/teshis/${item.slug}.js yüklenemedi: ${err.message}`);
+    }
+  }
+}
+
 const basePages = [
   {
     dir: 'agency',
@@ -128,7 +162,7 @@ const basePages = [
   }
 ];
 
-// Add each glossary term page dynamically
+// 3.3 — Add each glossary term page dynamically with extraContent
 const glossaryPages = glossaryTerms.map(term => {
   const matching = teshisData.filter(d => d.ilgiliTerimler && d.ilgiliTerimler.includes(term.slug));
   const visible = matching.slice(0, 4);
@@ -140,12 +174,57 @@ const glossaryPages = glossaryTerms.map(term => {
       <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3 mt-6">
         <h2 class="text-xl font-bold text-white">Bu terim şu belirtilerde çıkar</h2>
         <ul class="space-y-2 font-mono text-sm text-cyan-300">
-          ${visible.map(d => `<li><a href="/teshis/${d.slug}/" class="hover:underline">→ ${d.no} · ${d.baslik.tr}</a></li>`).join('\n')}
+          ${visible.map(d => `<li><a href="/teshis/${escapeHtml(d.slug)}/" class="hover:underline">→ ${escapeHtml(d.no)} · ${escapeHtml(d.baslik.tr)}</a></li>`).join('\n          ')}
         </ul>
         ${remaining > 0 ? `<p class="text-xs text-slate-400 pt-1"><a href="/teshis/" class="text-cyan-400 hover:underline">ve ${remaining} teşhis daha →</a></p>` : ''}
       </section>
     `;
   }
+
+  const relatedTermsHtml = term.relatedTerms && term.relatedTerms.length > 0
+    ? `
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        ${term.relatedTerms.map(rSlug => {
+          const rObj = glossaryTerms.find(g => g.slug === rSlug);
+          const rTitle = rObj ? rObj.title : rSlug;
+          return `<li><a href="/sozluk/${escapeHtml(rSlug)}/" class="hover:underline">→ ${escapeHtml(rTitle)}</a></li>`;
+        }).join('\n        ')}
+      </ul>
+    `
+    : '';
+
+  const relatedServiceHtml = term.relatedService
+    ? `<p class="pt-2"><a href="${escapeHtml(term.relatedService.link)}" class="text-cyan-400 hover:underline font-bold">→ ${escapeHtml(term.relatedService.title)}</a></p>`
+    : '';
+
+  const mainGlossaryContent = `
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      ${term.urgencyLevel ? `<p class="text-sm font-mono text-cyan-400">Aciliyet: ${escapeHtml(term.urgencyLevel)}</p>` : ''}
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Tanım</h2>
+        <p class="text-slate-300 leading-relaxed">${escapeHtml(term.shortDef?.tr || '')}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Ajans için ne anlama gelir</h2>
+        <p class="text-slate-300 leading-relaxed">${escapeHtml(term.agencyImpact?.tr || '')}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer</h2>
+        <p class="text-slate-300 leading-relaxed">${escapeHtml(term.whoSolves?.tr || '')}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler</h2>
+        ${relatedTermsHtml}
+        ${relatedServiceHtml}
+      </section>
+    </section>
+  `;
+
+  const extraContent = `${mainGlossaryContent}\n${reverseBlock}`;
 
   return {
     dir: `sozluk/${term.slug}`,
@@ -156,21 +235,96 @@ const glossaryPages = glossaryTerms.map(term => {
     ogUrl: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
     heading: term.title,
     subheading: `${term.shortDef.tr} ${term.agencyImpact.tr}`,
-    extraContent: reverseBlock
+    extraContent
   };
 });
 
-// Add each diagnostic page dynamically
-const teshisPages = teshisData.map(item => ({
-  dir: `teshis/${item.slug}`,
-  title: `${item.baslik.tr} | Trend Master Akademi`,
-  h1: item.baslik.tr,
-  description: item.ozet.tr.split('.')[0] + '.',
-  canonical: `https://trendmasterakademi.com/teshis/${item.slug}/`,
-  ogUrl: `https://trendmasterakademi.com/teshis/${item.slug}/`,
-  heading: item.baslik.tr,
-  subheading: item.ozet.tr
-}));
+// 3.1 & 3.2 — Add each diagnostic page dynamically with full extraContent and NO heading (prevents h1 duplicate)
+const teshisPages = teshisData.map(item => {
+  const logRowsHtml = item.logSatirlari && item.logSatirlari.length > 0
+    ? `
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        ${item.logSatirlari.map(log => `<li><code>${escapeHtml(log)}</code></li>`).join('\n        ')}
+      </ul>
+    `
+    : '';
+
+  const nedenlerHtml = item.nedenler && item.nedenler.length > 0
+    ? item.nedenler.map(n => {
+        const testStr = Array.isArray(n.diyagramTest?.tr) ? n.diyagramTest.tr.join(' ') : (n.diyagramTest?.tr || '');
+        const cozumStr = Array.isArray(n.diyagramCozum?.tr) ? n.diyagramCozum.tr.join(' ') : (n.diyagramCozum?.tr || '');
+        return `
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">${escapeHtml(n.harf)} · ${escapeHtml(n.ad?.tr || '')}</h3>
+            <p class="text-slate-300 leading-relaxed">${escapeHtml(n.aciklama?.tr || '')}</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> ${escapeHtml(testStr)}</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> ${escapeHtml(n.kanit?.tr || '')}</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> ${escapeHtml(cozumStr)}</p>
+          </div>
+        `;
+      }).join('\n')
+    : '';
+
+  const termsHtml = item.ilgiliTerimler && item.ilgiliTerimler.length > 0
+    ? `
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        ${item.ilgiliTerimler.map(tSlug => {
+          const tObj = glossaryTerms.find(g => g.slug === tSlug);
+          const tTitle = tObj ? tObj.title : tSlug;
+          return `<li><a href="/sozluk/${escapeHtml(tSlug)}/" class="hover:underline">→ ${escapeHtml(tTitle)}</a></li>`;
+        }).join('\n        ')}
+      </ul>
+    `
+    : '';
+
+  const serviceHtml = item.ilgiliHizmet
+    ? `<p class="pt-2"><a href="${escapeHtml(item.ilgiliHizmet.link)}" class="text-cyan-400 hover:underline font-bold">→ ${escapeHtml(item.ilgiliHizmet.baslik?.tr || '')}</a></p>`
+    : '';
+
+  const extraContent = `
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: ${escapeHtml(item.aciliyet?.etiket?.tr || '')} · Kategori: ${escapeHtml(item.kirinti?.tr || '')}</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        ${logRowsHtml}
+        ${item.logNotu?.tr ? `<p class="text-slate-300 text-sm">${escapeHtml(item.logNotu.tr)}</p>` : ''}
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        ${nedenlerHtml}
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">${escapeHtml(item.kimCozer?.tr || '')}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">${escapeHtml(item.cozulmezse?.tr || '')}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        ${termsHtml}
+        ${serviceHtml}
+      </section>
+    </section>
+  `;
+
+  return {
+    dir: `teshis/${item.slug}`,
+    title: `${item.baslik.tr} | Trend Master Akademi`,
+    h1: item.baslik.tr,
+    description: item.ozet.tr.split('.')[0] + '.',
+    canonical: `https://trendmasterakademi.com/teshis/${item.slug}/`,
+    ogUrl: `https://trendmasterakademi.com/teshis/${item.slug}/`,
+    subheading: item.ozet.tr,
+    extraContent
+  };
+});
 
 const pages = [...basePages, ...glossaryPages, ...teshisPages];
 
@@ -237,7 +391,7 @@ pages.forEach(page => {
     </div>
   `;
 
-  html = html.replace(/<div id="root">[\s\S]*?<\/div>/i, `<div id="root">${semanticBlock}</div>`);
+  html = html.replace(/<div id="root">[\s\S]*?<\/body>/i, `<div id="root">${semanticBlock}</div>\n  </body>`);
 
   const destFile = path.join(targetDir, 'index.html');
   fs.writeFileSync(destFile, html, 'utf8');

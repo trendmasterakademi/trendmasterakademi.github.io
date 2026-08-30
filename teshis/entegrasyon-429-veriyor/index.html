@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -265,9 +265,79 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Entegrasyon aniden 429 vermeye başladı</h2>
+        
         <p class="text-slate-300 text-lg leading-relaxed">Aylardır çalışan bir entegrasyon — kargo, pazaryeri, ödeme ya da e-posta — birden hata vermeye başladı ve kod değişmedi. Karşı taraf artık isteklerinizi reddediyor; sorun sizde değil, sizin hızınızda olabilir.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Yüksek · veri akışı durdu · Kategori: İletişim &amp; Entegrasyon</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>HTTP 429 Too Many Requests</code></li>
+        <li><code>Retry-After: 60</code></li>
+        <li><code>X-RateLimit-Remaining: 0</code></li>
+        <li><code>Sağlayıcı paneli: quota exceeded for this period</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">Retry-After başlığı ne kadar beklemeniz gerektiğini söyler. Bu başlık okunmadan yapılan yeniden denemeler limiti daha da uzatır.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Hacim büyüdü</h3>
+            <p class="text-slate-300 leading-relaxed">İş büyüdü, istek sayısı sessizce limitin üstüne çıktı. Kod aynı, trafik değişti.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> İstek sayısı son aylarda arttı mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> İstek sayısı zamanla artmış → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Toplu istek + paket yükseltme</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Döngüsel tekrar</h3>
+            <p class="text-slate-300 leading-relaxed">Hata sonrası yeniden deneme mantığı beklemeden tekrarlıyor ve limiti kendi kendine dolduruyor.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Aynı istek çok kısa aralıkla mı tekrarlıyor?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Aynı istek çok kısa aralıkla tekrarlıyor → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Artan bekleme süresi ekle</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Limit değişti</h3>
+            <p class="text-slate-300 leading-relaxed">Karşı taraf kotayı değiştirdi ya da fiyat planı düştü. Sizde hiçbir şey değişmedi.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Limit başlığındaki değer düştü mü?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Limit başlığındaki değer düşmüş → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Sağlayıcıyla plan görüşmesi</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">Backend mühendisi. Kalıcı çözüm istek sayısını azaltmak ve artan bekleme süresiyle yeniden denemektir. Bu iki yapı kurulduğunda entegrasyon hacim büyüdükçe kendiliğinden uyum sağlar.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Reddedilen her istek eksik veri demektir: gönderilmeyen kargo bildirimi, güncellenmeyen stok, ulaşmayan e-posta. Sistem çalışıyor görünür ama içerik doğru değildir.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/rate-limit/" class="hover:underline">→ Rate Limiting (Trafik &amp; İstek Sınırlandırma)</a></li>
+        <li><a href="/sozluk/webhook/" class="hover:underline">→ Webhook (Sistemler Arası Anlık Bildirim)</a></li>
+        <li><a href="/sozluk/idempotency/" class="hover:underline">→ Idempotency (Çift İşlem Koruması)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/agency/" class="text-cyan-400 hover:underline font-bold">→ B2B White-Label Mühendislik Masası</a></p>
+      </section>
+    </section>
+  
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
@@ -276,6 +346,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>

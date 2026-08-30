@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -265,9 +265,79 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Her yeni özellik bir öncekini bozuyor</h2>
+        
         <p class="text-slate-300 text-lg leading-relaxed">Bir yeri düzeltiyorsunuz, başka bir yer bozuluyor. Ekip aynı hataları tekrar tekrar düzeltiyor. Bu bir dikkatsizlik değil, kod tabanının artık değişimi kaldıramadığının işaretidir.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Yüksek · birikmiş borç · Kategori: Kod Sağlığı</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>Aynı hata kaydının aylar içinde tekrar açılması</code></li>
+        <li><code>Test yok, ya da var ama çalıştırılmıyor</code></li>
+        <li><code>Tek bir dosyanın binlerce satır olması</code></li>
+        <li><code>Aynı mantığın üç ayrı yerde kopyalanmış olması</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">Ölçülebilir tek gösterge tekrar açılan hata sayısıdır. &quot;Kod kötü&quot; bir histir; &quot;aynı hata üç ayda dört kez açıldı&quot; bir veridir.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Kopyalanmış mantık</h3>
+            <p class="text-slate-300 leading-relaxed">Aynı kural birden çok yerde yazılı. Biri düzeltiliyor, diğerleri unutuluyor.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Aynı kural birden fazla yerde mi yazılı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Aynı mantık birden çok yerde → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Tek yere topla · kademeli</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Test yok</h3>
+            <p class="text-slate-300 leading-relaxed">Güvenlik ağı yok; bir değişikliğin neyi bozduğu ancak canlıda anlaşılıyor.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Kritik akışların testi var mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Otomatik test yok → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Önce kritik akışa test yaz</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Aşırı bağlılık</h3>
+            <p class="text-slate-300 leading-relaxed">Modüller birbirine sıkı bağlı; bir yeri değiştirmek zinciri kırıyor.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Küçük değişiklik çok yeri mi etkiliyor?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Küçük değişiklik geniş etki yapıyor → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Sınırları ayır · parça parça</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">Kıdemli mühendis. Ama sıra bağlayıcıdır: önce test, sonra düzeltme. Güvenlik ağı olmadan yapılan büyük temizlik, mevcut arızalara yenilerini ekler. Her şeyi baştan yazmak neredeyse hiçbir zaman doğru cevap değildir.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Her yeni özelliğin maliyeti bir öncekinden yüksek olur. Ekip aynı işi daha uzun sürede yapmaya başlar ve bu dışarıdan &quot;yavaşladılar&quot; gibi görünür.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/teknik-borc/" class="hover:underline">→ Teknik Borç (Technical Debt)</a></li>
+        <li><a href="/sozluk/refactor/" class="hover:underline">→ Refactor (Kod İyileştirme &amp; Yeniden Yapılandırma)</a></li>
+        <li><a href="/sozluk/ci-cd/" class="hover:underline">→ CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/agency/" class="text-cyan-400 hover:underline font-bold">→ B2B White-Label Mühendislik Masası</a></p>
+      </section>
+    </section>
+  
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
@@ -276,6 +346,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>

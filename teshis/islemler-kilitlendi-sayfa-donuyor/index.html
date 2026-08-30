@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -265,9 +265,79 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">İşlemler kilitlendi, sayfa dönüp duruyor</h2>
+        
         <p class="text-slate-300 text-lg leading-relaxed">Belirli bir işlem — sipariş onayı, stok güncelleme, toplu güncelleme — sonsuza kadar dönüyor ve sonunda zaman aşımı veriyor. Sistem çökmedi; birbirini bekleyen iki işlem var.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · işlem durdu · Kategori: Performans</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>Deadlock found when trying to get lock; try restarting transaction</code></li>
+        <li><code>Lock wait timeout exceeded; try restarting transaction</code></li>
+        <li><code>Veritabanında uzun süredir açık işlem (idle in transaction)</code></li>
+        <li><code>Uygulama log&#039;u: aynı saniyede iki toplu güncelleme</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">&#039;try restarting transaction&#039; ifadesi veritabanının kendi teşhisidir. Bu satır göründüğünde neden tahmin edilmez, bilinir.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Ters sıralı kilit</h3>
+            <p class="text-slate-300 leading-relaxed">İki işlem aynı iki tabloya farklı sırayla dokunuyor; her biri diğerinin bıraktığını bekliyor.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Log&#039;da deadlock kaydı var mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Log&#039;da deadlock kaydı var → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Tabloları sabit sırayla kilitle</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Uzun işlem</h3>
+            <p class="text-slate-300 leading-relaxed">Bir işlem içinde rapor üretimi veya harici çağrı yapılıyor; kilit gereğinden uzun tutuluyor.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Açık işlem süresi dakikalarca mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Açık işlem dakikalarca sürüyor → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Harici işi işlem dışına çıkar</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Toplu güncelleme</h3>
+            <p class="text-slate-300 leading-relaxed">Arka plan görevi geniş bir aralığı kilitliyor, canlı trafik onun bitmesini bekliyor.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Kilitlenme arka plan göreviyle çakışıyor mu?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Kilitlenme toplu görevle çakışıyor → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Parçalara böl + yoğun saat dışına al</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">Kıdemli backend mühendisi. Veritabanı hangi işlemlerin çakıştığını log&#039;da söylediği için teşhis hızlıdır; asıl iş kilit sırasını ve işlem sürelerini yeniden düzenlemektir.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Kilitlenme yoğun saatlerde sıklaşır. En kötü tarafı seçiciliğidir: sistem genelinde çalışıyor görünür, yalnız para kazandıran işlem durur.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/deadlock/" class="hover:underline">→ Deadlock (Veritabanı Kilitlenmesi)</a></li>
+        <li><a href="/sozluk/race-condition/" class="hover:underline">→ Race Condition (Yarış Durumu)</a></li>
+        <li><a href="/sozluk/n-plus-1-sorgu/" class="hover:underline">→ N+1 Sorgu Problemi (N+1 Query)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/crash-test/" class="text-cyan-400 hover:underline font-bold">→ Acil Kriz Müdahalesi &amp; Crash Test</a></p>
+      </section>
+    </section>
+  
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
@@ -276,6 +346,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>

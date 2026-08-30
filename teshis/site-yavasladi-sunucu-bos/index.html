@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -265,9 +265,79 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Site yavaşladı ama sunucu boş</h2>
+        
         <p class="text-slate-300 text-lg leading-relaxed">Sayfalar geç açılıyor ama sunucu kaynakları rahat görünüyor. 'Sunucu yetersiz' denip plan yükseltilir, hiçbir şey değişmez. Boş bir sunucuda yavaşlık kaynak sorunu değil, bekleme sorunudur.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Yüksek · dönüşüm kaybı · Kategori: Performans</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>Sayfa başına veritabanı sorgu sayısı: yüzlerce</code></li>
+        <li><code>Yavaş sorgu log&#039;u: aynı sorgu defalarca tekrarlıyor</code></li>
+        <li><code>Harici servis çağrısı: 2–8 saniye bekleme</code></li>
+        <li><code>İlk bayt süresi yüksek, indirme hızlı</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">Sunucu boşken yaşanan yavaşlık, sistemin çalışmadığını değil beklediğini gösterir. Aranacak şey işlemci kullanımı değil, isteğin nerede beklediğidir.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Sorgu çoğalması</h3>
+            <p class="text-slate-300 leading-relaxed">Listedeki her satır için ayrı sorgu atılıyor. 10 kayıtla fark edilmez, 500 kayıtla site durur.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Aynı sorgu sayfa başına defalarca mı tekrarlıyor?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Aynı sorgu defalarca tekrarlıyor → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> İlişkileri toplu çek · saatler içinde biter</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Dizin eksik</h3>
+            <p class="text-slate-300 leading-relaxed">Sorgu doğru ama tablo baştan sona taranıyor. Veri büyüdükçe süre doğrusal artar.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Yavaş sorgu tüm tabloyu mu tarıyor?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Yavaş sorgu tüm tabloyu tarıyor → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Dizin ekle · etki anında</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Harici bekleme</h3>
+            <p class="text-slate-300 leading-relaxed">Kargo, ödeme veya stok servisi yavaş yanıt veriyor ve sayfa onu bekliyor.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Yavaşlık harici çağrıda mı yoğunlaşıyor?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Yavaşlık harici çağrıda yoğunlaşıyor → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Önbellek + zaman aşımı + arka plana al</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">Kıdemli backend mühendisi. A ve B çoğunlukla aynı gün kapanır ve etkisi anında görülür. C&#039;de asıl mesele harici servisi hızlandırmak değil, sayfanın onu beklememesini sağlamaktır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Yavaşlık dönüşümü doğrudan düşürür ve arama sıralamasında da karşılığı vardır. Sunucu yükseltmek maliyeti artırır, belirtiyi bir süre örter, nedeni bırakır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/n-plus-1-sorgu/" class="hover:underline">→ N+1 Sorgu Problemi (N+1 Query)</a></li>
+        <li><a href="/sozluk/teknik-borc/" class="hover:underline">→ Teknik Borç (Technical Debt)</a></li>
+        <li><a href="/sozluk/rate-limit/" class="hover:underline">→ Rate Limiting (Trafik &amp; İstek Sınırlandırma)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/kesinti-maliyeti/" class="text-cyan-400 hover:underline font-bold">→ Kesinti Maliyeti Hesabı</a></p>
+      </section>
+    </section>
+  
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
@@ -276,6 +346,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>

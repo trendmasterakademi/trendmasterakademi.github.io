@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -265,9 +265,79 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Ödeme iki kez alındı</h2>
+        
         <p class="text-slate-300 text-lg leading-relaxed">Müşteriden aynı tutar iki kez tahsil edildi. İade yapmak zorundasınız ama önce hangi katmanda çiftlendiğini bulmalısınız — yanlış katmanı düzeltmek sorunu geri getirir.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · iade riski · Kategori: Sipariş &amp; Ödeme</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>Aynı ödeme referansıyla iki başarılı işlem</code></li>
+        <li><code>Bildirim log&#039;u: aynı olay kimliği iki kez işlenmiş</code></li>
+        <li><code>Uygulama log&#039;u: iki gönderim, aynı saniye, aynı oturum</code></li>
+        <li><code>Sağlayıcı panelinde &#039;duplicate transaction&#039; uyarısı yok</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">Sağlayıcının işlem kimliği ile sizin sipariş referansınız farklı şeylerdir. Çiftlenmenin hangisinde olduğu, sorunun sizde mi sağlayıcıda mı olduğunu söyler.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Çift gönderim</h3>
+            <p class="text-slate-300 leading-relaxed">Düğme kilitlenmedi, sayfa yavaş yanıt verdi, müşteri tekrar tıkladı.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> İki istek aynı oturumdan mı geldi?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> İki gönderim, aynı oturum → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Düğme kilidi + idempotency anahtarı</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Bildirim tekrarı</h3>
+            <p class="text-slate-300 leading-relaxed">Sağlayıcı aynı bildirimi tekrar gönderdi; bu normaldir. Uygulama ikisini de yeni sanıp işledi.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Aynı olay kimliği iki kez işlenmiş mi?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Aynı olay kimliği iki kez → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Olay kimliğini kaydet · tekrarı yok say</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Yeniden deneme</h3>
+            <p class="text-slate-300 leading-relaxed">Uygulama zaman aşımı aldı ve isteği tekrarladı. Oysa ilki de başarılıydı.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> İlk istek zaman aşımına mı uğradı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Zaman aşımı sonrası tekrar → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Tekrarı güvenli hâle getir · aynı anahtar</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">Backend mühendisi · 2–4 saat. Üç nedenin ortak çözümü aynı ilkedir: her ödeme isteğinin tekrarlandığında aynı sonucu üretmesi. Bu sağlandığında üç senaryo da kendiliğinden kapanır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Çift tahsilat iadeyle kapanır ama iade komisyonu geri gelmez ve müşteri güveni birlikte gider. Ödeme kuruluşları yüksek iade oranını risk olarak işaretler.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/idempotency/" class="hover:underline">→ Idempotency (Çift İşlem Koruması)</a></li>
+        <li><a href="/sozluk/webhook/" class="hover:underline">→ Webhook (Sistemler Arası Anlık Bildirim)</a></li>
+        <li><a href="/sozluk/race-condition/" class="hover:underline">→ Race Condition (Yarış Durumu)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/crash-test/" class="text-cyan-400 hover:underline font-bold">→ Acil Kriz Müdahalesi &amp; Crash Test</a></p>
+      </section>
+    </section>
+  
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
@@ -276,6 +346,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>

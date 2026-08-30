@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -265,9 +265,79 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Yedek var sanılıyordu, yedek yok</h2>
+        
         <p class="text-slate-300 text-lg leading-relaxed">Bir sorun çıktı, yedeğe dönülmek istendi ve yedeğin ya hiç alınmadığı ya da geri yüklenemediği görüldü. Yedeğin var olması ile geri yüklenebilir olması aynı şey değildir; ikincisi denenmeden bilinmez.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · veri riski · Kategori: Devir &amp; Süreklilik</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>Yedek klasöründeki son dosyanın tarihi   ← aylar öncesi mi?</code></li>
+        <li><code>cron log: backup job — exit status 1</code></li>
+        <li><code>Yedek dosya boyutu 0 byte / birkaç KB</code></li>
+        <li><code>Depolama sağlayıcısı: quota exceeded</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">Yedek işi çoğu zaman sessizce başarısız olur. Hata bir yere düşer ama kimse okumaz; klasörde dosya göründüğü için sorun fark edilmez.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Yedek alınmıyor</h3>
+            <p class="text-slate-300 leading-relaxed">Görev kurulmuş ama çalışmıyor: zamanlayıcı durmuş, kimlik değişmiş ya da hedef dolmuş.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Son yedek dosyası kaç günlük?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Son yedek tarihi çok eski → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Görev onarımı + başarısızlık bildirimi</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Yedek eksik alınıyor</h3>
+            <p class="text-slate-300 leading-relaxed">Dosyalar var ama veritabanı yok, ya da tersi. Kısmi yedek olay anında tam geri dönüş sağlamaz.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Yedekte veritabanı dökümü var mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Yedekte veritabanı dökümü yok → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Kapsam genişletme + boyut kontrolü</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Geri yüklenemiyor</h3>
+            <p class="text-slate-300 leading-relaxed">Dosya bozuk, şifresi kayıp ya da sürüm uyumsuz. Hiç denenmediği için bugüne kadar bilinmiyordu.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Boş ortama geri yükleme denendi mi?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Test geri yükleme başarısız → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Düzenli geri yükleme provası</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">Sistem yöneticisi. Ama asıl çözüm teknik değil rutinseldir: yedek başarısız olduğunda haber veren bir bildirim ve düzenli aralıklarla yapılan geri yükleme provası. Denenmemiş yedek, yedek sayılmaz.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Yedeksiz geçen her gün, tek bir donanım arızasının ya da yanlış komutun projeyi tamamen bitirebileceği bir gündür. Bu riskin bedeli ancak gerçekleştiğinde görülür.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/migration/" class="hover:underline">→ Migration (Veritabanı Şema Geçişi)</a></li>
+        <li><a href="/sozluk/staging-ortami/" class="hover:underline">→ Staging Ortamı (Canlı Öncesi Test Ortamı)</a></li>
+        <li><a href="/sozluk/teknik-borc/" class="hover:underline">→ Teknik Borç (Technical Debt)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/devir-kontrolu/" class="text-cyan-400 hover:underline font-bold">→ Devir Hazırlık Kontrolü</a></p>
+      </section>
+    </section>
+  
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
@@ -276,6 +346,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>

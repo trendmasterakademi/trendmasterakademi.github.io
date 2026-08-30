@@ -241,12 +241,12 @@
       ]
     }
     </script>
-    <script type="module" crossorigin src="/assets/index-DDhKz-Cv.js"></script>
+    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-D6QWPHVA.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -265,9 +265,79 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Deploy sonrası site bozuldu</h2>
+        
         <p class="text-slate-300 text-lg leading-relaxed">Yayın alındı ve site bozuldu. Geri almak isteniyor ama nasıl geri alınacağı belli değil. Asıl sorun bozulmanın kendisi değil, geri dönüşün planlanmamış olmasıdır.</p>
         
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · yayın hatası · Kategori: Canlı Arıza</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>Yayın kaydı: hangi sürüm, ne zaman, kim tarafından?</code></li>
+        <li><code>Yeni hata mesajları yayın saatinde mi başlıyor?</code></li>
+        <li><code>Statik dosyalar eski sürümde kalmış (önbellek)</code></li>
+        <li><code>Veritabanı göçü yayınla birlikte çalıştı mı?</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">Bozulmanın yayın saatiyle çakışması tek başına sebep kanıtı değildir ama aramayı doğru yere odaklar. İlk soru &quot;ne değişti&quot; değil, &quot;geri alabiliyor muyuz&quot;dur.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Eksik dosya</h3>
+            <p class="text-slate-300 leading-relaxed">Yayın paketinde bir şey eksik kaldı; yerelde var, sunucuda yok.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Log&#039;da bulunamadı hatası var mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Log&#039;da dosya veya modül bulunamadı → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Paketi tam yayınla · geri alma hazır</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Önbellek eskisi</h3>
+            <p class="text-slate-300 leading-relaxed">Kod yeni, tarayıcı veya sunucu önbelleği eski. Kısmi bozulma tipik belirtisidir.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Zorla yenilemede düzeliyor mu?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Zorla yenilemede düzeliyor → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Sürümlü dosya adı + önbellek temizle</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Şema uyuşmazlığı</h3>
+            <p class="text-slate-300 leading-relaxed">Kod yeni şemayı bekliyor ama göç çalışmadı, ya da tersi. Geri alma tek başına yetmez.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Kolon veya tablo hatası var mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Kolon veya tablo hatası var → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Kod ve göçü birlikte geri al</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">Kalıcı çözüm daha dikkatli yayın yapmak değil, her yayının geri alınabilir olmasıdır: sürüm etiketi, ayrı statik dosya adları ve göçün koddan bağımsız geri alınabilmesi. Bu üçü kurulduğunda bozuk yayın bir kriz değil, dakikalık bir işlem olur.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Geri alınamayan her yayın ekibi yayın yapmaktan korkutur. Korku teslimleri yavaşlatır ve biriken değişiklikler bir sonraki yayını daha da riskli yapar.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/ci-cd/" class="hover:underline">→ CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)</a></li>
+        <li><a href="/sozluk/staging-ortami/" class="hover:underline">→ Staging Ortamı (Canlı Öncesi Test Ortamı)</a></li>
+        <li><a href="/sozluk/migration/" class="hover:underline">→ Migration (Veritabanı Şema Geçişi)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/crash-test/" class="text-cyan-400 hover:underline font-bold">→ Acil Kriz Müdahalesi &amp; Crash Test</a></p>
+      </section>
+    </section>
+  
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
@@ -276,6 +346,5 @@
       </main>
     </div>
   </div>
-    </div>
   </body>
 </html>
