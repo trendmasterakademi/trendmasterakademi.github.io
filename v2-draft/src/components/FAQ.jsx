@@ -18,6 +18,18 @@ export const faqData = [
     }
   },
   {
+    id: 'continuity-guarantee',
+    icon: Lock,
+    question: {
+      tr: "Projeyi yürüten kişi ulaşılamaz olursa ne oluyor?",
+      en: "What happens if the engineer running my project becomes unavailable?"
+    },
+    answer: {
+      tr: "Kriz masası tek kişilik değildir; başlayan bir işi masadaki bir başkası devralır. Ayrıca kod hiçbir aşamada bizde tutulmaz — repo sizin kontrolünüzdedir, dokümantasyon iş ilerledikçe teslim edilir. Çalışma yarıda kesilse bile ajansınızın elinde çalışan sistem ve eksiksiz kaynak kod kalır.",
+      en: "The response desk is not a single person; another member of the desk takes over work already under way. Your code is never held by us either — the repository is under your control and documentation is delivered as the work progresses. Even if an engagement is interrupted, your agency is left with a working system and the complete source."
+    }
+  },
+  {
     id: 'sla-response',
     icon: Zap,
     question: {
@@ -27,6 +39,18 @@ export const faqData = [
     answer: {
       tr: "Canlı sistem kesintilerinde (HTTP 500, veritabanı kilitlenmesi, ödeme API kopması) önce repoyu izole bir sandbox ortamına alır, teşhisi orada yaparız. Teşhis ve sabit bedel birlikte iletilir. Süre taahhüdü vermiyoruz — her arızanın kapsamı farklıdır ve tutulamayacak bir söz vermek işe yaramaz.",
       en: "For live production outages (HTTP 500, database deadlocks, payment API failures), we first isolate the repository into a sandbox environment and perform the diagnosis there. Diagnosis and fixed fee are delivered together. We do not provide time commitments — the scope of each incident differs, and making promises that cannot be kept helps no one."
+    }
+  },
+  {
+    id: 'response-time',
+    icon: Zap,
+    question: {
+      tr: "Acil bir durumda ne kadar sürede dönüş alırım?",
+      en: "How quickly will I get a response in an emergency?"
+    },
+    answer: {
+      tr: "Kriz hattı her gün 09:00 – 24:00 arasında açıktır; acil bildirimlere tipik ilk yanıt süremiz 15 dakikadır. Bu saatler dışında ulaşan bildirimler ertesi sabah 09:00'da ele alınır.",
+      en: "The response desk is open daily between 09:00 and 24:00 (UTC+3); our typical first reply to an emergency is 15 minutes. Notifications arriving outside these hours are picked up at 09:00 the following morning."
     }
   },
   {

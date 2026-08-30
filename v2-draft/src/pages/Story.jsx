@@ -95,6 +95,9 @@ const Story = () => {
               <p>
                 Adımız hâlâ "Akademi" — çünkü işin eğitimini önemsiyoruz. Bu sitedeki <Link to="/sozluk/" className="text-cyan-400 hover:text-cyan-300 underline underline-offset-2">Terim Sözlüğü</Link> de o yüzden var: geliştirici dilini ajans diline çeviriyor. Ve hâlâ aynı disiplin geçerli: bir sistemi kurtarmak, onu anlatabilecek kadar anlamayı gerektirir. Anlatamadığın kod tabanını zaten onaramazsın — yani "Akademi" adı, yaptığımız işin yabancısı değil kaynağı oluyor.
               </p>
+              <p>
+                Bu, kuruluşun hikâyesi. Masa o günden bu yana büyüdü — bugün işi yürüten ekip daha fazla kişiden oluşuyor.
+              </p>
             </div>
           ) : (
             <div className="space-y-6 pt-2">
@@ -127,6 +130,9 @@ const Story = () => {
               </p>
               <p>
                 Our name is still "Akademi", because we take the teaching side of this work seriously. That is also why the <Link to="/sozluk/" className="text-cyan-400 hover:text-cyan-300 underline underline-offset-2">Glossary</Link> exists on this site: it translates developer language into agency language. And the same discipline still holds: rescuing a system requires understanding it well enough to explain it. You cannot repair a codebase you cannot explain — which makes "Akademi" not a stranger to the work we do, but its source.
+              </p>
+              <p>
+                This is the story of how it started. The desk has grown since — the team running the work today is larger.
               </p>
             </div>
           )}

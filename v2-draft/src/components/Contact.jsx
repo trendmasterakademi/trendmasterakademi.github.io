@@ -147,8 +147,13 @@ const Contact = () => {
                 <PhoneCall className="w-6 h-6" />
               </div>
               <div>
-                <div className="text-white font-bold text-base">{t('contact-direct-call')}</div>
+                <div className="text-white font-bold text-base">
+                  {isTr ? 'Kriz Hattı · her gün 09:00 – 24:00' : 'Response Desk · daily 09:00 – 24:00'}
+                </div>
                 <div className="text-cyan-400 text-sm font-mono font-bold">+90 534 371 35 73</div>
+                <div className="text-xs text-slate-400 font-mono mt-0.5">
+                  {isTr ? 'acil bildirimlere tipik ilk yanıt: 15 dakika' : 'typical first reply to emergencies: 15 minutes'}
+                </div>
               </div>
             </a>
 

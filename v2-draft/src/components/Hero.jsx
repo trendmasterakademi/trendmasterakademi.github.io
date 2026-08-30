@@ -183,16 +183,19 @@ const Hero = () => {
           {/* Above-the-fold Guarantees */}
           <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs font-mono text-slate-300 py-1">
             <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
-              <CheckCircle2 className="w-4 h-4" /> %100 White-Label
+              <CheckCircle2 className="w-4 h-4" /> {isTr ? '%100 White-Label' : '100% White-Label'}
             </span>
             <span className="flex items-center gap-1.5 text-cyan-300 font-bold">
-              <CheckCircle2 className="w-4 h-4" /> Resmi NDA Güvencesi
+              <CheckCircle2 className="w-4 h-4" /> {isTr ? 'Resmi NDA Güvencesi' : 'Binding NDA'}
             </span>
             <span className="flex items-center gap-1.5 text-amber-300 font-bold">
-              <CheckCircle2 className="w-4 h-4" /> Tam Kod Mülkiyeti
+              <CheckCircle2 className="w-4 h-4" /> {isTr ? 'Tam Kod Mülkiyeti' : 'Full Code Ownership'}
             </span>
             <span className="flex items-center gap-1.5 text-purple-300 font-bold">
-              <CheckCircle2 className="w-4 h-4" /> İlk Teşhis Ücretsiz
+              <CheckCircle2 className="w-4 h-4" /> {isTr ? 'İlk Teşhis Ücretsiz' : 'First Diagnosis Free'}
+            </span>
+            <span className="flex items-center gap-1.5 text-rose-300 font-bold">
+              <CheckCircle2 className="w-4 h-4" /> {isTr ? 'Kriz Hattı 09:00 – 24:00' : 'Response Desk 09:00 – 24:00'}
             </span>
           </div>
           

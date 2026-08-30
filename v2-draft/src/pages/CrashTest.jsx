@@ -1189,6 +1189,12 @@ const CrashTest = () => {
                 </button>
               </div>
 
+              <p className="text-xs sm:text-sm text-slate-400 font-mono">
+                {isTr 
+                  ? 'Kriz masası tek kişilik değildir — başlayan iş, biri devre dışı kalsa da tamamlanır.' 
+                  : 'The response desk is not a single person — work that starts gets finished, even if someone drops out.'}
+              </p>
+
               {(selectedScenario?.id === 'http500' || selectedScenario?.id === 't48h') && (
                 <p className="text-xs text-slate-400 font-mono">
                   {isTr ? 'Acil değilse takvimden 30 dakikalık görüşme seçebilirsiniz.' : 'If not critical, you can book a 30-minute call from the calendar.'}
@@ -1197,7 +1203,7 @@ const CrashTest = () => {
 
               {/* Direct Info */}
               <div className="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-slate-400 border-t border-white/10">
-                <span>📞 {isTr ? 'Kriz Hattı' : 'Hotline'}: <a href="tel:+905343713573" className="text-white font-mono hover:text-cyan-400 font-bold">+90 534 371 35 73</a></span>
+                <span>📞 {isTr ? 'Kriz Hattı · her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt: 15 dakika' : 'Response Desk · daily 09:00 – 24:00 · typical first reply to emergencies: 15 minutes'}: <a href="tel:+905343713573" className="text-white font-mono hover:text-cyan-400 font-bold">+90 534 371 35 73</a></span>
                 <span>✉️ {isTr ? 'E-posta' : 'Email'}: <a href="mailto:info@trendmasterakademi.com" className="text-white font-mono hover:text-cyan-400 font-bold">info@trendmasterakademi.com</a></span>
                 <span>📍 Konak / İzmir & Global Remote</span>
               </div>

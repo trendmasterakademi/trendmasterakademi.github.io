@@ -97,10 +97,14 @@ const Footer = () => {
               </button>
             </div>
           </div>
+          <p className="text-[11px] text-slate-400 leading-relaxed pt-1">
+            {isTr ? 'Bedel işin kapsamına göre, piyasa koşullarıyla uyumlu şekilde belirlenir.' : 'Pricing is set according to the scope of the work, aligned with prevailing market rates.'}
+          </p>
           <div className="pt-2 text-xs space-y-1.5 font-mono text-slate-400">
             <div className="flex items-center gap-2">
               <PhoneCall className="w-3.5 h-3.5 text-cyan-400" />
-              <a href="tel:+905343713573" className="hover:text-white">+90 534 371 35 73</a>
+              <a href="tel:+905343713573" className="hover:text-white font-bold">+90 534 371 35 73</a>
+              <span className="text-[10px] text-slate-500 font-mono">({isTr ? 'Kriz Hattı · 09:00 – 24:00' : 'Response Desk · 09:00 – 24:00'})</span>
             </div>
             <div className="flex items-center gap-2">
               <Mail className="w-3.5 h-3.5 text-cyan-400" />

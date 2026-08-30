@@ -160,8 +160,8 @@ const About = () => {
               </h3>
               <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
                 {isTr 
-                  ? 'İlk kod teşhisi ve triyaj ücretsizdir. Sonraki çalışmanın kapsamı ve bedeli, teşhis tamamlandıktan sonra işe özel olarak belirlenir ve çalışma başlamadan önce yazılı olarak netleşir. Acil müdahalelerde teşhis ve sabit bedel birlikte iletilir.' 
-                  : 'Initial code triage is free. Scope and pricing for subsequent work are tailored after diagnosis and established in writing before work begins. In emergency responses, diagnosis and fixed fee are delivered together.'}
+                  ? 'İlk kod teşhisi ve triyaj ücretsizdir. Sonraki çalışmanın kapsamı ve bedeli teşhis tamamlandıktan sonra işe özel belirlenir; bedel piyasa koşullarıyla uyumludur ve çalışma başlamadan önce yazılı olarak netleşir. Acil müdahalelerde teşhis ve bedel birlikte iletilir.' 
+                  : 'The initial code diagnosis and triage are free. The scope and price of any subsequent work are set per engagement once the diagnosis is complete; pricing is aligned with prevailing market rates and is confirmed in writing before work begins. For emergency response, the diagnosis and the price are delivered together.'}
               </p>
             </div>
 
@@ -177,6 +177,27 @@ const About = () => {
                   ? 'Arada teknik bilgisi olmayan satış temsilcileri veya bürokrasi katmanları yoktur. İletişim doğrudan projeyi yürüten kıdemli mühendislik masamız üzerinden anlık yürütülür.' 
                   : 'No non-technical intermediaries or ticket queues. You interface directly with senior system architects and backend engineers.'}
               </p>
+            </div>
+
+            <div className="glass-panel p-8 rounded-3xl border border-white/10 bg-[#111827]/70 space-y-4 md:col-span-2">
+              <div className="w-12 h-12 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-mono font-bold text-lg border border-blue-500/30">
+                05
+              </div>
+              <h3 className="text-xl sm:text-2xl font-bold text-white">
+                {isTr ? 'Süreklilik Güvencesi' : 'Continuity Guarantee'}
+              </h3>
+              <div className="text-slate-300 text-sm sm:text-base leading-relaxed space-y-3">
+                <p>
+                  {isTr 
+                    ? 'Kriz masası tek kişilik değildir. Bir işi başlatan mühendis herhangi bir sebeple devre dışı kalırsa masadaki bir başkası devralır; başlamış iş yarıda kalmaz.' 
+                    : 'The response desk is not a single person. If the engineer who started an engagement becomes unavailable for any reason, another member of the desk takes over; work already under way is not left unfinished.'}
+                </p>
+                <p>
+                  {isTr 
+                    ? 'Bunun ötesinde kodunuz hiçbir aşamada bizde rehin kalmaz. Repo süreç boyunca ajansınızın kontrolündedir ve dokümantasyon iş ilerledikçe teslim edilir. Çalışma herhangi bir sebeple kesilse dahi elinizde çalışan sistem ve eksiksiz kaynak kod kalır.' 
+                    : 'Beyond that, your code is never held by us at any stage. The repository stays under your agency\'s control throughout, and documentation is handed over as the work progresses. Even if an engagement is interrupted for any reason, you are left with a working system and the complete source.'}
+                </p>
+              </div>
             </div>
           </div>
         </section>
