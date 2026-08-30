@@ -20,7 +20,7 @@ jobs:
       - name: Run Fetch Script
         env:
           LINKEDIN_FEED_URL: ${{ secrets.LINKEDIN_FEED_URL }}
-        run: python fetch_linkedin_posts.py
+        run: python .github/scripts/fetch_linkedin_posts.py
 
       - name: Commit and Push changes
         run: |
