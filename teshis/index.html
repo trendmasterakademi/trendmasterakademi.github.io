@@ -268,6 +268,172 @@
         <h2 class="text-2xl font-bold text-white">Teşhis Kataloğu</h2>
         <p class="text-slate-300 text-lg leading-relaxed">Belirtiyi görüyorsunuz ama nedenini bilmiyorsunuz. Buradaki her teşhis bir belirtiyle başlar, aynı belirtiyi üretebilecek nedenleri ayırır ve hangisiyle karşı karşıya olduğunuzu nasıl anlayacağınızı gösterir.</p>
         
+  <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+    <h2 class="text-xl font-bold text-white">Yayınlanmış arıza kataloğu — 20 teşhis</h2>
+    <ul class="space-y-4">
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/ayni-stok-iki-musteriye-satildi/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 01 · Aynı stok iki müşteriye satıldı</a>
+            <span class="text-xs font-mono text-slate-400">Kritik · ticari kayıp · Sipariş &amp; Ödeme</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Son kalan ürün iki ayrı siparişte çıktı, stok eksiye düştü.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/odeme-alindi-siparis-olusmadi/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 02 · Ödeme alındı, sipariş oluşmadı</a>
+            <span class="text-xs font-mono text-slate-400">Kritik · ticari kayıp · Sipariş &amp; Ödeme</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Müşterinin kartından para çekildi ama sistemde sipariş yok.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/odeme-iki-kez-alindi/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 03 · Ödeme iki kez alındı</a>
+            <span class="text-xs font-mono text-slate-400">Kritik · iade riski · Sipariş &amp; Ödeme</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Müşteriden aynı tutar iki kez tahsil edildi.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/islemler-kilitlendi-sayfa-donuyor/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 04 · İşlemler kilitlendi, sayfa dönüp duruyor</a>
+            <span class="text-xs font-mono text-slate-400">Kritik · işlem durdu · Performans</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Belirli bir işlem — sipariş onayı, stok güncelleme, toplu güncelleme — sonsuza kadar dönüyor ve sonunda zaman aşımı veriyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/guncelleme-sonrasi-veri-kayboldu/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 05 · Güncellemeden sonra veri kayboldu sanılıyor</a>
+            <span class="text-xs font-mono text-slate-400">Kritik · veri paniği · Veri &amp; Devir</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Bir güncellemeden sonra kayıtlar görünmüyor ve panik &quot;veriler silindi&quot; diye başlıyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/deploy-sonrasi-site-bozuldu/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 06 · Deploy sonrası site bozuldu</a>
+            <span class="text-xs font-mono text-slate-400">Kritik · yayın hatası · Canlı Arıza</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Yayın alındı ve site bozuldu.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/site-500-veriyor-dun-calisiyordu/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 07 · Site 500 veriyor, dün çalışıyordu</a>
+            <span class="text-xs font-mono text-slate-400">Kritik · site kapalı · Canlı Arıza</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Dün sorunsuz açılan site bugün 500 veriyor ve kimse bir şey değiştirmediğini söylüyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/bulut-hesabi-askiya-alindi/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 08 · Bulut hesabı askıya alındı, site kapandı</a>
+            <span class="text-xs font-mono text-slate-400">Kritik · site kapalı · Altyapı &amp; Erişim</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Site aniden tamamen erişilemez oldu.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/yedek-var-sanildi-yedek-yok/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 09 · Yedek var sanılıyordu, yedek yok</a>
+            <span class="text-xs font-mono text-slate-400">Kritik · veri riski · Devir &amp; Süreklilik</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Bir sorun çıktı, yedeğe dönülmek istendi ve yedeğin ya hiç alınmadığı ya da geri yüklenemediği görüldü.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/ssl-suresi-doldu/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 10 · SSL süresi doldu, tarayıcı uyarı veriyor</a>
+            <span class="text-xs font-mono text-slate-400">Kritik · güven kaybı · Altyapı &amp; Erişim</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Ziyaretçiler siteye girerken &#039;bağlantınız gizli değil&#039; uyarısı alıyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/site-yavasladi-sunucu-bos/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 11 · Site yavaşladı ama sunucu boş</a>
+            <span class="text-xs font-mono text-slate-400">Yüksek · dönüşüm kaybı · Performans</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Sayfalar geç açılıyor ama sunucu kaynakları rahat görünüyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/entegrasyon-429-veriyor/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 12 · Entegrasyon aniden 429 vermeye başladı</a>
+            <span class="text-xs font-mono text-slate-400">Yüksek · veri akışı durdu · İletişim &amp; Entegrasyon</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Aylardır çalışan bir entegrasyon — kargo, pazaryeri, ödeme ya da e-posta — birden hata vermeye başladı ve kod değişmedi.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/sunucu-her-gun-yeniden-baslatiliyor/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 13 · Sunucu her gün yeniden başlatılıyor</a>
+            <span class="text-xs font-mono text-slate-400">Yüksek · gizlenen arıza · Altyapı &amp; Erişim</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Site günün belirli saatinde yavaşlıyor veya kilitleniyor, sunucu yeniden başlatılınca düzeliyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/testte-calisiyor-canlida-calismiyor/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 14 · Test ortamında çalışıyor, canlıda çalışmıyor</a>
+            <span class="text-xs font-mono text-slate-400">Yüksek · teslim engeli · Devir &amp; Süreklilik</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Geliştirici &quot;bende çalışıyor&quot; diyor ve haklı.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/her-yeni-ozellik-oncekini-bozuyor/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 15 · Her yeni özellik bir öncekini bozuyor</a>
+            <span class="text-xs font-mono text-slate-400">Yüksek · birikmiş borç · Kod Sağlığı</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Bir yeri düzeltiyorsunuz, başka bir yer bozuluyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/yazilimci-gitti-koda-girilemiyor/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 16 · Yazılımcı gitti, kimse koda giremiyor</a>
+            <span class="text-xs font-mono text-slate-400">Yüksek · süreklilik riski · Devir &amp; Süreklilik</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Projeyi yapan kişi ayrıldı.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/domain-hosting-erisimi-yok/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 17 · Domain ve hosting erişimi kimsede yok</a>
+            <span class="text-xs font-mono text-slate-400">Yüksek · mülkiyet riski · Devir &amp; Süreklilik</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Site çalışıyor ama kimse yönetim paneline giremiyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/form-gonderiliyor-mail-gelmiyor/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 18 · Form gönderiliyor ama mail gelmiyor</a>
+            <span class="text-xs font-mono text-slate-400">Yüksek · kayıp talep · İletişim &amp; Entegrasyon</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">İletişim veya teklif formu &#039;gönderildi&#039; diyor ama kimseye mail ulaşmıyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/site-aramalarda-gorunmez-oldu/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 19 · Site aramalarda görünmez oldu</a>
+            <span class="text-xs font-mono text-slate-400">Yüksek · trafik kaybı · Görünürlük</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">Site açılıyor, her şey normal görünüyor ama arama sonuçlarındaki yerini kaybetti.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/kucuk-degisiklik-gunler-suruyor/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ 20 · Küçük değişiklik günler sürüyor</a>
+            <span class="text-xs font-mono text-slate-400">Orta · hız kaybı · Kod Sağlığı</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">&quot;Bir buton rengi&quot; ya da &quot;bir alan ekle&quot; gibi işler günlere yayılıyor ve müşteri bunu isteksizlik sanıyor.</p>
+        </li>
+    </ul>
+  </section>
+
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>

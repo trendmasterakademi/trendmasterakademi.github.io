@@ -51,7 +51,114 @@ for (const item of teshisData) {
   }
 }
 
+// 2.1 — /teshis/ Katalog Hub'ı İçeriği (20 Teşhis)
+const teshisHubExtraContent = `
+  <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+    <h2 class="text-xl font-bold text-white">Yayınlanmış arıza kataloğu — 20 teşhis</h2>
+    <ul class="space-y-4">
+      ${teshisData.map(item => {
+        const firstSentence = item.ozet?.tr ? (item.ozet.tr.split('.')[0] + '.') : '';
+        return `
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/${escapeHtml(item.slug)}/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ ${escapeHtml(item.no)} · ${escapeHtml(item.baslik?.tr || '')}</a>
+            <span class="text-xs font-mono text-slate-400">${escapeHtml(item.aciliyet?.etiket?.tr || '')} · ${escapeHtml(item.kirinti?.tr || '')}</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">${escapeHtml(firstSentence)}</p>
+        </li>`;
+      }).join('\n      ')}
+    </ul>
+  </section>
+`;
+
+// 2.2 — /sozluk/ Sözlük Hub'ı İçeriği (12 Terim)
+const glossaryHubExtraContent = `
+  <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+    <h2 class="text-xl font-bold text-white">Terim sözlüğü — 12 terim</h2>
+    <ul class="space-y-4">
+      ${glossaryTerms.map(term => {
+        const firstSentence = term.shortDef?.tr ? (term.shortDef.tr.split('.')[0] + '.') : '';
+        return `
+        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/sozluk/${escapeHtml(term.slug)}/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ ${escapeHtml(term.title)}</a>
+            <span class="text-xs font-mono text-amber-400">${escapeHtml(term.urgencyLevel || '')}</span>
+          </div>
+          <p class="text-sm text-slate-300 leading-relaxed">${escapeHtml(firstSentence)}</p>
+        </li>`;
+      }).join('\n      ')}
+    </ul>
+  </section>
+`;
+
+// 2.3 — Ana Sayfa Şerit Log Eşleşmeleri (Hero.jsx ile birebir aynı 8 kayıt)
+const homeHeroLogs = [
+  {
+    log: 'SQLSTATE[40001]: Serialization failure: 1213 Deadlock found',
+    slug: 'ayni-stok-iki-musteriye-satildi'
+  },
+  {
+    log: 'Lock wait timeout exceeded; try restarting transaction',
+    slug: 'islemler-kilitlendi-sayfa-donuyor'
+  },
+  {
+    log: '502 Bad Gateway · upstream prematurely closed connection',
+    slug: 'site-500-veriyor-dun-calisiyordu'
+  },
+  {
+    log: 'NET::ERR_CERT_DATE_INVALID',
+    slug: 'ssl-suresi-doldu'
+  },
+  {
+    log: 'HTTP 429 Too Many Requests',
+    slug: 'entegrasyon-429-veriyor'
+  },
+  {
+    log: 'Out of memory: Killed process',
+    slug: 'sunucu-her-gun-yeniden-baslatiliyor'
+  },
+  {
+    log: 'SMTP error 535 Authentication failed',
+    slug: 'form-gonderiliyor-mail-gelmiyor'
+  },
+  {
+    log: 'robots.txt → Disallow: /',
+    slug: 'site-aramalarda-gorunmez-oldu'
+  }
+];
+
+const homePageExtraContent = `
+  <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+    <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+    <ul class="space-y-3">
+      ${homeHeroLogs.map(entry => {
+        const item = teshisData.find(d => d.slug === entry.slug);
+        const titleText = item ? `${item.no} · ${item.baslik.tr}` : entry.slug;
+        return `
+        <li class="p-3 rounded-xl bg-black/40 border border-white/10 space-y-1 font-mono text-sm">
+          <div class="text-slate-400"><code>${escapeHtml(entry.log)}</code></div>
+          <div><a href="/teshis/${escapeHtml(entry.slug)}/" class="text-cyan-300 hover:underline font-bold">→ ${escapeHtml(titleText)}</a></div>
+        </li>`;
+      }).join('\n      ')}
+    </ul>
+    <p class="pt-2">
+      <a href="/teshis/" class="text-cyan-400 hover:underline font-bold">Tüm teşhis kataloğunu inceleyin (20 belirti) →</a>
+    </p>
+  </section>
+`;
+
 const basePages = [
+  {
+    dir: '',
+    title: 'Trend Master Akademi | B2B Technical SWAT & White-Label Engineering',
+    h1: 'Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio',
+    description: 'Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), SaaS Mimarisi ve Kriz Çözüm Stüdyosu.',
+    canonical: 'https://trendmasterakademi.com/',
+    ogUrl: 'https://trendmasterakademi.com/',
+    heading: 'Teknik olarak projesi tıkanmış ajanslar için: Kodu Devralır, Ajansınız Adına Eksiksiz Teslim Ederiz.',
+    subheading: 'Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), PostgreSQL Deadlock Onarımı, SaaS Mimarisi ve 7/24 Kriz Çözüm Stüdyosu.',
+    extraContent: homePageExtraContent
+  },
   {
     dir: 'agency',
     title: 'Ajans Çözümleri & B2B White-Label Mühendislik Masası | Trend Master Akademi',
@@ -90,7 +197,8 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/sozluk/',
     ogUrl: 'https://trendmasterakademi.com/sozluk/',
     heading: 'Yazılımcı Dili → Ajans Dili Terim Sözlüğü',
-    subheading: 'Teknik jargonu ajans patronunun diline çeviren pratik rehber.'
+    subheading: 'Teknik jargonu ajans patronunun diline çeviren pratik rehber.',
+    extraContent: glossaryHubExtraContent
   },
   {
     dir: 'kesinti-maliyeti',
@@ -158,7 +266,8 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/teshis/',
     ogUrl: 'https://trendmasterakademi.com/teshis/',
     heading: 'Teşhis Kataloğu',
-    subheading: 'Belirtiyi görüyorsunuz ama nedenini bilmiyorsunuz. Buradaki her teşhis bir belirtiyle başlar, aynı belirtiyi üretebilecek nedenleri ayırır ve hangisiyle karşı karşıya olduğunuzu nasıl anlayacağınızı gösterir.'
+    subheading: 'Belirtiyi görüyorsunuz ama nedenini bilmiyorsunuz. Buradaki her teşhis bir belirtiyle başlar, aynı belirtiyi üretebilecek nedenleri ayırır ve hangisiyle karşı karşıya olduğunuzu nasıl anlayacağınızı gösterir.',
+    extraContent: teshisHubExtraContent
   }
 ];
 
