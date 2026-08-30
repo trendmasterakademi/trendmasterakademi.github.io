@@ -217,7 +217,21 @@ const glossaryHubExtraContent = `
   </section>
 `;
 
-// 2.3 — Ana Sayfa Şerit Log Eşleşmeleri (Hero.jsx'ten okunan 8 kayıt)
+// 2.3 — Ana Sayfa Şerit Log Eşleşmeleri ve SSS Bölümü (Hero.jsx ve FAQ.jsx'ten okunan veriler)
+const homeFaqHtml = `
+  <section class="space-y-4 mt-8 border-t border-white/10 pt-6">
+    <h2 class="text-xl font-bold text-white">Sıkça Sorulan Sorular</h2>
+    <div class="space-y-4">
+      ${faqData.map(item => `
+        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+          <h3 class="text-lg font-bold text-cyan-300">${escapeHtml(item.question?.tr || '')}</h3>
+          <p class="text-slate-300 leading-relaxed text-sm sm:text-base">${escapeHtml(item.answer?.tr || '')}</p>
+        </div>
+      `).join('\n      ')}
+    </div>
+  </section>
+`;
+
 const homePageExtraContent = `
   <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
     <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
@@ -237,6 +251,7 @@ const homePageExtraContent = `
       <a href="/teshis/" class="text-cyan-400 hover:underline font-bold">Tüm teşhis kataloğunu inceleyin (20 belirti) →</a>
     </p>
   </section>
+  ${homeFaqHtml}
 `;
 
 const basePages = [
