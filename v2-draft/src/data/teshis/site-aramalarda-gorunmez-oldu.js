@@ -30,6 +30,10 @@ export default {
     "Sunucu yanıtı: 5xx veya çok yavaş ilk bayt süresi",
     "Yönlendirme zinciri: 302 → 302 → 200"
   ],
+  "logEslesme": [
+    { "satir": 0, "harf": "B" },
+    { "satir": 1, "harf": "A" }
+  ],
   "logNotu": {
     "tr": "İlk iki satır tek başına tüm siteyi arama sonuçlarından çıkarır ve genellikle test ortamından canlıya yanlışlıkla taşınır. Kontrolü saniyeler sürer.",
     "en": "The first two directives wipe an entire domain from Google index within days, typically leaked accidentally during staging deployments. Takes seconds to verify."

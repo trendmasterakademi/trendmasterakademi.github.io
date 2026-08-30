@@ -147,6 +147,38 @@
             "@type": "Answer",
             "text": "Zincir eksik — Sertifika geçerli ama zincir tamamlanmamış. Bazı cihazlarda çalışır, bazılarında çalışmaz — en yanıltıcı hâl budur. Kanıt: unable to get local issuer → C Çözüm: Ara sertifikayı zincire ekle"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "«NET::ERR_CERT_DATE_INVALID              ← süre doldu» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Yenileme durdu — Kısa ömürlü sertifikalar otomatik yenilenir; yenileme görevi bir noktada sessizce durmuştur. Çözüm: Görev onarımı + süre bildirimi"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«NET::ERR_CERT_COMMON_NAME_INVALID       ← alan adı eşleşmiyor» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Kapsam eksik — Sertifika ana alan adını kapsıyor ama `www` veya bir alt alan adını kapsamıyor. Çözüm: Sertifikayı alt alan adlarıyla yeniden al"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«SSL certificate problem: unable to get local issuer certificate» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C · Zincir eksik — Sertifika geçerli ama zincir tamamlanmamış. Bazı cihazlarda çalışır, bazılarında çalışmaz — en yanıltıcı hâl budur. Çözüm: Ara sertifikayı zincire ekle"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«certbot renew — hook command failed» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Yenileme durdu — Kısa ömürlü sertifikalar otomatik yenilenir; yenileme görevi bir noktada sessizce durmuştur. Çözüm: Görev onarımı + süre bildirimi"
+          }
         }
       ]
     },
@@ -176,12 +208,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
+    <script type="module" crossorigin src="/assets/index-OgBFkI6y.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CsGryBcT.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -210,10 +242,10 @@
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
       <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
-        <li><code>NET::ERR_CERT_DATE_INVALID              ← süre doldu</code></li>
-        <li><code>NET::ERR_CERT_COMMON_NAME_INVALID       ← alan adı eşleşmiyor</code></li>
-        <li><code>SSL certificate problem: unable to get local issuer certificate</code></li>
-        <li><code>certbot renew — hook command failed</code></li>
+        <li><code>NET::ERR_CERT_DATE_INVALID              ← süre doldu</code> <span>→ A · Yenileme durdu</span></li>
+        <li><code>NET::ERR_CERT_COMMON_NAME_INVALID       ← alan adı eşleşmiyor</code> <span>→ B · Kapsam eksik</span></li>
+        <li><code>SSL certificate problem: unable to get local issuer certificate</code> <span>→ C · Zincir eksik</span></li>
+        <li><code>certbot renew — hook command failed</code> <span>→ A · Yenileme durdu</span></li>
       </ul>
     
         <p class="text-slate-300 text-sm">Tarayıcının verdiği hata kodu nedeni doğrudan söyler. Uyarı ekranındaki &#039;Gelişmiş&#039; bağlantısı hangi kodun geçerli olduğunu gösterir.</p>

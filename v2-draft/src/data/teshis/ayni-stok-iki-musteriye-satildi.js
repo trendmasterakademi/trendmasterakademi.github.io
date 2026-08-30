@@ -29,6 +29,10 @@ export default {
     "Duplicate entry '...' for key 'orders_reference_unique'",
     "UPDATE products SET stock = stock - 1  ← kontrol ve yazma ayrı"
   ],
+  "logEslesme": [
+    { "satir": 0, "harf": "A" },
+    { "satir": 1, "harf": "B" }
+  ],
   "logNotu": {
     "tr": "Bu satırlardan hangisinin göründüğü, hangi nedenle karşı karşıya olduğunuzu daha ilk bakışta daraltır.",
     "en": "Which of these lines appears in your error logs narrows down the exact root cause at first glance."

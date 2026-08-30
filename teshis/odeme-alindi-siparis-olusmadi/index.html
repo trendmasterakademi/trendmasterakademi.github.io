@@ -147,6 +147,22 @@
             "@type": "Answer",
             "text": "Kaydedilmedi — Bildirim başarıyla döndü ama sipariş yazılmadı. Genellikle bir doğrulama hatası kayıt oluşturmayı sessizce engeller. Kanıt: 200 dönmüş ama kayıt yok → C Çözüm: Doğrulama hatasını logla + kaydı garanti et"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "«Ödeme sağlayıcı paneli: callback failed · retry 3/3» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Bildirim ulaşmadı — Sağlayıcı bildirimi gönderdi ama adres yanlış, kapalı ya da güvenlik duvarı engelledi. Çözüm: Adres ve güvenlik duvarı düzeltme"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«HTTP 302 — bildirim yönlendirmeyi takip etmiyor» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Bildirim ulaşmadı — Sağlayıcı bildirimi gönderdi ama adres yanlış, kapalı ya da güvenlik duvarı engelledi. Çözüm: Adres ve güvenlik duvarı düzeltme"
+          }
         }
       ]
     },
@@ -176,12 +192,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
+    <script type="module" crossorigin src="/assets/index-OgBFkI6y.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CsGryBcT.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -211,9 +227,9 @@
         
       <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
         <li><code>Webhook adresi: 404 / 500 / zaman aşımı</code></li>
-        <li><code>Ödeme sağlayıcı paneli: callback failed · retry 3/3</code></li>
+        <li><code>Ödeme sağlayıcı paneli: callback failed · retry 3/3</code> <span>→ A · Bildirim ulaşmadı</span></li>
         <li><code>Uygulama log&#039;unda ödeme referansı hiç geçmiyor</code></li>
-        <li><code>HTTP 302 — bildirim yönlendirmeyi takip etmiyor</code></li>
+        <li><code>HTTP 302 — bildirim yönlendirmeyi takip etmiyor</code> <span>→ A · Bildirim ulaşmadı</span></li>
       </ul>
     
         <p class="text-slate-300 text-sm">Ödeme sağlayıcısının panelinde her bildirim denemesinin kaydı vardır. Cevabı orada aramak kodda aramaktan hızlıdır: sağlayıcı size kaç kez denediğini ve ne cevap aldığını söyler.</p>

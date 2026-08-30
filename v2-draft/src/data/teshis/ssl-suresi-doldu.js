@@ -30,6 +30,12 @@ export default {
     "SSL certificate problem: unable to get local issuer certificate",
     "certbot renew — hook command failed"
   ],
+  "logEslesme": [
+    { "satir": 0, "harf": "A" },
+    { "satir": 1, "harf": "B" },
+    { "satir": 2, "harf": "C" },
+    { "satir": 3, "harf": "A" }
+  ],
   "logNotu": {
     "tr": "Tarayıcının verdiği hata kodu nedeni doğrudan söyler. Uyarı ekranındaki 'Gelişmiş' bağlantısı hangi kodun geçerli olduğunu gösterir.",
     "en": "Browser error codes state the exact root cause directly. The 'Advanced' button reveals whether expiration, domain mismatch, or broken CA chain is at play."

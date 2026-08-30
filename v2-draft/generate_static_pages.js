@@ -643,7 +643,12 @@ const teshisPages = teshisData.map(item => {
   const logRowsHtml = item.logSatirlari && item.logSatirlari.length > 0
     ? `
       <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
-        ${item.logSatirlari.map(log => `<li><code>${escapeHtml(log)}</code></li>`).join('\n        ')}
+        ${item.logSatirlari.map((log, idx) => {
+          const eslesme = item.logEslesme?.find(e => e.satir === idx && e.harf);
+          const neden = eslesme ? item.nedenler?.find(n => n.harf === eslesme.harf) : null;
+          const badgeHtml = neden ? ` <span>→ ${escapeHtml(eslesme.harf)} · ${escapeHtml(neden.ad?.tr || '')}</span>` : '';
+          return `<li><code>${escapeHtml(log)}</code>${badgeHtml}</li>`;
+        }).join('\n        ')}
       </ul>
     `
     : '';
@@ -713,6 +718,38 @@ const teshisPages = teshisData.map(item => {
     </section>
   `;
 
+  const faqQuestions = (item.nedenler || []).map(n => {
+    const testStr = Array.isArray(n.diyagramTest?.tr) ? n.diyagramTest.tr.join(' ') : (n.diyagramTest?.tr || '');
+    const cozumStr = Array.isArray(n.diyagramCozum?.tr) ? n.diyagramCozum.tr.join(' ') : (n.diyagramCozum?.tr || '');
+    return {
+      "@type": "Question",
+      "name": testStr,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `${n.ad.tr} — ${n.aciklama.tr} Kanıt: ${n.kanit.tr} Çözüm: ${cozumStr}`
+      }
+    };
+  });
+
+  if (item.logEslesme && item.logEslesme.length > 0) {
+    for (const eslesme of item.logEslesme) {
+      if (!eslesme.harf) continue;
+      const logSatiri = item.logSatirlari[eslesme.satir];
+      const neden = (item.nedenler || []).find(n => n.harf === eslesme.harf);
+      if (logSatiri && neden) {
+        const cozumStr = Array.isArray(neden.diyagramCozum?.tr) ? neden.diyagramCozum.tr.join(' ') : (neden.diyagramCozum?.tr || '');
+        faqQuestions.push({
+          "@type": "Question",
+          "name": `«${logSatiri}» görüyorsam nedeni ne?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `${neden.harf} · ${neden.ad.tr} — ${neden.aciklama.tr} Çözüm: ${cozumStr}`
+          }
+        });
+      }
+    }
+  }
+
   const schema = {
     "@context": "https://schema.org",
     "@graph": [
@@ -732,18 +769,7 @@ const teshisPages = teshisData.map(item => {
       },
       {
         "@type": "FAQPage",
-        "mainEntity": (item.nedenler || []).map(n => {
-          const testStr = Array.isArray(n.diyagramTest?.tr) ? n.diyagramTest.tr.join(' ') : (n.diyagramTest?.tr || '');
-          const cozumStr = Array.isArray(n.diyagramCozum?.tr) ? n.diyagramCozum.tr.join(' ') : (n.diyagramCozum?.tr || '');
-          return {
-            "@type": "Question",
-            "name": testStr,
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": `${n.ad.tr} — ${n.aciklama.tr} Kanıt: ${n.kanit.tr} Çözüm: ${cozumStr}`
-            }
-          };
-        })
+        "mainEntity": faqQuestions
       },
       {
         "@type": "BreadcrumbList",

@@ -30,6 +30,10 @@ export const teshisData = [
       "Duplicate entry '...' for key 'orders_reference_unique'",
       "UPDATE products SET stock = stock - 1  ← kontrol ve yazma ayrı"
     ],
+    "logEslesme": [
+      { "satir": 0, "harf": "A" },
+      { "satir": 1, "harf": "B" }
+    ],
     "logNotu": {
       "tr": "Bu satırlardan hangisinin göründüğü, hangi nedenle karşı karşıya olduğunuzu daha ilk bakışta daraltır.",
       "en": "Which of these lines appears in your error logs narrows down the exact root cause at first glance."
@@ -217,6 +221,10 @@ export const teshisData = [
       "Ödeme sağlayıcı paneli: callback failed · retry 3/3",
       "Uygulama log'unda ödeme referansı hiç geçmiyor",
       "HTTP 302 — bildirim yönlendirmeyi takip etmiyor"
+    ],
+    "logEslesme": [
+      { "satir": 1, "harf": "A" },
+      { "satir": 3, "harf": "A" }
     ],
     "logNotu": {
       "tr": "Ödeme sağlayıcısının panelinde her bildirim denemesinin kaydı vardır. Cevabı orada aramak kodda aramaktan hızlıdır: sağlayıcı size kaç kez denediğini ve ne cevap aldığını söyler.",
@@ -589,6 +597,11 @@ export const teshisData = [
       "Veritabanında uzun süredir açık işlem (idle in transaction)",
       "Uygulama log'u: aynı saniyede iki toplu güncelleme"
     ],
+    "logEslesme": [
+      { "satir": 0, "harf": "A" },
+      { "satir": 1, "harf": "B" },
+      { "satir": 2, "harf": "B" }
+    ],
     "logNotu": {
       "tr": "'try restarting transaction' ifadesi veritabanının kendi teşhisidir. Bu satır göründüğünde neden tahmin edilmez, bilinir.",
       "en": "'try restarting transaction' is the database engine's explicit diagnosis. When logged, root cause is verified deadlock."
@@ -772,6 +785,10 @@ export const teshisData = [
       "Column not found / Unknown column in field list",
       "Kayıt sayısı: tablodaki satır sayısı hâlâ eski değerde mi?",
       "Durum veya silme alanı toplu güncellenmiş mi?"
+    ],
+    "logEslesme": [
+      { "satir": 0, "harf": "B" },
+      { "satir": 1, "harf": "B" }
     ],
     "logNotu": {
       "tr": "İlk yapılacak iş kayıt saymaktır. Tabloda satır duruyorsa veri kaybolmamıştır, görünürlüğü kaybolmuştur. Bu ayrım müdahalenin yönünü tamamen değiştirir.",
@@ -1142,6 +1159,12 @@ export const teshisData = [
       "No space left on device",
       "SQLSTATE[HY000] [2002] Connection refused"
     ],
+    "logEslesme": [
+      { "satir": 0, "harf": null },
+      { "satir": 1, "harf": "B" },
+      { "satir": 2, "harf": "B" },
+      { "satir": 3, "harf": "B" }
+    ],
     "logNotu": {
       "tr": "500 bir teşhis değil, bir kapaktır. Gerçek neden uygulama log'unda, bir alt satırdadır. Sunucu log'una bakılmadan yapılan her tahmin zaman kaybıdır.",
       "en": "HTTP 500 is not a diagnosis; it is a generic wrapper. The actual root cause lives in application error logs one line below. Any guesswork without log inspection is wasted downtime."
@@ -1508,6 +1531,10 @@ export const teshisData = [
       "Yedek dosya boyutu 0 byte / birkaç KB",
       "Depolama sağlayıcısı: quota exceeded"
     ],
+    "logEslesme": [
+      { "satir": 1, "harf": "A" },
+      { "satir": 3, "harf": "A" }
+    ],
     "logNotu": {
       "tr": "Yedek işi çoğu zaman sessizce başarısız olur. Hata bir yere düşer ama kimse okumaz; klasörde dosya göründüğü için sorun fark edilmez.",
       "en": "Backup routines fail silently most of the time. Errors are emitted to unmonitored logs while stale files in the folder give a false sense of security."
@@ -1690,6 +1717,12 @@ export const teshisData = [
       "NET::ERR_CERT_COMMON_NAME_INVALID       ← alan adı eşleşmiyor",
       "SSL certificate problem: unable to get local issuer certificate",
       "certbot renew — hook command failed"
+    ],
+    "logEslesme": [
+      { "satir": 0, "harf": "A" },
+      { "satir": 1, "harf": "B" },
+      { "satir": 2, "harf": "C" },
+      { "satir": 3, "harf": "A" }
     ],
     "logNotu": {
       "tr": "Tarayıcının verdiği hata kodu nedeni doğrudan söyler. Uyarı ekranındaki 'Gelişmiş' bağlantısı hangi kodun geçerli olduğunu gösterir.",
@@ -2422,6 +2455,10 @@ export const teshisData = [
       "Yalnız canlıda 500, testte 200",
       "Kütüphane sürümleri: kilit dosyası var mı, uyuşuyor mu?",
       "Permission denied — dosya izni veya yol hatası"
+    ],
+    "logEslesme": [
+      { "satir": 0, "harf": "A" },
+      { "satir": 3, "harf": "C" }
     ],
     "logNotu": {
       "tr": "Fark her zaman üç yerden birindedir: yapılandırma, sürüm, izin. Dördüncü bir yer aramak zaman kaybıdır.",
@@ -3164,6 +3201,11 @@ export const teshisData = [
       "Mail kuyruğu: deferred / stuck",
       "Uygulama log'u: 'mail sent'    ← ama teslim edilmedi"
     ],
+    "logEslesme": [
+      { "satir": 0, "harf": "A" },
+      { "satir": 1, "harf": "B" },
+      { "satir": 2, "harf": "B" }
+    ],
     "logNotu": {
       "tr": "'Gönderildi' mesajı çoğu zaman uygulamanın kendi iddiasıdır, teslim kanıtı değildir. Gerçek cevap sunucunun mail kuyruğunda veya sağlayıcı panelindedir.",
       "en": "'Message sent' in UI only reflects dispatch, not inbox delivery. Truth resides in server mail queues (Postfix/Exim) or transactional ESP dashboards (SendGrid/Postmark)."
@@ -3348,6 +3390,10 @@ export const teshisData = [
       "<meta name=\"robots\" content=\"noindex\">",
       "Sunucu yanıtı: 5xx veya çok yavaş ilk bayt süresi",
       "Yönlendirme zinciri: 302 → 302 → 200"
+    ],
+    "logEslesme": [
+      { "satir": 0, "harf": "B" },
+      { "satir": 1, "harf": "A" }
     ],
     "logNotu": {
       "tr": "İlk iki satır tek başına tüm siteyi arama sonuçlarından çıkarır ve genellikle test ortamından canlıya yanlışlıkla taşınır. Kontrolü saniyeler sürer.",

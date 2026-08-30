@@ -30,6 +30,12 @@ export default {
     "No space left on device",
     "SQLSTATE[HY000] [2002] Connection refused"
   ],
+  "logEslesme": [
+    { "satir": 0, "harf": null },
+    { "satir": 1, "harf": "B" },
+    { "satir": 2, "harf": "B" },
+    { "satir": 3, "harf": "B" }
+  ],
   "logNotu": {
     "tr": "500 bir teşhis değil, bir kapaktır. Gerçek neden uygulama log'unda, bir alt satırdadır. Sunucu log'una bakılmadan yapılan her tahmin zaman kaybıdır.",
     "en": "HTTP 500 is not a diagnosis; it is a generic wrapper. The actual root cause lives in application error logs one line below. Any guesswork without log inspection is wasted downtime."

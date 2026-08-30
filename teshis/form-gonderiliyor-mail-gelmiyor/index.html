@@ -147,6 +147,30 @@
             "@type": "Answer",
             "text": "Form arkada hatalı — Gönderim isteği başarısız oluyor ama arayüz yine de başarı mesajı gösteriyor. Kanıt: Ağ sekmesinde 4xx/5xx → C Çözüm: Gerçek yanıtı kontrol et · hata göster"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "«SMTP error 535 Authentication failed» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · SMTP kimliği — Parola değişti ya da sağlayıcı uygulama şifresi zorunlu kıldı. Mail hiç çıkmıyor. Çözüm: Uygulama şifresi + ayar güncelleme"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«550 5.7.1 Message rejected · SPF / DKIM» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · SPF / DKIM eksik — Mail çıkıyor ama alıcı sunucu reddediyor veya spam'e atıyor. Alan adı doğrulama kayıtları yok. Çözüm: DNS kayıtlarını ekle · teslimat düzelir"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Mail kuyruğu: deferred / stuck» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · SPF / DKIM eksik — Mail çıkıyor ama alıcı sunucu reddediyor veya spam'e atıyor. Alan adı doğrulama kayıtları yok. Çözüm: DNS kayıtlarını ekle · teslimat düzelir"
+          }
         }
       ]
     },
@@ -176,12 +200,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
+    <script type="module" crossorigin src="/assets/index-OgBFkI6y.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CsGryBcT.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -210,9 +234,9 @@
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
       <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
-        <li><code>SMTP error 535 Authentication failed</code></li>
-        <li><code>550 5.7.1 Message rejected · SPF / DKIM</code></li>
-        <li><code>Mail kuyruğu: deferred / stuck</code></li>
+        <li><code>SMTP error 535 Authentication failed</code> <span>→ A · SMTP kimliği</span></li>
+        <li><code>550 5.7.1 Message rejected · SPF / DKIM</code> <span>→ B · SPF / DKIM eksik</span></li>
+        <li><code>Mail kuyruğu: deferred / stuck</code> <span>→ B · SPF / DKIM eksik</span></li>
         <li><code>Uygulama log&#039;u: &#039;mail sent&#039;    ← ama teslim edilmedi</code></li>
       </ul>
     

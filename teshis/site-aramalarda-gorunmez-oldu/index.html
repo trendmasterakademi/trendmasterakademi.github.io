@@ -147,6 +147,22 @@
             "@type": "Answer",
             "text": "Adresler değişti — Sayfa adresleri yönlendirme kurulmadan değiştirildi. Eski adresler 404 veriyor, birikmiş değer kayboldu. Kanıt: Eski adresler 404 veriyor → C Çözüm: Eski → yeni 301 haritası kur"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "«robots.txt → Disallow: /» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · robots.txt kapalı — Dosya tüm siteyi tarayıcılara kapatmış durumda. Çözüm: Kuralı düzelt · etki günler içinde"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«<meta name=\"robots\" content=\"noindex\">» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · noindex kalmış — Test ortamında arama motorlarını engellemek için konan etiket yayına da gitmiş. Çözüm: Etiketi kaldır + yeniden dizinleme iste"
+          }
         }
       ]
     },
@@ -176,12 +192,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
+    <script type="module" crossorigin src="/assets/index-OgBFkI6y.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CsGryBcT.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -210,8 +226,8 @@
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
       <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
-        <li><code>robots.txt → Disallow: /</code></li>
-        <li><code>&lt;meta name=&quot;robots&quot; content=&quot;noindex&quot;&gt;</code></li>
+        <li><code>robots.txt → Disallow: /</code> <span>→ B · robots.txt kapalı</span></li>
+        <li><code>&lt;meta name=&quot;robots&quot; content=&quot;noindex&quot;&gt;</code> <span>→ A · noindex kalmış</span></li>
         <li><code>Sunucu yanıtı: 5xx veya çok yavaş ilk bayt süresi</code></li>
         <li><code>Yönlendirme zinciri: 302 → 302 → 200</code></li>
       </ul>

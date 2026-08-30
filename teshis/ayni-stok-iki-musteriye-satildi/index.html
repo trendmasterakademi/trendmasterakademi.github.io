@@ -147,6 +147,22 @@
             "@type": "Answer",
             "text": "Stok senkronu — Stoğun kaynağı ERP veya pazaryeri. Yarış sitede değil, iki sistem arasındaki gecikmede. Kanıt: Senkron satıştan eski → C Çözüm: Rezervasyon mantığı + senkron sıklığı"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "«SQLSTATE[40001]: Serialization failure: 1213 Deadlock found» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Race condition — Aynı anda gelen iki istek stoğu eşzamanlı düşürdü. Kontrol ile yazma arasında boşluk var. Çözüm: Atomik UPDATE + etkilenen satır kontrolü"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Duplicate entry '...' for key 'orders_reference_unique'» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Idempotency yok — Tek bir ödeme iki kez işlendi; müşteri iki kez tıkladı ya da webhook tekrar geldi. Eşzamanlılık yok, tekrar var. Çözüm: unique index + idempotency anahtarı"
+          }
         }
       ]
     },
@@ -176,12 +192,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
+    <script type="module" crossorigin src="/assets/index-OgBFkI6y.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CsGryBcT.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -210,8 +226,8 @@
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
       <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
-        <li><code>SQLSTATE[40001]: Serialization failure: 1213 Deadlock found</code></li>
-        <li><code>Duplicate entry &#039;...&#039; for key &#039;orders_reference_unique&#039;</code></li>
+        <li><code>SQLSTATE[40001]: Serialization failure: 1213 Deadlock found</code> <span>→ A · Race condition</span></li>
+        <li><code>Duplicate entry &#039;...&#039; for key &#039;orders_reference_unique&#039;</code> <span>→ B · Idempotency yok</span></li>
         <li><code>UPDATE products SET stock = stock - 1  ← kontrol ve yazma ayrı</code></li>
       </ul>
     

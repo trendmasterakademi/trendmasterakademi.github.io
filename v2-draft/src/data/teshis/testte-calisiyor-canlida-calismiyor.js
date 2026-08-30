@@ -30,6 +30,10 @@ export default {
     "Kütüphane sürümleri: kilit dosyası var mı, uyuşuyor mu?",
     "Permission denied — dosya izni veya yol hatası"
   ],
+  "logEslesme": [
+    { "satir": 0, "harf": "A" },
+    { "satir": 3, "harf": "C" }
+  ],
   "logNotu": {
     "tr": "Fark her zaman üç yerden birindedir: yapılandırma, sürüm, izin. Dördüncü bir yer aramak zaman kaybıdır.",
     "en": "Environment drift always lives in one of three places: configuration, dependency versions, or file permissions. Searching elsewhere wastes critical incident time."

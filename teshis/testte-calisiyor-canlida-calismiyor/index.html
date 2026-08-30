@@ -147,6 +147,22 @@
             "@type": "Answer",
             "text": "İzin / yol farkı — Canlıda yazma izni yok ya da dosya yolu farklı. Testte yerel klasör, canlıda kısıtlı dizin. Kanıt: Permission denied → C Çözüm: İzinleri ve yolu ortamdan oku"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "«Undefined env variable / configuration missing» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Yapılandırma farkı — Canlıda bir ortam değişkeni eksik ya da farklı. Kod aynı, girdisi değil. Çözüm: Değişken listesini eşitle + örnek dosya tut"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Permission denied — dosya izni veya yol hatası» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C · İzin / yol farkı — Canlıda yazma izni yok ya da dosya yolu farklı. Testte yerel klasör, canlıda kısıtlı dizin. Çözüm: İzinleri ve yolu ortamdan oku"
+          }
         }
       ]
     },
@@ -176,12 +192,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
+    <script type="module" crossorigin src="/assets/index-OgBFkI6y.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CsGryBcT.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -210,10 +226,10 @@
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
       <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
-        <li><code>Undefined env variable / configuration missing</code></li>
+        <li><code>Undefined env variable / configuration missing</code> <span>→ A · Yapılandırma farkı</span></li>
         <li><code>Yalnız canlıda 500, testte 200</code></li>
         <li><code>Kütüphane sürümleri: kilit dosyası var mı, uyuşuyor mu?</code></li>
-        <li><code>Permission denied — dosya izni veya yol hatası</code></li>
+        <li><code>Permission denied — dosya izni veya yol hatası</code> <span>→ C · İzin / yol farkı</span></li>
       </ul>
     
         <p class="text-slate-300 text-sm">Fark her zaman üç yerden birindedir: yapılandırma, sürüm, izin. Dördüncü bir yer aramak zaman kaybıdır.</p>

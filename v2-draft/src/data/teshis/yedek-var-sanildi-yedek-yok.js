@@ -30,6 +30,10 @@ export default {
     "Yedek dosya boyutu 0 byte / birkaç KB",
     "Depolama sağlayıcısı: quota exceeded"
   ],
+  "logEslesme": [
+    { "satir": 1, "harf": "A" },
+    { "satir": 3, "harf": "A" }
+  ],
   "logNotu": {
     "tr": "Yedek işi çoğu zaman sessizce başarısız olur. Hata bir yere düşer ama kimse okumaz; klasörde dosya göründüğü için sorun fark edilmez.",
     "en": "Backup routines fail silently most of the time. Errors are emitted to unmonitored logs while stale files in the folder give a false sense of security."

@@ -147,6 +147,22 @@
             "@type": "Answer",
             "text": "Gerçek silme — Bir toplu işlem kayıtları gerçekten sildi. Üçü içinde en az görüleni ama tek gerçek kayıp hâli budur. Kanıt: Satır sayısı gerçekten düşmüş → C Çözüm: Yedekten geri yükleme · süre kritik"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "«Göç log'u: rolled back veya yarıda kesilmiş» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Göç yarıda kaldı — Şema değişikliği kesildi; bazı tablolar yeni, bazıları eski hâlde. Uygulama ikisini birden okuyamıyor. Çözüm: Yedekten dön · göçü baştan çalıştır"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Column not found / Unknown column in field list» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Göç yarıda kaldı — Şema değişikliği kesildi; bazı tablolar yeni, bazıları eski hâlde. Uygulama ikisini birden okuyamıyor. Çözüm: Yedekten dön · göçü baştan çalıştır"
+          }
         }
       ]
     },
@@ -176,12 +192,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
+    <script type="module" crossorigin src="/assets/index-OgBFkI6y.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CsGryBcT.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -210,8 +226,8 @@
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
       <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
-        <li><code>Göç log&#039;u: rolled back veya yarıda kesilmiş</code></li>
-        <li><code>Column not found / Unknown column in field list</code></li>
+        <li><code>Göç log&#039;u: rolled back veya yarıda kesilmiş</code> <span>→ B · Göç yarıda kaldı</span></li>
+        <li><code>Column not found / Unknown column in field list</code> <span>→ B · Göç yarıda kaldı</span></li>
         <li><code>Kayıt sayısı: tablodaki satır sayısı hâlâ eski değerde mi?</code></li>
         <li><code>Durum veya silme alanı toplu güncellenmiş mi?</code></li>
       </ul>

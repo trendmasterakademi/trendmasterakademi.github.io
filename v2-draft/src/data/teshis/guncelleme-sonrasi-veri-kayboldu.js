@@ -30,6 +30,10 @@ export default {
     "Kayıt sayısı: tablodaki satır sayısı hâlâ eski değerde mi?",
     "Durum veya silme alanı toplu güncellenmiş mi?"
   ],
+  "logEslesme": [
+    { "satir": 0, "harf": "B" },
+    { "satir": 1, "harf": "B" }
+  ],
   "logNotu": {
     "tr": "İlk yapılacak iş kayıt saymaktır. Tabloda satır duruyorsa veri kaybolmamıştır, görünürlüğü kaybolmuştur. Bu ayrım müdahalenin yönünü tamamen değiştirir.",
     "en": "The first step is counting table rows directly. If row counts match, data is not erased; its visibility is filtered out. This distinction fundamentally changes the incident response vector."

@@ -30,6 +30,10 @@ export default {
     "Uygulama log'unda ödeme referansı hiç geçmiyor",
     "HTTP 302 — bildirim yönlendirmeyi takip etmiyor"
   ],
+  "logEslesme": [
+    { "satir": 1, "harf": "A" },
+    { "satir": 3, "harf": "A" }
+  ],
   "logNotu": {
     "tr": "Ödeme sağlayıcısının panelinde her bildirim denemesinin kaydı vardır. Cevabı orada aramak kodda aramaktan hızlıdır: sağlayıcı size kaç kez denediğini ve ne cevap aldığını söyler.",
     "en": "Every webhook dispatch attempt is logged in the payment gateway dashboard. Checking provider logs is faster than codebase debugging: it reveals retry counts and HTTP response codes directly."

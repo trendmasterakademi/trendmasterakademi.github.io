@@ -180,11 +180,23 @@ const TeshisDetay = () => {
             </div>
             
             <div className="p-4 sm:p-5 space-y-2 overflow-x-auto select-text font-mono text-xs sm:text-sm">
-              {teshis.logSatirlari.map((log, idx) => (
-                <code key={`log-${idx}`} className="block text-teal-300 whitespace-pre">
-                  {log}
-                </code>
-              ))}
+              {teshis.logSatirlari.map((log, idx) => {
+                const eslesme = teshis.logEslesme?.find(e => e.satir === idx && e.harf);
+                const neden = eslesme ? teshis.nedenler?.find(n => n.harf === eslesme.harf) : null;
+                const nedenAd = neden ? (isTr ? (neden.ad?.tr || '') : (neden.ad?.en || neden.ad?.tr || '')) : '';
+                return (
+                  <div key={`log-${idx}`} className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+                    <code className="block text-teal-300 whitespace-pre">
+                      {log}
+                    </code>
+                    {neden && (
+                      <span className="text-cyan-400 text-xs font-mono shrink-0">
+                        {`→ ${eslesme.harf} · ${nedenAd}`}
+                      </span>
+                    )}
+                  </div>
+                );
+              })}
             </div>
 
             <div className="px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-400">

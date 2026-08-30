@@ -30,6 +30,11 @@ export default {
     "Mail kuyruğu: deferred / stuck",
     "Uygulama log'u: 'mail sent'    ← ama teslim edilmedi"
   ],
+  "logEslesme": [
+    { "satir": 0, "harf": "A" },
+    { "satir": 1, "harf": "B" },
+    { "satir": 2, "harf": "B" }
+  ],
   "logNotu": {
     "tr": "'Gönderildi' mesajı çoğu zaman uygulamanın kendi iddiasıdır, teslim kanıtı değildir. Gerçek cevap sunucunun mail kuyruğunda veya sağlayıcı panelindedir.",
     "en": "'Message sent' in UI only reflects dispatch, not inbox delivery. Truth resides in server mail queues (Postfix/Exim) or transactional ESP dashboards (SendGrid/Postmark)."

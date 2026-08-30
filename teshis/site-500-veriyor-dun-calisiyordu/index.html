@@ -147,6 +147,30 @@
             "@type": "Answer",
             "text": "Otomatik güncelleme — Sunucu, kütüphane veya eklenti kendiliğinden güncellendi. \"Kimse dokunmadı\" doğrudur; dokunan sistemin kendisidir. Kanıt: Paket log'unda gece güncellemesi → C Çözüm: Sürüm sabitleme + geri alma"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "«502 Bad Gateway · upstream prematurely closed connection» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Disk veya bellek doldu — Log dosyaları, yedekler ya da geçici dosyalar diski doldurdu; uygulama yazamıyor. Çözüm: Temizlik + log rotasyonu"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«No space left on device» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Disk veya bellek doldu — Log dosyaları, yedekler ya da geçici dosyalar diski doldurdu; uygulama yazamıyor. Çözüm: Temizlik + log rotasyonu"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«SQLSTATE[HY000] [2002] Connection refused» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Disk veya bellek doldu — Log dosyaları, yedekler ya da geçici dosyalar diski doldurdu; uygulama yazamıyor. Çözüm: Temizlik + log rotasyonu"
+          }
         }
       ]
     },
@@ -176,12 +200,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
+    <script type="module" crossorigin src="/assets/index-OgBFkI6y.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CsGryBcT.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -211,9 +235,9 @@
         
       <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
         <li><code>PHP Fatal error / Uncaught Error        ← uygulama log&#039;u</code></li>
-        <li><code>502 Bad Gateway · upstream prematurely closed connection</code></li>
-        <li><code>No space left on device</code></li>
-        <li><code>SQLSTATE[HY000] [2002] Connection refused</code></li>
+        <li><code>502 Bad Gateway · upstream prematurely closed connection</code> <span>→ B · Disk veya bellek doldu</span></li>
+        <li><code>No space left on device</code> <span>→ B · Disk veya bellek doldu</span></li>
+        <li><code>SQLSTATE[HY000] [2002] Connection refused</code> <span>→ B · Disk veya bellek doldu</span></li>
       </ul>
     
         <p class="text-slate-300 text-sm">500 bir teşhis değil, bir kapaktır. Gerçek neden uygulama log&#039;unda, bir alt satırdadır. Sunucu log&#039;una bakılmadan yapılan her tahmin zaman kaybıdır.</p>

@@ -147,6 +147,30 @@
             "@type": "Answer",
             "text": "Toplu güncelleme — Arka plan görevi geniş bir aralığı kilitliyor, canlı trafik onun bitmesini bekliyor. Kanıt: Kilitlenme toplu görevle çakışıyor → C Çözüm: Parçalara böl + yoğun saat dışına al"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "«Deadlock found when trying to get lock; try restarting transaction» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Ters sıralı kilit — İki işlem aynı iki tabloya farklı sırayla dokunuyor; her biri diğerinin bıraktığını bekliyor. Çözüm: Tabloları sabit sırayla kilitle"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Lock wait timeout exceeded; try restarting transaction» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Uzun işlem — Bir işlem içinde rapor üretimi veya harici çağrı yapılıyor; kilit gereğinden uzun tutuluyor. Çözüm: Harici işi işlem dışına çıkar"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Veritabanında uzun süredir açık işlem (idle in transaction)» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Uzun işlem — Bir işlem içinde rapor üretimi veya harici çağrı yapılıyor; kilit gereğinden uzun tutuluyor. Çözüm: Harici işi işlem dışına çıkar"
+          }
         }
       ]
     },
@@ -176,12 +200,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
+    <script type="module" crossorigin src="/assets/index-OgBFkI6y.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CsGryBcT.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -210,9 +234,9 @@
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
       <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
-        <li><code>Deadlock found when trying to get lock; try restarting transaction</code></li>
-        <li><code>Lock wait timeout exceeded; try restarting transaction</code></li>
-        <li><code>Veritabanında uzun süredir açık işlem (idle in transaction)</code></li>
+        <li><code>Deadlock found when trying to get lock; try restarting transaction</code> <span>→ A · Ters sıralı kilit</span></li>
+        <li><code>Lock wait timeout exceeded; try restarting transaction</code> <span>→ B · Uzun işlem</span></li>
+        <li><code>Veritabanında uzun süredir açık işlem (idle in transaction)</code> <span>→ B · Uzun işlem</span></li>
         <li><code>Uygulama log&#039;u: aynı saniyede iki toplu güncelleme</code></li>
       </ul>
     

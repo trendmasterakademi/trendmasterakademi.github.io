@@ -30,6 +30,11 @@ export default {
     "Veritabanında uzun süredir açık işlem (idle in transaction)",
     "Uygulama log'u: aynı saniyede iki toplu güncelleme"
   ],
+  "logEslesme": [
+    { "satir": 0, "harf": "A" },
+    { "satir": 1, "harf": "B" },
+    { "satir": 2, "harf": "B" }
+  ],
   "logNotu": {
     "tr": "'try restarting transaction' ifadesi veritabanının kendi teşhisidir. Bu satır göründüğünde neden tahmin edilmez, bilinir.",
     "en": "'try restarting transaction' is the database engine's explicit diagnosis. When logged, root cause is verified deadlock."

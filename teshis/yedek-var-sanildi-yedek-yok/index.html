@@ -147,6 +147,22 @@
             "@type": "Answer",
             "text": "Geri yüklenemiyor — Dosya bozuk, şifresi kayıp ya da sürüm uyumsuz. Hiç denenmediği için bugüne kadar bilinmiyordu. Kanıt: Test geri yükleme başarısız → C Çözüm: Düzenli geri yükleme provası"
           }
+        },
+        {
+          "@type": "Question",
+          "name": "«cron log: backup job — exit status 1» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Yedek alınmıyor — Görev kurulmuş ama çalışmıyor: zamanlayıcı durmuş, kimlik değişmiş ya da hedef dolmuş. Çözüm: Görev onarımı + başarısızlık bildirimi"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Depolama sağlayıcısı: quota exceeded» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Yedek alınmıyor — Görev kurulmuş ama çalışmıyor: zamanlayıcı durmuş, kimlik değişmiş ya da hedef dolmuş. Çözüm: Görev onarımı + başarısızlık bildirimi"
+          }
         }
       ]
     },
@@ -176,12 +192,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CmF_nTUJ.js"></script>
+    <script type="module" crossorigin src="/assets/index-OgBFkI6y.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DHNo_ub0.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CsGryBcT.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -211,9 +227,9 @@
         
       <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
         <li><code>Yedek klasöründeki son dosyanın tarihi   ← aylar öncesi mi?</code></li>
-        <li><code>cron log: backup job — exit status 1</code></li>
+        <li><code>cron log: backup job — exit status 1</code> <span>→ A · Yedek alınmıyor</span></li>
         <li><code>Yedek dosya boyutu 0 byte / birkaç KB</code></li>
-        <li><code>Depolama sağlayıcısı: quota exceeded</code></li>
+        <li><code>Depolama sağlayıcısı: quota exceeded</code> <span>→ A · Yedek alınmıyor</span></li>
       </ul>
     
         <p class="text-slate-300 text-sm">Yedek işi çoğu zaman sessizce başarısız olur. Hata bir yere düşer ama kimse okumaz; klasörde dosya göründüğü için sorun fark edilmez.</p>
