@@ -32,9 +32,10 @@ const GlossaryTerm = () => {
       ? `${term.title} Nedir? | Trend Master Akademi`
       : `${term.title} - Agency Executive Guide | Trend Master Academy`);
 
+    const shortTitle = term.title.split(' (')[0];
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute("content", `${term.title}: ${term.shortDef[isTr ? 'tr' : 'en']}`);
+      metaDesc.setAttribute("content", `${shortTitle}: ${term.shortDef[isTr ? 'tr' : 'en']}`);
     }
 
     const canonical = document.querySelector('link[rel="canonical"]');

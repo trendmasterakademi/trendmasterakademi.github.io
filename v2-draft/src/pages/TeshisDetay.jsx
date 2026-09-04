@@ -73,7 +73,14 @@ const TeshisDetay = () => {
 
     const baslikText = teshis.baslik[lang] || teshis.baslik.tr;
     const ozetText = teshis.ozet[lang] || teshis.ozet.tr;
-    const firstSentence = ozetText.split('.')[0] + '.';
+    const sentences = ozetText.split(/(?<=\.)\s+/);
+    let desc = sentences[0];
+    if (desc.length < 80 && sentences[1]) {
+      desc = desc + ' ' + sentences[1];
+    }
+    if (desc.length > 160) {
+      desc = desc.slice(0, 157) + '...';
+    }
 
     document.title = formatDocumentTitle(isTr
       ? `${baslikText} | Trend Master Akademi`
@@ -81,7 +88,7 @@ const TeshisDetay = () => {
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute('content', firstSentence);
+      metaDesc.setAttribute('content', desc);
     }
 
     const canonical = document.querySelector('link[rel="canonical"]');

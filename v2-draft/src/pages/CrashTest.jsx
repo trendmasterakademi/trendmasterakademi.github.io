@@ -332,7 +332,7 @@ const CrashTest = () => {
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", isTr
-        ? "Ajansınız teknik bir krize hazır mı? HTTP 500 kesintisi, geliştirici ani ayrılığı veya T-48H lansman darboğazı için 60 saniyede durumunuzu teşhis edin ve eylem planınızı görün."
+        ? "Ajansınız teknik bir krize hazır mı? HTTP 500, yazılımcı ayrılığı veya lansman darboğazı için 60 saniyede kriz risk skorunuzu ve eylem planınızı görün."
         : "Is your agency prepared for a technical crisis? Diagnose your situation and get a 3-phase action recovery blueprint in 60 seconds."
       );
     }

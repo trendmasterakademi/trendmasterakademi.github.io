@@ -64,8 +64,7 @@ function escapeHtml(str) {
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+    .replace(/"/g, '&quot;');
 }
 
 // 3.5 — Veri Kaynağı Sapma Kontrolü (teshisData.js vs src/data/teshis/<slug>.js)
@@ -263,6 +262,82 @@ const homePageExtraContent = `
   ${homeFaqHtml}
 `;
 
+const aboutExtraContent = `
+  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
+    <h2 class="text-2xl font-bold text-white tracking-tight">Dört Temel Mühendislik Standardımız</h2>
+    <p class="text-slate-300 leading-relaxed">Ajanslarla çalışırken taviz vermediğimiz 5 temel operasyonel ve hukuki kuralımız:</p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-lg font-bold text-cyan-300">01 · %100 White-Label & Görünmezlik</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Müşteriniz hiçbir zaman bizim adımızı duymaz. Projeler ajansınızın markası, logosu ve kurumsal kimliği altında teslim edilir. İletişim isterseniz ajans alan adı e-postanız üzerinden yürütülür.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-lg font-bold text-emerald-300">02 · Resmi NDA & Fikri Mülkiyet Devri</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Projeye başlamadan önce bağlayıcı Gizlilik Sözleşmesi (NDA) imzalanır. Geliştirilen tüm kaynak kodlar, mimari ve fikri mülkiyet %100 ajansınıza ve müşterinize aittir. <a href="/nda/" class="text-cyan-400 hover:underline">Sözleşmeyi inceleyin →</a></p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-lg font-bold text-amber-300">03 · Şeffaf Ücretlendirme</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">İlk kod teşhisi ve triyaj ücretsizdir. Sonraki çalışmanın kapsamı ve bedeli teşhis tamamlandıktan sonra işe özel belirlenir; bedel piyasa koşullarıyla uyumludur ve çalışma başlamadan önce yazılı olarak netleşir.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-lg font-bold text-purple-300">04 · Doğrudan Mühendislik Masası Muhatabı</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Arada teknik bilgisi olmayan satış temsilcileri veya bürokrasi katmanları yoktur. İletişim doğrudan projeyi yürüten kıdemli mühendislik masamız üzerinden anlık yürütülür.</p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 md:col-span-2">
+        <h3 class="text-lg font-bold text-blue-300">05 · Süreklilik Güvencesi</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Kriz masası tek kişilik değildir. Bir işi başlatan mühendis devre dışı kalırsa masadaki bir başkası devralır; iş yarıda kalmaz. Repo süreç boyunca ajansınızın kontrolündedir ve dokümantasyon teslim edilir.</p>
+      </div>
+    </div>
+  </section>
+`;
+
+const storyExtraContent = `
+  <section class="space-y-6 mt-8 border-t border-white/10 pt-6 text-slate-300 leading-relaxed">
+    <h2 class="text-2xl font-bold text-white tracking-tight">Kuruluş Hikâyemiz ve Vizyonumuz</h2>
+    <p>Aslında bu iş fikri bir online derste doğdu.</p>
+    <p>Yirmi yıldır finansal piyasaların içerisindeydim. Yazılım hep işimin ayrılmaz bir parçasıydı ama uzun süre yalnızca kendim için: kendi sistemlerimi yazdım, kendi fikirlerimi koda döktüm, kendi hatalarımı kendim ayıkladım. Dışarıya iş yapmıyordum, yapmak da istemiyordum. Yirmi yıl boyunca bunun tek kişilik bir iş olduğunu, ancak kendime yetebileceğimi sanıyordum.</p>
+    <p>2020'de, COVID salgınında her şeyin durduğu ve herkesin kıtlık konuştuğu dönemde bildiklerimi anlatmaya başladım. Yaklaşık elli kişi eğittim. Öğretmek beni değiştirdi: yirmi yıldır sezgiyle yaptığım her şeyi başkalarının anlayabileceği hâle getirmek her şeyi sistemleştirdi.</p>
+    <p class="font-bold text-white">Trend Master Akademi fikri o online derslerde doğdu. Adımız oradan geliyor ve değiştirmedik.</p>
+    <p>Kursiyerlerden biriyle ortak olduktan sonra asıl ihtiyacın sınıfta değil sahada olduğunu gördük. Özellikle pandemiden sonra dijital ajanslarda ciddi bir nitelikli yazılımcı darboğazı oluşmuştu. Yarım kalmış projeler, kaybolmuş erişimler, geçmiş teslim tarihleri ve krizler... Bu projeleri devralıp tek tek ayağa kaldırdık.</p>
+    <p>Bugün yaptığımız iş bu: biz bir son kullanıcı ajansı değiliz. Dijital ajansların, yazılım evlerinin ve girişimlerin arka planında krizleri çözen, karmaşık mimarileri kuran ve %100 White-Label çalışan kıdemli bir mühendislik masasıyız.</p>
+    <p>Adımız hâlâ "Akademi" — çünkü bir sistemi kurtarmak, onu anlatabilecek kadar anlamayı gerektirir. Sitemizdeki <a href="/sozluk/" class="text-cyan-400 hover:underline">Teknik Terim Sözlüğü</a> ve <a href="/teshis/" class="text-cyan-400 hover:underline">Teşhis Kataloğu</a> da bu anlayışla yayındadır.</p>
+  </section>
+`;
+
+const kesintiExtraContent = `
+  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
+    <h2 class="text-2xl font-bold text-white tracking-tight">Kesinti Maliyeti Nasıl Hesaplanır?</h2>
+    <p class="text-slate-300 leading-relaxed">Bir web sitesi veya e-ticaret altyapısı çöktüğünde oluşan doğrudan ciro kaybı şeffaf bir matematiksel formüle dayanır:</p>
+    
+    <div class="p-5 rounded-2xl bg-white/5 border border-white/10 font-mono text-sm text-cyan-300 space-y-2">
+      <p>Saatlik Ciro Kaybı = (Aylık Ciro / 720 Saat) × Zaman Çarpanı</p>
+      <p>Toplam Kesinti Maliyeti = Saatlik Kayıp × Kesinti Süresi (Saat)</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
+      <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+        <h3 class="text-sm font-bold text-white">Zirve Saat (Peak)</h3>
+        <p class="text-xs text-slate-400 mt-1">2.0x Çarpan · Kampanya veya yoğun ziyaret saatleri.</p>
+      </div>
+      <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+        <h3 class="text-sm font-bold text-white">Normal Saat</h3>
+        <p class="text-xs text-slate-400 mt-1">1.0x Çarpan · Günlük standart trafik akışı.</p>
+      </div>
+      <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+        <h3 class="text-sm font-bold text-white">Gece Saati</h3>
+        <p class="text-xs text-slate-400 mt-1">0.5x Çarpan · Düşük trafik ve işlem hacmi.</p>
+      </div>
+    </div>
+
+    <p class="text-slate-300 text-sm leading-relaxed">Doğrudan kayba ek olarak; Google reklam bütçesi israfı, arama motoru sıralama kaybı (SERP cezası) ve müşteri güven kaybı gibi dolaylı maliyetler genellikle doğrudan ciro kaybının 2 ila 3 katına ulaşır.</p>
+  </section>
+`;
+
 const basePages = [
   {
     dir: '',
@@ -322,7 +397,7 @@ const basePages = [
     dir: 'crash-test',
     title: 'Agency Crash Test (60 sn) | Trend Master Akademi',
     h1: 'Agency Crash Test (60sn)',
-    description: 'Ajansınız teknik bir krize hazır mı? HTTP 500 kesintisi, geliştirici ani ayrılığı veya T-48H lansman darboğazı için 60 saniyede risk skorunuzu ve eylem planınızı görün.',
+    description: 'Ajansınız teknik bir krize hazır mı? HTTP 500, yazılımcı ayrılığı veya lansman darboğazı için 60 saniyede kriz risk skorunuzu ve eylem planınızı görün.',
     canonical: 'https://trendmasterakademi.com/crash-test/',
     ogUrl: 'https://trendmasterakademi.com/crash-test/',
     heading: 'Agency Crash Test // 60 Saniyede Ajans Kriz Dayanıklılık Skoru',
@@ -414,6 +489,7 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/kesinti-maliyeti/',
     heading: 'Web Sitesi & API Kesinti Maliyeti Hesaplayıcı',
     subheading: 'Sistem çöktüğünde geçen her dakikanın ajansınıza ve müşterinize gerçek finansal ve itibar maliyetini hesaplayın.',
+    extraContent: kesintiExtraContent,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -438,6 +514,7 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/about/',
     heading: 'Ajansların Güvendiği Arka Plan Mühendislik Masası',
     subheading: 'Modern web, SaaS, API mimarileri ve acil kod kurtarma (SWAT) stüdyosu.',
+    extraContent: aboutExtraContent,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -461,6 +538,7 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/hikayemiz/',
     ogUrl: 'https://trendmasterakademi.com/hikayemiz/',
     subheading: 'Aslında bu iş fikri bir online derste doğdu.',
+    extraContent: storyExtraContent,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -690,7 +768,7 @@ const glossaryPages = glossaryTerms.map(term => {
     dir: `sozluk/${term.slug}`,
     title: formatPageTitle(`${term.title} Nedir?`),
     h1: `${term.title} Nedir?`,
-    description: `${term.title}: ${term.shortDef.tr}`,
+    description: `${term.title.split(' (')[0]}: ${term.shortDef.tr}`,
     canonical: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
     ogUrl: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
     heading: term.title,
@@ -855,11 +933,20 @@ const teshisPages = teshisData.map(item => {
     ]
   };
 
+  const sentences = item.ozet.tr.split(/(?<=\.)\s+/);
+  let teshisDesc = sentences[0];
+  if (teshisDesc.length < 80 && sentences[1]) {
+    teshisDesc = teshisDesc + ' ' + sentences[1];
+  }
+  if (teshisDesc.length > 160) {
+    teshisDesc = teshisDesc.slice(0, 157) + '...';
+  }
+
   return {
     dir: `teshis/${item.slug}`,
     title: formatPageTitle(item.baslik.tr),
     h1: item.baslik.tr,
-    description: item.ozet.tr.split('.')[0] + '.',
+    description: teshisDesc,
     canonical: `https://trendmasterakademi.com/teshis/${item.slug}/`,
     ogUrl: `https://trendmasterakademi.com/teshis/${item.slug}/`,
     subheading: item.ozet.tr,
