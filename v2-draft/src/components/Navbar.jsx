@@ -2,11 +2,13 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Globe, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
+import { useKrizHattiAcik } from '../utils/krizHatti';
 
 const EmergencySOSModal = lazy(() => import('./EmergencySOSModal'));
 
 const Navbar = () => {
   const { t, i18n } = useTranslation();
+  const krizHattiAcik = useKrizHattiAcik();
   const [isOpen, setIsOpen] = useState(false);
   const [isSOSOpen, setIsSOSOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
@@ -101,11 +103,22 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsSOSOpen(true)}
-              className="hidden md:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-mono hover:bg-emerald-500/20 transition-colors cursor-pointer whitespace-nowrap shadow-sm shadow-emerald-500/10"
+              className={`hidden md:inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer whitespace-nowrap ${
+                krizHattiAcik
+                  ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 shadow-sm shadow-emerald-500/10'
+                  : 'bg-amber-500/10 border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 shadow-sm shadow-amber-500/10'
+              }`}
               title={isTr ? "Acil Incident & Kriz Müdahale Masası" : "Emergency Engineering & Crisis Desk"}
             >
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>{isTr ? "Canlı Kriz Masası" : "Live SWAT Desk"}</span>
+              <span className={`w-2 h-2 rounded-full ${
+                krizHattiAcik ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'
+              }`}></span>
+              <span>
+                {krizHattiAcik
+                  ? (isTr ? "Canlı Kriz Masası" : "Live SWAT Desk")
+                  : (isTr ? "Kriz Masası · 09:00'da" : "Crisis Desk · from 09:00")
+                }
+              </span>
             </button>
           </div>
 

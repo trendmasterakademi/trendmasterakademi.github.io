@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, PhoneCall, Mail, Zap, Lock, Globe } from 'lucide-react';
 import KVKKModal from './KVKKModal';
+import { useKrizHattiAcik } from '../utils/krizHatti';
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
   const [isKVKKOpen, setIsKVKKOpen] = useState(false);
+  const krizHattiAcik = useKrizHattiAcik();
 
   return (
     <footer className="border-t border-white/10 bg-[#06080d] pt-16 pb-12 px-4 sm:px-6 md:px-12 text-slate-400 text-sm">
@@ -138,7 +140,15 @@ const Footer = () => {
           © {new Date().getFullYear()} Trend Master Akademi Studio & Labs. {isTr ? 'Tüm hakları saklıdır.' : 'All rights reserved.'}
         </p>
         <div className="flex items-center gap-4 text-slate-400">
-          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-full bg-emerald-400"></span> Response Desk: Online</span>
+          <span className="flex items-center gap-1.5">
+            <span className={`w-2 h-2 rounded-full ${krizHattiAcik ? 'bg-emerald-400' : 'bg-amber-400'}`}></span>
+            <span>
+              {krizHattiAcik
+                ? (isTr ? 'Kriz hattı açık · 09:00 – 24:00' : 'Response desk open · 09:00 – 24:00')
+                : (isTr ? "Kriz hattı kapalı · 09:00'da açılır" : 'Response desk closed · opens 09:00')
+              }
+            </span>
+          </span>
           <span>•</span>
           <button onClick={() => setIsKVKKOpen(true)} className="hover:text-cyan-400 transition-colors cursor-pointer">
             {isTr ? 'KVKK ve Gizlilik' : 'Privacy & Terms'}

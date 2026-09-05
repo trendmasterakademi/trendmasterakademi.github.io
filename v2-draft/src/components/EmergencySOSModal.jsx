@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AlertTriangle, X, PhoneCall, ShieldCheck, Clock, Send, CheckCircle2, MessageSquare, RefreshCw } from 'lucide-react';
+import { useKrizHattiAcik } from '../utils/krizHatti';
 
 const EmergencySOSModal = ({ isOpen, onClose }) => {
   const { i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
+  const krizHattiAcik = useKrizHattiAcik();
 
   const [agencyName, setAgencyName] = useState('');
   const [contactPerson, setContactPerson] = useState('');
@@ -17,10 +19,10 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 
   const getUrgencyLabel = () => {
     return urgency === 'critical' 
-      ? (isTr ? '🔴 KRİTİK (0-2 Saat Müdahale Gerekli)' : '🔴 CRITICAL (0-2h Immediate Intervention)')
+      ? (isTr ? '🔴 CANLI KESİNTİ (şu an yaşanıyor)' : '🔴 LIVE OUTAGE (happening now)')
       : urgency === 'high'
-      ? (isTr ? '🟠 YÜKSEK (Bugün Çözülmeli / T-48H)' : '🟠 HIGH (Must Be Resolved Today / T-48H)')
-      : (isTr ? '🟡 PLANLI DESTEK (Kapasite Artışı)' : '🟡 PLANNED SUPPORT (Capacity Surge)');
+      ? (isTr ? '🟠 TESLİM / DEVİR BASKISI (bugün çözülmeli)' : '🟠 DELIVERY / HANDOVER CRUNCH (must be resolved today)')
+      : (isTr ? '🟡 PLANLI DESTEK (kapasite artışı)' : '🟡 PLANNED SUPPORT (capacity surge)');
   };
 
   const getWhatsAppUrl = () => {
@@ -133,6 +135,27 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                 ? 'Teslim tarihi sıkışan, geliştiricisi ayrılan veya canlıda kilitlenen projeler için doğrudan kıdemli mühendislik masamız devreye girer.' 
                 : 'Direct senior engineering dispatch for locked codebases, abandoned repos, or mission-critical launch deadlines.'}
             </p>
+
+            {/* Durum Şeridi */}
+            <div className={`p-2.5 sm:p-3 rounded-xl border text-xs leading-relaxed flex items-center gap-2 mb-2 ${
+              krizHattiAcik 
+                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' 
+                : 'bg-amber-500/10 border-amber-500/30 text-amber-300'
+            }`}>
+              <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                krizHattiAcik ? 'bg-emerald-400' : 'bg-amber-400'
+              }`}></span>
+              <span>
+                {krizHattiAcik
+                  ? (isTr 
+                      ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt 15 dakika'
+                      : 'Response desk is open now · daily 09:00 – 24:00 · typical first reply to emergencies 15 minutes')
+                  : (isTr 
+                      ? "Kriz hattı şu an kapalı. Bildiriminiz ertesi sabah 09:00'da ele alınır — formu yine de doldurabilirsiniz."
+                      : 'The response desk is closed right now. Your notification is picked up at 09:00 the following morning — you can still submit the form.')
+                }
+              </span>
+            </div>
 
           {submitStatus === 'success' ? (
             <div className="py-8 text-center flex flex-col items-center gap-4">
@@ -256,9 +279,21 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   {[
-                    { id: 'critical', label: isTr ? '🔴 Kritik (0-2 Saat)' : '🔴 Critical (0-2h)', sub: isTr ? 'Canlı kesinti / Lansman günü' : 'Live outage / Launch day' },
-                    { id: 'high', label: isTr ? '🟠 Yüksek (Bugün)' : '🟠 High (Today)', sub: isTr ? 'T-48h Teslim / Devir' : 'T-48h Crunch / Handover' },
-                    { id: 'medium', label: isTr ? '🟡 Planlı Destek' : '🟡 Planned Surge', sub: isTr ? 'Kapasite artışı' : 'Team capacity surge' }
+                    { 
+                      id: 'critical', 
+                      label: isTr ? '🔴 Canlı kesinti' : '🔴 Live outage', 
+                      sub: isTr ? 'Şu an yaşanıyor · site veya ödeme durdu' : 'Happening now · site or payments down' 
+                    },
+                    { 
+                      id: 'high', 
+                      label: isTr ? '🟠 Teslim / devir baskısı' : '🟠 Delivery / handover crunch', 
+                      sub: isTr ? 'Bugün çözülmesi gerekiyor' : 'Must be resolved today' 
+                    },
+                    { 
+                      id: 'medium', 
+                      label: isTr ? '🟡 Planlı destek' : '🟡 Planned support', 
+                      sub: isTr ? 'Kapasite artışı' : 'Team capacity surge' 
+                    }
                   ].map((item) => (
                     <button
                       key={item.id}
@@ -315,6 +350,13 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   <Clock className="w-4 h-4 text-cyan-400" /> {isTr ? 'İlk Yanıt: ~15 Dakika' : 'First Response: ~15 Mins'}
                 </span>
               </div>
+
+              {/* Süreklilik Satırı */}
+              <p className="text-[11px] sm:text-xs text-slate-400 text-center">
+                {isTr 
+                  ? 'Kriz masası tek kişilik değildir; başlayan iş yarıda kalmaz.' 
+                  : 'The response desk is not a single person; work under way is not left unfinished.'}
+              </p>
 
               <div className="pt-2 flex flex-col sm:flex-row gap-3">
                 <button
