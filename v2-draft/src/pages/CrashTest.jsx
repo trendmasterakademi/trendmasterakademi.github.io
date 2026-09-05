@@ -10,6 +10,7 @@ import {
 import EmergencySOSModal from '../components/EmergencySOSModal';
 import { getCalendlyUrl } from '../utils/calendly';
 import { formatDocumentTitle } from '../utils/pageTitle';
+import { useKrizHattiAcik } from '../utils/krizHatti';
 
 // Dynamic code-split loaders: Each diagnostic chunk is loaded strictly on demand!
 const teshisLoaders = {
@@ -259,6 +260,7 @@ function getMatchedDiagnosis(scenarioId, answers) {
 const CrashTest = () => {
   const { i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
+  const isKrizHattiAcik = useKrizHattiAcik();
 
   const [selectedScenario, setSelectedScenario] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -815,29 +817,6 @@ const CrashTest = () => {
                             );
                           })}
                         </div>
-
-                        <div className="pt-2 flex justify-start">
-                          <Link
-                            to={`/teshis/${matchResult.slug}/`}
-                            className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer group"
-                          >
-                            <span>{isTr ? 'Teşhisin tamamını okuyun' : 'Read the complete diagnosis'}</span>
-                            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                          </Link>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* If error loading data, still provide diagnosis link without fake badges/tests */}
-                    {diagError && (
-                      <div className="pt-2 flex justify-start">
-                        <Link
-                          to={`/teshis/${matchResult.slug}/`}
-                          className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-cyan-400 hover:text-cyan-300 transition-colors cursor-pointer group"
-                        >
-                          <span>{isTr ? 'Teşhisin tamamını okuyun' : 'Read the complete diagnosis'}</span>
-                          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                        </Link>
                       </div>
                     )}
                   </>
@@ -865,37 +844,19 @@ const CrashTest = () => {
                       ? 'Bu bir arıza değil, kapasite ve zaman sorunu. Teşhis Kataloğu yayında olan 20 arızayı kapsıyor; sizinki onlardan biri değil. Bu durumda yapılacak şey teşhis değil, kapsamı konuşmak: ne kadar iş kaldığını ve ne kadar sürede kapatılabileceğini birlikte çıkarırız.'
                       : 'This is a capacity and timeline problem, not a fault. The Diagnostic Catalog covers 20 published failures and yours is not one of them. What you need here is not a diagnosis but a scoping conversation: we work out together how much work remains and how quickly it can be closed.'}
                   </p>
-
-                  <div>
-                    <Link
-                      to="/agency/"
-                      className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-xs sm:text-sm shadow-lg shadow-cyan-500/25 transition-all cursor-pointer transform hover:-translate-y-0.5"
-                    >
-                      <span>{isTr ? 'Ajans Çözümlerini İnceleyin →' : 'Explore Agency Solutions →'}</span>
-                    </Link>
-                  </div>
                 </div>
               </div>
             )}
 
             {/* 3-Phase Action Protocol */}
             <div className="p-6 sm:p-8 rounded-3xl bg-[#111827] border border-white/10 shadow-xl space-y-6">
-              <div className="flex flex-wrap items-center justify-between gap-4">
-                <div>
-                  <span className="text-xs sm:text-sm font-mono font-bold text-cyan-400 uppercase tracking-wider block">
-                    {isTr ? 'Müdahale Protokolü' : 'Action Protocol'}
-                  </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white">
-                    {isTr ? 'Ajansınıza Özel 3 Aşamalı İlk Kurtarma Reçetesi' : 'Your Bespoke 3-Phase Recovery Blueprint'}
-                  </h3>
-                </div>
-                <button
-                  onClick={copyActionPlan}
-                  className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 flex items-center gap-2 transition-colors cursor-pointer"
-                >
-                  {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-slate-400" />}
-                  <span>{copied ? (isTr ? 'Kopyalandı!' : 'Copied!') : (isTr ? 'Raporu Kopyala' : 'Copy Blueprint')}</span>
-                </button>
+              <div>
+                <span className="text-xs sm:text-sm font-mono font-bold text-cyan-400 uppercase tracking-wider block">
+                  {isTr ? 'Müdahale Protokolü' : 'Action Protocol'}
+                </span>
+                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                  {isTr ? 'Ajansınıza Özel 3 Aşamalı İlk Kurtarma Reçetesi' : 'Your Bespoke 3-Phase Recovery Blueprint'}
+                </h3>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
@@ -952,275 +913,304 @@ const CrashTest = () => {
               </div>
             </div>
 
-            {/* Handover Cross-Link Tool Box */}
-            {selectedScenario?.code === 'HANDOVER HELL' && (
-              <div className="p-6 sm:p-7 rounded-3xl bg-cyan-950/40 border border-cyan-500/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
-                <div className="space-y-1.5 text-center sm:text-left">
-                  <div className="flex items-center justify-center sm:justify-start gap-2">
-                    <span className="w-2-h-2 rounded-full bg-cyan-400"></span>
-                    <span className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wider">
-                      {isTr ? 'ÖZEL DEVİR HAZIRLIK ENVANTERİ' : 'DEDICATED HANDOVER AUDIT'}
-                    </span>
-                  </div>
-                  <h4 className="text-base sm:text-lg font-bold text-white">
-                    {isTr ? 'Ayrılan yazılımcının elindeki 12 kritik kalemi tek tek kontrol edin' : 'Audit 12 critical handover checkpoints before your developer departs'}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-300">
-                    {isTr ? 'Git, DNS, .env, DB yedeği ve ödeme anahtarlarını test eden 60 saniyelik ücretsiz denetim aracı.' : 'Verify Git, DNS, .env secrets, DB dumps, and payment access in 60 seconds.'}
-                  </p>
-                </div>
-                <Link
-                  to="/devir-kontrolu/"
-                  className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-xs sm:text-sm whitespace-nowrap flex items-center gap-2 shadow-lg shadow-cyan-500/25 transition-all cursor-pointer transform hover:-translate-y-0.5"
-                >
-                  <span>{isTr ? '12 Kalemlik Devir Kontrolü →' : '12-Point Handover Audit →'}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            )}
 
-            {/* HTTP 500 Downtime Calculator Cross-Link Tool Box */}
-            {selectedScenario?.code === 'HTTP 500' && (
-              <div className="p-6 sm:p-7 rounded-3xl bg-red-950/40 border border-red-500/40 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-xl">
-                <div className="space-y-1.5 text-center sm:text-left">
-                  <div className="flex items-center justify-center sm:justify-start gap-2">
-                    <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-                    <span className="text-xs font-mono font-bold text-red-300 uppercase tracking-wider">
-                      {isTr ? 'ÖZEL KESİNTİ MALİYETİ HESAPLAYICI' : 'DEDICATED DOWNTIME LOSS CALCULATOR'}
-                    </span>
-                  </div>
-                  <h4 className="text-base sm:text-lg font-bold text-white">
-                    {isTr ? 'Bu kesintinin saatlik ve toplam ciro kaybını hesaplamak ister misiniz?' : 'Calculate the exact hourly and total turnover loss of this downtime'}
-                  </h4>
-                  <p className="text-xs sm:text-sm text-slate-300">
-                    {isTr ? 'Aylık cironuz veya günlük sipariş adedinize göre doğrudan ciro kaybını şeffafça hesaplayın.' : 'Model direct turnover loss transparently per monthly revenue or daily order count.'}
-                  </p>
-                </div>
-                <Link
-                  to="/kesinti-maliyeti/"
-                  className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-red-500 to-orange-500 hover:from-red-400 hover:to-orange-400 text-bg-dark font-black text-xs sm:text-sm whitespace-nowrap flex items-center gap-2 shadow-lg shadow-red-500/25 transition-all cursor-pointer transform hover:-translate-y-0.5"
-                >
-                  <span>{isTr ? 'Kesinti Maliyeti Hesaplayıcı →' : 'Downtime Loss Calculator →'}</span>
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </div>
-            )}
-
-            {/* Email Lead Capture Card */}
-            <div className="p-8 rounded-3xl bg-[#0e1626] border border-cyan-500/30 text-left space-y-5 shadow-2xl">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
-                    <Mail className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-bold text-white">
-                      {isTr ? 'Bu Teşhis Raporunu & Reçeteyi E-Postama Gönder' : 'Send This Diagnostic Blueprint & Action Recipe to My Email'}
-                    </h4>
-                    <p className="text-xs text-slate-400">
-                      {isTr ? 'Ajans içi değerlendirme ve teknik ekibinizle paylaşım için hazır PDF/E-posta formatında iletilir.' : 'Sent in a ready-to-share technical blueprint format for your internal stakeholders.'}
-                    </p>
-                  </div>
-                </div>
+            {/* Unified 3-Tier Action Block */}
+            <div className="p-6 sm:p-10 rounded-3xl bg-gradient-to-r from-red-950/40 via-[#111827] to-cyan-950/40 border border-cyan-500/30 text-center space-y-6">
+              <div className="space-y-2">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white">
+                  {matchResult.matched
+                    ? (isTr ? 'Bu Krizi Birlikte Çözelim' : 'Let’s Resolve This Together')
+                    : (isTr ? 'Kapsamı ve Çözümü Birlikte Konuşalım' : 'Let’s Scope the Solution Together')}
+                </h3>
+                <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                  {matchResult.matched
+                    ? (isTr 
+                        ? 'Müşteriniz sizin müşteriniz olarak kalırken; arka planda ihtiyacınız olan teknik gücü ve kurtarma mühendisliğini doğrudan devreye alalım.' 
+                        : 'While your client remains strictly yours; let us deploy the invisible engineering rescue power you need directly.')
+                    : (isTr
+                        ? 'Kalan iş yükünü, teslimat takvimini ve ajansınıza en uygun white-label çalışma modelini doğrudan değerlendirelim.'
+                        : 'Let us directly evaluate the remaining workload, delivery timeline, and the optimal white-label model for your agency.')}
+                </p>
               </div>
 
-              {leadSent === 'success' ? (
-                <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-emerald-300 text-sm font-bold">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-400" />
-                  <span>{isTr ? 'Rapor talebiniz başarıyla kaydedildi! Kriz masamız analizi hazırlayıp iletecektir.' : 'Report request logged successfully! Our engineers will deliver your blueprint.'}</span>
-                </div>
-              ) : leadSent === 'error' ? (
-                <div className="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 space-y-3">
-                  <div className="flex items-center gap-3 text-amber-300 text-sm font-bold">
-                    <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-400" />
-                    <span>{isTr ? 'Ağ kesintisi nedeniyle otomatik iletilemedi.' : 'Network interruption during auto-dispatch.'}</span>
-                  </div>
-                  <p className="text-xs text-slate-300">
-                    {isTr ? 'Teşhis raporunuz hazır. Aşağıdaki butona tıklayarak WhatsApp üzerinden raporu hemen talep edebilirsiniz:' : 'Your diagnosis is ready. Request your blueprint directly via WhatsApp:'}
-                  </p>
+              {/* Night Status Line (directly above primary button) */}
+              <div className="flex items-center justify-center gap-2 text-xs sm:text-sm font-mono text-slate-300">
+                <span className={`w-2 h-2 rounded-full flex-shrink-0 ${isKrizHattiAcik ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`}></span>
+                <span>
+                  {isTr 
+                    ? (isKrizHattiAcik 
+                        ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt 15 dakika' 
+                        : "Kriz hattı şu an kapalı. Bildiriminiz ertesi sabah 09:00'da ele alınır — yine de gönderin.")
+                    : (isKrizHattiAcik
+                        ? 'Crisis hotline is currently open · daily 09:00 – 24:00 · typical first reply to emergencies 15 minutes'
+                        : 'Crisis hotline is currently closed. Your notification will be handled at 09:00 tomorrow morning — please send anyway.')
+                  }
+                </span>
+              </div>
+
+              {/* Tier 1: Primary Dominant Button */}
+              <div>
+                {matchResult.matched ? (
                   <button
-                    type="button"
                     onClick={openWhatsAppDispatch}
-                    className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                    className="w-full py-4 sm:py-5 px-8 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black text-base sm:text-lg shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-0.5 cursor-pointer min-h-[56px]"
                   >
-                    <PhoneCall className="w-4 h-4" />
-                    <span>{isTr ? 'WhatsApp ile Raporu Talep Et →' : 'Request Blueprint via WhatsApp →'}</span>
+                    <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
+                    <span>{isTr ? 'Kriz Masasını Devreye Sok (WhatsApp)' : 'Deploy Crisis Desk (WhatsApp)'}</span>
                   </button>
+                ) : (
+                  <a
+                    href={getCalendlyUrl('crash_test_kapasite', { agency_code: campaignParams.agency_code })}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'crash_test_result', scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
+                    className="w-full py-4 sm:py-5 px-8 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-base sm:text-lg shadow-xl shadow-cyan-500/25 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-0.5 min-h-[56px]"
+                  >
+                    <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
+                    <span>{isTr ? 'Takvimden 30 Dakikalık Kapsam Görüşmesi Seç' : 'Book a 30-Minute Scoping Call'}</span>
+                  </a>
+                )}
+              </div>
+
+              {/* Tier 2: Secondary Quiet Action Row */}
+              {matchResult.matched ? (
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
+                  <Link
+                    to={`/teshis/${matchResult.slug}/`}
+                    className="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
+                  >
+                    <span>{isTr ? 'Teşhisin tamamını okuyun' : 'Read complete diagnosis'}</span>
+                    <ArrowRight className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                  </Link>
+
+                  <button
+                    onClick={copyActionPlan}
+                    className="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
+                  >
+                    {copied ? <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" /> : <Copy className="w-4 h-4 text-slate-400 flex-shrink-0" />}
+                    <span>{copied ? (isTr ? 'Kopyalandı!' : 'Copied!') : (isTr ? 'Raporu Kopyala' : 'Copy Blueprint')}</span>
+                  </button>
+
+                  <a
+                    href={getCalendlyUrl('crash_test', { scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'crash_test_result', scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
+                    className="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
+                  >
+                    <Calendar className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                    <span>{isTr ? 'Takvimden Randevu Seç' : 'Book Call from Calendar'}</span>
+                  </a>
                 </div>
               ) : (
-                <form 
-                  onSubmit={async (e) => {
-                    e.preventDefault();
-                    setIsSendingLead(true);
-                    try {
-                      const response = await fetch('https://api.web3forms.com/submit', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-                        body: JSON.stringify({
-                          access_key: '64ef0cf5-703c-4cfd-92a4-4f0ba65bb2bb',
-                          from_name: 'TMA Crash Test Diagnostic',
-                          subject: `🎯 CRASH TEST TEŞHİS TALEBİ: ${leadName} (${selectedScenario?.code} - ${matchResult.matched ? (diagData ? `#${diagData.no}` : matchResult.slug) : 'Kapsam Görüşmesi'})${campaignParams.agency_code ? ` [Kutu #${campaignParams.agency_code}]` : ''}`,
-                          name: leadName,
-                          email: leadEmail,
-                          phone: leadPhone,
-                          scenario: selectedScenario?.title[isTr ? 'tr' : 'en'],
-                          matchedDiagnosis: matchResult.matched ? (diagData ? `#${diagData.no} · ${diagData.baslik[isTr ? 'tr' : 'en']}` : matchResult.slug) : 'Kapsam ve Kapasite Görüşmesi',
-                          severity: matchResult.matched ? (diagData?.aciliyet?.etiket?.[isTr ? 'tr' : 'en'] || 'N/A') : 'Kapsam Görüşmesi',
-                          agencyBoxCode: campaignParams.agency_code || 'N/A',
-                          utm_source: campaignParams.utm_source || 'direct',
-                          utm_campaign: campaignParams.utm_campaign || 'N/A',
-                          timestamp: new Date().toISOString()
-                        })
-                      });
-                      const data = await response.json();
-                      if (response.ok && data.success) {
-                        setLeadSent('success');
-                        if (window.trackEvent) {
-                          window.trackEvent('report_email_submitted', {
-                            scenario: selectedScenario?.code,
-                            agency_code: campaignParams.agency_code
-                          });
-                        }
-                      } else {
-                        throw new Error(data.message || 'Submission failed');
-                      }
-                    } catch (err) {
-                      console.error('Lead err:', err);
-                      setLeadSent('error');
-                    } finally {
-                      setIsSendingLead(false);
-                    }
-                  }} 
-                  className="grid grid-cols-1 sm:grid-cols-3 gap-3.5"
-                >
-                  {/* Honeypot */}
-                  <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
-
-                  <input
-                    type="text"
-                    required
-                    placeholder={isTr ? 'Adınız Soyadınız' : 'Your Full Name'}
-                    value={leadName}
-                    onChange={e => setLeadName(e.target.value)}
-                    className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
-                  />
-                  <input
-                    type="email"
-                    required
-                    placeholder={isTr ? 'Kurumsal E-posta' : 'Corporate Email'}
-                    value={leadEmail}
-                    onChange={e => setLeadEmail(e.target.value)}
-                    className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
-                  />
-                  <input
-                    type="tel"
-                    required
-                    placeholder={isTr ? 'Telefon / WhatsApp' : 'Phone / WhatsApp'}
-                    value={leadPhone}
-                    onChange={e => setLeadPhone(e.target.value)}
-                    className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
-                  />
-                  <button
-                    type="submit"
-                    disabled={isSendingLead}
-                    className="sm:col-span-3 py-3.5 px-6 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-black text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg shadow-cyan-500/20 disabled:opacity-50"
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
+                  <Link
+                    to="/agency/"
+                    className="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
                   >
-                    <Send className="w-4 h-4" />
-                    <span>{isSendingLead ? (isTr ? 'Gönderiliyor...' : 'Sending...') : (isTr ? 'Detaylı Eylem Raporumu Gönder' : 'Send My Custom Blueprint')}</span>
+                    <span>{isTr ? 'Ajans Çözümlerini İnceleyin →' : 'Explore Agency Solutions →'}</span>
+                    <ArrowRight className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                  </Link>
+
+                  <button
+                    onClick={copyActionPlan}
+                    className="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
+                  >
+                    {copied ? <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" /> : <Copy className="w-4 h-4 text-slate-400 flex-shrink-0" />}
+                    <span>{copied ? (isTr ? 'Kopyalandı!' : 'Copied!') : (isTr ? 'Raporu Kopyala' : 'Copy Blueprint')}</span>
                   </button>
-                </form>
+                </div>
               )}
-            </div>
 
-            {/* Bottom Dispatch CTA */}
-            <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-red-950/40 via-[#111827] to-cyan-950/40 border border-cyan-500/30 text-center space-y-6">
-              <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white">
-                {isTr ? 'Bu Krizi Birlikte Çözelim' : 'Let’s Resolve This Together'}
-              </h3>
-              <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                {isTr 
-                  ? 'Müşteriniz sizin müşteriniz olarak kalırken; arka planda ihtiyacınız olan teknik gücü ve kurtarma mühendisliğini doğrudan devreye alalım.' 
-                  : 'While your client remains strictly yours; let us deploy the invisible engineering rescue power you need directly.'}
-              </p>
+              {/* Tier 3: Native <details> / <summary> Folded Group */}
+              <details className="group w-full rounded-2xl bg-white/[0.02] border border-white/10 p-4 sm:p-6 transition-all text-left">
+                <summary className="cursor-pointer text-xs sm:text-sm font-mono font-semibold text-slate-400 hover:text-cyan-400 transition-colors flex items-center justify-center gap-2 select-none py-1">
+                  <span>{isTr ? 'Diğer seçenekler' : 'Other options'}</span>
+                  <span className="text-xs transition-transform duration-200 group-open:rotate-180">▼</span>
+                </summary>
 
-              <div className="flex flex-wrap items-center justify-center gap-4 pt-2">
-                {selectedScenario?.id === 'http500' || selectedScenario?.id === 't48h' ? (
-                  <>
-                    {/* Crisis Scenario: Primary = WhatsApp, Secondary = Takvim */}
+                <div className="mt-6 space-y-6 pt-6 border-t border-white/10">
+                  {/* Email Lead Capture */}
+                  <div className="p-6 sm:p-8 rounded-2xl bg-[#0e1626] border border-cyan-500/30 text-left space-y-5 shadow-xl">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0">
+                          <Mail className="w-5 h-5" />
+                        </div>
+                        <div>
+                          <h4 className="text-base sm:text-lg font-bold text-white">
+                            {isTr ? 'Bu Teşhis Raporunu & Reçeteyi E-Postama Gönder' : 'Send This Diagnostic Blueprint & Action Recipe to My Email'}
+                          </h4>
+                          <p className="text-xs text-slate-400">
+                            {isTr ? 'Ajans içi değerlendirme ve teknik ekibinizle paylaşım için hazır PDF/E-posta formatında iletilir.' : 'Sent in a ready-to-share technical blueprint format for your internal stakeholders.'}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {leadSent === 'success' ? (
+                      <div className="p-5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-emerald-300 text-sm font-bold">
+                        <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-400" />
+                        <span>{isTr ? 'Rapor talebiniz başarıyla kaydedildi! Kriz masamız analizi hazırlayıp iletecektir.' : 'Report request logged successfully! Our engineers will deliver your blueprint.'}</span>
+                      </div>
+                    ) : leadSent === 'error' ? (
+                      <div className="p-5 rounded-xl bg-amber-500/10 border border-amber-500/30 space-y-3">
+                        <div className="flex items-center gap-3 text-amber-300 text-sm font-bold">
+                          <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-400" />
+                          <span>{isTr ? 'Ağ kesintisi nedeniyle otomatik iletilemedi.' : 'Network interruption during auto-dispatch.'}</span>
+                        </div>
+                        <p className="text-xs text-slate-300">
+                          {isTr ? 'Teşhis raporunuz hazır. Aşağıdaki butona tıklayarak WhatsApp üzerinden raporu hemen talep edebilirsiniz:' : 'Your diagnosis is ready. Request your blueprint directly via WhatsApp:'}
+                        </p>
+                        <button
+                          type="button"
+                          onClick={openWhatsAppDispatch}
+                          className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                        >
+                          <PhoneCall className="w-4 h-4" />
+                          <span>{isTr ? 'WhatsApp ile Raporu Talep Et →' : 'Request Blueprint via WhatsApp →'}</span>
+                        </button>
+                      </div>
+                    ) : (
+                      <form 
+                        onSubmit={async (e) => {
+                          e.preventDefault();
+                          setIsSendingLead(true);
+                          try {
+                            const response = await fetch('https://api.web3forms.com/submit', {
+                              method: 'POST',
+                              headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                              body: JSON.stringify({
+                                access_key: '64ef0cf5-703c-4cfd-92a4-4f0ba65bb2bb',
+                                from_name: 'TMA Crash Test Diagnostic',
+                                subject: `🎯 CRASH TEST TEŞHİS TALEBİ: ${leadName} (${selectedScenario?.code} - ${matchResult.matched ? (diagData ? `#${diagData.no}` : matchResult.slug) : 'Kapsam Görüşmesi'})${campaignParams.agency_code ? ` [Kutu #${campaignParams.agency_code}]` : ''}`,
+                                name: leadName,
+                                email: leadEmail,
+                                phone: leadPhone,
+                                scenario: selectedScenario?.title[isTr ? 'tr' : 'en'],
+                                matchedDiagnosis: matchResult.matched ? (diagData ? `#${diagData.no} · ${diagData.baslik[isTr ? 'tr' : 'en']}` : matchResult.slug) : 'Kapsam ve Kapasite Görüşmesi',
+                                severity: matchResult.matched ? (diagData?.aciliyet?.etiket?.[isTr ? 'tr' : 'en'] || 'N/A') : 'Kapsam Görüşmesi',
+                                agencyBoxCode: campaignParams.agency_code || 'N/A',
+                                utm_source: campaignParams.utm_source || 'direct',
+                                utm_campaign: campaignParams.utm_campaign || 'N/A',
+                                timestamp: new Date().toISOString()
+                              })
+                            });
+                            const data = await response.json();
+                            if (response.ok && data.success) {
+                              setLeadSent('success');
+                              if (window.trackEvent) {
+                                window.trackEvent('report_email_submitted', {
+                                  scenario: selectedScenario?.code,
+                                  agency_code: campaignParams.agency_code
+                                });
+                              }
+                            } else {
+                              throw new Error(data.message || 'Submission failed');
+                            }
+                          } catch (err) {
+                            console.error('Lead err:', err);
+                            setLeadSent('error');
+                          } finally {
+                            setIsSendingLead(false);
+                          }
+                        }} 
+                        className="grid grid-cols-1 sm:grid-cols-3 gap-3.5"
+                      >
+                        {/* Honeypot */}
+                        <input type="checkbox" name="botcheck" className="hidden" style={{ display: 'none' }} tabIndex={-1} autoComplete="off" />
+
+                        <input
+                          type="text"
+                          required
+                          placeholder={isTr ? 'Adınız Soyadınız' : 'Your Full Name'}
+                          value={leadName}
+                          onChange={e => setLeadName(e.target.value)}
+                          className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                        />
+                        <input
+                          type="email"
+                          required
+                          placeholder={isTr ? 'Kurumsal E-posta' : 'Corporate Email'}
+                          value={leadEmail}
+                          onChange={e => setLeadEmail(e.target.value)}
+                          className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                        />
+                        <input
+                          type="tel"
+                          required
+                          placeholder={isTr ? 'Telefon / WhatsApp' : 'Phone / WhatsApp'}
+                          value={leadPhone}
+                          onChange={e => setLeadPhone(e.target.value)}
+                          className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                        />
+                        <button
+                          type="submit"
+                          disabled={isSendingLead}
+                          className="sm:col-span-3 py-3.5 px-6 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-black text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg shadow-cyan-500/20 disabled:opacity-50"
+                        >
+                          <Send className="w-4 h-4" />
+                          <span>{isSendingLead ? (isTr ? 'Gönderiliyor...' : 'Sending...') : (isTr ? 'Detaylı Eylem Raporumu Gönder' : 'Send My Custom Blueprint')}</span>
+                        </button>
+                      </form>
+                    )}
+                  </div>
+
+                  {/* Additional Actions Inside <details> */}
+                  <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
+                    {/* Handover Tool Link */}
+                    {selectedScenario?.code === 'HANDOVER HELL' && (
+                      <Link
+                        to="/devir-kontrolu/"
+                        className="px-5 py-3 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-bold text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer"
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                        <span>{isTr ? '12 Kalemlik Devir Kontrolü →' : '12-Point Handover Audit →'}</span>
+                      </Link>
+                    )}
+
+                    {/* HTTP 500 Downtime Loss Calculator */}
+                    {selectedScenario?.code === 'HTTP 500' && (
+                      <Link
+                        to="/kesinti-maliyeti/"
+                        className="px-5 py-3 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-300 font-bold text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer"
+                      >
+                        <ArrowRight className="w-4 h-4 text-red-400" />
+                        <span>{isTr ? 'Kesinti Maliyeti Hesaplayıcı →' : 'Downtime Loss Calculator →'}</span>
+                      </Link>
+                    )}
+
+                    {/* Emergency SOS Modal Button */}
                     <button
-                      onClick={openWhatsAppDispatch}
-                      className="px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black text-sm sm:text-base shadow-xl shadow-emerald-500/25 flex items-center gap-3 transition-all transform hover:-translate-y-0.5 cursor-pointer min-h-[48px]"
+                      type="button"
+                      onClick={() => setIsSOSOpen(true)}
+                      className="px-5 py-3 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-300 font-bold text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer"
                     >
-                      <PhoneCall className="w-5 h-5" />
-                      <span>{isTr ? 'Kriz Masasını Devreye Sok (WhatsApp)' : 'Deploy Crisis Desk (WhatsApp)'}</span>
+                      <AlertTriangle className="w-4 h-4 text-red-400" />
+                      <span>{isTr ? 'Acil SOS Formu Gönder' : 'Send Emergency SOS Ticket'}</span>
                     </button>
 
-                    <a
-                      href={getCalendlyUrl('crash_test', { scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'crash_test_result', scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
-                      className="px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm sm:text-base flex items-center gap-2.5 transition-colors min-h-[48px]"
-                    >
-                      <Calendar className="w-5 h-5 text-cyan-400" />
-                      <span>{isTr ? 'Takvimden Randevu Seç' : 'Book Call from Calendar'}</span>
-                    </a>
-                  </>
-                ) : (
-                  <>
-                    {/* Planning Scenario (HANDOVER, SPECIAL): Primary = Takvim, Secondary = WhatsApp */}
-                    <a
-                      href={getCalendlyUrl('crash_test', { scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'crash_test_result', scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
-                      className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center gap-3 transition-all transform hover:-translate-y-0.5 min-h-[48px]"
-                    >
-                      <Calendar className="w-5 h-5" />
-                      <span>{isTr ? 'Takvimden 30 Dakikalık Görüşme Seç' : 'Book a 30-Minute Intro Call'}</span>
-                    </a>
-
+                    {/* Restart Button */}
                     <button
-                      onClick={openWhatsAppDispatch}
-                      className="px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm sm:text-base flex items-center gap-2.5 transition-colors cursor-pointer min-h-[48px]"
+                      type="button"
+                      onClick={() => {
+                        setStep(1);
+                        setAnswers({});
+                      }}
+                      className="px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white font-semibold text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer"
                     >
-                      <PhoneCall className="w-5 h-5 text-emerald-400" />
-                      <span>{isTr ? 'WhatsApp ile Danışın' : 'Consult via WhatsApp'}</span>
+                      <RotateCcw className="w-4 h-4" />
+                      <span>{isTr ? 'Yeniden Test Et' : 'Restart Test'}</span>
                     </button>
-                  </>
-                )}
-
-                <button
-                  onClick={() => setIsSOSOpen(true)}
-                  className="px-6 py-4 rounded-2xl bg-red-500/20 hover:bg-red-500/30 border border-red-500/40 text-red-300 font-bold text-sm sm:text-base flex items-center gap-2 transition-colors cursor-pointer min-h-[48px]"
-                >
-                  <AlertTriangle className="w-5 h-5 text-red-400" />
-                  <span>{isTr ? 'Acil SOS Formu Gönder' : 'Send Emergency SOS Ticket'}</span>
-                </button>
-
-                <button
-                  onClick={() => {
-                    setStep(1);
-                    setAnswers({});
-                  }}
-                  className="px-6 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white font-semibold text-sm sm:text-base flex items-center gap-2 transition-colors cursor-pointer min-h-[48px]"
-                >
-                  <RotateCcw className="w-4 h-4" />
-                  <span>{isTr ? 'Yeniden Test Et' : 'Restart Test'}</span>
-                </button>
-              </div>
+                  </div>
+                </div>
+              </details>
 
               <p className="text-xs sm:text-sm text-slate-400 font-mono">
                 {isTr 
                   ? 'Kriz masası tek kişilik değildir — başlayan iş, biri devre dışı kalsa da tamamlanır.' 
                   : 'The response desk is not a single person — work that starts gets finished, even if someone drops out.'}
               </p>
-
-              {(selectedScenario?.id === 'http500' || selectedScenario?.id === 't48h') && (
-                <p className="text-xs text-slate-400 font-mono">
-                  {isTr ? 'Acil değilse takvimden 30 dakikalık görüşme seçebilirsiniz.' : 'If not critical, you can book a 30-minute call from the calendar.'}
-                </p>
-              )}
 
               {/* Direct Info */}
               <div className="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-slate-400 border-t border-white/10">
