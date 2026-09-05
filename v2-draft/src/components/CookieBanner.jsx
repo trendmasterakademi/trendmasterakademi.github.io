@@ -57,12 +57,12 @@ const CookieBanner = () => {
         <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0 mt-0.5">
           <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
         </div>
-        <div className="space-y-1.5 sm:space-y-2.5 text-xs leading-relaxed">
+        <div className="space-y-1 sm:space-y-2.5 text-xs leading-relaxed">
           <div className="font-bold text-white text-xs sm:text-sm flex items-center gap-2">
             <span>{isTr ? 'Gizlilik & Analitik Tercihleri' : 'Privacy & Analytics Preferences'}</span>
             <span className="hidden sm:inline-flex px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 text-[10px] font-mono">%100 NDA</span>
           </div>
-          <p className="text-slate-300 text-[11px] sm:text-xs leading-normal sm:leading-relaxed">
+          <p className="text-slate-300 text-[11px] sm:text-xs leading-snug sm:leading-relaxed">
             {isTr 
               ? 'Analitik (GA4) ve oturum ölçüm (Clarity) araçları kullanıyoruz. Formlara yazdığınız kriz ve kod detayları maskelenir.' 
               : 'We use analytics (GA4) and session telemetry (Clarity). Submitted crisis and code details are strictly masked.'}{' '}
@@ -70,22 +70,29 @@ const CookieBanner = () => {
               {isTr ? 'Ayrıntılı Gizlilik Politikası' : 'Privacy Policy'}
             </Link>
           </p>
-          <div className="flex flex-wrap items-center gap-2 pt-0.5">
+          <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 pt-0 sm:pt-0.5">
             <button
               type="button"
               onClick={handleAccept}
-              className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-bold text-[11px] sm:text-xs flex items-center gap-1.5 shadow-lg shadow-cyan-500/20 transition-all cursor-pointer min-h-[28px] sm:min-h-[36px]"
+              className="px-2 sm:px-4 py-1.5 sm:py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-bold text-[11px] sm:text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-cyan-500/20 transition-all cursor-pointer min-h-[40px] sm:min-h-[36px]"
             >
-              <Check className="w-3.5 h-3.5" />
+              <Check className="hidden sm:inline-block w-3.5 h-3.5" />
               <span>{isTr ? 'Tümünü Kabul Et' : 'Accept All'}</span>
             </button>
             <button
               type="button"
               onClick={handleReject}
-              className="px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 font-semibold text-[11px] sm:text-xs flex items-center gap-1.5 transition-colors cursor-pointer min-h-[28px] sm:min-h-[36px]"
+              className="px-2 sm:px-3 py-1.5 sm:py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 font-semibold text-[11px] sm:text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer min-h-[40px] sm:min-h-[36px]"
             >
-              <EyeOff className="w-3.5 h-3.5" />
-              <span>{isTr ? 'Yalnızca Zorunlu Çerezler' : 'Essential Only'}</span>
+              <EyeOff className="hidden sm:inline-block w-3.5 h-3.5" />
+              {isTr ? (
+                <>
+                  <span className="sm:hidden">Yalnızca Zorunlu</span>
+                  <span className="hidden sm:inline">Yalnızca Zorunlu Çerezler</span>
+                </>
+              ) : (
+                <span>Essential Only</span>
+              )}
             </button>
           </div>
         </div>
