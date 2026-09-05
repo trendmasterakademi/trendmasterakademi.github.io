@@ -345,4 +345,12 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/" />
   </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sos/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sos/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sos/" />
+  </url>
 </urlset>

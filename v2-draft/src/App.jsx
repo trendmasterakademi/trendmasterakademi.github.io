@@ -20,6 +20,8 @@ const Privacy = lazy(() => import('./pages/Privacy'));
 const Nda = lazy(() => import('./pages/Nda'));
 const TeshisIndex = lazy(() => import('./pages/TeshisIndex'));
 const TeshisDetay = lazy(() => import('./pages/TeshisDetay'));
+const Sos = lazy(() => import('./pages/Sos'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Lightweight, thematic skeleton fallback matching pre-render aesthetic
 const PageFallback = () => (
@@ -87,6 +89,11 @@ function App() {
               <Route path="/teshis" element={<TeshisIndex />} />
               <Route path="/teshis/:slug/" element={<TeshisDetay />} />
               <Route path="/teshis/:slug" element={<TeshisDetay />} />
+              
+              <Route path="/sos/" element={<Sos />} />
+              <Route path="/sos" element={<Sos />} />
+              
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </main>

@@ -338,6 +338,35 @@ const kesintiExtraContent = `
   </section>
 `;
 
+const sosPageExtraContent = `
+  <section class="space-y-6">
+    <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm">
+      <span>Kriz hattı her gün 09:00 – 24:00 açık · acil bildirimlere tipik ilk yanıt 15 dakika.</span>
+    </div>
+    <div class="flex flex-wrap gap-4 text-sm font-semibold">
+      <a href="tel:+905343713573" class="text-cyan-400 hover:underline">+90 534 371 35 73</a>
+      <a href="https://wa.me/905343713573" target="_blank" rel="noopener" class="text-emerald-400 hover:underline">WhatsApp'tan yaz</a>
+    </div>
+    <div class="space-y-3">
+      <h2 class="text-xl font-bold text-white">Yazarken şunları ekleyin</h2>
+      <ol class="list-decimal list-inside space-y-2 text-slate-300">
+        <li>Ajans adı ve size ulaşılacak numara</li>
+        <li>Ne oldu: hata ekranı, hata satırı ya da sistemin davranışı</li>
+        <li>Ne zaman başladı ve o sırada ne değişti (yayın, güncelleme, ödeme sağlayıcı)</li>
+        <li>Erişim var mı: sunucu, repo, panel — yoksa da yazın, teşhis için şart değil</li>
+      </ol>
+      <p class="text-sm text-slate-400 italic">İlk teşhis için şifre ya da repo erişimi istemiyoruz.</p>
+    </div>
+    <div class="space-y-3 pt-4 border-t border-white/10">
+      <h2 class="text-xl font-bold text-white">Aciliyet yoksa</h2>
+      <ul class="space-y-2 text-slate-300">
+        <li><a href="/crash-test/" class="text-cyan-400 hover:underline">60 saniyelik Agency Crash Test ile durumu kendiniz teşhis edin</a></li>
+        <li><a href="/teshis/" class="text-cyan-400 hover:underline">20 arızanın belgelenmiş teşhis kataloğu</a></li>
+      </ul>
+    </div>
+  </section>
+`;
+
 const basePages = [
   {
     dir: '',
@@ -659,6 +688,30 @@ const basePages = [
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
             { "@type": "ListItem", "position": 2, "name": "Teşhis Kataloğu", "item": "https://trendmasterakademi.com/teshis/" }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    dir: 'sos',
+    title: 'Acil Teknik Destek (SOS) | Trend Master Akademi',
+    h1: 'Acil Teknik Destek — Kriz Hattı',
+    description: 'Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa kriz hattı: her gün 09:00 – 24:00, ilk teşhis ücretsiz.',
+    canonical: 'https://trendmasterakademi.com/sos/',
+    ogUrl: 'https://trendmasterakademi.com/sos/',
+    subheading: 'Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa doğrudan buraya yazın. İlk teşhis ücretsizdir.',
+    extraContent: sosPageExtraContent,
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Acil Teknik Destek", "item": "https://trendmasterakademi.com/sos/" }
           ]
         }
       ]
@@ -1048,7 +1101,8 @@ const sitemapPageSourceMap = {
   'https://trendmasterakademi.com/privacy/': 'v2-draft/src/pages/Privacy.jsx',
   'https://trendmasterakademi.com/gizlilik/': 'v2-draft/src/pages/Privacy.jsx',
   'https://trendmasterakademi.com/nda/': 'v2-draft/src/pages/Nda.jsx',
-  'https://trendmasterakademi.com/teshis/': 'v2-draft/src/data/teshisData.js'
+  'https://trendmasterakademi.com/teshis/': 'v2-draft/src/data/teshisData.js',
+  'https://trendmasterakademi.com/sos/': 'v2-draft/src/pages/Sos.jsx'
 };
 
 for (const term of glossaryTerms) {
