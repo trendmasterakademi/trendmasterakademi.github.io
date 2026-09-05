@@ -52,29 +52,29 @@ const CookieBanner = () => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-4 left-4 right-4 sm:left-6 sm:right-auto sm:max-w-lg z-50 p-5 rounded-2xl bg-[#0a0f18]/95 border border-cyan-500/30 text-slate-200 shadow-[0_10px_40px_rgba(0,0,0,0.85)] backdrop-blur-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-5">
-      <div className="flex items-start gap-3.5">
-        <div className="w-9 h-9 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0 mt-0.5">
-          <ShieldCheck className="w-5 h-5" />
+    <div className="fixed bottom-[84px] sm:bottom-6 left-3 right-3 sm:left-6 sm:right-auto sm:max-w-lg z-50 p-3 sm:p-5 rounded-2xl bg-[#0a0f18]/95 border border-cyan-500/30 text-slate-200 shadow-[0_10px_40px_rgba(0,0,0,0.85)] backdrop-blur-xl transition-all duration-300 animate-in fade-in slide-in-from-bottom-5">
+      <div className="flex items-start gap-2.5 sm:gap-3.5">
+        <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+          <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
         </div>
-        <div className="space-y-2.5 text-xs leading-relaxed">
-          <div className="font-bold text-white text-sm flex items-center gap-2">
+        <div className="space-y-1.5 sm:space-y-2.5 text-xs leading-relaxed">
+          <div className="font-bold text-white text-xs sm:text-sm flex items-center gap-2">
             <span>{isTr ? 'Gizlilik & Analitik Tercihleri' : 'Privacy & Analytics Preferences'}</span>
-            <span className="px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 text-[10px] font-mono">%100 NDA</span>
+            <span className="hidden sm:inline-flex px-2 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 text-[10px] font-mono">%100 NDA</span>
           </div>
-          <p className="text-slate-300">
+          <p className="text-slate-300 text-[11px] sm:text-xs leading-normal sm:leading-relaxed">
             {isTr 
-              ? 'Sitemizde deneyimi iyileştirmek amacıyla analitik (GA4) ve oturum ölçüm (Clarity) araçları kullanılmaktadır. Formlara yazılan tüm kriz ve kod detayları katı şekilde maskelenir.' 
-              : 'We utilize analytics (GA4) and session telemetry (Clarity) for diagnostics. All private form inputs are strictly masked under mutual NDA.'}{' '}
+              ? 'Analitik (GA4) ve oturum ölçüm (Clarity) araçları kullanıyoruz. Formlara yazdığınız kriz ve kod detayları maskelenir.' 
+              : 'We use analytics (GA4) and session telemetry (Clarity). Submitted crisis and code details are strictly masked.'}{' '}
             <Link to="/privacy/" className="text-cyan-400 underline hover:text-cyan-300">
               {isTr ? 'Ayrıntılı Gizlilik Politikası' : 'Privacy Policy'}
             </Link>
           </p>
-          <div className="flex flex-wrap items-center gap-2 pt-1">
+          <div className="flex flex-wrap items-center gap-2 pt-0.5">
             <button
               type="button"
               onClick={handleAccept}
-              className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-cyan-500/20 transition-all cursor-pointer min-h-[36px]"
+              className="px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-bold text-[11px] sm:text-xs flex items-center gap-1.5 shadow-lg shadow-cyan-500/20 transition-all cursor-pointer min-h-[28px] sm:min-h-[36px]"
             >
               <Check className="w-3.5 h-3.5" />
               <span>{isTr ? 'Tümünü Kabul Et' : 'Accept All'}</span>
@@ -82,7 +82,7 @@ const CookieBanner = () => {
             <button
               type="button"
               onClick={handleReject}
-              className="px-3 py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 font-semibold text-xs flex items-center gap-1.5 transition-colors cursor-pointer min-h-[36px]"
+              className="px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 font-semibold text-[11px] sm:text-xs flex items-center gap-1.5 transition-colors cursor-pointer min-h-[28px] sm:min-h-[36px]"
             >
               <EyeOff className="w-3.5 h-3.5" />
               <span>{isTr ? 'Yalnızca Zorunlu Çerezler' : 'Essential Only'}</span>

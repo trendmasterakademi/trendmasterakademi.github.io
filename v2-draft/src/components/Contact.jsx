@@ -329,10 +329,11 @@ const Contact = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-bold text-slate-200 mb-2">
+                  <label htmlFor="iletisim-ad" className="block text-sm font-bold text-slate-200 mb-2">
                     {t('contact-label-name')} <span className="text-red-400">*</span>
                   </label>
                   <input 
+                    id="iletisim-ad"
                     required 
                     type="text" 
                     name="name"
@@ -343,10 +344,11 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-slate-200 mb-2">
+                  <label htmlFor="iletisim-ajans" className="block text-sm font-bold text-slate-200 mb-2">
                     {t('contact-label-agency')}
                   </label>
                   <input 
+                    id="iletisim-ajans"
                     type="text" 
                     name="agency"
                     value={formData.agency} 
@@ -359,10 +361,11 @@ const Contact = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-bold text-slate-200 mb-2">
+                  <label htmlFor="iletisim-eposta" className="block text-sm font-bold text-slate-200 mb-2">
                     {t('contact-label-email')} <span className="text-red-400">*</span>
                   </label>
                   <input 
+                    id="iletisim-eposta"
                     required 
                     type="email" 
                     name="email"
@@ -373,10 +376,11 @@ const Contact = () => {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-slate-200 mb-2">
+                  <label htmlFor="iletisim-telefon" className="block text-sm font-bold text-slate-200 mb-2">
                     {t('contact-label-phone')} <span className="text-red-400">*</span>
                   </label>
                   <input 
+                    id="iletisim-telefon"
                     required 
                     type="tel" 
                     name="phone"
@@ -389,10 +393,11 @@ const Contact = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-slate-200 mb-2">
+                <label htmlFor="iletisim-mesaj" className="block text-sm font-bold text-slate-200 mb-2">
                   {t('contact-label-message')} <span className="text-red-400">*</span>
                 </label>
                 <textarea 
+                  id="iletisim-mesaj"
                   required 
                   rows="4" 
                   name="message"

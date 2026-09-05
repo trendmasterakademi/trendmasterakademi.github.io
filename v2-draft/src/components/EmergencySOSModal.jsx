@@ -271,10 +271,11 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
+                  <label htmlFor="sos-ajans" className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
                     {isTr ? 'Ajans / Şirket Adı' : 'Agency / Company Name'}
                   </label>
                   <input
+                    id="sos-ajans"
                     type="text"
                     name="agencyName"
                     required
@@ -285,10 +286,11 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
+                  <label htmlFor="sos-yetkili" className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
                     {isTr ? 'Yetkili / İletişim Kişisi' : 'Contact Person'}
                   </label>
                   <input
+                    id="sos-yetkili"
                     type="text"
                     name="contactPerson"
                     required
@@ -301,10 +303,11 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
+                <label htmlFor="sos-telefon" className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
                   {isTr ? 'Telefon / WhatsApp Numarası' : 'Phone / WhatsApp Number'} <span className="text-red-400">*</span>
                 </label>
                 <input
+                  id="sos-telefon"
                   type="tel"
                   name="contactPhone"
                   required
@@ -355,10 +358,11 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
+                <label htmlFor="sos-butce" className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
                   {isTr ? 'Bütçe aralığınız (opsiyonel)' : 'Budget range (optional)'}
                 </label>
                 <input
+                  id="sos-butce"
                   type="text"
                   name="budget"
                   placeholder={isTr ? 'Örn. 40.000 – 60.000 ₺ / henüz netleşmedi' : 'e.g. 40,000 – 60,000 ₺ / not finalized yet'}
@@ -369,10 +373,11 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
+                <label htmlFor="sos-sorun" className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
                   {isTr ? 'Kriz Durumu / Hata Özeti' : 'Crisis Summary / Error Details'}
                 </label>
                 <textarea
+                  id="sos-sorun"
                   rows={3}
                   name="problemDesc"
                   required

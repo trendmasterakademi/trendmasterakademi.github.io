@@ -400,7 +400,7 @@ const Agency = () => {
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-xs font-mono uppercase px-2.5 py-1 rounded bg-white/10 text-slate-300 font-semibold">
+                    <span lang="en" className="text-xs font-mono uppercase px-2.5 py-1 rounded bg-white/10 text-slate-300 font-semibold">
                       {cap.cat}
                     </span>
                     <span className="text-xs font-mono text-cyan-400 font-bold">#{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
