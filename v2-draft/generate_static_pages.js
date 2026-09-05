@@ -135,7 +135,7 @@ const professionalServiceNode = {
         "itemOffered": {
           "@type": "Service",
           "name": "Acil Kod Kurtarma & Canlı Sistem Hotfix (Incident SWAT)",
-          "description": "HTTP 500 hataları, veritabanı kilitlenmeleri ve ödeme API kopmalarında 0-2 saat içinde acil müdahale."
+          "description": "HTTP 500 hataları, veritabanı kilitlenmeleri ve ödeme API kopmalarında acil müdahale."
         }
       },
       {
@@ -376,7 +376,7 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/',
     ogUrl: 'https://trendmasterakademi.com/',
     heading: 'Teknik olarak projesi tıkanmış ajanslar için: Kodu Devralır, Ajansınız Adına Eksiksiz Teslim Ederiz.',
-    subheading: 'Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), PostgreSQL Deadlock Onarımı, SaaS Mimarisi ve 7/24 Kriz Çözüm Stüdyosu.',
+    subheading: 'Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), PostgreSQL Deadlock Onarımı, SaaS Mimarisi ve Kriz Çözüm Stüdyosu.',
     extraContent: homePageExtraContent,
     schema: {
       "@context": "https://schema.org",
