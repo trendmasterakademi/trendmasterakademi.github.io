@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, AlertTriangle, Terminal } from 'lucide-react';
+import { ArrowLeft, AlertTriangle, Terminal, MessageSquare, PhoneCall } from 'lucide-react';
 import TeshisDiyagram from '../components/TeshisDiyagram';
 import { formatDocumentTitle } from '../utils/pageTitle';
+import { useKrizHattiAcik } from '../utils/krizHatti';
 
 // Dynamic code-split loaders: Each diagnostic chunk is loaded strictly on demand!
 const teshisLoaders = {
@@ -36,11 +37,65 @@ const HARF_BG_COLORS = {
   D: 'bg-cyan-400'
 };
 
+const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
+  const baslikVal = (lang === 'en' ? teshis?.baslik?.en : teshis?.baslik?.tr) || teshis?.baslik?.tr || '';
+  const aciliyetVal = (lang === 'en' ? teshis?.aciliyet?.etiket?.en : teshis?.aciliyet?.etiket?.tr) || teshis?.aciliyet?.etiket?.tr || '';
+  const sonCumle = isTr
+    ? 'Bu belirti şu an sistemimizde yaşanıyor; acil teknik destek talep ediyoruz.'
+    : 'We are seeing this on our live system and request emergency technical support.';
+
+  const waMessage = `🚨 *TMA · Teşhis Kataloğu* 🚨\n\n🎯 *Teşhis:* #${teshis.no} · ${baslikVal}\n⚡ *Aciliyet:* ${aciliyetVal}\n\n${sonCumle}`;
+  const waUrl = `https://wa.me/905343713573?text=${encodeURIComponent(waMessage)}`;
+
+  return (
+    <section className="border border-emerald-500/30 rounded-2xl bg-emerald-500/[0.04] p-4 sm:p-5 space-y-3">
+      <div className="space-y-1.5">
+        <h3 className="text-sm sm:text-base font-bold text-white">
+          {isTr ? 'Bu belirti şu an sizin sisteminizde mi?' : 'Are you seeing this right now?'}
+        </h3>
+        <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
+          <span className={`w-2 h-2 rounded-full flex-shrink-0 ${krizHattiAcik ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`}></span>
+          <span className={krizHattiAcik ? 'text-emerald-300/90' : 'text-amber-300/90'}>
+            {krizHattiAcik
+              ? (isTr
+                  ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt 15 dakika'
+                  : 'Crisis hotline is currently open · daily 09:00 – 24:00 · typical first reply to emergencies 15 minutes')
+              : (isTr
+                  ? "Kriz hattı şu an kapalı. Bildiriminiz ertesi sabah 09:00'da ele alınır — yine de yazın."
+                  : 'Crisis hotline is currently closed. Your notification will be handled at 09:00 tomorrow morning — please write anyway.')}
+          </span>
+        </div>
+      </div>
+
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 pt-1">
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-lg shadow-emerald-500/20 cursor-pointer min-h-[44px]"
+        >
+          <MessageSquare className="w-4 h-4 flex-shrink-0" />
+          <span>{isTr ? "WhatsApp'tan yaz" : 'Message on WhatsApp'}</span>
+        </a>
+
+        <a
+          href="tel:+905343713573"
+          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 hover:text-white font-mono font-bold text-xs sm:text-sm transition-colors cursor-pointer min-h-[44px]"
+        >
+          <PhoneCall className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+          <span>+90 534 371 35 73</span>
+        </a>
+      </div>
+    </section>
+  );
+};
+
 const TeshisDetay = () => {
   const { slug } = useParams();
   const { i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
   const lang = isTr ? 'tr' : 'en';
+  const krizHattiAcik = useKrizHattiAcik();
 
   const [teshis, setTeshis] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -177,6 +232,9 @@ const TeshisDetay = () => {
             </p>
           </div>
 
+          {/* Kriz Şeridi (Konum 1: Başlık + özet altı, log satırları üstü) */}
+          <KrizSeridi teshis={teshis} isTr={isTr} lang={lang} krizHattiAcik={krizHattiAcik} />
+
           {/* Section 1: Sisteminizde bunu arayın (Log Satırları) */}
           <section className="border border-cyan-400/25 rounded-2xl bg-cyan-400/[0.04] overflow-hidden">
             <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-cyan-400/20 bg-cyan-400/[0.06]">
@@ -295,6 +353,9 @@ const TeshisDetay = () => {
               </div>
             </div>
           </section>
+
+          {/* Kriz Şeridi (Konum 2: Kim çözer / Çözülmezse altı, alt çipler üstü) */}
+          <KrizSeridi teshis={teshis} isTr={isTr} lang={lang} krizHattiAcik={krizHattiAcik} />
 
           {/* Bottom Chips & CTA */}
           <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
