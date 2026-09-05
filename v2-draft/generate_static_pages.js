@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 import { glossaryTerms } from './src/data/glossaryData.js';
@@ -1171,6 +1172,7 @@ pages.forEach(page => {
           <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
           <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
           <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
+          <a href="/sos/" class="hover:underline">Acil Teknik Destek</a>
           <a href="/about/" class="hover:underline">Hakkımızda</a>
           <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
         </nav>
@@ -1226,29 +1228,70 @@ function updateSitemapLastmod() {
   const publicSitemapPath = path.join(__dirname, 'public/sitemap.xml');
   const distSitemapPath = path.join(__dirname, 'dist/sitemap.xml');
   const rootSitemapPath = path.join(repoRoot, 'sitemap.xml');
+  const pageHashesPath = path.join(__dirname, 'page-hashes.json');
 
   if (!fs.existsSync(publicSitemapPath)) {
     console.warn('[SITEMAP WARNING] public/sitemap.xml not found');
     return;
   }
 
+  let pageHashes = {};
+  if (fs.existsSync(pageHashesPath)) {
+    try {
+      pageHashes = JSON.parse(fs.readFileSync(pageHashesPath, 'utf8'));
+    } catch (err) {
+      console.warn('[SITEMAP WARNING] Could not parse page-hashes.json:', err.message);
+    }
+  }
+
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, '0');
+  const day = String(now.getDate()).padStart(2, '0');
+  const todayStr = `${year}-${month}-${day}`;
+
   let content = fs.readFileSync(publicSitemapPath, 'utf8');
   let updatedCount = 0;
+  let changedCount = 0;
 
   content = content.replace(/<url>([\s\S]*?)<\/url>/g, (match, urlInner) => {
     const locMatch = urlInner.match(/<loc>(.*?)<\/loc>/);
     if (!locMatch) return match;
     const loc = locMatch[1].trim();
-    const sourceFile = sitemapPageSourceMap[loc];
-    if (!sourceFile) return match;
 
-    const dates = getGitDates(sourceFile);
-    if (!dates.dateModified) return match;
+    const rel = loc.replace('https://trendmasterakademi.com/', '').replace(/\/$/, '');
+    const htmlFile = path.join(distDir, rel, 'index.html');
 
-    const lastmodDate = dates.dateModified.slice(0, 10);
+    let pageLastmod = urlInner.match(/<lastmod>(.*?)<\/lastmod>/)?.[1] || todayStr;
+
+    if (fs.existsSync(htmlFile)) {
+      const html = fs.readFileSync(htmlFile, 'utf8');
+      const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
+      let body = bodyMatch ? bodyMatch[1] : html;
+
+      // Normalize: remove chunk hashes from asset names so rebuilds without changes don't invalidate hash
+      body = body.replace(/assets\/([a-zA-Z0-9_-]+)-[a-zA-Z0-9_-]{8}\.(js|css)/g, 'assets/$1.$2');
+
+      const hash = crypto.createHash('sha256').update(body, 'utf8').digest('hex');
+
+      const existing = pageHashes[loc];
+      if (!existing || existing.hash !== hash) {
+        pageLastmod = todayStr;
+        pageHashes[loc] = {
+          hash,
+          lastmod: todayStr
+        };
+        changedCount++;
+      } else {
+        pageLastmod = existing.lastmod;
+      }
+    }
+
     updatedCount++;
-    return match.replace(/<lastmod>.*?<\/lastmod>/, `<lastmod>${lastmodDate}</lastmod>`);
+    return match.replace(/<lastmod>.*?<\/lastmod>/, `<lastmod>${pageLastmod}</lastmod>`);
   });
+
+  fs.writeFileSync(pageHashesPath, JSON.stringify(pageHashes, null, 2) + '\n', 'utf8');
 
   fs.writeFileSync(publicSitemapPath, content, 'utf8');
   if (fs.existsSync(distSitemapPath)) {
@@ -1257,7 +1300,7 @@ function updateSitemapLastmod() {
   if (fs.existsSync(rootSitemapPath)) {
     fs.writeFileSync(rootSitemapPath, content, 'utf8');
   }
-  console.log(`sitemap.xml updated with git lastmod dates (${updatedCount} URLs)`);
+  console.log(`sitemap.xml updated with content-hash lastmod dates (${updatedCount} URLs, ${changedCount} updated)`);
 }
 
 updateSitemapLastmod();

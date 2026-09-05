@@ -45,6 +45,7 @@ const Footer = () => {
             <li><Link to="/" className="hover:text-cyan-400 transition-colors">{t('nav-home')}</Link></li>
             <li><Link to="/agency/" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-cyan-400" /> {t('nav-agency')}</Link></li>
             <li><Link to="/crash-test/" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-cyan-400" /> {t('nav-crashtest')}</Link></li>
+            <li><Link to="/sos/" className="hover:text-cyan-400 transition-colors">{isTr ? 'Acil Teknik Destek' : 'Emergency Support'}</Link></li>
             <li><Link to="/about/" className="hover:text-cyan-400 transition-colors">{t('nav-about')}</Link></li>
             <li><Link to="/hikayemiz/" className="hover:text-cyan-400 transition-colors">{isTr ? 'Marka Hikâyemiz' : 'Our Story'}</Link></li>
             <li><a href="/#faq" className="hover:text-cyan-400 transition-colors">{isTr ? 'Sıkça Sorulan Sorular (SSS)' : 'FAQ'}</a></li>
