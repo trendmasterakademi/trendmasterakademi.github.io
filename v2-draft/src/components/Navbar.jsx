@@ -87,16 +87,14 @@ const Navbar = () => {
           
           {/* Brand Logo & Active Response Desk Badge */}
           <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0 min-w-0">
-            <Link to="/" className="flex items-center gap-1.5 sm:gap-3 group">
-              <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 font-black text-sm sm:text-xl group-hover:border-cyan-400 group-hover:shadow-[0_0_15px_rgba(0,229,255,0.3)] transition-all flex-shrink-0">
-                T
-              </div>
-              <div className="flex flex-col">
-                <span className="font-bold text-xs sm:text-base md:text-lg tracking-wide text-white group-hover:text-cyan-400 transition-colors leading-tight whitespace-nowrap">
-                  TREND MASTER
-                </span>
-                <span className="text-[7.5px] sm:text-[10px] font-mono tracking-widest text-slate-400">STUDIO & LABS</span>
-              </div>
+            <Link to="/" className="flex items-center group flex-shrink-0" aria-label="Trend Master Akademi Ana Sayfa">
+              <img 
+                src="/logo-dark.png" 
+                alt="Trend Master Akademi" 
+                className="h-7 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                width="200"
+                height="38"
+              />
             </Link>
 
             {/* Response Desk Live Status Badge */}

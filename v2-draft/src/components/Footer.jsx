@@ -15,16 +15,14 @@ const Footer = () => {
         
         {/* Brand Column */}
         <div className="md:col-span-5 space-y-4">
-          <Link to="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-cyan-500/20 rounded-xl flex items-center justify-center text-cyan-400 font-black text-xl border border-cyan-500/30">
-              T
-            </div>
-            <div className="flex flex-col">
-              <span className="font-bold text-lg tracking-wider text-white">
-                {t('logo-text')}
-              </span>
-              <span className="text-[10px] font-mono tracking-widest text-slate-400">STUDIO & LABS</span>
-            </div>
+          <Link to="/" className="inline-block group" aria-label="Trend Master Akademi Ana Sayfa">
+            <img 
+              src="/logo-dark.png" 
+              alt="Trend Master Akademi" 
+              className="h-9 sm:h-11 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02] mb-1"
+              width="220"
+              height="42"
+            />
           </Link>
           <p className="text-slate-300 text-sm leading-relaxed max-w-md">
             {isTr 

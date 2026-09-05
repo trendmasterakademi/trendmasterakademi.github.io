@@ -99,7 +99,7 @@ const professionalServiceNode = {
   "legalName": "Mehmet Şahin",
   "taxID": "7930336132",
   "url": "https://trendmasterakademi.com",
-  "logo": "https://trendmasterakademi.com/favicon.svg",
+  "logo": "https://trendmasterakademi.com/logo-dark.png",
   "image": "https://trendmasterakademi.com/og-image.jpg",
   "description": "Dijital ajanslar, SaaS girişimleri ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), API Entegrasyonu ve Özel Yazılım Geliştirme Stüdyosu.",
   "founder": {
