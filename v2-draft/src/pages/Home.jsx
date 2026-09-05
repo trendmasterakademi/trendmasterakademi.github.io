@@ -15,13 +15,13 @@ const Home = () => {
   useEffect(() => {
     const isTr = i18n.language !== 'en';
     document.title = isTr
-      ? "Trend Master Akademi | B2B Mühendislik & Kod Kurtarma"
+      ? "Trend Master Akademi | Ajansların İmdat Butonu"
       : formatDocumentTitle("Trend Master Academy | B2B Technical SWAT & White-Label Engineering");
     
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", isTr
-        ? "Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), SaaS Mimarisi ve Kriz Çözüm Stüdyosu."
+        ? "Dijital ajansların imdat butonu: B2B White-Label mühendislik masası, acil kod kurtarma (SWAT), SaaS mimarisi ve kriz çözüm stüdyosu."
         : "Behind-the-scenes B2B Technical SWAT, White-Label Engineering desk, and emergency code rescue studio for digital agencies and SaaS companies."
       );
     }
