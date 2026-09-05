@@ -497,7 +497,9 @@ const DevirKontrolu = () => {
                 </div>
                 <div className="p-3 rounded-xl bg-white/5">
                   <strong className="block text-emerald-400 font-mono text-base sm:text-lg">%100</strong>
-                  <span className="text-[10px] sm:text-xs text-slate-400">Ücretsiz Teşhis</span>
+                  <span className="text-[10px] sm:text-xs text-slate-400">
+                    {isTr ? 'Ücretsiz Teşhis' : 'Free Diagnosis'}
+                  </span>
                 </div>
               </div>
             </div>

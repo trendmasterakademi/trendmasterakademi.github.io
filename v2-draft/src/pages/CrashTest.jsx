@@ -119,7 +119,7 @@ const scenarios = [
   },
   {
     id: 't48h',
-    code: 'T−48H DARBOĞAZ',
+    code: 'T−48H CRUNCH',
     tag: { tr: 'ZAMAN KRİTİK', en: 'TIME CRITICAL' },
     title: { tr: 'Teslime 48 Saat Kaldı / Lansman Krizi', en: '48 Hours to Launch / Delivery Crunch' },
     subtitle: { tr: 'Kapasite açığı · Yetişmeyen modüller · Acil bitirme baskısı', en: 'Capacity shortage · Pending modules · Urgent delivery crunch' },

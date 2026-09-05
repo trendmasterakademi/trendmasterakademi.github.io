@@ -44,7 +44,9 @@ const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
     ? 'Bu belirti şu an sistemimizde yaşanıyor; acil teknik destek talep ediyoruz.'
     : 'We are seeing this on our live system and request emergency technical support.';
 
-  const waMessage = `🚨 *TMA · Teşhis Kataloğu* 🚨\n\n🎯 *Teşhis:* #${teshis.no} · ${baslikVal}\n⚡ *Aciliyet:* ${aciliyetVal}\n\n${sonCumle}`;
+  const waMessage = isTr
+    ? `🚨 *TMA · Teşhis Kataloğu* 🚨\n\n🎯 *Teşhis:* #${teshis.no} · ${baslikVal}\n⚡ *Aciliyet:* ${aciliyetVal}\n\n${sonCumle}`
+    : `🚨 *TMA · Diagnostic Catalog* 🚨\n\n🎯 *Diagnosis:* #${teshis.no} · ${baslikVal}\n⚡ *Severity:* ${aciliyetVal}\n\n${sonCumle}`;
   const waUrl = `https://wa.me/905343713573?text=${encodeURIComponent(waMessage)}`;
 
   return (
@@ -59,10 +61,10 @@ const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
             {krizHattiAcik
               ? (isTr
                   ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt 15 dakika'
-                  : 'Crisis hotline is currently open · daily 09:00 – 24:00 · typical first reply to emergencies 15 minutes')
+                  : 'Response desk is open now · daily 09:00 – 24:00 · typical first reply to emergencies 15 minutes')
               : (isTr
                   ? "Kriz hattı şu an kapalı. Bildiriminiz ertesi sabah 09:00'da ele alınır — yine de yazın."
-                  : 'Crisis hotline is currently closed. Your notification will be handled at 09:00 tomorrow morning — please write anyway.')}
+                  : 'The response desk is closed right now. Your notification is picked up at 09:00 the following morning — write anyway.')}
           </span>
         </div>
       </div>

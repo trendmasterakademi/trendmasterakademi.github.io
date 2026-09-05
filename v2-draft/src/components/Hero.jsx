@@ -157,7 +157,9 @@ const Hero = () => {
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>B2B Technical SWAT & White-Label Engineering</span>
             </div>
-            <span className="text-xs font-mono text-slate-400">İzmir · Uzaktan (TR / EN)</span>
+            <span className="text-xs font-mono text-slate-400">
+              {isTr ? 'İzmir · Uzaktan (TR / EN)' : 'İzmir · Remote (TR / EN)'}
+            </span>
           </div>
           
           {/* Main Hook Headline */}
@@ -226,7 +228,9 @@ const Hero = () => {
           {/* Quick Trust Metrics Bar */}
           <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-4 sm:pt-5 border-t border-white/10 max-w-xl text-center sm:text-left">
             <div>
-              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-white">14+ Yıl</strong>
+              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-white">
+                {isTr ? '14+ Yıl' : '14+ Years'}
+              </strong>
               <span className="text-[10px] sm:text-xs text-slate-400">
                 {isTr ? 'Yazılım & Mimari Deneyimi' : 'Engineering Experience'}
               </span>
