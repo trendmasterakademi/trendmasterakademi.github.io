@@ -18,6 +18,7 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+  const [contactChannelError, setContactChannelError] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +26,12 @@ const Contact = () => {
       console.warn('Bot detected via honeypot.');
       return;
     }
+
+    if (!formData.email?.trim() && !formData.phone?.trim()) {
+      setContactChannelError(true);
+      return;
+    }
+    setContactChannelError(false);
 
     setIsSubmitting(true);
     setSubmitStatus(null);
@@ -94,6 +101,7 @@ const Contact = () => {
 
   const handleReset = () => {
     setFormData({ name: '', agency: '', email: '', phone: '', message: '', kvkkConsent: true, botcheck: '' });
+    setContactChannelError(false);
     setSubmitStatus(null);
   };
 
@@ -362,34 +370,51 @@ const Contact = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="iletisim-eposta" className="block text-sm font-bold text-slate-200 mb-2">
-                    {t('contact-label-email')} <span className="text-red-400">*</span>
+                    {t('contact-label-email')}
                   </label>
                   <input 
                     id="iletisim-eposta"
-                    required 
                     type="email" 
                     name="email"
                     value={formData.email} 
-                    onChange={e => setFormData({...formData, email: e.target.value})} 
+                    onChange={e => {
+                      setFormData({...formData, email: e.target.value});
+                      if (contactChannelError) setContactChannelError(false);
+                    }} 
                     className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
                     placeholder="ornek@sirket.com" 
                   />
                 </div>
                 <div>
                   <label htmlFor="iletisim-telefon" className="block text-sm font-bold text-slate-200 mb-2">
-                    {t('contact-label-phone')} <span className="text-red-400">*</span>
+                    {t('contact-label-phone')}
                   </label>
                   <input 
                     id="iletisim-telefon"
-                    required 
                     type="tel" 
                     name="phone"
                     value={formData.phone} 
-                    onChange={e => setFormData({...formData, phone: e.target.value})} 
+                    onChange={e => {
+                      setFormData({...formData, phone: e.target.value});
+                      if (contactChannelError) setContactChannelError(false);
+                    }} 
                     className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
                     placeholder="+90 534 000 0000" 
                   />
                 </div>
+              </div>
+
+              {/* Helper text & Contact Channel Validation Alert */}
+              <div className="-mt-2 space-y-1.5">
+                <p className="text-xs text-slate-400 font-mono">
+                  {isTr ? 'İkisinden biri yeterli.' : 'Either one is enough.'}
+                </p>
+                {contactChannelError && (
+                  <p className="text-xs text-red-400 font-medium flex items-center gap-1.5" role="alert">
+                    <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
+                    <span>{isTr ? 'Size dönebilmemiz için e-posta ya da telefon girin.' : 'Enter an email or a phone number so we can reply.'}</span>
+                  </p>
+                )}
               </div>
 
               <div>

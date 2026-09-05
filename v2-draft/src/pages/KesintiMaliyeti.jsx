@@ -380,27 +380,33 @@ const KesintiMaliyeti = () => {
                 </div>
               </div>
 
-              {/* Planning CTAs: Primary = Takvim, Secondary = WhatsApp */}
+              {/* Action Choice: Crisis vs Planning */}
               <div className="space-y-3 pt-2">
+                <p className="text-xs sm:text-sm font-bold text-slate-200 text-center font-mono">
+                  {isTr ? 'Bu kesinti şu an yaşanıyor mu?' : 'Is this outage happening right now?'}
+                </p>
+
+                {/* 1. Primary: WhatsApp (Crisis) */}
+                <button
+                  type="button"
+                  onClick={openWhatsApp}
+                  className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-xl shadow-emerald-500/25 cursor-pointer transform hover:-translate-y-0.5 transition-all min-h-[48px]"
+                >
+                  <PhoneCall className="w-5 h-5 text-bg-dark" />
+                  <span>{isTr ? 'Şu an yaşanıyor — Kriz masasına yaz' : 'Happening now — message the response desk'}</span>
+                </button>
+
+                {/* 2. Secondary: Takvim (Planning ahead) */}
                 <a
                   href={getCalendlyUrl('downtime_result')}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'downtime_result' })}
-                  className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm sm:text-base flex items-center justify-center gap-2 shadow-xl shadow-cyan-500/25 cursor-pointer transform hover:-translate-y-0.5 transition-all min-h-[48px]"
-                >
-                  <Calendar className="w-5 h-5" />
-                  <span>{isTr ? 'Takvimden 30 Dakikalık Görüşme Seç' : 'Book a 30-Minute Intro Call'}</span>
-                </a>
-
-                <button
-                  type="button"
-                  onClick={openWhatsApp}
                   className="w-full py-3 px-4 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer min-h-[44px]"
                 >
-                  <PhoneCall className="w-4 h-4 text-emerald-400" />
-                  <span>{isTr ? 'WhatsApp ile Danışın' : 'Consult via WhatsApp'}</span>
-                </button>
+                  <Calendar className="w-4 h-4 text-cyan-400" />
+                  <span>{isTr ? 'Önlem alıyorum — 30 dakikalık görüşme' : 'Planning ahead — book a 30-minute call'}</span>
+                </a>
               </div>
             </div>
 

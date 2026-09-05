@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
@@ -39,12 +40,21 @@ const PageFallback = () => (
 );
 
 function App() {
+  const { i18n } = useTranslation();
+  const isTr = i18n.language !== 'en';
+
   return (
     <Router>
       <ScrollToTop />
       <div className="min-h-screen bg-[#080b11] text-slate-200 selection:bg-cyan-500 selection:text-black w-full max-w-full relative font-sans">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-cyan-400 focus:text-slate-950 focus:font-bold focus:text-sm focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-white transition-all"
+        >
+          {isTr ? 'İçeriğe atla' : 'Skip to content'}
+        </a>
         <Navbar />
-        <main className="w-full max-w-full">
+        <main id="main-content" tabIndex={-1} className="w-full max-w-full outline-none">
           <Suspense fallback={<PageFallback />}>
             <Routes>
               <Route path="/" element={<Home />} />

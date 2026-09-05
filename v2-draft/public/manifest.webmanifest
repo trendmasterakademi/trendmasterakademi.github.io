@@ -1,0 +1,14 @@
+{
+  "name": "Trend Master Akademi — Kriz Masası",
+  "short_name": "TMA Kriz",
+  "start_url": "/sos/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#080b11",
+  "theme_color": "#080b11",
+  "lang": "tr",
+  "icons": [
+    { "src": "/favicon-192x192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/favicon-512x512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
