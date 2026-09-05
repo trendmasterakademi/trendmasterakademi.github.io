@@ -69,7 +69,7 @@ const Sos = () => {
         </h1>
         <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-3xl">
           {isTr 
-            ? 'Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa doğrudan buraya yazın. İlk teşhis ücretsizdir.'
+            ? 'Burası ajansların imdat butonu. Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa doğrudan buraya yazın. İlk teşhis ücretsizdir.'
             : 'If your agency’s live system is down, deadline is burning, or inherited codebase won’t start, reach out directly. Initial diagnosis is free.'}
         </p>
       </header>

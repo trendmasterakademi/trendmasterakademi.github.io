@@ -178,8 +178,8 @@ const Hero = () => {
           {/* Body Description */}
           <p className="text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed max-w-xl font-normal">
             {isTr 
-              ? 'Bir projede teknik olarak tıkandığınızda, teslim tarihi yaklaştığında veya müşteriniz özel bir SaaS mimarisi istediğinde: %100 White-Label, resmi NDA ve doğrudan kıdemli mühendislik masası.' 
-              : 'When you are technically blocked, facing tight delivery crunches, or building custom SaaS pipelines: 100% White-Label, binding NDA protection, and direct senior engineering execution.'}
+              ? 'Ajansların imdat butonu. Bir projede teknik olarak tıkandığınızda, teslim tarihi yaklaştığında veya müşteriniz özel bir SaaS mimarisi istediğinde: %100 White-Label, resmi NDA ve doğrudan kıdemli mühendislik masası.' 
+              : 'The emergency button for digital agencies. When you are technically blocked, facing tight delivery crunches, or building custom SaaS pipelines: 100% White-Label, binding NDA protection, and direct senior engineering execution.'}
           </p>
 
           {/* Above-the-fold Guarantees */}

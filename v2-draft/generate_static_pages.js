@@ -477,13 +477,13 @@ const devirExtraContent = `
 const basePages = [
   {
     dir: '',
-    title: 'Trend Master Akademi | B2B Mühendislik & Kod Kurtarma',
+    title: 'Trend Master Akademi | Ajansların İmdat Butonu',
     h1: 'Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio',
-    description: 'Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), SaaS Mimarisi ve Kriz Çözüm Stüdyosu.',
+    description: 'Dijital ajansların imdat butonu: B2B White-Label mühendislik masası, acil kod kurtarma (SWAT), SaaS mimarisi ve kriz çözüm stüdyosu.',
     canonical: 'https://trendmasterakademi.com/',
     ogUrl: 'https://trendmasterakademi.com/',
     heading: 'Teknik olarak projesi tıkanmış ajanslar için: Kodu Devralır, Ajansınız Adına Eksiksiz Teslim Ederiz.',
-    subheading: 'Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), PostgreSQL Deadlock Onarımı, SaaS Mimarisi ve Kriz Çözüm Stüdyosu.',
+    subheading: 'Dijital ajansların imdat butonu. Teknik olarak tıkanan projeler için B2B White-Label mühendislik masası, acil kod kurtarma (SWAT), PostgreSQL deadlock onarımı, SaaS mimarisi ve kriz çözüm stüdyosu.',
     extraContent: homePageExtraContent,
     schema: {
       "@context": "https://schema.org",
@@ -810,7 +810,7 @@ const basePages = [
     description: 'Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa kriz hattı: her gün 09:00 – 24:00, ilk teşhis ücretsiz.',
     canonical: 'https://trendmasterakademi.com/sos/',
     ogUrl: 'https://trendmasterakademi.com/sos/',
-    subheading: 'Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa doğrudan buraya yazın. İlk teşhis ücretsizdir.',
+    subheading: 'Burası ajansların imdat butonu. Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa doğrudan buraya yazın. İlk teşhis ücretsizdir.',
     extraContent: sosPageExtraContent,
     schema: {
       "@context": "https://schema.org",
@@ -1253,6 +1253,7 @@ function updateSitemapLastmod() {
   let content = fs.readFileSync(publicSitemapPath, 'utf8');
   let updatedCount = 0;
   let changedCount = 0;
+  const changedUrls = [];
 
   content = content.replace(/<url>([\s\S]*?)<\/url>/g, (match, urlInner) => {
     const locMatch = urlInner.match(/<loc>(.*?)<\/loc>/);
@@ -1282,6 +1283,7 @@ function updateSitemapLastmod() {
           lastmod: todayStr
         };
         changedCount++;
+        changedUrls.push(loc);
       } else {
         pageLastmod = existing.lastmod;
       }
@@ -1300,7 +1302,7 @@ function updateSitemapLastmod() {
   if (fs.existsSync(rootSitemapPath)) {
     fs.writeFileSync(rootSitemapPath, content, 'utf8');
   }
-  console.log(`sitemap.xml updated with content-hash lastmod dates (${updatedCount} URLs, ${changedCount} updated)`);
+  console.log(`sitemap.xml updated with content-hash lastmod dates (${updatedCount} URLs, ${changedCount} updated: ${changedUrls.join(', ') || 'none'})`);
 }
 
 updateSitemapLastmod();
