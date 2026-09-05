@@ -252,6 +252,84 @@
         <h2 class="text-2xl font-bold text-white">Devir Hazırlık Kontrolü // 12 Kalemlik Geliştirici Ayrılık Denetimi</h2>
         <p class="text-slate-300 text-lg leading-relaxed">Git repo, ortam değişkenleri, DNS ve ödeme anahtarlarınızı ayrılan geliştiriciden eksiksiz devralıp almadığınızı test edin.</p>
         
+  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
+    <h2 class="text-xl font-bold text-white">Kontrol edilen 12 kalem</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">1. Git Repo Erişim &amp; Sahiplik Devri</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Kaynak kodun barındığı GitHub/GitLab/Bitbucket organizasyonunda tam Admin/Owner yetkisi ajansınıza devredildi mi?</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: 15 puan</p>
+      </article>
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">2. Ortam Değişkenleri (.env) &amp; Bağlantı Sırları</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Canlı ve staging ortamlarındaki tüm API anahtarları, JWT secretları ve veritabanı şifreleri eksiksiz bir listede mevcut mu?</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: 10 puan</p>
+      </article>
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">3. Alan Adı (Domain) &amp; DNS Yönetim Paneli</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Cloudflare, GoDaddy, Namecheap vb. DNS ve domain sağlayıcı hesabının yönetici erişimi ajansınızın kontrolünde mi?</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: 12 puan</p>
+      </article>
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">4. SSL Sertifikası &amp; Yenileme Yöntemi</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">SSL sertifikasının (Let’s Encrypt / Certbot / Cloudflare Edge) nasıl yenilendiği ve süresi biliniyor mu?</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: 5 puan</p>
+      </article>
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">5. Veritabanı Yedeği &amp; Güncel Dump Dosyası</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Son 24-48 saatlik güncel bir veritabanı dump/snapshot yedeği ve geri yükleme (restore) talimatı var mı?</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: 10 puan</p>
+      </article>
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">6. Üçüncü Taraf API Hesapları &amp; Tokenlar</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Google Maps, SendGrid, AWS S3, Twilio, OpenAI vb. dış servislerin hesapları ajans/müşteri adına mı kayıtlı?</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: 8 puan</p>
+      </article>
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">7. Ödeme Sağlayıcı Paneli &amp; Webhook Gizli Anahtarları</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Stripe, iyzico, PayTR vb. ödeme paneli yönetimi ve webhook signing secret anahtarları elinizde mi?</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: 12 puan</p>
+      </article>
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">8. Sunucu / Hosting / Bulut Hesap Yetkisi</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">AWS, Hetzner, DigitalOcean, Vercel vb. sunucu altyapısına SSH key ve Root/Admin düzeyinde erişiminiz var mı?</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: 12 puan</p>
+      </article>
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">9. CI/CD &amp; Otomatik Dağıtım İş Akışları</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">GitHub Actions, GitLab CI veya Dockerfile derleme ve otomatik canlıya alma adımları belgelenmiş mi?</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: 6 puan</p>
+      </article>
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">10. Kurulum &amp; Mimari Dokümantasyonu (README)</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Yeni bir geliştiricinin projeyi localhost ortamında sıfırdan ayağa kaldırabilmesi için adım adım rehber var mı?</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: 5 puan</p>
+      </article>
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">11. Test Kapsamı &amp; Otomatik Kalite Kontrolü</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Kritik akışları (ödeme, kayıt, API) doğrulayan unit veya integration test suite mevcut mu?</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: 3 puan</p>
+      </article>
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">12. Kütüphane Lisansları &amp; Mülkiyet Hakları</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Kullanılan ücretli tema, plugin veya kütüphanelerin lisans anahtarları ve devir sözleşmesi mevcut mu?</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: 2 puan</p>
+      </article>
+    </div>
+  </section>
+
         <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
           <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
           <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>

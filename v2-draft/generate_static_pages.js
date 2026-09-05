@@ -57,6 +57,42 @@ const faqContent = fs.readFileSync(path.join(__dirname, 'src/components/FAQ.jsx'
 const cleanFaq = faqContent.match(/export const faqData = (\[[\s\S]*?\]);\s*const FAQ/)[1].replace(/icon:\s*[A-Za-z0-9_]+,/g, '');
 const faqData = new Function('return ' + cleanFaq)();
 
+// 2.0b — Kaynak tekilleştirme: Agency.jsx, CrashTest.jsx ve DevirKontrolu.jsx'ten verileri doğrudan oku
+const agencyContent = fs.readFileSync(path.join(__dirname, 'src/pages/Agency.jsx'), 'utf8');
+const capabilitiesMatch = agencyContent.match(/const capabilities = (\[[\s\S]*?\]);\s*const situationQuotes/);
+const capabilities = capabilitiesMatch ? new Function('return ' + capabilitiesMatch[1])() : [];
+
+const situationQuotesMatch = agencyContent.match(/const situationQuotes = (\[[\s\S]*?\]);\s*const Agency/);
+const situationQuotes = situationQuotesMatch ? new Function('return ' + situationQuotesMatch[1])() : [];
+
+const crashContent = fs.readFileSync(path.join(__dirname, 'src/pages/CrashTest.jsx'), 'utf8');
+const scenariosMatch = crashContent.match(/const scenarios = (\[[\s\S]*?\]);\s*function getMatchedDiagnosis/);
+const cleanScenarios = scenariosMatch ? scenariosMatch[1].replace(/icon:\s*[A-Za-z0-9_]+,?/g, '') : '';
+const scenarios = cleanScenarios ? new Function('return ' + cleanScenarios)() : [];
+
+const devirContent = fs.readFileSync(path.join(__dirname, 'src/pages/DevirKontrolu.jsx'), 'utf8');
+const handoverMatch = devirContent.match(/const handoverItems = (\[[\s\S]*?\]);\s*const DevirKontrolu/);
+const cleanHandover = handoverMatch ? handoverMatch[1].replace(/icon:\s*[A-Za-z0-9_]+,?/g, '') : '';
+const handoverItems = cleanHandover ? new Function('return ' + cleanHandover)() : [];
+
+// 2.0c — Kendini doğrulama (guard)
+if (!Array.isArray(situationQuotes) || situationQuotes.length !== 6) {
+  console.error(`[HATA] situationQuotes 6 eleman olmalı, bulunan: ${situationQuotes?.length}`);
+  process.exit(1);
+}
+if (!Array.isArray(capabilities) || capabilities.length !== 20) {
+  console.error(`[HATA] capabilities 20 eleman olmalı, bulunan: ${capabilities?.length}`);
+  process.exit(1);
+}
+if (!Array.isArray(scenarios) || scenarios.length !== 4) {
+  console.error(`[HATA] scenarios 4 eleman olmalı, bulunan: ${scenarios?.length}`);
+  process.exit(1);
+}
+if (!Array.isArray(handoverItems) || handoverItems.length !== 12) {
+  console.error(`[HATA] handoverItems 12 eleman olmalı, bulunan: ${handoverItems?.length}`);
+  process.exit(1);
+}
+
 // 3.4 — HTML Kaçış Fonksiyonu (Yalnızca HTML gövdesi için)
 function escapeHtml(str) {
   if (str == null) return '';
@@ -367,6 +403,76 @@ const sosPageExtraContent = `
   </section>
 `;
 
+const agencyExtraContent = `
+  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
+    <div class="space-y-4">
+      <h2 class="text-xl font-bold text-white">Ajansların bize geldiği altı durum</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        ${situationQuotes.map(sq => `
+        <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+          <h3 class="text-base font-bold text-cyan-300 font-mono">${escapeHtml(sq.tag?.tr || '')}</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(sq.quote?.tr || '')}</p>
+        </article>`).join('\n        ')}
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <h2 class="text-xl font-bold text-white">Teknik yetkinlikler</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        ${capabilities.map(cap => `
+        <article class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
+          <h3 class="text-sm font-bold text-cyan-300 font-mono">${escapeHtml(cap.title?.tr || '')} · ${escapeHtml(cap.cat || '')}</h3>
+          <p class="text-slate-300 text-xs leading-relaxed">${escapeHtml(cap.desc?.tr || '')}</p>
+        </article>`).join('\n        ')}
+      </div>
+    </div>
+  </section>
+`;
+
+const crashTestExtraContent = `
+  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
+      <div><strong class="text-white block text-sm">60 Saniye</strong> Ortalama test süresi</div>
+      <div><strong class="text-emerald-400 block text-sm">0 Erişim</strong> Şifre veya repo erişimi istemez</div>
+      <div><strong class="text-cyan-400 block text-sm">1 Teşhis</strong> Doğrudan arıza kataloğu eşleşmesi ve eylem reçetesi</div>
+    </div>
+
+    <h2 class="text-xl font-bold text-white">Testin kapsadığı dört kriz senaryosu</h2>
+    <div class="space-y-4">
+      ${scenarios.map(sc => `
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+        <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+          <span class="text-cyan-300 font-bold">${escapeHtml(sc.tag?.tr || '')}</span>
+          <span class="text-slate-400">${escapeHtml(sc.code || '')}</span>
+        </div>
+        <h3 class="text-lg font-bold text-white">${escapeHtml(sc.title?.tr || '')}</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(sc.subtitle?.tr || '')}</p>
+        <div class="space-y-1 pt-1 border-t border-white/5">
+          <p class="text-xs font-semibold text-slate-400 font-mono">Senaryoda değerlendirilen sorular:</p>
+          <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 font-mono">
+            ${(sc.questions || []).map(q => `
+            <li>${escapeHtml(q.label?.tr || '')}</li>`).join('\n            ')}
+          </ul>
+        </div>
+      </article>`).join('\n      ')}
+    </div>
+  </section>
+`;
+
+const devirExtraContent = `
+  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
+    <h2 class="text-xl font-bold text-white">Kontrol edilen 12 kalem</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      ${handoverItems.map(item => `
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">${escapeHtml(item.title?.tr || '')}</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(item.desc?.tr || '')}</p>
+        <p class="text-xs font-mono text-slate-400">Ağırlık: ${escapeHtml(item.weight)} puan</p>
+      </article>`).join('\n      ')}
+    </div>
+  </section>
+`;
+
 const basePages = [
   {
     dir: '',
@@ -407,6 +513,7 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/agency/',
     heading: 'Ajansınızın Yerine Değil, Ajansınızın Yanında Güvenilir Mühendislik Masası.',
     subheading: 'Bir projede teknik olarak tıkandığınızda, teslim tarihi yaklaştığında veya ekibinizin kapasitesi dolduğunda: %100 White-Label, resmi NDA ve doğrudan kıdemli mühendislik desteği.',
+    extraContent: agencyExtraContent,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -431,6 +538,7 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/crash-test/',
     heading: 'Agency Crash Test // 60 Saniyede Ajans Kriz Dayanıklılık Skoru',
     subheading: 'Kritik kod kilitlenmeleri, devir süreçleri tıkanmış projeler veya yaklaşan teslimat baskısı altında ajansınızın risk puanını ölçün.',
+    extraContent: crashTestExtraContent,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -455,6 +563,7 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/devir-kontrolu/',
     heading: 'Devir Hazırlık Kontrolü // 12 Kalemlik Geliştirici Ayrılık Denetimi',
     subheading: 'Git repo, ortam değişkenleri, DNS ve ödeme anahtarlarınızı ayrılan geliştiriciden eksiksiz devralıp almadığınızı test edin.',
+    extraContent: devirExtraContent,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
