@@ -120,42 +120,48 @@ const situationQuotes = [
       tr: "“Önceki geliştirici projeden beklenmedik şekilde çekildi ve dokümantasyon yok. Müşteri teslimat bekliyor, bu kod tabanını devralıp toparlayabilir misiniz?”",
       en: "“The previous developer unexpectedly disengaged from the project without documentation. The client expects delivery, can you take over and rescue this codebase?”"
     },
-    tag: { tr: "Kod Kurtarma & Devralma", en: "Code Rescue & Takeover" }
+    tag: { tr: "Kod Kurtarma & Devralma", en: "Code Rescue & Takeover" },
+    yol: '/crash-test/?senaryo=handover'
   },
   {
     quote: {
       tr: "“Teslim tarihine 48 saat kaldı, kritik ödeme API entegrasyonu patladı. Ekibimizin kapasitesi doldu.”",
       en: "“Only 48 hours left to launch, the payment API integration crashed, and our team is fully booked.”"
     },
-    tag: { tr: "T-48H Lansman Darboğazı", en: "T-48H Launch Crunch" }
+    tag: { tr: "T-48H Lansman Darboğazı", en: "T-48H Launch Crunch" },
+    yol: '/crash-test/?senaryo=t48h'
   },
   {
     quote: {
       tr: "“Müşterimiz özel bir SaaS paneli ve yapay zeka entegrasyonu istiyor, standart WordPress ile yapamıyoruz.”",
       en: "“The client demands a bespoke SaaS dashboard and AI automation, standard WordPress won't cut it.”"
     },
-    tag: { tr: "Özel Mimari & AI", en: "Custom Architecture & AI" }
+    tag: { tr: "Özel Mimari & AI", en: "Custom Architecture & AI" },
+    yol: '/crash-test/?senaryo=complex'
   },
   {
     quote: {
       tr: "“Müşteri sitesi canlıda kilitlendi, veritabanı çöktü. Acil müdahale edecek kıdemli birine ihtiyacımız var.”",
       en: "“The client's website just crashed in production, database locked up. We urgently need a senior engineer.”"
     },
-    tag: { tr: "Canlı Hotfix & SWAT", en: "Live Hotfix & SWAT" }
+    tag: { tr: "Canlı Hotfix & SWAT", en: "Live Hotfix & SWAT" },
+    yol: '/crash-test/?senaryo=http500'
   },
   {
     quote: {
       tr: "“Mobil uygulamasını da istiyorlar, Flutter tarafında güvenebileceğimiz bir white-label ortak arıyoruz.”",
       en: "“They also asked for mobile apps; we need a dependable white-label partner on the Flutter side.”"
     },
-    tag: { tr: "Mobil Uygulama Genişlemesi", en: "Mobile Extension" }
+    tag: { tr: "Mobil Uygulama Genişlemesi", en: "Mobile Extension" },
+    takvim: 'agency_senaryo_mobil'
   },
   {
     quote: {
       tr: "“Biz tasarımı ve müşteri ilişkisini yönetelim; siz arkada teknik mühendisliği kusursuz yürütün.”",
       en: "“We will manage the design and client relationship; you handle the technical engineering seamlessly.”"
     },
-    tag: { tr: "Sürekli White-Label Ortaklık", en: "Ongoing White-Label Partner" }
+    tag: { tr: "Sürekli White-Label Ortaklık", en: "Ongoing White-Label Partner" },
+    takvim: 'agency_senaryo_ortaklik'
   }
 ];
 
@@ -324,25 +330,49 @@ const Agency = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {situationQuotes.map((sq, idx) => (
-              <div
-                key={idx}
-                className="p-7 rounded-3xl bg-[#111827]/80 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group shadow-lg"
-              >
-                <div>
-                  <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/5 text-cyan-400 border border-white/10 mb-5">
-                    {sq.tag[isTr ? 'tr' : 'en']}
-                  </span>
-                  <p className="text-base sm:text-lg text-slate-200 italic font-medium leading-relaxed mb-6 group-hover:text-white transition-colors">
-                    {sq.quote[isTr ? 'tr' : 'en']}
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-slate-400">
-                  <span>{isTr ? 'TMA Çözüm Modeli' : 'TMA Solution'}</span>
-                  <span className="text-cyan-400 font-mono font-bold">White-Label SWAT →</span>
-                </div>
-              </div>
-            ))}
+            {situationQuotes.map((sq, idx) => {
+              const cardClass = "p-7 rounded-3xl bg-[#111827]/80 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group shadow-lg";
+              const arrowText = sq.yol
+                ? (isTr ? "60 saniyede teşhis et →" : "Diagnose in 60s →")
+                : (isTr ? "30 dakikalık görüşme →" : "Book a 30-min call →");
+
+              const cardContent = (
+                <>
+                  <div>
+                    <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/5 text-cyan-400 border border-white/10 mb-5">
+                      {sq.tag[isTr ? 'tr' : 'en']}
+                    </span>
+                    <p className="text-base sm:text-lg text-slate-200 italic font-medium leading-relaxed mb-6 group-hover:text-white transition-colors">
+                      {sq.quote[isTr ? 'tr' : 'en']}
+                    </p>
+                  </div>
+                  <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-slate-400">
+                    <span>{isTr ? 'TMA Çözüm Modeli' : 'TMA Solution'}</span>
+                    <span className="text-cyan-400 font-mono font-bold">{arrowText}</span>
+                  </div>
+                </>
+              );
+
+              if (sq.yol) {
+                return (
+                  <Link key={idx} to={sq.yol} className={cardClass}>
+                    {cardContent}
+                  </Link>
+                );
+              }
+
+              return (
+                <a
+                  key={idx}
+                  href={getCalendlyUrl(sq.takvim)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={cardClass}
+                >
+                  {cardContent}
+                </a>
+              );
+            })}
           </div>
         </section>
 

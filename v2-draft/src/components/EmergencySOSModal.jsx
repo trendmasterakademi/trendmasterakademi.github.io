@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AlertTriangle, X, PhoneCall, ShieldCheck, Clock, Send, CheckCircle2, MessageSquare, RefreshCw } from 'lucide-react';
 import { useKrizHattiAcik } from '../utils/krizHatti';
@@ -7,6 +7,46 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
   const { i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
   const krizHattiAcik = useKrizHattiAcik();
+
+  const modalRef = useRef(null);
+  const previousActiveElement = useRef(null);
+  const onCloseRef = useRef(onClose);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    previousActiveElement.current = document.activeElement;
+
+    if (modalRef.current) {
+      modalRef.current.focus();
+    }
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        if (onCloseRef.current) {
+          onCloseRef.current();
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      if (previousActiveElement.current && typeof previousActiveElement.current.focus === 'function') {
+        try {
+          if (document.body && document.body.contains(previousActiveElement.current)) {
+            previousActiveElement.current.focus();
+          }
+        } catch (err) {}
+      }
+    };
+  }, [isOpen]);
 
   const [agencyName, setAgencyName] = useState('');
   const [contactPerson, setContactPerson] = useState('');
@@ -93,10 +133,12 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
     <React.Fragment>
       <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
         <div
-          
-          
-          
-          className="w-full max-w-xl max-h-[92vh] flex flex-col bg-[#0d121d] border border-red-500/40 rounded-2xl sm:rounded-3xl shadow-[0_0_50px_rgba(239,68,68,0.25)] relative text-slate-100 my-auto overflow-hidden"
+          ref={modalRef}
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="sos-modal-basligi"
+          tabIndex={-1}
+          className="w-full max-w-xl max-h-[92vh] flex flex-col bg-[#0d121d] border border-red-500/40 rounded-2xl sm:rounded-3xl shadow-[0_0_50px_rgba(239,68,68,0.25)] relative text-slate-100 my-auto overflow-hidden outline-none"
         >
           {/* Top glow line */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-pulse z-10"></div>
@@ -124,7 +166,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                     TMA Response Desk // {isTr ? 'Kriz Masası' : 'Crisis Desk'}
                   </span>
                 </div>
-                <h3 className="text-lg sm:text-xl font-black text-white leading-tight">
+                <h3 id="sos-modal-basligi" className="text-lg sm:text-xl font-black text-white leading-tight">
                   {isTr ? 'Acil Teknik Müdahale & İmdat Butonu' : 'Emergency Technical Intervention & SOS'}
                 </h3>
               </div>

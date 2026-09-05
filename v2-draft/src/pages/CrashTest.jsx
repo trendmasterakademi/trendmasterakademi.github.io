@@ -260,7 +260,19 @@ const CrashTest = () => {
   const { i18n } = useTranslation();
   const isTr = i18n.language !== 'en';
 
-  const [selectedScenario, setSelectedScenario] = useState(scenarios[0]);
+  const [selectedScenario, setSelectedScenario] = useState(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const senaryoParam = params.get('senaryo');
+        if (senaryoParam) {
+          const matched = scenarios.find(s => s.id === senaryoParam);
+          if (matched) return matched;
+        }
+      } catch (e) {}
+    }
+    return scenarios[0];
+  });
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState({});
   const [copied, setCopied] = useState(false);
@@ -349,6 +361,14 @@ const CrashTest = () => {
       const agency = params.get('a') || params.get('agency') || '';
       if (src || cmp || agency) {
         setCampaignParams({ utm_source: src, utm_campaign: cmp, agency_code: agency });
+      }
+
+      const senaryoParam = params.get('senaryo');
+      if (senaryoParam) {
+        const matched = scenarios.find(s => s.id === senaryoParam);
+        if (matched) {
+          setSelectedScenario(matched);
+        }
       }
     } catch (e) {}
   }, [isTr]);
