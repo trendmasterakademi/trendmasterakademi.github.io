@@ -184,12 +184,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -215,6 +215,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · iade riski · Kategori: Sipariş &amp; Ödeme</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Müşteri satın alma butonuna bastıktan sonra telefonuna peş peşe iki ayrı banka çekim bildirimi düşer. Sipariş panelinde tek bir sipariş numarası görünür; müşteri kartından iki defa tahsilat yapıldığını söyleyerek bankasına harcama itirazı açar.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -237,6 +242,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> İki istek aynı oturumdan mı geldi?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> İki gönderim, aynı oturum → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Düğme kilidi + idempotency anahtarı</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Buton sadece JavaScript ile devre dışı bırakılır; fakat form klavyeden Enter tuşuyla gönderildiğinde backend kilidi olmadığı için çift çekim gerçekleşir.</p>
           </div>
         
 
@@ -246,6 +252,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Aynı olay kimliği iki kez işlenmiş mi?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Aynı olay kimliği iki kez → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Olay kimliğini kaydet · tekrarı yok say</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Ağ geçidi zaman aşımı süresi uzatılır; fakat webhook işleyicisi gelen işlem kodunu kontrol etmediği için mükerrer istekler tekrar çekim tetikler.</p>
           </div>
         
 
@@ -255,6 +262,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> İlk istek zaman aşımına mı uğradı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Zaman aşımı sonrası tekrar → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Tekrarı güvenli hâle getir · aynı anahtar</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Kullanıcı tarayıcısında geri tuşuna bastığında aynı oturum tekrar çalıştırılır; tek kullanımlık token mekanizması kurulmadığı için banka isteği yeniden onaylar.</p>
           </div>
         
       </section>

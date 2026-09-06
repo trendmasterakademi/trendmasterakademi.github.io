@@ -24,6 +24,10 @@ export default {
     "tr": "Geliştirici \"bende çalışıyor\" diyor ve haklı. Canlıda aynı kod farklı davranıyor. Bu bir yetenek sorunu değil, iki ortamın birbirinin aynısı olmamasının sonucudur.",
     "en": "The developer says 'it works on my machine' and they are correct. In production, identical code behaves differently. This is environment drift, not a developer competency flaw."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Geliştirici kendi yerel ortamında ve test sunucusunda özelliğin kusursuz çalıştığını ekran kaydıyla kanıtlar. Ancak aynı kod canlı ortama yüklendiği anda beyaz ekran, 500 hatası ya da eksik veri gösterir; taraflar arasında tartışma başlar.",
+    "en": "Developers provide screen recordings demonstrating flawless functionality on local and staging servers. Yet the moment code hits production, blank screens, 500 errors, or missing data appear, triggering finger-pointing between teams."
+  },
   "logSatirlari": [
     "Undefined env variable / configuration missing",
     "Yalnız canlıda 500, testte 200",
@@ -31,8 +35,14 @@ export default {
     "Permission denied — dosya izni veya yol hatası"
   ],
   "logEslesme": [
-    { "satir": 0, "harf": "A" },
-    { "satir": 3, "harf": "C" }
+    {
+      "satir": 0,
+      "harf": "A"
+    },
+    {
+      "satir": 3,
+      "harf": "C"
+    }
   ],
   "logNotu": {
     "tr": "Fark her zaman üç yerden birindedir: yapılandırma, sürüm, izin. Dördüncü bir yer aramak zaman kaybıdır.",
@@ -52,6 +62,10 @@ export default {
       "kanit": {
         "tr": "Canlıda eksik değişken → A",
         "en": "Missing .env in production → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Canlı sunucudaki kod dosyaları elle test sunucusuna kopyalanır; altyapıdaki PHP extension veya MySQL strict mod farkı incelenmediği için hata sürer.",
+        "en": "Manually copying script files to staging overlooks discrepancies in PHP extensions or MySQL strict mode flags between the two server runtimes."
       },
       "diyagramAd": {
         "tr": "Yapılandırma farkı",
@@ -96,6 +110,10 @@ export default {
         "tr": "Sürümler uyuşmuyor → B",
         "en": "Version mismatch in lockfile → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Eksik ortam değişkeni doğrudan kod içerisine hardcoded yazılır; ileride şifre değiştiğinde veya repo klonlandığında sistem habersizce tekrar çöker.",
+        "en": "Hardcoding missing environment variables directly into application logic fails when credentials rotate or repositories are deployed to new infrastructure."
+      },
       "diyagramAd": {
         "tr": "Sürüm farkı",
         "en": "Version mismatch"
@@ -137,6 +155,10 @@ export default {
       "kanit": {
         "tr": "Permission denied → C",
         "en": "Permission denied in production log → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Test sunucusuna on satırlık veri girilerek deneme yapılır; canlıdaki yüz binlerce satırlık tabloda sorgunun bellek sınırını aştığı fark edilemez.",
+        "en": "Validating queries on ten mock records fails to reveal that production tables with hundreds of thousands of rows exhaust PHP memory."
       },
       "diyagramAd": {
         "tr": "İzin / yol farkı",

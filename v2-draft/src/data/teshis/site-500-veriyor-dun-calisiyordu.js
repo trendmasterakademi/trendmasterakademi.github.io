@@ -24,6 +24,10 @@ export default {
     "tr": "Dün sorunsuz açılan site bugün 500 veriyor ve kimse bir şey değiştirmediğini söylüyor. \"Hiçbir şey değişmedi\" cümlesi neredeyse her zaman yanlıştır — değişen bir şey vardır, sadece kod olmayabilir.",
     "en": "A website that booted flawlessly yesterday throws 500 errors today, with team members insisting nothing changed. \"Nothing changed\" is almost always false — something mutated, just not necessarily code."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Gece veya sabah mesai başlangıcında siteye giren kullanıcılar doğrudan beyaz ekran veya 500 hatasıyla karşılaşır. Ajans geliştiricileri sisteme hiçbir yeni kod göndermediklerini söyler; site kendi kendine çökmüş gibi görünür ve panik başlar.",
+    "en": "Overnight or at morning shift start, visitors hit an immediate blank screen or 500 error. Agency developers insist no code deployments occurred; the site appears to have collapsed spontaneously, triggering widespread panic."
+  },
   "logSatirlari": [
     "PHP Fatal error / Uncaught Error        ← uygulama log'u",
     "502 Bad Gateway · upstream prematurely closed connection",
@@ -31,10 +35,22 @@ export default {
     "SQLSTATE[HY000] [2002] Connection refused"
   ],
   "logEslesme": [
-    { "satir": 0, "harf": null },
-    { "satir": 1, "harf": "B" },
-    { "satir": 2, "harf": "B" },
-    { "satir": 3, "harf": "B" }
+    {
+      "satir": 0,
+      "harf": null
+    },
+    {
+      "satir": 1,
+      "harf": "B"
+    },
+    {
+      "satir": 2,
+      "harf": "B"
+    },
+    {
+      "satir": 3,
+      "harf": "B"
+    }
   ],
   "logNotu": {
     "tr": "500 bir teşhis değil, bir kapaktır. Gerçek neden uygulama log'unda, bir alt satırdadır. Sunucu log'una bakılmadan yapılan her tahmin zaman kaybıdır.",
@@ -54,6 +70,10 @@ export default {
       "kanit": {
         "tr": "Log'da authentication failed → A",
         "en": "Authentication failed in log → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Web sunucusu peş peşe yeniden başlatılır; oysa süresi dolan API anahtarı veya veritabanı parolası yenilenmedikçe sistem ayağa kalkamaz.",
+        "en": "Repeatedly restarting web servers fails because connections remain impossible until expired API keys or database credentials are authenticated and rotated."
       },
       "diyagramAd": {
         "tr": "Kimlik süresi doldu",
@@ -95,6 +115,10 @@ export default {
         "tr": "No space left on device → B",
         "en": "No space left on device → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Sadece web sunucusunun cache klasörü silinir; oysa /var/log altındaki devasa loglar temizlenmediği için birkaç saat sonra disk yine dolar.",
+        "en": "Deleting application cache folders leaves unrotated log files in /var/log, causing the disk partition to hit 100 percent again shortly."
+      },
       "diyagramAd": {
         "tr": "Disk / bellek doldu",
         "en": "Disk / memory full"
@@ -134,6 +158,10 @@ export default {
       "kanit": {
         "tr": "Paket log'unda gece güncellemesi → C",
         "en": "Nightly auto-update in apt/yum log → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "composer update çalıştırılarak yeni sürümler çekilir; geriye dönük uyumsuz kütüphaneler eklenerek mevcut sistem çöküşü daha da içinden çıkılmaz hale gelir.",
+        "en": "Running composer update pulls breaking major dependencies, exacerbating runtime incompatibility errors instead of restoring the prior working environment."
       },
       "diyagramAd": {
         "tr": "Otomatik güncelleme",

@@ -24,6 +24,10 @@ export default {
     "tr": "Bir sorun çıktı, yedeğe dönülmek istendi ve yedeğin ya hiç alınmadığı ya da geri yüklenemediği görüldü. Yedeğin var olması ile geri yüklenebilir olması aynı şey değildir; ikincisi denenmeden bilinmez.",
     "en": "An outage occurred, a rollback to backup was requested, only to discover snapshots were never generated or are un-restorable. A backup file existing versus being restorable are entirely different; the latter is unknown until tested."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Veritabanı silindiğinde veya sunucu çöktüğünde hosting panelindeki 'Otomatik Yedekler' klasörüne güvenle girilir. Ancak dosya boyutu sıfır bayt çıkar, arşiv bozuktur veya son yedek altı ay öncesine aittir; panik içinde gerçek anlaşılır.",
+    "en": "After database corruption or a server crash, administrators confidently open automated backup archives. Only then do they discover zero-byte files, corrupt tarballs, or dumps dating back six months; panic ensues."
+  },
   "logSatirlari": [
     "Yedek klasöründeki son dosyanın tarihi   ← aylar öncesi mi?",
     "cron log: backup job — exit status 1",
@@ -31,8 +35,14 @@ export default {
     "Depolama sağlayıcısı: quota exceeded"
   ],
   "logEslesme": [
-    { "satir": 1, "harf": "A" },
-    { "satir": 3, "harf": "A" }
+    {
+      "satir": 1,
+      "harf": "A"
+    },
+    {
+      "satir": 3,
+      "harf": "A"
+    }
   ],
   "logNotu": {
     "tr": "Yedek işi çoğu zaman sessizce başarısız olur. Hata bir yere düşer ama kimse okumaz; klasörde dosya göründüğü için sorun fark edilmez.",
@@ -52,6 +62,10 @@ export default {
       "kanit": {
         "tr": "Son yedek tarihi çok eski → A",
         "en": "Latest backup date is stale → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Cron dosyasına yeni bir mysqldump komutu eklenir; ancak dump dosyası boş bir veritabanına yüklenip test edilmediğinden yedeğin çalıştığı kanıtlanamaz.",
+        "en": "Adding fresh mysqldump cron jobs proves meaningless without automated test restores into staging to verify dump integrity."
       },
       "diyagramAd": {
         "tr": "Yedek alınmıyor",
@@ -95,6 +109,10 @@ export default {
         "tr": "Yedekte veritabanı dökümü yok → B",
         "en": "Missing SQL dump in archive → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Yedekler aynı sunucunun /backup dizinine kaydedilir; fiziksel disk bozulduğunda veya sanal sunucu silindiğinde hem canlı sistem hem de yedekler yok olur.",
+        "en": "Storing dumps in local /backup directories guarantees total data loss when underlying disks fail or hypervisor instances terminate."
+      },
       "diyagramAd": {
         "tr": "Yedek eksik",
         "en": "Incomplete dump"
@@ -135,6 +153,10 @@ export default {
       "kanit": {
         "tr": "Test geri yükleme başarısız → C",
         "en": "Test sandbox restore failed → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Veritabanı tabloları kilitlenmeden canlı dump alınır; transaction tutarlılığı sağlanmadığı için dosyadan geri yüklenen veritabanı yarım tablolar yüzünden açılamaz.",
+        "en": "Taking database dumps without single-transaction flags produces fractured relational states that fail integrity checks during emergency recovery imports."
       },
       "diyagramAd": {
         "tr": "Geri yüklenemiyor",

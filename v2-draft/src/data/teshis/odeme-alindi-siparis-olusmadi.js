@@ -24,6 +24,10 @@ export default {
     "tr": "Müşterinin kartından para çekildi ama sistemde sipariş yok. Müşteri arıyor, elinizde kayıt yok. Para bankada, sipariş ortada yok — ikisinin arasında kopmuş bir bildirim var.",
     "en": "Customer was charged successfully but no order appears in the system. The client contacts support with no reference on file. Funds are in the bank, order is missing — caused by a severed webhook callback between the two."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Müşteri kredi kartı ekstresinde paranın çekildiğini ve banka onay SMS'ini görür. Ancak sitenin sepeti dolu kalır, sipariş onay ekranı gelmez ve yönetim panelinde kayıt oluşmaz. Müşteri ajansı ya da mağazayı aradığında kriz başlar.",
+    "en": "The customer sees the charge on their card statement and receives the bank confirmation SMS. However, their cart remains full, no order confirmation displays, and no record appears in admin. The crisis starts when they call support."
+  },
   "logSatirlari": [
     "Webhook adresi: 404 / 500 / zaman aşımı",
     "Ödeme sağlayıcı paneli: callback failed · retry 3/3",
@@ -31,8 +35,14 @@ export default {
     "HTTP 302 — bildirim yönlendirmeyi takip etmiyor"
   ],
   "logEslesme": [
-    { "satir": 1, "harf": "A" },
-    { "satir": 3, "harf": "A" }
+    {
+      "satir": 1,
+      "harf": "A"
+    },
+    {
+      "satir": 3,
+      "harf": "A"
+    }
   ],
   "logNotu": {
     "tr": "Ödeme sağlayıcısının panelinde her bildirim denemesinin kaydı vardır. Cevabı orada aramak kodda aramaktan hızlıdır: sağlayıcı size kaç kez denediğini ve ne cevap aldığını söyler.",
@@ -52,6 +62,10 @@ export default {
       "kanit": {
         "tr": "Sağlayıcı panelinde 404 / zaman aşımı → A",
         "en": "404 or timeout in gateway panel → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Müşteriden siparişi tekrar girmesi istenir; fakat banka provizyonu ile sistem eşleşmediği için muhasebe tarafında çözümsüz açık bakiye oluşur.",
+        "en": "Asking the customer to reorder fails because mismatched bank authorizations create unresolved reconciliation discrepancies in accounting."
       },
       "diyagramAd": {
         "tr": "Bildirim ulaşmadı",
@@ -94,6 +108,10 @@ export default {
         "tr": "Log'da 500 + tekrar denemeler → B",
         "en": "HTTP 500 + retry loop in logs → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Webhook adresine gelen hata logunu gizlemek için boş 200 dönülür; bu durum sağlayıcının yeniden denemesini durdurur ve sipariş tamamen kaybolur.",
+        "en": "Returning an empty 200 OK to swallow webhook errors halts provider retries, causing the missing order to vanish permanently."
+      },
       "diyagramAd": {
         "tr": "İşlenemedi",
         "en": "Handler crashed"
@@ -134,6 +152,10 @@ export default {
       "kanit": {
         "tr": "200 dönmüş ama kayıt yok → C",
         "en": "HTTP 200 returned but no row → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Veritabanı yeniden başlatılarak kilitler zorla kaldırılır; ancak askıda kalan transaction geri alınmadığı için bekleyen ödemeli sepetler veritabanına yazılamaz.",
+        "en": "Restarting the database forcibly clears locks, but uncommitted suspended transactions prevent pending paid carts from ever being written."
       },
       "diyagramAd": {
         "tr": "Kaydedilmedi",

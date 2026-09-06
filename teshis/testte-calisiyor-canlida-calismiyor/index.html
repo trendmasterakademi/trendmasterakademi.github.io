@@ -200,12 +200,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -231,6 +231,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Yüksek · teslim engeli · Kategori: Devir &amp; Süreklilik</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Geliştirici kendi yerel ortamında ve test sunucusunda özelliğin kusursuz çalıştığını ekran kaydıyla kanıtlar. Ancak aynı kod canlı ortama yüklendiği anda beyaz ekran, 500 hatası ya da eksik veri gösterir; taraflar arasında tartışma başlar.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -253,6 +258,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Canlıda eksik ortam değişkeni var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Canlıda eksik değişken → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Değişken listesini eşitle + örnek dosya tut</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Canlı sunucudaki kod dosyaları elle test sunucusuna kopyalanır; altyapıdaki PHP extension veya MySQL strict mod farkı incelenmediği için hata sürer.</p>
           </div>
         
 
@@ -262,6 +268,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Kilit dosyası var ve sürümler aynı mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Sürümler uyuşmuyor → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Sürümleri sabitle · kilit dosyası</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Eksik ortam değişkeni doğrudan kod içerisine hardcoded yazılır; ileride şifre değiştiğinde veya repo klonlandığında sistem habersizce tekrar çöker.</p>
           </div>
         
 
@@ -271,6 +278,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Log'da izin ya da yol hatası var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Permission denied → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> İzinleri ve yolu ortamdan oku</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Test sunucusuna on satırlık veri girilerek deneme yapılır; canlıdaki yüz binlerce satırlık tabloda sorgunun bellek sınırını aştığı fark edilemez.</p>
           </div>
         
       </section>

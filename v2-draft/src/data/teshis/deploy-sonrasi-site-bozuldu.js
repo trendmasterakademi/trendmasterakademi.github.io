@@ -24,6 +24,10 @@ export default {
     "tr": "Yayın alındı ve site bozuldu. Geri almak isteniyor ama nasıl geri alınacağı belli değil. Asıl sorun bozulmanın kendisi değil, geri dönüşün planlanmamış olmasıdır.",
     "en": "A new release went live and the site broke. The team wants to rollback but has no documented rollback plan. The critical failure is not the bug itself, but the lack of an atomic rollback mechanism."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Yalnızca tek bir butonun rengi veya metni değiştirilip canlıya alınmıştır. Fakat yayın bittiğinde sepet düğmesi kaybolur, CSS tasarımı darmadağın olur veya ana sayfa hiç açılmaz. Ajans apar topar eski sürüme dönmeye çalışır.",
+    "en": "A release intended only to tweak a button label or style goes live. Instantly, checkout buttons disappear, CSS styling collapses, or the homepage fails entirely. The agency scrambles in panic to execute an emergency rollback."
+  },
   "logSatirlari": [
     "Yayın kaydı: hangi sürüm, ne zaman, kim tarafından?",
     "Yeni hata mesajları yayın saatinde mi başlıyor?",
@@ -48,6 +52,10 @@ export default {
       "kanit": {
         "tr": "Log'da dosya veya modül bulunamadı → A",
         "en": "Class / file not found in logs → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Müşteriye tarayıcı önbelleğini temizlemesi söylenir; oysa sunucuda derlenmemiş dist dosyaları eksik kaldığı için yeni varlıklar hiçbir kullanıcıya yüklenemez.",
+        "en": "Asking clients to clear browser cache fails because missing compiled dist asset bundles on the server prevent stylesheets from loading universally."
       },
       "diyagramAd": {
         "tr": "Eksik dosya",
@@ -90,6 +98,10 @@ export default {
         "tr": "Zorla yenilemede düzeliyor → B",
         "en": "Hard refresh resolves visual glitch → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Eski kod sürümüne alelacele geri dönülür; oysa yarım kalmış migration şeması geride kaldığı için sistem her iki sürümde de hata verir.",
+        "en": "Rushing a code rollback leaves half-migrated database schema alterations behind, causing fatal SQL exceptions on both current and legacy builds."
+      },
       "diyagramAd": {
         "tr": "Önbellek eskisi",
         "en": "Stale cache"
@@ -130,6 +142,10 @@ export default {
       "kanit": {
         "tr": "Kolon veya tablo hatası var → C",
         "en": "Column not found SQL errors → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Eski .env.backup dosyası canlının üzerine kopyalanır; bu işlem yeni özelliğin ihtiyaç duyduğu konfigürasyon anahtarını tamamen siler ve sistemi kilitler.",
+        "en": "Overwriting production .env with a legacy backup deletes configuration keys required by newly deployed features, compounding the failure."
       },
       "diyagramAd": {
         "tr": "Şema uyuşmazlığı",

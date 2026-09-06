@@ -24,6 +24,10 @@ export default {
     "tr": "Müşteriden aynı tutar iki kez tahsil edildi. İade yapmak zorundasınız ama önce hangi katmanda çiftlendiğini bulmalısınız — yanlış katmanı düzeltmek sorunu geri getirir.",
     "en": "The client was billed twice for the same cart. A refund is mandatory, but isolating which tier duplicated the transaction is critical — patching the wrong layer allows duplicates to persist."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Müşteri satın alma butonuna bastıktan sonra telefonuna peş peşe iki ayrı banka çekim bildirimi düşer. Sipariş panelinde tek bir sipariş numarası görünür; müşteri kartından iki defa tahsilat yapıldığını söyleyerek bankasına harcama itirazı açar.",
+    "en": "Moments after clicking purchase, the customer receives two consecutive bank deduction alerts. Only one order number appears in the dashboard; the customer reports double billing and files a chargeback with their bank."
+  },
   "logSatirlari": [
     "Aynı ödeme referansıyla iki başarılı işlem",
     "Bildirim log'u: aynı olay kimliği iki kez işlenmiş",
@@ -48,6 +52,10 @@ export default {
       "kanit": {
         "tr": "İki gönderim, aynı oturum → A",
         "en": "Two posts, same session → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Buton sadece JavaScript ile devre dışı bırakılır; fakat form klavyeden Enter tuşuyla gönderildiğinde backend kilidi olmadığı için çift çekim gerçekleşir.",
+        "en": "Disabling the button via JavaScript alone fails because submitting via the Enter key bypasses frontend guards without backend idempotency."
       },
       "diyagramAd": {
         "tr": "Çift gönderim",
@@ -92,6 +100,10 @@ export default {
         "tr": "Aynı olay kimliği iki kez → B",
         "en": "Same event ID processed twice → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Ağ geçidi zaman aşımı süresi uzatılır; fakat webhook işleyicisi gelen işlem kodunu kontrol etmediği için mükerrer istekler tekrar çekim tetikler.",
+        "en": "Increasing gateway timeout thresholds fails because the webhook handler still processes duplicate payloads without checking transaction references."
+      },
       "diyagramAd": {
         "tr": "Bildirim tekrarı",
         "en": "Webhook replay"
@@ -134,6 +146,10 @@ export default {
       "kanit": {
         "tr": "Zaman aşımı sonrası tekrar → C",
         "en": "Retry after timeout → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Kullanıcı tarayıcısında geri tuşuna bastığında aynı oturum tekrar çalıştırılır; tek kullanımlık token mekanizması kurulmadığı için banka isteği yeniden onaylar.",
+        "en": "When users press the browser back button, the session executes again; lacking single-use verification tokens allows the bank to reauthorize."
       },
       "diyagramAd": {
         "tr": "Yeniden deneme",

@@ -24,6 +24,10 @@ export default {
     "tr": "Aylardır çalışan bir entegrasyon — kargo, pazaryeri, ödeme ya da e-posta — birden hata vermeye başladı ve kod değişmedi. Karşı taraf artık isteklerinizi reddediyor; sorun sizde değil, sizin hızınızda olabilir.",
     "en": "An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429. The remote host is throttling your traffic due to volumetric burst limits."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Pazaryeri, kargo veya SMS servisiyle haberleşen e-ticaret modülü aniden durur. Siparişler kargoya iletilemez, yönetim panelinde 'Servis yanıt vermiyor' uyarısı çıkar. Entegratör firma aranır, onlar ise 'Dakikalık istek kotanızı aştınız' yanıtını verir.",
+    "en": "E-commerce modules communicating with marketplaces, couriers, or SMS providers halt abruptly. Orders fail to sync, admin dashboards warn 'Service unreachable', and the integration partner claims minute request quotas were exceeded."
+  },
   "logSatirlari": [
     "HTTP 429 Too Many Requests",
     "Retry-After: 60",
@@ -48,6 +52,10 @@ export default {
       "kanit": {
         "tr": "İstek sayısı zamanla artmış → A",
         "en": "Request rate climbed over time → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "İstekler arasına kısa sleep() komutları eklenir; kuyrukta bekleyen siparişler arttıkça cron her çalıştığında dakikalık kota yine dakikalar içinde aşılır.",
+        "en": "Adding naive sleep() calls between requests fails because accumulated queue backlogs inevitably blow through rate limits on subsequent cron runs."
       },
       "diyagramAd": {
         "tr": "Hacim büyüdü",
@@ -88,6 +96,10 @@ export default {
       "kanit": {
         "tr": "Aynı istek çok kısa aralıkla tekrarlıyor → B",
         "en": "Rapid repeated requests in log → B"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Cron sıklığı on dakikaya çıkarılır; bu kez müşteriye takip numarası saatlerce gecikir ancak API limiti ilk toplu işlemde tekrar patlar.",
+        "en": "Reducing cron frequency to ten minutes delays tracking numbers for hours while still exhausting API quotas during bulk sync spikes."
       },
       "diyagramAd": {
         "tr": "Döngüsel tekrar",
@@ -130,6 +142,10 @@ export default {
       "kanit": {
         "tr": "Limit başlığındaki değer düşmüş → C",
         "en": "X-RateLimit cap dropped in headers → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Canlı API anahtarı test ortamına da kopyalanır; test ekibinin çalıştırdığı otomatik scriptler canlı sistemin saatlik kotasını dakikalar içinde tamamen tüketir.",
+        "en": "Copying production API credentials to staging backfires when automated QA scripts exhaust the organization's hourly quota within minutes."
       },
       "diyagramAd": {
         "tr": "Limit değişti",

@@ -24,14 +24,24 @@ export default {
     "tr": "Son kalan ürün iki ayrı siparişte çıktı, stok eksiye düştü. Birine iade yapmak zorundasınız. Bu belirtinin üç farklı nedeni var ve üçünün çözümü birbirinden tamamen ayrı — yanlış olanı düzeltmek sorunu geri getirir.",
     "en": "The last item in stock was checked out across two different orders, sending inventory negative. One customer requires a refund. This symptom stems from three distinct root causes, each demanding a completely different fix — addressing the wrong one will cause the defect to recur."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Genellikle flaş indirimde veya e-posta bülteni gönderildiği anda ortaya çıkar. Son kalan tek ürün için aynı saniyede iki ayrı sipariş onaylanır. Stok panelde eksi bire düşer; durumu ilk fark eden, siparişi iptal edilen öfkeli müşteri olur.",
+    "en": "Usually appears during flash sales or immediately after an email campaign drops. Two separate orders for the final single unit are confirmed in the exact same second. Inventory drops to negative one; the first to notice is the customer whose order gets canceled."
+  },
   "logSatirlari": [
     "SQLSTATE[40001]: Serialization failure: 1213 Deadlock found",
     "Duplicate entry '...' for key 'orders_reference_unique'",
     "UPDATE products SET stock = stock - 1  ← kontrol ve yazma ayrı"
   ],
   "logEslesme": [
-    { "satir": 0, "harf": "A" },
-    { "satir": 1, "harf": "B" }
+    {
+      "satir": 0,
+      "harf": "A"
+    },
+    {
+      "satir": 1,
+      "harf": "B"
+    }
   ],
   "logNotu": {
     "tr": "Bu satırlardan hangisinin göründüğü, hangi nedenle karşı karşıya olduğunuzu daha ilk bakışta daraltır.",
@@ -51,6 +61,10 @@ export default {
       "kanit": {
         "tr": "created_at farkı < 1sn → A",
         "en": "created_at diff < 1s → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Kod tarafına if (stok > 0) kontrolü eklenir; oysa paralel iki istek kontrolü aynı milisaniyede geçtiği için stok yine eksiye düşer.",
+        "en": "Adding an if (stock > 0) check in application code fails because concurrent requests pass the check in the same millisecond."
       },
       "diyagramAd": {
         "tr": "Race condition",
@@ -95,6 +109,10 @@ export default {
         "tr": "payment_reference aynı → B",
         "en": "payment_reference same → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Webhook isteğine hemen yanıt verilmez; ödeme ağ geçidi isteği zaman aşımı sanıp tekrar gönderdiğinde sipariş kaydı mükerrer işlenir.",
+        "en": "Failing to acknowledge the webhook promptly causes the payment gateway to retry after timing out, triggering duplicate order processing."
+      },
       "diyagramAd": {
         "tr": "Idempotency yok",
         "en": "No idempotency"
@@ -137,6 +155,10 @@ export default {
       "kanit": {
         "tr": "Senkron satıştan eski → C",
         "en": "Sync older than sale → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Entegrasyon cron sıklığı beş dakikadan bir dakikaya indirilir; fakat API yanıt süresi uzadığında kuyruk birikir ve çakışma engellenemez.",
+        "en": "Reducing cron intervals from five minutes to one minute fails because slow API responses cause queue congestion and unhandled conflicts."
       },
       "diyagramAd": {
         "tr": "Stok senkronu",

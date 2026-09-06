@@ -184,12 +184,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -215,6 +215,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · yayın hatası · Kategori: Canlı Arıza</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Yalnızca tek bir butonun rengi veya metni değiştirilip canlıya alınmıştır. Fakat yayın bittiğinde sepet düğmesi kaybolur, CSS tasarımı darmadağın olur veya ana sayfa hiç açılmaz. Ajans apar topar eski sürüme dönmeye çalışır.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -237,6 +242,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Log'da bulunamadı hatası var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Log'da dosya veya modül bulunamadı → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Paketi tam yayınla · geri alma hazır</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Müşteriye tarayıcı önbelleğini temizlemesi söylenir; oysa sunucuda derlenmemiş dist dosyaları eksik kaldığı için yeni varlıklar hiçbir kullanıcıya yüklenemez.</p>
           </div>
         
 
@@ -246,6 +252,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Zorla yenilemede düzeliyor mu?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Zorla yenilemede düzeliyor → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Sürümlü dosya adı + önbellek temizle</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Eski kod sürümüne alelacele geri dönülür; oysa yarım kalmış migration şeması geride kaldığı için sistem her iki sürümde de hata verir.</p>
           </div>
         
 
@@ -255,6 +262,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Kolon veya tablo hatası var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Kolon veya tablo hatası var → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Kod ve göçü birlikte geri al</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Eski .env.backup dosyası canlının üzerine kopyalanır; bu işlem yeni özelliğin ihtiyaç duyduğu konfigürasyon anahtarını tamamen siler ve sistemi kilitler.</p>
           </div>
         
       </section>

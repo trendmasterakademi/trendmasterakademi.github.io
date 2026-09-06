@@ -184,12 +184,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -215,6 +215,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Yüksek · dönüşüm kaybı · Kategori: Performans</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Siteye giren kullanıcılar sayfaların on beş saniyede açıldığını ya da zaman aşımına uğradığını söyler. Ajans sunucu paneline (htop/top) baktığında işlemci ve bellek kullanımının yüzde beşi geçmediğini, sunucunun adeta uyuduğunu görür; donmanın kaynağı belirsizdir.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -237,6 +242,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Aynı sorgu sayfa başına defalarca mı tekrarlıyor?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Aynı sorgu defalarca tekrarlıyor → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> İlişkileri toplu çek · saatler içinde biter</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Sunucu paketi yükseltilerek CPU ve RAM artırılır; fakat indekssiz tek bir SELECT sorgusu tabloyu kilitlediğinden kaynak artışı yavaşlığı çözmez.</p>
           </div>
         
 
@@ -246,6 +252,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Yavaş sorgu tüm tabloyu mu tarıyor?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Yavaş sorgu tüm tabloyu tarıyor → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Dizin ekle · etki anında</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> PHP yapılandırmasında max_execution_time süresi artırılır; bu işlem yanıt vermeyen kargo veya SMS servisinin tüm PHP-FPM havuzunu tıkamasına yol açar.</p>
           </div>
         
 
@@ -255,6 +262,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Yavaşlık harici çağrıda mı yoğunlaşıyor?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Yavaşlık harici çağrıda yoğunlaşıyor → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Önbellek + zaman aşımı + arka plana al</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Veritabanı max_connections değeri limitsiz yükseltilir; MySQL bellek baskısı altında swap yapmaya başlar ve sunucu işletim sistemi seviyesinde kilitlenir.</p>
           </div>
         
       </section>

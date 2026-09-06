@@ -208,12 +208,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -239,6 +239,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · site kapalı · Kategori: Canlı Arıza</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Gece veya sabah mesai başlangıcında siteye giren kullanıcılar doğrudan beyaz ekran veya 500 hatasıyla karşılaşır. Ajans geliştiricileri sisteme hiçbir yeni kod göndermediklerini söyler; site kendi kendine çökmüş gibi görünür ve panik başlar.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -261,6 +266,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Log'da 401 / auth hatası var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Log'da authentication failed → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Anahtar yenileme · dakikalar</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Web sunucusu peş peşe yeniden başlatılır; oysa süresi dolan API anahtarı veya veritabanı parolası yenilenmedikçe sistem ayağa kalkamaz.</p>
           </div>
         
 
@@ -270,6 +276,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> df -h çıktısında %100 var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> No space left on device → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Temizlik + log rotasyonu</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Sadece web sunucusunun cache klasörü silinir; oysa /var/log altındaki devasa loglar temizlenmediği için birkaç saat sonra disk yine dolar.</p>
           </div>
         
 
@@ -279,6 +286,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Sistem log'unda dün gece update var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Paket log'unda gece güncellemesi → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Sürüm sabitleme + geri alma</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> composer update çalıştırılarak yeni sürümler çekilir; geriye dönük uyumsuz kütüphaneler eklenerek mevcut sistem çöküşü daha da içinden çıkılmaz hale gelir.</p>
           </div>
         
       </section>

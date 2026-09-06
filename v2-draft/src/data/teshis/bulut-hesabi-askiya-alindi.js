@@ -24,6 +24,10 @@ export default {
     "tr": "Site aniden tamamen erişilemez oldu. Kod değişmedi, deploy yapılmadı, kimse bir şeye dokunmadı. Bu tablonun nedeni çoğu zaman kodda değildir — ve doğru yere bakmadan geçen her saat veri kaybı riskini büyütür.",
     "en": "The application became completely unreachable out of nowhere. No code changes, no deployments, no manual changes. The root cause is almost never within code — and every hour spent looking in the wrong place increases catastrophic data loss risk."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Pazartesi sabahı AWS, Google Cloud veya DigitalOcean paneline giriş yapılamaz; canlı sunucular, veritabanları ve kurumsal e-postalar durmuştur. Konsolda kırmızı renkte 'Account Suspended' uyarısı görünür. Şirketin tüm dijital operasyonu tek anda felç olur.",
+    "en": "On a Monday morning, logins to AWS, Google Cloud, or DigitalOcean fail; live instances, databases, and company emails are down. The dashboard displays a red 'Account Suspended' banner. The entire digital operation is paralyzed at once."
+  },
   "logSatirlari": [
     "403 Forbidden  /  sağlayıcının bakım veya askı sayfası",
     "E-posta kutusu: 'Payment failed' · 'Final notice' · 'Account suspended'",
@@ -47,6 +51,10 @@ export default {
       "kanit": {
         "tr": "Kutuda 'suspended' maili var → A",
         "en": "Suspension email in inbox → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Kart limiti apar topar artırılıp beklenir; ancak sağlayıcıya manuel ödeme bildirimi yapılmadığı için askı durumu saatlerce devam eder.",
+        "en": "Increasing card limits without manually triggering repayment in the billing console leaves account suspensions active for hours."
       },
       "diyagramAd": {
         "tr": "Ödeme / askı",
@@ -91,6 +99,10 @@ export default {
         "tr": "Panelde kullanım %100 → B",
         "en": "Dashboard usage 100% → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Destek bileti açılarak faturaya itiraz edilir; fakat sızan anahtar silinip yetkiler iptal edilmediği sürece güvenlik ekibi hesabı kesinlikle açmaz.",
+        "en": "Disputing charges via support tickets stalls indefinitely because cloud security teams refuse reinstatement until compromised keys and malicious instances are removed."
+      },
       "diyagramAd": {
         "tr": "Kota kilidi",
         "en": "Quota lock"
@@ -133,6 +145,10 @@ export default {
       "kanit": {
         "tr": "abuse bildirimi var → C",
         "en": "Abuse report in inbox → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Muhasebe departmanına yeni bildirim maili tanımlanır; ancak eski faturalar ödenip sağlayıcı onayı alınmadığı için dondurulan hizmetler aktifleşmez.",
+        "en": "Updating billing recipient emails fails to restore service until outstanding invoices are settled and reviewed by cloud risk teams."
       },
       "diyagramAd": {
         "tr": "Abuse kapatması",

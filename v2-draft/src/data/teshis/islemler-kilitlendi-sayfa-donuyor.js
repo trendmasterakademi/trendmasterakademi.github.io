@@ -24,6 +24,10 @@ export default {
     "tr": "Belirli bir işlem — sipariş onayı, stok güncelleme, toplu güncelleme — sonsuza kadar dönüyor ve sonunda zaman aşımı veriyor. Sistem çökmedi; birbirini bekleyen iki işlem var.",
     "en": "Specific operations — checkout completion, stock updates, or batch imports — hang indefinitely until timeout. The server has not crashed; concurrent transactions are locked waiting for each other."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Kullanıcılar formu gönderdiklerinde veya sepet adımına geçtiklerinde tarayıcı sekmesindeki yükleniyor ikonu dakikalarca döner. Sayfa hiçbir hata mesajı vermeden beyaz kalır; aynı anda yeni gelen ziyaretçiler de ana sayfaya dahi bağlanamaz hale gelir.",
+    "en": "When users submit forms or proceed to checkout, the browser tab spinner spins indefinitely. The page hangs white without showing errors; simultaneously, incoming visitors cannot even connect to the homepage."
+  },
   "logSatirlari": [
     "Deadlock found when trying to get lock; try restarting transaction",
     "Lock wait timeout exceeded; try restarting transaction",
@@ -31,9 +35,18 @@ export default {
     "Uygulama log'u: aynı saniyede iki toplu güncelleme"
   ],
   "logEslesme": [
-    { "satir": 0, "harf": "A" },
-    { "satir": 1, "harf": "B" },
-    { "satir": 2, "harf": "B" }
+    {
+      "satir": 0,
+      "harf": "A"
+    },
+    {
+      "satir": 1,
+      "harf": "B"
+    },
+    {
+      "satir": 2,
+      "harf": "B"
+    }
   ],
   "logNotu": {
     "tr": "'try restarting transaction' ifadesi veritabanının kendi teşhisidir. Bu satır göründüğünde neden tahmin edilmez, bilinir.",
@@ -53,6 +66,10 @@ export default {
       "kanit": {
         "tr": "Log'da deadlock kaydı var → A",
         "en": "Deadlock found in database log → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Veritabanı servisi yeniden başlatılarak kilitler sıfırlanır; fakat aynı SQL transaction sırası ilk yoğun istek grubunda tabloları karşılıklı tekrar kilitler.",
+        "en": "Restarting the database service resets locks, but identical SQL transaction sequencing promptly deadlocks the tables under the next traffic burst."
       },
       "diyagramAd": {
         "tr": "Ters sıralı kilit",
@@ -95,6 +112,10 @@ export default {
         "tr": "Açık işlem dakikalarca sürüyor → B",
         "en": "Idle in transaction > 60s → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Raporlama sorgusu gece yarısına ertelenir; ancak veri tablosu büyüdükçe işlem sabah saatlerine sarkar ve canlı sipariş girişlerini tamamen dondurur.",
+        "en": "Moving reporting queries to midnight fails over time as growing data sets spill into morning hours, freezing live transactional operations."
+      },
       "diyagramAd": {
         "tr": "Uzun işlem",
         "en": "Long transaction"
@@ -135,6 +156,10 @@ export default {
       "kanit": {
         "tr": "Kilitlenme toplu görevle çakışıyor → C",
         "en": "Deadlock coincides with cron batch → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Worker sayısı iki katına çıkarılır; fakat arka uçtaki veritabanı darboğazı çözülmediğinden yeni açılan tüm süreçler saniyeler içinde kilitlenerek tükenir.",
+        "en": "Doubling worker pool limits fails because unaddressed database bottlenecks cause all newly spawned processes to lock and saturate within seconds."
       },
       "diyagramAd": {
         "tr": "Toplu güncelleme",

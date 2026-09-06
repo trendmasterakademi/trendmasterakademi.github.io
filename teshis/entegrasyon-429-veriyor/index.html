@@ -184,12 +184,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -215,6 +215,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Yüksek · veri akışı durdu · Kategori: İletişim &amp; Entegrasyon</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Pazaryeri, kargo veya SMS servisiyle haberleşen e-ticaret modülü aniden durur. Siparişler kargoya iletilemez, yönetim panelinde 'Servis yanıt vermiyor' uyarısı çıkar. Entegratör firma aranır, onlar ise 'Dakikalık istek kotanızı aştınız' yanıtını verir.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -237,6 +242,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> İstek sayısı son aylarda arttı mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> İstek sayısı zamanla artmış → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Toplu istek + paket yükseltme</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> İstekler arasına kısa sleep() komutları eklenir; kuyrukta bekleyen siparişler arttıkça cron her çalıştığında dakikalık kota yine dakikalar içinde aşılır.</p>
           </div>
         
 
@@ -246,6 +252,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Aynı istek çok kısa aralıkla mı tekrarlıyor?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Aynı istek çok kısa aralıkla tekrarlıyor → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Artan bekleme süresi ekle</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Cron sıklığı on dakikaya çıkarılır; bu kez müşteriye takip numarası saatlerce gecikir ancak API limiti ilk toplu işlemde tekrar patlar.</p>
           </div>
         
 
@@ -255,6 +262,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Limit başlığındaki değer düştü mü?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Limit başlığındaki değer düşmüş → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Sağlayıcıyla plan görüşmesi</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Canlı API anahtarı test ortamına da kopyalanır; test ekibinin çalıştırdığı otomatik scriptler canlı sistemin saatlik kotasını dakikalar içinde tamamen tüketir.</p>
           </div>
         
       </section>

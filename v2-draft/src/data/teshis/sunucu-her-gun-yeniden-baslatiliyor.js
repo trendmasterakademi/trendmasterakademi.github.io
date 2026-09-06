@@ -24,6 +24,10 @@ export default {
     "tr": "Site günün belirli saatinde yavaşlıyor veya kilitleniyor, sunucu yeniden başlatılınca düzeliyor. Bu bir çözüm değil, arızanın günlük olarak süpürülmesidir — ve her gün biraz erkene kayar.",
     "en": "The application slows down or freezes predictably every afternoon; rebooting restores normal function. Daily reboots are not a solution but a temporary band-aid — with degradation creeping earlier every day."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Sistem her gün aynı saatlerde ağırlaşır ve crontab'a eklenen gece yeniden başlatma komutuyla ayakta tutulmaya çalışılır. Müşteri sabahları sitenin iyi çalıştığını, akşamüstü ise ödeme adımlarının yavaşladığını fark eder; arıza rutinleşmiş ama çözülememiştir.",
+    "en": "The system bogs down daily at similar hours and relies on a nightly cron reboot to stay alive. Customers notice snappy mornings but sluggish checkout afternoons; the failure has become routine yet remains unresolved."
+  },
   "logSatirlari": [
     "Out of memory: Killed process",
     "Bellek kullanımı zamanla artıyor, hiç düşmüyor",
@@ -48,6 +52,10 @@ export default {
       "kanit": {
         "tr": "Bellek hiç düşmüyor → A",
         "en": "RAM usage never drops → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Crontab üzerindeki reboot sıklığı günde ikiye çıkarılır; ancak sızıntı yapan kod döngüsü düzeltilmediği için yoğun trafik saatlerinde ani çökmeler sürer.",
+        "en": "Scheduling twice-daily reboots fails because leaky code cycles continue exhausting RAM during sudden mid-day traffic surges."
       },
       "diyagramAd": {
         "tr": "Bellek sızıntısı",
@@ -89,6 +97,10 @@ export default {
         "tr": "Tepe belirli bir işlemde oluşuyor → B",
         "en": "Crash coincides with heavy report → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Manuel olarak rm -rf ile geçici dosyalar temizlenir; logrotate servisi kurulmadığı için biriken gigabaytlarca hata kaydı diski ertesi gün yine doldurur.",
+        "en": "Manually purging temp directories with rm -rf fails because missing logrotate configurations allow multi-gigabyte log dumps to exhaust disk space again."
+      },
       "diyagramAd": {
         "tr": "Büyük veri yükü",
         "en": "Heavy data load"
@@ -129,6 +141,10 @@ export default {
       "kanit": {
         "tr": "Kullanım sabit yüksek, artmıyor → C",
         "en": "Stable high load proportional to traffic → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "killall -9 komutuyla süreçler topluca öldürülür; asılı kalan işlemlerin neden kopmadığı analiz edilmediği için veritabanı soketleri yarım kalıp sistemi tıkar.",
+        "en": "Indiscriminately terminating tasks with killall -9 leaves orphaned database sockets hanging, locking connection pools on the very next cycle."
       },
       "diyagramAd": {
         "tr": "Kaynak yetersiz",

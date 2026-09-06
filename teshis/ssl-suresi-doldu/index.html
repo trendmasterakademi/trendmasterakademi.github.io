@@ -216,12 +216,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -247,6 +247,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · güven kaybı · Kategori: Altyapı &amp; Erişim</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Sabah saatlerinde siteye giren müşteriler tarayıcıda 'Bağlantınız Gizli Değil' kırmızı ekran uyarısıyla karşılaşır. Güvenlik uyarısını gören kullanıcılar kredi kartı bilgilerini girmekten vazgeçip sepeti anında terk eder; destek masasına 'Siteniz hacklendi mi?' şikayetleri yağmaya başlar.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -269,6 +274,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Yenileme görevi çalışıyor mu?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Yenileme log'unda hata → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Görev onarımı + süre bildirimi</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Web sunucusuna yeni bir sertifika yüklenip bırakılır; sunucu servisi yeniden başlatılmadığı için aktif bağlantılar eski süresi geçmiş sertifikayı sunmayı sürdürür.</p>
           </div>
         
 
@@ -278,6 +284,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Hata kodu CN / alan adı hatası mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> COMMON_NAME hatası → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Sertifikayı alt alan adlarıyla yeniden al</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Certbot komutu elle çalıştırılır; yenileme cron tablosu veya webroot erişim yetkisi düzeltilmediği için sertifika üç ay sonra sessizce tekrar süresi dolar.</p>
           </div>
         
 
@@ -287,6 +294,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Bazı cihazlarda çalışıp bazılarında çalışmıyor mu?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> unable to get local issuer → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Ara sertifikayı zincire ekle</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> DNS A kaydı doğrudan sunucuya çevrilir; aradaki proxy veya CDN önbelleği temizlenmediği için tarayıcılar eski süresi dolmuş sertifikayı görmeye devam eder.</p>
           </div>
         
       </section>

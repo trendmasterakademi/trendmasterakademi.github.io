@@ -208,12 +208,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -239,6 +239,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Yüksek · kayıp talep · Kategori: İletişim &amp; Entegrasyon</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Ziyaretçi web sitesindeki teklif formunu doldurup gönderir; ekranda yeşil 'Mesajınız başarıyla iletildi' bildirimi çıkar. Ancak firmanın gelen kutusuna hiçbir e-posta düşmez. Arıza sessizce sürer; kaç müşterinin kaybedildiği ancak haftalar sonra anlaşılır.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -261,6 +266,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Log'da 535 auth hatası var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> SMTP 535 hatası → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Uygulama şifresi + ayar güncelleme</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> PHP yerel mail() fonksiyonuna dönülür; kimlik doğrulamasız gönderilen e-postalar alıcı sunucuların güvenlik duvarları tarafından sessizce karantinaya atılır.</p>
           </div>
         
 
@@ -270,6 +276,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> DNS'te SPF ve DKIM kaydı var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> 550 SPF/DKIM reddi → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> DNS kayıtlarını ekle · teslimat düzelir</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Formdaki gönderici alanına müşterinin e-posta adresi yazılır; alan adı SPF kaydı uyuşmadığı için alıcı sunucunun DMARC kuralı postayı tamamen reddeder.</p>
           </div>
         
 
@@ -279,6 +286,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Ağ sekmesinde gönderim isteği başarılı mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Ağ sekmesinde 4xx/5xx → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Gerçek yanıtı kontrol et · hata göster</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Sunucu loglarına bakılmadan frontend tarafındaki JavaScript kodu düzenlenir; API arka planda 500 dönmeye devam ettiği halde ekranda yeşil bildirim gösterilir.</p>
           </div>
         
       </section>

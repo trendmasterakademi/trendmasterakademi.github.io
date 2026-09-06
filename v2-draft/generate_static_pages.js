@@ -960,13 +960,16 @@ const teshisPages = teshisData.map(item => {
     ? item.nedenler.map(n => {
         const testStr = Array.isArray(n.diyagramTest?.tr) ? n.diyagramTest.tr.join(' ') : (n.diyagramTest?.tr || '');
         const cozumStr = Array.isArray(n.diyagramCozum?.tr) ? n.diyagramCozum.tr.join(' ') : (n.diyagramCozum?.tr || '');
+        const yanlisDuzeltmeHtml = n.yanlisDuzeltme?.tr
+          ? `\n            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> ${escapeHtml(n.yanlisDuzeltme.tr)}</p>`
+          : '';
         return `
           <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
             <h3 class="text-lg font-bold text-cyan-300">${escapeHtml(n.harf)} · ${escapeHtml(n.ad?.tr || '')}</h3>
             <p class="text-slate-300 leading-relaxed">${escapeHtml(n.aciklama?.tr || '')}</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> ${escapeHtml(testStr)}</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> ${escapeHtml(n.kanit?.tr || '')}</p>
-            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> ${escapeHtml(cozumStr)}</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> ${escapeHtml(cozumStr)}</p>${yanlisDuzeltmeHtml}
           </div>
         `;
       }).join('\n')
@@ -988,10 +991,19 @@ const teshisPages = teshisData.map(item => {
     ? `<p class="pt-2"><a href="${escapeHtml(item.ilgiliHizmet.link)}" class="text-cyan-400 hover:underline font-bold">→ ${escapeHtml(item.ilgiliHizmet.baslik?.tr || '')}</a></p>`
     : '';
 
+  const sahadaHtml = item.sahadaNasilGorunur?.tr
+    ? `
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">${escapeHtml(item.sahadaNasilGorunur.tr)}</p>
+      </section>
+    `
+    : '';
+
   const extraContent = `
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: ${escapeHtml(item.aciliyet?.etiket?.tr || '')} · Kategori: ${escapeHtml(item.kirinti?.tr || '')}</p>
-
+${sahadaHtml}
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         ${logRowsHtml}

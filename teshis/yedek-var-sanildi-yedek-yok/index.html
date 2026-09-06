@@ -200,12 +200,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -231,6 +231,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · veri riski · Kategori: Devir &amp; Süreklilik</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Veritabanı silindiğinde veya sunucu çöktüğünde hosting panelindeki 'Otomatik Yedekler' klasörüne güvenle girilir. Ancak dosya boyutu sıfır bayt çıkar, arşiv bozuktur veya son yedek altı ay öncesine aittir; panik içinde gerçek anlaşılır.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -253,6 +258,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Son yedek dosyası kaç günlük?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Son yedek tarihi çok eski → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Görev onarımı + başarısızlık bildirimi</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Cron dosyasına yeni bir mysqldump komutu eklenir; ancak dump dosyası boş bir veritabanına yüklenip test edilmediğinden yedeğin çalıştığı kanıtlanamaz.</p>
           </div>
         
 
@@ -262,6 +268,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Yedekte veritabanı dökümü var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Yedekte veritabanı dökümü yok → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Kapsam genişletme + boyut kontrolü</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Yedekler aynı sunucunun /backup dizinine kaydedilir; fiziksel disk bozulduğunda veya sanal sunucu silindiğinde hem canlı sistem hem de yedekler yok olur.</p>
           </div>
         
 
@@ -271,6 +278,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Boş ortama geri yükleme denendi mi?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Test geri yükleme başarısız → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Düzenli geri yükleme provası</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Veritabanı tabloları kilitlenmeden canlı dump alınır; transaction tutarlılığı sağlanmadığı için dosyadan geri yüklenen veritabanı yarım tablolar yüzünden açılamaz.</p>
           </div>
         
       </section>

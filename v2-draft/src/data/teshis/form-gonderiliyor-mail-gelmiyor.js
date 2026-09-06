@@ -24,6 +24,10 @@ export default {
     "tr": "İletişim veya teklif formu 'gönderildi' diyor ama kimseye mail ulaşmıyor. Bu belirtinin en tehlikeli yanı sessiz olmasıdır: kaç talebin kaybolduğu bilinmez.",
     "en": "Lead or quote forms display 'Submitted successfully' but notifications never arrive in the team inbox. The most insidious defect: silence leaves lost deals completely untracked."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Ziyaretçi web sitesindeki teklif formunu doldurup gönderir; ekranda yeşil 'Mesajınız başarıyla iletildi' bildirimi çıkar. Ancak firmanın gelen kutusuna hiçbir e-posta düşmez. Arıza sessizce sürer; kaç müşterinin kaybedildiği ancak haftalar sonra anlaşılır.",
+    "en": "Visitors submit quote forms and receive a cheerful 'Message sent successfully' banner. Yet nothing arrives in corporate inboxes. The failure operates in total silence; how many high-value leads were lost only becomes apparent weeks later."
+  },
   "logSatirlari": [
     "SMTP error 535 Authentication failed",
     "550 5.7.1 Message rejected · SPF / DKIM",
@@ -31,9 +35,18 @@ export default {
     "Uygulama log'u: 'mail sent'    ← ama teslim edilmedi"
   ],
   "logEslesme": [
-    { "satir": 0, "harf": "A" },
-    { "satir": 1, "harf": "B" },
-    { "satir": 2, "harf": "B" }
+    {
+      "satir": 0,
+      "harf": "A"
+    },
+    {
+      "satir": 1,
+      "harf": "B"
+    },
+    {
+      "satir": 2,
+      "harf": "B"
+    }
   ],
   "logNotu": {
     "tr": "'Gönderildi' mesajı çoğu zaman uygulamanın kendi iddiasıdır, teslim kanıtı değildir. Gerçek cevap sunucunun mail kuyruğunda veya sağlayıcı panelindedir.",
@@ -53,6 +66,10 @@ export default {
       "kanit": {
         "tr": "SMTP 535 hatası → A",
         "en": "SMTP 535 Authentication failed in log → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "PHP yerel mail() fonksiyonuna dönülür; kimlik doğrulamasız gönderilen e-postalar alıcı sunucuların güvenlik duvarları tarafından sessizce karantinaya atılır.",
+        "en": "Reverting to native PHP mail() dispatches unauthenticated envelopes that destination mail exchangers quietly quarantine or drop entirely."
       },
       "diyagramAd": {
         "tr": "SMTP kimliği",
@@ -95,6 +112,10 @@ export default {
         "tr": "550 SPF/DKIM reddi → B",
         "en": "550 5.7.1 SPF/DKIM rejected → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Formdaki gönderici alanına müşterinin e-posta adresi yazılır; alan adı SPF kaydı uyuşmadığı için alıcı sunucunun DMARC kuralı postayı tamamen reddeder.",
+        "en": "Injecting the submitter's email into the RFC-5322 From header triggers DMARC alignment failures, causing destination servers to reject delivery."
+      },
       "diyagramAd": {
         "tr": "SPF / DKIM eksik",
         "en": "SPF / DKIM missing"
@@ -136,6 +157,10 @@ export default {
       "kanit": {
         "tr": "Ağ sekmesinde 4xx/5xx → C",
         "en": "Network tab shows 4xx/5xx → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Sunucu loglarına bakılmadan frontend tarafındaki JavaScript kodu düzenlenir; API arka planda 500 dönmeye devam ettiği halde ekranda yeşil bildirim gösterilir.",
+        "en": "Masking frontend errors without checking server logs maintains a false sense of success while API endpoints continue throwing 500 exceptions."
       },
       "diyagramAd": {
         "tr": "Form arkada hatalı",

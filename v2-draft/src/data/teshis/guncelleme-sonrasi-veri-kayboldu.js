@@ -24,6 +24,10 @@ export default {
     "tr": "Bir güncellemeden sonra kayıtlar görünmüyor ve panik \"veriler silindi\" diye başlıyor. Çoğu vakada veri yerindedir; onu okuyan sorgu değişmiştir. Ama bu doğrulanmadan yapılan her müdahale gerçek kaybı yaratabilir.",
     "en": "Records vanish after a release, triggering data deletion panic. In most incidents, data remains intact; the query reading it mutated. Attempting hasty fixes without proper diagnosis risks causing genuine data loss."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Gece yapılan sürüm yayınından sonra sabah panele giren mağaza yöneticileri bazı siparişlerin, müşteri notlarının veya özel alanların tamamen yok olduğunu fark eder. Müşteri hizmetlerine gelen 'Siparişim nerede?' telefonları veri kaybının ilk kanıtıdır.",
+    "en": "Following a late-night release, store managers discover that recent orders, customer notes, or custom attributes vanished. Customer support calls asking 'Where is my order?' provide the first concrete evidence of lost data."
+  },
   "logSatirlari": [
     "Göç log'u: rolled back veya yarıda kesilmiş",
     "Column not found / Unknown column in field list",
@@ -31,8 +35,14 @@ export default {
     "Durum veya silme alanı toplu güncellenmiş mi?"
   ],
   "logEslesme": [
-    { "satir": 0, "harf": "B" },
-    { "satir": 1, "harf": "B" }
+    {
+      "satir": 0,
+      "harf": "B"
+    },
+    {
+      "satir": 1,
+      "harf": "B"
+    }
   ],
   "logNotu": {
     "tr": "İlk yapılacak iş kayıt saymaktır. Tabloda satır duruyorsa veri kaybolmamıştır, görünürlüğü kaybolmuştur. Bu ayrım müdahalenin yönünü tamamen değiştirir.",
@@ -52,6 +62,10 @@ export default {
       "kanit": {
         "tr": "Satır sayısı eskisiyle aynı → A",
         "en": "Row count unchanged in DB → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Kayıp sütunu geri getirmek için eski veritabanı yedeği doğrudan yüklenir; bu işlem güncelleme sonrasında sisteme giren tüm yeni siparişleri siler.",
+        "en": "Restoring a full database backup wipes out all legitimate new orders created between the migration event and the recovery attempt."
       },
       "diyagramAd": {
         "tr": "Filtre değişti",
@@ -95,6 +109,10 @@ export default {
         "tr": "Göç log'unda kesinti → B",
         "en": "Migration abort in deploy log → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Canlı .env dosyasındaki DB adı elle düzeltilir; fakat test ortamına yanlışlıkla yazılmış olan gerçek müşteri siparişleri geriye dönük kurtarılamaz.",
+        "en": "Fixing database credentials in .env re-points future traffic, but legitimate customer records already written into staging remain abandoned and unmerged."
+      },
       "diyagramAd": {
         "tr": "Göç yarıda kaldı",
         "en": "Partial migration"
@@ -137,6 +155,10 @@ export default {
       "kanit": {
         "tr": "Satır sayısı gerçekten düşmüş → C",
         "en": "Row count decreased in DB → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Redis önbelleği flushall komutuyla silinir; geçici veri ile kalıcı sepet oturumları aynı veritabanında tutulduğu için kurtarılma şansı kalmaz.",
+        "en": "Running Redis flushall purges volatile caches alongside unpersisted cart sessions sharing the same instance, destroying customer state irreversibly."
       },
       "diyagramAd": {
         "tr": "Gerçek silme",

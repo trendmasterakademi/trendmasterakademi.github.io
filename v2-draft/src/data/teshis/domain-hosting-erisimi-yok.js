@@ -24,6 +24,10 @@ export default {
     "tr": "Site çalışıyor ama kimse yönetim paneline giremiyor. Alan adının kime kayıtlı olduğu, hosting faturasının kime gittiği belirsiz. Bu bir yazılım sorunu değil, mülkiyet sorunudur — ve teknik ekip tek başına çözemez.",
     "en": "The website is online but no stakeholder has root panel access. Domain registrant identity and hosting billing recipients are unknown. This is an ownership dispute, not software, requiring administrative escalation."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Alan adının süresi biter veya DNS kayıtlarının acilen güncellenmesi gerekir. Firma yetkilileri alan adının hangi sağlayıcıda (GoDaddy, Namecheap vb.) ve kimin e-postası üzerine kayıtlı olduğunu bilmez. Site kapanır, iletişim kuracak yetkili bulunamaz.",
+    "en": "A domain expires or DNS records need urgent modification. Company stakeholders realize nobody knows which registrar holds the domain or which email is registered. The website goes dark, with no administrative access to renew it."
+  },
   "logSatirlari": [
     "WHOIS sorgusu → kayıt sahibi e-postası kim?",
     "Hosting / bulut faturası hangi adrese gidiyor?",
@@ -48,6 +52,10 @@ export default {
       "kanit": {
         "tr": "WHOIS'te şahsi adres → A",
         "en": "Personal email in WHOIS → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Eski çalışanın şirket maili kapatılır; alan adı paneline ait şifre sıfırlama bağlantısı kapatılan veya ulaşılamayan kutuya gideceğinden erişim kilitlenir.",
+        "en": "Terminating a former employee's corporate inbox cuts off password reset links for domain panels registered under that address."
       },
       "diyagramAd": {
         "tr": "Ayrılan kişide",
@@ -91,6 +99,10 @@ export default {
         "tr": "Kayıt sahibi bir firma → B",
         "en": "Registrant is reseller entity → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Eski ajansla sözlü tartışmaya girilir; hukuki devir protokolü ve yetki yazısı sunulmadığı sürece aracı kurum portföyündeki alan adını teslim etmez.",
+        "en": "Engaging in informal disputes with former agencies fails; registrars require formal corporate authorization and legal release documents to transfer domains."
+      },
       "diyagramAd": {
         "tr": "Aracı firmada",
         "en": "Reseller agency"
@@ -132,6 +144,10 @@ export default {
       "kanit": {
         "tr": "Kayıtlı adrese ulaşılamıyor → C",
         "en": "Bouncing mailbox / ghosted → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Alan adı firmasının müşteri hizmetleri telefonla aranır; noter tasdikli imza sirküleri ve şirket belgeleri iletilmeden çağrı merkezi hiçbir işlem yapmaz.",
+        "en": "Calling registrar phone support achieves nothing without submitting notarized corporate authorization documents and official company registry certificates."
       },
       "diyagramAd": {
         "tr": "Ulaşılamıyor",

@@ -232,6 +232,17 @@ const TeshisDetay = () => {
             <p className="text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-3xl">
               {ozetText}
             </p>
+
+            {teshis.sahadaNasilGorunur && (
+              <div className="pt-4 border-t border-white/5 space-y-2">
+                <h2 className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-cyan-400">
+                  {isTr ? 'Sahada nasıl görünür' : 'How it shows up in the field'}
+                </h2>
+                <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl">
+                  {teshis.sahadaNasilGorunur[lang] || teshis.sahadaNasilGorunur.tr}
+                </p>
+              </div>
+            )}
           </div>
 
           {/* Kriz Şeridi (Konum 1: Başlık + özet altı, log satırları üstü) */}
@@ -318,10 +329,21 @@ const TeshisDetay = () => {
                       </p>
                     </div>
 
-                    <div className="pt-2">
+                    <div className="pt-2 space-y-2.5">
                       <div className="p-2.5 rounded-xl bg-black/40 border border-white/5 font-mono text-xs text-slate-200 overflow-x-auto whitespace-pre">
                         {causeKanit}
                       </div>
+
+                      {cause.yanlisDuzeltme && (
+                        <div className="p-2.5 rounded-xl bg-amber-500/[0.06] border border-amber-500/20 text-xs text-slate-300 space-y-1">
+                          <span className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-400 block">
+                            {isTr ? 'Sık yapılan yanlış düzeltme' : 'Common wrong fix'}
+                          </span>
+                          <p className="leading-relaxed">
+                            {cause.yanlisDuzeltme[lang] || cause.yanlisDuzeltme.tr}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 );

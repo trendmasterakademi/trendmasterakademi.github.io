@@ -24,6 +24,10 @@ export default {
     "tr": "Projeyi yapan kişi ayrıldı. Site çalışmaya devam ediyor ama değişiklik yapılamıyor: kodun nerede olduğu, sunucuya kimin girebildiği ya da hesapların kime kayıtlı olduğu belirsiz. Bu üç ayrı problemdir ve hangisiyle karşı karşıya olduğunuz ilk saatte belirlenebilir.",
     "en": "The developer who built the platform departed. The site continues running but cannot be modified: repository location, server SSH credentials, or account ownership remain unknown. These are three distinct bottlenecks, identifiable within hour one."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Projeyi geliştiren tek yazılımcı işten ayrılır veya ajansla ilişiğini keser. Sitede acil bir güncelleme yapılması gerektiğinde Git deposunun, sunucu şifrelerinin veya dağıtım anahtarlarının kimsede olmadığı anlaşılır; şirket kendi yazılımına yabancı kalır.",
+    "en": "The sole developer behind the project departs or cuts communication. When emergency updates arise, the agency discovers nobody holds Git repo permissions, server keys, or deployment credentials; the company is locked out of its own software."
+  },
   "logSatirlari": [
     "git log -1 --format=%cd            ← son commit ne zaman?",
     "git log --format='%an' | sort -u   ← koda kaç kişi dokunmuş?",
@@ -48,6 +52,10 @@ export default {
       "kanit": {
         "tr": "Hesaplar şahsi adreste → A",
         "en": "Accounts on personal mail → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Eski yazılımcıya mesaj atılarak şifreler istenir; gelen eksik şifreler iki faktörlü doğrulama engeline takıldığından panellere yine ulaşılamaz.",
+        "en": "Requesting passwords via messaging apps fails when outdated credentials run straight into two-factor authentication prompts on personal devices."
       },
       "diyagramAd": {
         "tr": "Erişim kaybı",
@@ -92,6 +100,10 @@ export default {
         "tr": "Depo yok → B",
         "en": "No remote repo → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Yeni bir geliştirici projeyi tahminlerle kurmaya çalışır; eksik ortam değişkenleri ve derleme bağımlılıkları yüzünden günler hata çözmeye harcanır.",
+        "en": "Tasking a replacement developer to reverse-engineer environment setups wastes days resolving undocumented build flags and missing local dependencies."
+      },
       "diyagramAd": {
         "tr": "Kod kayıp",
         "en": "Source lost"
@@ -133,6 +145,10 @@ export default {
       "kanit": {
         "tr": ".env.example / lock yok → C",
         "en": "Missing .env / lockfile → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Canlı sunucudaki dosyalar FTP ile indirilip yerel repo yapılır; derlenmemiş kaynak kod bulunmadığı için küçültülmüş dosyalar üzerinden geliştirme yapılamaz.",
+        "en": "Downloading production files via FTP yields minified bundles; lacking original source code makes subsequent feature updates and debugging impractical."
       },
       "diyagramAd": {
         "tr": "Ortam belgesiz",

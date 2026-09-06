@@ -24,6 +24,10 @@ export default {
     "tr": "Ziyaretçiler siteye girerken 'bağlantınız gizli değil' uyarısı alıyor. Site aslında çalışıyor, araya giren tarayıcı. Müşteriniz bunu güvenlik ihlali sanır; teknik olarak çoğu zaman basit bir yenileme sorunudur.",
     "en": "Users are blocked by 'Your connection is not private' browser interstitials. The application is running fine, but the TLS handshake fails. Clients perceive a breach; technically it is usually a stalled renewal script."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Sabah saatlerinde siteye giren müşteriler tarayıcıda 'Bağlantınız Gizli Değil' kırmızı ekran uyarısıyla karşılaşır. Güvenlik uyarısını gören kullanıcılar kredi kartı bilgilerini girmekten vazgeçip sepeti anında terk eder; destek masasına 'Siteniz hacklendi mi?' şikayetleri yağmaya başlar.",
+    "en": "In the morning hours, visitors entering the site encounter red 'Your connection is not private' browser interstitials. Seeing the security warning, customers abandon carts immediately rather than submitting payment details; support desks are flooded with complaints asking if the site was compromised."
+  },
   "logSatirlari": [
     "NET::ERR_CERT_DATE_INVALID              ← süre doldu",
     "NET::ERR_CERT_COMMON_NAME_INVALID       ← alan adı eşleşmiyor",
@@ -31,10 +35,22 @@ export default {
     "certbot renew — hook command failed"
   ],
   "logEslesme": [
-    { "satir": 0, "harf": "A" },
-    { "satir": 1, "harf": "B" },
-    { "satir": 2, "harf": "C" },
-    { "satir": 3, "harf": "A" }
+    {
+      "satir": 0,
+      "harf": "A"
+    },
+    {
+      "satir": 1,
+      "harf": "B"
+    },
+    {
+      "satir": 2,
+      "harf": "C"
+    },
+    {
+      "satir": 3,
+      "harf": "A"
+    }
   ],
   "logNotu": {
     "tr": "Tarayıcının verdiği hata kodu nedeni doğrudan söyler. Uyarı ekranındaki 'Gelişmiş' bağlantısı hangi kodun geçerli olduğunu gösterir.",
@@ -54,6 +70,10 @@ export default {
       "kanit": {
         "tr": "Yenileme log'unda hata → A",
         "en": "Certbot renewal error in log → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Web sunucusuna yeni bir sertifika yüklenip bırakılır; sunucu servisi yeniden başlatılmadığı için aktif bağlantılar eski süresi geçmiş sertifikayı sunmayı sürdürür.",
+        "en": "Installing new certificates without reloading the web server daemon leaves active listener processes serving the expired certificate."
       },
       "diyagramAd": {
         "tr": "Yenileme durdu",
@@ -96,6 +116,10 @@ export default {
         "tr": "COMMON_NAME hatası → B",
         "en": "COMMON_NAME_INVALID error → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Certbot komutu elle çalıştırılır; yenileme cron tablosu veya webroot erişim yetkisi düzeltilmediği için sertifika üç ay sonra sessizce tekrar süresi dolar.",
+        "en": "Running certbot manually renews the certificate once but fails to fix cron triggers or webroot permissions, ensuring recurrence ninety days later."
+      },
       "diyagramAd": {
         "tr": "Kapsam eksik",
         "en": "Missing SAN"
@@ -137,6 +161,10 @@ export default {
       "kanit": {
         "tr": "unable to get local issuer → C",
         "en": "unable to get local issuer error → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "DNS A kaydı doğrudan sunucuya çevrilir; aradaki proxy veya CDN önbelleği temizlenmediği için tarayıcılar eski süresi dolmuş sertifikayı görmeye devam eder.",
+        "en": "Re-pointing DNS records directly to origin servers leaves CDN proxy layers serving cached expired edge certificates to incoming clients."
       },
       "diyagramAd": {
         "tr": "Zincir eksik",

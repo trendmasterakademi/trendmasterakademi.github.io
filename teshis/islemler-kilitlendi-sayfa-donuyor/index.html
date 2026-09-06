@@ -208,12 +208,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -239,6 +239,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · işlem durdu · Kategori: Performans</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Kullanıcılar formu gönderdiklerinde veya sepet adımına geçtiklerinde tarayıcı sekmesindeki yükleniyor ikonu dakikalarca döner. Sayfa hiçbir hata mesajı vermeden beyaz kalır; aynı anda yeni gelen ziyaretçiler de ana sayfaya dahi bağlanamaz hale gelir.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -261,6 +266,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Log'da deadlock kaydı var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Log'da deadlock kaydı var → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Tabloları sabit sırayla kilitle</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Veritabanı servisi yeniden başlatılarak kilitler sıfırlanır; fakat aynı SQL transaction sırası ilk yoğun istek grubunda tabloları karşılıklı tekrar kilitler.</p>
           </div>
         
 
@@ -270,6 +276,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Açık işlem süresi dakikalarca mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Açık işlem dakikalarca sürüyor → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Harici işi işlem dışına çıkar</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Raporlama sorgusu gece yarısına ertelenir; ancak veri tablosu büyüdükçe işlem sabah saatlerine sarkar ve canlı sipariş girişlerini tamamen dondurur.</p>
           </div>
         
 
@@ -279,6 +286,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Kilitlenme arka plan göreviyle çakışıyor mu?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Kilitlenme toplu görevle çakışıyor → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Parçalara böl + yoğun saat dışına al</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Worker sayısı iki katına çıkarılır; fakat arka uçtaki veritabanı darboğazı çözülmediğinden yeni açılan tüm süreçler saniyeler içinde kilitlenerek tükenir.</p>
           </div>
         
       </section>

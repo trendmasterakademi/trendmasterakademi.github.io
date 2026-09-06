@@ -24,6 +24,10 @@ export default {
     "tr": "Bir yeri düzeltiyorsunuz, başka bir yer bozuluyor. Ekip aynı hataları tekrar tekrar düzeltiyor. Bu bir dikkatsizlik değil, kod tabanının artık değişimi kaldıramadığının işaretidir.",
     "en": "Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Müşterinin istediği yeni bir ödeme seçeneği eklendiğinde fatura kesme modülü durur; fatura düzeltildiğinde ise indirim kuponları çalışmaz hale gelir. Ekip sürekli bir önceki hatayı kapatmaya çalışırken yeni arızalar üretir; teslimatlar kilitlenir.",
+    "en": "Implementing a requested payment method breaks automated invoicing; fixing invoicing disables discount coupons. The team spends days patching yesterday's side effects while introducing fresh defects, bringing feature delivery to a standstill."
+  },
   "logSatirlari": [
     "Aynı hata kaydının aylar içinde tekrar açılması",
     "Test yok, ya da var ama çalıştırılmıyor",
@@ -48,6 +52,10 @@ export default {
       "kanit": {
         "tr": "Aynı mantık birden çok yerde → A",
         "en": "Duplicated algorithms in codebase → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Sorunlu fonksiyonun içine yeni if-else blokları eklenir; her yeni koşul dosyanın karmaşıklığını ve kırılganlığını daha da artırarak yeni hatalar doğurur.",
+        "en": "Nesting additional if-else branches into bloated functions magnifies cyclomatic complexity, guaranteeing future regressions across adjacent business logic."
       },
       "diyagramAd": {
         "tr": "Kopyalanmış mantık",
@@ -91,6 +99,10 @@ export default {
         "tr": "Otomatik test yok → B",
         "en": "Zero test coverage in CI pipeline → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Değişiklik sonrası geliştiriciye tüm siteyi elle kontrol etmesi söylenir; insan dikkati sınırlı olduğundan test edilmeyen diğer modüllerdeki kırılmalar canlıya sızar.",
+        "en": "Relying entirely on manual smoke testing fails because human fatigue inevitably misses edge cases across unverified adjacent modules."
+      },
       "diyagramAd": {
         "tr": "Test yok",
         "en": "Zero tests"
@@ -131,6 +143,10 @@ export default {
       "kanit": {
         "tr": "Küçük değişiklik geniş etki yapıyor → C",
         "en": "Minor patch creates wide blast radius → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Çakışan global değişkenin ismi değiştirilip yeni bir global açılır; durum paylaşımı izole edilmediği için yan etkiler başka sayfalarda sürmeye devam eder.",
+        "en": "Renaming conflicting global variables merely shifts unintended state mutation to other templates without isolating runtime scopes."
       },
       "diyagramAd": {
         "tr": "Aşırı bağlılık",

@@ -200,12 +200,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -231,6 +231,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · ticari kayıp · Kategori: Sipariş &amp; Ödeme</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Genellikle flaş indirimde veya e-posta bülteni gönderildiği anda ortaya çıkar. Son kalan tek ürün için aynı saniyede iki ayrı sipariş onaylanır. Stok panelde eksi bire düşer; durumu ilk fark eden, siparişi iptal edilen öfkeli müşteri olur.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -252,6 +257,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> İki siparişin created_at farkı &lt; 1 sn mi?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> created_at farkı &lt; 1sn → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Atomik UPDATE + etkilenen satır kontrolü</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Kod tarafına if (stok &gt; 0) kontrolü eklenir; oysa paralel iki istek kontrolü aynı milisaniyede geçtiği için stok yine eksiye düşer.</p>
           </div>
         
 
@@ -261,6 +267,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> payment_reference değerleri aynı mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> payment_reference aynı → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> unique index + idempotency anahtarı</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Webhook isteğine hemen yanıt verilmez; ödeme ağ geçidi isteği zaman aşımı sanıp tekrar gönderdiğinde sipariş kaydı mükerrer işlenir.</p>
           </div>
         
 
@@ -270,6 +277,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Son ERP senkronu satıştan önce mi?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Senkron satıştan eski → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Rezervasyon mantığı + senkron sıklığı</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Entegrasyon cron sıklığı beş dakikadan bir dakikaya indirilir; fakat API yanıt süresi uzadığında kuyruk birikir ve çakışma engellenemez.</p>
           </div>
         
       </section>

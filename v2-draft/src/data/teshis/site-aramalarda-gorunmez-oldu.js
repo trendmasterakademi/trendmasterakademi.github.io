@@ -24,6 +24,10 @@ export default {
     "tr": "Site açılıyor, her şey normal görünüyor ama arama sonuçlarındaki yerini kaybetti. Bu belirtinin teknik nedenleri, içerik ya da rekabet nedenlerinden çok daha hızlı doğrulanır — önce onlar elenmelidir.",
     "en": "The site is accessible and looks normal, but organic search rankings plummeted. Technical causes can be verified far faster than content or algorithmic penalties — rule them out first."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Web sitesi tarayıcıda sorunsuz açılmaktadır ve satış ekibi her şeyin yolunda olduğunu sanır. Ancak arama motorunda firma adı aratıldığında ana sayfa ilk sayfadan kaybolmuştur. Günlük organik ziyaretçi trafiği sıfıra yaklaşır ve gelen telefonlar kesilir.",
+    "en": "The website loads normally in browsers, leading teams to assume all is well. Yet searching the brand on Google yields zero results on page one. Daily organic traffic drops toward zero and inbound inquiries abruptly cease."
+  },
   "logSatirlari": [
     "robots.txt → Disallow: /",
     "<meta name=\"robots\" content=\"noindex\">",
@@ -31,8 +35,14 @@ export default {
     "Yönlendirme zinciri: 302 → 302 → 200"
   ],
   "logEslesme": [
-    { "satir": 0, "harf": "B" },
-    { "satir": 1, "harf": "A" }
+    {
+      "satir": 0,
+      "harf": "B"
+    },
+    {
+      "satir": 1,
+      "harf": "A"
+    }
   ],
   "logNotu": {
     "tr": "İlk iki satır tek başına tüm siteyi arama sonuçlarından çıkarır ve genellikle test ortamından canlıya yanlışlıkla taşınır. Kontrolü saniyeler sürer.",
@@ -52,6 +62,10 @@ export default {
       "kanit": {
         "tr": "Sayfa kaynağında noindex → A",
         "en": "Meta noindex found in DOM → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Sıralama kazanmak için yeni metinler girilir; ancak HTML başlığındaki meta noindex etiketi kaldırılmadığı sürece arama motorları sayfayı dizine eklemez.",
+        "en": "Publishing fresh content fails completely because search crawlers obey the meta noindex tag and refuse to index the URL."
       },
       "diyagramAd": {
         "tr": "noindex kalmış",
@@ -95,6 +109,10 @@ export default {
         "tr": "robots.txt Disallow: / → B",
         "en": "robots.txt Disallow: / → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Sayfa adresleri yeniden sitemap dosyasına yazılır; fakat kök dizindeki robots.txt dosyasında Disallow: / kuralı durduğu sürece Googlebot sayfaları tarayamaz.",
+        "en": "Resubmitting XML sitemaps achieves nothing while a rogue Disallow: / rule in robots.txt instructs search engine crawlers to abandon indexation."
+      },
       "diyagramAd": {
         "tr": "robots.txt kapalı",
         "en": "robots.txt blocked"
@@ -136,6 +154,10 @@ export default {
       "kanit": {
         "tr": "Eski adresler 404 veriyor → C",
         "en": "Legacy URLs return 404 → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Eski sayfalar ana sayfaya topluca yönlendirilir; URL bazlı 301 kalıcı eşleme yapılmadığı için Google eski sayfaların birikmiş sıralama otoritesini sıfırlar.",
+        "en": "Wildcard-redirecting old URLs to the homepage fails to transfer accumulated page-level ranking authority, resulting in massive organic traffic erosion."
       },
       "diyagramAd": {
         "tr": "Adresler değişti",

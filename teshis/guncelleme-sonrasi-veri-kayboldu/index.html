@@ -200,12 +200,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -231,6 +231,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · veri paniği · Kategori: Veri &amp; Devir</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Gece yapılan sürüm yayınından sonra sabah panele giren mağaza yöneticileri bazı siparişlerin, müşteri notlarının veya özel alanların tamamen yok olduğunu fark eder. Müşteri hizmetlerine gelen 'Siparişim nerede?' telefonları veri kaybının ilk kanıtıdır.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -253,6 +258,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Tablodaki satır sayısı eskisiyle aynı mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Satır sayısı eskisiyle aynı → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Varsayılan değeri geriye dönük ata</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Kayıp sütunu geri getirmek için eski veritabanı yedeği doğrudan yüklenir; bu işlem güncelleme sonrasında sisteme giren tüm yeni siparişleri siler.</p>
           </div>
         
 
@@ -262,6 +268,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Göç log'unda yarıda kesilme var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Göç log'unda kesinti → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Yedekten dön · göçü baştan çalıştır</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Canlı .env dosyasındaki DB adı elle düzeltilir; fakat test ortamına yanlışlıkla yazılmış olan gerçek müşteri siparişleri geriye dönük kurtarılamaz.</p>
           </div>
         
 
@@ -271,6 +278,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Satır sayısı gerçekten düştü mü?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Satır sayısı gerçekten düşmüş → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Yedekten geri yükleme · süre kritik</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Redis önbelleği flushall komutuyla silinir; geçici veri ile kalıcı sepet oturumları aynı veritabanında tutulduğu için kurtarılma şansı kalmaz.</p>
           </div>
         
       </section>

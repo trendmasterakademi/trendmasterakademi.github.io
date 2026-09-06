@@ -184,12 +184,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -215,6 +215,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Yüksek · gizlenen arıza · Kategori: Altyapı &amp; Erişim</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Sistem her gün aynı saatlerde ağırlaşır ve crontab'a eklenen gece yeniden başlatma komutuyla ayakta tutulmaya çalışılır. Müşteri sabahları sitenin iyi çalıştığını, akşamüstü ise ödeme adımlarının yavaşladığını fark eder; arıza rutinleşmiş ama çözülememiştir.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -237,6 +242,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Bellek grafiği hiç düşüyor mu?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Bellek hiç düşmüyor → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Sızıntıyı bul · profil çıkar</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Crontab üzerindeki reboot sıklığı günde ikiye çıkarılır; ancak sızıntı yapan kod döngüsü düzeltilmediği için yoğun trafik saatlerinde ani çökmeler sürer.</p>
           </div>
         
 
@@ -246,6 +252,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Tepe belirli bir raporda mı oluşuyor?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Tepe belirli bir işlemde oluşuyor → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Parçalı işleme + akış kullan</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Manuel olarak rm -rf ile geçici dosyalar temizlenir; logrotate servisi kurulmadığı için biriken gigabaytlarca hata kaydı diski ertesi gün yine doldurur.</p>
           </div>
         
 
@@ -255,6 +262,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Kullanım sabit yüksek ama artmıyor mu?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Kullanım sabit yüksek, artmıyor → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Kaynak artırımı · meşru tek hâl</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> killall -9 komutuyla süreçler topluca öldürülür; asılı kalan işlemlerin neden kopmadığı analiz edilmediği için veritabanı soketleri yarım kalıp sistemi tıkar.</p>
           </div>
         
       </section>

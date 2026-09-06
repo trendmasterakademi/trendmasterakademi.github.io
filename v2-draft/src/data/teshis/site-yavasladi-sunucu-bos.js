@@ -24,6 +24,10 @@ export default {
     "tr": "Sayfalar geç açılıyor ama sunucu kaynakları rahat görünüyor. 'Sunucu yetersiz' denip plan yükseltilir, hiçbir şey değişmez. Boş bir sunucuda yavaşlık kaynak sorunu değil, bekleme sorunudur.",
     "en": "Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Siteye giren kullanıcılar sayfaların on beş saniyede açıldığını ya da zaman aşımına uğradığını söyler. Ajans sunucu paneline (htop/top) baktığında işlemci ve bellek kullanımının yüzde beşi geçmediğini, sunucunun adeta uyuduğunu görür; donmanın kaynağı belirsizdir.",
+    "en": "Visitors complain that pages take fifteen seconds to load or time out completely. Looking at htop or top shows CPU and RAM below five percent, practically idling; the origin of the freeze remains baffling."
+  },
   "logSatirlari": [
     "Sayfa başına veritabanı sorgu sayısı: yüzlerce",
     "Yavaş sorgu log'u: aynı sorgu defalarca tekrarlıyor",
@@ -48,6 +52,10 @@ export default {
       "kanit": {
         "tr": "Aynı sorgu defalarca tekrarlıyor → A",
         "en": "Same query loops hundreds of times → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Sunucu paketi yükseltilerek CPU ve RAM artırılır; fakat indekssiz tek bir SELECT sorgusu tabloyu kilitlediğinden kaynak artışı yavaşlığı çözmez.",
+        "en": "Upgrading server CPU and RAM fails because an unindexed SELECT query locks the entire table regardless of hardware capacity."
       },
       "diyagramAd": {
         "tr": "Sorgu çoğalması",
@@ -92,6 +100,10 @@ export default {
         "tr": "Yavaş sorgu tüm tabloyu tarıyor → B",
         "en": "Full table scan in EXPLAIN log → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "PHP yapılandırmasında max_execution_time süresi artırılır; bu işlem yanıt vermeyen kargo veya SMS servisinin tüm PHP-FPM havuzunu tıkamasına yol açar.",
+        "en": "Increasing max_execution_time backfires by allowing unresponsive third-party shipping or SMS APIs to exhaust the entire PHP-FPM process pool."
+      },
       "diyagramAd": {
         "tr": "Dizin eksik",
         "en": "Missing index"
@@ -133,6 +145,10 @@ export default {
       "kanit": {
         "tr": "Yavaşlık harici çağrıda yoğunlaşıyor → C",
         "en": "Latency concentrated in external cURL → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Veritabanı max_connections değeri limitsiz yükseltilir; MySQL bellek baskısı altında swap yapmaya başlar ve sunucu işletim sistemi seviyesinde kilitlenir.",
+        "en": "Raising max_connections indefinitely forces MySQL into swap under memory pressure, locking the server down at the OS level."
       },
       "diyagramAd": {
         "tr": "Harici bekleme",

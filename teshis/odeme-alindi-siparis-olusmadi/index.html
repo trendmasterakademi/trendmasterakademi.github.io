@@ -200,12 +200,12 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-Bu1-_G30.js"></script>
+    <script type="module" crossorigin src="/assets/index-Dso3L7Kd.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BtyQeDli.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BldfviOr.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-C3Q39ux-.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-hqxhRny5.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BCz4zSME.css">
   </head>
   <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
     <div id="root">
@@ -231,6 +231,11 @@
     <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
       <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · ticari kayıp · Kategori: Sipariş &amp; Ödeme</p>
 
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Müşteri kredi kartı ekstresinde paranın çekildiğini ve banka onay SMS'ini görür. Ancak sitenin sepeti dolu kalır, sipariş onay ekranı gelmez ve yönetim panelinde kayıt oluşmaz. Müşteri ajansı ya da mağazayı aradığında kriz başlar.</p>
+      </section>
+    
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
         
@@ -253,6 +258,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Sağlayıcı panelinde deneme kaydı var mı?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Sağlayıcı panelinde 404 / zaman aşımı → A</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Adres ve güvenlik duvarı düzeltme</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Müşteriden siparişi tekrar girmesi istenir; fakat banka provizyonu ile sistem eşleşmediği için muhasebe tarafında çözümsüz açık bakiye oluşur.</p>
           </div>
         
 
@@ -262,6 +268,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Log'da bildirim geldi ama hata verdi mi?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Log'da 500 + tekrar denemeler → B</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Hatayı düzelt + kuyruğa al</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Webhook adresine gelen hata logunu gizlemek için boş 200 dönülür; bu durum sağlayıcının yeniden denemesini durdurur ve sipariş tamamen kaybolur.</p>
           </div>
         
 
@@ -271,6 +278,7 @@
             <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Bildirime 200 dönmüş ama kayıt yok mu?</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> 200 dönmüş ama kayıt yok → C</p>
             <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Doğrulama hatasını logla + kaydı garanti et</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Veritabanı yeniden başlatılarak kilitler zorla kaldırılır; ancak askıda kalan transaction geri alınmadığı için bekleyen ödemeli sepetler veritabanına yazılamaz.</p>
           </div>
         
       </section>

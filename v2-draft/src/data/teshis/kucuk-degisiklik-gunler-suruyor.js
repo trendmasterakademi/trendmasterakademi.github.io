@@ -24,6 +24,10 @@ export default {
     "tr": "\"Bir buton rengi\" ya da \"bir alan ekle\" gibi işler günlere yayılıyor ve müşteri bunu isteksizlik sanıyor. Gerçek sebep genellikle kodda değil, değişikliği yapmadan önce anlamak için harcanan sürededir.",
     "en": "Trivial edits like updating button styles or adding a form field drag on for days, leading clients to assume reluctance. The root cause is not developer speed, but the cognitive overhead of deciphering undocumented code."
   },
+  "sahadaNasilGorunur": {
+    "tr": "Menüye bir bağlantı ekleyin ya da iletişim formuna telefon kutusu koyun gibi normalde yarım saatlik işler haftalarca sürer. Müşteri ekibin bilerek yavaş çalıştığını sanır; oysa geliştirici kodun neresini değiştireceğini bulabilmek için saatlerce dosya arar.",
+    "en": "Minor adjustments like adding a menu link or a phone field to a form drag on for weeks. Clients assume deliberate procrastination; in reality, developers spend hours hunting through tangled files just to locate the markup."
+  },
   "logSatirlari": [
     "Görev süresi: tahmin 2 saat, gerçekleşen 2 gün",
     "Kurulum: yeni bir geliştirici projeyi kaç günde çalıştırıyor?",
@@ -48,6 +52,10 @@ export default {
       "kanit": {
         "tr": "Kurulum belgesi yok → A",
         "en": "Missing README / architecture docs → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Dosya aramak için kod tabanında körlemesine arama yapılır; mimari rehberi olmadığı için yanlış dosya düzenlenir ve harcanan saatler boşa gider.",
+        "en": "Blindly grepping across repositories without architectural documentation leads to editing the wrong component overrides, wasting hours of engineering time."
       },
       "diyagramAd": {
         "tr": "Belgesizlik",
@@ -91,6 +99,10 @@ export default {
         "tr": "Yayın elle ve uzun → B",
         "en": "Manual FTP/SSH release steps → B"
       },
+      "yanlisDuzeltme": {
+        "tr": "Değişiklik FTP ile doğrudan canlı sunucudaki dosyanın üzerine yazılır; versiyon kontrolü baypas edildiği için yapılan küçük bir hata sayfayı anında çökertir.",
+        "en": "Overwriting live files via FTP skips version control and automated linting, turning a single misplaced character into an instant site outage."
+      },
       "diyagramAd": {
         "tr": "Elle yayın",
         "en": "Manual deploy"
@@ -131,6 +143,10 @@ export default {
       "kanit": {
         "tr": "Yeri bulmak saatler sürüyor → C",
         "en": "Hours spent locating source code file → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "CSS dosyasına !important kuralları eklenerek hızlıca stil ezilir; bu yöntem dosyadaki stil çakışmalarını çözmez, aksine sistemi daha kırılgan kılar.",
+        "en": "Stacking !important rules in CSS to force styles temporarily overrides layout issues while making subsequent UI maintenance virtually impossible."
       },
       "diyagramAd": {
         "tr": "Karışık yapı",
