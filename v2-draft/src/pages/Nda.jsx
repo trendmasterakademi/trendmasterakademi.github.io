@@ -300,13 +300,25 @@ const Nda = () => {
               <p>E-posta: info@trendmasterakademi.com</p>
               <p className="text-slate-400 italic">(Bundan sonra "TMA" olarak anılacaktır.)</p>
             </div>
-            <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1 font-mono text-[11px] sm:text-xs">
+            <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-1.5 font-mono text-[11px] sm:text-xs overflow-hidden">
               <p className="text-white font-bold">HİZMET ALAN:</p>
-              <p>Unvan: ..............................................</p>
-              <p>Vergi Dairesi / VKN: ................................</p>
-              <p>Adres: ..............................................</p>
-              <p>Yetkili & E-posta: ..................................</p>
-              <p className="text-slate-400 italic">(Bundan sonra "AJANS" olarak anılacaktır.)</p>
+              <p className="flex items-baseline gap-1 overflow-hidden">
+                <span className="shrink-0">Unvan:</span>
+                <span className="overflow-hidden whitespace-nowrap text-slate-500 select-none">................................................................</span>
+              </p>
+              <p className="flex items-baseline gap-1 overflow-hidden">
+                <span className="shrink-0">Vergi Dairesi / VKN:</span>
+                <span className="overflow-hidden whitespace-nowrap text-slate-500 select-none">................................................................</span>
+              </p>
+              <p className="flex items-baseline gap-1 overflow-hidden">
+                <span className="shrink-0">Adres:</span>
+                <span className="overflow-hidden whitespace-nowrap text-slate-500 select-none">................................................................</span>
+              </p>
+              <p className="flex items-baseline gap-1 overflow-hidden">
+                <span className="shrink-0">Yetkili & E-posta:</span>
+                <span className="overflow-hidden whitespace-nowrap text-slate-500 select-none">................................................................</span>
+              </p>
+              <p className="text-slate-400 italic pt-0.5">(Bundan sonra "AJANS" olarak anılacaktır.)</p>
             </div>
             <p>1.2. TMA ve AJANS birlikte "Taraflar", ayrı ayrı "Taraf" olarak anılır.</p>
           </div>
@@ -474,25 +486,46 @@ const Nda = () => {
             <p>Taraflar, işbu sözleşmeyi okuyup anlayarak, 16 maddeden ibaret hâliyle iki nüsha olarak imza altına almıştır.</p>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 font-mono text-[11px] sm:text-xs">
-              <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-2">
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-2 overflow-hidden">
                 <p className="text-white font-bold">TMA</p>
                 <p>Trend Master Akademi</p>
                 <p>Mehmet Şahin — Şahıs İşletmesi</p>
                 <p>VKN: 7930336132</p>
-                <div className="pt-2">
-                  <p>Tarih: ...........................</p>
-                  <p className="mt-2">İmza: ............................</p>
+                <div className="pt-2 space-y-1.5">
+                  <p className="flex items-baseline gap-1 overflow-hidden">
+                    <span className="shrink-0">Tarih:</span>
+                    <span className="overflow-hidden whitespace-nowrap text-slate-500 select-none">................................................................</span>
+                  </p>
+                  <p className="flex items-baseline gap-1 overflow-hidden">
+                    <span className="shrink-0">İmza:</span>
+                    <span className="overflow-hidden whitespace-nowrap text-slate-500 select-none">................................................................</span>
+                  </p>
                 </div>
               </div>
 
-              <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-2">
+              <div className="p-4 rounded-xl bg-white/5 border border-white/5 space-y-2 overflow-hidden">
                 <p className="text-white font-bold">AJANS</p>
-                <p>Unvan: ..............................</p>
-                <p>VKN: ................................</p>
-                <p>Yetkili: ............................</p>
-                <div className="pt-2">
-                  <p>Tarih: .............................</p>
-                  <p className="mt-2">İmza: ..............................</p>
+                <p className="flex items-baseline gap-1 overflow-hidden">
+                  <span className="shrink-0">Unvan:</span>
+                  <span className="overflow-hidden whitespace-nowrap text-slate-500 select-none">................................................................</span>
+                </p>
+                <p className="flex items-baseline gap-1 overflow-hidden">
+                  <span className="shrink-0">VKN:</span>
+                  <span className="overflow-hidden whitespace-nowrap text-slate-500 select-none">................................................................</span>
+                </p>
+                <p className="flex items-baseline gap-1 overflow-hidden">
+                  <span className="shrink-0">Yetkili:</span>
+                  <span className="overflow-hidden whitespace-nowrap text-slate-500 select-none">................................................................</span>
+                </p>
+                <div className="pt-2 space-y-1.5">
+                  <p className="flex items-baseline gap-1 overflow-hidden">
+                    <span className="shrink-0">Tarih:</span>
+                    <span className="overflow-hidden whitespace-nowrap text-slate-500 select-none">................................................................</span>
+                  </p>
+                  <p className="flex items-baseline gap-1 overflow-hidden">
+                    <span className="shrink-0">İmza:</span>
+                    <span className="overflow-hidden whitespace-nowrap text-slate-500 select-none">................................................................</span>
+                  </p>
                 </div>
               </div>
             </div>
