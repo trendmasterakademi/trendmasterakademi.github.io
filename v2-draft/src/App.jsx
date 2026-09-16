@@ -6,6 +6,7 @@ import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
 import CookieBanner from './components/CookieBanner';
 import ScrollToTop from './components/ScrollToTop';
+import DetectiveBeam from './components/DetectiveBeam';
 
 // Route-based code-split components
 const Home = lazy(() => import('./pages/Home'));
@@ -47,6 +48,7 @@ function App() {
     <Router>
       <ScrollToTop />
       <div className="min-h-screen bg-[#080b11] text-slate-200 selection:bg-cyan-500 selection:text-black w-full max-w-full relative font-sans">
+        <DetectiveBeam />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-cyan-400 focus:text-slate-950 focus:font-bold focus:text-sm focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-white transition-all"

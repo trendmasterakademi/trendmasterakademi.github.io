@@ -64,6 +64,108 @@
   animation: blink-cursor 0.8s infinite;
 }
 
+/* Detective Searchlight / Forensic Beam Animations */
+@keyframes detective-sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-3.5deg);
+  }
+  100% {
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes detective-pulse {
+  0%, 100% {
+    opacity: 0.78;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes dust-float-1 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.75;
+  }
+  75% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(-200px, 280px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes dust-float-2 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0.6;
+  }
+  70% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(-260px, 340px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes dust-float-3 {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.85;
+  }
+  80% {
+    opacity: 0.45;
+  }
+  100% {
+    transform: translate3d(-150px, 220px, 0);
+    opacity: 0;
+  }
+}
+
+.animate-detective-sweep {
+  transform-origin: 100% 0%;
+  animation: detective-sweep 14s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.animate-detective-pulse {
+  transform-origin: 100% 0%;
+  animation: detective-pulse 8s ease-in-out infinite;
+  will-change: opacity, transform;
+}
+
+.animate-dust-1 {
+  animation: dust-float-1 9s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+.animate-dust-2 {
+  animation: dust-float-2 13s ease-in-out infinite 2.5s;
+  will-change: transform, opacity;
+}
+
+.animate-dust-3 {
+  animation: dust-float-3 11s ease-in-out infinite 5s;
+  will-change: transform, opacity;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
