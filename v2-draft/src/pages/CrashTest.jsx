@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { 
   ShieldAlert, AlertTriangle, CheckCircle2, ArrowRight, ArrowLeft, 
   RotateCcw, Copy, Flame, Clock, ShieldCheck, 
-  Code2, Users, Check, Cpu,
+  Code2, Users, Check, Cpu, Layers,
   PhoneCall, Mail, Send, Calendar, Stethoscope, Loader2
 } from 'lucide-react';
 import EmergencySOSModal from '../components/EmergencySOSModal';
@@ -158,6 +158,46 @@ const scenarios = [
     ]
   },
   {
+    id: 'overflow',
+    code: 'WHITE-LABEL CAPACITY',
+    tag: { tr: 'KAPASİTE VE TAŞERON ÜRETİM', en: 'CAPACITY & WHITE-LABEL' },
+    title: { tr: 'Yoğunluktan Yetişmeyen İşler & Web Üretimi', en: 'Capacity Overflow & Web Production' },
+    subtitle: { tr: 'İç ekip yoğunluğu · Yetişmeyen kurumsal web & SaaS · Dış kaynak yazılım üretimi', en: 'Internal team overload · Pending web & SaaS projects · White-label engineering' },
+    icon: Layers,
+    color: 'from-emerald-500/20 to-teal-500/20',
+    borderColor: 'border-emerald-500/40',
+    badgeColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
+    questions: [
+      {
+        id: 'workType',
+        label: { tr: 'Kapasitenizi En Çok Zorlayan Web / Yazılım İşi Nedir?', en: 'Which type of web / software project is bottlenecking your capacity?' },
+        options: [
+          { value: 'customWeb', label: { tr: 'Özel Kurumsal Web Sitesi & Landing Page (React, Next.js, Headless CMS)', en: 'Custom Corporate Website & Landing Page (React, Next.js, Headless CMS)' } },
+          { value: 'ecommerce', label: { tr: 'E-Ticaret, Pazaryeri & Ödeme Entegrasyonları (Stripe, iyzico, PayTR)', en: 'E-Commerce, Marketplace & Payment Integrations (Stripe, iyzico, PayTR)' } },
+          { value: 'saasPanel', label: { tr: 'Özel SaaS Platformu, Müşteri Portali veya Mobil Uygulama (Flutter)', en: 'Custom SaaS Platform, Customer Portal or Mobile App (Flutter)' } }
+        ]
+      },
+      {
+        id: 'collaborationModel',
+        label: { tr: 'Ajansınız İçin İdeal Çalışma ve Teslimat Modeli Nedir?', en: 'What is the ideal collaboration and delivery model for your agency?' },
+        options: [
+          { value: 'whitelabel', label: { tr: '%100 White-Label (Biz müşteriyle görüşelim, siz arkada ajansımız adına kodlayın)', en: '100% White-Label (We manage client comms, you engineer under our brand)' } },
+          { value: 'hybridSprint', label: { tr: 'Hibrit Sprint Desteği (Mevcut ekibimize modül bazlı kıdemli takviye)', en: 'Hybrid Sprint Surge (Senior engineering reinforcement on specific modules)' } },
+          { value: 'turnkey', label: { tr: 'Anahtar Teslim (Figma/Tasarım bizden, backend + frontend eksiksiz sizden)', en: 'Turnkey Execution (Design/Figma from us, complete code from you)' } }
+        ]
+      },
+      {
+        id: 'projectTimeline',
+        label: { tr: 'Projenin Başlama Aciliyeti ve Zaman Çizelgesi Nedir?', en: 'What is the project start urgency and expected timeline?' },
+        options: [
+          { value: 'urgentStart', label: { tr: 'Hemen bu hafta içinde başlanması gereken acil iş', en: 'Urgent: Must kick off within this week' } },
+          { value: 'retainerPool', label: { tr: 'Önümüzdeki 1-2 ay için sürekli kapasite ortaklığı (aylık havuz)', en: 'Ongoing monthly capacity partnership for upcoming 1-2 months' } },
+          { value: 'proposalStage', label: { tr: 'Müşteri teklif aşamasında, 1-2 hafta içinde başlayacak proje', en: 'In proposal/contract stage, kicks off in 1-2 weeks' } }
+        ]
+      }
+    ]
+  },
+  {
     id: 'complex',
     code: 'SPECIAL ARCHITECTURE',
     tag: { tr: 'UZMANLIK GEREKSİNİMİ', en: 'SPECIALTY NEEDED' },
@@ -239,7 +279,19 @@ function getMatchedDiagnosis(scenarioId, answers) {
     }
   }
 
-  // Scenario 3: complex
+  // Scenario 3: overflow
+  if (scenarioId === 'overflow') {
+    const work = answers.workType?.value;
+    if (work === 'ecommerce') {
+      return { matched: true, slug: 'odeme-alindi-siparis-olusmadi' };
+    } else if (work === 'customWeb') {
+      return { matched: true, slug: 'kucuk-degisiklik-gunler-suruyor' };
+    } else if (work === 'saasPanel') {
+      return { matched: true, slug: 'site-yavasladi-sunucu-bos' };
+    }
+  }
+
+  // Scenario 4: complex
   if (scenarioId === 'complex') {
     const need = answers.specialNeeds?.value;
     if (need === 'payment') {
@@ -251,7 +303,7 @@ function getMatchedDiagnosis(scenarioId, answers) {
     }
   }
 
-  // Scenario 4: t48h OR complex/ai (no match)
+  // Scenario 5: t48h OR complex/ai (no match)
   return {
     matched: false
   };
@@ -259,6 +311,7 @@ function getMatchedDiagnosis(scenarioId, answers) {
 
 const CrashTest = () => {
   const { i18n } = useTranslation();
+  const location = useLocation();
   const isTr = i18n.language !== 'en';
   const isKrizHattiAcik = useKrizHattiAcik();
 
@@ -374,6 +427,21 @@ const CrashTest = () => {
       }
     } catch (e) {}
   }, [isTr]);
+
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(location.search);
+      const senaryoParam = params.get('senaryo');
+      if (senaryoParam) {
+        const matched = scenarios.find(s => s.id === senaryoParam);
+        if (matched) {
+          setSelectedScenario(matched);
+          setAnswers({});
+          setStep(1);
+        }
+      }
+    } catch (e) {}
+  }, [location.search]);
 
   const handleScenarioSelect = (scenario) => {
     setSelectedScenario(scenario);
@@ -559,6 +627,8 @@ const CrashTest = () => {
                     key={sc.id}
                     onClick={() => handleScenarioSelect(sc)}
                     className={`p-6 sm:p-7 rounded-3xl text-left border transition-all duration-300 relative group cursor-pointer overflow-hidden ${
+                      sc.id === 'complex' ? 'md:col-span-2' : ''
+                    } ${
                       isSelected
                         ? `bg-gradient-to-br ${sc.color} ${sc.borderColor} shadow-[0_0_30px_rgba(0,229,255,0.15)] ring-1 ring-white/20`
                         : 'bg-[#111827]/80 border-white/10 hover:border-white/25 hover:bg-[#151f33]'

@@ -85,8 +85,8 @@ if (!Array.isArray(capabilities) || capabilities.length !== 20) {
   console.error(`[HATA] capabilities 20 eleman olmalı, bulunan: ${capabilities?.length}`);
   process.exit(1);
 }
-if (!Array.isArray(scenarios) || scenarios.length !== 4) {
-  console.error(`[HATA] scenarios 4 eleman olmalı, bulunan: ${scenarios?.length}`);
+if (!Array.isArray(scenarios) || scenarios.length !== 5) {
+  console.error(`[HATA] scenarios 5 eleman olmalı, bulunan: ${scenarios?.length}`);
   process.exit(1);
 }
 if (!Array.isArray(handoverItems) || handoverItems.length !== 12) {
@@ -438,7 +438,7 @@ const crashTestExtraContent = `
       <div><strong class="text-cyan-400 block text-sm">1 Teşhis</strong> Doğrudan arıza kataloğu eşleşmesi ve eylem reçetesi</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Testin kapsadığı dört kriz senaryosu</h2>
+    <h2 class="text-xl font-bold text-white">Testin kapsadığı beş kriz senaryosu</h2>
     <div class="space-y-4">
       ${scenarios.map(sc => `
       <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3">

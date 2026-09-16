@@ -61,7 +61,7 @@ const AgencySection = () => {
               </p>
             </div>
             <Link
-              to="/crash-test/"
+              to="/crash-test/?senaryo=http500"
               className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-red-400 hover:text-white flex items-center justify-between transition-colors"
             >
               <span>{t('crisis-card1-action')}</span>
@@ -87,7 +87,7 @@ const AgencySection = () => {
               </p>
             </div>
             <Link
-              to="/crash-test/"
+              to="/crash-test/?senaryo=handover"
               className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-amber-400 hover:text-white flex items-center justify-between transition-colors"
             >
               <span>{t('crisis-card2-action')}</span>
@@ -113,7 +113,7 @@ const AgencySection = () => {
               </p>
             </div>
             <Link
-              to="/crash-test/"
+              to="/crash-test/?senaryo=t48h"
               className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-cyan-400 hover:text-white flex items-center justify-between transition-colors"
             >
               <span>{t('crisis-card3-action')}</span>
@@ -139,7 +139,7 @@ const AgencySection = () => {
               </p>
             </div>
             <Link
-              to="/agency/"
+              to="/crash-test/?senaryo=overflow"
               className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-emerald-400 hover:text-white flex items-center justify-between transition-colors"
             >
               <span>{t('crisis-card4-action')}</span>
