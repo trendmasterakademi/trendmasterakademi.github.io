@@ -42,7 +42,7 @@
   "agency-sec-badge": "B2B AJANS ÇÖZÜM ORTAKLIĞI",
   "agency-sec-title": "Ajansınızın Yerine Değil,",
   "agency-sec-title-highlight": "Ajansınızın Yanındayız.",
-  "agency-sec-desc": "Müşteriniz sizin müşteriniz olarak kalırken; ihtiyaç duyduğunuz teknik gücü, kapasite takviyesini ve acil kod kurtarma desteğini arka planda eksiksiz sağlıyoruz.",
+  "agency-sec-desc": "Müşteriniz sizin müşteriniz olarak kalırken; ister acil kriz anında, ister yoğunluktan yetişmeyen web ve SaaS üretimlerinizde: İhtiyaç duyduğunuz teknik gücü ve görünmez mühendislik masasını arka planda eksiksiz sağlıyoruz.",
   "agency-sec-link": "Ajans çalışma modelini ve tüm detayları inceleyin",
 
   "crisis-card1-tag": "HTTP 500 / CANLI KESİNTİ",
@@ -59,6 +59,11 @@
   "crisis-card3-title": "Teslime 48 Saat Kaldı / Lansman Baskısı",
   "crisis-card3-desc": "Yetişmeyen kritik modüllerin tamamlanması, acil kapasite takviyesi ve cezai şart riskinin önlenmesi.",
   "crisis-card3-action": "Crash Test'te Simüle Et →",
+
+  "crisis-card4-tag": "KAPASİTE AŞIMI / WHITE-LABEL",
+  "crisis-card4-title": "Yoğunluktan Yetişmeyen İşler & Web Üretimi",
+  "crisis-card4-desc": "Müşteri talepleri biriktiğinde veya iç ekibiniz tıkandığında: Özel web siteleri, SaaS ve platformları ajansınız adına arka planda sessizce kodlar, eksiksiz teslim ederiz.",
+  "crisis-card4-action": "Ajans Modelini İncele →",
 
   "guarantee-whitelabel": "%100 White-Label & Görünmez Mühendislik",
   "guarantee-nda": "Resmi Gizlilik Sözleşmesi (NDA) Güvencesi",

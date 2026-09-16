@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, Flame, Users, Clock, ArrowRight, Zap, Lock, FileCode } from 'lucide-react';
+import { ShieldCheck, Flame, Users, Clock, ArrowRight, Zap, Lock, FileCode, Layers } from 'lucide-react';
 
 const AgencySection = () => {
   const { t } = useTranslation();
@@ -39,8 +39,8 @@ const AgencySection = () => {
           </div>
         </div>
 
-        {/* 3 Crisis Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {/* 4 Agency Scenarios Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           
           {/* Card 1: HTTP 500 Outage */}
           <div className="p-7 rounded-3xl bg-[#111827] border border-red-500/30 hover:border-red-500/60 transition-all flex flex-col justify-between group shadow-xl">
@@ -56,7 +56,7 @@ const AgencySection = () => {
               <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors">
                 {t('crisis-card1-title')}
               </h3>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              <p className="text-sm text-slate-300 leading-relaxed">
                 {t('crisis-card1-desc')}
               </p>
             </div>
@@ -82,7 +82,7 @@ const AgencySection = () => {
               <h3 className="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">
                 {t('crisis-card2-title')}
               </h3>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              <p className="text-sm text-slate-300 leading-relaxed">
                 {t('crisis-card2-desc')}
               </p>
             </div>
@@ -108,7 +108,7 @@ const AgencySection = () => {
               <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
                 {t('crisis-card3-title')}
               </h3>
-              <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+              <p className="text-sm text-slate-300 leading-relaxed">
                 {t('crisis-card3-desc')}
               </p>
             </div>
@@ -117,6 +117,32 @@ const AgencySection = () => {
               className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-cyan-400 hover:text-white flex items-center justify-between transition-colors"
             >
               <span>{t('crisis-card3-action')}</span>
+            </Link>
+          </div>
+
+          {/* Card 4: Capacity Overflow & White-Label Production */}
+          <div className="p-7 rounded-3xl bg-[#111827] border border-emerald-500/30 hover:border-emerald-500/60 transition-all flex flex-col justify-between group shadow-xl">
+            <div>
+              <div className="flex items-center justify-between mb-5">
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+                  <Layers className="w-6 h-6" />
+                </div>
+                <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20">
+                  {t('crisis-card4-tag')}
+                </span>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+                {t('crisis-card4-title')}
+              </h3>
+              <p className="text-sm text-slate-300 leading-relaxed">
+                {t('crisis-card4-desc')}
+              </p>
+            </div>
+            <Link
+              to="/agency/"
+              className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-emerald-400 hover:text-white flex items-center justify-between transition-colors"
+            >
+              <span>{t('crisis-card4-action')}</span>
             </Link>
           </div>
 
