@@ -9,6 +9,7 @@ import {
 import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
 import { formatDocumentTitle } from '../utils/pageTitle';
+import { isTurkish } from '../i18n';
 
 /**
  * 12 Kalemlik Devir Hazırlık Kontrolü (Handover Readiness Checklist)
@@ -191,7 +192,7 @@ const handoverItems = [
 
 const DevirKontrolu = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
 
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState({});
@@ -236,7 +237,7 @@ const DevirKontrolu = () => {
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/devir-kontrolu/');
+      canonical.setAttribute('href', isTr ? 'https://trendmasterakademi.com/devir-kontrolu/' : 'https://trendmasterakademi.com/handover-audit/');
     }
 
     try {

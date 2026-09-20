@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { PhoneCall, MessageSquare, AlertCircle, ArrowRight, ArrowLeft } from 'lucide-react';
 import { formatDocumentTitle } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
+import { isTurkish } from '../i18n';
 
 const NotFound = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const krizHattiAcik = useKrizHattiAcik();
 
   useEffect(() => {
@@ -132,10 +133,10 @@ const NotFound = () => {
           >
             <div>
               <div className="text-sm font-bold text-white group-hover:text-cyan-300 transition-colors">
-                {isTr ? 'Agency Crash Test — 60 saniyede teşhis' : 'Agency Crash Test — 60s self-check'}
+                {isTr ? 'Sistem Crash Test — 60 saniyede teşhis' : 'System Crash Test — 60s self-check'}
               </div>
               <div className="text-xs text-slate-400 mt-0.5">
-                {isTr ? 'Ajans kriz dayanıklılık skoru' : 'Agency crisis resilience score'}
+                {isTr ? 'Altyapı kriz dayanıklılık skoru' : 'Infrastructure crisis resilience score'}
               </div>
             </div>
             <ArrowRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition-transform flex-shrink-0" />

@@ -1,10 +1,11 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowUp } from 'lucide-react';
+import { isTurkish } from '../i18n';
 
 const FloatingActions = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [isHoveredWA, setIsHoveredWA] = useState(false);
 

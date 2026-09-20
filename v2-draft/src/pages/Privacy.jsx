@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Lock, ArrowLeft, Mail, PhoneCall, MapPin, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { formatDocumentTitle } from '../utils/pageTitle';
+import { isTurkish } from '../i18n';
 
 const Privacy = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
 
   useEffect(() => {
     document.title = formatDocumentTitle(isTr 

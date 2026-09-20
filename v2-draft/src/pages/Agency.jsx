@@ -10,6 +10,7 @@ import EmergencySOSModal from '../components/EmergencySOSModal';
 import FAQ from '../components/FAQ';
 import { getCalendlyUrl } from '../utils/calendly';
 import { formatDocumentTitle } from '../utils/pageTitle';
+import { isTurkish } from '../i18n';
 
 const capabilities = [
   { 
@@ -167,7 +168,7 @@ const situationQuotes = [
 
 const Agency = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const [isSOSOpen, setIsSOSOpen] = useState(false);
 
   React.useEffect(() => {
@@ -229,7 +230,7 @@ const Agency = () => {
               className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center gap-3 transition-all transform hover:-translate-y-0.5 min-h-[48px]"
             >
               <Zap className="w-5 h-5 fill-current" />
-              <span>{isTr ? "Agency Crash Test'i Başlat (60 sn)" : "Run Agency Crash Test (60s)"}</span>
+              <span>{isTr ? "Sistem Crash Test'ini Başlat (60 sn)" : "Run System Crash Test (60s)"}</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
 

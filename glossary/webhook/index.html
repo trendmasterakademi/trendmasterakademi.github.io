@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#080b11" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>What is Webhook (Sistemler Arası Anlık Bildirim)?</title>
+    <meta name="description" content="Webhook: An automated user-defined HTTP POST callback triggered by external service events like completed transactions or SMS deliveries." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/glossary/webhook/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/webhook/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/webhook/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/webhook/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/glossary/webhook/" />
+    <meta property="og:title" content="What is Webhook (Sistemler Arası Anlık Bildirim)?" />
+    <meta property="og:description" content="Webhook: An automated user-defined HTTP POST callback triggered by external service events like completed transactions or SMS deliveries." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/glossary/webhook/" />
+    <meta name="twitter:title" content="What is Webhook (Sistemler Arası Anlık Bildirim)?" />
+    <meta name="twitter:description" content="Webhook: An automated user-defined HTTP POST callback triggered by external service events like completed transactions or SMS deliveries." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Webhook (Sistemler Arası Anlık Bildirim)",
+      "description": "Bir sistemde olay gerçekleştiğinde (örn. ödeme alındığında) diğer sistemi beklemeden anında uyaran otomatik HTTP callback mekanizmasıdır.",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Teknik Terim Sözlüğü",
+        "url": "https://trendmasterakademi.com/sozluk/"
+      },
+      "url": "https://trendmasterakademi.com/sozluk/webhook/",
+      "inLanguage": "tr-TR",
+      "dateModified": "2026-08-28T23:48:15+03:00"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teknik Terim Sözlüğü",
+          "item": "https://trendmasterakademi.com/sozluk/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Webhook (Sistemler Arası Anlık Bildirim)",
+          "item": "https://trendmasterakademi.com/sozluk/webhook/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <script type="module" crossorigin src="/assets/index-BGlQNeIQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-Chmdu_fW.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-92AYjGYd.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-Cn8upMAX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-hO7PlEZV.css">
+  </head>
+  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
+      <header class="mb-8 border-b border-white/10 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">What is Webhook (Sistemler Arası Anlık Bildirim)?</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-white">Webhook (Sistemler Arası Anlık Bildirim)</h2>
+        <p class="text-slate-300 text-lg leading-relaxed">An automated user-defined HTTP POST callback triggered by external service events like completed transactions or SMS deliveries. What it means for agencies: Automatically activates user subscriptions upon billing events. If broken, money is collected but orders stay pending.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik (P0)</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Tanım</h2>
+        <p class="text-slate-300 leading-relaxed">Bir sistemde olay gerçekleştiğinde (örn. ödeme alındığında) diğer sistemi beklemeden anında uyaran otomatik HTTP callback mekanizmasıdır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Ajans için ne anlama gelir</h2>
+        <p class="text-slate-300 leading-relaxed">Ajans için ne anlama gelir? Müşteri iyzico/Stripe ile ödeme yaptığında sitenizin siparişi otomatik &quot;Ödendi&quot;ye çekmesini sağlar. Webhook koptuğunda para tahsil edilir ama sipariş düşmez.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer</h2>
+        <p class="text-slate-300 leading-relaxed">Entegrasyon Mühendisi. Webhook signing secret doğrulaması, payload parsing ve retry mekanizmalarıyla devreye alınır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/idempotency/" class="hover:underline">→ Idempotency (Çift İşlem Koruması)</a></li>
+        <li><a href="/sozluk/rate-limit/" class="hover:underline">→ Rate Limiting (Trafik &amp; İstek Sınırlandırma)</a></li>
+        <li><a href="/sozluk/ci-cd/" class="hover:underline">→ CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/agency/" class="text-cyan-400 hover:underline font-bold">→ White-Label Kriz SWAT Desteği</a></p>
+      </section>
+    </section>
+  
+
+      <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3 mt-6">
+        <h2 class="text-xl font-bold text-white">Bu terim şu belirtilerde çıkar</h2>
+        <ul class="space-y-2 font-mono text-sm text-cyan-300">
+          <li><a href="/teshis/odeme-alindi-siparis-olusmadi/" class="hover:underline">→ 02 · Ödeme alındı, sipariş oluşmadı</a></li>
+          <li><a href="/teshis/odeme-iki-kez-alindi/" class="hover:underline">→ 03 · Ödeme iki kez alındı</a></li>
+          <li><a href="/teshis/entegrasyon-429-veriyor/" class="hover:underline">→ 12 · Entegrasyon aniden 429 vermeye başladı</a></li>
+          <li><a href="/teshis/form-gonderiliyor-mail-gelmiyor/" class="hover:underline">→ 18 · Form gönderiliyor ama mail gelmiyor</a></li>
+        </ul>
+        
+      </section>
+    
+        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
+          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

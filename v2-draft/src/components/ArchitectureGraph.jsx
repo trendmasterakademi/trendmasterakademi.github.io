@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Database, ShieldCheck, Zap, Activity, Cpu, ArrowRight, CheckCircle2, Lock, Radio, Layers, Server, Globe } from 'lucide-react';
+import { isTurkish } from '../i18n';
 
 const ArchitectureGraph = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const [selectedNode, setSelectedNode] = useState(2); // Default to TMA Core
 
   const nodes = [

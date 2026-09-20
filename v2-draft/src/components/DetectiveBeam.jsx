@@ -102,6 +102,10 @@ const DetectiveBeam = ({ className = '', intervalMs = 10 * 60 * 1000 }) => {
       className={`absolute top-0 left-0 w-full max-w-[100vw] h-[100vh] min-h-[640px] max-h-[960px] pointer-events-none overflow-hidden z-20 select-none transition-opacity duration-1000 ease-in-out ${
         isFading ? 'opacity-0' : 'opacity-100'
       } ${className}`}
+      style={{
+        maskImage: 'radial-gradient(circle at 50% 30%, black 50%, transparent 95%)',
+        WebkitMaskImage: 'radial-gradient(circle at 50% 30%, black 50%, transparent 95%)'
+      }}
       aria-hidden="true"
     >
       {/* 4 Köşeye Yansıtılabilir Hacimsel Katman */}
@@ -111,11 +115,11 @@ const DetectiveBeam = ({ className = '', intervalMs = 10 * 60 * 1000 }) => {
       >
         {/* 1. Köşe Odak Işıltısı (Ambient Corner Flare) */}
         <div 
-          className="absolute -top-12 -right-12 w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-br from-amber-200/40 via-amber-500/25 to-transparent blur-3xl mix-blend-screen animate-detective-pulse"
+          className="absolute -top-12 -right-12 w-64 h-64 sm:w-80 sm:h-80 rounded-full bg-gradient-to-br from-amber-200/30 via-amber-500/15 to-transparent blur-3xl mix-blend-screen animate-detective-pulse"
         />
 
         {/* 2. Ana Hacimsel Fener Demeti (Volumetric Beam with Sway Animation) */}
-        <div className="absolute top-0 right-0 w-full h-full animate-detective-sweep mix-blend-screen opacity-90">
+        <div className="absolute top-0 right-0 w-full h-full animate-detective-sweep mix-blend-screen opacity-70">
           <svg 
             viewBox="0 0 1200 900" 
             className="w-full h-full object-cover sm:object-fill origin-top-right" 

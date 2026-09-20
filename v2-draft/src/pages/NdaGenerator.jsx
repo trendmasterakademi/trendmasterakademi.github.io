@@ -1,0 +1,357 @@
+import React, { useState } from "react";
+import { ndaData } from "../data/ndaData";
+
+export default function NdaGenerator({ lang = "tr" }) {
+  const t = ndaData[lang] || ndaData.tr;
+  const today = new Date().toISOString().split("T")[0];
+
+  const [formData, setFormData] = useState({
+    companyName: "",
+    signatory: "",
+    signatoryTitle: "",
+    email: "",
+    scope: "crisis_triage",
+    effectiveDate: today
+  });
+
+  const [copied, setCopied] = useState(false);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const selectedScopeObj = t.scopeTypes.find((s) => s.id === formData.scope) || t.scopeTypes[0];
+
+  const clientCompanyDisplay = formData.companyName.trim() || (lang === "en" ? "[CLIENT COMPANY LEGAL NAME]" : "[MÜŞTERİ ŞİRKET UNVANI]");
+  const clientSignatoryDisplay = formData.signatory.trim() || (lang === "en" ? "[AUTHORIZED SIGNATORY NAME]" : "[YETKİLİ ADI SOYADI]");
+  const clientTitleDisplay = formData.signatoryTitle.trim() || (lang === "en" ? "[TITLE]" : "[UNVAN]");
+  const clientEmailDisplay = formData.email.trim() || (lang === "en" ? "[CORPORATE EMAIL]" : "[KURUMSAL E-POSTA]");
+
+  const handlePrint = () => {
+    window.print();
+  };
+
+  const handleCopyText = () => {
+    const clausesText = t.clauses
+      .map((c) => `MADDE ${c.num}. ${c.title}\n${c.content}`)
+      .join("\n\n");
+
+    const fullText = `================================================================================
+${t.hero.title.toUpperCase()}
+================================================================================
+
+TARAFLAR:
+
+1. MÜŞTERİ / DANIŞAN TARAF:
+   Şirket Unvanı: ${clientCompanyDisplay}
+   Yetkili: ${clientSignatoryDisplay} (${clientTitleDisplay})
+   E-posta: ${clientEmailDisplay}
+
+2. YÜKLENİCİ / MÜHENDİSLİK MASASI:
+   Şirket Unvanı: ${t.tmaParty.companyName}
+   Yetkili: ${t.tmaParty.signatory} (${t.tmaParty.title})
+   Adres: ${t.tmaParty.address}
+   E-posta: ${t.tmaParty.email}
+   Telefon: ${t.tmaParty.phone}
+
+İŞBİRLİĞİ KAPSAMI: ${selectedScopeObj.label}
+YÜRÜRLÜK TARİHİ: ${formData.effectiveDate}
+
+SÖZLEŞME METNİ VE MADDELER:
+
+${clausesText}
+
+--------------------------------------------------------------------------------
+TARAFLARIN İMZA VE ONAYI:
+
+MÜŞTERİ TARAF:                           TREND MASTER AKADEMİ:
+İmza / Kaşe:                             İmza / Kaşe:
+Ad Soyad: ${clientSignatoryDisplay}      Ad Soyad: ${t.tmaParty.signatory}
+Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
+================================================================================`;
+
+    navigator.clipboard.writeText(fullText).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+    });
+  };
+
+  const mailtoUrl = `mailto:${t.tmaParty.email}?subject=${encodeURIComponent(
+    `[NDA İmza Talebi] ${formData.companyName.trim() || "Kurumsal İşbirliği"} - ${selectedScopeObj.label}`
+  )}&body=${encodeURIComponent(
+    `Merhaba Mehmet Bey,\n\nTrend Master Akademi ile yürüteceğimiz ${selectedScopeObj.label} çalışması için iki taraflı gizlilik sözleşmesi (NDA) nüshasını onaylamak istiyoruz.\n\nŞirket: ${formData.companyName}\nYetkili: ${formData.signatory} (${formData.signatoryTitle})\nE-posta: ${formData.email}\nYürürlük Tarihi: ${formData.effectiveDate}\n\nLütfen imzalı karşı nüshayı bu adrese iletiniz.\n\nSaygılarımızla.`
+  )}`;
+
+  return (
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-emerald-500/30">
+      {/* Print Styles */}
+      <style dangerouslySetInnerHTML={{ __html: `
+        @media print {
+          body * {
+            visibility: hidden;
+          }
+          #printable-nda, #printable-nda * {
+            visibility: visible;
+          }
+          #printable-nda {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            background: white !important;
+            color: black !important;
+            padding: 30px !important;
+            box-shadow: none !important;
+            border: none !important;
+          }
+          #printable-nda h1, #printable-nda h2, #printable-nda h3, #printable-nda p, #printable-nda span {
+            color: black !important;
+          }
+          .no-print {
+            display: none !important;
+          }
+        }
+      `}} />
+
+      {/* Screen Header (No Print) */}
+      <div className="max-w-5xl mx-auto text-center mb-12 no-print">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-800/60 text-emerald-400 text-xs font-mono font-medium uppercase tracking-widest mb-4">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          {t.hero.badge}
+        </div>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+          {t.hero.title}
+        </h1>
+        <p className="text-base sm:text-lg text-neutral-400 max-w-3xl mx-auto mb-4">
+          {t.hero.subtitle}
+        </p>
+        <p className="text-xs text-neutral-500 font-mono">
+          🔒 {t.hero.notice}
+        </p>
+      </div>
+
+      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Form Inputs (No Print) */}
+        <div className="lg:col-span-4 no-print space-y-5">
+          <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-6 shadow-xl sticky top-8">
+            <h2 className="text-base font-bold text-white mb-4 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              {lang === "en" ? "Agreement Parties & Scope" : "Sözleşme Tarafları ve Kapsam"}
+            </h2>
+
+            <div className="space-y-4 text-xs font-mono">
+              <div>
+                <label className="block text-neutral-400 mb-1 font-medium">
+                  {t.formLabels.companyName} *
+                </label>
+                <input
+                  type="text"
+                  name="companyName"
+                  value={formData.companyName}
+                  onChange={handleChange}
+                  placeholder={t.formLabels.companyNamePlaceholder}
+                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white placeholder-neutral-600 focus:outline-none focus:border-emerald-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-neutral-400 mb-1 font-medium">
+                  {t.formLabels.signatory} *
+                </label>
+                <input
+                  type="text"
+                  name="signatory"
+                  value={formData.signatory}
+                  onChange={handleChange}
+                  placeholder={t.formLabels.signatoryPlaceholder}
+                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white placeholder-neutral-600 focus:outline-none focus:border-emerald-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-neutral-400 mb-1 font-medium">
+                  {t.formLabels.signatoryTitle}
+                </label>
+                <input
+                  type="text"
+                  name="signatoryTitle"
+                  value={formData.signatoryTitle}
+                  onChange={handleChange}
+                  placeholder={t.formLabels.signatoryTitlePlaceholder}
+                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white placeholder-neutral-600 focus:outline-none focus:border-emerald-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-neutral-400 mb-1 font-medium">
+                  {t.formLabels.email} *
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder={t.formLabels.emailPlaceholder}
+                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white placeholder-neutral-600 focus:outline-none focus:border-emerald-500"
+                />
+              </div>
+
+              <div>
+                <label className="block text-neutral-400 mb-1 font-medium">
+                  {t.formLabels.scope}
+                </label>
+                <select
+                  name="scope"
+                  value={formData.scope}
+                  onChange={handleChange}
+                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-emerald-500 text-xs"
+                >
+                  {t.scopeTypes.map((s) => (
+                    <option key={s.id} value={s.id}>
+                      {s.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-neutral-400 mb-1 font-medium">
+                  {t.formLabels.effectiveDate}
+                </label>
+                <input
+                  type="date"
+                  name="effectiveDate"
+                  value={formData.effectiveDate}
+                  onChange={handleChange}
+                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-emerald-500"
+                />
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="space-y-2 pt-6 border-t border-neutral-800 mt-6">
+              <button
+                onClick={handlePrint}
+                className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-mono font-bold text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40"
+              >
+                🖨️ {t.formLabels.printCta}
+              </button>
+
+              <button
+                onClick={handleCopyText}
+                className="w-full py-2.5 px-4 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-neutral-200 font-mono text-xs transition flex items-center justify-center gap-2"
+              >
+                📋 {copied ? t.formLabels.copiedNotice : t.formLabels.copyCta}
+              </button>
+
+              <a
+                href={mailtoUrl}
+                className="w-full py-2.5 px-4 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-700/60 text-emerald-400 font-mono text-xs transition flex items-center justify-center gap-2 text-center"
+              >
+                ✉️ {t.formLabels.requestSignedCta}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Printable Live NDA Document */}
+        <div className="lg:col-span-8">
+          <div
+            id="printable-nda"
+            className="bg-neutral-900/60 border border-neutral-800/90 rounded-2xl p-8 sm:p-12 shadow-2xl backdrop-blur-sm text-neutral-300 font-serif leading-relaxed"
+          >
+            {/* Document Header */}
+            <div className="text-center border-b border-neutral-800 pb-8 mb-8">
+              <span className="text-[11px] font-mono tracking-widest uppercase text-emerald-400 block mb-2 font-semibold">
+                TREND MASTER AKADEMİ HUKUK & MÜHENDİSLİK DANIŞMANLIĞI
+              </span>
+              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2 uppercase">
+                {t.hero.title}
+              </h2>
+              <span className="text-xs font-mono text-neutral-400">
+                Ref: TMA-NDA-{formData.effectiveDate.replace(/-/g, "")}-{formData.scope.toUpperCase()}
+              </span>
+            </div>
+
+            {/* Parties Info Table */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-neutral-950/70 p-6 rounded-xl border border-neutral-800/80 mb-8 text-xs font-sans">
+              <div>
+                <h3 className="font-mono font-bold text-emerald-400 uppercase tracking-wider mb-2 border-b border-neutral-800 pb-1">
+                  1. {lang === "en" ? "Client / Disclosing Party:" : "Müşteri / Danışan Taraf:"}
+                </h3>
+                <p className="font-bold text-white text-sm mb-1">{clientCompanyDisplay}</p>
+                <p className="text-neutral-400 mb-1">
+                  {clientSignatoryDisplay} {formData.signatoryTitle ? `(${clientTitleDisplay})` : ""}
+                </p>
+                <p className="text-neutral-400 mb-1">{clientEmailDisplay}</p>
+              </div>
+
+              <div>
+                <h3 className="font-mono font-bold text-emerald-400 uppercase tracking-wider mb-2 border-b border-neutral-800 pb-1">
+                  2. {lang === "en" ? "Engineering Studio / Receiving Party:" : "Yüklenici / Mühendislik Masası:"}
+                </h3>
+                <p className="font-bold text-white text-sm mb-1">{t.tmaParty.companyName}</p>
+                <p className="text-neutral-400 mb-1">
+                  {t.tmaParty.signatory} ({t.tmaParty.title})
+                </p>
+                <p className="text-neutral-400 mb-1">{t.tmaParty.address}</p>
+                <p className="text-neutral-400">{t.tmaParty.email} • {t.tmaParty.phone}</p>
+              </div>
+            </div>
+
+            {/* Scope & Date Banner */}
+            <div className="bg-neutral-950/40 p-4 rounded-lg border border-neutral-800/60 mb-8 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+              <div>
+                <span className="text-neutral-400">{lang === "en" ? "Scope: " : "Kapsam: "}</span>
+                <span className="text-white font-bold">{selectedScopeObj.label}</span>
+              </div>
+              <div>
+                <span className="text-neutral-400">{lang === "en" ? "Effective Date: " : "Yürürlük Tarihi: "}</span>
+                <span className="text-emerald-400 font-bold">{formData.effectiveDate}</span>
+              </div>
+            </div>
+
+            {/* Agreement Clauses */}
+            <div className="space-y-6 text-sm">
+              {t.clauses.map((clause) => (
+                <div key={clause.num} className="space-y-1.5">
+                  <h3 className="font-bold text-white tracking-wide font-sans text-xs uppercase flex items-center gap-2">
+                    <span className="text-emerald-400 font-mono">MADDE {clause.num}.</span>
+                    {clause.title}
+                  </h3>
+                  <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed text-justify">
+                    {clause.content}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Signature Block */}
+            <div className="mt-12 pt-8 border-t border-neutral-800 grid grid-cols-2 gap-8 text-xs font-sans">
+              <div>
+                <p className="font-bold text-white mb-8">
+                  {lang === "en" ? "FOR AND ON BEHALF OF CLIENT:" : "MÜŞTERİ / DANIŞAN ADINA:"}
+                </p>
+                <div className="border-b border-neutral-700 w-3/4 mb-2"></div>
+                <p className="font-medium text-white">{clientSignatoryDisplay}</p>
+                <p className="text-neutral-400">{clientTitleDisplay}</p>
+                <p className="text-neutral-500 font-mono mt-1">{formData.effectiveDate}</p>
+              </div>
+
+              <div>
+                <p className="font-bold text-white mb-8">
+                  {lang === "en" ? "FOR AND ON BEHALF OF TMA:" : "TREND MASTER AKADEMİ ADINA:"}
+                </p>
+                <div className="border-b border-neutral-700 w-3/4 mb-2"></div>
+                <p className="font-medium text-white">{t.tmaParty.signatory}</p>
+                <p className="text-neutral-400">{t.tmaParty.title}</p>
+                <p className="text-neutral-500 font-mono mt-1">{formData.effectiveDate}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

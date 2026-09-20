@@ -4,10 +4,11 @@ import { ShieldCheck, Server, Lock, Cpu, ArrowRight, ArrowLeft, Zap, PhoneCall, 
 import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
 import { formatDocumentTitle } from '../utils/pageTitle';
+import { isTurkish } from '../i18n';
 
 const About = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
 
   useEffect(() => {
     document.title = formatDocumentTitle(isTr 
@@ -230,7 +231,7 @@ const About = () => {
               to="/agency/"
               className="w-full sm:w-auto px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs sm:text-sm sm:whitespace-nowrap flex items-center justify-center gap-2 transition-colors text-center"
             >
-              <span>{isTr ? 'Ajans Çözümlerini İncele' : 'Explore Agency Solutions'}</span>
+              <span>{isTr ? 'Teknik Müdahale Modelini İncele' : 'Review Technical Operations Model'}</span>
               <ArrowRight className="w-4 h-4 flex-shrink-0" />
             </Link>
           </div>

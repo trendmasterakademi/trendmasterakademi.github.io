@@ -11,6 +11,7 @@ import EmergencySOSModal from '../components/EmergencySOSModal';
 import { getCalendlyUrl } from '../utils/calendly';
 import { formatDocumentTitle } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
+import { isTurkish } from '../i18n';
 
 // Dynamic code-split loaders: Each diagnostic chunk is loaded strictly on demand!
 const teshisLoaders = {
@@ -312,7 +313,7 @@ function getMatchedDiagnosis(scenarioId, answers) {
 const CrashTest = () => {
   const { i18n } = useTranslation();
   const location = useLocation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const isKrizHattiAcik = useKrizHattiAcik();
 
   const [selectedScenario, setSelectedScenario] = useState(() => {
@@ -1078,7 +1079,7 @@ const CrashTest = () => {
                     to="/agency/"
                     className="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
                   >
-                    <span>{isTr ? 'Ajans Çözümlerini İnceleyin →' : 'Explore Agency Solutions →'}</span>
+                    <span>{isTr ? 'Altyapı & Çekirdek Mühendislik Masası →' : 'Infrastructure & Kernel Engineering Desk →'}</span>
                     <ArrowRight className="w-4 h-4 text-cyan-400 flex-shrink-0" />
                   </Link>
 

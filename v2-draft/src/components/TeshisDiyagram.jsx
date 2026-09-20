@@ -1,11 +1,12 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { isTurkish } from '../i18n';
 
 const DAL_COLORS = ['#f87171', '#fbbf24', '#a78bfa', '#22d3ee'];
 
 const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const lang = isTr ? 'tr' : 'en';
 
   const N = (nedenler && nedenler.length) || 3;

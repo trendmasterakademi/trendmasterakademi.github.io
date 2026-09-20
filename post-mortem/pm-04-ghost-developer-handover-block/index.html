@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#080b11" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>PM-04 Post-Mortem | Ayrılan Geliştiriciden Kalan Şifresiz .env, Kayıp AWS Root ve Kilitlenen Deploy Pipeline</title>
+    <meta name="description" content="Bir dijital ajansın tek kıdemli yazılımcısı ani bir kararla projeden ayrıldı. Geride kalan kod tabanında canlı ortam değişkenleri (.env) bulunmuyordu, AWS hesabı yazılımcının kişisel Gmail adresine bağlıydı ve CI/CD pipeline’ı yazılımcının kendi sunucusundaki bir script üzerinden dönüyordu." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-04-ghost-developer-handover-block/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
+    <meta property="og:title" content="PM-04 Post-Mortem | Ayrılan Geliştiriciden Kalan Şifresiz .env, Kayıp AWS Root ve Kilitlenen Deploy Pipeline" />
+    <meta property="og:description" content="Bir dijital ajansın tek kıdemli yazılımcısı ani bir kararla projeden ayrıldı. Geride kalan kod tabanında canlı ortam değişkenleri (.env) bulunmuyordu, AWS hesabı yazılımcının kişisel Gmail adresine bağlıydı ve CI/CD pipeline’ı yazılımcının kendi sunucusundaki bir script üzerinden dönüyordu." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
+    <meta name="twitter:title" content="PM-04 Post-Mortem | Ayrılan Geliştiriciden Kalan Şifresiz .env, Kayıp AWS Root ve Kilitlenen Deploy Pipeline" />
+    <meta name="twitter:description" content="Bir dijital ajansın tek kıdemli yazılımcısı ani bir kararla projeden ayrıldı. Geride kalan kod tabanında canlı ortam değişkenleri (.env) bulunmuyordu, AWS hesabı yazılımcının kişisel Gmail adresine bağlıydı ve CI/CD pipeline’ı yazılımcının kendi sunucusundaki bir script üzerinden dönüyordu." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "PM-04: Ayrılan Geliştiriciden Kalan Şifresiz .env, Kayıp AWS Root ve Kilitlenen Deploy Pipeline",
+      "description": "Bir dijital ajansın tek kıdemli yazılımcısı ani bir kararla projeden ayrıldı. Geride kalan kod tabanında canlı ortam değişkenleri (.env) bulunmuyordu, AWS hesabı yazılımcının kişisel Gmail adresine bağlıydı ve CI/CD pipeline’ı yazılımcının kendi sunucusundaki bir script üzerinden dönüyordu.",
+      "url": "https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Post-Mortem Kütüphanesi",
+          "item": "https://trendmasterakademi.com/post-mortem/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Ayrılan Geliştiriciden Kalan Şifresiz .env, Kayıp AWS Root ve Kilitlenen Deploy Pipeline",
+          "item": "https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <script type="module" crossorigin src="/assets/index-BGlQNeIQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-Chmdu_fW.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-92AYjGYd.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-Cn8upMAX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-hO7PlEZV.css">
+  </head>
+  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
+      <header class="mb-8 border-b border-white/10 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">PM-04 · Ayrılan Geliştiriciden Kalan Şifresiz .env, Kayıp AWS Root ve Kilitlenen Deploy Pipeline</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
+          <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
+          <a href="/kurtarilabilirlik/" class="hover:underline">Kurtarılabilirlik İndeksi</a>
+          <a href="/post-mortem/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triyaj/" class="hover:underline">Triyaj Simülatörü</a>
+          <a href="/sla/" class="hover:underline">SLA & Taahhütler</a>
+          <a href="/teknoloji-uyumluluk/" class="hover:underline">Teknoloji Matrisi</a>
+          <a href="/gizlilik-sozlesmesi/" class="hover:underline">Gizlilik Sözleşmesi</a>
+          <a href="/hasar-tespiti/" class="hover:underline">Hasar Simülatörü</a>
+          <a href="/radar/" class="hover:underline">SWAT Radarı</a>
+          <a href="/kod-sagligi/" class="hover:underline">Kod Sağlığı</a>
+          <a href="/kurtarma-maliyeti/" class="hover:underline">Kurtarma ROI</a>
+          <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
+          <a href="/sos/" class="hover:underline">Acil Teknik Destek</a>
+          <a href="/about/" class="hover:underline">Hakkımızda</a>
+          <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-white">PM-04 // DevOps & Güvenlik Devri</h2>
+        <p class="text-slate-300 text-lg leading-relaxed">Bir dijital ajansın tek kıdemli yazılımcısı ani bir kararla projeden ayrıldı. Geride kalan kod tabanında canlı ortam değişkenleri (.env) bulunmuyordu, AWS hesabı yazılımcının kişisel Gmail adresine bağlıydı ve CI/CD pipeline’ı yazılımcının kendi sunucusundaki bir script üzerinden dönüyordu.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <div class="p-4 rounded-xl bg-white/5 border border-white/10 font-mono text-xs text-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div><span class="text-slate-500 block">SEVERITY</span><strong class="text-amber-400">SEV-2 MAJOR</strong></div>
+        <div><span class="text-slate-500 block">KATEGORİ</span><strong class="text-white">DevOps &amp; Güvenlik Devri</strong></div>
+        <div><span class="text-slate-500 block">KESİNTİ SÜRESİ</span><strong class="text-emerald-400">3 hafta süren kilitlenme → 48 saatte tam devir</strong></div>
+        <div><span class="text-slate-500 block">TARİH</span><strong class="text-cyan-300">2026-02-04</strong></div>
+      </div>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Olay Özeti</h2>
+        <p class="text-slate-300 leading-relaxed">Bir dijital ajansın tek kıdemli yazılımcısı ani bir kararla projeden ayrıldı. Geride kalan kod tabanında canlı ortam değişkenleri (.env) bulunmuyordu, AWS hesabı yazılımcının kişisel Gmail adresine bağlıydı ve CI/CD pipeline’ı yazılımcının kendi sunucusundaki bir script üzerinden dönüyordu.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Etki & Kayıp</h2>
+        <p class="text-slate-300 leading-relaxed">3 hafta boyunca canlı sisteme tek bir satır kod yüklenememesi, müşteri güveninin sarsılması, ayrılan geliştiricinin erişimlerinin açık kalması riski.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Kronolojik Olay Akışı</h2>
+        <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10">
+          
+            <li><span class="text-cyan-300 font-bold">T+00h</span> · <span class="text-white">Kriz Bildirimi &amp; Proje Felci</span> — <span class="text-slate-300">Ajans, müşterinin acil talep ettiği bir hatayı düzeltmek istediğinde ne kodun derlenebildiğini ne de canlı sunucuya bağlanabildiğini fark etti.</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+06h</span> · <span class="text-white">TMA Adli Mühendislik İncelemesi</span> — <span class="text-slate-300">Canlı sunucu üzerindeki çalışan Linux process hafızasından (`/proc/$PID/environ`) tüm aktif ortam değişkenleri ve API anahtarları eksiksiz kurtarıldı.</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+18h</span> · <span class="text-white">AWS Mülkiyet Kurtarma &amp; DNS Yetkisi</span> — <span class="text-slate-300">Alan adı DNS paneli ajans kontrolünde olduğu için AWS Support ile kurumsal mülkiyet doğrulama süreci tamamlandı ve yeni bir AWS Organization kuruldu.</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+36h</span> · <span class="text-white">Pipeline Baştan Kuruldu (GitHub Actions)</span> — <span class="text-slate-300">Terk edilmiş gizli runner kaldırıldı; sıfırdan güvenli, otomatik ve dokümante edilmiş GitHub Actions CI/CD hattı yazıldı.</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+48h</span> · <span class="text-white">İlk Güvenli Deploy &amp; Tam Bağımsızlık</span> — <span class="text-slate-300">Tüm eski geliştirici anahtarları revoke edildi; ajans kendi ekibiyle ilk hatasız canlı deploy’unu gerçekleştirdi.</span></li>
+          
+        </ul>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kök Neden (5 Whys)</h2>
+        <p class="text-slate-300 leading-relaxed whitespace-pre-line">1. Ortam değişkenlerinin (.env) kurumsal bir parola kasasında (1Password/Vault) tutulmaması.
+2. Bulut hesaplarının kurumsal e-posta yerine şahsi e-posta ile açılmasına izin verilmesi.
+3. Tek bir yazılımcıya bağımlı &quot;otobüs faktörü (bus factor = 1)&quot; riski.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Uygulanan SWAT Müdahalesi & Hotfix</h2>
+        <p class="text-slate-300 leading-relaxed whitespace-pre-line">1. Canlı sistem hafızasından ortam sırları güvenle çekilip şifrelenmiş envantere dönüştürüldü.
+2. Eski geliştiricinin tüm API, SSH, Git ve IAM anahtarları derhal iptal edildi.
+3. Bağımsız, tek tıkla çalışan GitHub Actions deploy hattı kuruldu.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kalıcı Önleyici Tedbirler</h2>
+        <p class="text-slate-300 leading-relaxed whitespace-pre-line">• Ajans için 12 Kalemlik Devir Hazırlık Kontrolü (Handover Audit) zorunlu şirket standardı haline getirildi.
+• Tüm ortam sırları için HashiCorp Vault / AWS Secrets Manager zorunluluğu getirildi.</p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
+          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

@@ -8,10 +8,11 @@ import {
 import { glossaryTerms } from '../data/glossaryData';
 import { getCalendlyUrl } from '../utils/calendly';
 import { formatDocumentTitle } from '../utils/pageTitle';
+import { isTurkish } from '../i18n';
 
 const GlossaryIndex = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const GlossaryIndex = () => {
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/sozluk/');
+      canonical.setAttribute('href', isTr ? 'https://trendmasterakademi.com/sozluk/' : 'https://trendmasterakademi.com/glossary/');
     }
   }, [isTr]);
 
@@ -138,7 +139,7 @@ const GlossaryIndex = () => {
               to="/agency/"
               className="px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs sm:text-sm"
             >
-              <span>{isTr ? 'Ajans Çözümleri Masası' : 'Agency Engineering Desk'}</span>
+              <span>{isTr ? 'Mühendislik Kapasitesi & Altyapı' : 'Engineering Capacity & Infrastructure'}</span>
             </Link>
           </div>
 

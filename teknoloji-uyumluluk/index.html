@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#080b11" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Teknoloji Yığını &amp; Kurtarma Matrisi | Trend Master Akademi</title>
+    <meta name="description" content="Sisteminizin dilleri, veritabanları ve bulut altyapısı ne olursa olsun: TMA cerrahi müdahale derinliği, bilinen darboğazlar ve SWAT hazırbulunuşluk süreleri." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/teknoloji-uyumluluk/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teknoloji-uyumluluk/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teknoloji-uyumluluk/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/tech-matrix/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/teknoloji-uyumluluk/" />
+    <meta property="og:title" content="Teknoloji Yığını &amp; Kurtarma Matrisi | Trend Master Akademi" />
+    <meta property="og:description" content="Sisteminizin dilleri, veritabanları ve bulut altyapısı ne olursa olsun: TMA cerrahi müdahale derinliği, bilinen darboğazlar ve SWAT hazırbulunuşluk süreleri." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/teknoloji-uyumluluk/" />
+    <meta name="twitter:title" content="Teknoloji Yığını &amp; Kurtarma Matrisi | Trend Master Akademi" />
+    <meta name="twitter:description" content="Sisteminizin dilleri, veritabanları ve bulut altyapısı ne olursa olsun: TMA cerrahi müdahale derinliği, bilinen darboğazlar ve SWAT hazırbulunuşluk süreleri." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://trendmasterakademi.com/#organization",
+      "name": "Trend Master Akademi",
+      "alternateName": "TMA Studio & Labs",
+      "legalName": "Mehmet Şahin",
+      "taxID": "7930336132",
+      "url": "https://trendmasterakademi.com",
+      "logo": "https://trendmasterakademi.com/logo-dark.png",
+      "image": "https://trendmasterakademi.com/og-image.jpg",
+      "description": "Dijital ajanslar, SaaS girişimleri ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), API Entegrasyonu ve Özel Yazılım Geliştirme Stüdyosu.",
+      "founder": {
+        "@type": "Person",
+        "name": "Mehmet Şahin",
+        "jobTitle": "Founder & Lead Engineer",
+        "url": "https://trendmasterakademi.com/about/"
+      },
+      "telephone": "+905343713573",
+      "email": "info@trendmasterakademi.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091",
+        "addressLocality": "Konak",
+        "addressRegion": "İzmir",
+        "addressCountry": "TR"
+      },
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 09:00-24:00",
+      "sameAs": [
+        "https://www.linkedin.com/in/trendmasterakademi/"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Türkiye"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "B2B SWAT & Mühendislik Hizmetleri",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Acil Kod Kurtarma & Canlı Sistem Hotfix (Incident SWAT)",
+              "description": "HTTP 500 hataları, veritabanı kilitlenmeleri ve ödeme API kopmalarında acil müdahale."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yarım Kalan Proje Devralma (Abandoned Codebase Takeover)",
+              "description": "Önceki geliştiriciden kalan dokümantasyonsuz ve spagetti kod tabanlarının onarılması ve yayına alınması."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "B2B %100 White-Label Mühendislik & Kapasite Takviyesi",
+              "description": "Ajansların arka planında görünmez teknik ekip olarak resmi NDA altında proje teslimi."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "SaaS & Özel Web Uygulaması Mimarisi",
+              "description": "React, Next.js, Python/FastAPI ve Node.js ile sıfırdan ölçeklenebilir web ve bulut sistemleri."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yapay Zeka, LLM & Akıllı Otomasyon Entegrasyonları",
+              "description": "OpenAI, LLM, RAG ve akıllı agent iş akışlarının şirket içi süreçlere entegrasyonu."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://trendmasterakademi.com/#website",
+      "url": "https://trendmasterakademi.com",
+      "name": "Trend Master Akademi",
+      "publisher": {
+        "@id": "https://trendmasterakademi.com/#organization"
+      },
+      "inLanguage": [
+        "tr-TR"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teknoloji Uyumluluk Matrisi",
+          "item": "https://trendmasterakademi.com/teknoloji-uyumluluk/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <script type="module" crossorigin src="/assets/index-BGlQNeIQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-Chmdu_fW.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-92AYjGYd.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-Cn8upMAX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-hO7PlEZV.css">
+  </head>
+  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
+      <header class="mb-8 border-b border-white/10 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">Teknoloji Yığını & Kurtarma Matrisi</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
+          <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
+          <a href="/kurtarilabilirlik/" class="hover:underline">Kurtarılabilirlik İndeksi</a>
+          <a href="/post-mortem/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triyaj/" class="hover:underline">Triyaj Simülatörü</a>
+          <a href="/sla/" class="hover:underline">SLA & Taahhütler</a>
+          <a href="/teknoloji-uyumluluk/" class="hover:underline">Teknoloji Matrisi</a>
+          <a href="/gizlilik-sozlesmesi/" class="hover:underline">Gizlilik Sözleşmesi</a>
+          <a href="/hasar-tespiti/" class="hover:underline">Hasar Simülatörü</a>
+          <a href="/radar/" class="hover:underline">SWAT Radarı</a>
+          <a href="/kod-sagligi/" class="hover:underline">Kod Sağlığı</a>
+          <a href="/kurtarma-maliyeti/" class="hover:underline">Kurtarma ROI</a>
+          <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
+          <a href="/sos/" class="hover:underline">Acil Teknik Destek</a>
+          <a href="/about/" class="hover:underline">Hakkımızda</a>
+          <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-white">Teknoloji Yığını & Kurtarma Matrisi</h2>
+        <p class="text-slate-300 text-lg leading-relaxed">Node.js, Go, Python, PostgreSQL, Redis, Kubernetes ve AWS... Sisteminizin stack kombinasyonunu seçin; TMA’nın bu teknolojilerdeki cerrahi kurtarma derinliğini ve risk noktalarını inceleyin.</p>
+        
+  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
+      <div><strong class="text-emerald-400 block text-sm">4 Kategori</strong> Backend, Frontend, DB, Infra</div>
+      <div><strong class="text-white block text-sm">15+ Bileşen</strong> Node, Go, Python, Postgres, K8s</div>
+      <div><strong class="text-cyan-400 block text-sm">≤ 15 Dk</strong> SEV-0 Anında SWAT Triyajı</div>
+      <div><strong class="text-amber-400 block text-sm">%100</strong> Zero-Loss Rollback Garantisi</div>
+    </div>
+
+    <h2 class="text-xl font-bold text-white">Desteklenen Teknolojiler & Cerrahi Müdahale Derinliği</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">Node.js (Nest / Express / Fastify)</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 15 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>Event Loop blokajı &amp; senkron CPU döngüleri</li>
+            <li>Unhandled Promise Rejection kaynaklı sessiz çöküşler</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> V8 Heap snapshot analizi, Chrome DevTools CPU profiler, Clinic.js alev grafikleri (flamegraphs), libuv thread pool optimizasyonu ve kümeleme (clustering) cerrahisi.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">Python (Django / FastAPI / Flask)</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 15 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>ASGI/WSGI worker kilitlenmeleri &amp; Gunicorn/Uvicorn timeout</li>
+            <li>Django ORM n+1 sorgu felaketleri ve bellek şişmesi</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> Py-Spy / cProfile ile canlı süreç profillemesi, async/await darboğaz eliminasyonu, Celery prefetch ve concurrency tuning, ORM sorgu optimizasyonu.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">Go (Golang)</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 15 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>Goroutine sızıntısı (Goroutine Leaks) ve bellek tükenmesi</li>
+            <li>Race Condition (Eşzamanlı bellek erişim çatışmaları)</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> pprof heap/goroutine/mutex dump analizi, Go race detector ile yarış koşulu tespiti, kanal mimarisi refactor'ı ve sync.Pool ile sıfır-tahsis bellek optimizasyonu.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">PHP (Laravel / Symfony)</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 30 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>PHP-FPM worker havuzu tükenmesi ve 502/504 ağ geçidi hataları</li>
+            <li>Eloquent ORM kontrolsüz hydrations ve RAM tüketimi</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> PHP-FPM pm.max_children ve request_slowlog incelemesi, Laravel Octane (Swoole/RoadRunner) migrasyonu, query indexing ve cache katmanlaması.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">Java / Spring Boot</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Planlı SWAT (≤ 60 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>JVM Metaspace / Heap OOM (OutOfMemoryError)</li>
+            <li>Garbage Collection (Stop-The-World) duraklama krizleri</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> JProfiler / VisualVM heap dump &amp; thread dump analizi, G1GC / ZGC tuning, HikariCP havuz optimizasyonu ve native sorgu izolasyonu.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">React / Next.js</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 15 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>SSR hydration mismatch ve beyaz ekran (WSOD) krizleri</li>
+            <li>Next.js App Router sunucu bileşeni bellek sızıntıları</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> SSR/SSG/ISR hibrit mimari dönüşümü, Webpack/Turbopack chunk splitting, dynamic import optimizasyonu ve state re-render izolasyonu.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">Vue / Nuxt</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 30 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>Universal rendering (Nitro engine) bellek şişmesi</li>
+            <li>Reaktif veri modellerinde dairesel bağımlılık döngüleri</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> Nitro sunucu motoru bellek optimizasyonu, SSR data-fetching stratejileri ve composables refactor'ı.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">React Native &amp; Flutter</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Planlı SWAT (≤ 60 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>Native bridge kilitlenmesi ve frame drop (FPS çöküşü)</li>
+            <li>iOS/Android arka plan görevlerinin işletim sistemi tarafından öldürülmesi</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> Hermes engine bellek profillemesi, Native module köprü optimizasyonu ve offline-first SQLite senkronizasyonu.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">PostgreSQL</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 15 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>Connection pool tükenmesi (max_connections tavanı)</li>
+            <li>Tablo &amp; indeks şişmesi (Table Bloat &amp; Autovacuum gecikmesi)</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> PgBouncer havuzlama kurulumu, pg_stat_activity ve pg_stat_statements teşhisi, EXPLAIN ANALYZE ile sorgu cerrahisi ve sıfır kesinti indeksleme (CREATE INDEX CONCURRENTLY).</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">MySQL / MariaDB</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 30 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>InnoDB buffer pool yetersizliği ve disk I/O patlaması</li>
+            <li>Metadata lock kilitlenmeleri (ALTER TABLE blokajı)</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> SHOW ENGINE INNODB STATUS analizi, slow query log cerrahisi, innodb_buffer_pool_size tuning ve read-replica yük dağıtımı.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">Redis (Cache &amp; Message Broker)</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 15 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>Maxmemory dolması ve OOM command not allowed hataları</li>
+            <li>Tek iş parçacığı (single-thread) blokajı: KEYS *, O(N) sorguları</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> Slowlog analizi, SCAN migrasyonu, memory policy (volatile-lru) optimizasyonu ve Sentinel/Cluster failover denetimi.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">MongoDB</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 30 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>WiredTiger cache dolması ve write ticket tükenmesi</li>
+            <li>Unindexed aggregation pipeline bellek aşımı (100MB limiti)</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> CurrentOp incelemesi, compound index mimarisi, aggregation memory optimizasyonu ve replica set arbitrajı.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">Docker &amp; Kubernetes (K8s)</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 15 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>CrashLoopBackOff &amp; OOMKilled pod döngüleri</li>
+            <li>Ingress Controller 502 / SSL sertifika yenileme krizleri</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> Kubectl event &amp; describe analizi, cgroup limits/requests dengelenmesi, ingress routing onarımı ve zero-downtime rolling update kurtarması.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">Amazon Web Services (AWS)</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 15 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>RDS CPU / IOPS kredisi tükenmesi ve veritabanı kilitlenmesi</li>
+            <li>Lambda Cold Start ve VPC ENI bağlantı darboğazı</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> CloudWatch metrik/alarm analizi, RDS Performance Insights cerrahisi, ALB routing düzeltmesi ve IAM yetki kilidi açma.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-white font-mono">Linux Kernel, Nginx &amp; Caddy</h3>
+          <span class="text-xs font-mono text-emerald-400">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: Anında SWAT Triyajı (≤ 15 Dk)</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+            <li>SYN flood, socket exhaustion ve TIME_WAIT patlamaları</li>
+            <li>File descriptor (ulimit) tükenmesi: 'Too many open files'</li>
+          </ul>
+        </div>
+        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> sysctl.conf kernel socket tuning (somaxconn, tcp_tw_reuse), nofile ulimit artırımı, Nginx reverse proxy buffer yapılandırması.</p>
+      </article>
+      
+    </div>
+  </section>
+
+        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
+          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

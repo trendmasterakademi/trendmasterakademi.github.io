@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#080b11" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Third-Party Integration Returning HTTP 429</title>
+    <meta name="description" content="An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429. The remote host is throttling your traffic due to volumetric burst limits." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/entegrasyon-429-veriyor/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/entegrasyon-429-veriyor/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/entegrasyon-429-veriyor/" />
+    <meta property="og:title" content="Third-Party Integration Returning HTTP 429" />
+    <meta property="og:description" content="An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429. The remote host is throttling your traffic due to volumetric burst limits." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/entegrasyon-429-veriyor/" />
+    <meta name="twitter:title" content="Third-Party Integration Returning HTTP 429" />
+    <meta name="twitter:description" content="An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429. The remote host is throttling your traffic due to volumetric burst limits." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Entegrasyon aniden 429 vermeye başladı",
+      "description": "Aylardır çalışan bir entegrasyon — kargo, pazaryeri, ödeme ya da e-posta — birden hata vermeye başladı ve kod değişmedi. Karşı taraf artık isteklerinizi reddediyor; sorun sizde değil, sizin hızınızda olabilir.",
+      "url": "https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/",
+      "inLanguage": "tr-TR",
+      "about": "İletişim & Entegrasyon",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      },
+      "datePublished": "2026-08-29T17:06:29+03:00",
+      "dateModified": "2026-09-06T13:00:03+03:00"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "İstek sayısı son aylarda arttı mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hacim büyüdü — İş büyüdü, istek sayısı sessizce limitin üstüne çıktı. Kod aynı, trafik değişti. Kanıt: İstek sayısı zamanla artmış → A Çözüm: Toplu istek + paket yükseltme"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Aynı istek çok kısa aralıkla mı tekrarlıyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Döngüsel tekrar — Hata sonrası yeniden deneme mantığı beklemeden tekrarlıyor ve limiti kendi kendine dolduruyor. Kanıt: Aynı istek çok kısa aralıkla tekrarlıyor → B Çözüm: Artan bekleme süresi ekle"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Limit başlığındaki değer düştü mü?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Limit değişti — Karşı taraf kotayı değiştirdi ya da fiyat planı düştü. Sizde hiçbir şey değişmedi. Kanıt: Limit başlığındaki değer düşmüş → C Çözüm: Sağlayıcıyla plan görüşmesi"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teşhis Kataloğu",
+          "item": "https://trendmasterakademi.com/teshis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Entegrasyon aniden 429 vermeye başladı",
+          "item": "https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <script type="module" crossorigin src="/assets/index-BGlQNeIQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-Chmdu_fW.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-92AYjGYd.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-Cn8upMAX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-hO7PlEZV.css">
+  </head>
+  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
+      <header class="mb-8 border-b border-white/10 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">Third-Party Integration Returning HTTP 429</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        
+        <p class="text-slate-300 text-lg leading-relaxed">An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429. The remote host is throttling your traffic due to volumetric burst limits.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Yüksek · veri akışı durdu · Kategori: İletişim &amp; Entegrasyon</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Pazaryeri, kargo veya SMS servisiyle haberleşen e-ticaret modülü aniden durur. Siparişler kargoya iletilemez, yönetim panelinde 'Servis yanıt vermiyor' uyarısı çıkar. Entegratör firma aranır, onlar ise 'Dakikalık istek kotanızı aştınız' yanıtını verir.</p>
+      </section>
+    
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>HTTP 429 Too Many Requests</code></li>
+        <li><code>Retry-After: 60</code></li>
+        <li><code>X-RateLimit-Remaining: 0</code></li>
+        <li><code>Sağlayıcı paneli: quota exceeded for this period</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">Retry-After başlığı ne kadar beklemeniz gerektiğini söyler. Bu başlık okunmadan yapılan yeniden denemeler limiti daha da uzatır.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Hacim büyüdü</h3>
+            <p class="text-slate-300 leading-relaxed">İş büyüdü, istek sayısı sessizce limitin üstüne çıktı. Kod aynı, trafik değişti.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> İstek sayısı son aylarda arttı mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> İstek sayısı zamanla artmış → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Toplu istek + paket yükseltme</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> İstekler arasına kısa sleep() komutları eklenir; kuyrukta bekleyen siparişler arttıkça cron her çalıştığında dakikalık kota yine dakikalar içinde aşılır.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Döngüsel tekrar</h3>
+            <p class="text-slate-300 leading-relaxed">Hata sonrası yeniden deneme mantığı beklemeden tekrarlıyor ve limiti kendi kendine dolduruyor.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Aynı istek çok kısa aralıkla mı tekrarlıyor?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Aynı istek çok kısa aralıkla tekrarlıyor → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Artan bekleme süresi ekle</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Cron sıklığı on dakikaya çıkarılır; bu kez müşteriye takip numarası saatlerce gecikir ancak API limiti ilk toplu işlemde tekrar patlar.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Limit değişti</h3>
+            <p class="text-slate-300 leading-relaxed">Karşı taraf kotayı değiştirdi ya da fiyat planı düştü. Sizde hiçbir şey değişmedi.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Limit başlığındaki değer düştü mü?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Limit başlığındaki değer düşmüş → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Sağlayıcıyla plan görüşmesi</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Canlı API anahtarı test ortamına da kopyalanır; test ekibinin çalıştırdığı otomatik scriptler canlı sistemin saatlik kotasını dakikalar içinde tamamen tüketir.</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">Backend mühendisi. Kalıcı çözüm istek sayısını azaltmak ve artan bekleme süresiyle yeniden denemektir. Bu iki yapı kurulduğunda entegrasyon hacim büyüdükçe kendiliğinden uyum sağlar.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Reddedilen her istek eksik veri demektir: gönderilmeyen kargo bildirimi, güncellenmeyen stok, ulaşmayan e-posta. Sistem çalışıyor görünür ama içerik doğru değildir.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/rate-limit/" class="hover:underline">→ Rate Limiting (Trafik &amp; İstek Sınırlandırma)</a></li>
+        <li><a href="/sozluk/webhook/" class="hover:underline">→ Webhook (Sistemler Arası Anlık Bildirim)</a></li>
+        <li><a href="/sozluk/idempotency/" class="hover:underline">→ Idempotency (Çift İşlem Koruması)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/agency/" class="text-cyan-400 hover:underline font-bold">→ B2B White-Label Mühendislik Masası</a></p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
+          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

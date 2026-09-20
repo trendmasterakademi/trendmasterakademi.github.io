@@ -9,11 +9,12 @@ import { glossaryTerms } from '../data/glossaryData';
 import { teshisSummaries } from '../data/teshis/indexSummary';
 import { getCalendlyUrl } from '../utils/calendly';
 import { formatDocumentTitle } from '../utils/pageTitle';
+import { isTurkish } from '../i18n';
 
 const GlossaryTerm = () => {
   const { slug } = useParams();
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const navigate = useNavigate();
 
   const term = glossaryTerms.find(t => t.slug === slug);
@@ -40,7 +41,7 @@ const GlossaryTerm = () => {
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', `https://trendmasterakademi.com/sozluk/${term.slug}/`);
+      canonical.setAttribute('href', isTr ? `https://trendmasterakademi.com/sozluk/${term.slug}/` : `https://trendmasterakademi.com/glossary/${term.slug}/`);
     }
 
     if (window.trackEvent) {

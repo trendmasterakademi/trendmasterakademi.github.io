@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation } from 'react-router-dom';
 import { HelpCircle, ChevronDown, ShieldCheck, Zap, Lock, Code2, Database, Calendar } from 'lucide-react';
 import { getCalendlyUrl } from '../utils/calendly';
+import { isTurkish } from '../i18n';
 
 export const faqData = [
   {
@@ -93,7 +94,7 @@ export const faqData = [
 
 const FAQ = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const location = useLocation();
   const isHomePage = location.pathname === '/' || location.pathname === '';
   const [openIdx, setOpenIdx] = useState(0);

@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck, X, Check, EyeOff } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { isTurkish } from '../i18n';
 
 const CookieBanner = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {

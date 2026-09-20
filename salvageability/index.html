@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#080b11" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Salvageability Index (Refactor vs Rebuild Matrix) | Trend Master Academy</title>
+    <meta name="description" content="Should you rescue, strangle, or scrap legacy code? 5-dimensional objective risk analysis and actionable CTO decision matrix." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/salvageability/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/kurtarilabilirlik/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/kurtarilabilirlik/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/salvageability/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/salvageability/" />
+    <meta property="og:title" content="Salvageability Index (Refactor vs Rebuild Matrix) | Trend Master Academy" />
+    <meta property="og:description" content="Should you rescue, strangle, or scrap legacy code? 5-dimensional objective risk analysis and actionable CTO decision matrix." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/salvageability/" />
+    <meta name="twitter:title" content="Salvageability Index (Refactor vs Rebuild Matrix) | Trend Master Academy" />
+    <meta name="twitter:description" content="Should you rescue, strangle, or scrap legacy code? 5-dimensional objective risk analysis and actionable CTO decision matrix." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://trendmasterakademi.com/#organization",
+      "name": "Trend Master Akademi",
+      "alternateName": "TMA Studio & Labs",
+      "legalName": "Mehmet Şahin",
+      "taxID": "7930336132",
+      "url": "https://trendmasterakademi.com",
+      "logo": "https://trendmasterakademi.com/logo-dark.png",
+      "image": "https://trendmasterakademi.com/og-image.jpg",
+      "description": "Dijital ajanslar, SaaS girişimleri ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), API Entegrasyonu ve Özel Yazılım Geliştirme Stüdyosu.",
+      "founder": {
+        "@type": "Person",
+        "name": "Mehmet Şahin",
+        "jobTitle": "Founder & Lead Engineer",
+        "url": "https://trendmasterakademi.com/about/"
+      },
+      "telephone": "+905343713573",
+      "email": "info@trendmasterakademi.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091",
+        "addressLocality": "Konak",
+        "addressRegion": "İzmir",
+        "addressCountry": "TR"
+      },
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 09:00-24:00",
+      "sameAs": [
+        "https://www.linkedin.com/in/trendmasterakademi/"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Türkiye"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "B2B SWAT & Mühendislik Hizmetleri",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Acil Kod Kurtarma & Canlı Sistem Hotfix (Incident SWAT)",
+              "description": "HTTP 500 hataları, veritabanı kilitlenmeleri ve ödeme API kopmalarında acil müdahale."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yarım Kalan Proje Devralma (Abandoned Codebase Takeover)",
+              "description": "Önceki geliştiriciden kalan dokümantasyonsuz ve spagetti kod tabanlarının onarılması ve yayına alınması."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "B2B %100 White-Label Mühendislik & Kapasite Takviyesi",
+              "description": "Ajansların arka planında görünmez teknik ekip olarak resmi NDA altında proje teslimi."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "SaaS & Özel Web Uygulaması Mimarisi",
+              "description": "React, Next.js, Python/FastAPI ve Node.js ile sıfırdan ölçeklenebilir web ve bulut sistemleri."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yapay Zeka, LLM & Akıllı Otomasyon Entegrasyonları",
+              "description": "OpenAI, LLM, RAG ve akıllı agent iş akışlarının şirket içi süreçlere entegrasyonu."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://trendmasterakademi.com/#website",
+      "url": "https://trendmasterakademi.com",
+      "name": "Trend Master Akademi",
+      "publisher": {
+        "@id": "https://trendmasterakademi.com/#organization"
+      },
+      "inLanguage": [
+        "tr-TR"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Salvageability Index",
+          "item": "https://trendmasterakademi.com/salvageability/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <script type="module" crossorigin src="/assets/index-BGlQNeIQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-Chmdu_fW.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-92AYjGYd.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-Cn8upMAX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-hO7PlEZV.css">
+  </head>
+  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
+      <header class="mb-8 border-b border-white/10 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">Salvageability Index — Refactor vs Rebuild Decision Matrix</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-white">Salvageability Index // Refactor vs Rebuild Decision Matrix</h2>
+        <p class="text-slate-300 text-lg leading-relaxed">Is the legacy codebase worth saving? 5-dimensional objective risk analysis and actionable CTO decision matrix.</p>
+        
+  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
+      <div><strong class="text-white block text-sm">5 Risk Dimensions</strong> Architecture, Tests, Database, Traffic, Debt Drag</div>
+      <div><strong class="text-emerald-400 block text-sm">Zero Access</strong> No credentials or repo access needed</div>
+      <div><strong class="text-cyan-400 block text-sm">3 Strategic Paths</strong> SWAT Rescue, Strangler Fig, or Clean Slate</div>
+    </div>
+
+    <h2 class="text-xl font-bold text-white">5 Critical Dimensions Evaluated</h2>
+    <div class="space-y-4">
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">1. Architectural Coupling & Spaghetti Density</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Does changing one module break unrelated endpoints? Monolithic tangles and hidden dependencies.</p>
+      </article>
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">2. Test Coverage & Domain Knowledge</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Did the original developers vanish? Are automated test suites nonexistent, leaving code untested until production?</p>
+      </article>
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">3. Database Integrity & Schema Hygiene</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Are foreign keys and constraints intact, or is the schema fraught with deadlocks and orphaned data?</p>
+      </article>
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">4. Live Traffic Pressure & Deadline Urgency</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Is the system currently processing real revenue with tight contractual delivery milestones?</p>
+      </article>
+      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+        <h3 class="text-base font-bold text-cyan-300">5. Technical Debt Drag Ratio</h3>
+        <p class="text-slate-300 text-sm leading-relaxed">Does shipping a minor feature take weeks instead of hours due to crippling maintenance overhead?</p>
+      </article>
+    </div>
+  </section>
+
+        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
+          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

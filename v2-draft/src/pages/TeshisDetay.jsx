@@ -5,6 +5,7 @@ import { ArrowLeft, AlertTriangle, Terminal, MessageSquare, PhoneCall } from 'lu
 import TeshisDiyagram from '../components/TeshisDiyagram';
 import { formatDocumentTitle } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
+import { isTurkish } from '../i18n';
 
 // Dynamic code-split loaders: Each diagnostic chunk is loaded strictly on demand!
 const teshisLoaders = {
@@ -95,7 +96,7 @@ const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
 const TeshisDetay = () => {
   const { slug } = useParams();
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const lang = isTr ? 'tr' : 'en';
   const krizHattiAcik = useKrizHattiAcik();
 
@@ -150,7 +151,7 @@ const TeshisDetay = () => {
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', `https://trendmasterakademi.com/teshis/${teshis.slug}/`);
+      canonical.setAttribute('href', isTr ? `https://trendmasterakademi.com/teshis/${teshis.slug}/` : `https://trendmasterakademi.com/diagnostic/${teshis.slug}/`);
     }
   }, [teshis, lang]);
 

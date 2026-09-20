@@ -3,10 +3,11 @@ import { useTranslation } from 'react-i18next';
 import { MessageSquare, PhoneCall, Mail, MapPin, ShieldCheck, Send, CheckCircle2, AlertTriangle, RefreshCw, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
+import { isTurkish } from '../i18n';
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const [formData, setFormData] = useState({ 
     name: '', 
     agency: '', 
@@ -226,12 +227,7 @@ const Contact = () => {
         </div>
         
         {/* Right Column: Contact Form with Backend Lead Capture */}
-        <div 
-          
-          whileInView={{ opacity: 1, y: 0 }}
-          
-          className="lg:col-span-7 glass-panel p-7 sm:p-10 rounded-3xl border border-cyan-500/25 bg-[#111827]/85 shadow-2xl"
-        >
+        <div className="lg:col-span-7 glass-panel p-7 sm:p-10 rounded-3xl border border-cyan-500/25 bg-[#111827]/85 shadow-2xl">
           {submitStatus === 'success' ? (
             <div className="flex flex-col items-center justify-center text-center py-8 space-y-6">
               <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.3)]">
@@ -348,7 +344,7 @@ const Contact = () => {
                     value={formData.name} 
                     onChange={e => setFormData({...formData, name: e.target.value})} 
                     className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
-                    placeholder="Adınız Soyadınız" 
+                    placeholder={isTr ? "Adınız Soyadınız" : "Your Full Name"} 
                   />
                 </div>
                 <div>
@@ -362,7 +358,7 @@ const Contact = () => {
                     value={formData.agency} 
                     onChange={e => setFormData({...formData, agency: e.target.value})} 
                     className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
-                    placeholder="Örn: Acme Creative / Agency" 
+                    placeholder={isTr ? "Örn: Kurum / Şirket Adı" : "E.g. Company / Organization"} 
                   />
                 </div>
               </div>
@@ -382,7 +378,7 @@ const Contact = () => {
                       if (contactChannelError) setContactChannelError(false);
                     }} 
                     className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
-                    placeholder="ornek@sirket.com" 
+                    placeholder={isTr ? "ornek@sirket.com" : "name@company.com"} 
                   />
                 </div>
                 <div>
@@ -399,7 +395,7 @@ const Contact = () => {
                       if (contactChannelError) setContactChannelError(false);
                     }} 
                     className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
-                    placeholder="+90 534 000 0000" 
+                    placeholder={isTr ? "+90 534 000 0000" : "+1 (555) 000-0000"} 
                   />
                 </div>
               </div>

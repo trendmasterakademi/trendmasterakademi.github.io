@@ -7,6 +7,7 @@ import FloatingActions from './components/FloatingActions';
 import CookieBanner from './components/CookieBanner';
 import ScrollToTop from './components/ScrollToTop';
 import DetectiveBeam from './components/DetectiveBeam';
+import { isTurkish } from './i18n';
 
 // Route-based code-split components
 const Home = lazy(() => import('./pages/Home'));
@@ -23,6 +24,17 @@ const Nda = lazy(() => import('./pages/Nda'));
 const TeshisIndex = lazy(() => import('./pages/TeshisIndex'));
 const TeshisDetay = lazy(() => import('./pages/TeshisDetay'));
 const Sos = lazy(() => import('./pages/Sos'));
+const Salvageability = lazy(() => import('./pages/Salvageability'));
+const PostMortemIndex = lazy(() => import('./pages/PostMortemIndex'));
+const PostMortemDetail = lazy(() => import('./pages/PostMortemDetail'));
+const Triage = lazy(() => import('./pages/Triage'));
+const Sla = lazy(() => import('./pages/Sla'));
+const TechMatrix = lazy(() => import('./pages/TechMatrix'));
+const NdaGenerator = lazy(() => import('./pages/NdaGenerator'));
+const OutageSimulator = lazy(() => import('./pages/OutageSimulator'));
+const StatusRadar = lazy(() => import('./pages/StatusRadar'));
+const CodeHealth = lazy(() => import('./pages/CodeHealth'));
+const RescueRoi = lazy(() => import('./pages/RescueRoi'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Lightweight, thematic skeleton fallback matching pre-render aesthetic
@@ -42,7 +54,7 @@ const PageFallback = () => (
 
 function App() {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
 
   return (
     <Router>
@@ -69,15 +81,25 @@ function App() {
               
               <Route path="/devir-kontrolu/" element={<DevirKontrolu />} />
               <Route path="/devir-kontrolu" element={<DevirKontrolu />} />
+              <Route path="/handover-audit/" element={<DevirKontrolu />} />
+              <Route path="/handover-audit" element={<DevirKontrolu />} />
               
               <Route path="/sozluk/" element={<GlossaryIndex />} />
               <Route path="/sozluk" element={<GlossaryIndex />} />
+              <Route path="/glossary/" element={<GlossaryIndex />} />
+              <Route path="/glossary" element={<GlossaryIndex />} />
               
               <Route path="/sozluk/:slug/" element={<GlossaryTerm />} />
               <Route path="/sozluk/:slug" element={<GlossaryTerm />} />
+              <Route path="/glossary/:slug/" element={<GlossaryTerm />} />
+              <Route path="/glossary/:slug" element={<GlossaryTerm />} />
               
               <Route path="/kesinti-maliyeti/" element={<KesintiMaliyeti />} />
               <Route path="/kesinti-maliyeti" element={<KesintiMaliyeti />} />
+              <Route path="/downtime-calc/" element={<KesintiMaliyeti />} />
+              <Route path="/downtime-calc" element={<KesintiMaliyeti />} />
+              <Route path="/downtime-cost/" element={<KesintiMaliyeti />} />
+              <Route path="/downtime-cost" element={<KesintiMaliyeti />} />
               
               <Route path="/about/" element={<About />} />
               <Route path="/about" element={<About />} />
@@ -99,12 +121,72 @@ function App() {
               
               <Route path="/teshis/" element={<TeshisIndex />} />
               <Route path="/teshis" element={<TeshisIndex />} />
+              <Route path="/diagnostic/" element={<TeshisIndex />} />
+              <Route path="/diagnostic" element={<TeshisIndex />} />
+              <Route path="/diagnostics/" element={<TeshisIndex />} />
+              <Route path="/diagnostics" element={<TeshisIndex />} />
+
               <Route path="/teshis/:slug/" element={<TeshisDetay />} />
               <Route path="/teshis/:slug" element={<TeshisDetay />} />
+              <Route path="/diagnostic/:slug/" element={<TeshisDetay />} />
+              <Route path="/diagnostic/:slug" element={<TeshisDetay />} />
+              <Route path="/diagnostics/:slug/" element={<TeshisDetay />} />
+              <Route path="/diagnostics/:slug" element={<TeshisDetay />} />
               
               <Route path="/sos/" element={<Sos />} />
               <Route path="/sos" element={<Sos />} />
               
+              <Route path="/kurtarilabilirlik/" element={<Salvageability />} />
+              <Route path="/kurtarilabilirlik" element={<Salvageability />} />
+              <Route path="/salvageability/" element={<Salvageability />} />
+              <Route path="/salvageability" element={<Salvageability />} />
+
+              <Route path="/post-mortem/" element={<PostMortemIndex />} />
+              <Route path="/post-mortem" element={<PostMortemIndex />} />
+              <Route path="/post-mortems/" element={<PostMortemIndex />} />
+              <Route path="/post-mortems" element={<PostMortemIndex />} />
+
+              <Route path="/post-mortem/:slug/" element={<PostMortemDetail />} />
+              <Route path="/post-mortem/:slug" element={<PostMortemDetail />} />
+              <Route path="/post-mortems/:slug/" element={<PostMortemDetail />} />
+              <Route path="/post-mortems/:slug" element={<PostMortemDetail />} />
+
+              <Route path="/triyaj/" element={<Triage />} />
+              <Route path="/triyaj" element={<Triage />} />
+              <Route path="/triage/" element={<Triage />} />
+              <Route path="/triage" element={<Triage />} />
+
+              <Route path="/sla/" element={<Sla />} />
+              <Route path="/sla" element={<Sla />} />
+
+              <Route path="/teknoloji-uyumluluk/" element={<TechMatrix lang={isTr ? 'tr' : 'en'} />} />
+              <Route path="/teknoloji-uyumluluk" element={<TechMatrix lang={isTr ? 'tr' : 'en'} />} />
+              <Route path="/tech-matrix/" element={<TechMatrix lang="en" />} />
+              <Route path="/tech-matrix" element={<TechMatrix lang="en" />} />
+
+              <Route path="/gizlilik-sozlesmesi/" element={<NdaGenerator lang={isTr ? 'tr' : 'en'} />} />
+              <Route path="/gizlilik-sozlesmesi" element={<NdaGenerator lang={isTr ? 'tr' : 'en'} />} />
+              <Route path="/mutual-nda/" element={<NdaGenerator lang="en" />} />
+              <Route path="/mutual-nda" element={<NdaGenerator lang="en" />} />
+
+              <Route path="/hasar-tespiti/" element={<OutageSimulator lang={isTr ? 'tr' : 'en'} />} />
+              <Route path="/hasar-tespiti" element={<OutageSimulator lang={isTr ? 'tr' : 'en'} />} />
+              <Route path="/outage-simulator/" element={<OutageSimulator lang="en" />} />
+              <Route path="/outage-simulator" element={<OutageSimulator lang="en" />} />
+
+              <Route path="/radar/" element={<StatusRadar lang={isTr ? 'tr' : 'en'} />} />
+              <Route path="/radar" element={<StatusRadar lang={isTr ? 'tr' : 'en'} />} />
+
+              <Route path="/kod-sagligi/" element={<CodeHealth lang={isTr ? 'tr' : 'en'} />} />
+              <Route path="/kod-sagligi" element={<CodeHealth lang={isTr ? 'tr' : 'en'} />} />
+              <Route path="/codebase-health/" element={<CodeHealth lang="en" />} />
+              <Route path="/codebase-health" element={<CodeHealth lang="en" />} />
+
+              <Route path="/kurtarma-maliyeti/" element={<RescueRoi lang={isTr ? 'tr' : 'en'} />} />
+              <Route path="/kurtarma-maliyeti" element={<RescueRoi lang={isTr ? 'tr' : 'en'} />} />
+              <Route path="/rescue-roi/" element={<RescueRoi lang="en" />} />
+              <Route path="/rescue-roi" element={<RescueRoi lang="en" />} />
+
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>

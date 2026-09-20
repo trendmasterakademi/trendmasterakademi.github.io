@@ -4,10 +4,11 @@ import { useTranslation } from 'react-i18next';
 import { AlertTriangle, ArrowRight, Stethoscope } from 'lucide-react';
 import { teshisSummaries } from '../data/teshis/indexSummary';
 import { formatDocumentTitle } from '../utils/pageTitle';
+import { isTurkish } from '../i18n';
 
 const TeshisIndex = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const lang = isTr ? 'tr' : 'en';
 
   useEffect(() => {
@@ -25,7 +26,7 @@ const TeshisIndex = () => {
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/teshis/');
+      canonical.setAttribute('href', isTr ? 'https://trendmasterakademi.com/teshis/' : 'https://trendmasterakademi.com/diagnostic/');
     }
   }, [lang]);
 

@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#080b11" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Same Inventory Sold to Multiple Customers</title>
+    <meta name="description" content="The last item in stock was checked out across two different orders, sending inventory negative. One customer requires a refund. This symptom stems from three distinct root causes, each demanding a completely different fix — addressing the wrong one will cause the defect to recur." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/ayni-stok-iki-musteriye-satildi/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/ayni-stok-iki-musteriye-satildi/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/ayni-stok-iki-musteriye-satildi/" />
+    <meta property="og:title" content="Same Inventory Sold to Multiple Customers" />
+    <meta property="og:description" content="The last item in stock was checked out across two different orders, sending inventory negative. One customer requires a refund. This symptom stems from three distinct root causes, each demanding a completely different fix — addressing the wrong one will cause the defect to recur." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/ayni-stok-iki-musteriye-satildi/" />
+    <meta name="twitter:title" content="Same Inventory Sold to Multiple Customers" />
+    <meta name="twitter:description" content="The last item in stock was checked out across two different orders, sending inventory negative. One customer requires a refund. This symptom stems from three distinct root causes, each demanding a completely different fix — addressing the wrong one will cause the defect to recur." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Aynı stok iki müşteriye satıldı",
+      "description": "Son kalan ürün iki ayrı siparişte çıktı, stok eksiye düştü. Birine iade yapmak zorundasınız. Bu belirtinin üç farklı nedeni var ve üçünün çözümü birbirinden tamamen ayrı — yanlış olanı düzeltmek sorunu geri getirir.",
+      "url": "https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/",
+      "inLanguage": "tr-TR",
+      "about": "Sipariş & Ödeme",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      },
+      "datePublished": "2026-08-29T17:06:29+03:00",
+      "dateModified": "2026-09-06T13:00:03+03:00"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "İki siparişin created_at farkı < 1 sn mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Race condition — Aynı anda gelen iki istek stoğu eşzamanlı düşürdü. Kontrol ile yazma arasında boşluk var. Kanıt: created_at farkı < 1sn → A Çözüm: Atomik UPDATE + etkilenen satır kontrolü"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "payment_reference değerleri aynı mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Idempotency yok — Tek bir ödeme iki kez işlendi; müşteri iki kez tıkladı ya da webhook tekrar geldi. Eşzamanlılık yok, tekrar var. Kanıt: payment_reference aynı → B Çözüm: unique index + idempotency anahtarı"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Son ERP senkronu satıştan önce mi?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Stok senkronu — Stoğun kaynağı ERP veya pazaryeri. Yarış sitede değil, iki sistem arasındaki gecikmede. Kanıt: Senkron satıştan eski → C Çözüm: Rezervasyon mantığı + senkron sıklığı"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«SQLSTATE[40001]: Serialization failure: 1213 Deadlock found» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Race condition — Aynı anda gelen iki istek stoğu eşzamanlı düşürdü. Kontrol ile yazma arasında boşluk var. Çözüm: Atomik UPDATE + etkilenen satır kontrolü"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Duplicate entry '...' for key 'orders_reference_unique'» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Idempotency yok — Tek bir ödeme iki kez işlendi; müşteri iki kez tıkladı ya da webhook tekrar geldi. Eşzamanlılık yok, tekrar var. Çözüm: unique index + idempotency anahtarı"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teşhis Kataloğu",
+          "item": "https://trendmasterakademi.com/teshis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Aynı stok iki müşteriye satıldı",
+          "item": "https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <script type="module" crossorigin src="/assets/index-BGlQNeIQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-Chmdu_fW.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-92AYjGYd.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-Cn8upMAX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-hO7PlEZV.css">
+  </head>
+  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
+      <header class="mb-8 border-b border-white/10 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">Same Inventory Sold to Multiple Customers</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        
+        <p class="text-slate-300 text-lg leading-relaxed">The last item in stock was checked out across two different orders, sending inventory negative. One customer requires a refund. This symptom stems from three distinct root causes, each demanding a completely different fix — addressing the wrong one will cause the defect to recur.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Kritik · ticari kayıp · Kategori: Sipariş &amp; Ödeme</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Genellikle flaş indirimde veya e-posta bülteni gönderildiği anda ortaya çıkar. Son kalan tek ürün için aynı saniyede iki ayrı sipariş onaylanır. Stok panelde eksi bire düşer; durumu ilk fark eden, siparişi iptal edilen öfkeli müşteri olur.</p>
+      </section>
+    
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>SQLSTATE[40001]: Serialization failure: 1213 Deadlock found</code> <span>→ A · Race condition</span></li>
+        <li><code>Duplicate entry '...' for key 'orders_reference_unique'</code> <span>→ B · Idempotency yok</span></li>
+        <li><code>UPDATE products SET stock = stock - 1  ← kontrol ve yazma ayrı</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">Bu satırlardan hangisinin göründüğü, hangi nedenle karşı karşıya olduğunuzu daha ilk bakışta daraltır.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Race condition</h3>
+            <p class="text-slate-300 leading-relaxed">Aynı anda gelen iki istek stoğu eşzamanlı düşürdü. Kontrol ile yazma arasında boşluk var.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> İki siparişin created_at farkı &lt; 1 sn mi?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> created_at farkı &lt; 1sn → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Atomik UPDATE + etkilenen satır kontrolü</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Kod tarafına if (stok &gt; 0) kontrolü eklenir; oysa paralel iki istek kontrolü aynı milisaniyede geçtiği için stok yine eksiye düşer.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Idempotency yok</h3>
+            <p class="text-slate-300 leading-relaxed">Tek bir ödeme iki kez işlendi; müşteri iki kez tıkladı ya da webhook tekrar geldi. Eşzamanlılık yok, tekrar var.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> payment_reference değerleri aynı mı?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> payment_reference aynı → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> unique index + idempotency anahtarı</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Webhook isteğine hemen yanıt verilmez; ödeme ağ geçidi isteği zaman aşımı sanıp tekrar gönderdiğinde sipariş kaydı mükerrer işlenir.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Stok senkronu</h3>
+            <p class="text-slate-300 leading-relaxed">Stoğun kaynağı ERP veya pazaryeri. Yarış sitede değil, iki sistem arasındaki gecikmede.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Son ERP senkronu satıştan önce mi?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Senkron satıştan eski → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Rezervasyon mantığı + senkron sıklığı</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Entegrasyon cron sıklığı beş dakikadan bir dakikaya indirilir; fakat API yanıt süresi uzadığında kuyruk birikir ve çakışma engellenemez.</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">Kıdemli backend mühendisi · 2–4 saat. Doğru neden belirlendikten sonra üçü de kalıcı olarak kapanır. Teşhis olmadan yapılan düzeltme belirtiyi bastırır, kaynağı bırakır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Her çift satış bir iade, bir kargo maliyeti ve bir olumsuz yorum riski. Kampanya günlerinde eşzamanlı trafik arttığı için sıklık katlanarak büyür.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/race-condition/" class="hover:underline">→ Race Condition (Yarış Durumu)</a></li>
+        <li><a href="/sozluk/idempotency/" class="hover:underline">→ Idempotency (Çift İşlem Koruması)</a></li>
+        <li><a href="/sozluk/deadlock/" class="hover:underline">→ Deadlock (Veritabanı Kilitlenmesi)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/crash-test/" class="text-cyan-400 hover:underline font-bold">→ Acil Kriz Müdahalesi &amp; Crash Test</a></p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
+          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

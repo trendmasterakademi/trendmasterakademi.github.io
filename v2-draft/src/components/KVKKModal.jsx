@@ -1,10 +1,11 @@
 import React from 'react';
 import { X, ShieldCheck, Lock, FileText, CheckCircle2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { isTurkish } from '../i18n';
 
 const KVKKModal = ({ isOpen, onClose }) => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
 
   if (!isOpen) return null;
 

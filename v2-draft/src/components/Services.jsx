@@ -103,10 +103,6 @@ const Services = () => {
             {activeServices.map((service, index) => (
               <div
                 key={service.id}
-                
-                
-                
-                
                 className="glass-panel rounded-3xl p-7 md:p-8 hover:border-cyan-500/50 transition-all group flex flex-col justify-between bg-[#111827]/70 shadow-xl"
               >
                 <div>

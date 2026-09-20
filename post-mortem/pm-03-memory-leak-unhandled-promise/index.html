@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#080b11" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>PM-03 Post-Mortem | Her 6 Saatte Bir Çöken Node.js API ve Gizli Event Listener Bellek Sızıntısı</title>
+    <meta name="description" content="Bir SaaS girişiminin ana backend API sunucusu her 5.5-6 saatte bir bellek tüketimini 1.4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-03-memory-leak-unhandled-promise/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
+    <meta property="og:title" content="PM-03 Post-Mortem | Her 6 Saatte Bir Çöken Node.js API ve Gizli Event Listener Bellek Sızıntısı" />
+    <meta property="og:description" content="Bir SaaS girişiminin ana backend API sunucusu her 5.5-6 saatte bir bellek tüketimini 1.4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
+    <meta name="twitter:title" content="PM-03 Post-Mortem | Her 6 Saatte Bir Çöken Node.js API ve Gizli Event Listener Bellek Sızıntısı" />
+    <meta name="twitter:description" content="Bir SaaS girişiminin ana backend API sunucusu her 5.5-6 saatte bir bellek tüketimini 1.4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "PM-03: Her 6 Saatte Bir Çöken Node.js API ve Gizli Event Listener Bellek Sızıntısı",
+      "description": "Bir SaaS girişiminin ana backend API sunucusu her 5.5-6 saatte bir bellek tüketimini 1.4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu.",
+      "url": "https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Post-Mortem Kütüphanesi",
+          "item": "https://trendmasterakademi.com/post-mortem/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Her 6 Saatte Bir Çöken Node.js API ve Gizli Event Listener Bellek Sızıntısı",
+          "item": "https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <script type="module" crossorigin src="/assets/index-BGlQNeIQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-Chmdu_fW.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-92AYjGYd.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-Cn8upMAX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-hO7PlEZV.css">
+  </head>
+  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
+      <header class="mb-8 border-b border-white/10 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">PM-03 · Her 6 Saatte Bir Çöken Node.js API ve Gizli Event Listener Bellek Sızıntısı</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
+          <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
+          <a href="/kurtarilabilirlik/" class="hover:underline">Kurtarılabilirlik İndeksi</a>
+          <a href="/post-mortem/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triyaj/" class="hover:underline">Triyaj Simülatörü</a>
+          <a href="/sla/" class="hover:underline">SLA & Taahhütler</a>
+          <a href="/teknoloji-uyumluluk/" class="hover:underline">Teknoloji Matrisi</a>
+          <a href="/gizlilik-sozlesmesi/" class="hover:underline">Gizlilik Sözleşmesi</a>
+          <a href="/hasar-tespiti/" class="hover:underline">Hasar Simülatörü</a>
+          <a href="/radar/" class="hover:underline">SWAT Radarı</a>
+          <a href="/kod-sagligi/" class="hover:underline">Kod Sağlığı</a>
+          <a href="/kurtarma-maliyeti/" class="hover:underline">Kurtarma ROI</a>
+          <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
+          <a href="/sos/" class="hover:underline">Acil Teknik Destek</a>
+          <a href="/about/" class="hover:underline">Hakkımızda</a>
+          <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-white">PM-03 // Bellek & Performans</h2>
+        <p class="text-slate-300 text-lg leading-relaxed">Bir SaaS girişiminin ana backend API sunucusu her 5.5-6 saatte bir bellek tüketimini 1.4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <div class="p-4 rounded-xl bg-white/5 border border-white/10 font-mono text-xs text-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div><span class="text-slate-500 block">SEVERITY</span><strong class="text-amber-400">SEV-2 MAJOR</strong></div>
+        <div><span class="text-slate-500 block">KATEGORİ</span><strong class="text-white">Bellek &amp; Performans</strong></div>
+        <div><span class="text-slate-500 block">KESİNTİ SÜRESİ</span><strong class="text-emerald-400">3 hafta süren kronik arıza → 4 saatte kalıcı çözüm</strong></div>
+        <div><span class="text-slate-500 block">TARİH</span><strong class="text-cyan-300">2026-01-18</strong></div>
+      </div>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Olay Özeti</h2>
+        <p class="text-slate-300 leading-relaxed">Bir SaaS girişiminin ana backend API sunucusu her 5.5-6 saatte bir bellek tüketimini 1.4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Etki & Kayıp</h2>
+        <p class="text-slate-300 leading-relaxed">Günde 4 kez beklenmedik API çökmesi, PM2 yeniden başlatmaları sırasında kopan WebSocket bağlantıları, mobil uygulamalarda oturum düşmesi.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Kronolojik Olay Akışı</h2>
+        <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10">
+          
+            <li><span class="text-cyan-300 font-bold">T+00h</span> · <span class="text-white">Kronik Kriz Masaya Getirildi</span> — <span class="text-slate-300">Müşteri ekibi 3 haftadır çözülemeyen bellek sızıntısını TMA SWAT masasına iletti.</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+01h</span> · <span class="text-white">V8 Heap Snapshot Karşılaştırması</span> — <span class="text-slate-300">Sunucu ayağa kalktıktan hemen sonra (Baseline: 85MB) ve 3 saat sonra (Bloat: 740MB) iki heap snapshot alındı. Chrome DevTools ile diff incelendi.</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+02h</span> · <span class="text-white">Kök Neden: Dinamik Event Listener</span> — <span class="text-slate-300">Her gelen HTTP isteği için `notificationService.on(&quot;event&quot;)` dinleyicisi kaydedildiği ve istek bittiğinde `removeListener` çağrılmadığı tespit edildi (240.000 birikmiş closure).</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+03h</span> · <span class="text-white">Singleton Refactor &amp; Stream Drenajı</span> — <span class="text-slate-300">Event emitter dinamik middleware içinden çıkarılıp uygulama ömrü boyunca yaşayan statik singleton mimariye dönüştürüldü.</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+04h</span> · <span class="text-white">Doğrulama &amp; Bellek Düz Çizgide</span> — <span class="text-slate-300">Stres testinde 100.000 ardışık istek atıldı; bellek tüketimi 110MB seviyesinde sabitlendi, sızıntı sıfırlandı.</span></li>
+          
+        </ul>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kök Neden (5 Whys)</h2>
+        <p class="text-slate-300 leading-relaxed whitespace-pre-line">HTTP request handler fonksiyonu içinde her istek için global bir EventEmitter nesnesine yeni dinleyici (`.on()`) eklenmesi ve V8 garbage collector’ın closure içindeki tüm request/response nesnelerini bellekte rehin tutması.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Uygulanan SWAT Müdahalesi & Hotfix</h2>
+        <p class="text-slate-300 leading-relaxed whitespace-pre-line">1. Per-request event binding kaldırıldı, singleton publish/subscribe yapısına geçildi.
+2. Node.js `--max-old-space-size` parametresi optimize edildi.
+3. Acil durum bellek koruması için `process.on(&quot;warning&quot;)` dinleyicisi eklenerek potansiyel sızıntı alarmları kuruldu.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kalıcı Önleyici Tedbirler</h2>
+        <p class="text-slate-300 leading-relaxed whitespace-pre-line">• CI/CD aşamasına otomatik bellek sızıntı testi (`clinic.js / autocannon`) entegre edildi.
+• Bellek kullanımının 30 dakika boyunca sürekli artması durumunda uyarı veren Datadog metrik alarmı yapılandırıldı.</p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
+          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

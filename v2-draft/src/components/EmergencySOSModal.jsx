@@ -2,10 +2,11 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { AlertTriangle, X, PhoneCall, ShieldCheck, Clock, Send, CheckCircle2, MessageSquare, RefreshCw } from 'lucide-react';
 import { useKrizHattiAcik } from '../utils/krizHatti';
+import { isTurkish } from '../i18n';
 
 const EmergencySOSModal = ({ isOpen, onClose }) => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const krizHattiAcik = useKrizHattiAcik();
 
   const modalRef = useRef(null);

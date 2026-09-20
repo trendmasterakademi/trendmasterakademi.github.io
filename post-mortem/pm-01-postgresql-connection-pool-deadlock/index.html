@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#080b11" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>PM-01 Post-Mortem | Cuma 18:40 — Ödeme Webhook Fırtınasında Kilitlenen Veritabanı ve Connection Pool Tükenmesi</title>
+    <meta name="description" content="Büyük bir e-ticaret platformunda Cuma akşamı gerçekleşen yoğun kampanya esnasında; ödeme ağ geçidinden gelen asenkron webhookların doğrudan veritabanına açtığı kontrolsüz bağlantılar, satır kilitlenmeleri (row-level locks) yaratarak PostgreSQL max_connections limitini tüketti." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-01-postgresql-connection-pool-deadlock/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
+    <meta property="og:title" content="PM-01 Post-Mortem | Cuma 18:40 — Ödeme Webhook Fırtınasında Kilitlenen Veritabanı ve Connection Pool Tükenmesi" />
+    <meta property="og:description" content="Büyük bir e-ticaret platformunda Cuma akşamı gerçekleşen yoğun kampanya esnasında; ödeme ağ geçidinden gelen asenkron webhookların doğrudan veritabanına açtığı kontrolsüz bağlantılar, satır kilitlenmeleri (row-level locks) yaratarak PostgreSQL max_connections limitini tüketti." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
+    <meta name="twitter:title" content="PM-01 Post-Mortem | Cuma 18:40 — Ödeme Webhook Fırtınasında Kilitlenen Veritabanı ve Connection Pool Tükenmesi" />
+    <meta name="twitter:description" content="Büyük bir e-ticaret platformunda Cuma akşamı gerçekleşen yoğun kampanya esnasında; ödeme ağ geçidinden gelen asenkron webhookların doğrudan veritabanına açtığı kontrolsüz bağlantılar, satır kilitlenmeleri (row-level locks) yaratarak PostgreSQL max_connections limitini tüketti." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "PM-01: Cuma 18:40 — Ödeme Webhook Fırtınasında Kilitlenen Veritabanı ve Connection Pool Tükenmesi",
+      "description": "Büyük bir e-ticaret platformunda Cuma akşamı gerçekleşen yoğun kampanya esnasında; ödeme ağ geçidinden gelen asenkron webhookların doğrudan veritabanına açtığı kontrolsüz bağlantılar, satır kilitlenmeleri (row-level locks) yaratarak PostgreSQL max_connections limitini tüketti.",
+      "url": "https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Post-Mortem Kütüphanesi",
+          "item": "https://trendmasterakademi.com/post-mortem/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Cuma 18:40 — Ödeme Webhook Fırtınasında Kilitlenen Veritabanı ve Connection Pool Tükenmesi",
+          "item": "https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <script type="module" crossorigin src="/assets/index-BGlQNeIQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-Chmdu_fW.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-92AYjGYd.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-Cn8upMAX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-hO7PlEZV.css">
+  </head>
+  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
+      <header class="mb-8 border-b border-white/10 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">PM-01 · Cuma 18:40 — Ödeme Webhook Fırtınasında Kilitlenen Veritabanı ve Connection Pool Tükenmesi</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
+          <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
+          <a href="/kurtarilabilirlik/" class="hover:underline">Kurtarılabilirlik İndeksi</a>
+          <a href="/post-mortem/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triyaj/" class="hover:underline">Triyaj Simülatörü</a>
+          <a href="/sla/" class="hover:underline">SLA & Taahhütler</a>
+          <a href="/teknoloji-uyumluluk/" class="hover:underline">Teknoloji Matrisi</a>
+          <a href="/gizlilik-sozlesmesi/" class="hover:underline">Gizlilik Sözleşmesi</a>
+          <a href="/hasar-tespiti/" class="hover:underline">Hasar Simülatörü</a>
+          <a href="/radar/" class="hover:underline">SWAT Radarı</a>
+          <a href="/kod-sagligi/" class="hover:underline">Kod Sağlığı</a>
+          <a href="/kurtarma-maliyeti/" class="hover:underline">Kurtarma ROI</a>
+          <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
+          <a href="/sos/" class="hover:underline">Acil Teknik Destek</a>
+          <a href="/about/" class="hover:underline">Hakkımızda</a>
+          <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-white">PM-01 // Veritabanı & Eşzamanlılık</h2>
+        <p class="text-slate-300 text-lg leading-relaxed">Büyük bir e-ticaret platformunda Cuma akşamı gerçekleşen yoğun kampanya esnasında; ödeme ağ geçidinden gelen asenkron webhookların doğrudan veritabanına açtığı kontrolsüz bağlantılar, satır kilitlenmeleri (row-level locks) yaratarak PostgreSQL max_connections limitini tüketti.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <div class="p-4 rounded-xl bg-white/5 border border-white/10 font-mono text-xs text-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div><span class="text-slate-500 block">SEVERITY</span><strong class="text-amber-400">SEV-1 CRITICAL</strong></div>
+        <div><span class="text-slate-500 block">KATEGORİ</span><strong class="text-white">Veritabanı &amp; Eşzamanlılık</strong></div>
+        <div><span class="text-slate-500 block">KESİNTİ SÜRESİ</span><strong class="text-emerald-400">42 dakika</strong></div>
+        <div><span class="text-slate-500 block">TARİH</span><strong class="text-cyan-300">2025-11-14</strong></div>
+      </div>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Olay Özeti</h2>
+        <p class="text-slate-300 leading-relaxed">Büyük bir e-ticaret platformunda Cuma akşamı gerçekleşen yoğun kampanya esnasında; ödeme ağ geçidinden gelen asenkron webhookların doğrudan veritabanına açtığı kontrolsüz bağlantılar, satır kilitlenmeleri (row-level locks) yaratarak PostgreSQL max_connections limitini tüketti.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Etki & Kayıp</h2>
+        <p class="text-slate-300 leading-relaxed">1.420 başarısız ödeme/sipariş işlemi, 42 dakika süren HTTP 500/504 kesintisi, müşteri destek hattında kriz.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Kronolojik Olay Akışı</h2>
+        <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10">
+          
+            <li><span class="text-cyan-300 font-bold">T-05m (18:35)</span> · <span class="text-white">Kampanya Duyurusu &amp; Trafik Artışı</span> — <span class="text-slate-300">E-posta ve SMS kampanyasıyla eşzamanlı olarak 24.000 aktif kullanıcı ödeme adımına geçti.</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+00m (18:40)</span> · <span class="text-white">İlk HTTP 500 &amp; Connection Timeout Alarmları</span> — <span class="text-slate-300">Ödeme sağlayıcısı (iyzico/Stripe) saniyede 180 webhook gönderdi. Backend her webhook için yeni bir PostgreSQL bağlantısı açarak transaction başlattı.</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+12m (18:52)</span> · <span class="text-white">PostgreSQL max_connections Tükendi</span> — <span class="text-slate-300">PostgreSQL sunucusunda max_connections=100 sınırına ulaşıldı. Yeni gelen tüm web ve API istekleri &quot;remaining connection slots are reserved for non-replication superuser connections&quot; hatası verdi.</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+18m (18:58)</span> · <span class="text-white">TMA SWAT Masası Devreye Girdi</span> — <span class="text-slate-300">TMA çekirdek masası canlı ortama bağlandı; pg_stat_activity sorgusu ile 84 adet sorgunun siparişler ve stok tabloları üzerinde exclusive row lock beklediği tespit edildi.</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+28m (19:08)</span> · <span class="text-white">Cerrahi Hotfix &amp; PgBouncer Bypass</span> — <span class="text-slate-300">Kilitlenen transactionlar terminate edildi. Webhook dinleyicisi doğrudan DB yazmaktan çıkarılıp Redis kuyruğuna (BullMQ) yönlendirildi; PgBouncer transaction modunda devreye alındı.</span></li>
+          
+          
+            <li><span class="text-cyan-300 font-bold">T+42m (19:22)</span> · <span class="text-white">Sistem Tam Kapasiteyle Canlıya Döndü</span> — <span class="text-slate-300">Tüm birikmiş 1.420 webhook kuyruktan veri kaybı olmadan işlendi; HTTP 500 oranı %0’a düştü.</span></li>
+          
+        </ul>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kök Neden (5 Whys)</h2>
+        <p class="text-slate-300 leading-relaxed whitespace-pre-line">1. Webhook endpointinin doğrudan ve senkron olarak veritabanı transactionı açması.
+2. order_items tablosunda product_id üzerinde eksik olan indeks nedeniyle her güncellemenin tüm tabloyu tarayarak satırları uzun süre kilitli tutması.
+3. Uygulama ile veritabanı arasında PgBouncer gibi bir bağlantı havuzlayıcının (connection pooler) bulunmaması.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Uygulanan SWAT Müdahalesi & Hotfix</h2>
+        <p class="text-slate-300 leading-relaxed whitespace-pre-line">1. Acil bağlantı havuzu oluşturuldu: PgBouncer devreye alınarak maksimum 20 kalıcı DB bağlantısı ile 1.000+ API isteği karşılandı.
+2. Eksik foreign-key indeksleri CONCURRENTLY bayrağıyla canlı sistem durdurulmadan eklendi.
+3. Webhooklar Redis kuyruğuna alındı ve saniyede kontrollü 25 transaction hızında işlendi.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kalıcı Önleyici Tedbirler</h2>
+        <p class="text-slate-300 leading-relaxed whitespace-pre-line">• Idempotency tablosuna 24 saatlik TTL ve composite unique index tanımlandı.
+• Veritabanı bağlantı doygunluğu %80’i aştığında tetiklenen otomatik Slack/PagerDuty alarmları kuruldu.
+• Kriz sonrası stres testinde sistem 2.500 eşzamanlı sipariş altında 22ms ortalama yanıt süresiyle test edildi.</p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
+          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

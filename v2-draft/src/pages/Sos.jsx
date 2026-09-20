@@ -4,10 +4,11 @@ import { Link } from 'react-router-dom';
 import { PhoneCall, MessageSquare, AlertTriangle, ShieldCheck, ArrowRight, ArrowLeft } from 'lucide-react';
 import { formatDocumentTitle } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
+import { isTurkish } from '../i18n';
 
 const Sos = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const krizHattiAcik = useKrizHattiAcik();
 
   useEffect(() => {

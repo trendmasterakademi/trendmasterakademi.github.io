@@ -5,6 +5,7 @@ import {
   Zap, ArrowRight, CheckCircle2, Calendar
 } from 'lucide-react';
 import { getCalendlyUrl } from '../utils/calendly';
+import { isTurkish } from '../i18n';
 
 export const diagnosticLogs = [
   {
@@ -95,7 +96,7 @@ const desktopPairs = [
 
 const Hero = () => {
   const { t, i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const [isDesktop, setIsDesktop] = useState(true);
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const [displayCounterIndex, setDisplayCounterIndex] = useState(0);
@@ -155,7 +156,7 @@ const Hero = () => {
           <div className="flex flex-wrap items-center gap-2">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 text-xs sm:text-sm font-mono font-bold shadow-[0_0_20px_rgba(0,229,255,0.15)]">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>B2B Technical SWAT & White-Label Engineering</span>
+              <span>{t('hero-badge', 'INCIDENT TRIAGE & SYSTEMS ARCHITECTURE // KERNEL DESK')}</span>
             </div>
             <span className="text-xs font-mono text-slate-400">
               {isTr ? 'İzmir · Uzaktan (TR / EN)' : 'İzmir · Remote (TR / EN)'}
@@ -165,21 +166,21 @@ const Hero = () => {
           {/* Main Hook Headline */}
           <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[2.6rem] xl:text-[3rem] font-black font-mono leading-[1.18] tracking-tight text-white">
             <span className="block text-slate-200">
-              {isTr ? 'Teknik olarak projesi tıkanmış' : 'For Agencies with Blocked Projects:'}
+              {t('hero-title-line1', isTr ? 'Kritik Sistem Kesintileri,' : 'Critical Systems Outages,')}
             </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400">
-              {isTr ? 'ajanslar için:' : 'Code Taken Over & Rescued,'}
+            <span className="block text-slate-300">
+              {t('hero-title-line2', isTr ? 'Kilitlenen Kod Tabanları:' : 'Locked Codebases:')}
             </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-300 to-amber-400 text-[0.88em]">
-              {isTr ? 'Kodu Devralır, Ajansınız Adına Eksiksiz Teslim Ederiz.' : 'Delivered Flawlessly Under Your Agency Brand.'}
+            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 text-[0.92em]">
+              {t('hero-title-highlight', isTr ? 'Çekirdek Seviyesinde Mühendislik Müdahalesi.' : 'Kernel-Level Engineering Triage.')}
             </span>
           </h1>
           
           {/* Body Description */}
           <p className="text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed max-w-xl font-normal">
-            {isTr 
-              ? 'Ajansların imdat butonu. Bir projede teknik olarak tıkandığınızda, teslim tarihi yaklaştığında veya müşteriniz özel bir SaaS mimarisi istediğinde: %100 White-Label, resmi NDA ve doğrudan kıdemli mühendislik masası.' 
-              : 'The emergency button for digital agencies. When you are technically blocked, facing tight delivery crunches, or building custom SaaS pipelines: 100% White-Label, binding NDA protection, and direct senior engineering execution.'}
+            {t('hero-desc', isTr 
+              ? "Yüksek eşzamanlılık (concurrency), veritabanı kilitlenmeleri (deadlock), kopan ödeme pipeline'ları ve devralınması gereken dokümantasyonsuz kod tabanları için derin operasyonel mühendislik masası. Sessiz, izole ve tamamen görünmez." 
+              : "Deep operational engineering desk for high concurrency, database deadlocks, severed payment pipelines, and undocumented stranded codebases. Silent, isolated, and completely invisible.")}
           </p>
 
           {/* Above-the-fold Guarantees */}
@@ -209,7 +210,7 @@ const Hero = () => {
               className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5 min-h-[48px] w-full sm:w-auto text-center"
             >
               <Zap className="w-5 h-5 fill-current" />
-              <span>{isTr ? 'Kodunuzu 60sn’de Değerlendirin' : 'Evaluate Code in 60s'}</span>
+              <span>{t('btn-crashtest', isTr ? 'Sistem Arızasını Teşhis Edin (Simulator)' : 'Diagnose System Failure (Simulator)')}</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
 
@@ -221,7 +222,7 @@ const Hero = () => {
               className="px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl font-bold text-sm sm:text-base border border-white/20 hover:bg-white/5 text-white transition-all flex items-center justify-center gap-2 min-h-[48px] w-full sm:w-auto text-center"
             >
               <Calendar className="w-5 h-5 text-cyan-400" />
-              <span>{isTr ? '30 Dakikalık Teknik Tanışma — Takvimden Seçin' : 'Book a 30-Minute Technical Intro'}</span>
+              <span>{isTr ? '30 Dakikalık Teknik Triyaj — Takvimden Seçin' : 'Book a 30-Minute Technical Triage'}</span>
             </a>
           </div>
 

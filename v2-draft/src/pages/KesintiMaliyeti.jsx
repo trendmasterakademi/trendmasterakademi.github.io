@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { getCalendlyUrl } from '../utils/calendly';
 import { formatDocumentTitle } from '../utils/pageTitle';
+import { isTurkish } from '../i18n';
 
 const revenueTiers = [
   { id: 't1', label: '₺250.000 - ₺500.000 / ay', monthlyAvg: 375000 },
@@ -24,7 +25,7 @@ const AVERAGE_BASKET_TRY = 1268;
 
 const KesintiMaliyeti = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
 
   const [inputMode, setInputMode] = useState('tier'); // 'tier', 'custom', 'orders'
   const [selectedTier, setSelectedTier] = useState('t2');
@@ -54,7 +55,7 @@ const KesintiMaliyeti = () => {
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/kesinti-maliyeti/');
+      canonical.setAttribute('href', isTr ? 'https://trendmasterakademi.com/kesinti-maliyeti/' : 'https://trendmasterakademi.com/downtime-calc/');
     }
 
     try {

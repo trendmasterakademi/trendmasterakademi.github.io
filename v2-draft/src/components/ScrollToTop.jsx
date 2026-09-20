@@ -12,14 +12,21 @@ export const ScrollToTop = () => {
 
   useLayoutEffect(() => {
     if (hash) {
-      const timer = setTimeout(() => {
-        const id = hash.replace('#', '');
+      const id = hash.replace('#', '');
+      let attempts = 0;
+      const maxAttempts = 40; // 40 * 50ms = 2000ms
+      const interval = setInterval(() => {
+        attempts++;
         const el = document.getElementById(id);
         if (el) {
           el.scrollIntoView({ behavior: 'smooth' });
+          clearInterval(interval);
+        } else if (attempts >= maxAttempts) {
+          clearInterval(interval);
         }
-      }, 80);
-      return () => clearTimeout(timer);
+      }, 50);
+
+      return () => clearInterval(interval);
     }
 
     const forceScrollTop = () => {

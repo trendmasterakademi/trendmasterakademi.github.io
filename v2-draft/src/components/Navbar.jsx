@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Globe, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
 import { useKrizHattiAcik } from '../utils/krizHatti';
+import { isTurkish } from '../i18n';
+import { getLocalizedPath } from '../utils/routes';
 
 const EmergencySOSModal = lazy(() => import('./EmergencySOSModal'));
 
@@ -17,8 +19,13 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const toggleLang = () => {
-    const newLang = i18n.language === 'tr' ? 'en' : 'tr';
+    const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').toLowerCase().startsWith('en');
+    const newLang = isEn ? 'tr' : 'en';
     i18n.changeLanguage(newLang);
+    const newPath = getLocalizedPath(location.pathname, newLang);
+    if (newPath !== location.pathname) {
+      navigate(newPath + location.hash, { replace: true });
+    }
   };
 
   useEffect(() => {
@@ -75,7 +82,7 @@ const Navbar = () => {
   };
 
   const isHome = location.pathname === '/' || location.pathname === '';
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const path = location.pathname;
 
   return (
@@ -149,9 +156,9 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/devir-kontrolu/"
+              to={isTr ? "/devir-kontrolu/" : "/handover-audit/"}
               className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
-                path.startsWith('/devir-kontrolu')
+                path.startsWith('/devir-kontrolu') || path.startsWith('/handover-audit')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
@@ -160,9 +167,9 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/teshis/"
+              to={isTr ? "/teshis/" : "/diagnostic/"}
               className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
-                path.startsWith('/teshis')
+                path.startsWith('/teshis') || path.startsWith('/diagnostic')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
@@ -171,9 +178,9 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/kesinti-maliyeti/"
+              to={isTr ? "/kesinti-maliyeti/" : "/downtime-calc/"}
               className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
-                path.startsWith('/kesinti-maliyeti')
+                path.startsWith('/kesinti-maliyeti') || path.startsWith('/downtime-calc') || path.startsWith('/downtime-cost')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
@@ -237,7 +244,7 @@ const Navbar = () => {
               title={isTr ? 'Switch to English' : 'Türkçe Dil Seçeneği'}
             >
               <Globe className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-400 flex-shrink-0" />
-              <span>{i18n.language === 'tr' ? 'EN' : 'TR'}</span>
+              <span>{isTr ? 'EN' : 'TR'}</span>
             </button>
 
             {/* Mobile Hamburger Toggle */}
@@ -283,10 +290,10 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/devir-kontrolu/"
+              to={isTr ? "/devir-kontrolu/" : "/handover-audit/"}
               onClick={() => setIsOpen(false)}
               className={`block w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold ${
-                path.startsWith('/devir-kontrolu')
+                path.startsWith('/devir-kontrolu') || path.startsWith('/handover-audit')
                   ? 'text-cyan-400 bg-cyan-500/10'
                   : 'text-slate-200 hover:bg-white/5'
               }`}
@@ -295,10 +302,10 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/teshis/"
+              to={isTr ? "/teshis/" : "/diagnostic/"}
               onClick={() => setIsOpen(false)}
               className={`block w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold ${
-                path.startsWith('/teshis')
+                path.startsWith('/teshis') || path.startsWith('/diagnostic')
                   ? 'text-cyan-400 bg-cyan-500/10'
                   : 'text-slate-200 hover:bg-white/5'
               }`}
@@ -307,10 +314,10 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/kesinti-maliyeti/"
+              to={isTr ? "/kesinti-maliyeti/" : "/downtime-calc/"}
               onClick={() => setIsOpen(false)}
               className={`block w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold ${
-                path.startsWith('/kesinti-maliyeti')
+                path.startsWith('/kesinti-maliyeti') || path.startsWith('/downtime-calc') || path.startsWith('/downtime-cost')
                   ? 'text-cyan-400 bg-cyan-500/10'
                   : 'text-slate-200 hover:bg-white/5'
               }`}

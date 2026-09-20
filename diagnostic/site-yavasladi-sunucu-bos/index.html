@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#080b11" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Site Stalled Despite Idle Server Resources</title>
+    <meta name="description" content="Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/" />
+    <meta property="og:title" content="Site Stalled Despite Idle Server Resources" />
+    <meta property="og:description" content="Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/" />
+    <meta name="twitter:title" content="Site Stalled Despite Idle Server Resources" />
+    <meta name="twitter:description" content="Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Site yavaşladı ama sunucu boş",
+      "description": "Sayfalar geç açılıyor ama sunucu kaynakları rahat görünüyor. 'Sunucu yetersiz' denip plan yükseltilir, hiçbir şey değişmez. Boş bir sunucuda yavaşlık kaynak sorunu değil, bekleme sorunudur.",
+      "url": "https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/",
+      "inLanguage": "tr-TR",
+      "about": "Performans",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      },
+      "datePublished": "2026-08-29T17:06:29+03:00",
+      "dateModified": "2026-09-06T13:00:03+03:00"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Aynı sorgu sayfa başına defalarca mı tekrarlıyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sorgu çoğalması — Listedeki her satır için ayrı sorgu atılıyor. 10 kayıtla fark edilmez, 500 kayıtla site durur. Kanıt: Aynı sorgu defalarca tekrarlıyor → A Çözüm: İlişkileri toplu çek · saatler içinde biter"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Yavaş sorgu tüm tabloyu mu tarıyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dizin eksik — Sorgu doğru ama tablo baştan sona taranıyor. Veri büyüdükçe süre doğrusal artar. Kanıt: Yavaş sorgu tüm tabloyu tarıyor → B Çözüm: Dizin ekle · etki anında"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Yavaşlık harici çağrıda mı yoğunlaşıyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Harici bekleme — Kargo, ödeme veya stok servisi yavaş yanıt veriyor ve sayfa onu bekliyor. Kanıt: Yavaşlık harici çağrıda yoğunlaşıyor → C Çözüm: Önbellek + zaman aşımı + arka plana al"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teşhis Kataloğu",
+          "item": "https://trendmasterakademi.com/teshis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Site yavaşladı ama sunucu boş",
+          "item": "https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <script type="module" crossorigin src="/assets/index-BGlQNeIQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-Chmdu_fW.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-92AYjGYd.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-Cn8upMAX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-hO7PlEZV.css">
+  </head>
+  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
+      <header class="mb-8 border-b border-white/10 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">Site Stalled Despite Idle Server Resources</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        
+        <p class="text-slate-300 text-lg leading-relaxed">Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Yüksek · dönüşüm kaybı · Kategori: Performans</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
+        <p class="text-slate-300 leading-relaxed">Siteye giren kullanıcılar sayfaların on beş saniyede açıldığını ya da zaman aşımına uğradığını söyler. Ajans sunucu paneline (htop/top) baktığında işlemci ve bellek kullanımının yüzde beşi geçmediğini, sunucunun adeta uyuduğunu görür; donmanın kaynağı belirsizdir.</p>
+      </section>
+    
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+        <li><code>Sayfa başına veritabanı sorgu sayısı: yüzlerce</code></li>
+        <li><code>Yavaş sorgu log'u: aynı sorgu defalarca tekrarlıyor</code></li>
+        <li><code>Harici servis çağrısı: 2–8 saniye bekleme</code></li>
+        <li><code>İlk bayt süresi yüksek, indirme hızlı</code></li>
+      </ul>
+    
+        <p class="text-slate-300 text-sm">Sunucu boşken yaşanan yavaşlık, sistemin çalışmadığını değil beklediğini gösterir. Aranacak şey işlemci kullanımı değil, isteğin nerede beklediğidir.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">A · Sorgu çoğalması</h3>
+            <p class="text-slate-300 leading-relaxed">Listedeki her satır için ayrı sorgu atılıyor. 10 kayıtla fark edilmez, 500 kayıtla site durur.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Aynı sorgu sayfa başına defalarca mı tekrarlıyor?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Aynı sorgu defalarca tekrarlıyor → A</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> İlişkileri toplu çek · saatler içinde biter</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Sunucu paketi yükseltilerek CPU ve RAM artırılır; fakat indekssiz tek bir SELECT sorgusu tabloyu kilitlediğinden kaynak artışı yavaşlığı çözmez.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">B · Dizin eksik</h3>
+            <p class="text-slate-300 leading-relaxed">Sorgu doğru ama tablo baştan sona taranıyor. Veri büyüdükçe süre doğrusal artar.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Yavaş sorgu tüm tabloyu mu tarıyor?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Yavaş sorgu tüm tabloyu tarıyor → B</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Dizin ekle · etki anında</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> PHP yapılandırmasında max_execution_time süresi artırılır; bu işlem yanıt vermeyen kargo veya SMS servisinin tüm PHP-FPM havuzunu tıkamasına yol açar.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
+            <h3 class="text-lg font-bold text-cyan-300">C · Harici bekleme</h3>
+            <p class="text-slate-300 leading-relaxed">Kargo, ödeme veya stok servisi yavaş yanıt veriyor ve sayfa onu bekliyor.</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> Yavaşlık harici çağrıda mı yoğunlaşıyor?</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> Yavaşlık harici çağrıda yoğunlaşıyor → C</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> Önbellek + zaman aşımı + arka plana al</p>
+            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> Veritabanı max_connections değeri limitsiz yükseltilir; MySQL bellek baskısı altında swap yapmaya başlar ve sunucu işletim sistemi seviyesinde kilitlenir.</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
+        <p class="text-slate-300 leading-relaxed">Kıdemli backend mühendisi. A ve B çoğunlukla aynı gün kapanır ve etkisi anında görülür. C'de asıl mesele harici servisi hızlandırmak değil, sayfanın onu beklememesini sağlamaktır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
+        <p class="text-slate-300 leading-relaxed">Yavaşlık dönüşümü doğrudan düşürür ve arama sıralamasında da karşılığı vardır. Sunucu yükseltmek maliyeti artırır, belirtiyi bir süre örter, nedeni bırakır.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/n-plus-1-sorgu/" class="hover:underline">→ N+1 Sorgu Problemi (N+1 Query)</a></li>
+        <li><a href="/sozluk/teknik-borc/" class="hover:underline">→ Teknik Borç (Technical Debt)</a></li>
+        <li><a href="/sozluk/rate-limit/" class="hover:underline">→ Rate Limiting (Trafik &amp; İstek Sınırlandırma)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/kesinti-maliyeti/" class="text-cyan-400 hover:underline font-bold">→ Kesinti Maliyeti Hesabı</a></p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
+          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

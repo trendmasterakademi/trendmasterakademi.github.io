@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#080b11" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>What is Teknik Borç (Technical Debt)? | Trend Master Akademi</title>
+    <meta name="description" content="Teknik Borç: The implied long-term cost of additional rework caused by choosing an easy, fast software shortcut over a sustainable architectural design." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/glossary/teknik-borc/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/teknik-borc/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/teknik-borc/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/teknik-borc/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/glossary/teknik-borc/" />
+    <meta property="og:title" content="What is Teknik Borç (Technical Debt)? | Trend Master Akademi" />
+    <meta property="og:description" content="Teknik Borç: The implied long-term cost of additional rework caused by choosing an easy, fast software shortcut over a sustainable architectural design." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/glossary/teknik-borc/" />
+    <meta name="twitter:title" content="What is Teknik Borç (Technical Debt)? | Trend Master Akademi" />
+    <meta name="twitter:description" content="Teknik Borç: The implied long-term cost of additional rework caused by choosing an easy, fast software shortcut over a sustainable architectural design." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "DefinedTerm",
+      "name": "Teknik Borç (Technical Debt)",
+      "description": "Günü kurtarmak için aceleyle yazılan kalitesiz kodun, gelecekte yapılacak her yeni özelliğin geliştirme süresini katlaması durumudur.",
+      "inDefinedTermSet": {
+        "@type": "DefinedTermSet",
+        "name": "Teknik Terim Sözlüğü",
+        "url": "https://trendmasterakademi.com/sozluk/"
+      },
+      "url": "https://trendmasterakademi.com/sozluk/teknik-borc/",
+      "inLanguage": "tr-TR",
+      "dateModified": "2026-08-28T23:48:15+03:00"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teknik Terim Sözlüğü",
+          "item": "https://trendmasterakademi.com/sozluk/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Teknik Borç (Technical Debt)",
+          "item": "https://trendmasterakademi.com/sozluk/teknik-borc/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <script type="module" crossorigin src="/assets/index-BGlQNeIQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-Chmdu_fW.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-92AYjGYd.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-Cn8upMAX.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-hO7PlEZV.css">
+  </head>
+  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
+      <header class="mb-8 border-b border-white/10 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">What is Teknik Borç (Technical Debt)?</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-white">Teknik Borç (Technical Debt)</h2>
+        <p class="text-slate-300 text-lg leading-relaxed">The implied long-term cost of additional rework caused by choosing an easy, fast software shortcut over a sustainable architectural design. What it means for agencies: Quick feature tweaks that used to take 2 hours now take weeks because modifying one line breaks 5 unrelated modules.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
+      <p class="text-sm font-mono text-cyan-400">Aciliyet: Orta / Stratejik</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Tanım</h2>
+        <p class="text-slate-300 leading-relaxed">Günü kurtarmak için aceleyle yazılan kalitesiz kodun, gelecekte yapılacak her yeni özelliğin geliştirme süresini katlaması durumudur.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Ajans için ne anlama gelir</h2>
+        <p class="text-slate-300 leading-relaxed">Ajans için ne anlama gelir? Başta 3 günde biten basit bir revizyon, 6 ay sonra spagetti kod yüzünden 3 haftada yapılamaz hale gelir. Geliştiriciler projeye dokunmaktan korkar.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">Kim çözer</h2>
+        <p class="text-slate-300 leading-relaxed">TMA Mimari &amp; Refactor Masası. Planlı kod refactoring sprintleri ve modüler katman ayrımı ile temizlenir.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-white">İlgili terimler</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+        <li><a href="/sozluk/refactor/" class="hover:underline">→ Refactor (Kod İyileştirme &amp; Yeniden Yapılandırma)</a></li>
+        <li><a href="/sozluk/ci-cd/" class="hover:underline">→ CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)</a></li>
+        <li><a href="/sozluk/staging-ortami/" class="hover:underline">→ Staging Ortamı (Canlı Öncesi Test Ortamı)</a></li>
+      </ul>
+    
+        <p class="pt-2"><a href="/devir-kontrolu/" class="text-cyan-400 hover:underline font-bold">→ 12 Kalemlik Devir Hazırlık Kontrolü</a></p>
+      </section>
+    </section>
+  
+
+      <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3 mt-6">
+        <h2 class="text-xl font-bold text-white">Bu terim şu belirtilerde çıkar</h2>
+        <ul class="space-y-2 font-mono text-sm text-cyan-300">
+          <li><a href="/teshis/guncelleme-sonrasi-veri-kayboldu/" class="hover:underline">→ 05 · Güncellemeden sonra veri kayboldu sanılıyor</a></li>
+          <li><a href="/teshis/yedek-var-sanildi-yedek-yok/" class="hover:underline">→ 09 · Yedek var sanılıyordu, yedek yok</a></li>
+          <li><a href="/teshis/site-yavasladi-sunucu-bos/" class="hover:underline">→ 11 · Site yavaşladı ama sunucu boş</a></li>
+          <li><a href="/teshis/sunucu-her-gun-yeniden-baslatiliyor/" class="hover:underline">→ 13 · Sunucu her gün yeniden başlatılıyor</a></li>
+        </ul>
+        <p class="text-xs text-slate-400 pt-1"><a href="/teshis/" class="text-cyan-400 hover:underline">ve 4 teşhis daha →</a></p>
+      </section>
+    
+        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
+          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

@@ -2,27 +2,30 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Hero from '../components/Hero';
 import AgencySection from '../components/AgencySection';
+import CodeDiffTerminal from '../components/CodeDiffTerminal';
 import ArchitectureGraph from '../components/ArchitectureGraph';
 import Services from '../components/Services';
 import CaseStudySection from '../components/CaseStudySection';
+import FounderSection from '../components/FounderSection';
 import FAQ from '../components/FAQ';
 import Contact from '../components/Contact';
 import { formatDocumentTitle } from '../utils/pageTitle';
+import { isTurkish } from '../i18n';
 
 const Home = () => {
   const { i18n } = useTranslation();
 
   useEffect(() => {
-    const isTr = i18n.language !== 'en';
+    const isTr = isTurkish(i18n);
     document.title = isTr
-      ? "Trend Master Akademi | Ajansların İmdat Butonu"
-      : formatDocumentTitle("Trend Master Academy | B2B Technical SWAT & White-Label Engineering");
+      ? "Trend Master Akademi | Incident Triage & Systems Architecture"
+      : formatDocumentTitle("Trend Master Academy | Incident Triage & Systems Architecture");
     
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", isTr
-        ? "Dijital ajansların imdat butonu: B2B White-Label mühendislik masası, acil kod kurtarma (SWAT), SaaS mimarisi ve kriz çözüm stüdyosu."
-        : "Behind-the-scenes B2B Technical SWAT, White-Label Engineering desk, and emergency code rescue studio for digital agencies and SaaS companies."
+        ? "Kritik sistem kesintileri, kilitlenen kod tabanları ve yüksek işlem hacimli platformlar için çekirdek seviyesinde mühendislik masası."
+        : "Kernel-level systems engineering and incident triage desk for mission-critical platforms, locked codebases, and high-concurrency environments."
       );
     }
 
@@ -36,9 +39,11 @@ const Home = () => {
     <>
       <Hero />
       <AgencySection />
+      <CodeDiffTerminal />
       <ArchitectureGraph />
       <Services />
       <CaseStudySection />
+      <FounderSection />
       <FAQ />
       <Contact />
     </>

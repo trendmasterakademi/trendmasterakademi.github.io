@@ -4,10 +4,11 @@ import { ArrowLeft, BookOpen, ShieldCheck, ArrowRight, Calendar } from 'lucide-r
 import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
 import { formatDocumentTitle } from '../utils/pageTitle';
+import { isTurkish } from '../i18n';
 
 const Story = () => {
   const { i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
 
   useEffect(() => {
     document.title = formatDocumentTitle(isTr 
@@ -24,7 +25,7 @@ const Story = () => {
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/hikayemiz/');
+      canonical.setAttribute('href', isTr ? 'https://trendmasterakademi.com/hikayemiz/' : 'https://trendmasterakademi.com/story/');
     }
   }, [isTr]);
 

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, PhoneCall, Mail, Zap, Lock, Globe } from 'lucide-react';
+import { ShieldCheck, PhoneCall, Mail, Zap, Lock, Globe, Terminal, Layers, FileText, Activity, AlertTriangle } from 'lucide-react';
 import KVKKModal from './KVKKModal';
 import { useKrizHattiAcik } from '../utils/krizHatti';
+import { isTurkish } from '../i18n';
 
 const Footer = () => {
   const { t, i18n } = useTranslation();
-  const isTr = i18n.language !== 'en';
+  const isTr = isTurkish(i18n);
   const [isKVKKOpen, setIsKVKKOpen] = useState(false);
   const krizHattiAcik = useKrizHattiAcik();
 
@@ -28,11 +29,11 @@ const Footer = () => {
           </Link>
           <p className="text-slate-300 text-sm leading-relaxed max-w-md">
             {isTr 
-              ? 'Dijital ajanslar ve teknoloji şirketleri için %100 White-Label, resmi NDA güvencesi altında çalışan kıdemli B2B mühendislik masası ve acil kod kurtarma stüdyosu.' 
-              : 'Senior B2B engineering desk and emergency code SWAT recovery studio for digital agencies under 100% White-Label and strict mutual NDA.'}
+              ? 'Yüksek işlem hacimli platformlar, teknoloji ekipleri ve kurumsal sistemler için %100 White-Label ve resmi NDA korumasıyla çalışan kıdemli mühendislik masası ve kriz kurtarma stüdyosu.' 
+              : 'Senior engineering desk and crisis recovery studio for high-throughput platforms and tech teams operating under 100% White-Label and strict mutual NDA.'}
           </p>
           <div className="pt-2 text-xs font-mono text-cyan-400 flex flex-wrap items-center gap-3">
-            <span>B2B Mühendislik Masası: <strong>Trend Master Akademi Studio & Labs</strong></span>
+            <span>Sistem & Operasyon Masası: <strong>Trend Master Akademi Studio & Labs</strong></span>
             <span>•</span>
             <a href="https://www.linkedin.com/in/trendmasterakademi/" target="_blank" rel="noreferrer" className="hover:text-white underline">LinkedIn</a>
           </div>
@@ -45,9 +46,19 @@ const Footer = () => {
             <li><Link to="/" className="hover:text-cyan-400 transition-colors">{t('nav-home')}</Link></li>
             <li><Link to="/agency/" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-cyan-400" /> {t('nav-agency')}</Link></li>
             <li><Link to="/crash-test/" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-cyan-400" /> {t('nav-crashtest')}</Link></li>
+            <li><Link to={isTr ? "/kurtarilabilirlik/" : "/salvageability/"} className="hover:text-cyan-400 transition-colors">{isTr ? 'Salvageability Index (Karar Matrisi)' : 'Salvageability Index'}</Link></li>
+            <li><Link to={isTr ? "/post-mortem/" : "/post-mortems/"} className="hover:text-cyan-400 transition-colors">{isTr ? 'Incident Post-Mortem & RCA' : 'Incident Post-Mortems & RCA'}</Link></li>
+            <li><Link to={isTr ? "/triyaj/" : "/triage/"} className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><Terminal className="w-3.5 h-3.5 text-cyan-400" /> {isTr ? 'Kriz Triyaj Simülatörü' : 'Emergency Triage Simulator'}</Link></li>
+            <li><Link to="/sla/" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-cyan-400" /> {isTr ? 'Şeffaf Mühendislik SLA' : 'Engineering SLA Matrix'}</Link></li>
+            <li><Link to={isTr ? "/teknoloji-uyumluluk/" : "/tech-matrix/"} className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><Layers className="w-3.5 h-3.5 text-cyan-400" /> {isTr ? 'Teknoloji & Kurtarma Matrisi' : 'Tech Compatibility Matrix'}</Link></li>
+            <li><Link to={isTr ? "/gizlilik-sozlesmesi/" : "/mutual-nda/"} className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><FileText className="w-3.5 h-3.5 text-cyan-400" /> {isTr ? 'İnteraktif Gizlilik Sözleşmesi (NDA)' : 'Interactive Mutual NDA'}</Link></li>
+            <li><Link to={isTr ? "/hasar-tespiti/" : "/outage-simulator/"} className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><AlertTriangle className="w-3.5 h-3.5 text-rose-400" /> {isTr ? 'Gelişmiş Hasar Simülatörü' : 'Outage Damage Simulator'}</Link></li>
+            <li><Link to="/radar/" className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><Activity className="w-3.5 h-3.5 text-emerald-400" /> {isTr ? 'SWAT Durum Radarı' : 'Live Status Radar'}</Link></li>
+            <li><Link to={isTr ? "/kod-sagligi/" : "/codebase-health/"} className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-cyan-400" /> {isTr ? 'Kod Sağlığı & Borç Denetimi' : 'Codebase Health Audit'}</Link></li>
+            <li><Link to={isTr ? "/kurtarma-maliyeti/" : "/rescue-roi/"} className="hover:text-cyan-400 transition-colors flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-emerald-400" /> {isTr ? 'Kurtarma vs Yeniden Yazım ROI' : 'Rescue vs Rebuild ROI'}</Link></li>
             <li><Link to="/sos/" className="hover:text-cyan-400 transition-colors">{isTr ? 'Acil Teknik Destek' : 'Emergency Support'}</Link></li>
             <li><Link to="/about/" className="hover:text-cyan-400 transition-colors">{t('nav-about')}</Link></li>
-            <li><Link to="/hikayemiz/" className="hover:text-cyan-400 transition-colors">{isTr ? 'Marka Hikâyemiz' : 'Our Story'}</Link></li>
+            <li><Link to={isTr ? "/hikayemiz/" : "/story/"} className="hover:text-cyan-400 transition-colors">{isTr ? 'Marka Hikâyemiz' : 'Our Story'}</Link></li>
             <li><a href="/#faq" className="hover:text-cyan-400 transition-colors">{isTr ? 'Sıkça Sorulan Sorular (SSS)' : 'FAQ'}</a></li>
             <li><a href="/#contact" className="hover:text-cyan-400 transition-colors">{t('nav-contact')}</a></li>
             <li>
@@ -94,7 +105,7 @@ const Footer = () => {
                 onClick={() => window.dispatchEvent(new CustomEvent('open-sos-modal'))}
                 className="text-emerald-400 font-mono font-bold hover:underline focus:outline-none focus:ring-1 focus:ring-emerald-400 rounded cursor-pointer transition-colors text-right"
               >
-                {isTr ? 'Teklif iki taraftan' : 'Quotes from either side'}
+                {isTr ? 'Kriz Masasına Teklif İletin →' : 'Inquire with Crisis Desk →'}
               </button>
             </div>
           </div>

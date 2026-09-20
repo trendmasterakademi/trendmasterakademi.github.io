@@ -1,0 +1,305 @@
+import React, { useState, useMemo } from "react";
+import { techStackData } from "../data/techStackData";
+import { getCalendlyUrl } from "../utils/calendly";
+
+export default function TechMatrix({ lang = "tr" }) {
+  const t = techStackData[lang] || techStackData.tr;
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [selectedTechIds, setSelectedTechIds] = useState(["nodejs", "postgresql", "docker_k8s"]);
+  const [copied, setCopied] = useState(false);
+
+  const filteredItems = useMemo(() => {
+    if (selectedCategory === "all") return t.items;
+    return t.items.filter((item) => item.category === selectedCategory);
+  }, [t.items, selectedCategory]);
+
+  const selectedItems = useMemo(() => {
+    return t.items.filter((item) => selectedTechIds.includes(item.id));
+  }, [t.items, selectedTechIds]);
+
+  const toggleTech = (id) => {
+    setSelectedTechIds((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+  const selectAllFiltered = () => {
+    const idsToAdd = filteredItems.map((i) => i.id);
+    setSelectedTechIds((prev) => Array.from(new Set([...prev, ...idsToAdd])));
+  };
+
+  const clearAll = () => {
+    setSelectedTechIds([]);
+  };
+
+  const copyStackBrief = () => {
+    if (selectedItems.length === 0) return;
+    const names = selectedItems.map((i) => i.name).join(", ");
+    const readiness = selectedItems.some((i) => i.supportLevel.includes("SEV-0"))
+      ? "SEV-0 (≤ 15 Dk / Mins)"
+      : "SEV-1 (≤ 30 Dk / Mins)";
+    
+    const combinedRisks = selectedItems
+      .flatMap((i) => i.commonIncidents)
+      .slice(0, 6)
+      .map((r) => `  - ${r}`)
+      .join("\n");
+
+    const brief = `[TMA MÜHENDİSLİK STACK BRİFİNGİ / ARCHITECTURE BRIEF]
+--------------------------------------------------
+Seçilen Teknolojiler: ${names}
+Müdahale Hazırbulunuşluğu: ${readiness}
+Kurtarma & SWAT Kapsamı: %98+ Tam Cerrahi
+
+Tespit Edilen Olası Mimari Risk Noktaları:
+${combinedRisks}
+
+TMA Mühendislik Masası: info@trendmasterakademi.com | +90 534 371 35 73
+Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "triyaj"}/
+--------------------------------------------------`;
+
+    navigator.clipboard.writeText(brief).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000);
+    });
+  };
+
+  return (
+    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-emerald-500/30">
+      {/* Header */}
+      <div className="max-w-6xl mx-auto text-center mb-12">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-800/60 text-emerald-400 text-xs font-mono font-medium uppercase tracking-widest mb-4">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          {t.hero.badge}
+        </div>
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+          {t.hero.title}
+        </h1>
+        <p className="text-base sm:text-lg text-neutral-400 max-w-3xl mx-auto mb-4">
+          {t.hero.subtitle}
+        </p>
+        <p className="text-xs text-neutral-500 font-mono">
+          🛡️ {t.hero.notice}
+        </p>
+      </div>
+
+      {/* Category Tabs & Filter Actions */}
+      <div className="max-w-6xl mx-auto mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-neutral-800/80 pb-4">
+        <div className="flex flex-wrap gap-2">
+          {t.categories.map((cat) => (
+            <button
+              key={cat.id}
+              onClick={() => setSelectedCategory(cat.id)}
+              className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+                selectedCategory === cat.id
+                  ? "bg-emerald-600 text-white shadow-sm shadow-emerald-950"
+                  : "bg-neutral-900/80 text-neutral-400 hover:text-white hover:bg-neutral-800 border border-neutral-800"
+              }`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
+        <div className="flex items-center gap-3 text-xs font-mono">
+          <button
+            onClick={selectAllFiltered}
+            className="text-neutral-400 hover:text-emerald-400 transition"
+          >
+            {lang === "en" ? "+ Select All in View" : "+ Görünenleri Seç"}
+          </button>
+          <span className="text-neutral-700">|</span>
+          <button
+            onClick={clearAll}
+            className="text-neutral-400 hover:text-rose-400 transition"
+          >
+            {lang === "en" ? "Clear" : "Temizle"} ({selectedTechIds.length})
+          </button>
+        </div>
+      </div>
+
+      {/* Main Grid: Tech Cards + Sticky Evaluation Drawer */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+        {/* Tech Grid */}
+        <div className="lg:col-span-8 space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {filteredItems.map((tech) => {
+              const isSelected = selectedTechIds.includes(tech.id);
+              return (
+                <div
+                  key={tech.id}
+                  onClick={() => toggleTech(tech.id)}
+                  className={`cursor-pointer rounded-xl p-5 border transition-all relative ${
+                    isSelected
+                      ? "bg-neutral-900/90 border-emerald-500/70 shadow-lg shadow-emerald-950/30"
+                      : "bg-neutral-900/40 border-neutral-800/70 hover:border-neutral-700 hover:bg-neutral-900/60"
+                  }`}
+                >
+                  {/* Selection Indicator */}
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div>
+                      <h3 className="text-base font-bold text-white tracking-tight flex items-center gap-2">
+                        {tech.name}
+                      </h3>
+                      <span className="text-[11px] font-mono text-neutral-400">
+                        {tech.versionRange}
+                      </span>
+                    </div>
+                    <div
+                      className={`w-5 h-5 rounded flex items-center justify-center text-xs font-bold transition-all ${
+                        isSelected
+                          ? "bg-emerald-500 text-neutral-950"
+                          : "border border-neutral-700 text-transparent"
+                      }`}
+                    >
+                      ✓
+                    </div>
+                  </div>
+
+                  {/* Readiness & Support Level */}
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">
+                      {tech.readiness}
+                    </span>
+                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-800/80 text-neutral-300 border border-neutral-700/50">
+                      {tech.supportLevel}
+                    </span>
+                  </div>
+
+                  {/* Common Incidents */}
+                  <div className="space-y-1 mb-3">
+                    <span className="text-[11px] font-mono font-medium text-neutral-400 uppercase tracking-wider block">
+                      {lang === "en" ? "Common Outage Vectors:" : "Tipik Kritik Arıza Noktaları:"}
+                    </span>
+                    <ul className="text-xs text-neutral-300 space-y-1 list-disc list-inside">
+                      {tech.commonIncidents.slice(0, 2).map((inc, idx) => (
+                        <li key={idx} className="truncate">
+                          {inc}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Rescue Capability Preview */}
+                  <div className="border-t border-neutral-800/60 pt-2 text-[11px] text-neutral-400">
+                    <span className="text-emerald-400 font-mono font-medium">TMA SWAT: </span>
+                    <span className="line-clamp-2">{tech.rescueCapability}</span>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Live Stack Evaluation Sidebar */}
+        <div className="lg:col-span-4">
+          <div className="sticky top-8 bg-neutral-900/90 border border-neutral-800 rounded-2xl p-6 shadow-2xl backdrop-blur-md">
+            <h2 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+              {t.summaryBox.title}
+            </h2>
+
+            {selectedItems.length === 0 ? (
+              <p className="text-xs text-neutral-400 leading-relaxed font-mono py-6">
+                {t.summaryBox.emptyNotice}
+              </p>
+            ) : (
+              <div className="space-y-6">
+                {/* Score & TTR */}
+                <div className="grid grid-cols-2 gap-3 pt-2">
+                  <div className="bg-neutral-950 p-3 rounded-xl border border-neutral-800/80">
+                    <span className="text-[10px] font-mono text-neutral-400 uppercase block mb-1">
+                      {t.summaryBox.rescueScore}
+                    </span>
+                    <span className="text-xl font-extrabold text-emerald-400 font-mono">
+                      %99.2
+                    </span>
+                    <span className="text-[10px] text-neutral-500 block font-mono">
+                      {lang === "en" ? "Full Surgical SWAT" : "Tam Cerrahi Kapsam"}
+                    </span>
+                  </div>
+
+                  <div className="bg-neutral-950 p-3 rounded-xl border border-neutral-800/80">
+                    <span className="text-[10px] font-mono text-neutral-400 uppercase block mb-1">
+                      {t.summaryBox.estimatedTtr}
+                    </span>
+                    <span className="text-xl font-extrabold text-white font-mono">
+                      ≤ 15 Dk
+                    </span>
+                    <span className="text-[10px] text-neutral-500 block font-mono">
+                      {lang === "en" ? "SEV-0/1 Hot Desk" : "Kriz Masası Masada"}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Selected Badges */}
+                <div>
+                  <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider block mb-2">
+                    {lang === "en" ? "Selected Components:" : "Seçili Bileşenler:"} ({selectedItems.length})
+                  </span>
+                  <div className="flex flex-wrap gap-1.5 max-h-32 overflow-y-auto pr-1">
+                    {selectedItems.map((item) => (
+                      <span
+                        key={item.id}
+                        className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-neutral-800 text-xs font-mono text-neutral-200 border border-neutral-700/60"
+                      >
+                        {item.name.split(" ")[0]}
+                        <button
+                          onClick={() => toggleTech(item.id)}
+                          className="text-neutral-400 hover:text-rose-400 ml-1"
+                        >
+                          ×
+                        </button>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Combined Outage Risks */}
+                <div className="border-t border-neutral-800/80 pt-4">
+                  <span className="text-[11px] font-mono text-amber-400 uppercase tracking-wider block mb-2">
+                    ⚠ {t.summaryBox.keyRisks}:
+                  </span>
+                  <ul className="text-xs text-neutral-300 space-y-2 list-disc list-inside bg-neutral-950/60 p-3 rounded-xl border border-neutral-800/80">
+                    {selectedItems
+                      .flatMap((item) => item.commonIncidents)
+                      .slice(0, 4)
+                      .map((incident, idx) => (
+                        <li key={idx} className="leading-snug">
+                          {incident}
+                        </li>
+                      ))}
+                  </ul>
+                </div>
+
+                {/* Actions: Copy Brief & Direct Triage */}
+                <div className="space-y-2 pt-2">
+                  <button
+                    onClick={copyStackBrief}
+                    className="w-full py-2.5 px-4 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-xs font-mono font-medium text-white transition flex items-center justify-center gap-2"
+                  >
+                    📋 {copied ? t.summaryBox.copiedNotice : (lang === "en" ? "Copy Stack Briefing" : "Mimari Brifingini Kopyala")}
+                  </button>
+
+                  <a
+                    href={getCalendlyUrl(lang)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-mono font-bold text-white transition flex items-center justify-center gap-2 text-center shadow-lg shadow-emerald-950/50"
+                  >
+                    ⚡ {t.summaryBox.actionCta}
+                  </a>
+
+                  <p className="text-[10px] text-neutral-500 font-mono text-center pt-1">
+                    {lang === "en"
+                      ? "Direct senior desk • NDA protected • No sales reps"
+                      : "Doğrudan kıdemli mühendis masası • NDA korumalı • Aracı yok"}
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
