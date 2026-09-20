@@ -1108,6 +1108,59 @@ const basePages = [
     }
   },
   {
+    dir: 'kit',
+    title: 'TMA Agency Response Kit & Crash Test 500 | Trend Master Akademi',
+    h1: 'TMA Agency Response & Readiness Kit',
+    description: 'Dijital ajansların görünmeyen kıdemli teknik masası: 8 Slaytlık Response Kit ve 60 Saniyelik Crash Test 500 posteri ile teknik kriz protokollerinizi şimdi güvenceye alın.',
+    canonical: 'https://trendmasterakademi.com/kit/',
+    ogUrl: 'https://trendmasterakademi.com/kit/',
+    hreflangTr: 'https://trendmasterakademi.com/kit/',
+    hreflangEn: 'https://trendmasterakademi.com/agency-kit/',
+    heading: 'TMA Agency Kit // 8 Slaytlık Görsel Kılavuz & Crash Test 500',
+    subheading: 'Ajansınız teknik bir krize hazır mı? Yüksek çözünürlüklü slaytlar, poster vitrini ve resmi PDF indirme alanı.',
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "TMA Agency Kit", "item": "https://trendmasterakademi.com/kit/" }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    dir: 'agency-kit',
+    lang: 'en',
+    title: 'TMA Agency Response Kit & Crash Test 500 | Trend Master Akademi',
+    h1: 'TMA Agency Response & Readiness Kit',
+    description: 'The invisible senior engineering desk for digital agencies: 8-Slide Response Kit and 60-Second Crash Test 500 poster to fortify your technical crisis protocols.',
+    canonical: 'https://trendmasterakademi.com/agency-kit/',
+    ogUrl: 'https://trendmasterakademi.com/agency-kit/',
+    hreflangTr: 'https://trendmasterakademi.com/kit/',
+    hreflangEn: 'https://trendmasterakademi.com/agency-kit/',
+    heading: 'TMA Agency Kit // 8-Slide Visual Guide & Crash Test 500',
+    subheading: 'Is your agency prepared for a technical outage? High-resolution slides, poster showcase, and official PDF download.',
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "TMA Agency Kit", "item": "https://trendmasterakademi.com/agency-kit/" }
+          ]
+        }
+      ]
+    }
+  },
+  {
     dir: 'crash-test',
     title: 'Agency Crash Test (60 sn) | Trend Master Akademi',
     h1: 'Agency Crash Test (60sn)',
@@ -2698,6 +2751,8 @@ console.log(`All ${pages.length} static sub-pages generated successfully!`);
 const sitemapPageSourceMap = {
   'https://trendmasterakademi.com/': 'v2-draft/src/pages/Home.jsx',
   'https://trendmasterakademi.com/agency/': 'v2-draft/src/pages/Agency.jsx',
+  'https://trendmasterakademi.com/kit/': 'v2-draft/src/pages/AgencyKit.jsx',
+  'https://trendmasterakademi.com/agency-kit/': 'v2-draft/src/pages/AgencyKit.jsx',
   'https://trendmasterakademi.com/crash-test/': 'v2-draft/src/pages/CrashTest.jsx',
   'https://trendmasterakademi.com/devir-kontrolu/': 'v2-draft/src/pages/DevirKontrolu.jsx',
   'https://trendmasterakademi.com/handover-audit/': 'v2-draft/src/pages/DevirKontrolu.jsx',

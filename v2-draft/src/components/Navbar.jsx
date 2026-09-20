@@ -1,10 +1,11 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Globe, AlertTriangle, ShieldCheck, Zap } from 'lucide-react';
+import { Menu, X, Globe, AlertTriangle, ShieldCheck, Zap, BookOpen } from 'lucide-react';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
 import { getLocalizedPath } from '../utils/routes';
+import KitBanner from './KitBanner';
 
 const EmergencySOSModal = lazy(() => import('./EmergencySOSModal'));
 
@@ -87,12 +88,16 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`fixed w-full max-w-[100vw] top-0 left-0 z-50 py-2 sm:py-3.5 px-2.5 sm:px-6 md:px-12 transition-all duration-300 ${
+      <header className={`fixed w-full max-w-[100vw] top-0 left-0 z-50 transition-all duration-300 ${
         scrolled 
           ? 'bg-[#080b11]/95 backdrop-blur-xl border-b border-cyan-500/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]' 
           : 'bg-[#080b11]/80 backdrop-blur-md border-b border-white/10'
       }`}>
-        <div className="max-w-7xl mx-auto flex justify-between items-center w-full gap-2 sm:gap-4">
+        {/* TMA Agency Response Kit & Crash Test Scrolling Banner */}
+        <KitBanner />
+
+        <div className="py-2 sm:py-3 px-2.5 sm:px-6 md:px-12">
+          <div className="max-w-7xl mx-auto flex justify-between items-center w-full gap-2 sm:gap-4">
           
           {/* Brand Logo & Active Response Desk Badge */}
           <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0 min-w-0">
@@ -141,6 +146,18 @@ const Navbar = () => {
             >
               <ShieldCheck className="w-4 h-4 text-cyan-400" />
               <span>{t('nav-agency')}</span>
+            </Link>
+
+            <Link
+              to="/kit/"
+              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1.5 ${
+                path.startsWith('/kit') || path.startsWith('/agency-kit')
+                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
+                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <BookOpen className="w-4 h-4 text-cyan-400" />
+              <span>{isTr ? 'Agency Kit' : 'Agency Kit'}</span>
             </Link>
 
             <Link
@@ -264,6 +281,15 @@ const Navbar = () => {
         {isOpen && (
           <div className="lg:hidden pt-3 pb-5 px-3 border-t border-white/10 mt-2.5 space-y-1.5 bg-[#080b11]/98 backdrop-blur-2xl rounded-2xl animate-in fade-in slide-in-from-top-2 duration-200 shadow-2xl">
             <Link
+              to="/kit/"
+              onClick={() => setIsOpen(false)}
+              className="w-full text-left px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 text-cyan-300 bg-cyan-950/40 border border-cyan-500/30 hover:bg-cyan-900/50 transition-colors cursor-pointer mb-1"
+            >
+              <BookOpen className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+              <span>{isTr ? 'TMA Agency Response Kit (Görsel Kılavuz)' : 'TMA Agency Response Kit (Visual Guide)'}</span>
+            </Link>
+
+            <Link
               to="/agency/"
               onClick={() => setIsOpen(false)}
               className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 ${
@@ -346,6 +372,7 @@ const Navbar = () => {
             </a>
           </div>
         )}
+        </div>
       </header>
 
       {/* Emergency SOS Modal (Lazy Loaded) */}

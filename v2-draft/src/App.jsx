@@ -12,6 +12,7 @@ import { isTurkish } from './i18n';
 // Route-based code-split components
 const Home = lazy(() => import('./pages/Home'));
 const Agency = lazy(() => import('./pages/Agency'));
+const AgencyKit = lazy(() => import('./pages/AgencyKit'));
 const CrashTest = lazy(() => import('./pages/CrashTest'));
 const DevirKontrolu = lazy(() => import('./pages/DevirKontrolu'));
 const GlossaryIndex = lazy(() => import('./pages/GlossaryIndex'));
@@ -75,6 +76,11 @@ function App() {
               
               <Route path="/agency/" element={<Agency />} />
               <Route path="/agency" element={<Agency />} />
+              
+              <Route path="/kit/" element={<AgencyKit />} />
+              <Route path="/kit" element={<AgencyKit />} />
+              <Route path="/agency-kit/" element={<AgencyKit />} />
+              <Route path="/agency-kit" element={<AgencyKit />} />
               
               <Route path="/crash-test/" element={<CrashTest />} />
               <Route path="/crash-test" element={<CrashTest />} />
