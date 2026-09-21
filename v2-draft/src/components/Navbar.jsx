@@ -285,10 +285,10 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsSOSOpen(true)}
-              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-white text-xs sm:text-sm font-medium flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-sm flex-shrink-0 min-h-[44px]"
+              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-[var(--on-accent)] text-xs sm:text-sm font-medium flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-sm flex-shrink-0 min-h-[44px]"
               title={isTr ? 'Acil Kriz ve Incident Müdahalesi (SOS)' : 'Emergency Technical Incident (SOS)'}
             >
-              <AlertTriangle className="w-3.5 h-3.5 text-white flex-shrink-0" />
+              <AlertTriangle className="w-3.5 h-3.5 text-[var(--on-accent)] flex-shrink-0" />
               <span className="hidden sm:inline">{isTr ? 'Acil Kriz (SOS)' : 'Emergency SOS'}</span>
               <span className="sm:hidden font-mono font-bold">SOS</span>
             </button>

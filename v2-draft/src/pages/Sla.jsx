@@ -30,8 +30,8 @@ export const Sla = () => {
       metaDesc.setAttribute(
         'content',
         isTr
-          ? 'Muğlak vaatler yerine dakikalarla tanımlı mühendislik taahhütleri: SEV-0 için 15 dk yanıt, %100 White-Label garantisi, resmi NDA ve sıfır veri kaybı güvencesi.'
-          : 'Strict engineering commitments defined in minutes: 15-min MTTA for SEV-0, 100% White-Label guarantee, enforceable NDA, and zero-loss rollback assurance.'
+          ? 'Muğlak vaatler yerine dakikalarla tanımlı mühendislik taahhütleri: SEV-0 için 15 dk yanıt, %100 White-Label garantisi, resmi NDA ve müdahale öncesi snapshot kuralı.'
+          : 'Strict engineering commitments defined in minutes: 15-min MTTA for SEV-0, 100% White-Label guarantee, enforceable NDA, and pre-intervention snapshot rule.'
       );
     }
 
@@ -188,7 +188,7 @@ export const Sla = () => {
               </Link>
               <Link
                 to={isTr ? "/sos/" : "/sos/"}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-[var(--accent)] text-white text-xs font-semibold hover:bg-[var(--accent-hover)] transition-colors shadow-sm min-h-[44px]"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-[var(--accent)] text-[var(--on-accent)] text-xs font-semibold hover:bg-[var(--accent-hover)] transition-colors shadow-sm min-h-[44px]"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 <span>{isTr ? 'Acil Kriz Masası (SOS)' : 'Emergency Crisis Desk'}</span>
@@ -196,9 +196,22 @@ export const Sla = () => {
             </div>
           </div>
         </div>
+
+        {/* Coverage Note */}
+        <div className="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed">
+          <p>
+            <strong className="text-[var(--ink)] font-semibold font-mono">
+              {isTr ? 'Kapsam: ' : 'Coverage: '}
+            </strong>
+            {isTr
+              ? "Bu süreler, kriz hattının açık olduğu her gün 09:00 – 24:00 arasında gelen bildirimler için geçerlidir. Bu saatler dışında gelen bildirimler ertesi sabah 09:00'da SEV sırasına göre ele alınır ve süre o andan başlar."
+              : 'These times apply to incidents reported while the crisis line is open, every day 09:00 – 24:00 (Istanbul time). Incidents reported outside these hours are picked up at 09:00 the next morning in SEV order, and the clock starts then.'
+            }
+          </p>
+        </div>
       </div>
 
-      {/* 5 Core Engineering Commitments */}
+      {/* 6 Core Engineering Commitments */}
       <div className="space-y-8">
         <div className="space-y-2">
           <div className="inline-flex items-center gap-2 font-mono text-xs text-[var(--accent)] font-semibold">
@@ -206,50 +219,37 @@ export const Sla = () => {
             <span>{isTr ? 'KURUMSAL & HUKUKİ GÜVENCELER' : 'CORPORATE & LEGAL ASSURANCES'}</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
-            {isTr ? 'Ajanslarla Çalışırken Taviz Vermediğimiz 5 Temel Taahhüt' : '5 Core Commitments We Never Compromise On'}
+            {isTr ? 'Altı Temel Taahhüdümüz' : 'Our Six Core Commitments'}
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {coreCommitments.map((c) => (
-            <article key={c.no} className="p-6 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-3 shadow-sm hover:border-[var(--ink-muted)] transition-colors">
-              <div className="flex items-center justify-between">
-                <span className="text-xl font-bold font-mono text-[var(--accent)]">{c.no}</span>
-                <span className="text-xs font-mono text-[var(--ink-muted)] uppercase">{isTr ? 'GARANTİ' : 'GUARANTEE'}</span>
+            <article key={c.no} className="p-6 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-3 shadow-sm hover:border-[var(--ink-muted)] transition-colors flex flex-col justify-between">
+              <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-xl font-bold font-mono text-[var(--accent)]">{c.no}</span>
+                  <span className="text-xs font-mono text-[var(--ink-muted)] uppercase">{isTr ? 'GÜVENCE' : 'ASSURANCE'}</span>
+                </div>
+                <h3 className="text-lg font-semibold font-serif text-[var(--ink)]">
+                  {c.title[lang]}
+                </h3>
+                <p className="text-[var(--ink-muted)] text-sm leading-relaxed">
+                  {c.desc[lang]}
+                </p>
               </div>
-              <h3 className="text-lg font-semibold font-serif text-[var(--ink)]">
-                {c.title[lang]}
-              </h3>
-              <p className="text-[var(--ink-muted)] text-sm leading-relaxed">
-                {c.desc[lang]}
-              </p>
+              {c.no === '02' && (
+                <div className="pt-2">
+                  <Link
+                    to={isTr ? "/nda/" : "/nda/"}
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--accent)] hover:underline font-mono"
+                  >
+                    <span>{isTr ? 'Sözleşme Metnini Oku →' : 'Read Full NDA →'}</span>
+                  </Link>
+                </div>
+              )}
             </article>
           ))}
-
-          {/* 6th Card: NDA Link */}
-          <article className="p-6 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-3 flex flex-col justify-between shadow-sm">
-            <div className="space-y-2">
-              <span className="text-xs font-mono font-semibold text-[var(--accent)] uppercase tracking-wide">
-                {isTr ? 'RESMİ SÖZLEŞME METNİ' : 'LEGAL CONTRACT TEXT'}
-              </span>
-              <h3 className="text-lg font-semibold font-serif text-[var(--ink)]">
-                {isTr ? 'Standart Gizlilik Sözleşmemizi (NDA) İnceleyin' : 'Review Our Standard Non-Disclosure Agreement'}
-              </h3>
-              <p className="text-[var(--ink-muted)] text-sm leading-relaxed">
-                {isTr
-                  ? 'Ajansınızın fikri mülkiyetini ve görünmezlik şartlarını güvenceye alan şeffaf sözleşme şablonumuz.'
-                  : 'Our transparent contract template safeguarding your agency IP, confidentiality, and white-label invisibility.'}
-              </p>
-            </div>
-            <div className="pt-3">
-              <Link
-                to={isTr ? "/nda/" : "/nda/"}
-                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--accent)] hover:underline min-h-[44px]"
-              >
-                <span>{isTr ? 'NDA Metnini Oku →' : 'Read Full NDA →'}</span>
-              </Link>
-            </div>
-          </article>
         </div>
       </div>
 
@@ -268,7 +268,7 @@ export const Sla = () => {
             href={getCalendlyUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded bg-[var(--accent)] text-white font-semibold text-sm hover:bg-[var(--accent-hover)] transition-colors shadow-sm min-h-[44px]"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded bg-[var(--accent)] text-[var(--on-accent)] font-semibold text-sm hover:bg-[var(--accent-hover)] transition-colors shadow-sm min-h-[44px]"
           >
             <Clock className="w-4 h-4" />
             <span>{isTr ? '15 Dk Triyaj Tanışması' : '15-Min Intro Triage'}</span>

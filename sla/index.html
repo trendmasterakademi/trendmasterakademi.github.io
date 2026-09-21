@@ -28,11 +28,14 @@
         --accent:       #B21F2B;
         --accent-ink:   #8E1A23;
         --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
 
         --term-bg:      #0E1116;
         --term-ink:     #C7CEDA;
         --term-dim:     #6F7B8C;
         --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
       }
 
       @media (prefers-color-scheme: dark) {
@@ -51,11 +54,14 @@
           --accent:       #E4636C;
           --accent-ink:   #F08D94;
           --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
 
           --term-bg:      #0E1116;
           --term-ink:     #C7CEDA;
           --term-dim:     #6F7B8C;
           --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
         }
       }
 
@@ -74,11 +80,14 @@
         --accent:       #E4636C;
         --accent-ink:   #F08D94;
         --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
 
         --term-bg:      #0E1116;
         --term-ink:     #C7CEDA;
         --term-dim:     #6F7B8C;
         --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
       }
 
       :root[data-theme="light"] {
@@ -96,11 +105,14 @@
         --accent:       #B21F2B;
         --accent-ink:   #8E1A23;
         --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
 
         --term-bg:      #0E1116;
         --term-ink:     #C7CEDA;
         --term-dim:     #6F7B8C;
         --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
       }
 
       .logo-light { display: block; }
@@ -339,12 +351,12 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     }catch(e){}})();
     </script>
-    <script type="module" crossorigin src="/assets/index-DzhO3Phs.js"></script>
+    <script type="module" crossorigin src="/assets/index-C743TwmR.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Brk3cdWY.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-cHuo9G6O.css">
   </head>
   <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
     <div id="root">
@@ -429,13 +441,17 @@
       
     </div>
 
-    <h2 class="text-xl font-bold text-[var(--ink)] pt-4">Taviz Verilmeyen 5 Temel Mühendislik Taahhüdümüz</h2>
+    <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <strong>Kapsam:</strong> Taahhüt edilen süreler, nöbet saatleri (her gün 09:00–24:00, resmî tatiller ve bayramlar dâhil) içinde geçerlidir. Nöbet saatleri dışındaki bildirimler ertesi gün 09:00 itibarıyla işleme alınır.
+    </div>
+
+    <h2 class="text-xl font-bold text-[var(--ink)] pt-4">Altı Temel Taahhüdümüz</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between">
           <span class="text-base font-bold font-mono text-[var(--accent)]">01</span>
-          <h3 class="text-sm font-bold text-[var(--ink)]">%100 White-Label &amp; Görünmezlik Garantisi</h3>
+          <h3 class="text-sm font-bold text-[var(--ink)]">%100 White-Label &amp; Görünmezlik</h3>
         </div>
         <p class="text-[var(--ink-muted)] text-xs leading-relaxed">Müşteriniz TMA adını asla duymaz. Tüm commit'ler, raporlar ve teknik dokümanlar ajansınızın kurumsal kimliği altında teslim edilir.</p>
       </article>
@@ -444,7 +460,7 @@
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between">
           <span class="text-base font-bold font-mono text-[var(--accent)]">02</span>
-          <h3 class="text-sm font-bold text-[var(--ink)]">Önceden İmzalı Bağlayıcı Gizlilik (NDA)</h3>
+          <h3 class="text-sm font-bold text-[var(--ink)]">Önceden İmzalı Bağlayıcı NDA &amp; Fikri Mülkiyet</h3>
         </div>
         <p class="text-[var(--ink-muted)] text-xs leading-relaxed">Tek satır koda bakmadan önce ıslak veya güvenli e-imzalı NDA devreye girer. Fikri mülkiyet %100 ajansınıza ve müşterinize aittir.</p>
       </article>
@@ -453,27 +469,36 @@
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between">
           <span class="text-base font-bold font-mono text-[var(--accent)]">03</span>
-          <h3 class="text-sm font-bold text-[var(--ink)]">Sıfır Veri Kaybı &amp; Anlık Rollback Güvencesi</h3>
+          <h3 class="text-sm font-bold text-[var(--ink)]">Şeffaf Ücretlendirme &amp; Sürpriz Fatura Yasağı</h3>
         </div>
-        <p class="text-[var(--ink-muted)] text-xs leading-relaxed">Canlı sisteme yapılan her cerrahi müdahaleden önce veritabanı anlık görüntüsü (snapshot) ve kod geri alma noktası oluşturulur.</p>
+        <p class="text-[var(--ink-muted)] text-xs leading-relaxed">İlk kod teşhisi ve triyaj ücretsizdir. Müdahale kapsamı ve bedeli çalışma başlamadan önce yazılı olarak netleşir; acil müdahalelerde teşhis ve sabit bedel birlikte iletilir.</p>
       </article>
       
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between">
           <span class="text-base font-bold font-mono text-[var(--accent)]">04</span>
-          <h3 class="text-sm font-bold text-[var(--ink)]">Şeffaf Ücretlendirme &amp; Sürpriz Fatura Yasağı</h3>
+          <h3 class="text-sm font-bold text-[var(--ink)]">Doğrudan Kıdemli Masa Muhataplığı</h3>
         </div>
-        <p class="text-[var(--ink-muted)] text-xs leading-relaxed">İlk kod teşhisi ve triyaj ücretsizdir. Müdahale kapsamı ve bedeli çalışma başlamadan önce yazılı olarak netleşir.</p>
+        <p class="text-[var(--ink-muted)] text-xs leading-relaxed">Teknik bilgisi olmayan satış temsilcileri veya bürokrasi katmanları yoktur. Kriz anında doğrudan kıdemli mühendis masaya oturur.</p>
       </article>
       
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between">
           <span class="text-base font-bold font-mono text-[var(--accent)]">05</span>
-          <h3 class="text-sm font-bold text-[var(--ink)]">Doğrudan Kıdemli Masa Muhataplığı</h3>
+          <h3 class="text-sm font-bold text-[var(--ink)]">Süreklilik Güvencesi</h3>
         </div>
-        <p class="text-[var(--ink-muted)] text-xs leading-relaxed">Teknik bilgisi olmayan satış temsilcileri veya bürokrasi katmanları yoktur. Kriz anında doğrudan kıdemli mühendis masaya oturur.</p>
+        <p class="text-[var(--ink-muted)] text-xs leading-relaxed">TMA bir şahıs işletmesidir; kriz masasında ise ikinci bir kıdemli mühendis bulunur ve başlayan bir işi o devralır. Kod hiçbir aşamada bizde rehin kalmaz — repo sizin kontrolünüzdedir ve dokümantasyon iş ilerledikçe teslim edilir.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between">
+          <span class="text-base font-bold font-mono text-[var(--accent)]">06</span>
+          <h3 class="text-sm font-bold text-[var(--ink)]">Müdahale Öncesi Snapshot &amp; Rollback Noktası</h3>
+        </div>
+        <p class="text-[var(--ink-muted)] text-xs leading-relaxed">Canlı sisteme yapılan her müdahaleden önce, erişimin elverdiği ölçüde veritabanı anlık görüntüsü (snapshot) ve kod geri alma noktası oluşturulur.</p>
       </article>
       
     </div>

@@ -260,15 +260,19 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
             {/* Comparison Details */}
             <div className="space-y-3 border-t border-[var(--rule)] pt-5 text-xs font-mono">
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-light)]">{t.labels.rebuildSummaryTitle} ({metrics.totalRebuildMonths} Ay):</span>
+                <span className="text-[var(--ink-light)]">{t.labels.rebuildSummaryTitle} ({metrics.totalRebuildMonths} {lang === "en" ? "Mo" : "Ay"}):</span>
                 <span className="font-bold text-rose-700">{formatCurrency(metrics.totalRebuildCost)}</span>
               </div>
 
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-light)]">{t.labels.rescueSummaryTitle} (~3 Hafta):</span>
+                <span className="text-[var(--ink-light)]">{t.labels.rescueSummaryTitle} {lang === "en" ? "(~3 Weeks):" : "(~3 Hafta):"}</span>
                 <span className="font-bold text-emerald-700">{formatCurrency(metrics.tmaRescueCost)}</span>
               </div>
             </div>
+
+            <p className="text-xs text-[var(--ink-muted)] font-mono leading-relaxed mt-4 pt-3 border-t border-[var(--rule)]">
+              ℹ️ {t.labels.sourceNote}
+            </p>
 
             {/* Actions */}
             <div className="mt-6 space-y-2.5 border-t border-[var(--rule)] pt-6">

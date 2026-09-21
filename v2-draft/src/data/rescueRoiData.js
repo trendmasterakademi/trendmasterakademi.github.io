@@ -51,7 +51,8 @@ export const rescueRoiData = {
       copiedNotice: "Finansal ROI raporu panoya kopyalandı!",
       triageCta: "Bu Tasarruf İçin Fizibilite Randevusu Al",
       rebuildBreakdown: "Sıfırdan Yazım Maliyet Kalemleri:",
-      rescueBreakdown: "TMA SWAT Kurtarma Avantajları:"
+      rescueBreakdown: "TMA SWAT Kurtarma Avantajları:",
+      sourceNote: "Aralıklar sektör verilerinin ortalamasıdır; tek bir TMA projesinin sonucu değildir."
     },
     rebuildItems: [
       "2-3 ay işe alım, mülakat ve oryantasyon gecikmesi",
@@ -118,7 +119,8 @@ export const rescueRoiData = {
       copiedNotice: "Financial ROI brief copied to clipboard!",
       triageCta: "Schedule Feasibility Review for This ROI",
       rebuildBreakdown: "Ground-Up Rebuild Liabilities:",
-      rescueBreakdown: "TMA SWAT Rescue Advantages:"
+      rescueBreakdown: "TMA SWAT Rescue Advantages:",
+      sourceNote: "Ranges are industry averages, not the result of a single TMA project."
     },
     rebuildItems: [
       "2-3 months lost in sourcing, interviewing, and ramp-up drag",

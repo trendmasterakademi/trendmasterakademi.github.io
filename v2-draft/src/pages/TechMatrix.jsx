@@ -94,7 +94,7 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
               onClick={() => setSelectedCategory(cat.id)}
               className={`px-3 py-1.5 min-h-[36px] rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 selectedCategory === cat.id
-                  ? "bg-[var(--accent)] text-white shadow-sm"
+                  ? "bg-[var(--accent)] text-[var(--on-accent)] shadow-sm"
                   : "bg-[var(--surface)] text-[var(--ink-light)] hover:text-[var(--ink)] hover:bg-[var(--paper)] border border-[var(--rule)]"
               }`}
             >
@@ -149,7 +149,7 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                     <div
                       className={`w-5 h-5 rounded flex items-center justify-center text-xs font-bold transition-all ${
                         isSelected
-                          ? "bg-[var(--accent)] text-white"
+                          ? "bg-[var(--accent)] text-[var(--on-accent)]"
                           : "border border-[var(--rule)] text-transparent"
                       }`}
                     >

@@ -191,8 +191,8 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               <span>
                 {krizHattiAcik
                   ? (isTr 
-                      ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt 15 dakika'
-                      : 'Response desk is open now · daily 09:00 – 24:00 · typical first reply to emergencies 15 minutes')
+                      ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · canlı kesintilerde ilk yanıt taahhüdü 15 dakika'
+                      : 'Response desk is open now · daily 09:00 – 24:00 · first-response commitment for live outages: 15 minutes')
                   : (isTr 
                       ? "Kriz hattı şu an kapalı. Bildiriminiz ertesi sabah 09:00'da ele alınır — formu yine de doldurabilirsiniz."
                       : 'The response desk is closed right now. Your notification is picked up at 09:00 the following morning — you can still submit the form.')

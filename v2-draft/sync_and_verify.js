@@ -223,7 +223,7 @@ const approvedHexes = new Set([
   '#14181f', '#49535f', '#626b77', '#b21f2b', '#8e1a23',
   '#f6e7e8', '#0e1116', '#c7ceda', '#6f7b8c',
   '#e4636c', '#1f7a4d', '#a85b12', '#5a6472',
-  '#ffffff',
+  '#ffffff', '#1d764b', '#338e61',
   // Koyu Tema Paleti
   '#15181e', '#1c2027', '#2b313a', '#3d444f', '#616b77',
   '#e7eaef', '#aeb6c2', '#8a93a1', '#f08d94', '#2a1619',

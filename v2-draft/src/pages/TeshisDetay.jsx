@@ -61,8 +61,8 @@ const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
           <span className={krizHattiAcik ? 'text-emerald-900 font-medium' : 'text-amber-900 font-medium'}>
             {krizHattiAcik
               ? (isTr
-                  ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt 15 dakika'
-                  : 'Response desk is open now · daily 09:00 – 24:00 · typical first reply to emergencies 15 minutes')
+                  ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · canlı kesintilerde ilk yanıt taahhüdü 15 dakika'
+                  : 'Response desk is open now · daily 09:00 – 24:00 · first-response commitment for live outages: 15 minutes')
               : (isTr
                   ? "Kriz hattı şu an kapalı. Bildiriminiz ertesi sabah 09:00'da ele alınır — yine de yazın."
                   : 'The response desk is closed right now. Your notification is picked up at 09:00 the following morning — write anyway.')}

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { 
   FileText, AlertTriangle, ArrowRight, ShieldCheck, 
-  Clock, Database, Layers, CheckCircle2, Terminal
+  Clock, Database, Layers, CheckCircle2, Terminal, Calendar
 } from 'lucide-react';
 import { postMortems } from '../data/postMortemData';
 import { formatDocumentTitle } from '../utils/pageTitle';
@@ -42,7 +42,7 @@ const PostMortemIndex = () => {
     : postMortems.filter(p => p.category.tr === selectedCategory);
 
   return (
-    <div className="min-h-screen pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-white">
+    <div className="min-h-screen pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
       
       {/* Header */}
       <header className="mb-14 space-y-4">
@@ -69,6 +69,13 @@ const PostMortemIndex = () => {
           <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] font-semibold">
             {isTr ? 'Gerçek Üretim Vakaları' : 'Real Production Outages'}
           </span>
+        </div>
+
+        {/* Disclosure Notice */}
+        <div className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed font-mono">
+          {isTr
+            ? "Aşağıdaki kayıtlar TMA'nın gerçek müdahalelerinden alınmıştır. Müşteri ve ajans kimlikleri paylaşılmaz; tanımlayıcı ayrıntılar genelleştirilmiştir."
+            : 'The following incident logs are drawn from authentic TMA interventions. Client and agency identities are never shared; identifying details have been generalized.'}
         </div>
       </header>
 
@@ -119,9 +126,15 @@ const PostMortemIndex = () => {
                   </span>
                 </div>
 
-                <div className="font-mono text-xs text-[var(--ink-muted)] flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-[var(--accent)]" />
-                  <span>{item.duration[lang]}</span>
+                <div className="font-mono text-xs text-[var(--ink-muted)] flex items-center gap-3">
+                  <span className="flex items-center gap-1">
+                    <Calendar className="w-3.5 h-3.5 text-[var(--accent)]" />
+                    {item.date[lang]}
+                  </span>
+                  <span className="flex items-center gap-1">
+                    <Clock className="w-3.5 h-3.5 text-[var(--accent)]" />
+                    {item.duration[lang]}
+                  </span>
                 </div>
               </div>
 

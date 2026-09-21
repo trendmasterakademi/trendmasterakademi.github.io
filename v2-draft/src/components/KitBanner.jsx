@@ -112,7 +112,7 @@ function KitBanner() {
 
           <button
             onClick={() => setIsModalOpen(true)}
-            className="px-2 py-0.5 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-white font-medium text-xs flex items-center gap-1 transition-colors cursor-pointer min-h-[44px]"
+            className="px-2 py-0.5 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-[var(--on-accent)] font-medium text-xs flex items-center gap-1 transition-colors cursor-pointer min-h-[44px]"
             aria-label="TMA Kiti İncele"
           >
             <BookOpen className="w-3 h-3 flex-shrink-0" />

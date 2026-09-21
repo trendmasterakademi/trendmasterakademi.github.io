@@ -81,15 +81,15 @@ export const slaTiers = [
 export const coreCommitments = [
   {
     no: '01',
-    title: { tr: '%100 White-Label & Görünmezlik Garantisi', en: '100% White-Label & Invisibility Guarantee' },
+    title: { tr: '%100 White-Label & Görünmezlik', en: '100% White-Label & Invisibility' },
     desc: {
-      tr: 'Müşteriniz TMA adını asla duymaz. Tüm commit\'ler, raporlar ve teknik dokümanlar ajansınızın kurumsal kimliği altında teslim edilir.',
-      en: 'Your client never hears our name. All commits, reports, and technical artifacts are delivered under your agency branding.'
+      tr: "Müşteriniz TMA adını asla duymaz. Tüm commit'ler, raporlar ve teknik dokümanlar ajansınızın kurumsal kimliği altında teslim edilir.",
+      en: "Your client never hears our name. All commits, reports, and technical artifacts are delivered under your agency branding."
     }
   },
   {
     no: '02',
-    title: { tr: 'Önceden İmzalı Bağlayıcı Gizlilik (NDA)', en: 'Pre-Signed Binding Non-Disclosure Agreement' },
+    title: { tr: 'Önceden İmzalı Bağlayıcı NDA & Fikri Mülkiyet', en: 'Pre-Signed Binding NDA & IP Transfer' },
     desc: {
       tr: 'Tek satır koda bakmadan önce ıslak veya güvenli e-imzalı NDA devreye girer. Fikri mülkiyet %100 ajansınıza ve müşterinize aittir.',
       en: 'Before inspecting a single line of code, an enforceable NDA is executed. 100% of IP remains strictly yours and your client’s.'
@@ -97,26 +97,34 @@ export const coreCommitments = [
   },
   {
     no: '03',
-    title: { tr: 'Sıfır Veri Kaybı & Anlık Rollback Güvencesi', en: 'Zero-Loss Rollback & Data Safety Guarantee' },
+    title: { tr: 'Şeffaf Ücretlendirme & Sürpriz Fatura Yasağı', en: 'Transparent Pricing & No Surprise Overtime' },
     desc: {
-      tr: 'Canlı sisteme yapılan her cerrahi müdahaleden önce veritabanı anlık görüntüsü (snapshot) ve kod geri alma noktası oluşturulur.',
-      en: 'Before any hotfix touch on production, atomic snapshots and tested rollback hooks are created to prevent data loss.'
+      tr: 'İlk kod teşhisi ve triyaj ücretsizdir. Müdahale kapsamı ve bedeli çalışma başlamadan önce yazılı olarak netleşir; acil müdahalelerde teşhis ve sabit bedel birlikte iletilir.',
+      en: 'Initial diagnosis and triage are free. Project scope and fixed fee are agreed in writing before work begins; for emergencies, diagnosis and price are delivered together.'
     }
   },
   {
     no: '04',
-    title: { tr: 'Şeffaf Ücretlendirme & Sürpriz Fatura Yasağı', en: 'Transparent Pricing & No Surprise Overtime' },
+    title: { tr: 'Doğrudan Kıdemli Masa Muhataplığı', en: 'Direct Senior Engineering Desk' },
     desc: {
-      tr: 'İlk kod teşhisi ve triyaj ücretsizdir. Müdahale kapsamı ve bedeli çalışma başlamadan önce yazılı olarak netleşir.',
-      en: 'Initial diagnosis and triage are free. Project scope and fixed fees are agreed in writing before intervention begins.'
+      tr: 'Teknik bilgisi olmayan satış temsilcileri veya bürokrasi katmanları yoktur. Kriz anında doğrudan kıdemli mühendis masaya oturur.',
+      en: 'No account managers or non-technical layers. During critical hours, you speak directly with senior systems engineers.'
     }
   },
   {
     no: '05',
-    title: { tr: 'Doğrudan Kıdemli Masa Muhataplığı', en: 'Direct Senior Engineering Desk Engagement' },
+    title: { tr: 'Süreklilik Güvencesi', en: 'Continuity Guarantee' },
     desc: {
-      tr: 'Teknik bilgisi olmayan satış temsilcileri veya bürokrasi katmanları yoktur. Kriz anında doğrudan kıdemli mühendis masaya oturur.',
-      en: 'No account managers or non-technical layers. During critical hours, you speak directly with senior systems engineers.'
+      tr: 'TMA bir şahıs işletmesidir; kriz masasında ise ikinci bir kıdemli mühendis bulunur ve başlayan bir işi o devralır. Kod hiçbir aşamada bizde rehin kalmaz — repo sizin kontrolünüzdedir ve dokümantasyon iş ilerledikçe teslim edilir.',
+      en: 'TMA is a sole proprietorship, but the response desk includes a second senior engineer who takes over any work already under way. Your code is never held by us — the repository is under your control and documentation is delivered as work progresses.'
+    }
+  },
+  {
+    no: '06',
+    title: { tr: 'Müdahale Öncesi Snapshot & Rollback Noktası', en: 'Pre-Intervention Snapshot & Rollback Point' },
+    desc: {
+      tr: 'Canlı sisteme yapılan her müdahaleden önce, erişimin elverdiği ölçüde veritabanı anlık görüntüsü (snapshot) ve kod geri alma noktası oluşturulur.',
+      en: 'Before any intervention on production, to the extent access permits, a database snapshot and code rollback point are established.'
     }
   }
 ];

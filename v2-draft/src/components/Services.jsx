@@ -76,7 +76,7 @@ const Services = () => {
               onClick={() => setActiveTab('swat')}
               className={`flex-1 py-2.5 px-4 rounded-[var(--r-control)] font-medium text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
                 activeTab === 'swat' 
-                  ? 'bg-[var(--accent)] text-white shadow-sm' 
+                  ? 'bg-[var(--accent)] text-[var(--on-accent)] shadow-sm' 
                   : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
               }`}
             >
@@ -87,7 +87,7 @@ const Services = () => {
               onClick={() => setActiveTab('software')}
               className={`flex-1 py-2.5 px-4 rounded-[var(--r-control)] font-medium text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
                 activeTab === 'software' 
-                  ? 'bg-[var(--accent)] text-white shadow-sm' 
+                  ? 'bg-[var(--accent)] text-[var(--on-accent)] shadow-sm' 
                   : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
               }`}
             >

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Server, Lock, Cpu, ArrowRight, ArrowLeft, Zap, PhoneCall, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { coreCommitments } from '../data/slaData';
 import { getCalendlyUrl } from '../utils/calendly';
 import { formatDocumentTitle } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
@@ -18,8 +19,8 @@ const About = () => {
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute("content", isTr
-        ? "Trend Master Akademi: Dijital ajansların ve kurumsal ekiplerin görünmez teknik gücü. 4 temel mühendislik standardımız ve B2B SWAT vizyonumuz."
-        : "Trend Master Academy: The invisible backline engineering power for digital agencies. 4 core pillars and B2B crisis triage standard."
+        ? "Trend Master Akademi: Dijital ajansların ve kurumsal ekiplerin görünmez teknik gücü. Altı temel taahhüdümüz ve B2B SWAT vizyonumuz."
+        : "Trend Master Academy: The invisible backline engineering power for digital agencies. Our six core commitments and B2B crisis triage standard."
       );
     }
 
@@ -99,104 +100,45 @@ const About = () => {
           )}
         </div>
 
-        {/* 4 Core Pillars Section */}
+        {/* 6 Core Commitments Section */}
         <section className="space-y-8">
           <div className="text-center max-w-3xl mx-auto space-y-3">
             <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ink)] tracking-tight">
-              {isTr ? 'Dört Temel Mühendislik Standardımız' : 'Our Four Engineering Pillars'}
+              {isTr ? 'Altı Temel Taahhüdümüz' : 'Our Six Core Commitments'}
             </h2>
             <p className="text-[var(--ink-secondary)] text-sm sm:text-base">
               {isTr 
-                ? 'Ajanslarla çalışırken taviz vermediğimiz 4 temel operasyonel ve hukuki kuralımız.' 
-                : '4 non-negotiable operational and legal principles when collaborating with agencies.'}
+                ? 'Ajanslarla çalışırken taviz vermediğimiz altı kural:' 
+                : 'Six non-negotiable rules when collaborating with agencies:'}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="p-8 rounded-xl border border-[var(--rule)] bg-[var(--surface)] space-y-4 shadow-sm">
-              <div className="w-10 h-10 rounded-lg bg-[var(--paper)] text-[var(--accent)] flex items-center justify-center font-mono font-bold text-base border border-[var(--rule)]">
-                01
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {coreCommitments.map((c) => (
+              <div key={c.no} className="p-8 rounded-xl border border-[var(--rule)] bg-[var(--surface)] space-y-4 shadow-sm flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="w-10 h-10 rounded-lg bg-[var(--paper)] text-[var(--accent)] flex items-center justify-center font-mono font-bold text-base border border-[var(--rule)]">
+                    {c.no}
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
+                    {c.title[isTr ? 'tr' : 'en']}
+                  </h3>
+                  <p className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed">
+                    {c.desc[isTr ? 'tr' : 'en']}
+                  </p>
+                </div>
+                {c.no === '02' && (
+                  <div className="pt-2">
+                    <Link 
+                      to="/nda/" 
+                      className="btn-link inline-flex items-center gap-1 font-mono text-xs sm:text-sm font-semibold text-[var(--accent)] hover:underline"
+                    >
+                      {isTr ? 'Sözleşmeyi okuyun →' : 'Read the agreement →'}
+                    </Link>
+                  </div>
+                )}
               </div>
-              <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
-                {isTr ? '%100 White-Label & Görünmezlik' : '100% White-Label & Invisible Delivery'}
-              </h3>
-              <p className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed">
-                {isTr 
-                  ? 'Müşteriniz hiçbir zaman bizim adımızı duymaz. Projeler ajansınızın markası, logosu ve kurumsal kimliği altında teslim edilir. İletişim isterseniz ajans alan adı e-postanız üzerinden yürütülür.' 
-                  : 'Your client never sees our brand. Work is delivered under your agency credentials, domain email, and repository namespaces.'}
-              </p>
-            </div>
-
-            <div className="p-8 rounded-xl border border-[var(--rule)] bg-[var(--surface)] space-y-4 shadow-sm">
-              <div className="w-10 h-10 rounded-lg bg-[var(--paper)] text-[var(--accent)] flex items-center justify-center font-mono font-bold text-base border border-[var(--rule)]">
-                02
-              </div>
-              <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
-                {isTr ? 'Resmi NDA & Fikri Mülkiyet Devri' : 'Binding Legal NDA & Total IP Transfer'}
-              </h3>
-              <p className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed">
-                {isTr 
-                  ? 'Projeye başlamadan önce bağlayıcı Gizlilik Sözleşmesi (NDA) imzalanır. Geliştirilen tüm kaynak kodlar, mimari ve fikri mülkiyet %100 ajansınıza ve müşterinize aittir.' 
-                  : 'Prior to work, a binding NDA is executed. All source code, architecture, and IP belong 100% to your agency and client.'}
-              </p>
-              <div className="pt-1">
-                <Link 
-                  to="/nda/" 
-                  className="btn-link inline-flex items-center gap-1 font-mono text-xs sm:text-sm font-semibold"
-                >
-                  {isTr ? 'Sözleşmeyi okuyun →' : 'Read the agreement →'}
-                </Link>
-              </div>
-            </div>
-
-            <div className="p-8 rounded-xl border border-[var(--rule)] bg-[var(--surface)] space-y-4 shadow-sm">
-              <div className="w-10 h-10 rounded-lg bg-[var(--paper)] text-[var(--accent)] flex items-center justify-center font-mono font-bold text-base border border-[var(--rule)]">
-                03
-              </div>
-              <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
-                {isTr ? 'Şeffaf Ücretlendirme' : 'Transparent Pricing'}
-              </h3>
-              <p className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed">
-                {isTr 
-                  ? 'İlk kod teşhisi ve triyaj ücretsizdir. Sonraki çalışmanın kapsamı ve bedeli teşhis tamamlandıktan sonra işe özel belirlenir; bedel piyasa koşullarıyla uyumludur ve çalışma başlamadan önce yazılı olarak netleşir. Acil müdahalelerde teşhis ve bedel birlikte iletilir.' 
-                  : 'The initial code diagnosis and triage are free. The scope and price of any subsequent work are set per engagement once the diagnosis is complete; pricing is aligned with prevailing market rates and is confirmed in writing before work begins. For emergency response, the diagnosis and the price are delivered together.'}
-              </p>
-            </div>
-
-            <div className="p-8 rounded-xl border border-[var(--rule)] bg-[var(--surface)] space-y-4 shadow-sm">
-              <div className="w-10 h-10 rounded-lg bg-[var(--paper)] text-[var(--accent)] flex items-center justify-center font-mono font-bold text-base border border-[var(--rule)]">
-                04
-              </div>
-              <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
-                {isTr ? 'Doğrudan Mühendislik Masası Muhatabı' : 'Direct Senior Engineering Contact'}
-              </h3>
-              <p className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed">
-                {isTr 
-                  ? 'Arada teknik bilgisi olmayan satış temsilcileri veya bürokrasi katmanları yoktur. İletişim doğrudan projeyi yürüten kıdemli mühendislik masamız üzerinden anlık yürütülür.' 
-                  : 'No non-technical intermediaries or ticket queues. You interface directly with senior system architects and backend engineers.'}
-              </p>
-            </div>
-
-            <div className="p-8 rounded-xl border border-[var(--rule)] bg-[var(--surface)] space-y-4 md:col-span-2 shadow-sm">
-              <div className="w-10 h-10 rounded-lg bg-[var(--paper)] text-[var(--accent)] flex items-center justify-center font-mono font-bold text-base border border-[var(--rule)]">
-                05
-              </div>
-              <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
-                {isTr ? 'Süreklilik Güvencesi' : 'Continuity Guarantee'}
-              </h3>
-              <div className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed space-y-3">
-                <p>
-                  {isTr 
-                    ? 'Kriz masası tek kişilik değildir. Bir işi başlatan mühendis herhangi bir sebeple devre dışı kalırsa masadaki bir başkası devralır; başlamış iş yarıda kalmaz.' 
-                    : 'The response desk is not a single person. If the engineer who started an engagement becomes unavailable for any reason, another member of the desk takes over; work already under way is not left unfinished.'}
-                </p>
-                <p>
-                  {isTr 
-                    ? 'Bunun ötesinde kodunuz hiçbir aşamada bizde rehin kalmaz. Repo süreç boyunca ajansınızın kontrolündedir ve dokümantasyon iş ilerledikçe teslim edilir. Çalışma herhangi bir sebeple kesilse dahi elinizde çalışan sistem ve eksiksiz kaynak kod kalır.' 
-                    : 'Beyond that, your code is never held by us at any stage. The repository stays under your agency\'s control throughout, and documentation is handed over as the work progresses. Even if an engagement is interrupted for any reason, you are left with a working system and the complete source.'}
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 

@@ -159,7 +159,7 @@ const Contact = () => {
                 </div>
                 <div className="text-[var(--ink)] text-sm font-mono font-semibold">+90 534 371 35 73</div>
                 <div className="text-xs text-[var(--ink-3)] font-mono mt-0.5">
-                  {isTr ? 'acil bildirimlere tipik ilk yanıt: 15 dakika' : 'typical first reply to emergencies: 15 minutes'}
+                  {isTr ? 'canlı kesintilerde ilk yanıt taahhüdü: 15 dakika' : 'first-response commitment for live outages: 15 minutes'}
                 </div>
               </div>
             </a>

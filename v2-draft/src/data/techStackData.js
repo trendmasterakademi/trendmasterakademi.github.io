@@ -4,7 +4,7 @@ export const techStackData = {
       badge: "MÜHENDİSLİK KAPASİTE MATRİSİ",
       title: "Teknoloji Yığını & Kurtarma Matrisi",
       subtitle: "Sisteminizin dilleri, veritabanları ve bulut altyapısı ne olursa olsun; TMA'nın cerrahi müdahale derinliğini, bilinen kritik darboğazları ve hazırbulunuşluk sürelerini inceleyin.",
-      notice: "Tüm müdahaleler canlı ortamda veri kaybı yaşatmayacak şekilde (Zero-Loss Rollback) yürütülür."
+      notice: "Tüm müdahaleler müdahale öncesi snapshot ve rollback noktası kuralıyla yürütülür."
     },
     categories: [
       { id: "all", label: "Tüm Teknolojiler" },
@@ -18,7 +18,7 @@ export const techStackData = {
         id: "nodejs",
         name: "Node.js (Nest / Express / Fastify)",
         category: "backend",
-        readiness: "Anında SWAT Triyajı (≤ 15 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "v14.x – v22.x LTS",
         commonIncidents: [
@@ -34,7 +34,7 @@ export const techStackData = {
         id: "python",
         name: "Python (Django / FastAPI / Flask)",
         category: "backend",
-        readiness: "Anında SWAT Triyajı (≤ 15 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "3.8 – 3.12+",
         commonIncidents: [
@@ -50,7 +50,7 @@ export const techStackData = {
         id: "go",
         name: "Go (Golang)",
         category: "backend",
-        readiness: "Anında SWAT Triyajı (≤ 15 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "1.18 – 1.23+",
         commonIncidents: [
@@ -66,7 +66,7 @@ export const techStackData = {
         id: "php",
         name: "PHP (Laravel / Symfony)",
         category: "backend",
-        readiness: "Anında SWAT Triyajı (≤ 30 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-1 ≤ 30 dk · SEV-2 ≤ 2 saat",
         supportLevel: "SEV-1 / SEV-2",
         versionRange: "7.4 – 8.3+",
         commonIncidents: [
@@ -82,7 +82,7 @@ export const techStackData = {
         id: "java",
         name: "Java / Spring Boot",
         category: "backend",
-        readiness: "Planlı SWAT (≤ 60 Dk)",
+        readiness: "Planlı SWAT — İlk yanıt SEV-1 ≤ 30 dk · SEV-2 ≤ 2 saat",
         supportLevel: "SEV-1 / SEV-2",
         versionRange: "Java 11 – 21 LTS",
         commonIncidents: [
@@ -98,7 +98,7 @@ export const techStackData = {
         id: "react",
         name: "React / Next.js",
         category: "frontend",
-        readiness: "Anında SWAT Triyajı (≤ 15 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "React 17 – 19 / Next.js 12 – 15",
         commonIncidents: [
@@ -114,7 +114,7 @@ export const techStackData = {
         id: "vue",
         name: "Vue / Nuxt",
         category: "frontend",
-        readiness: "Anında SWAT Triyajı (≤ 30 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-1 ≤ 30 dk · SEV-2 ≤ 2 saat",
         supportLevel: "SEV-1 / SEV-2",
         versionRange: "Vue 3 / Nuxt 3",
         commonIncidents: [
@@ -129,7 +129,7 @@ export const techStackData = {
         id: "mobile",
         name: "React Native & Flutter",
         category: "frontend",
-        readiness: "Planlı SWAT (≤ 60 Dk)",
+        readiness: "Planlı SWAT — İlk yanıt SEV-1 ≤ 30 dk · SEV-2 ≤ 2 saat",
         supportLevel: "SEV-1 / SEV-2",
         versionRange: "RN 0.70+ / Flutter 3.x",
         commonIncidents: [
@@ -144,7 +144,7 @@ export const techStackData = {
         id: "postgresql",
         name: "PostgreSQL",
         category: "database",
-        readiness: "Anında SWAT Triyajı (≤ 15 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "v12 – v16+",
         commonIncidents: [
@@ -160,7 +160,7 @@ export const techStackData = {
         id: "mysql",
         name: "MySQL / MariaDB",
         category: "database",
-        readiness: "Anında SWAT Triyajı (≤ 30 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-1 ≤ 30 dk · SEV-2 ≤ 2 saat",
         supportLevel: "SEV-1 / SEV-2",
         versionRange: "5.7 – 8.0+",
         commonIncidents: [
@@ -175,7 +175,7 @@ export const techStackData = {
         id: "redis",
         name: "Redis (Cache & Message Broker)",
         category: "database",
-        readiness: "Anında SWAT Triyajı (≤ 15 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "v6.x – v7.x",
         commonIncidents: [
@@ -190,7 +190,7 @@ export const techStackData = {
         id: "mongodb",
         name: "MongoDB",
         category: "database",
-        readiness: "Anında SWAT Triyajı (≤ 30 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-1 ≤ 30 dk · SEV-2 ≤ 2 saat",
         supportLevel: "SEV-1 / SEV-2",
         versionRange: "v4.4 – v7.0",
         commonIncidents: [
@@ -205,7 +205,7 @@ export const techStackData = {
         id: "docker_k8s",
         name: "Docker & Kubernetes (K8s)",
         category: "infra",
-        readiness: "Anında SWAT Triyajı (≤ 15 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "K8s 1.24 – 1.30+",
         commonIncidents: [
@@ -221,7 +221,7 @@ export const techStackData = {
         id: "aws",
         name: "Amazon Web Services (AWS)",
         category: "infra",
-        readiness: "Anında SWAT Triyajı (≤ 15 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "ECS, Lambda, RDS, S3, CloudFront",
         commonIncidents: [
@@ -237,7 +237,7 @@ export const techStackData = {
         id: "linux_nginx",
         name: "Linux Kernel, Nginx & Caddy",
         category: "infra",
-        readiness: "Anında SWAT Triyajı (≤ 15 Dk)",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "Ubuntu, Debian, RHEL, Nginx 1.18+",
         commonIncidents: [
@@ -264,7 +264,7 @@ export const techStackData = {
       badge: "ENGINEERING CAPABILITY MATRIX",
       title: "Tech Stack Compatibility & Rescue Matrix",
       subtitle: "Regardless of your languages, databases, or cloud infrastructure: inspect TMA's surgical rescue depth, known mission-critical bottlenecks, and operational readiness times.",
-      notice: "All interventions are performed with strict Zero-Loss Rollback discipline to ensure zero production data loss."
+      notice: "All interventions are performed with pre-intervention snapshot and rollback discipline to safeguard production."
     },
     categories: [
       { id: "all", label: "All Technologies" },
@@ -278,7 +278,7 @@ export const techStackData = {
         id: "nodejs",
         name: "Node.js (Nest / Express / Fastify)",
         category: "backend",
-        readiness: "Immediate SWAT Triage (≤ 15 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "v14.x – v22.x LTS",
         commonIncidents: [
@@ -294,7 +294,7 @@ export const techStackData = {
         id: "python",
         name: "Python (Django / FastAPI / Flask)",
         category: "backend",
-        readiness: "Immediate SWAT Triage (≤ 15 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "3.8 – 3.12+",
         commonIncidents: [
@@ -310,7 +310,7 @@ export const techStackData = {
         id: "go",
         name: "Go (Golang)",
         category: "backend",
-        readiness: "Immediate SWAT Triage (≤ 15 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "1.18 – 1.23+",
         commonIncidents: [
@@ -326,7 +326,7 @@ export const techStackData = {
         id: "php",
         name: "PHP (Laravel / Symfony)",
         category: "backend",
-        readiness: "Immediate SWAT Triage (≤ 30 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours",
         supportLevel: "SEV-1 / SEV-2",
         versionRange: "7.4 – 8.3+",
         commonIncidents: [
@@ -342,7 +342,7 @@ export const techStackData = {
         id: "java",
         name: "Java / Spring Boot",
         category: "backend",
-        readiness: "Scheduled SWAT (≤ 60 Min)",
+        readiness: "Scheduled SWAT — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours",
         supportLevel: "SEV-1 / SEV-2",
         versionRange: "Java 11 – 21 LTS",
         commonIncidents: [
@@ -358,7 +358,7 @@ export const techStackData = {
         id: "react",
         name: "React / Next.js",
         category: "frontend",
-        readiness: "Immediate SWAT Triage (≤ 15 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "React 17 – 19 / Next.js 12 – 15",
         commonIncidents: [
@@ -374,7 +374,7 @@ export const techStackData = {
         id: "vue",
         name: "Vue / Nuxt",
         category: "frontend",
-        readiness: "Immediate SWAT Triage (≤ 30 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours",
         supportLevel: "SEV-1 / SEV-2",
         versionRange: "Vue 3 / Nuxt 3",
         commonIncidents: [
@@ -389,7 +389,7 @@ export const techStackData = {
         id: "mobile",
         name: "React Native & Flutter",
         category: "frontend",
-        readiness: "Scheduled SWAT (≤ 60 Min)",
+        readiness: "Scheduled SWAT — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours",
         supportLevel: "SEV-1 / SEV-2",
         versionRange: "RN 0.70+ / Flutter 3.x",
         commonIncidents: [
@@ -404,7 +404,7 @@ export const techStackData = {
         id: "postgresql",
         name: "PostgreSQL",
         category: "database",
-        readiness: "Immediate SWAT Triage (≤ 15 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "v12 – v16+",
         commonIncidents: [
@@ -420,7 +420,7 @@ export const techStackData = {
         id: "mysql",
         name: "MySQL / MariaDB",
         category: "database",
-        readiness: "Immediate SWAT Triage (≤ 30 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours",
         supportLevel: "SEV-1 / SEV-2",
         versionRange: "5.7 – 8.0+",
         commonIncidents: [
@@ -435,7 +435,7 @@ export const techStackData = {
         id: "redis",
         name: "Redis (Cache & Message Broker)",
         category: "database",
-        readiness: "Immediate SWAT Triage (≤ 15 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "v6.x – v7.x",
         commonIncidents: [
@@ -450,7 +450,7 @@ export const techStackData = {
         id: "mongodb",
         name: "MongoDB",
         category: "database",
-        readiness: "Immediate SWAT Triage (≤ 30 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours",
         supportLevel: "SEV-1 / SEV-2",
         versionRange: "v4.4 – v7.0",
         commonIncidents: [
@@ -465,7 +465,7 @@ export const techStackData = {
         id: "docker_k8s",
         name: "Docker & Kubernetes (K8s)",
         category: "infra",
-        readiness: "Immediate SWAT Triage (≤ 15 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "K8s 1.24 – 1.30+",
         commonIncidents: [
@@ -481,7 +481,7 @@ export const techStackData = {
         id: "aws",
         name: "Amazon Web Services (AWS)",
         category: "infra",
-        readiness: "Immediate SWAT Triage (≤ 15 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "ECS, Lambda, RDS, S3, CloudFront",
         commonIncidents: [
@@ -497,7 +497,7 @@ export const techStackData = {
         id: "linux_nginx",
         name: "Linux Kernel, Nginx & Caddy",
         category: "infra",
-        readiness: "Immediate SWAT Triage (≤ 15 Min)",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
         supportLevel: "SEV-0 / SEV-1",
         versionRange: "Ubuntu, Debian, RHEL, Nginx 1.18+",
         commonIncidents: [

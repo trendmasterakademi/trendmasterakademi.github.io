@@ -177,7 +177,7 @@ const KesintiMaliyeti = () => {
                     type="button"
                     onClick={() => { setInputMode('orders'); setCustomRevenue(''); }}
                     className={`px-3 py-1.5 min-h-[36px] rounded-lg transition-colors cursor-pointer ${
-                      inputMode === 'orders' ? 'bg-[var(--accent)] text-white font-semibold' : 'text-[var(--ink-light)] hover:text-[var(--ink)]'
+                      inputMode === 'orders' ? 'bg-[var(--accent)] text-[var(--on-accent)] font-semibold' : 'text-[var(--ink-light)] hover:text-[var(--ink)]'
                     }`}
                   >
                     {isTr ? 'Günlük Sipariş' : 'Daily Orders'}
@@ -312,7 +312,7 @@ const KesintiMaliyeti = () => {
                       }`}
                     >
                       <span>{preset.label[isTr ? 'tr' : 'en']}</span>
-                      <span className="font-mono text-xs opacity-75">× {preset.factor.toFixed(1)}</span>
+                      <span className="font-mono text-xs opacity-75">{isTr ? `${preset.factor.toFixed(1).replace('.', ',')}×` : `× ${preset.factor.toFixed(1)}`}</span>
                     </button>
                   );
                 })}
@@ -349,6 +349,11 @@ const KesintiMaliyeti = () => {
                 <strong className="text-3xl sm:text-4xl font-bold font-mono text-[var(--accent)] block tracking-tight">
                   {formatCurrency(directLoss)}
                 </strong>
+                <span className="text-xs text-[var(--ink-muted)] font-mono block pt-0.5">
+                  {isTr 
+                    ? `(${durationHours} saat × ${formatCurrency(hourlyRev)} / saat × ${peakFactor.toFixed(1).replace('.', ',')}x)`
+                    : `(${durationHours} hrs × ${formatCurrency(hourlyRev)} / hr × ${peakFactor.toFixed(1)}x)`}
+                </span>
               </div>
 
               {/* Step-by-Step Arithmetic Table */}
@@ -389,7 +394,7 @@ const KesintiMaliyeti = () => {
                   onClick={openWhatsApp}
                   className="btn-primary min-h-[48px] w-full text-sm sm:text-base font-semibold flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <PhoneCall className="w-5 h-5 text-white" />
+                  <PhoneCall className="w-5 h-5 text-[var(--on-accent)]" />
                   <span>{isTr ? 'Şu an yaşanıyor — Kriz masasına yaz' : 'Happening now — message the response desk'}</span>
                 </button>
 

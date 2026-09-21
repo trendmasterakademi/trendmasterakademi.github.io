@@ -93,6 +93,10 @@ const PostMortemDetail = () => {
             {item.category[lang]}
           </span>
           <span className="text-[var(--ink-muted)] flex items-center gap-1">
+            <Calendar className="w-3.5 h-3.5 text-[var(--accent)]" />
+            {item.date[lang]}
+          </span>
+          <span className="text-[var(--ink-muted)] flex items-center gap-1">
             <Clock className="w-3.5 h-3.5 text-[var(--accent)]" />
             {item.duration[lang]}
           </span>
@@ -109,6 +113,15 @@ const PostMortemDetail = () => {
           </strong>
           <p className="leading-relaxed">
             {item.impact[lang]}
+          </p>
+        </div>
+
+        {/* Disclosure / Künye Box */}
+        <div className="p-4 rounded-xl bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed font-mono">
+          <p>
+            {isTr
+              ? 'Olay akışı, süreler ve kök neden gerçektir. Müşteri ve ajans kimlikleri paylaşılmaz; tarih, tutar ve hacim gibi tanımlayıcı ayrıntılar genelleştirilmiştir.'
+              : 'Timeline, durations and root cause are authentic. Client and agency identities are never shared; identifying details such as dates, financial figures and volume metrics have been generalized.'}
           </p>
         </div>
       </header>

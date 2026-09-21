@@ -1005,10 +1005,10 @@ const CrashTest = () => {
                 <span>
                   {isTr 
                     ? (isKrizHattiAcik 
-                        ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt 15 dakika' 
+                        ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · canlı kesintilerde ilk yanıt taahhüdü 15 dakika' 
                         : "Kriz hattı şu an kapalı. Bildiriminiz ertesi sabah 09:00'da ele alınır — yine de gönderin.")
                     : (isKrizHattiAcik
-                        ? 'Crisis hotline is currently open · daily 09:00 – 24:00 · typical first reply to emergencies 15 minutes'
+                        ? 'Crisis hotline is currently open · daily 09:00 – 24:00 · first-response commitment for live outages: 15 minutes'
                         : 'Crisis hotline is currently closed. Your notification will be handled at 09:00 tomorrow morning — please send anyway.')
                   }
                 </span>
@@ -1284,8 +1284,8 @@ const CrashTest = () => {
                   <span>📞 {isTr ? 'Kriz Hattı' : 'Response Desk'}: <a href="tel:+905343713573" className="text-[var(--ink)] font-mono hover:text-[var(--accent)] font-semibold">+90 534 371 35 73</a></span>
                   <span className="text-xs text-[var(--ink-muted)] font-mono">
                     {isTr 
-                      ? 'her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt 15 dakika' 
-                      : 'daily 09:00 – 24:00 · typical first reply to emergencies 15 minutes'}
+                      ? 'her gün 09:00 – 24:00 · canlı kesintilerde ilk yanıt taahhüdü 15 dakika' 
+                      : 'daily 09:00 – 24:00 · first-response commitment for live outages: 15 minutes'}
                   </span>
                 </div>
                 <span>✉️ {isTr ? 'E-posta' : 'Email'}: <a href="mailto:info@trendmasterakademi.com" className="text-[var(--ink)] font-mono hover:text-[var(--accent)] font-semibold">info@trendmasterakademi.com</a></span>

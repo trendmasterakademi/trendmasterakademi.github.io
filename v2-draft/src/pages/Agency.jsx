@@ -266,7 +266,7 @@ const Agency = () => {
                 <span className="font-semibold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Hızlı SWAT Triyajı' : 'Rapid SWAT Triage'}</span>
               </div>
               <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
-                {isTr ? 'Kriz hattı her gün 09:00 – 24:00 açık; acil bildirimlere tipik ilk yanıt 15 dakika.' : 'Response desk open daily 09:00 – 24:00; typical first reply to emergencies 15 minutes.'}
+                {isTr ? 'Kriz hattı her gün 09:00 – 24:00 açık; canlı kesintilerde ilk yanıt taahhüdü 15 dakika.' : 'Response desk open daily 09:00 – 24:00; first-response commitment for live outages 15 minutes.'}
               </p>
             </div>
 

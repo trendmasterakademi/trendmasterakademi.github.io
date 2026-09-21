@@ -13,11 +13,11 @@ export const postMortems = [
     },
     severity: 'SEV-1 CRITICAL',
     category: { tr: 'Veritabanı & Eşzamanlılık', en: 'Database & Concurrency' },
-    date: '2025-11-14',
+    date: { tr: 'Kasım 2025', en: 'November 2025' },
     duration: { tr: '42 dakika', en: '42 minutes' },
     impact: {
-      tr: '1.420 başarısız ödeme/sipariş işlemi, 42 dakika süren HTTP 500/504 kesintisi, müşteri destek hattında kriz.',
-      en: '1,420 failed checkout transactions, 42 minutes of HTTP 500/504 errors, severe support escalation.'
+      tr: "1.400'ü aşkın başarısız ödeme/sipariş işlemi, 42 dakika süren HTTP 500/504 kesintisi, müşteri destek hattında kriz.",
+      en: 'Over 1,400 failed checkout transactions, 42 minutes of HTTP 500/504 errors, severe support escalation.'
     },
     summary: {
       tr: 'Büyük bir e-ticaret platformunda Cuma akşamı gerçekleşen yoğun kampanya esnasında; ödeme ağ geçidinden gelen asenkron webhookların doğrudan veritabanına açtığı kontrolsüz bağlantılar, satır kilitlenmeleri (row-level locks) yaratarak PostgreSQL max_connections limitini tüketti.',
@@ -28,8 +28,8 @@ export const postMortems = [
         time: 'T-05m (18:35)',
         title: { tr: 'Kampanya Duyurusu & Trafik Artışı', en: 'Campaign Blast & Inbound Spike' },
         desc: {
-          tr: 'E-posta ve SMS kampanyasıyla eşzamanlı olarak 24.000 aktif kullanıcı ödeme adımına geçti.',
-          en: 'Concurrent SMS/email broadcast drove 24,000 active shoppers directly to the checkout flow.'
+          tr: 'E-posta ve SMS kampanyasıyla eşzamanlı olarak 20 binin üzerinde aktif kullanıcı ödeme adımına geçti.',
+          en: 'Concurrent SMS/email broadcast drove over 20,000 active shoppers directly to the checkout flow.'
         }
       },
       {
@@ -68,8 +68,8 @@ export const postMortems = [
         time: 'T+42m (19:22)',
         title: { tr: 'Sistem Tam Kapasiteyle Canlıya Döndü', en: 'Full System Recovery' },
         desc: {
-          tr: 'Tüm birikmiş 1.420 webhook kuyruktan veri kaybı olmadan işlendi; HTTP 500 oranı %0’a düştü.',
-          en: 'All queued webhooks reprocessed with zero data loss; HTTP error rates dropped to 0.00%.'
+          tr: 'Birikmiş webhookların tamamı kuyruktan veri kaybı olmadan işlendi; HTTP 500 oranı %0’a düştü.',
+          en: 'All accumulated webhooks were reprocessed from the queue with zero data loss; HTTP error rates dropped to 0.00%.'
         }
       }
     ],
@@ -95,11 +95,11 @@ export const postMortems = [
     },
     severity: 'SEV-1 CRITICAL',
     category: { tr: 'Ödeme & Dağıtık Sistemler', en: 'Payment & Distributed Systems' },
-    date: '2025-12-02',
+    date: { tr: 'Aralık 2025', en: 'December 2025' },
     duration: { tr: '14 dakika', en: '14 minutes' },
     impact: {
-      tr: '18.400$ tutarında 74 mükerrer kredi kartı çekimi, ödeme ağ geçidinden chargeback uyarısı, acil hesap dondurulma riski.',
-      en: '$18,400 in 74 duplicate credit card charges within 14 minutes, chargeback warning from payment gateway.'
+      tr: "15–20 bin $ aralığında, 70'in üzerinde mükerrer kredi kartı çekimi, ödeme ağ geçidinden chargeback uyarısı, acil hesap dondurulma riski.",
+      en: 'Duplicate credit card charges in the $15–20k range across 70+ customers within 14 minutes, chargeback warning from payment gateway.'
     },
     summary: {
       tr: 'Sınırlı stoklu bir kampanya sırasında kullanıcıların ödeme butonuna sabırsızlıkla arka arkaya basması ve backend tarafında dağıtık kilit (distributed lock) bulunmaması nedeniyle aynı kullanıcıdan 2-3 kez kart çekimi yapıldı.',
@@ -110,8 +110,8 @@ export const postMortems = [
         time: 'T-02m (12:00)',
         title: { tr: 'Lansman Butonu Açıldı', en: 'Flash Sale Launched' },
         desc: {
-          tr: '500 adet sınırlı üretim ürün için 8.000 kullanıcı aynı anda checkout butonuna bastı.',
-          en: '8,000 concurrent shoppers attempted to claim 500 limited-edition units simultaneously.'
+          tr: 'Sınırlı sayıda üretilmiş bir ürün için binlerce kullanıcı aynı anda checkout butonuna bastı.',
+          en: 'Thousands of concurrent shoppers attempted to claim limited-edition inventory simultaneously.'
         }
       },
       {
@@ -143,7 +143,7 @@ export const postMortems = [
         title: { tr: 'Mükerrer İstekler %100 Kesildi', en: 'Duplicate Dispatch 100% Eliminated' },
         desc: {
           tr: 'Aynı anda gelen mükerrer istekler ödeme sağlayıcısına gönderilmeden doğrudan 409 Conflict / In-Progress yanıtıyla durduruldu.',
-          en: 'Duplicate clicks intercepted before gateway API dispatch; 74 duplicate charges isolated for auto-refund.'
+          en: 'Duplicate clicks intercepted before gateway API dispatch; duplicate charges isolated for auto-refund.'
         }
       }
     ],
@@ -152,8 +152,8 @@ export const postMortems = [
       en: '1. Frontend payment CTA lacked click debouncing/disabling.\n2. Backend failed to pass gateway Idempotency-Key headers.\n3. Cart checkout mutation was not wrapped in an atomic distributed lock.'
     },
     tmaHotfix: {
-      tr: '1. Redis tabanlı atomik dağıtık kilit (Redlock) mekanizması enjekte edildi.\n2. Ödeme sağlayıcısına giden her isteğe deterministik Idempotency Key eklendi.\n3. Etkilenen 74 müşterinin mükerrer çekimleri için otomatik ters ibraz (auto-refund) betiği çalıştırıldı.',
-      en: '1. Enjected atomic Redis distributed locking before payment gateway handoff.\n2. Appended deterministic idempotency hashes to all gateway capture calls.\n3. Executed automated reconciliation script to issue instant refunds for all 74 duplicate charges.'
+      tr: '1. Redis tabanlı atomik dağıtık kilit (Redlock) mekanizması enjekte edildi.\n2. Ödeme sağlayıcısına giden her isteğe deterministik Idempotency Key eklendi.\n3. Etkilenen tüm müşterilerin mükerrer çekimleri için otomatik ters ibraz (auto-refund) betiği çalıştırıldı.',
+      en: '1. Enjected atomic Redis distributed locking before payment gateway handoff.\n2. Appended deterministic idempotency hashes to all gateway capture calls.\n3. Executed automated reconciliation script to issue instant refunds for all affected duplicate charges.'
     },
     permanentMitigation: {
       tr: '• Veritabanı seviyesinde `UNIQUE(order_id, payment_intent)` kısıtlaması getirildi.\n• İstemci tarafında form gönderimlerine kriptografik tek kullanımlık token (nonce) eklendi.',
@@ -169,14 +169,14 @@ export const postMortems = [
     },
     severity: 'SEV-2 MAJOR',
     category: { tr: 'Bellek & Performans', en: 'Memory & Performance' },
-    date: '2026-01-18',
+    date: { tr: 'Ocak 2026', en: 'January 2026' },
     duration: { tr: '3 hafta süren kronik arıza → 4 saatte kalıcı çözüm', en: '3-week chronic bug → Solved in 4 hours' },
     impact: {
       tr: 'Günde 4 kez beklenmedik API çökmesi, PM2 yeniden başlatmaları sırasında kopan WebSocket bağlantıları, mobil uygulamalarda oturum düşmesi.',
       en: 'API crashing 4 times daily from Out-Of-Memory (OOM), dropped WebSocket sessions, mobile app disconnects.'
     },
     summary: {
-      tr: 'Bir SaaS girişiminin ana backend API sunucusu her 5.5-6 saatte bir bellek tüketimini 1.4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu.',
+      tr: 'Bir SaaS girişiminin ana backend API sunucusu her 5,5–6 saatte bir bellek tüketimini 1,4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu.',
       en: 'A SaaS production backend suffered recurring Out-Of-Memory (OOM) crashes every 5.5 to 6 hours as RSS heap climbed past 1.4GB. The internal team had resorted to a cron job rebooting the server every 4 hours.'
     },
     timeline: [
@@ -243,7 +243,7 @@ export const postMortems = [
     },
     severity: 'SEV-2 MAJOR',
     category: { tr: 'DevOps & Güvenlik Devri', en: 'DevOps & Security Handover' },
-    date: '2026-02-04',
+    date: { tr: 'Şubat 2026', en: 'February 2026' },
     duration: { tr: '3 hafta süren kilitlenme → 48 saatte tam devir', en: '3-week freeze → 48h full recovery' },
     impact: {
       tr: '3 hafta boyunca canlı sisteme tek bir satır kod yüklenememesi, müşteri güveninin sarsılması, ayrılan geliştiricinin erişimlerinin açık kalması riski.',

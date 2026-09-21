@@ -26,8 +26,8 @@ export const faqData = [
       en: "What happens if the engineer running my project becomes unavailable?"
     },
     answer: {
-      tr: "Kriz masası tek kişilik değildir; başlayan bir işi masadaki bir başkası devralır. Ayrıca kod hiçbir aşamada bizde tutulmaz — repo sizin kontrolünüzdedir, dokümantasyon iş ilerledikçe teslim edilir. Çalışma yarıda kesilse bile ajansınızın elinde çalışan sistem ve eksiksiz kaynak kod kalır.",
-      en: "The response desk is not a single person; another member of the desk takes over work already under way. Your code is never held by us either — the repository is under your control and documentation is delivered as the work progresses. Even if an engagement is interrupted, your agency is left with a working system and the complete source."
+      tr: "TMA bir şahıs işletmesidir, ancak kriz masası tek kişilik değildir: masada ikinci bir kıdemli mühendis bulunur ve başlayan bir işi o devralır. Kod hiçbir aşamada bizde tutulmaz — repo sizin kontrolünüzdedir, dokümantasyon iş ilerledikçe teslim edilir. Çalışma yarıda kesilse bile ajansınızın elinde çalışan sistem ve eksiksiz kaynak kod kalır.",
+      en: "TMA is a sole proprietorship, but the response desk is not a one-person operation: a second senior engineer is on the desk to take over any work already under way. Your code is never held by us either — the repository is under your control and documentation is delivered as the work progresses. Even if an engagement is interrupted, your agency is left with a working system and the complete source."
     }
   },
   {
@@ -50,8 +50,8 @@ export const faqData = [
       en: "How quickly will I get a response in an emergency?"
     },
     answer: {
-      tr: "Kriz hattı her gün 09:00 – 24:00 arasında açıktır; acil bildirimlere tipik ilk yanıt süremiz 15 dakikadır. Bu saatler dışında ulaşan bildirimler ertesi sabah 09:00'da ele alınır.",
-      en: "The response desk is open daily between 09:00 and 24:00 (UTC+3); our typical first reply to an emergency is 15 minutes. Notifications arriving outside these hours are picked up at 09:00 the following morning."
+      tr: "Kriz hattı her gün 09:00 – 24:00 arasında açıktır. Canlı kesinti (SEV-0) bildirimlerinde ilk yanıt taahhüdümüz 15 dakikadır; diğer seviyelerin süreleri SLA sayfasında yazılıdır. Bu saatler dışında ulaşan bildirimler ertesi sabah 09:00'da ele alınır.",
+      en: "The response desk is open daily between 09:00 and 24:00 (UTC+3). For live-outage (SEV-0) incidents our first-response commitment is 15 minutes; times for other levels are listed on the SLA page. Notifications arriving outside these hours are picked up at 09:00 the next morning."
     }
   },
   {
@@ -176,6 +176,16 @@ const FAQ = () => {
                               className="inline-flex items-center gap-1 text-[var(--accent)] hover:text-[var(--accent-hover)] font-mono text-xs sm:text-sm font-semibold transition-colors"
                             >
                               {isTr ? 'Sözleşmeyi okuyun →' : 'Read the agreement →'}
+                            </Link>
+                          </div>
+                        )}
+                        {item.id === 'response-time' && (
+                          <div className="pt-1">
+                            <Link 
+                              to="/sla/" 
+                              className="inline-flex items-center gap-1 text-[var(--accent)] hover:text-[var(--accent-hover)] font-mono text-xs sm:text-sm font-semibold transition-colors"
+                            >
+                              {isTr ? 'SLA ve Yanıt Taahhütleri →' : 'SLA & Response Commitments →'}
                             </Link>
                           </div>
                         )}

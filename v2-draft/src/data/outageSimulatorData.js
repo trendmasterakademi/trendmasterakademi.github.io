@@ -62,7 +62,7 @@ export const outageSimulatorData = {
       {
         id: "sla_penalty",
         title: "Sözleşmesel SLA Cezası",
-        desc: "B2B sözleşmelerinde yer alan %99.9 uptime taahhüdünün ihlali halinde müşteriye ödenmesi gereken yasal tazminat."
+        desc: "B2B sözleşmelerinde yer alan %99,9 uptime taahhüdünün ihlali halinde müşteriye ödenmesi gereken yasal tazminat."
       },
       {
         id: "churn_ltv",
@@ -86,15 +86,15 @@ export const outageSimulatorData = {
       engHourlyRate: "Mühendis Başına Saatlik Maliyet (₺)",
       peakMultiplier: "Kesintinin Yaşandığı Zaman Dilimi",
       peakOptions: {
-        peak: "Zirve Saatler (2.0x Çarpan - Flash Sale / İş Saatleri)",
-        normal: "Normal Saatler (1.0x Çarpan)",
-        night: "Düşük Trafik / Gece (0.5x Çarpan)"
+        peak: "Zirve Saatler (2,0× Çarpan - Flash Sale / İş Saatleri)",
+        normal: "Normal Saatler (1,0× Çarpan)",
+        night: "Düşük Trafik / Gece (0,5× Çarpan)"
       },
       totalTcod: "Toplam Gerçek Kesinti Hasarı (TCOD)",
       breakdownTitle: "Zarar Kalemleri Dağılımı",
       copyBrief: "Hasar Raporunu Kopyala (Yönetim / Müşteri)",
       copied: "Hasar değerlendirme brifingi panoya kopyalandı!",
-      triageCta: "Zararı Durdur: 15 Dk. Triyaj Masası",
+      triageCta: "Zararı Durdur: 15 Dk Triyaj Masası",
       hiddenCostWarning: "Bu kesintideki gizli maliyetler doğrudan ciro kaybının"
     }
   },

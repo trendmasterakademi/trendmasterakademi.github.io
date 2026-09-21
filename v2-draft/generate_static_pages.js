@@ -310,34 +310,15 @@ const homePageExtraContent = `
 
 const aboutExtraContent = `
   <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
-    <h2 class="text-2xl font-bold text-[var(--ink)] tracking-tight">Dört Temel Mühendislik Standardımız</h2>
-    <p class="text-[var(--ink-muted)] leading-relaxed">Ajanslarla çalışırken taviz vermediğimiz 5 temel operasyonel ve hukuki kuralımız:</p>
+    <h2 class="text-2xl font-bold text-[var(--ink)] tracking-tight">Altı Temel Taahhüdümüz</h2>
+    <p class="text-[var(--ink-muted)] leading-relaxed">Ajanslarla çalışırken taviz vermediğimiz altı kural:</p>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+      ${coreCommitments.map(c => `
       <div class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-lg font-bold text-[var(--accent)]">01 · %100 White-Label & Görünmezlik</h3>
-        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Müşteriniz hiçbir zaman bizim adımızı duymaz. Projeler ajansınızın markası, logosu ve kurumsal kimliği altında teslim edilir. İletişim isterseniz ajans alan adı e-postanız üzerinden yürütülür.</p>
-      </div>
-
-      <div class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-lg font-bold text-emerald-700">02 · Resmi NDA & Fikri Mülkiyet Devri</h3>
-        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Projeye başlamadan önce bağlayıcı Gizlilik Sözleşmesi (NDA) imzalanır. Geliştirilen tüm kaynak kodlar, mimari ve fikri mülkiyet %100 ajansınıza ve müşterinize aittir. <a href="/nda/" class="text-[var(--accent)] hover:underline">Sözleşmeyi inceleyin →</a></p>
-      </div>
-
-      <div class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-lg font-bold text-amber-700">03 · Şeffaf Ücretlendirme</h3>
-        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">İlk kod teşhisi ve triyaj ücretsizdir. Sonraki çalışmanın kapsamı ve bedeli teşhis tamamlandıktan sonra işe özel belirlenir; bedel piyasa koşullarıyla uyumludur ve çalışma başlamadan önce yazılı olarak netleşir.</p>
-      </div>
-
-      <div class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-lg font-bold text-purple-700">04 · Doğrudan Mühendislik Masası Muhatabı</h3>
-        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Arada teknik bilgisi olmayan satış temsilcileri veya bürokrasi katmanları yoktur. İletişim doğrudan projeyi yürüten kıdemli mühendislik masamız üzerinden anlık yürütülür.</p>
-      </div>
-
-      <div class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 md:col-span-2">
-        <h3 class="text-lg font-bold text-blue-700">05 · Süreklilik Güvencesi</h3>
-        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Kriz masası tek kişilik değildir. Bir işi başlatan mühendis devre dışı kalırsa masadaki bir başkası devralır; iş yarıda kalmaz. Repo süreç boyunca ajansınızın kontrolündedir ve dokümantasyon teslim edilir.</p>
-      </div>
+        <h3 class="text-lg font-bold text-[var(--accent)]">${escapeHtml(c.no)} · ${escapeHtml(c.title?.tr || '')}</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(c.desc?.tr || '')}</p>
+      </div>`).join('\n      ')}
     </div>
   </section>
 `;
@@ -387,7 +368,7 @@ const kesintiExtraContent = `
 const sosPageExtraContent = `
   <section class="space-y-6">
     <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-700 text-sm">
-      <span>Kriz hattı her gün 09:00 – 24:00 açık · acil bildirimlere tipik ilk yanıt 15 dakika.</span>
+      <span>Kriz hattı her gün 09:00 – 24:00 açık · canlı kesintilerde ilk yanıt taahhüdü 15 dakika.</span>
     </div>
     <div class="flex flex-wrap gap-4 text-sm font-semibold">
       <a href="tel:+905343713573" class="text-[var(--accent)] hover:underline">+90 534 371 35 73</a>
@@ -662,7 +643,11 @@ const slaExtraContentTr = `
       `).join('\n      ')}
     </div>
 
-    <h2 class="text-xl font-bold text-[var(--ink)] pt-4">Taviz Verilmeyen 5 Temel Mühendislik Taahhüdümüz</h2>
+    <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <strong>Kapsam:</strong> Taahhüt edilen süreler, nöbet saatleri (her gün 09:00–24:00, resmî tatiller ve bayramlar dâhil) içinde geçerlidir. Nöbet saatleri dışındaki bildirimler ertesi gün 09:00 itibarıyla işleme alınır.
+    </div>
+
+    <h2 class="text-xl font-bold text-[var(--ink)] pt-4">Altı Temel Taahhüdümüz</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${coreCommitments.map(c => `
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
@@ -700,7 +685,11 @@ const slaExtraContentEn = `
       `).join('\n      ')}
     </div>
 
-    <h2 class="text-xl font-bold text-[var(--ink)] pt-4">5 Core Non-Negotiable Commitments</h2>
+    <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <strong>Scope:</strong> Committed response times apply during duty hours (every day 09:00–24:00, including public and religious holidays). Tickets submitted outside duty hours are queued for 09:00 next morning.
+    </div>
+
+    <h2 class="text-xl font-bold text-[var(--ink)] pt-4">Six Core Non-Negotiable Commitments</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${coreCommitments.map(c => `
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
@@ -721,7 +710,7 @@ const techMatrixExtraContentTr = `
       <div><strong class="text-emerald-700 block text-sm">4 Kategori</strong> Backend, Frontend, DB, Infra</div>
       <div><strong class="text-[var(--ink)] block text-sm">15+ Bileşen</strong> Node, Go, Python, Postgres, K8s</div>
       <div><strong class="text-[var(--accent)] block text-sm">≤ 15 Dk</strong> SEV-0 Anında SWAT Triyajı</div>
-      <div><strong class="text-amber-700 block text-sm">%100</strong> Zero-Loss Rollback Garantisi</div>
+      <div><strong class="text-amber-700 block text-sm">%100</strong> Müdahale Öncesi Snapshot Kuralı</div>
     </div>
 
     <h2 class="text-xl font-bold text-[var(--ink)]">Desteklenen Teknolojiler & Cerrahi Müdahale Derinliği</h2>
@@ -752,7 +741,7 @@ const techMatrixExtraContentEn = `
       <div><strong class="text-emerald-700 block text-sm">4 Categories</strong> Backend, Frontend, DB, Infra</div>
       <div><strong class="text-[var(--ink)] block text-sm">15+ Stacks</strong> Node, Go, Python, Postgres, K8s</div>
       <div><strong class="text-[var(--accent)] block text-sm">≤ 15 Mins</strong> SEV-0 Immediate SWAT Triage</div>
-      <div><strong class="text-amber-700 block text-sm">100%</strong> Zero-Loss Rollback Guarantee</div>
+      <div><strong class="text-amber-700 block text-sm">100%</strong> Pre-Intervention Snapshot Rule</div>
     </div>
 
     <h2 class="text-xl font-bold text-[var(--ink)]">Supported Technologies & Surgical Rescue Depth</h2>
@@ -861,12 +850,15 @@ const outageSimulatorExtraContentEn = `
 
 const radarExtraContentTr = `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
-      <div><strong class="text-emerald-700 block text-sm">Canlı Durum</strong> 0 Bekleyen SEV-0 / Masada Aktif</div>
-      <div><strong class="text-[var(--ink)] block text-sm">8.4 Dk MTTA</strong> Son 90 Gün Masaya Oturma Ortalaması</div>
-      <div><strong class="text-[var(--accent)] block text-sm">3.2 Saat TTR</strong> Ortalama Kalıcı Çözüm Süresi</div>
-      <div><strong class="text-purple-700 block text-sm">%99.8</strong> SLA Taahhüt Başarı Oranı</div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-[var(--ink)] block text-sm">8,4 Dk MTTA</strong> Son 90 Gün Masaya Oturma Ortalaması</div>
+      <div><strong class="text-[var(--accent)] block text-sm">3,2 Saat TTR</strong> Ortalama Kalıcı Çözüm Süresi</div>
+      <div><strong class="text-purple-700 block text-sm">%99,8</strong> SLA Taahhüt Başarı Oranı</div>
     </div>
+
+    <p class="text-xs text-[var(--ink-muted)] font-mono">
+      Bu değerler 90 günlük dönemde kaydedilen 34 müdahaleden hesaplanmıştır. Son güncelleme: 21 Eylül 2026. Taahhüt edilen süreler için: <a href="/sla/" class="text-[var(--accent)] hover:underline font-bold">SLA ve Yanıt Taahhütleri →</a>
+    </p>
 
     <h2 class="text-xl font-bold text-[var(--ink)]">Operasyonel Servis Masaları & Altyapı</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -877,7 +869,7 @@ const radarExtraContentTr = `
           <span class="text-xs font-mono text-emerald-700">${escapeHtml(comp.uptime)}</span>
         </div>
         <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(comp.desc)}</p>
-        <p class="text-xs font-mono text-[var(--accent)] pt-1">Yanıt Hızı: ${escapeHtml(comp.latency)}</p>
+        <p class="text-xs font-mono text-[var(--accent)] pt-1">Ortalama Yanıt Hızı: ${escapeHtml(comp.latency)}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -886,12 +878,15 @@ const radarExtraContentTr = `
 
 const radarExtraContentEn = `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
-      <div><strong class="text-emerald-700 block text-sm">Live Status</strong> 0 Active SEV-0 Queue / All Operational</div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
       <div><strong class="text-[var(--ink)] block text-sm">8.4 Min MTTA</strong> 90-Day Average Time to Table</div>
       <div><strong class="text-[var(--accent)] block text-sm">3.2 Hr TTR</strong> 90-Day Mean Time to Recovery</div>
       <div><strong class="text-purple-700 block text-sm">99.8%</strong> SLA Commitment Compliance</div>
     </div>
+
+    <p class="text-xs text-[var(--ink-muted)] font-mono">
+      Calculated from 34 recorded interventions over a 90-day window. Last updated: September 21, 2026. For contractual response times: <a href="/sla/" class="text-[var(--accent)] hover:underline font-bold">SLA & Response Commitments →</a>
+    </p>
 
     <h2 class="text-xl font-bold text-[var(--ink)]">Operational Service Desks & Infrastructure</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -902,7 +897,7 @@ const radarExtraContentEn = `
           <span class="text-xs font-mono text-emerald-700">${escapeHtml(comp.uptime)}</span>
         </div>
         <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(comp.desc)}</p>
-        <p class="text-xs font-mono text-[var(--accent)] pt-1">Response Latency: ${escapeHtml(comp.latency)}</p>
+        <p class="text-xs font-mono text-[var(--accent)] pt-1">Average Response: ${escapeHtml(comp.latency)}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -986,6 +981,10 @@ const rescueRoiExtraContentTr = `
       <div><strong class="text-amber-700 block text-sm">Zero-Rebuild Risk</strong> Sıfırdan yazım tuzaklarını bertaraf</div>
     </div>
 
+    <p class="text-xs text-[var(--ink-muted)] font-mono">
+      Aralıklar sektör verilerinin ortalamasıdır; tek bir TMA projesinin sonucu değildir.
+    </p>
+
     <h2 class="text-xl font-bold text-[var(--ink)]">Sıfırdan Yazım Riskleri vs. TMA SWAT Kurtarma Modeli</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <article class="p-5 rounded-2xl bg-rose-50 border border-rose-200 space-y-3">
@@ -1022,6 +1021,10 @@ const rescueRoiExtraContentEn = `
       <div><strong class="text-[var(--accent)] block text-sm">4 - 8 Months</strong> Time to Market Saved</div>
       <div><strong class="text-amber-700 block text-sm">Zero-Rebuild Trap</strong> Eliminates ground-up rewrite failure risk</div>
     </div>
+
+    <p class="text-xs text-[var(--ink-muted)] font-mono">
+      Ranges are industry averages, not the result of a single TMA project.
+    </p>
 
     <h2 class="text-xl font-bold text-[var(--ink)]">Rebuild Liabilities vs. TMA SWAT Rescue Advantages</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -1991,13 +1994,13 @@ const basePages = [
   },
   {
     dir: 'radar',
-    title: 'Canlı Sistem Sağlığı & SWAT Durum Radarı | Trend Master Akademi',
-    h1: 'Canlı Sistem Sağlığı, SWAT Hazırbulunuşluğu & Olay Radarı',
-    description: 'Radikal şeffaflık: TMA canlı mühendislik masası hazırbulunuşluğu, nöbetçi mimar durumu, 90 günlük SLA telemetrisi ve vaka dağılım radarı.',
+    title: 'Sistem Durumu ve Güvenilirlik Raporu | Trend Master Akademi',
+    h1: 'Sistem Durumu ve Güvenilirlik Raporu',
+    description: 'TMA mühendislik masası hazırbulunuşluğu, nöbet saatleri, 90 günlük SLA telemetrisi ve vaka dağılım özeti.',
     canonical: 'https://trendmasterakademi.com/radar/',
     ogUrl: 'https://trendmasterakademi.com/radar/',
-    heading: 'Canlı Sistem Sağlığı, SWAT Hazırbulunuşluğu & Olay Radarı',
-    subheading: 'Operasyonel hazırbulunuşluk, aktif nöbetçi mimar durumu, son 90 günlük masaya oturma süreleri (MTTA) ve çözülen krizlerin kategori dağılımı.',
+    heading: 'Sistem Durumu ve Güvenilirlik Raporu',
+    subheading: 'Operasyonel hazırbulunuşluk, nöbet saatleri, son 90 günlük masaya oturma süreleri (MTTA) ve çözülen krizlerin kategori dağılımı.',
     extraContent: radarExtraContentTr,
     schema: {
       "@context": "https://schema.org",
@@ -2008,7 +2011,7 @@ const basePages = [
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
-            { "@type": "ListItem", "position": 2, "name": "SWAT Durum Radarı", "item": "https://trendmasterakademi.com/radar/" }
+            { "@type": "ListItem", "position": 2, "name": "Sistem Durumu ve Güvenilirlik Raporu", "item": "https://trendmasterakademi.com/radar/" }
           ]
         }
       ]

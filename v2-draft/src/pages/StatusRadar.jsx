@@ -1,12 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { radarData } from "../data/radarData";
 import { getCalendlyUrl } from "../utils/calendly";
+import { formatDocumentTitle } from "../utils/pageTitle";
 
 export default function StatusRadar({ lang = "tr" }) {
   const t = radarData[lang] || radarData.tr;
+  const isTr = lang === "tr";
+
+  useEffect(() => {
+    document.title = formatDocumentTitle(
+      isTr
+        ? "SWAT Hazırbulunuşluk & Olay Radarı | Trend Master Akademi"
+        : "SWAT Readiness & Incident Radar | Trend Master Academy"
+    );
+
+    const metaDesc = document.querySelector('meta[name="description"]');
+    if (metaDesc) {
+      metaDesc.setAttribute(
+        "content",
+        isTr
+          ? "Trend Master Akademi SWAT hazırbulunuşluğu ve olay radarı. 90 günlük dönemde kaydedilen 34 müdahale, ilk yanıt ve çözüm süreleri, olay dağılımı."
+          : "Trend Master Academy SWAT readiness and incident radar. 34 interventions recorded over 90 days, first-response and recovery times, incident distribution."
+      );
+    }
+
+    const canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) {
+      canonical.setAttribute("href", "https://trendmasterakademi.com/radar/");
+    }
+  }, [isTr]);
 
   return (
-    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-white">
+    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
       {/* Header */}
       <div className="max-w-5xl mx-auto text-center mb-12">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
@@ -20,7 +46,7 @@ export default function StatusRadar({ lang = "tr" }) {
           {t.hero.subtitle}
         </p>
         <p className="text-xs text-[var(--ink-muted)] font-mono">
-          📡 {t.hero.notice}
+          {t.hero.notice}
         </p>
       </div>
 
@@ -42,12 +68,12 @@ export default function StatusRadar({ lang = "tr" }) {
 
             <div className="flex items-center gap-6 border-t sm:border-t-0 sm:border-l border-[var(--rule)] pt-4 sm:pt-0 sm:pl-6 text-xs font-mono">
               <div>
-                <span className="text-[var(--ink-muted)] block uppercase">{lang === "en" ? "Active SEV-0" : "Aktif SEV-0"}</span>
-                <span className="text-lg font-bold text-[var(--ink)]">{t.systemStatus.activeSev0} {lang === "en" ? "Queued" : "Bekleyen"}</span>
+                <span className="text-[var(--ink-muted)] block uppercase">{isTr ? "Ortalama MTTA (90 Gün)" : "Average MTTA (90 Days)"}</span>
+                <span className="text-lg font-bold text-emerald-700">{t.systemStatus.currentMtta}</span>
               </div>
               <div>
-                <span className="text-[var(--ink-muted)] block uppercase">{lang === "en" ? "Live MTTA" : "Canlı MTTA"}</span>
-                <span className="text-lg font-bold text-emerald-700">{t.systemStatus.currentMtta}</span>
+                <span className="text-[var(--ink-muted)] block uppercase">{isTr ? "Taahhüt Edilen (SEV-0)" : "Commitment (SEV-0)"}</span>
+                <span className="text-lg font-bold text-[var(--ink)]">{t.systemStatus.targetMtta}</span>
               </div>
             </div>
           </div>
@@ -57,7 +83,9 @@ export default function StatusRadar({ lang = "tr" }) {
       {/* Service Components Health Grid */}
       <div className="max-w-5xl mx-auto mb-12 space-y-4">
         <h2 className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider">
-          {lang === "en" ? "Operational Service Desks & Infrastructure" : "Operasyonel Mühendislik Masaları & Altyapı"}
+          {isTr 
+            ? "Mühendislik Masaları & Altyapı · Nöbet saatlerinde erişilebilirlik (09:00–24:00)" 
+            : "Service Desks & Infrastructure · Availability during duty hours (09:00–24:00)"}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {t.components.map((comp) => (
@@ -68,7 +96,7 @@ export default function StatusRadar({ lang = "tr" }) {
               <div className="flex items-center justify-between">
                 <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
                 <span className="text-xs font-mono text-emerald-800 px-2 py-0.5 rounded bg-emerald-50 border border-emerald-200">
-                  {comp.uptime} {lang === "en" ? "Uptime" : "Aktiflik"}
+                  {comp.uptime}
                 </span>
               </div>
               <div>
@@ -76,8 +104,8 @@ export default function StatusRadar({ lang = "tr" }) {
                 <p className="text-xs text-[var(--ink-light)] mt-1 leading-relaxed">{comp.desc}</p>
               </div>
               <div className="border-t border-[var(--rule)] pt-2 flex justify-between text-xs font-mono text-[var(--ink-muted)]">
-                <span>{lang === "en" ? "Response: " : "Yanıt: "}</span>
-                <span className="text-[var(--ink)]">{comp.latency}</span>
+                <span>{comp.latencyLabel || (isTr ? "Yanıt" : "Response")}:</span>
+                <span className="text-[var(--ink)] font-semibold">{comp.latency}</span>
               </div>
             </div>
           ))}
@@ -85,7 +113,7 @@ export default function StatusRadar({ lang = "tr" }) {
       </div>
 
       {/* 90-Day Telemetry & Incident Radar Grid */}
-      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
+      <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mb-6">
         {/* Telemetry Metrics */}
         <div className="lg:col-span-6 space-y-4">
           <h2 className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider">
@@ -121,7 +149,7 @@ export default function StatusRadar({ lang = "tr" }) {
               <div key={idx} className="space-y-1.5 text-xs font-mono">
                 <div className="flex justify-between items-center text-[var(--ink)]">
                   <span>{cat.label}</span>
-                  <span className="font-semibold text-[var(--ink)]">%{cat.percentage} ({cat.count} {lang === "en" ? "cases" : "vaka"})</span>
+                  <span className="font-semibold text-[var(--ink)]">%{cat.percentage} ({cat.count} {isTr ? "vaka" : "cases"})</span>
                 </div>
                 <div className="w-full bg-[var(--paper)] h-2 rounded-full overflow-hidden border border-[var(--rule)]">
                   <div
@@ -135,6 +163,19 @@ export default function StatusRadar({ lang = "tr" }) {
         </div>
       </div>
 
+      {/* Source Note with SLA link */}
+      <div className="max-w-5xl mx-auto mb-12">
+        <div className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+          <span>{t.telemetry90Days.sourceNote}</span>
+          <Link
+            to="/sla/"
+            className="text-[var(--accent)] font-semibold hover:underline font-mono inline-flex items-center gap-1 shrink-0"
+          >
+            {t.telemetry90Days.slaLinkText}
+          </Link>
+        </div>
+      </div>
+
       {/* Emergency Action Banner */}
       <div className="max-w-5xl mx-auto text-center border-t border-[var(--rule)] pt-10">
         <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -142,7 +183,7 @@ export default function StatusRadar({ lang = "tr" }) {
             href="tel:+905343713573"
             className="btn-secondary min-h-[44px] w-full sm:w-auto px-6 py-3 font-mono font-semibold text-xs flex items-center justify-center gap-2"
           >
-            📞 {lang === "en" ? "Emergency Hotline: +90 534 371 35 73" : "Doğrudan Kriz Hattı: +90 534 371 35 73"}
+            📞 {isTr ? "Doğrudan Kriz Hattı: +90 534 371 35 73" : "Emergency Hotline: +90 534 371 35 73"}
           </a>
 
           <a
@@ -151,13 +192,13 @@ export default function StatusRadar({ lang = "tr" }) {
             rel="noopener noreferrer"
             className="btn-primary min-h-[44px] w-full sm:w-auto px-6 py-3 font-mono font-semibold text-xs flex items-center justify-center gap-2 text-center"
           >
-            ⚡ {lang === "en" ? "Schedule Direct Triage Desk" : "Kıdemli Triyaj Masasına Bağlan"}
+            ⚡ {isTr ? "Kıdemli Triyaj Masasına Bağlan" : "Schedule Direct Triage Desk"}
           </a>
         </div>
         <p className="text-xs text-[var(--ink-muted)] font-mono mt-3">
-          {lang === "en"
-            ? "SEV-0/1 incidents are escalated instantly • Zero sales middleman"
-            : "SEV-0/1 krizlerinde satış temsilcisi olmadan doğrudan sistem mimarı masaya bağlanır"}
+          {isTr
+            ? "SEV-0/1 krizlerinde satış temsilcisi olmadan doğrudan sistem mimarı masaya bağlanır"
+            : "SEV-0/1 incidents are escalated instantly • Zero sales middleman"}
         </p>
       </div>
     </div>

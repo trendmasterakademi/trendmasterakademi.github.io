@@ -28,11 +28,14 @@
         --accent:       #B21F2B;
         --accent-ink:   #8E1A23;
         --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
 
         --term-bg:      #0E1116;
         --term-ink:     #C7CEDA;
         --term-dim:     #6F7B8C;
         --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
       }
 
       @media (prefers-color-scheme: dark) {
@@ -51,11 +54,14 @@
           --accent:       #E4636C;
           --accent-ink:   #F08D94;
           --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
 
           --term-bg:      #0E1116;
           --term-ink:     #C7CEDA;
           --term-dim:     #6F7B8C;
           --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
         }
       }
 
@@ -74,11 +80,14 @@
         --accent:       #E4636C;
         --accent-ink:   #F08D94;
         --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
 
         --term-bg:      #0E1116;
         --term-ink:     #C7CEDA;
         --term-dim:     #6F7B8C;
         --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
       }
 
       :root[data-theme="light"] {
@@ -96,11 +105,14 @@
         --accent:       #B21F2B;
         --accent-ink:   #8E1A23;
         --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
 
         --term-bg:      #0E1116;
         --term-ink:     #C7CEDA;
         --term-dim:     #6F7B8C;
         --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
       }
 
       .logo-light { display: block; }
@@ -340,12 +352,12 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     }catch(e){}})();
     </script>
-    <script type="module" crossorigin src="/assets/index-DzhO3Phs.js"></script>
+    <script type="module" crossorigin src="/assets/index-C743TwmR.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Brk3cdWY.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-cHuo9G6O.css">
   </head>
   <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
     <div id="root">
@@ -388,7 +400,7 @@
             <span class="text-xs font-mono text-amber-700">SEV-1 CRITICAL · Database &amp; Concurrency</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">During a high-traffic campaign, thousands of concurrent payment webhooks hit the backend simultaneously, opening unbuffered database transactions that deadlocked on unindexed foreign keys and exhausted PostgreSQL connection pools.</p>
-          <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: 42 minutes · Impact: 1,420 failed checkout transactions, 42 minutes of HTTP 500/504 errors, severe support escalation.</div>
+          <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: 42 minutes · Impact: Over 1,400 failed checkout transactions, 42 minutes of HTTP 500/504 errors, severe support escalation.</div>
         </li>
       
       
@@ -398,7 +410,7 @@
             <span class="text-xs font-mono text-amber-700">SEV-1 CRITICAL · Payment &amp; Distributed Systems</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">During a flash sale, impatient users multi-clicked the payment button. Due to lack of backend request deduplication and distributed locking, concurrent payment gateway charges were executed for identical cart states.</p>
-          <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: 14 minutes · Impact: $18,400 in 74 duplicate credit card charges within 14 minutes, chargeback warning from payment gateway.</div>
+          <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: 14 minutes · Impact: Duplicate credit card charges in the $15–20k range across 70+ customers within 14 minutes, chargeback warning from payment gateway.</div>
         </li>
       
       

@@ -87,8 +87,8 @@ const Sos = () => {
         <span>
           {krizHattiAcik
             ? (isTr 
-                ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt 15 dakika'
-                : 'Response desk is open now · daily 09:00 – 24:00 · typical first reply to emergencies 15 minutes')
+                ? 'Kriz hattı her gün 09:00 – 24:00 açık · canlı kesintilerde ilk yanıt taahhüdü 15 dakika.'
+                : 'Crisis line open every day 09:00 – 24:00 · first-response commitment for live outages: 15 minutes.')
             : (isTr 
                 ? "Kriz hattı şu an kapalı. Bildiriminiz ertesi sabah 09:00'da ele alınır — formu yine de doldurabilirsiniz."
                 : 'The response desk is closed right now. Your notification is picked up at 09:00 the following morning — you can still submit the form.')
@@ -101,7 +101,7 @@ const Sos = () => {
         <button
           type="button"
           onClick={handleOpenModal}
-          className="p-4 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-sm sm:text-base shadow-sm flex items-center justify-center gap-2.5 transition-colors cursor-pointer min-h-[44px]"
+          className="p-4 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] font-semibold text-sm sm:text-base shadow-sm flex items-center justify-center gap-2.5 transition-colors cursor-pointer min-h-[44px]"
         >
           <AlertTriangle className="w-4 h-4" />
           <span>{isTr ? 'Acil SOS Formunu Aç' : 'Open Emergency SOS Form'}</span>

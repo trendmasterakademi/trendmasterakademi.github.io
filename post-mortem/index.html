@@ -28,11 +28,14 @@
         --accent:       #B21F2B;
         --accent-ink:   #8E1A23;
         --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
 
         --term-bg:      #0E1116;
         --term-ink:     #C7CEDA;
         --term-dim:     #6F7B8C;
         --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
       }
 
       @media (prefers-color-scheme: dark) {
@@ -51,11 +54,14 @@
           --accent:       #E4636C;
           --accent-ink:   #F08D94;
           --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
 
           --term-bg:      #0E1116;
           --term-ink:     #C7CEDA;
           --term-dim:     #6F7B8C;
           --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
         }
       }
 
@@ -74,11 +80,14 @@
         --accent:       #E4636C;
         --accent-ink:   #F08D94;
         --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
 
         --term-bg:      #0E1116;
         --term-ink:     #C7CEDA;
         --term-dim:     #6F7B8C;
         --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
       }
 
       :root[data-theme="light"] {
@@ -96,11 +105,14 @@
         --accent:       #B21F2B;
         --accent-ink:   #8E1A23;
         --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
 
         --term-bg:      #0E1116;
         --term-ink:     #C7CEDA;
         --term-dim:     #6F7B8C;
         --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
       }
 
       .logo-light { display: block; }
@@ -340,12 +352,12 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     }catch(e){}})();
     </script>
-    <script type="module" crossorigin src="/assets/index-DzhO3Phs.js"></script>
+    <script type="module" crossorigin src="/assets/index-C743TwmR.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Brk3cdWY.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-cHuo9G6O.css">
   </head>
   <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
     <div id="root">
@@ -388,7 +400,7 @@
             <span class="text-xs font-mono text-amber-700">SEV-1 CRITICAL · Veritabanı &amp; Eşzamanlılık</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Büyük bir e-ticaret platformunda Cuma akşamı gerçekleşen yoğun kampanya esnasında; ödeme ağ geçidinden gelen asenkron webhookların doğrudan veritabanına açtığı kontrolsüz bağlantılar, satır kilitlenmeleri (row-level locks) yaratarak PostgreSQL max_connections limitini tüketti.</p>
-          <div class="text-xs font-mono text-[var(--ink-muted)]">Süre: 42 dakika · Etki: 1.420 başarısız ödeme/sipariş işlemi, 42 dakika süren HTTP 500/504 kesintisi, müşteri destek hattında kriz.</div>
+          <div class="text-xs font-mono text-[var(--ink-muted)]">Süre: 42 dakika · Etki: 1.400'ü aşkın başarısız ödeme/sipariş işlemi, 42 dakika süren HTTP 500/504 kesintisi, müşteri destek hattında kriz.</div>
         </li>
       
       
@@ -398,7 +410,7 @@
             <span class="text-xs font-mono text-amber-700">SEV-1 CRITICAL · Ödeme &amp; Dağıtık Sistemler</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Sınırlı stoklu bir kampanya sırasında kullanıcıların ödeme butonuna sabırsızlıkla arka arkaya basması ve backend tarafında dağıtık kilit (distributed lock) bulunmaması nedeniyle aynı kullanıcıdan 2-3 kez kart çekimi yapıldı.</p>
-          <div class="text-xs font-mono text-[var(--ink-muted)]">Süre: 14 dakika · Etki: 18.400$ tutarında 74 mükerrer kredi kartı çekimi, ödeme ağ geçidinden chargeback uyarısı, acil hesap dondurulma riski.</div>
+          <div class="text-xs font-mono text-[var(--ink-muted)]">Süre: 14 dakika · Etki: 15–20 bin $ aralığında, 70'in üzerinde mükerrer kredi kartı çekimi, ödeme ağ geçidinden chargeback uyarısı, acil hesap dondurulma riski.</div>
         </li>
       
       
@@ -407,7 +419,7 @@
             <a href="/post-mortem/pm-03-memory-leak-unhandled-promise/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ PM-03 · Her 6 Saatte Bir Çöken Node.js API ve Gizli Event Listener Bellek Sızıntısı</a>
             <span class="text-xs font-mono text-amber-700">SEV-2 MAJOR · Bellek &amp; Performans</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Bir SaaS girişiminin ana backend API sunucusu her 5.5-6 saatte bir bellek tüketimini 1.4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Bir SaaS girişiminin ana backend API sunucusu her 5,5–6 saatte bir bellek tüketimini 1,4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu.</p>
           <div class="text-xs font-mono text-[var(--ink-muted)]">Süre: 3 hafta süren kronik arıza → 4 saatte kalıcı çözüm · Etki: Günde 4 kez beklenmedik API çökmesi, PM2 yeniden başlatmaları sırasında kopan WebSocket bağlantıları, mobil uygulamalarda oturum düşmesi.</div>
         </li>
       

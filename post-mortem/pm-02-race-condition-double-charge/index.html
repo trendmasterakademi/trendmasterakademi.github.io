@@ -28,11 +28,14 @@
         --accent:       #B21F2B;
         --accent-ink:   #8E1A23;
         --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
 
         --term-bg:      #0E1116;
         --term-ink:     #C7CEDA;
         --term-dim:     #6F7B8C;
         --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
       }
 
       @media (prefers-color-scheme: dark) {
@@ -51,11 +54,14 @@
           --accent:       #E4636C;
           --accent-ink:   #F08D94;
           --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
 
           --term-bg:      #0E1116;
           --term-ink:     #C7CEDA;
           --term-dim:     #6F7B8C;
           --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
         }
       }
 
@@ -74,11 +80,14 @@
         --accent:       #E4636C;
         --accent-ink:   #F08D94;
         --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
 
         --term-bg:      #0E1116;
         --term-ink:     #C7CEDA;
         --term-dim:     #6F7B8C;
         --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
       }
 
       :root[data-theme="light"] {
@@ -96,11 +105,14 @@
         --accent:       #B21F2B;
         --accent-ink:   #8E1A23;
         --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
 
         --term-bg:      #0E1116;
         --term-ink:     #C7CEDA;
         --term-dim:     #6F7B8C;
         --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
       }
 
       .logo-light { display: block; }
@@ -263,12 +275,12 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     }catch(e){}})();
     </script>
-    <script type="module" crossorigin src="/assets/index-DzhO3Phs.js"></script>
+    <script type="module" crossorigin src="/assets/index-C743TwmR.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Brk3cdWY.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-cHuo9G6O.css">
   </head>
   <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
     <div id="root">
@@ -306,7 +318,7 @@
         <div><span class="text-[var(--ink-subtle)] block">SEVERITY</span><strong class="text-amber-700">SEV-1 CRITICAL</strong></div>
         <div><span class="text-[var(--ink-subtle)] block">KATEGORİ</span><strong class="text-[var(--ink)]">Ödeme &amp; Dağıtık Sistemler</strong></div>
         <div><span class="text-[var(--ink-subtle)] block">KESİNTİ SÜRESİ</span><strong class="text-emerald-700">14 dakika</strong></div>
-        <div><span class="text-[var(--ink-subtle)] block">TARİH</span><strong class="text-[var(--accent)]">2025-12-02</strong></div>
+        <div><span class="text-[var(--ink-subtle)] block">TARİH</span><strong class="text-[var(--accent)]">[object Object]</strong></div>
       </div>
 
       <section class="space-y-2">
@@ -316,14 +328,14 @@
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Etki & Kayıp</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">18.400$ tutarında 74 mükerrer kredi kartı çekimi, ödeme ağ geçidinden chargeback uyarısı, acil hesap dondurulma riski.</p>
+        <p class="text-[var(--ink-muted)] leading-relaxed">15–20 bin $ aralığında, 70'in üzerinde mükerrer kredi kartı çekimi, ödeme ağ geçidinden chargeback uyarısı, acil hesap dondurulma riski.</p>
       </section>
 
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-[var(--ink)]">Kronolojik Olay Akışı</h2>
         <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)]">
           
-            <li><span class="text-[var(--accent)] font-bold">T-02m (12:00)</span> · <span class="text-[var(--ink)]">Lansman Butonu Açıldı</span> — <span class="text-[var(--ink-muted)]">500 adet sınırlı üretim ürün için 8.000 kullanıcı aynı anda checkout butonuna bastı.</span></li>
+            <li><span class="text-[var(--accent)] font-bold">T-02m (12:00)</span> · <span class="text-[var(--ink)]">Lansman Butonu Açıldı</span> — <span class="text-[var(--ink-muted)]">Sınırlı sayıda üretilmiş bir ürün için binlerce kullanıcı aynı anda checkout butonuna bastı.</span></li>
           
           
             <li><span class="text-[var(--accent)] font-bold">T+00m (12:02)</span> · <span class="text-[var(--ink)]">İlk Mükerrer Çekim Bildirimi</span> — <span class="text-[var(--ink-muted)]">Bir kullanıcının aynı sipariş için 120 milisaniye arayla 3 ayrı SMS onay kodu aldığı görüldü.</span></li>
@@ -351,7 +363,7 @@
         <h2 class="text-xl font-bold text-[var(--ink)]">Uygulanan SWAT Müdahalesi & Hotfix</h2>
         <p class="text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">1. Redis tabanlı atomik dağıtık kilit (Redlock) mekanizması enjekte edildi.
 2. Ödeme sağlayıcısına giden her isteğe deterministik Idempotency Key eklendi.
-3. Etkilenen 74 müşterinin mükerrer çekimleri için otomatik ters ibraz (auto-refund) betiği çalıştırıldı.</p>
+3. Etkilenen tüm müşterilerin mükerrer çekimleri için otomatik ters ibraz (auto-refund) betiği çalıştırıldı.</p>
       </section>
 
       <section class="space-y-2">

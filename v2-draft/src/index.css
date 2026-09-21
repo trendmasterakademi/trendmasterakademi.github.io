@@ -19,6 +19,7 @@
   --accent:       #B21F2B;   /* koyulaştırılmış kiremit kırmızısı */
   --accent-ink:   #8E1A23;   /* açık zeminde aksan metni (kontrast için) */
   --accent-wash:  #F6E7E8;   /* aksan tonlu zemin */
+  --on-accent:    #FFFFFF;   /* açık: #B21F2B üstünde 6,72 : 1 */
 
   /* Terminal bandı — yalnız log / kod / hata çıktısı */
   --term-bg:      #0E1116;
@@ -26,7 +27,7 @@
   --term-ink:     #C7CEDA;
   --term-dim:     #6F7B8C;
   --term-accent:  #E4636C;   /* koyu zeminde aksanın açılmış hali */
-  --term-diff-add:#1F7A4D;
+  --term-diff-add:#338E61;   /* 4,67 : 1 terminal zemini üstünde */
   --term-diff-del:#B21F2B;
   --term-rule:    var(--rule);
 
@@ -34,9 +35,9 @@
   --sev-critical: #B21F2B;
   --sev-high:     #A85B12;
   --sev-normal:   #5A6472;
-  --sev-ok:       #1F7A4D;
-  --sev-ok-hover: #1F7A4D;
-  --sev-ok-dot:   #1F7A4D;
+  --sev-ok:       #1D764B;   /* kâğıtta 4,69 · panelde 5,23 · üstünde beyaz 5,61 */
+  --sev-ok-hover: #1D764B;
+  --sev-ok-dot:   #1D764B;
 
   /* Tipografi ölçeği (6 basamak) */
   --t-xs:   0.75rem;    /* 12.75px */
@@ -77,13 +78,14 @@
     --accent:       #E4636C;
     --accent-ink:   #F08D94;
     --accent-wash:  #2A1619;
+    --on-accent:    #15181E;   /* koyu: #E4636C üstünde 5,33 : 1 */
 
     --term-bg:      #0E1116;
     --term-bg-2:    #0E1116;
     --term-ink:     #C7CEDA;
     --term-dim:     #6F7B8C;
     --term-accent:  #E4636C;
-    --term-diff-add:#1F7A4D;
+    --term-diff-add:#338E61;   /* 4,67 : 1 terminal zemini üstünde */
     --term-diff-del:#E4636C;
     --term-rule:    var(--rule);
 
@@ -111,13 +113,14 @@
   --accent:       #E4636C;
   --accent-ink:   #F08D94;
   --accent-wash:  #2A1619;
+  --on-accent:    #15181E;   /* koyu: #E4636C üstünde 5,33 : 1 */
 
   --term-bg:      #0E1116;
   --term-bg-2:    #0E1116;
   --term-ink:     #C7CEDA;
   --term-dim:     #6F7B8C;
   --term-accent:  #E4636C;
-  --term-diff-add:#1F7A4D;
+  --term-diff-add:#338E61;   /* 4,67 : 1 terminal zemini üstünde */
   --term-diff-del:#E4636C;
   --term-rule:    var(--rule);
 
@@ -144,22 +147,23 @@
   --accent:       #B21F2B;
   --accent-ink:   #8E1A23;
   --accent-wash:  #F6E7E8;
+  --on-accent:    #FFFFFF;   /* açık: #B21F2B üstünde 6,72 : 1 */
 
   --term-bg:      #0E1116;
   --term-bg-2:    #0E1116;
   --term-ink:     #C7CEDA;
   --term-dim:     #6F7B8C;
   --term-accent:  #E4636C;
-  --term-diff-add:#1F7A4D;
+  --term-diff-add:#338E61;   /* 4,67 : 1 terminal zemini üstünde */
   --term-diff-del:#B21F2B;
   --term-rule:    var(--rule);
 
   --sev-critical: #B21F2B;
   --sev-high:     #A85B12;
   --sev-normal:   #5A6472;
-  --sev-ok:       #1F7A4D;
-  --sev-ok-hover: #1F7A4D;
-  --sev-ok-dot:   #1F7A4D;
+  --sev-ok:       #1D764B;   /* kâğıtta 4,69 · panelde 5,23 · üstünde beyaz 5,61 */
+  --sev-ok-hover: #1D764B;
+  --sev-ok-dot:   #1D764B;
 }
 
 /* Logo CSS display rules */
@@ -194,6 +198,7 @@
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
   --color-accent-wash: var(--accent-wash);
+  --color-on-accent: var(--on-accent);
 
   --color-term-bg: var(--term-bg);
   --color-term-bg-2: var(--term-bg-2);
@@ -308,7 +313,7 @@
     gap: 0.5rem;
     min-height: 44px;
     background-color: var(--accent);
-    color: #ffffff;
+    color: var(--on-accent);
     font-family: var(--font-sans);
     font-weight: 500;
     font-size: var(--t-sm);

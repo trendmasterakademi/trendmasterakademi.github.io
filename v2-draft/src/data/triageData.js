@@ -237,7 +237,7 @@ export const triageScenarios = [
       en: 'Developer abruptly left; root server credentials, DNS or repo access missing, project completely frozen.'
     },
     severity: 'SEV-2 MAJOR',
-    firstResponseTime: { tr: '60 Dakika', en: '60 Minutes' },
+    firstResponseTime: { tr: '2 Saat', en: '2 Hours' },
     doNot: [
       {
         tr: 'Ayrılan yazılımcının yetkilerini kaba kuvvetle silmeye çalışırken aktif çalışan üretim servislerinin kimlik doğrulama anahtarlarını (Service Accounts) silmeyin.',
