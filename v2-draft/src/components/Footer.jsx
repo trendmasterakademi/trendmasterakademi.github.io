@@ -22,7 +22,14 @@ const Footer = () => {
             <img 
               src="/logo-light.svg" 
               alt="Trend Master Akademi" 
-              className="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+              className="logo-light h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+              width="220"
+              height="42"
+            />
+            <img 
+              src="/logo-dark.svg" 
+              alt="Trend Master Akademi" 
+              className="logo-dark h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
               width="220"
               height="42"
             />

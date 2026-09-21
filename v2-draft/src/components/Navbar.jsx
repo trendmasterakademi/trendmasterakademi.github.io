@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Globe, AlertTriangle, ShieldCheck, Zap, BookOpen } from 'lucide-react';
+import { Menu, X, Globe, AlertTriangle, ShieldCheck, Zap, BookOpen, Sun, Moon } from 'lucide-react';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
 import { getLocalizedPath } from '../utils/routes';
@@ -16,8 +16,31 @@ const Navbar = () => {
   const [isSOSOpen, setIsSOSOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('hero');
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('tma_theme');
+      if (saved === 'dark' || saved === 'light') return saved;
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    return 'light';
+  });
   const location = useLocation();
   const navigate = useNavigate();
+
+  const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme);
+    try {
+      localStorage.setItem('tma_theme', nextTheme);
+    } catch (e) {}
+    document.documentElement.setAttribute('data-theme', nextTheme);
+  };
+
+  useEffect(() => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 
+      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    setTheme(currentTheme);
+  }, []);
 
   const toggleLang = () => {
     const isEn = (i18n.resolvedLanguage || i18n.language || 'tr').toLowerCase().startsWith('en');
@@ -107,7 +130,14 @@ const Navbar = () => {
               <img 
                 src="/logo-light.svg" 
                 alt="Trend Master Akademi" 
-                className="h-6 sm:h-7 lg:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                className="logo-light h-6 sm:h-7 lg:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                width="200"
+                height="38"
+              />
+              <img 
+                src="/logo-dark.svg" 
+                alt="Trend Master Akademi" 
+                className="logo-dark h-6 sm:h-7 lg:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                 width="200"
                 height="38"
               />
@@ -272,6 +302,22 @@ const Navbar = () => {
             >
               <Globe className="w-3.5 h-3.5 text-[var(--ink-3)] flex-shrink-0" />
               <span>{isTr ? 'EN' : 'TR'}</span>
+            </button>
+
+            {/* Theme Switcher */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={theme === 'dark' ? (isTr ? 'Açık temaya geç' : 'Switch to light theme') : (isTr ? 'Koyu temaya geç' : 'Switch to dark theme')}
+              aria-pressed={theme === 'dark'}
+              className="p-1.5 sm:p-2 rounded-[var(--r-control)] bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors cursor-pointer min-w-[44px] min-h-[44px] flex items-center justify-center flex-shrink-0"
+              title={theme === 'dark' ? (isTr ? 'Açık Tema' : 'Light Theme') : (isTr ? 'Koyu Tema' : 'Dark Theme')}
+            >
+              {theme === 'dark' ? (
+                <Sun className="w-4 h-4 text-[var(--ink-2)]" />
+              ) : (
+                <Moon className="w-4 h-4 text-[var(--ink-2)]" />
+              )}
             </button>
 
             {/* Mobile / Tablet Hamburger Toggle */}

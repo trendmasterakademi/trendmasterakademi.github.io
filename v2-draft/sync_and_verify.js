@@ -218,11 +218,18 @@ let fontBlackCount = 0;
 let gradientTextCount = 0;
 
 const approvedHexes = new Set([
-  '#f5f6f7', '#ffffff', '#dce0e5', '#b8bfc8', '#7e8794',
-  '#14181f', '#4a5461', '#68727f', '#c02430', '#8e1a23',
-  '#fbeff0', '#0e1116', '#c7ceda', '#6f7b8c',
-  '#e4636c', '#a85b12', '#5a6472',
-  '#1f7a4d', '#25d366'
+  // Açık Tema Paleti
+  '#e9ebee', '#f6f7f9', '#cfd5dc', '#a9b2bd', '#6e7784',
+  '#14181f', '#49535f', '#626b77', '#b21f2b', '#8e1a23',
+  '#f6e7e8', '#0e1116', '#c7ceda', '#6f7b8c',
+  '#e4636c', '#1f7a4d', '#a85b12', '#5a6472',
+  '#ffffff',
+  // Koyu Tema Paleti
+  '#15181e', '#1c2027', '#2b313a', '#3d444f', '#616b77',
+  '#e7eaef', '#aeb6c2', '#8a93a1', '#f08d94', '#2a1619',
+  '#d47a2a', '#2e9e66',
+  // Dış İstisna (WhatsApp)
+  '#25d366'
 ]);
 
 const unapprovedHexes = new Map();
@@ -288,19 +295,19 @@ function extractBodyWords(html) {
 
 const anchorUrls = [
   { url: 'https://trendmasterakademi.com/', target: 506 },
-  { url: 'https://trendmasterakademi.com/agency/', target: 525 },
+  { url: 'https://trendmasterakademi.com/agency/', target: 509 },
   { url: 'https://trendmasterakademi.com/sos/', target: 189 },
   { url: 'https://trendmasterakademi.com/kit/', target: 103 },
-  { url: 'https://trendmasterakademi.com/crash-test/', target: 313 },
-  { url: 'https://trendmasterakademi.com/teshis/', target: 591 },
-  { url: 'https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/', target: 464 },
-  { url: 'https://trendmasterakademi.com/sozluk/', target: 341 },
-  { url: 'https://trendmasterakademi.com/sozluk/deadlock/', target: 208 },
-  { url: 'https://trendmasterakademi.com/post-mortem/', target: 399 },
+  { url: 'https://trendmasterakademi.com/crash-test/', target: 316 },
+  { url: 'https://trendmasterakademi.com/teshis/', target: 520 },
+  { url: 'https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/', target: 444 },
+  { url: 'https://trendmasterakademi.com/sozluk/', target: 349 },
+  { url: 'https://trendmasterakademi.com/sozluk/deadlock/', target: 225 },
+  { url: 'https://trendmasterakademi.com/post-mortem/', target: 387 },
   { url: 'https://trendmasterakademi.com/about/', target: 249 },
   { url: 'https://trendmasterakademi.com/privacy/', target: 96 },
-  { url: 'https://trendmasterakademi.com/sla/', target: 400 },
-  { url: 'https://trendmasterakademi.com/radar/', target: 227 },
+  { url: 'https://trendmasterakademi.com/sla/', target: 388 },
+  { url: 'https://trendmasterakademi.com/radar/', target: 231 },
   { url: 'https://trendmasterakademi.com/triyaj/', target: 405 }
 ];
 

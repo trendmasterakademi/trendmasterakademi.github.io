@@ -1,22 +1,24 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: light;
+
   /* Kâğıt — ana yüzey */
-  --paper:        #F5F6F7;   /* sayfa zemini — krem DEĞİL, nötr soğuk */
-  --surface:      #FFFFFF;   /* yükseltilmiş panel */
-  --rule:         #DCE0E5;   /* saç teli çizgi */
-  --rule-strong:  #B8BFC8;   /* vurgulu ayraç */
-  --rule-input:   #7E8794;   /* form alanı kenarlığı (3.29:1 kontrast >= 3:1) */
+  --paper:        #E9EBEE;   /* sayfa zemini — %82,9 parlaklık, nötr soğuk kâğıt */
+  --surface:      #F6F7F9;   /* yükseltilmiş panel — %93,1 parlaklık */
+  --rule:         #CFD5DC;   /* saç teli çizgi (1.28:1 kâğıda, 1.37:1 panele) */
+  --rule-strong:  #A9B2BD;   /* vurgulu ayraç (1.81:1 kâğıda, 1.94:1 panele) */
+  --rule-input:   #6E7784;   /* form alanı kenarlığı (3.36:1 kâğıda, 3.60:1 panele — WCAG 3:1 üstü) */
 
   /* Mürekkep */
-  --ink:          #14181F;   /* başlık */
-  --ink-2:        #4A5461;   /* gövde */
-  --ink-3:        #68727F;   /* etiket, açıklama (4.51:1 kontrast >= 4.5:1) */
+  --ink:          #14181F;   /* başlık (13.75:1 kâğıda, 15.54:1 panele) */
+  --ink-2:        #49535F;   /* gövde (5.85:1 kâğıda, 6.61:1 panele) */
+  --ink-3:        #626B77;   /* etiket, açıklama (4.50:1 kâğıda, 5.09:1 panele — WCAG 4.5:1 tam karşılandı) */
 
   /* Aksan — sayfadaki TEK aksan */
-  --accent:       #C02430;   /* logonun kendi kırmızısı */
+  --accent:       #B21F2B;   /* koyulaştırılmış kiremit kırmızısı */
   --accent-ink:   #8E1A23;   /* açık zeminde aksan metni (kontrast için) */
-  --accent-wash:  #FBEFF0;   /* aksan tonlu zemin */
+  --accent-wash:  #F6E7E8;   /* aksan tonlu zemin */
 
   /* Terminal bandı — yalnız log / kod / hata çıktısı */
   --term-bg:      #0E1116;
@@ -25,10 +27,11 @@
   --term-dim:     #6F7B8C;
   --term-accent:  #E4636C;   /* koyu zeminde aksanın açılmış hali */
   --term-diff-add:#1F7A4D;
-  --term-diff-del:#C02430;
+  --term-diff-del:#B21F2B;
+  --term-rule:    var(--rule);
 
   /* Aciliyet — YALNIZ teşhis katalogunda */
-  --sev-critical: #C02430;
+  --sev-critical: #B21F2B;
   --sev-high:     #A85B12;
   --sev-normal:   #5A6472;
   --sev-ok:       #1F7A4D;
@@ -56,6 +59,125 @@
   --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --font-mono: "IBM Plex Mono", Consolas, "Courier New", monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --paper:        #15181E;
+    --surface:      #1C2027;
+    --rule:         #2B313A;
+    --rule-strong:  #3D444F;
+    --rule-input:   #616B77;
+
+    --ink:          #E7EAEF;
+    --ink-2:        #AEB6C2;
+    --ink-3:        #8A93A1;
+
+    --accent:       #E4636C;
+    --accent-ink:   #F08D94;
+    --accent-wash:  #2A1619;
+
+    --term-bg:      #0E1116;
+    --term-bg-2:    #0E1116;
+    --term-ink:     #C7CEDA;
+    --term-dim:     #6F7B8C;
+    --term-accent:  #E4636C;
+    --term-diff-add:#1F7A4D;
+    --term-diff-del:#E4636C;
+    --term-rule:    var(--rule);
+
+    --sev-critical: #E4636C;
+    --sev-high:     #D47A2A;
+    --sev-normal:   #8A93A1;
+    --sev-ok:       #2E9E66;
+    --sev-ok-hover: #2E9E66;
+    --sev-ok-dot:   #2E9E66;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper:        #15181E;
+  --surface:      #1C2027;
+  --rule:         #2B313A;
+  --rule-strong:  #3D444F;
+  --rule-input:   #616B77;
+
+  --ink:          #E7EAEF;
+  --ink-2:        #AEB6C2;
+  --ink-3:        #8A93A1;
+
+  --accent:       #E4636C;
+  --accent-ink:   #F08D94;
+  --accent-wash:  #2A1619;
+
+  --term-bg:      #0E1116;
+  --term-bg-2:    #0E1116;
+  --term-ink:     #C7CEDA;
+  --term-dim:     #6F7B8C;
+  --term-accent:  #E4636C;
+  --term-diff-add:#1F7A4D;
+  --term-diff-del:#E4636C;
+  --term-rule:    var(--rule);
+
+  --sev-critical: #E4636C;
+  --sev-high:     #D47A2A;
+  --sev-normal:   #8A93A1;
+  --sev-ok:       #2E9E66;
+  --sev-ok-hover: #2E9E66;
+  --sev-ok-dot:   #2E9E66;
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --paper:        #E9EBEE;
+  --surface:      #F6F7F9;
+  --rule:         #CFD5DC;
+  --rule-strong:  #A9B2BD;
+  --rule-input:   #6E7784;
+
+  --ink:          #14181F;
+  --ink-2:        #49535F;
+  --ink-3:        #626B77;
+
+  --accent:       #B21F2B;
+  --accent-ink:   #8E1A23;
+  --accent-wash:  #F6E7E8;
+
+  --term-bg:      #0E1116;
+  --term-bg-2:    #0E1116;
+  --term-ink:     #C7CEDA;
+  --term-dim:     #6F7B8C;
+  --term-accent:  #E4636C;
+  --term-diff-add:#1F7A4D;
+  --term-diff-del:#B21F2B;
+  --term-rule:    var(--rule);
+
+  --sev-critical: #B21F2B;
+  --sev-high:     #A85B12;
+  --sev-normal:   #5A6472;
+  --sev-ok:       #1F7A4D;
+  --sev-ok-hover: #1F7A4D;
+  --sev-ok-dot:   #1F7A4D;
+}
+
+/* Logo CSS display rules */
+.logo-light { display: block; }
+.logo-dark { display: none; }
+:root[data-theme="dark"] .logo-light { display: none; }
+:root[data-theme="dark"] .logo-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .logo-light { display: none; }
+  :root:not([data-theme="light"]) .logo-dark { display: block; }
+}
+
+/* Terminal dark mode border */
+:root[data-theme="dark"] [class*="bg-[var(--term-bg)"],
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) [class*="bg-[var(--term-bg)"] {
+    border-color: var(--rule);
+  }
 }
 
 @theme {
@@ -112,7 +234,6 @@
 
 @layer base {
   html {
-    color-scheme: light;
     scroll-behavior: smooth;
     scroll-padding-top: 85px;
     overflow-x: clip;
