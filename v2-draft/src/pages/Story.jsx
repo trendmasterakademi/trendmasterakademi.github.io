@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowLeft, BookOpen, ShieldCheck, ArrowRight, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 const Story = () => {
@@ -11,22 +11,7 @@ const Story = () => {
   const isTr = isTurkish(i18n);
 
   useEffect(() => {
-    document.title = formatDocumentTitle(isTr 
-      ? "Hikâyemiz & Kuruluş Anlatısı | Trend Master Akademi"
-      : "Our Story & Origins | Trend Master Academy");
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", isTr
-        ? "Trend Master Akademi'nin kuruluş hikâyesi: 20 yıllık finansal piyasa yazılım geçmişimiz, online derslerden doğan Akademi adı ve ajansların görünmez mühendislik masası olma vizyonumuz."
-        : "The story of Trend Master Akademi: 20 years of financial software development, our roots in online education, and our evolution into the invisible engineering backline for agencies."
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', isTr ? 'https://trendmasterakademi.com/hikayemiz/' : 'https://trendmasterakademi.com/story/');
-    }
+    setPageSeo(isTr ? '/hikayemiz/' : '/story/', isTr ? 'tr' : 'en');
   }, [isTr]);
 
   return (
@@ -127,7 +112,7 @@ const Story = () => {
                 That's what we do today. We are not an end-client agency; we are a back-office and software house working behind digital agencies, software houses and startups — resolving crises, building complex architectures, operating 100% white-label.
               </p>
               <p>
-                Our name is still "Akademi", because we take the teaching side of this work seriously. That is also why the <Link to="/sozluk/" className="text-[var(--accent)] hover:underline underline-offset-2">Glossary</Link> exists on this site: it translates developer language into agency language. And the same discipline still holds: rescuing a system requires understanding it well enough to explain it. You cannot repair a codebase you cannot explain — which makes "Akademi" not a stranger to the work we do, but its source.
+                Our name is still "Akademi", because we take the teaching side of this work seriously. That is also why the <Link to="/glossary/" className="text-[var(--accent)] hover:underline underline-offset-2">Glossary</Link> exists on this site: it translates developer language into agency language. And the same discipline still holds: rescuing a system requires understanding it well enough to explain it. You cannot repair a codebase you cannot explain — which makes "Akademi" not a stranger to the work we do, but its source.
               </p>
               <p>
                 This is the story of how it started. The desk has grown since — the team running the work today is larger.

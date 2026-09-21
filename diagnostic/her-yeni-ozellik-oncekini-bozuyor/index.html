@@ -193,7 +193,7 @@
     </script>
     
     <title>Every New Feature Breaks an Existing Feature</title>
-    <meta name="description" content="Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt." />
+    <meta name="description" content="Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. Likely causes and the fix." />
     <meta name="author" content="Trend Master Akademi" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/her-yeni-ozellik-oncekini-bozuyor/" />
@@ -207,14 +207,14 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/her-yeni-ozellik-oncekini-bozuyor/" />
     <meta property="og:title" content="Every New Feature Breaks an Existing Feature" />
-    <meta property="og:description" content="Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt." />
+    <meta property="og:description" content="Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. Likely causes and the fix." />
     <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
     <meta property="og:site_name" content="Trend Master Akademi" />
-    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:locale" content="en_US" />
 
     <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
 
@@ -222,7 +222,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/her-yeni-ozellik-oncekini-bozuyor/" />
     <meta name="twitter:title" content="Every New Feature Breaks an Existing Feature" />
-    <meta name="twitter:description" content="Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt." />
+    <meta name="twitter:description" content="Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. Likely causes and the fix." />
     <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
 
     <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
@@ -309,7 +309,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DN9go0BT.js"></script>
+    <script type="module" crossorigin src="/assets/index-DTaQ5JRn.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -324,6 +324,7 @@
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">Home</a>
           <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
           <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
           <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
           <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
@@ -333,11 +334,14 @@
           <a href="/sla/" class="hover:underline">SLA & Commitments</a>
           <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
           <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Unilateral NDA</a>
           <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
           <a href="/radar/" class="hover:underline">Status Radar</a>
           <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
           <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
           <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
           <a href="/sos/" class="hover:underline">Emergency Support</a>
           <a href="/about/" class="hover:underline">About Us</a>
           <a href="/privacy/" class="hover:underline">Privacy Policy</a>
@@ -348,87 +352,87 @@
         <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
-      <p class="text-sm font-mono text-[var(--accent)]">Aciliyet: Yüksek · birikmiş borç · Kategori: Kod Sağlığı</p>
+      <p class="text-sm font-mono text-[var(--accent)]">Urgency: High · technical debt · Category: Code Health</p>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Sahada nasıl görünür</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Müşterinin istediği yeni bir ödeme seçeneği eklendiğinde fatura kesme modülü durur; fatura düzeltildiğinde ise indirim kuponları çalışmaz hale gelir. Ekip sürekli bir önceki hatayı kapatmaya çalışırken yeni arızalar üretir; teslimatlar kilitlenir.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Implementing a requested payment method breaks automated invoicing; fixing invoicing disables discount coupons. The team spends days patching yesterday's side effects while introducing fresh defects, bringing feature delivery to a standstill.</p>
       </section>
     
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Sisteminizde bu satırları görüyorsanız</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
         
       <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
-        <li><code>Aynı hata kaydının aylar içinde tekrar açılması</code></li>
-        <li><code>Test yok, ya da var ama çalıştırılmıyor</code></li>
-        <li><code>Tek bir dosyanın binlerce satır olması</code></li>
-        <li><code>Aynı mantığın üç ayrı yerde kopyalanmış olması</code></li>
+        <li><code>Regression: identical bug ticket reopened across sprints</code></li>
+        <li><code>No automated test coverage, or tests skipped in CI</code></li>
+        <li><code>God class anti-pattern: single source file spans thousands of lines</code></li>
+        <li><code>Duplicate logic copy-pasted across multiple modules</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">Ölçülebilir tek gösterge tekrar açılan hata sayısıdır. &quot;Kod kötü&quot; bir histir; &quot;aynı hata üç ayda dört kez açıldı&quot; bir veridir.</p>
+        <p class="text-[var(--ink-muted)] text-sm">The only objective metric is bug regression frequency. 'Code feels bad' is subjective sentiment; 'the same checkout defect reopened four times in 90 days' is actionable data.</p>
       </section>
 
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Üç olası neden ve ayırt edici testleri</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Three Potential Root Causes & Differential Tests</h2>
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">A · Kopyalanmış mantık</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Aynı kural birden çok yerde yazılı. Biri düzeltiliyor, diğerleri unutuluyor.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Aynı kural birden fazla yerde mi yazılı?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Aynı mantık birden çok yerde → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Tek yere topla · kademeli</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Sorunlu fonksiyonun içine yeni if-else blokları eklenir; her yeni koşul dosyanın karmaşıklığını ve kırılganlığını daha da artırarak yeni hatalar doğurur.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">A · Duplicated business logic</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Identical calculation logic copy-pasted across multiple controllers. Fixing one leaves the others broken.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is business logic duplicated in multiple controllers?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Duplicated algorithms in codebase → A</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Consolidate to single service class · incremental</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Nesting additional if-else branches into bloated functions magnifies cyclomatic complexity, guaranteeing future regressions across adjacent business logic.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">B · Test yok</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Güvenlik ağı yok; bir değişikliğin neyi bozduğu ancak canlıda anlaşılıyor.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Kritik akışların testi var mı?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Otomatik test yok → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Önce kritik akışa test yaz</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Değişiklik sonrası geliştiriciye tüm siteyi elle kontrol etmesi söylenir; insan dikkati sınırlı olduğundan test edilmeyen diğer modüllerdeki kırılmalar canlıya sızar.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">B · Missing regression test suite</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Zero automated unit/integration tests exist; side effects are discovered only after real customers encounter crashes.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Do automated tests cover critical checkout paths?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Zero test coverage in CI pipeline → B</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Write regression tests on critical flows FIRST</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Relying entirely on manual smoke testing fails because human fatigue inevitably misses edge cases across unverified adjacent modules.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">C · Aşırı bağlılık</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Modüller birbirine sıkı bağlı; bir yeri değiştirmek zinciri kırıyor.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Küçük değişiklik çok yeri mi etkiliyor?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Küçük değişiklik geniş etki yapıyor → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Sınırları ayır · parça parça</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Çakışan global değişkenin ismi değiştirilip yeni bir global açılır; durum paylaşımı izole edilmediği için yan etkiler başka sayfalarda sürmeye devam eder.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">C · High module coupling</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Tightly coupled components mutate shared global state; altering one class triggers unpredictable cascade breaks.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does localized edit break unrelated views?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Minor patch creates wide blast radius → C</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Decouple boundaries via interfaces · step by step</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Renaming conflicting global variables merely shifts unintended state mutation to other templates without isolating runtime scopes.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer, ne kadar sürer</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Kıdemli mühendis. Ama sıra bağlayıcıdır: önce test, sonra düzeltme. Güvenlik ağı olmadan yapılan büyük temizlik, mevcut arızalara yenilerini ekler. Her şeyi baştan yazmak neredeyse hiçbir zaman doğru cevap değildir.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Senior software architect. Sequence is mandatory: write regression tests FIRST, then refactor. Refactoring without test safety nets introduces secondary defects. Total rewrites from scratch are almost never the correct strategy.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Çözülmezse ne olur</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Her yeni özelliğin maliyeti bir öncekinden yüksek olur. Ekip aynı işi daha uzun sürede yapmaya başlar ve bu dışarıdan &quot;yavaşladılar&quot; gibi görünür.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Development velocity stalls exponentially. Simple features take weeks, engineering morale plummets, and external stakeholders perceive the engineering team as ineffective.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">İlgili terimler ve hizmet</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts & Services</h2>
         
       <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
-        <li><a href="/sozluk/teknik-borc/" class="hover:underline">→ Teknik Borç (Technical Debt)</a></li>
-        <li><a href="/sozluk/refactor/" class="hover:underline">→ Refactor (Kod İyileştirme &amp; Yeniden Yapılandırma)</a></li>
-        <li><a href="/sozluk/ci-cd/" class="hover:underline">→ CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)</a></li>
+        <li><a href="/glossary/teknik-borc/" class="hover:underline">→ Technical Debt</a></li>
+        <li><a href="/glossary/refactor/" class="hover:underline">→ Refactoring</a></li>
+        <li><a href="/glossary/ci-cd/" class="hover:underline">→ CI/CD Pipelines</a></li>
       </ul>
     
-        <p class="pt-2"><a href="/agency/" class="text-[var(--accent)] hover:underline font-bold">→ B2B White-Label Mühendislik Masası</a></p>
+        <p class="pt-2"><a href="/agency/" class="text-[var(--accent)] hover:underline font-bold">→ B2B White-Label Engineering Desk</a></p>
       </section>
     </section>
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

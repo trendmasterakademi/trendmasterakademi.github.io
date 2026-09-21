@@ -192,8 +192,8 @@
       }(window.location))
     </script>
     
-    <title>Diagnostic Catalog // 20 Documented Outage Symptoms | Trend Master Academy</title>
-    <meta name="description" content="From symptom to root cause: technical diagnosis guide for agency leaders and engineering managers." />
+    <title>Diagnostic Catalog | Trend Master Akademi</title>
+    <meta name="description" content="From symptom to cause: 20 common software failures, each with three likely causes, the test that tells them apart, and the fix. Written for agencies." />
     <meta name="author" content="Trend Master Akademi" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/" />
@@ -206,23 +206,23 @@
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/" />
-    <meta property="og:title" content="Diagnostic Catalog // 20 Documented Outage Symptoms | Trend Master Academy" />
-    <meta property="og:description" content="From symptom to root cause: technical diagnosis guide for agency leaders and engineering managers." />
+    <meta property="og:title" content="Diagnostic Catalog | Trend Master Akademi" />
+    <meta property="og:description" content="From symptom to cause: 20 common software failures, each with three likely causes, the test that tells them apart, and the fix. Written for agencies." />
     <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
     <meta property="og:site_name" content="Trend Master Akademi" />
-    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:locale" content="en_US" />
 
     <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
 
     <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/" />
-    <meta name="twitter:title" content="Diagnostic Catalog // 20 Documented Outage Symptoms | Trend Master Academy" />
-    <meta name="twitter:description" content="From symptom to root cause: technical diagnosis guide for agency leaders and engineering managers." />
+    <meta name="twitter:title" content="Diagnostic Catalog | Trend Master Akademi" />
+    <meta name="twitter:description" content="From symptom to cause: 20 common software failures, each with three likely causes, the test that tells them apart, and the fix. Written for agencies." />
     <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
 
     <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
@@ -390,7 +390,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DN9go0BT.js"></script>
+    <script type="module" crossorigin src="/assets/index-DTaQ5JRn.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -405,6 +405,7 @@
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">Home</a>
           <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
           <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
           <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
           <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
@@ -414,11 +415,14 @@
           <a href="/sla/" class="hover:underline">SLA & Commitments</a>
           <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
           <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Unilateral NDA</a>
           <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
           <a href="/radar/" class="hover:underline">Status Radar</a>
           <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
           <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
           <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
           <a href="/sos/" class="hover:underline">Emergency Support</a>
           <a href="/about/" class="hover:underline">About Us</a>
           <a href="/privacy/" class="hover:underline">Privacy Policy</a>
@@ -429,175 +433,175 @@
         <p class="text-[var(--ink-muted)] text-lg leading-relaxed">You see the symptom but not the cause. Each diagnosis begins with an observable failure, isolates potential causes, and outlines triage protocols.</p>
         
   <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
-    <h2 class="text-xl font-bold text-[var(--ink)]">Yayınlanmış arıza kataloğu — 20 teşhis</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Published Incident Catalog — 20 Diagnoses</h2>
     <ul class="space-y-4">
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/ayni-stok-iki-musteriye-satildi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 01 · Aynı stok iki müşteriye satıldı</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Kritik · ticari kayıp · Sipariş &amp; Ödeme</span>
+            <a href="/diagnostic/ayni-stok-iki-musteriye-satildi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 01 · Same Inventory Sold to Multiple Customers</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">Critical · revenue loss · Orders &amp; Payments</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Son kalan ürün iki ayrı siparişte çıktı, stok eksiye düştü.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">The last item in stock was checked out across two different orders, sending inventory negative.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/odeme-alindi-siparis-olusmadi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 02 · Ödeme alındı, sipariş oluşmadı</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Kritik · ticari kayıp · Sipariş &amp; Ödeme</span>
+            <a href="/diagnostic/odeme-alindi-siparis-olusmadi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 02 · Payment Charged but Order Not Created</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">Critical · commercial loss · Orders &amp; Payments</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Müşterinin kartından para çekildi ama sistemde sipariş yok.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Customer was charged successfully but no order appears in the system.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/odeme-iki-kez-alindi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 03 · Ödeme iki kez alındı</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Kritik · iade riski · Sipariş &amp; Ödeme</span>
+            <a href="/diagnostic/odeme-iki-kez-alindi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 03 · Payment Charged Twice for Single Order</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">Critical · chargeback risk · Orders &amp; Payments</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Müşteriden aynı tutar iki kez tahsil edildi.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">The client was billed twice for the same cart.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/islemler-kilitlendi-sayfa-donuyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 04 · İşlemler kilitlendi, sayfa dönüp duruyor</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Kritik · işlem durdu · Performans</span>
+            <a href="/diagnostic/islemler-kilitlendi-sayfa-donuyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 04 · Transactions Deadlocked, Pages Spinning</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">Critical · transaction halt · Performance</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Belirli bir işlem — sipariş onayı, stok güncelleme, toplu güncelleme — sonsuza kadar dönüyor ve sonunda zaman aşımı veriyor.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Specific operations — checkout completion, stock updates, or batch imports — hang indefinitely until timeout.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/guncelleme-sonrasi-veri-kayboldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 05 · Güncellemeden sonra veri kayboldu sanılıyor</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Kritik · veri paniği · Veri &amp; Devir</span>
+            <a href="/diagnostic/guncelleme-sonrasi-veri-kayboldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 05 · Data Assumed Lost After System Update</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">Critical · data panic · Data &amp; Migration</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Bir güncellemeden sonra kayıtlar görünmüyor ve panik &quot;veriler silindi&quot; diye başlıyor.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Records vanish after a release, triggering data deletion panic.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/deploy-sonrasi-site-bozuldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 06 · Deploy sonrası site bozuldu</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Kritik · yayın hatası · Canlı Arıza</span>
+            <a href="/diagnostic/deploy-sonrasi-site-bozuldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 06 · Website Broke Immediately After Deployment</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">Critical · deploy failure · Live Outage</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Yayın alındı ve site bozuldu.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">A new release went live and the site broke.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/site-500-veriyor-dun-calisiyordu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 07 · Site 500 veriyor, dün çalışıyordu</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Kritik · site kapalı · Canlı Arıza</span>
+            <a href="/diagnostic/site-500-veriyor-dun-calisiyordu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 07 · Site Returning 500 Error, Worked Yesterday</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">Critical · outage · Live Outage</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Dün sorunsuz açılan site bugün 500 veriyor ve kimse bir şey değiştirmediğini söylüyor.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">A website that booted flawlessly yesterday throws 500 errors today, with team members insisting nothing changed.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/bulut-hesabi-askiya-alindi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 08 · Bulut hesabı askıya alındı, site kapandı</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Kritik · site kapalı · Altyapı &amp; Erişim</span>
+            <a href="/diagnostic/bulut-hesabi-askiya-alindi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 08 · Cloud Account Suspended, Site Down</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">Critical · outage · Infrastructure &amp; Access</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Site aniden tamamen erişilemez oldu.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">The application became completely unreachable out of nowhere.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/yedek-var-sanildi-yedek-yok/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 09 · Yedek var sanılıyordu, yedek yok</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Kritik · veri riski · Devir &amp; Süreklilik</span>
+            <a href="/diagnostic/yedek-var-sanildi-yedek-yok/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 09 · Backup Assumed to Exist, No Valid Backup</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">Critical · data loss risk · Handover &amp; Continuity</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Bir sorun çıktı, yedeğe dönülmek istendi ve yedeğin ya hiç alınmadığı ya da geri yüklenemediği görüldü.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">An outage occurred, a rollback to backup was requested, only to discover snapshots were never generated or are un-restorable.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/ssl-suresi-doldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 10 · SSL süresi doldu, tarayıcı uyarı veriyor</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Kritik · güven kaybı · Altyapı &amp; Erişim</span>
+            <a href="/diagnostic/ssl-suresi-doldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 10 · SSL Certificate Expired, Security Warning Displayed</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">Critical · trust loss · Infrastructure &amp; Access</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Ziyaretçiler siteye girerken 'bağlantınız gizli değil' uyarısı alıyor.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Users are blocked by 'Your connection is not private' browser interstitials.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/site-yavasladi-sunucu-bos/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 11 · Site yavaşladı ama sunucu boş</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Yüksek · dönüşüm kaybı · Performans</span>
+            <a href="/diagnostic/site-yavasladi-sunucu-bos/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 11 · Site Stalled Despite Idle Server Resources</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">High · conversion loss · Performance</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Sayfalar geç açılıyor ama sunucu kaynakları rahat görünüyor.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Page latency surges while server CPU and RAM remain idle.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/entegrasyon-429-veriyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 12 · Entegrasyon aniden 429 vermeye başladı</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Yüksek · veri akışı durdu · İletişim &amp; Entegrasyon</span>
+            <a href="/diagnostic/entegrasyon-429-veriyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 12 · Third-Party Integration Returning HTTP 429</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">High · data sync halted · Contact &amp; Integrations</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Aylardır çalışan bir entegrasyon — kargo, pazaryeri, ödeme ya da e-posta — birden hata vermeye başladı ve kod değişmedi.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/sunucu-her-gun-yeniden-baslatiliyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 13 · Sunucu her gün yeniden başlatılıyor</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Yüksek · gizlenen arıza · Altyapı &amp; Erişim</span>
+            <a href="/diagnostic/sunucu-her-gun-yeniden-baslatiliyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 13 · Server Rebooted Daily to Clear Freeze</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">High · masked defect · Infrastructure &amp; Access</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Site günün belirli saatinde yavaşlıyor veya kilitleniyor, sunucu yeniden başlatılınca düzeliyor.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">The application slows down or freezes predictably every afternoon; rebooting restores normal function.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/testte-calisiyor-canlida-calismiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 14 · Test ortamında çalışıyor, canlıda çalışmıyor</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Yüksek · teslim engeli · Devir &amp; Süreklilik</span>
+            <a href="/diagnostic/testte-calisiyor-canlida-calismiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 14 · Works in Staging, Fails in Production</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">High · release blocker · Handover &amp; Continuity</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Geliştirici &quot;bende çalışıyor&quot; diyor ve haklı.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">The developer says 'it works on my machine' and they are correct.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/her-yeni-ozellik-oncekini-bozuyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 15 · Her yeni özellik bir öncekini bozuyor</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Yüksek · birikmiş borç · Kod Sağlığı</span>
+            <a href="/diagnostic/her-yeni-ozellik-oncekini-bozuyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 15 · Every New Feature Breaks an Existing Feature</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">High · technical debt · Code Health</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Bir yeri düzeltiyorsunuz, başka bir yer bozuluyor.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Fixing one module breaks another unrelated area.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/yazilimci-gitti-koda-girilemiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 16 · Yazılımcı gitti, kimse koda giremiyor</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Yüksek · süreklilik riski · Devir &amp; Süreklilik</span>
+            <a href="/diagnostic/yazilimci-gitti-koda-girilemiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 16 · Developer Departed, Codebase Inaccessible</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">High · continuity risk · Handover &amp; Continuity</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Projeyi yapan kişi ayrıldı.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">The developer who built the platform departed.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/domain-hosting-erisimi-yok/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 17 · Domain ve hosting erişimi kimsede yok</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Yüksek · mülkiyet riski · Devir &amp; Süreklilik</span>
+            <a href="/diagnostic/domain-hosting-erisimi-yok/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 17 · Zero Access to Domain Registrar and Hosting</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">High · ownership risk · Handover &amp; Continuity</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Site çalışıyor ama kimse yönetim paneline giremiyor.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">The website is online but no stakeholder has root panel access.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/form-gonderiliyor-mail-gelmiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 18 · Form gönderiliyor ama mail gelmiyor</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Yüksek · kayıp talep · İletişim &amp; Entegrasyon</span>
+            <a href="/diagnostic/form-gonderiliyor-mail-gelmiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 18 · Form Submits Successfully but No Email Delivered</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">High · lost leads · Contact &amp; Integrations</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">İletişim veya teklif formu 'gönderildi' diyor ama kimseye mail ulaşmıyor.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Lead or quote forms display 'Submitted successfully' but notifications never arrive in the team inbox.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/site-aramalarda-gorunmez-oldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 19 · Site aramalarda görünmez oldu</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Yüksek · trafik kaybı · Görünürlük</span>
+            <a href="/diagnostic/site-aramalarda-gorunmez-oldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 19 · Website Dropped from Search Engine Results</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">High · traffic loss · Visibility</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Site açılıyor, her şey normal görünüyor ama arama sonuçlarındaki yerini kaybetti.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">The site is accessible and looks normal, but organic search rankings plummeted.</p>
         </li>
       
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/kucuk-degisiklik-gunler-suruyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 20 · Küçük değişiklik günler sürüyor</a>
-            <span class="text-xs font-mono text-[var(--ink-muted)]">Orta · hız kaybı · Kod Sağlığı</span>
+            <a href="/diagnostic/kucuk-degisiklik-gunler-suruyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 20 · Minor Changes Take Days to Deliver</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">Medium · velocity loss · Code Health</span>
           </div>
-          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">&quot;Bir buton rengi&quot; ya da &quot;bir alan ekle&quot; gibi işler günlere yayılıyor ve müşteri bunu isteksizlik sanıyor.</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Trivial edits like updating button styles or adding a form field drag on for days, leading clients to assume reluctance.</p>
         </li>
     </ul>
   </section>
 
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

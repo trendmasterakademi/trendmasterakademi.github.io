@@ -1,9 +1,14 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { outageSimulatorData } from "../data/outageSimulatorData";
 import { getCalendlyUrl } from "../utils/calendly";
+import { setPageSeo } from "../utils/pageTitle";
 
 export default function OutageSimulator({ lang = "tr" }) {
   const t = outageSimulatorData[lang] || outageSimulatorData.tr;
+
+  useEffect(() => {
+    setPageSeo(lang === 'tr' ? '/hasar-tespiti/' : '/outage-simulator/', lang);
+  }, [lang]);
 
   const [selectedPreset, setSelectedPreset] = useState("ecommerce");
   const [durationHours, setDurationHours] = useState(4);

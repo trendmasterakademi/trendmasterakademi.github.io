@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { postMortems, postMortemDisclosure } from '../data/postMortemData';
 import { getCalendlyUrl } from '../utils/calendly';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 const PostMortemDetail = () => {
@@ -20,20 +20,7 @@ const PostMortemDetail = () => {
 
   useEffect(() => {
     if (item) {
-      document.title = formatDocumentTitle(`${item.no} · ${item.title[lang]} | Trend Master Akademi`);
-
-      const metaDesc = document.querySelector('meta[name="description"]');
-      if (metaDesc) {
-        metaDesc.setAttribute('content', item.summary[lang].slice(0, 155) + '...');
-      }
-
-      const canonical = document.querySelector('link[rel="canonical"]');
-      if (canonical) {
-        canonical.setAttribute('href', isTr 
-          ? `https://trendmasterakademi.com/post-mortem/${item.slug}/` 
-          : `https://trendmasterakademi.com/post-mortems/${item.slug}/`
-        );
-      }
+      setPageSeo(isTr ? `/post-mortem/${item.slug}/` : `/post-mortems/${item.slug}/`, lang);
     }
   }, [item, lang, isTr]);
 

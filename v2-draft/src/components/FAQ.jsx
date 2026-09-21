@@ -11,7 +11,7 @@ export const faqData = [
     icon: ShieldCheck,
     question: {
       tr: "Trend Master Akademi'nin White-Label çalışma modeli nasıl işler?",
-      en: "How does Trend Master Academy's White-Label partnership model work?"
+      en: "How does Trend Master Akademi's White-Label partnership model work?"
     },
     answer: {
       tr: "Ajansınızla resmi Gizlilik Sözleşmesi (NDA) imzalayarak çalışıyoruz. Müşterileriniz ile asla doğrudan temas kurmuyoruz; dilerseniz ajansınızın kurumsal e-posta adresiyle veya tamamen görünmez bir arka plan mühendislik masası olarak projelerinizi teslim ediyoruz. Tüm kaynak kodlar ve fikri mülkiyet hakları %100 ajansınıza aittir.",

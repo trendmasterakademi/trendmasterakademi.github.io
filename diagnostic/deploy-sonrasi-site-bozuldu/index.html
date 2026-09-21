@@ -193,7 +193,7 @@
     </script>
     
     <title>Website Broke Immediately After Deployment</title>
-    <meta name="description" content="A new release went live and the site broke. The team wants to rollback but has no documented rollback plan. The critical failure is not the bug itself, but the lack of an atomic rollback mechanism." />
+    <meta name="description" content="A new release went live and the site broke. The team wants to rollback but has no documented rollback plan. Likely causes and the fix." />
     <meta name="author" content="Trend Master Akademi" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/deploy-sonrasi-site-bozuldu/" />
@@ -207,14 +207,14 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/deploy-sonrasi-site-bozuldu/" />
     <meta property="og:title" content="Website Broke Immediately After Deployment" />
-    <meta property="og:description" content="A new release went live and the site broke. The team wants to rollback but has no documented rollback plan. The critical failure is not the bug itself, but the lack of an atomic rollback mechanism." />
+    <meta property="og:description" content="A new release went live and the site broke. The team wants to rollback but has no documented rollback plan. Likely causes and the fix." />
     <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
     <meta property="og:site_name" content="Trend Master Akademi" />
-    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:locale" content="en_US" />
 
     <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
 
@@ -222,7 +222,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/deploy-sonrasi-site-bozuldu/" />
     <meta name="twitter:title" content="Website Broke Immediately After Deployment" />
-    <meta name="twitter:description" content="A new release went live and the site broke. The team wants to rollback but has no documented rollback plan. The critical failure is not the bug itself, but the lack of an atomic rollback mechanism." />
+    <meta name="twitter:description" content="A new release went live and the site broke. The team wants to rollback but has no documented rollback plan. Likely causes and the fix." />
     <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
 
     <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
@@ -309,7 +309,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DN9go0BT.js"></script>
+    <script type="module" crossorigin src="/assets/index-DTaQ5JRn.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -324,6 +324,7 @@
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">Home</a>
           <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
           <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
           <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
           <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
@@ -333,11 +334,14 @@
           <a href="/sla/" class="hover:underline">SLA & Commitments</a>
           <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
           <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Unilateral NDA</a>
           <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
           <a href="/radar/" class="hover:underline">Status Radar</a>
           <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
           <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
           <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
           <a href="/sos/" class="hover:underline">Emergency Support</a>
           <a href="/about/" class="hover:underline">About Us</a>
           <a href="/privacy/" class="hover:underline">Privacy Policy</a>
@@ -348,87 +352,87 @@
         <p class="text-[var(--ink-muted)] text-lg leading-relaxed">A new release went live and the site broke. The team wants to rollback but has no documented rollback plan. The critical failure is not the bug itself, but the lack of an atomic rollback mechanism.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
-      <p class="text-sm font-mono text-[var(--accent)]">Aciliyet: Kritik · yayın hatası · Kategori: Canlı Arıza</p>
+      <p class="text-sm font-mono text-[var(--accent)]">Urgency: Critical · deploy failure · Category: Live Outage</p>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Sahada nasıl görünür</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Yalnızca tek bir butonun rengi veya metni değiştirilip canlıya alınmıştır. Fakat yayın bittiğinde sepet düğmesi kaybolur, CSS tasarımı darmadağın olur veya ana sayfa hiç açılmaz. Ajans apar topar eski sürüme dönmeye çalışır.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">A release intended only to tweak a button label or style goes live. Instantly, checkout buttons disappear, CSS styling collapses, or the homepage fails entirely. The agency scrambles in panic to execute an emergency rollback.</p>
       </section>
     
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Sisteminizde bu satırları görüyorsanız</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
         
       <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
-        <li><code>Yayın kaydı: hangi sürüm, ne zaman, kim tarafından?</code></li>
-        <li><code>Yeni hata mesajları yayın saatinde mi başlıyor?</code></li>
-        <li><code>Statik dosyalar eski sürümde kalmış (önbellek)</code></li>
-        <li><code>Veritabanı göçü yayınla birlikte çalıştı mı?</code></li>
+        <li><code>Deployment log: which version, timestamp, deployed by whom?</code></li>
+        <li><code>Do new error signatures correlate with deploy timestamp?</code></li>
+        <li><code>Static assets served from stale cache version</code></li>
+        <li><code>Did database migrations execute alongside deploy?</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">Bozulmanın yayın saatiyle çakışması tek başına sebep kanıtı değildir ama aramayı doğru yere odaklar. İlk soru &quot;ne değişti&quot; değil, &quot;geri alabiliyor muyuz&quot;dur.</p>
+        <p class="text-[var(--ink-muted)] text-sm">A crash coinciding with deployment timestamp pinpoints where to investigate. The primary question is never 'what changed', but 'can we immediately roll back'.</p>
       </section>
 
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Üç olası neden ve ayırt edici testleri</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Three Potential Root Causes & Differential Tests</h2>
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">A · Eksik dosya</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Yayın paketinde bir şey eksik kaldı; yerelde var, sunucuda yok.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Log'da bulunamadı hatası var mı?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Log'da dosya veya modül bulunamadı → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Paketi tam yayınla · geri alma hazır</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Müşteriye tarayıcı önbelleğini temizlemesi söylenir; oysa sunucuda derlenmemiş dist dosyaları eksik kaldığı için yeni varlıklar hiçbir kullanıcıya yüklenemez.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">A · Missing build asset / vendor</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Artifact or composer/npm dependency omitted from build bundle. Present locally, missing on server.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Do logs show 404 / missing module fatal errors?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Class / file not found in logs → A</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Deploy complete bundle · one-click rollback ready</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Asking clients to clear browser cache fails because missing compiled dist asset bundles on the server prevent stylesheets from loading universally.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">B · Önbellek eskisi</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Kod yeni, tarayıcı veya sunucu önbelleği eski. Kısmi bozulma tipik belirtisidir.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Zorla yenilemede düzeliyor mu?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Zorla yenilemede düzeliyor → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Sürümlü dosya adı + önbellek temizle</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Eski kod sürümüne alelacele geri dönülür; oysa yarım kalmış migration şeması geride kaldığı için sistem her iki sürümde de hata verir.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">B · Stale client / CDN cache</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">HTML references new JS bundles while CDN or browser serves cached legacy files, causing partial rendering crashes.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does Shift+F5 hard reload fix the page layout?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Hard refresh resolves visual glitch → B</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Content hashing + automated CDN cache purge on deploy</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Rushing a code rollback leaves half-migrated database schema alterations behind, causing fatal SQL exceptions on both current and legacy builds.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">C · Şema uyuşmazlığı</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Kod yeni şemayı bekliyor ama göç çalışmadı, ya da tersi. Geri alma tek başına yetmez.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Kolon veya tablo hatası var mı?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Kolon veya tablo hatası var → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Kod ve göçü birlikte geri al</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Eski .env.backup dosyası canlının üzerine kopyalanır; bu işlem yeni özelliğin ihtiyaç duyduğu konfigürasyon anahtarını tamamen siler ve sistemi kilitler.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">C · Database schema desync</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Code expects newly added table columns but migration failed to run, or vice versa. Code rollback alone is insufficient.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are SQL schema / missing column errors present?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Column not found SQL errors → C</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Rollback schema + revert code synchronously</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Overwriting production .env with a legacy backup deletes configuration keys required by newly deployed features, compounding the failure.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer, ne kadar sürer</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Kalıcı çözüm daha dikkatli yayın yapmak değil, her yayının geri alınabilir olmasıdır: sürüm etiketi, ayrı statik dosya adları ve göçün koddan bağımsız geri alınabilmesi. Bu üçü kurulduğunda bozuk yayın bir kriz değil, dakikalık bir işlem olur.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Permanent reliability requires automated rollbacks: immutable git releases, content-hashed assets, and backward-compatible database migrations. When in place, a bad deploy is resolved in 60 seconds.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Çözülmezse ne olur</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Geri alınamayan her yayın ekibi yayın yapmaktan korkutur. Korku teslimleri yavaşlatır ve biriken değişiklikler bir sonraki yayını daha da riskli yapar.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Un-rollbackable deployments breed release terror. Fear slows iteration cadence, causing massive batch releases that exponentially increase risk.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">İlgili terimler ve hizmet</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts & Services</h2>
         
       <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
-        <li><a href="/sozluk/ci-cd/" class="hover:underline">→ CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)</a></li>
-        <li><a href="/sozluk/staging-ortami/" class="hover:underline">→ Staging Ortamı (Canlı Öncesi Test Ortamı)</a></li>
-        <li><a href="/sozluk/migration/" class="hover:underline">→ Migration (Veritabanı Şema Geçişi)</a></li>
+        <li><a href="/glossary/ci-cd/" class="hover:underline">→ CI/CD Pipelines</a></li>
+        <li><a href="/glossary/staging-ortami/" class="hover:underline">→ Staging Environment</a></li>
+        <li><a href="/glossary/migration/" class="hover:underline">→ Database Migration</a></li>
       </ul>
     
-        <p class="pt-2"><a href="/crash-test/" class="text-[var(--accent)] hover:underline font-bold">→ Acil Kriz Müdahalesi &amp; Crash Test</a></p>
+        <p class="pt-2"><a href="/crash-test/" class="text-[var(--accent)] hover:underline font-bold">→ Emergency Incident Triage &amp; Crash Test</a></p>
       </section>
     </section>
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

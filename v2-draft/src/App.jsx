@@ -75,10 +75,10 @@ function App() {
               <Route path="/agency/" element={<Agency />} />
               <Route path="/agency" element={<Agency />} />
               
-              <Route path="/kit/" element={<AgencyKit />} />
-              <Route path="/kit" element={<AgencyKit />} />
-              <Route path="/agency-kit/" element={<AgencyKit />} />
-              <Route path="/agency-kit" element={<AgencyKit />} />
+              <Route path="/kit/" element={<AgencyKit lang="tr" />} />
+              <Route path="/kit" element={<AgencyKit lang="tr" />} />
+              <Route path="/agency-kit/" element={<AgencyKit lang="en" />} />
+              <Route path="/agency-kit" element={<AgencyKit lang="en" />} />
               
               <Route path="/crash-test/" element={<CrashTest />} />
               <Route path="/crash-test" element={<CrashTest />} />

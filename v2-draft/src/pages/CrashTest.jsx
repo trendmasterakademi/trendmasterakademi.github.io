@@ -9,7 +9,7 @@ import {
 } from 'lucide-react';
 import EmergencySOSModal from '../components/EmergencySOSModal';
 import { getCalendlyUrl } from '../utils/calendly';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
 
@@ -393,22 +393,7 @@ const CrashTest = () => {
   const [isSendingLead, setIsSendingLead] = useState(false);
 
   React.useEffect(() => {
-    document.title = formatDocumentTitle(isTr
-      ? "Agency Crash Test (60 sn) | Trend Master Akademi"
-      : "Agency Crash Test (60s) - Crisis & Diagnostic Simulator | Trend Master Academy");
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", isTr
-        ? "Ajansınız teknik bir krize hazır mı? HTTP 500, yazılımcı ayrılığı veya lansman darboğazı için 60 saniyede kriz risk skorunuzu ve eylem planınızı görün."
-        : "Is your agency prepared for a technical crisis? Diagnose your situation and get a 3-phase action recovery blueprint in 60 seconds."
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/crash-test/');
-    }
+    setPageSeo('/crash-test/', isTr ? 'tr' : 'en');
 
     try {
       const params = new URLSearchParams(window.location.search);

@@ -15,7 +15,7 @@ const NotFound = () => {
     document.title = formatDocumentTitle(
       isTr 
         ? 'Bu sayfa bulunamadı | Trend Master Akademi'
-        : 'Page Not Found | Trend Master Academy'
+        : 'Page Not Found | Trend Master Akademi'
     );
   }, [isTr]);
 

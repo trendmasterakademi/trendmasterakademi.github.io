@@ -192,8 +192,8 @@
       }(window.location))
     </script>
     
-    <title>PM-03 Post-Mortem | Node.js API OOM Crash Every 6 Hours: The Undetected Event Listener Leak</title>
-    <meta name="description" content="A SaaS production backend suffered recurring Out-Of-Memory (OOM) crashes every 5.5 to 6 hours as RSS heap climbed past 1.4GB. The internal team had resorted to a cron job rebooting the server every 4 hours." />
+    <title>PM-03 · Node.js API Crashing Every 6h | Trend Master Akademi</title>
+    <meta name="description" content="A Node.js API ran out of memory every six hours. The event-listener leak behind a three-week chronic failure, and the permanent fix in 4 hours." />
     <meta name="author" content="Trend Master Akademi" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://trendmasterakademi.com/post-mortems/pm-03-memory-leak-unhandled-promise/" />
@@ -206,23 +206,23 @@
     <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://trendmasterakademi.com/post-mortems/pm-03-memory-leak-unhandled-promise/" />
-    <meta property="og:title" content="PM-03 Post-Mortem | Node.js API OOM Crash Every 6 Hours: The Undetected Event Listener Leak" />
-    <meta property="og:description" content="A SaaS production backend suffered recurring Out-Of-Memory (OOM) crashes every 5.5 to 6 hours as RSS heap climbed past 1.4GB. The internal team had resorted to a cron job rebooting the server every 4 hours." />
+    <meta property="og:title" content="PM-03 · Node.js API Crashing Every 6h | Trend Master Akademi" />
+    <meta property="og:description" content="A Node.js API ran out of memory every six hours. The event-listener leak behind a three-week chronic failure, and the permanent fix in 4 hours." />
     <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
     <meta property="og:site_name" content="Trend Master Akademi" />
-    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:locale" content="en_US" />
 
     <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
 
     <!-- Twitter / X Cards -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://trendmasterakademi.com/post-mortems/pm-03-memory-leak-unhandled-promise/" />
-    <meta name="twitter:title" content="PM-03 Post-Mortem | Node.js API OOM Crash Every 6 Hours: The Undetected Event Listener Leak" />
-    <meta name="twitter:description" content="A SaaS production backend suffered recurring Out-Of-Memory (OOM) crashes every 5.5 to 6 hours as RSS heap climbed past 1.4GB. The internal team had resorted to a cron job rebooting the server every 4 hours." />
+    <meta name="twitter:title" content="PM-03 · Node.js API Crashing Every 6h | Trend Master Akademi" />
+    <meta name="twitter:description" content="A Node.js API ran out of memory every six hours. The event-listener leak behind a three-week chronic failure, and the permanent fix in 4 hours." />
     <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
 
     <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
@@ -275,7 +275,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DN9go0BT.js"></script>
+    <script type="module" crossorigin src="/assets/index-DTaQ5JRn.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -290,6 +290,7 @@
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">Home</a>
           <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
           <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
           <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
           <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
@@ -299,11 +300,14 @@
           <a href="/sla/" class="hover:underline">SLA & Commitments</a>
           <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
           <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Unilateral NDA</a>
           <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
           <a href="/radar/" class="hover:underline">Status Radar</a>
           <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
           <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
           <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
           <a href="/sos/" class="hover:underline">Emergency Support</a>
           <a href="/about/" class="hover:underline">About Us</a>
           <a href="/privacy/" class="hover:underline">Privacy Policy</a>
@@ -377,8 +381,8 @@
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

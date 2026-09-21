@@ -49,6 +49,16 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/devir-kontrolu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/handover-audit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/devir-kontrolu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/handover-audit/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/devir-kontrolu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/handover-audit/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/devir-kontrolu/" />
   </url>
   <url>
@@ -57,103 +67,17 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/" />
   </url>
   <url>
-    <loc>https://trendmasterakademi.com/sozluk/deadlock/</loc>
+    <loc>https://trendmasterakademi.com/glossary/</loc>
     <lastmod>2026-09-21</lastmod>
     <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/deadlock/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/deadlock/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/sozluk/n-plus-1-sorgu/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/n-plus-1-sorgu/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/n-plus-1-sorgu/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/sozluk/race-condition/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/race-condition/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/race-condition/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/sozluk/idempotency/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/idempotency/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/idempotency/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/sozluk/webhook/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/webhook/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/webhook/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/sozluk/teknik-borc/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/teknik-borc/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/teknik-borc/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/sozluk/refactor/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/refactor/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/refactor/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/sozluk/ci-cd/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/ci-cd/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/ci-cd/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/sozluk/staging-ortami/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/staging-ortami/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/staging-ortami/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/sozluk/migration/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/migration/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/migration/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/sozluk/rate-limit/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/rate-limit/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/rate-limit/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/sozluk/memory-leak/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/memory-leak/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/memory-leak/" />
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/" />
   </url>
   <url>
     <loc>https://trendmasterakademi.com/kesinti-maliyeti/</loc>
@@ -161,207 +85,77 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/kesinti-maliyeti/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/downtime-calc/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/kesinti-maliyeti/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/downtime-calc/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/kesinti-maliyeti/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/downtime-calc/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/kesinti-maliyeti/" />
   </url>
   <url>
     <loc>https://trendmasterakademi.com/about/</loc>
     <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/about/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/about/" />
   </url>
   <url>
     <loc>https://trendmasterakademi.com/hikayemiz/</loc>
     <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/hikayemiz/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/story/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/hikayemiz/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/story/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/hikayemiz/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/story/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/hikayemiz/" />
   </url>
   <url>
     <loc>https://trendmasterakademi.com/privacy/</loc>
     <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/privacy/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/privacy/" />
   </url>
   <url>
     <loc>https://trendmasterakademi.com/nda/</loc>
     <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/nda/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/nda/" />
   </url>
   <url>
     <loc>https://trendmasterakademi.com/teshis/</loc>
     <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/" />
   </url>
   <url>
-    <loc>https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/</loc>
+    <loc>https://trendmasterakademi.com/diagnostic/</loc>
     <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/site-500-veriyor-dun-calisiyordu/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/site-500-veriyor-dun-calisiyordu/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/site-500-veriyor-dun-calisiyordu/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/yedek-var-sanildi-yedek-yok/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/yedek-var-sanildi-yedek-yok/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/yedek-var-sanildi-yedek-yok/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/domain-hosting-erisimi-yok/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/domain-hosting-erisimi-yok/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/domain-hosting-erisimi-yok/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/ssl-suresi-doldu/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/ssl-suresi-doldu/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/ssl-suresi-doldu/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/form-gonderiliyor-mail-gelmiyor/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/form-gonderiliyor-mail-gelmiyor/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/form-gonderiliyor-mail-gelmiyor/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/site-aramalarda-gorunmez-oldu/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/site-aramalarda-gorunmez-oldu/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/site-aramalarda-gorunmez-oldu/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/sunucu-her-gun-yeniden-baslatiliyor/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/sunucu-her-gun-yeniden-baslatiliyor/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/sunucu-her-gun-yeniden-baslatiliyor/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/guncelleme-sonrasi-veri-kayboldu/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/guncelleme-sonrasi-veri-kayboldu/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/guncelleme-sonrasi-veri-kayboldu/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/testte-calisiyor-canlida-calismiyor/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/testte-calisiyor-canlida-calismiyor/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/testte-calisiyor-canlida-calismiyor/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/deploy-sonrasi-site-bozuldu/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/deploy-sonrasi-site-bozuldu/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/deploy-sonrasi-site-bozuldu/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/her-yeni-ozellik-oncekini-bozuyor/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/her-yeni-ozellik-oncekini-bozuyor/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/her-yeni-ozellik-oncekini-bozuyor/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/" />
   </url>
   <url>
     <loc>https://trendmasterakademi.com/sos/</loc>
@@ -406,78 +200,6 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-01-postgresql-connection-pool-deadlock/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/post-mortems/pm-01-postgresql-connection-pool-deadlock/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-01-postgresql-connection-pool-deadlock/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/post-mortem/pm-02-race-condition-double-charge/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-02-race-condition-double-charge/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-02-race-condition-double-charge/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-02-race-condition-double-charge/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/post-mortems/pm-02-race-condition-double-charge/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-02-race-condition-double-charge/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-02-race-condition-double-charge/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-02-race-condition-double-charge/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-03-memory-leak-unhandled-promise/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/post-mortems/pm-03-memory-leak-unhandled-promise/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-03-memory-leak-unhandled-promise/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-04-ghost-developer-handover-block/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
-  </url>
-  <url>
-    <loc>https://trendmasterakademi.com/post-mortems/pm-04-ghost-developer-handover-block/</loc>
-    <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-04-ghost-developer-handover-block/" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
   </url>
   <url>
     <loc>https://trendmasterakademi.com/triyaj/</loc>
@@ -526,7 +248,7 @@
   <url>
     <loc>https://trendmasterakademi.com/gizlilik-sozlesmesi/</loc>
     <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/gizlilik-sozlesmesi/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/mutual-nda/" />
@@ -535,7 +257,7 @@
   <url>
     <loc>https://trendmasterakademi.com/mutual-nda/</loc>
     <lastmod>2026-09-21</lastmod>
-    <changefreq>monthly</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/gizlilik-sozlesmesi/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/mutual-nda/" />
@@ -562,7 +284,7 @@
   <url>
     <loc>https://trendmasterakademi.com/radar/</loc>
     <lastmod>2026-09-21</lastmod>
-    <changefreq>daily</changefreq>
+    <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/radar/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/radar/" />
@@ -602,5 +324,653 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/kurtarma-maliyeti/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/rescue-roi/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/kurtarma-maliyeti/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sozluk/deadlock/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/deadlock/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/deadlock/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/deadlock/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/glossary/deadlock/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/deadlock/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/deadlock/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/deadlock/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sozluk/n-plus-1-sorgu/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/n-plus-1-sorgu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/n-plus-1-sorgu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/n-plus-1-sorgu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/glossary/n-plus-1-sorgu/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/n-plus-1-sorgu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/n-plus-1-sorgu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/n-plus-1-sorgu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sozluk/race-condition/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/race-condition/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/race-condition/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/race-condition/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/glossary/race-condition/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/race-condition/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/race-condition/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/race-condition/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sozluk/idempotency/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/idempotency/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/idempotency/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/idempotency/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/glossary/idempotency/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/idempotency/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/idempotency/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/idempotency/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sozluk/webhook/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/webhook/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/webhook/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/webhook/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/glossary/webhook/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/webhook/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/webhook/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/webhook/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sozluk/teknik-borc/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/teknik-borc/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/teknik-borc/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/teknik-borc/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/glossary/teknik-borc/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/teknik-borc/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/teknik-borc/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/teknik-borc/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sozluk/refactor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/refactor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/refactor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/refactor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/glossary/refactor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/refactor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/refactor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/refactor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sozluk/ci-cd/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/ci-cd/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/ci-cd/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/ci-cd/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/glossary/ci-cd/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/ci-cd/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/ci-cd/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/ci-cd/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sozluk/staging-ortami/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/staging-ortami/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/staging-ortami/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/staging-ortami/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/glossary/staging-ortami/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/staging-ortami/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/staging-ortami/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/staging-ortami/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sozluk/migration/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/migration/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/migration/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/migration/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/glossary/migration/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/migration/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/migration/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/migration/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sozluk/rate-limit/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/rate-limit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/rate-limit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/rate-limit/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/glossary/rate-limit/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/rate-limit/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/rate-limit/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/rate-limit/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/sozluk/memory-leak/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/memory-leak/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/memory-leak/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/memory-leak/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/glossary/memory-leak/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/sozluk/memory-leak/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/glossary/memory-leak/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/sozluk/memory-leak/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/ayni-stok-iki-musteriye-satildi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/ayni-stok-iki-musteriye-satildi/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/ayni-stok-iki-musteriye-satildi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/odeme-alindi-siparis-olusmadi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/odeme-alindi-siparis-olusmadi/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/odeme-alindi-siparis-olusmadi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/odeme-iki-kez-alindi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/odeme-iki-kez-alindi/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/odeme-iki-kez-alindi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/islemler-kilitlendi-sayfa-donuyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/islemler-kilitlendi-sayfa-donuyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/islemler-kilitlendi-sayfa-donuyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/guncelleme-sonrasi-veri-kayboldu/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/guncelleme-sonrasi-veri-kayboldu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/guncelleme-sonrasi-veri-kayboldu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/guncelleme-sonrasi-veri-kayboldu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/guncelleme-sonrasi-veri-kayboldu/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/guncelleme-sonrasi-veri-kayboldu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/guncelleme-sonrasi-veri-kayboldu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/guncelleme-sonrasi-veri-kayboldu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/deploy-sonrasi-site-bozuldu/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/deploy-sonrasi-site-bozuldu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/deploy-sonrasi-site-bozuldu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/deploy-sonrasi-site-bozuldu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/deploy-sonrasi-site-bozuldu/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/deploy-sonrasi-site-bozuldu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/deploy-sonrasi-site-bozuldu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/deploy-sonrasi-site-bozuldu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/site-500-veriyor-dun-calisiyordu/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/site-500-veriyor-dun-calisiyordu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/site-500-veriyor-dun-calisiyordu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/site-500-veriyor-dun-calisiyordu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/site-500-veriyor-dun-calisiyordu/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/site-500-veriyor-dun-calisiyordu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/site-500-veriyor-dun-calisiyordu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/site-500-veriyor-dun-calisiyordu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/bulut-hesabi-askiya-alindi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/bulut-hesabi-askiya-alindi/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/bulut-hesabi-askiya-alindi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/yedek-var-sanildi-yedek-yok/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/yedek-var-sanildi-yedek-yok/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/yedek-var-sanildi-yedek-yok/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/yedek-var-sanildi-yedek-yok/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/yedek-var-sanildi-yedek-yok/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/yedek-var-sanildi-yedek-yok/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/yedek-var-sanildi-yedek-yok/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/yedek-var-sanildi-yedek-yok/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/ssl-suresi-doldu/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/ssl-suresi-doldu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/ssl-suresi-doldu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/ssl-suresi-doldu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/ssl-suresi-doldu/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/ssl-suresi-doldu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/ssl-suresi-doldu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/ssl-suresi-doldu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/entegrasyon-429-veriyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/entegrasyon-429-veriyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/entegrasyon-429-veriyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/sunucu-her-gun-yeniden-baslatiliyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/sunucu-her-gun-yeniden-baslatiliyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/sunucu-her-gun-yeniden-baslatiliyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/sunucu-her-gun-yeniden-baslatiliyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/sunucu-her-gun-yeniden-baslatiliyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/sunucu-her-gun-yeniden-baslatiliyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/sunucu-her-gun-yeniden-baslatiliyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/sunucu-her-gun-yeniden-baslatiliyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/testte-calisiyor-canlida-calismiyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/testte-calisiyor-canlida-calismiyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/testte-calisiyor-canlida-calismiyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/testte-calisiyor-canlida-calismiyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/testte-calisiyor-canlida-calismiyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/testte-calisiyor-canlida-calismiyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/testte-calisiyor-canlida-calismiyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/testte-calisiyor-canlida-calismiyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/her-yeni-ozellik-oncekini-bozuyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/her-yeni-ozellik-oncekini-bozuyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/her-yeni-ozellik-oncekini-bozuyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/her-yeni-ozellik-oncekini-bozuyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/her-yeni-ozellik-oncekini-bozuyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/her-yeni-ozellik-oncekini-bozuyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/her-yeni-ozellik-oncekini-bozuyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/her-yeni-ozellik-oncekini-bozuyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/yazilimci-gitti-koda-girilemiyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/yazilimci-gitti-koda-girilemiyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/yazilimci-gitti-koda-girilemiyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/domain-hosting-erisimi-yok/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/domain-hosting-erisimi-yok/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/domain-hosting-erisimi-yok/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/domain-hosting-erisimi-yok/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/domain-hosting-erisimi-yok/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/domain-hosting-erisimi-yok/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/domain-hosting-erisimi-yok/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/domain-hosting-erisimi-yok/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/form-gonderiliyor-mail-gelmiyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/form-gonderiliyor-mail-gelmiyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/form-gonderiliyor-mail-gelmiyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/form-gonderiliyor-mail-gelmiyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/form-gonderiliyor-mail-gelmiyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/form-gonderiliyor-mail-gelmiyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/form-gonderiliyor-mail-gelmiyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/form-gonderiliyor-mail-gelmiyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/site-aramalarda-gorunmez-oldu/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/site-aramalarda-gorunmez-oldu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/site-aramalarda-gorunmez-oldu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/site-aramalarda-gorunmez-oldu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/site-aramalarda-gorunmez-oldu/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/site-aramalarda-gorunmez-oldu/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/site-aramalarda-gorunmez-oldu/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/site-aramalarda-gorunmez-oldu/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/kucuk-degisiklik-gunler-suruyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/kucuk-degisiklik-gunler-suruyor/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/kucuk-degisiklik-gunler-suruyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-01-postgresql-connection-pool-deadlock/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/post-mortems/pm-01-postgresql-connection-pool-deadlock/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-01-postgresql-connection-pool-deadlock/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/post-mortem/pm-02-race-condition-double-charge/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-02-race-condition-double-charge/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-02-race-condition-double-charge/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-02-race-condition-double-charge/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/post-mortems/pm-02-race-condition-double-charge/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-02-race-condition-double-charge/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-02-race-condition-double-charge/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-02-race-condition-double-charge/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-03-memory-leak-unhandled-promise/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/post-mortems/pm-03-memory-leak-unhandled-promise/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-03-memory-leak-unhandled-promise/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-04-ghost-developer-handover-block/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/post-mortems/pm-04-ghost-developer-handover-block/</loc>
+    <lastmod>2026-09-21</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/post-mortems/pm-04-ghost-developer-handover-block/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/" />
   </url>
 </urlset>

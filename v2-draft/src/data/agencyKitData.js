@@ -47,7 +47,7 @@ export const agencyKitData = {
       code: "500",
       title: "AGENCY CRASH TEST",
       subtitle: "Ajansınız teknik bir krize gerçekten hazır mı?",
-      description: "Bir senaryo seçin. Dört soruyu yanıtlayın. İlk müdahale planınızı ve teknik hazırlık puanınızı anında görün.",
+      description: "Bir senaryo seçin. Üç soruyu yanıtlayın. İlk müdahale planınızı ve teknik hazırlık puanınızı anında görün.",
       scenarios: [
         { no: "01", title: "Müşteri sitesi çöktü", tag: "HTTP 500", desc: "Zirve trafikte veritabanı kilitlendi veya sunucu 502/500 hatası veriyor." },
         { no: "02", title: "Yazılımcı projeyi bıraktı", tag: "HANDOVER", desc: "Eski geliştirici gitti, dokümantasyon yok, kod derlenemiyor veya erişim eksik." },
@@ -210,7 +210,7 @@ export const agencyKitData = {
       code: "500",
       title: "AGENCY CRASH TEST",
       subtitle: "Is your agency truly prepared for a technical crisis?",
-      description: "Select a scenario. Answer four questions. Instantly view your triage plan and technical readiness score.",
+      description: "Pick a scenario. Answer three questions. Instantly view your triage plan and technical readiness score.",
       scenarios: [
         { no: "01", title: "Client website crashed", tag: "HTTP 500", desc: "Database deadlocks or server returns 502/500 errors during peak traffic." },
         { no: "02", title: "Developer walked away", tag: "HANDOVER", desc: "Original engineer gone, zero documentation, code fails to compile or missing keys." },

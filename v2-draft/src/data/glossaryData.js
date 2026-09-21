@@ -3,6 +3,7 @@ export const glossaryTerms = [
   {
     slug: 'deadlock',
     title: 'Deadlock (Veritabanı Kilitlenmesi)',
+    titleEn: 'Deadlock',
     shortDef: {
       tr: 'İki farklı işlemin aynı anda birbirinin kilitlediği veriyi beklemesi sonucu veritabanının tamamen durma noktasına gelmesidir.',
       en: 'A situation where two database transactions mutually block each other by holding locks that the other requires, freezing queries.'
@@ -12,6 +13,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: During high-traffic launches, carts freeze, checkouts fail, and database CPU hits 100%. Clients see a completely unresponsive store.'
     },
     urgencyLevel: 'Kritik (P0)',
+    urgencyLevelEn: 'Critical (P0)',
     urgencyColor: 'text-[var(--accent)] bg-[var(--accent-wash)] border border-[var(--accent)]/30',
     whoSolves: {
       tr: 'İç ekip veya TMA SWAT Masası. Veritabanı transaction sırasının izole edilmesi, lock sürelerinin düşürülmesi veya kuyruk (Redis/Queue) mimarisine geçilmesi gerekir.',
@@ -19,13 +21,14 @@ export const glossaryTerms = [
     },
     relatedTerms: ['race-condition', 'migration', 'rate-limit'],
     relatedService: {
-      title: 'Acil Kriz Müdahalesi & Crash Test',
+      title: { tr: 'Acil Kriz Müdahalesi & Crash Test', en: 'Emergency Crisis SWAT & Crash Test' },
       link: '/crash-test/'
     }
   },
   {
     slug: 'n-plus-1-sorgu',
     title: 'N+1 Sorgu Problemi (N+1 Query)',
+    titleEn: 'N+1 Query Problem',
     shortDef: {
       tr: 'Bir listedeki her satır için veritabanına tek tek ek sorgu atılması ve sistemin binlerce gereksiz sorguyla boğulmasıdır.',
       en: 'An ORM efficiency bottleneck where the application executes 1 initial query plus N additional queries for child records instead of a single batch query.'
@@ -35,6 +38,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: A page that feels fast with 10 test items slows to 8+ seconds when 500 items are added. Often misdiagnosed as server hardware limits.'
     },
     urgencyLevel: 'Orta / Yüksek',
+    urgencyLevelEn: 'Medium / High',
     urgencyColor: 'text-[var(--sev-high)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'Kıdemli Backend Mühendisi. Eager loading (with/include) ve batch sorgu optimizasyonuyla birkaç saatte kalıcı olarak çözülür.',
@@ -42,13 +46,14 @@ export const glossaryTerms = [
     },
     relatedTerms: ['deadlock', 'teknik-borc', 'refactor'],
     relatedService: {
-      title: 'B2B White-Label Mühendislik Masası',
+      title: { tr: 'B2B White-Label Mühendislik Masası', en: 'B2B White-Label Engineering Desk' },
       link: '/agency/'
     }
   },
   {
     slug: 'race-condition',
     title: 'Race Condition (Yarış Durumu)',
+    titleEn: 'Race Condition',
     shortDef: {
       tr: 'Aynı anda gelen iki isteğin veriyi eşzamanlı değiştirmeye çalışması ve sistemin hangisini önce yazacağını bilemeyip veri tutarsızlığı üretmesidir.',
       en: 'A concurrency flaw where multiple threads or requests execute operations out of anticipated order, causing data corruption.'
@@ -58,6 +63,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: The last inventory item gets sold twice simultaneously, or coupon codes get redeemed multiple times in parallel.'
     },
     urgencyLevel: 'Kritik (P0)',
+    urgencyLevelEn: 'Critical (P0)',
     urgencyColor: 'text-[var(--accent)] bg-[var(--accent-wash)] border border-[var(--accent)]/30',
     whoSolves: {
       tr: 'Kıdemli Mühendislik Masası. Mutex kilitleme, atomik veritabanı operasyonları veya Redis distributed lock mimarisi ile çözülür.',
@@ -65,13 +71,14 @@ export const glossaryTerms = [
     },
     relatedTerms: ['deadlock', 'idempotency', 'webhook'],
     relatedService: {
-      title: 'Agency Crash Test Simülatörü',
+      title: { tr: 'Agency Crash Test Simülatörü', en: 'Agency Crash Test Simulator' },
       link: '/crash-test/'
     }
   },
   {
     slug: 'idempotency',
     title: 'Idempotency (Çift İşlem Koruması)',
+    titleEn: 'Idempotency',
     shortDef: {
       tr: 'Aynı isteğin sisteme 10 kez gönderilse bile yalnızca bir kez çalışacağını ve mükerrer kayıt üretmeyeceğini garanti eden mimari kuraldır.',
       en: 'A mathematical and API principle ensuring identical requests executed multiple times yield the exact same result without duplicate side-effects.'
@@ -81,6 +88,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Prevents charging a customer credit card multiple times when they impatiently click checkout repeatedly.'
     },
     urgencyLevel: 'Yüksek',
+    urgencyLevelEn: 'High',
     urgencyColor: 'text-[var(--sev-high)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'Backend / Entegrasyon Ekibi. Benzersiz `Idempotency-Key` başlıkları ve veritabanı tekillik kısıtları ile kurulur.',
@@ -88,13 +96,14 @@ export const glossaryTerms = [
     },
     relatedTerms: ['webhook', 'race-condition', 'rate-limit'],
     relatedService: {
-      title: 'Devir Hazırlık Kontrolü',
+      title: { tr: 'Devir Hazırlık Kontrolü', en: 'Developer Handover Audit' },
       link: '/devir-kontrolu/'
     }
   },
   {
     slug: 'webhook',
     title: 'Webhook (Sistemler Arası Anlık Bildirim)',
+    titleEn: 'Webhook',
     shortDef: {
       tr: 'Bir sistemde olay gerçekleştiğinde (örn. ödeme alındığında) diğer sistemi beklemeden anında uyaran otomatik HTTP callback mekanizmasıdır.',
       en: 'An automated user-defined HTTP POST callback triggered by external service events like completed transactions or SMS deliveries.'
@@ -104,6 +113,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Automatically activates user subscriptions upon billing events. If broken, money is collected but orders stay pending.'
     },
     urgencyLevel: 'Kritik (P0)',
+    urgencyLevelEn: 'Critical (P0)',
     urgencyColor: 'text-[var(--accent)] bg-[var(--accent-wash)] border border-[var(--accent)]/30',
     whoSolves: {
       tr: 'Entegrasyon Mühendisi. Webhook signing secret doğrulaması, payload parsing ve retry mekanizmalarıyla devreye alınır.',
@@ -111,13 +121,14 @@ export const glossaryTerms = [
     },
     relatedTerms: ['idempotency', 'rate-limit', 'ci-cd'],
     relatedService: {
-      title: 'White-Label Kriz SWAT Desteği',
+      title: { tr: 'White-Label Kriz SWAT Desteği', en: 'White-Label Crisis SWAT Support' },
       link: '/agency/'
     }
   },
   {
     slug: 'teknik-borc',
     title: 'Teknik Borç (Technical Debt)',
+    titleEn: 'Technical Debt',
     shortDef: {
       tr: 'Günü kurtarmak için aceleyle yazılan kalitesiz kodun, gelecekte yapılacak her yeni özelliğin geliştirme süresini katlaması durumudur.',
       en: 'The implied long-term cost of additional rework caused by choosing an easy, fast software shortcut over a sustainable architectural design.'
@@ -127,6 +138,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Quick feature tweaks that used to take 2 hours now take weeks because modifying one line breaks 5 unrelated modules.'
     },
     urgencyLevel: 'Orta / Stratejik',
+    urgencyLevelEn: 'Medium / Strategic',
     urgencyColor: 'text-[var(--ink-2)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'TMA Mimari & Refactor Masası. Planlı kod refactoring sprintleri ve modüler katman ayrımı ile temizlenir.',
@@ -134,13 +146,14 @@ export const glossaryTerms = [
     },
     relatedTerms: ['refactor', 'ci-cd', 'staging-ortami'],
     relatedService: {
-      title: '12 Kalemlik Devir Hazırlık Kontrolü',
+      title: { tr: '12 Kalemlik Devir Hazırlık Kontrolü', en: '12-Point Handover Audit Checklist' },
       link: '/devir-kontrolu/'
     }
   },
   {
     slug: 'refactor',
     title: 'Refactor (Kod İyileştirme & Yeniden Yapılandırma)',
+    titleEn: 'Refactoring',
     shortDef: {
       tr: 'Yazılımın dışarıdan görünen davranışını değiştirmeden, iç kod mimarisini daha temiz, hızlı ve bakımı kolay hale getirme işlemidir.',
       en: 'The process of restructuring existing computer code without changing its external behavior to improve non-functional attributes.'
@@ -150,6 +163,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Cleans up inherited messy code into a maintainable, extensible base without interrupting live operations.'
     },
     urgencyLevel: 'Orta',
+    urgencyLevelEn: 'Medium',
     urgencyColor: 'text-[var(--ink-2)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'Kıdemli Yazılım Mühendisleri. Kod analizi, unit test koruması ve katmanlı mimari standartlarıyla yapılır.',
@@ -157,13 +171,14 @@ export const glossaryTerms = [
     },
     relatedTerms: ['teknik-borc', 'n-plus-1-sorgu', 'ci-cd'],
     relatedService: {
-      title: 'Ajanslar İçin White-Label Mühendislik',
+      title: { tr: 'Ajanslar İçin White-Label Mühendislik', en: 'White-Label Engineering for Agencies' },
       link: '/agency/'
     }
   },
   {
     slug: 'ci-cd',
     title: 'CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)',
+    titleEn: 'CI/CD Pipelines',
     shortDef: {
       tr: 'Yazılan kodun otomatik olarak test edilip tek bir tuşla veya commit ile canlı sunucuya hatasız yüklenmesini sağlayan otomasyon hattıdır.',
       en: 'A combined automation pipeline (Continuous Integration / Continuous Deployment) that builds, tests, and deploys code changes seamlessly.'
@@ -173,6 +188,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Eliminates fragile manual FTP file editing; guarantees tested, reproducible server deployments.'
     },
     urgencyLevel: 'Yüksek',
+    urgencyLevelEn: 'High',
     urgencyColor: 'text-[var(--sev-ok)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'DevOps / Altyapı Uzmanı. GitHub Actions, GitLab CI veya Docker otomasyonları ile birkaç günde kurulur.',
@@ -180,13 +196,14 @@ export const glossaryTerms = [
     },
     relatedTerms: ['staging-ortami', 'migration', 'teknik-borc'],
     relatedService: {
-      title: 'Devir Hazırlık Kontrol Listesi',
+      title: { tr: 'Devir Hazırlık Kontrol Listesi', en: 'Developer Handover Checklist' },
       link: '/devir-kontrolu/'
     }
   },
   {
     slug: 'staging-ortami',
     title: 'Staging Ortamı (Canlı Öncesi Test Ortamı)',
+    titleEn: 'Staging Environment',
     shortDef: {
       tr: 'Canlı sistemin birebir kopyası olan ve yeni özelliklerin müşteriye gösterilmeden önce güvenle test edildiği izole sunucudur.',
       en: 'An isolated pre-production environment that mirrors the exact production infrastructure, databases, and dependencies for QA.'
@@ -196,6 +213,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Prevents clients from catching bugs on production; gives a safe sandbox for client review and staging tests.'
     },
     urgencyLevel: 'Orta',
+    urgencyLevelEn: 'Medium',
     urgencyColor: 'text-[var(--ink-2)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'DevOps / Sunucu Ekibi. Subdomain ve izole veritabanı staging konfigürasyonu ile kurulur.',
@@ -203,13 +221,14 @@ export const glossaryTerms = [
     },
     relatedTerms: ['ci-cd', 'migration', 'refactor'],
     relatedService: {
-      title: 'Ajans Çözümleri Masası',
+      title: { tr: 'Ajans Çözümleri Masası', en: 'Agency Solutions Desk' },
       link: '/agency/'
     }
   },
   {
     slug: 'migration',
     title: 'Migration (Veritabanı Şema Geçişi)',
+    titleEn: 'Database Migration',
     shortDef: {
       tr: 'Veritabanı tablolarına yeni sütunlar ekleme veya yapıyı değiştirme adımlarının kod dosyalarıyla tarihsel olarak kayıt altına alınmasıdır.',
       en: 'Programmatic, version-controlled scripts that modify database schemas safely across different developer and production environments.'
@@ -219,6 +238,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Enables a new developer to bootstrap the database in 10 seconds. Without migrations, takeover requires manual DB archaeology.'
     },
     urgencyLevel: 'Yüksek',
+    urgencyLevelEn: 'High',
     urgencyColor: 'text-[var(--sev-high)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'Backend Mühendisi. Prisma, TypeORM, Alembic, Django veya Laravel migration araçları ile yönetilir.',
@@ -226,13 +246,14 @@ export const glossaryTerms = [
     },
     relatedTerms: ['deadlock', 'staging-ortami', 'ci-cd'],
     relatedService: {
-      title: '12 Kalemlik Devir Hazırlık Kontrolü',
+      title: { tr: '12 Kalemlik Devir Hazırlık Kontrolü', en: '12-Point Handover Audit Checklist' },
       link: '/devir-kontrolu/'
     }
   },
   {
     slug: 'rate-limit',
     title: 'Rate Limiting (Trafik & İstek Sınırlandırma)',
+    titleEn: 'Rate Limiting',
     shortDef: {
       tr: 'Bir kullanıcının veya botun belirli bir zaman diliminde (örn. dakikada) sunucuya atabileceği maksimum istek sayısını sınırlayan korumadır.',
       en: 'A defensive network strategy limiting the frequency of requests a client or bot can send to an API endpoint within a given time window.'
@@ -242,6 +263,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Stops malicious bots from exhausting SMS/email budgets or brute-forcing customer login credentials.'
     },
     urgencyLevel: 'Yüksek',
+    urgencyLevelEn: 'High',
     urgencyColor: 'text-[var(--sev-ok)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'Altyapı & Güvenlik Masası. Cloudflare kuralları, NGINX limitleri veya Redis tabanlı token bucket algoritmaları ile uygulanır.',
@@ -249,13 +271,14 @@ export const glossaryTerms = [
     },
     relatedTerms: ['webhook', 'memory-leak', 'deadlock'],
     relatedService: {
-      title: 'Agency Crash Test Simülatörü',
+      title: { tr: 'Agency Crash Test Simülatörü', en: 'Agency Crash Test Simulator' },
       link: '/crash-test/'
     }
   },
   {
     slug: 'memory-leak',
     title: 'Memory Leak (Bellek Sızıntısı)',
+    titleEn: 'Memory Leak',
     shortDef: {
       tr: 'Uygulamanın kullandığı RAM belleği işi bittikten sonra serbest bırakmaması ve zamanla sunucunun tüm belleğini tüketip kilitlenmesidir.',
       en: 'A programming defect where dynamically allocated memory is never released by the application, steadily degrading RAM until crash.'
@@ -265,6 +288,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: The site runs smoothly on day 1, but mysteriously crashes every 48 hours requiring frantic manual server reboots.'
     },
     urgencyLevel: 'Kritik (P0)',
+    urgencyLevelEn: 'Critical (P0)',
     urgencyColor: 'text-[var(--accent)] bg-[var(--accent-wash)] border border-[var(--accent)]/30',
     whoSolves: {
       tr: 'Kıdemli Backend / Node.js SWAT Masası. Profiling araçları, heap snapshot analizi ve garbage collection optimizasyonu ile tespit edilir.',
@@ -272,7 +296,7 @@ export const glossaryTerms = [
     },
     relatedTerms: ['deadlock', 'rate-limit', 'refactor'],
     relatedService: {
-      title: 'Acil Kriz Masası & Mühendislik',
+      title: { tr: 'Acil Kriz Masası & Mühendislik', en: 'Emergency Incident Desk & SWAT' },
       link: '/crash-test/'
     }
   }

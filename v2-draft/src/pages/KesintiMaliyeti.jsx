@@ -5,7 +5,7 @@ import {
   Clock, TrendingDown, DollarSign
 } from 'lucide-react';
 import { getCalendlyUrl } from '../utils/calendly';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 const revenueTiers = [
@@ -41,22 +41,7 @@ const KesintiMaliyeti = () => {
   });
 
   useEffect(() => {
-    document.title = formatDocumentTitle(isTr
-      ? "Kesinti Maliyeti Hesaplayıcı | Trend Master Akademi"
-      : "Website Downtime Cost Calculator | Trend Master Academy");
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", isTr
-        ? "Sunucu çökmesi veya HTTP 500 kesintisinde saatlik ve toplam tahmini ciro kaybınızı hesaplayın. Şeffaf matematik ve doğrudan ciro kaybı simülasyonu."
-        : "Calculate estimated direct revenue loss during website outages. Transparent arithmetic, no hidden multipliers."
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', isTr ? 'https://trendmasterakademi.com/kesinti-maliyeti/' : 'https://trendmasterakademi.com/downtime-calc/');
-    }
+    setPageSeo(isTr ? '/kesinti-maliyeti/' : '/downtime-calc/', isTr ? 'tr' : 'en');
 
     try {
       const params = new URLSearchParams(window.location.search);

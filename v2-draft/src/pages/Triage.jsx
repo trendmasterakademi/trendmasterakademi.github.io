@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { triageScenarios } from '../data/triageData';
 import { getCalendlyUrl } from '../utils/calendly';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 export const Triage = () => {
@@ -23,32 +23,8 @@ export const Triage = () => {
   const activeScenario = triageScenarios.find(s => s.id === selectedId) || triageScenarios[0];
 
   useEffect(() => {
-    document.title = formatDocumentTitle(
-      isTr 
-        ? 'Canlı Kriz & Triyaj Simülatörü // İlk 15 Dakika Protokolü | Trend Master Akademi'
-        : 'Emergency Triage & Incident Simulator // First 15-Min Protocol | Trend Master Akademi'
-    );
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        isTr
-          ? 'Canlı sisteminiz krizde mi? Belirtiyi seçin, ilk 15 dakikada ne yapmamanız gerektiğini, çekilecek log komutlarını ve acil müdahale adımlarını anında görün.'
-          : 'Is your production system down? Select your symptom, discover what NOT to do in the first 15 minutes, extract critical logs, and get immediate triage steps.'
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute(
-        'href',
-        isTr 
-          ? 'https://trendmasterakademi.com/triyaj/' 
-          : 'https://trendmasterakademi.com/triage/'
-      );
-    }
-  }, [isTr]);
+    setPageSeo(isTr ? '/triyaj/' : '/triage/', lang);
+  }, [isTr, lang]);
 
   const copyCommand = (cmd, index) => {
     navigator.clipboard.writeText(cmd);

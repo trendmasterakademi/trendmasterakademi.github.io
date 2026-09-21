@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 /**
@@ -201,22 +201,7 @@ const Salvageability = () => {
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
-    document.title = formatDocumentTitle(isTr 
-      ? 'Salvageability Index // Kurtarılabilirlik Karar Matrisi | Trend Master Akademi'
-      : 'Salvageability Index // Refactor vs Rebuild Matrix | Trend Master Akademi');
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', isTr
-        ? 'Mevcut kodu kurtarmaya değer mi, yoksa baştan mı yazmalı? 5 boyutlu teknik fizibilite analizi ve kurtarılabilirlik skoru.'
-        : 'Is the codebase worth saving or should you rebuild from scratch? 5-dimensional technical feasibility and salvageability scoring.'
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', isTr ? 'https://trendmasterakademi.com/kurtarilabilirlik/' : 'https://trendmasterakademi.com/salvageability/');
-    }
+    setPageSeo(isTr ? '/kurtarilabilirlik/' : '/salvageability/', lang);
   }, [lang]);
 
   const totalScore = Object.values(answers).reduce((a, b) => a + b, 0);

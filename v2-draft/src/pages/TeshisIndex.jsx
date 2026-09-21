@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AlertTriangle, ArrowRight, Stethoscope } from 'lucide-react';
 import { teshisSummaries } from '../data/teshis/indexSummary';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 const TeshisIndex = () => {
@@ -12,22 +12,7 @@ const TeshisIndex = () => {
   const lang = isTr ? 'tr' : 'en';
 
   useEffect(() => {
-    document.title = formatDocumentTitle(isTr 
-      ? 'Teşhis Kataloğu | Trend Master Akademi'
-      : 'Diagnostic Catalog | Trend Master Academy');
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', isTr
-        ? 'Belirtiden nedene: yazılım arızalarının ajans diliyle teşhis rehberi.'
-        : 'From symptom to root cause: technical defect triage guide for digital agencies.'
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', isTr ? 'https://trendmasterakademi.com/teshis/' : 'https://trendmasterakademi.com/diagnostic/');
-    }
+    setPageSeo(isTr ? '/teshis/' : '/diagnostic/', lang);
   }, [lang]);
 
   return (
@@ -78,7 +63,7 @@ const TeshisIndex = () => {
           return (
             <Link
               key={item.slug}
-              to={`/teshis/${item.slug}/`}
+              to={isTr ? `/teshis/${item.slug}/` : `/diagnostic/${item.slug}/`}
               className="block group border border-[var(--rule)] hover:border-[var(--accent)] rounded-2xl bg-[var(--surface)] transition-all p-6 sm:p-8 space-y-4 shadow-sm"
             >
               <div className="flex flex-wrap items-center justify-between gap-3">

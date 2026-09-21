@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 /**
@@ -223,22 +223,7 @@ const DevirKontrolu = () => {
   const [isSendingLead, setIsSendingLead] = useState(false);
 
   useEffect(() => {
-    document.title = formatDocumentTitle(isTr
-      ? "Devir Hazırlık Kontrolü (12 Kalem) | Trend Master Akademi"
-      : "Developer Handover Readiness Audit (12-Point Checklist) | Trend Master Academy");
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", isTr
-        ? "Yazılımcınız ayrılıyor veya ayrıldı mı? 12 kritik kalemi kontrol edin, devir risk skorunuzu ve eksik envanterinizi 60 saniyede ücretsiz analiz edin."
-        : "Is your developer leaving? Audit 12 critical handover checkpoints and calculate codebase takeover risk in 60 seconds."
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', isTr ? 'https://trendmasterakademi.com/devir-kontrolu/' : 'https://trendmasterakademi.com/handover-audit/');
-    }
+    setPageSeo(isTr ? '/devir-kontrolu/' : '/handover-audit/', isTr ? 'tr' : 'en');
 
     try {
       const params = new URLSearchParams(window.location.search);
@@ -436,7 +421,7 @@ const DevirKontrolu = () => {
             </div>
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-1 rounded text-xs font-mono font-semibold bg-[var(--surface)] text-[var(--ink-muted)] border border-[var(--rule)]">
-                %100 Gizlilik Güvencesi
+                {isTr ? '%100 Gizlilik Güvencesi' : '100% Confidentiality Guarantee'}
               </span>
             </div>
           </div>
@@ -482,11 +467,11 @@ const DevirKontrolu = () => {
               <div className="grid grid-cols-3 gap-3 pt-3 border-t border-[var(--rule)] text-center">
                 <div className="p-3 rounded bg-[var(--paper)] border border-[var(--rule)]">
                   <strong className="block text-[var(--ink)] font-mono text-base sm:text-lg">12</strong>
-                  <span className="text-xs text-[var(--ink-muted)]">Kritik Kontrol</span>
+                  <span className="text-xs text-[var(--ink-muted)]">{isTr ? 'Kritik Kontrol' : 'Critical Checks'}</span>
                 </div>
                 <div className="p-3 rounded bg-[var(--paper)] border border-[var(--rule)]">
                   <strong className="block text-[var(--accent)] font-mono text-base sm:text-lg">60 sn</strong>
-                  <span className="text-xs text-[var(--ink-muted)]">Tamamlama</span>
+                  <span className="text-xs text-[var(--ink-muted)]">{isTr ? 'Tamamlama' : 'Completion'}</span>
                 </div>
                 <div className="p-3 rounded bg-[var(--paper)] border border-[var(--rule)]">
                   <strong className="block text-emerald-700 font-mono text-base sm:text-lg">%100</strong>
@@ -525,7 +510,7 @@ const DevirKontrolu = () => {
                   </span>
                 </div>
                 <span className="px-2 py-0.5 rounded text-xs font-semibold bg-[var(--surface)] text-[var(--ink-muted)] border border-[var(--rule)]">
-                  %100 Gizlilik Güvencesi
+                  {isTr ? '%100 Gizlilik Güvencesi' : '100% Confidentiality Guarantee'}
                 </span>
               </div>
 

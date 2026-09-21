@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { PhoneCall, MessageSquare, AlertTriangle, ShieldCheck, ArrowRight, ArrowLeft } from 'lucide-react';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
 
@@ -12,27 +12,7 @@ const Sos = () => {
   const krizHattiAcik = useKrizHattiAcik();
 
   useEffect(() => {
-    document.title = formatDocumentTitle(
-      isTr 
-        ? 'Acil Teknik Destek (SOS) | Trend Master Akademi'
-        : 'Emergency Technical Support (SOS) | Trend Master Academy'
-    );
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        isTr
-          ? 'Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa kriz hattı: her gün 09:00 – 24:00, ilk teşhis ücretsiz.'
-          : 'Direct emergency crisis desk if your agency system is down, deadline is crunching, or inherited code is locked. Open daily 09:00 - 24:00.'
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/sos/');
-    }
-
+    setPageSeo('/sos/', isTr ? 'tr' : 'en');
     // Açılışta bir kez SOS modalını otomatik tetikle
     window.dispatchEvent(new CustomEvent('open-sos-modal'));
   }, [isTr]);

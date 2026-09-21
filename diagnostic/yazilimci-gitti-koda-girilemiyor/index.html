@@ -193,7 +193,7 @@
     </script>
     
     <title>Developer Departed, Codebase Inaccessible</title>
-    <meta name="description" content="The developer who built the platform departed. The site continues running but cannot be modified: repository location, server SSH credentials, or account ownership remain unknown. These are three distinct bottlenecks, identifiable within hour one." />
+    <meta name="description" content="The developer who built the platform departed. The site continues running but cannot be modified. Likely causes and the fix." />
     <meta name="author" content="Trend Master Akademi" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/yazilimci-gitti-koda-girilemiyor/" />
@@ -207,14 +207,14 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/yazilimci-gitti-koda-girilemiyor/" />
     <meta property="og:title" content="Developer Departed, Codebase Inaccessible" />
-    <meta property="og:description" content="The developer who built the platform departed. The site continues running but cannot be modified: repository location, server SSH credentials, or account ownership remain unknown. These are three distinct bottlenecks, identifiable within hour one." />
+    <meta property="og:description" content="The developer who built the platform departed. The site continues running but cannot be modified. Likely causes and the fix." />
     <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
     <meta property="og:site_name" content="Trend Master Akademi" />
-    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:locale" content="en_US" />
 
     <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
 
@@ -222,7 +222,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/yazilimci-gitti-koda-girilemiyor/" />
     <meta name="twitter:title" content="Developer Departed, Codebase Inaccessible" />
-    <meta name="twitter:description" content="The developer who built the platform departed. The site continues running but cannot be modified: repository location, server SSH credentials, or account ownership remain unknown. These are three distinct bottlenecks, identifiable within hour one." />
+    <meta name="twitter:description" content="The developer who built the platform departed. The site continues running but cannot be modified. Likely causes and the fix." />
     <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
 
     <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
@@ -309,7 +309,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DN9go0BT.js"></script>
+    <script type="module" crossorigin src="/assets/index-DTaQ5JRn.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -324,6 +324,7 @@
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">Home</a>
           <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
           <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
           <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
           <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
@@ -333,11 +334,14 @@
           <a href="/sla/" class="hover:underline">SLA & Commitments</a>
           <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
           <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Unilateral NDA</a>
           <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
           <a href="/radar/" class="hover:underline">Status Radar</a>
           <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
           <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
           <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
           <a href="/sos/" class="hover:underline">Emergency Support</a>
           <a href="/about/" class="hover:underline">About Us</a>
           <a href="/privacy/" class="hover:underline">Privacy Policy</a>
@@ -348,87 +352,87 @@
         <p class="text-[var(--ink-muted)] text-lg leading-relaxed">The developer who built the platform departed. The site continues running but cannot be modified: repository location, server SSH credentials, or account ownership remain unknown. These are three distinct bottlenecks, identifiable within hour one.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
-      <p class="text-sm font-mono text-[var(--accent)]">Aciliyet: Yüksek · süreklilik riski · Kategori: Devir &amp; Süreklilik</p>
+      <p class="text-sm font-mono text-[var(--accent)]">Urgency: High · continuity risk · Category: Handover &amp; Continuity</p>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Sahada nasıl görünür</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Projeyi geliştiren tek yazılımcı işten ayrılır veya ajansla ilişiğini keser. Sitede acil bir güncelleme yapılması gerektiğinde Git deposunun, sunucu şifrelerinin veya dağıtım anahtarlarının kimsede olmadığı anlaşılır; şirket kendi yazılımına yabancı kalır.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">The sole developer behind the project departs or cuts communication. When emergency updates arise, the agency discovers nobody holds Git repo permissions, server keys, or deployment credentials; the company is locked out of its own software.</p>
       </section>
     
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Sisteminizde bu satırları görüyorsanız</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
         
       <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
-        <li><code>git log -1 --format=%cd            ← son commit ne zaman?</code></li>
-        <li><code>git log --format='%an' | sort -u   ← koda kaç kişi dokunmuş?</code></li>
-        <li><code>~/.ssh/authorized_keys             ← sunucuya kimin anahtarı var?</code></li>
-        <li><code>WHOIS + hosting hesabı             ← hangi e-postaya kayıtlı?</code></li>
+        <li><code>git log -1 --format=%cd            &lt;- timestamp of last commit?</code></li>
+        <li><code>git log --format='%an' | sort -u   &lt;- how many contributors touched code?</code></li>
+        <li><code>~/.ssh/authorized_keys             &lt;- who has SSH keys to production?</code></li>
+        <li><code>WHOIS + cloud account             &lt;- registered to which email?</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">Bu dört satır, devrin teknik mi yoksa idari bir problem mi olduğunu ayırır. Çoğu vakada sorun kodda değil, hesap sahipliğindedir.</p>
+        <p class="text-[var(--ink-muted)] text-sm">These four checkpoints determine whether handover failure is technical or administrative. In most cases, the bottleneck is account ownership rather than code.</p>
       </section>
 
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Üç olası neden ve ayırt edici testleri</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Three Potential Root Causes & Differential Tests</h2>
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">A · Erişim kaybı</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Domain, hosting ve depo kişinin şahsi e-postasına kayıtlı. Kod sağlam, altyapı çalışıyor; devredilmesi gereken şey hesaplar.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Hesaplar şirket adresine mi kayıtlı?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Hesaplar şahsi adreste → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Hesap devri — idari süreç, kod işi değil</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Eski yazılımcıya mesaj atılarak şifreler istenir; gelen eksik şifreler iki faktörlü doğrulama engeline takıldığından panellere yine ulaşılamaz.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">A · Loss of access</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Domain registrar, host, and git repos are registered to personal emails. Code and infrastructure are sound; the bottleneck is credential handover.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are accounts tied to company domain email?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Accounts on personal mail → A</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Account transfer — admin workflow, no coding needed</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Requesting passwords via messaging apps fails when outdated credentials run straight into two-factor authentication prompts on personal devices.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">B · Kaynak kod kayıp</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Sürüm kontrolü hiç kurulmamış. Canlı sunucudaki dosyalar tek kopya. En kırılgan hâl budur.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Sürüm kontrolü (git) var mı?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Depo yok → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> ÖNCE canlıdan tam yedek, SONRA depo</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Yeni bir geliştirici projeyi tahminlerle kurmaya çalışır; eksik ortam değişkenleri ve derleme bağımlılıkları yüzünden günler hata çözmeye harcanır.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">B · Missing source repository</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Version control was never initialized. Live production server contains the sole surviving copy. The highest-risk state.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is version control (git remote) present?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> No remote repo → B</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Full live image FIRST, then git init setup</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Tasking a replacement developer to reverse-engineer environment setups wastes days resolving undocumented build flags and missing local dependencies.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">C · Ortam belgesiz</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Kod var ama çalıştırılamıyor: kurulum adımları, ortam değişkenleri ve bağımlılık sürümleri yazılı değil.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> README ve bağımlılık kilidi var mı?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> .env.example / lock yok → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Ortam yeniden inşası + belgeleme</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Canlı sunucudaki dosyalar FTP ile indirilip yerel repo yapılır; derlenmemiş kaynak kod bulunmadığı için küçültülmüş dosyalar üzerinden geliştirme yapılamaz.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">C · Undocumented environment</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Repository exists but cannot be booted: setup commands, environment variables, and lockfiles are absent.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are README and package lockfiles available?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Missing .env / lockfile → C</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Environment rebuild + documentation</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Downloading production files via FTP yields minified bundles; lacking original source code makes subsequent feature updates and debugging impractical.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer, ne kadar sürer</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">A idari bir süreçtir, geliştirici gerekmez. B'de ilk iş kod yazmak değil, canlı sunucudan tam yedek almaktır — bu adım atlanırsa tek kopya risk altında kalır. C, devir teşhisinin ölçtüğü şeydir.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">A is an administrative process, requiring zero coding. For B, the absolute first step is pulling a full live server image, not writing code. C is precisely what a handover code audit diagnoses.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Çözülmezse ne olur</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Sürüm kontrolü olmayan bir projede canlı sunucu tek kopyadır. Sunucu çökerse veya hesap kapanırsa geri dönüş yoktur. Risk her gün büyür, çünkü kimse yedeğin gerçekten alındığını doğrulamamıştır.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Without version control, production is a single point of total failure. If the instance crashes, recovery is impossible. Risk compounds daily until full image verification is completed.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">İlgili terimler ve hizmet</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts & Services</h2>
         
       <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
-        <li><a href="/sozluk/teknik-borc/" class="hover:underline">→ Teknik Borç (Technical Debt)</a></li>
-        <li><a href="/sozluk/staging-ortami/" class="hover:underline">→ Staging Ortamı (Canlı Öncesi Test Ortamı)</a></li>
-        <li><a href="/sozluk/migration/" class="hover:underline">→ Migration (Veritabanı Şema Geçişi)</a></li>
+        <li><a href="/glossary/teknik-borc/" class="hover:underline">→ Technical Debt</a></li>
+        <li><a href="/glossary/staging-ortami/" class="hover:underline">→ Staging Environment</a></li>
+        <li><a href="/glossary/migration/" class="hover:underline">→ Database Migration</a></li>
       </ul>
     
-        <p class="pt-2"><a href="/devir-kontrolu/" class="text-[var(--accent)] hover:underline font-bold">→ Devir Hazırlık Kontrolü</a></p>
+        <p class="pt-2"><a href="/devir-kontrolu/" class="text-[var(--accent)] hover:underline font-bold">→ Handover Readiness Audit</a></p>
       </section>
     </section>
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

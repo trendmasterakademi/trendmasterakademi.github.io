@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Download, ArrowLeft, Scale } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 const Nda = () => {
@@ -10,22 +10,7 @@ const Nda = () => {
   const isTr = isTurkish(i18n);
 
   useEffect(() => {
-    document.title = formatDocumentTitle(isTr 
-      ? "Gizlilik ve Çalışma Sözleşmesi | Trend Master Akademi"
-      : "Confidentiality and Engagement Agreement | Trend Master Academy");
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", isTr
-        ? "Çalışmaya başlamadan önce imzaladığımız karşılıklı gizlilik ve çalışma sözleşmesinin tam metni ve sade dilli özeti."
-        : "Full text and plain-language summary of the mutual confidentiality and engagement agreement signed before work begins."
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/nda/');
-    }
+    setPageSeo('/nda/', isTr ? 'tr' : 'en');
   }, [isTr]);
 
   return (

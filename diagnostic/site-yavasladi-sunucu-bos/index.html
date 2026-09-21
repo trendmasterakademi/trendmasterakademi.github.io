@@ -193,7 +193,7 @@
     </script>
     
     <title>Site Stalled Despite Idle Server Resources</title>
-    <meta name="description" content="Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation." />
+    <meta name="description" content="Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Likely causes and the fix." />
     <meta name="author" content="Trend Master Akademi" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/" />
@@ -207,14 +207,14 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/" />
     <meta property="og:title" content="Site Stalled Despite Idle Server Resources" />
-    <meta property="og:description" content="Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation." />
+    <meta property="og:description" content="Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Likely causes and the fix." />
     <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
     <meta property="og:site_name" content="Trend Master Akademi" />
-    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:locale" content="en_US" />
 
     <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
 
@@ -222,7 +222,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/" />
     <meta name="twitter:title" content="Site Stalled Despite Idle Server Resources" />
-    <meta name="twitter:description" content="Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation." />
+    <meta name="twitter:description" content="Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Likely causes and the fix." />
     <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
 
     <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
@@ -309,7 +309,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DN9go0BT.js"></script>
+    <script type="module" crossorigin src="/assets/index-DTaQ5JRn.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -324,6 +324,7 @@
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">Home</a>
           <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
           <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
           <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
           <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
@@ -333,11 +334,14 @@
           <a href="/sla/" class="hover:underline">SLA & Commitments</a>
           <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
           <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Unilateral NDA</a>
           <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
           <a href="/radar/" class="hover:underline">Status Radar</a>
           <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
           <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
           <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
           <a href="/sos/" class="hover:underline">Emergency Support</a>
           <a href="/about/" class="hover:underline">About Us</a>
           <a href="/privacy/" class="hover:underline">Privacy Policy</a>
@@ -348,87 +352,87 @@
         <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
-      <p class="text-sm font-mono text-[var(--accent)]">Aciliyet: Yüksek · dönüşüm kaybı · Kategori: Performans</p>
+      <p class="text-sm font-mono text-[var(--accent)]">Urgency: High · conversion loss · Category: Performance</p>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Sahada nasıl görünür</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Siteye giren kullanıcılar sayfaların on beş saniyede açıldığını ya da zaman aşımına uğradığını söyler. Ajans sunucu paneline (htop/top) baktığında işlemci ve bellek kullanımının yüzde beşi geçmediğini, sunucunun adeta uyuduğunu görür; donmanın kaynağı belirsizdir.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Visitors complain that pages take fifteen seconds to load or time out completely. Looking at htop or top shows CPU and RAM below five percent, practically idling; the origin of the freeze remains baffling.</p>
       </section>
     
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Sisteminizde bu satırları görüyorsanız</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
         
       <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
-        <li><code>Sayfa başına veritabanı sorgu sayısı: yüzlerce</code></li>
-        <li><code>Yavaş sorgu log'u: aynı sorgu defalarca tekrarlıyor</code></li>
-        <li><code>Harici servis çağrısı: 2–8 saniye bekleme</code></li>
-        <li><code>İlk bayt süresi yüksek, indirme hızlı</code></li>
+        <li><code>Database queries per page load: hundreds of queries</code></li>
+        <li><code>Slow query log: identical query repeated dozens of times</code></li>
+        <li><code>External 3rd-party API call: 2-8s blocking latency</code></li>
+        <li><code>Time to First Byte (TTFB) high, download payload fast</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">Sunucu boşken yaşanan yavaşlık, sistemin çalışmadığını değil beklediğini gösterir. Aranacak şey işlemci kullanımı değil, isteğin nerede beklediğidir.</p>
+        <p class="text-[var(--ink-muted)] text-sm">Latency with low CPU indicates blocking wait states. The metric to investigate is not CPU utilization, but where the thread is blocking.</p>
       </section>
 
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Üç olası neden ve ayırt edici testleri</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Three Potential Root Causes & Differential Tests</h2>
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">A · Sorgu çoğalması</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Listedeki her satır için ayrı sorgu atılıyor. 10 kayıtla fark edilmez, 500 kayıtla site durur.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Aynı sorgu sayfa başına defalarca mı tekrarlıyor?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Aynı sorgu defalarca tekrarlıyor → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> İlişkileri toplu çek · saatler içinde biter</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Sunucu paketi yükseltilerek CPU ve RAM artırılır; fakat indekssiz tek bir SELECT sorgusu tabloyu kilitlediğinden kaynak artışı yavaşlığı çözmez.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">A · N+1 query explosion</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Loop triggers separate SQL queries for each item. Unnoticeable with 10 items, catastrophic with 500.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does same query execute hundreds of times per hit?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Same query loops hundreds of times → A</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Eager loading + batch SQL joins · resolved today</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Upgrading server CPU and RAM fails because an unindexed SELECT query locks the entire table regardless of hardware capacity.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">B · Dizin eksik</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Sorgu doğru ama tablo baştan sona taranıyor. Veri büyüdükçe süre doğrusal artar.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Yavaş sorgu tüm tabloyu mu tarıyor?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Yavaş sorgu tüm tabloyu tarıyor → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Dizin ekle · etki anında</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> PHP yapılandırmasında max_execution_time süresi artırılır; bu işlem yanıt vermeyen kargo veya SMS servisinin tüm PHP-FPM havuzunu tıkamasına yol açar.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">B · Missing database index</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Query syntax is clean but triggers full table scans (Seq Scan). Duration grows linearly with table size.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does EXPLAIN show full table scan on large tables?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Full table scan in EXPLAIN log → B</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Add composite index · instant speedup</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Increasing max_execution_time backfires by allowing unresponsive third-party shipping or SMS APIs to exhaust the entire PHP-FPM process pool.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">C · Harici bekleme</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Kargo, ödeme veya stok servisi yavaş yanıt veriyor ve sayfa onu bekliyor.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Yavaşlık harici çağrıda mı yoğunlaşıyor?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Yavaşlık harici çağrıda yoğunlaşıyor → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Önbellek + zaman aşımı + arka plana al</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Veritabanı max_connections değeri limitsiz yükseltilir; MySQL bellek baskısı altında swap yapmaya başlar ve sunucu işletim sistemi seviyesinde kilitlenir.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">C · Synchronous third-party I/O</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Outbound carrier, payment, or ERP API is slow and web process blocks execution.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is TTFB spent on outbound 3rd-party HTTP requests?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Latency concentrated in external cURL → C</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Redis cache + strict timeouts + async background</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Raising max_connections indefinitely forces MySQL into swap under memory pressure, locking the server down at the OS level.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer, ne kadar sürer</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Kıdemli backend mühendisi. A ve B çoğunlukla aynı gün kapanır ve etkisi anında görülür. C'de asıl mesele harici servisi hızlandırmak değil, sayfanın onu beklememesini sağlamaktır.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Senior backend engineer. A and B are resolved in hours with instant speedup. For C, the solution is asynchronous decoupling so pages never block on third parties.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Çözülmezse ne olur</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Yavaşlık dönüşümü doğrudan düşürür ve arama sıralamasında da karşılığı vardır. Sunucu yükseltmek maliyeti artırır, belirtiyi bir süre örter, nedeni bırakır.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">High latency degrades checkout conversion and organic Core Web Vitals. Server upgrades mask symptoms temporarily while increasing cloud spend without fixing root flaws.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">İlgili terimler ve hizmet</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts & Services</h2>
         
       <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
-        <li><a href="/sozluk/n-plus-1-sorgu/" class="hover:underline">→ N+1 Sorgu Problemi (N+1 Query)</a></li>
-        <li><a href="/sozluk/teknik-borc/" class="hover:underline">→ Teknik Borç (Technical Debt)</a></li>
-        <li><a href="/sozluk/rate-limit/" class="hover:underline">→ Rate Limiting (Trafik &amp; İstek Sınırlandırma)</a></li>
+        <li><a href="/glossary/n-plus-1-sorgu/" class="hover:underline">→ N+1 Query Problem</a></li>
+        <li><a href="/glossary/teknik-borc/" class="hover:underline">→ Technical Debt</a></li>
+        <li><a href="/glossary/rate-limit/" class="hover:underline">→ Rate Limiting</a></li>
       </ul>
     
-        <p class="pt-2"><a href="/kesinti-maliyeti/" class="text-[var(--accent)] hover:underline font-bold">→ Kesinti Maliyeti Hesabı</a></p>
+        <p class="pt-2"><a href="/kesinti-maliyeti/" class="text-[var(--accent)] hover:underline font-bold">→ Downtime Loss Calculator</a></p>
       </section>
     </section>
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

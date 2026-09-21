@@ -40,7 +40,7 @@ const Footer = () => {
               : 'Senior engineering desk and crisis recovery studio for high-throughput platforms and tech teams operating under 100% White-Label and strict mutual NDA.'}
           </p>
           <div className="text-xs font-mono text-[var(--ink-3)] flex flex-wrap items-center gap-2">
-            <span>Sistem & Operasyon Masası: <strong className="text-[var(--ink)]">Trend Master Akademi Studio & Labs</strong></span>
+            <span>{isTr ? 'Sistem & Operasyon Masası:' : 'Systems & Operations Desk:'} <strong className="text-[var(--ink)]">Trend Master Akademi Studio & Labs</strong></span>
             <span>•</span>
             <a href="https://www.linkedin.com/in/trendmasterakademi/" target="_blank" rel="noreferrer" className="text-[var(--accent)] hover:underline min-h-[44px] inline-flex items-center">LinkedIn</a>
           </div>

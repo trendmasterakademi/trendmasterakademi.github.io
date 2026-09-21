@@ -9,9 +9,9 @@ import {
 import { agencyKitData } from '../data/agencyKitData';
 import { isTurkish } from '../i18n';
 
-export default function AgencyKit() {
+export default function AgencyKit({ lang }) {
   const { i18n } = useTranslation();
-  const isTr = isTurkish(i18n);
+  const isTr = lang ? lang === 'tr' : isTurkish(i18n);
   const data = isTr ? agencyKitData.tr : agencyKitData.en;
 
   // Lightbox state for slide inspection
@@ -77,6 +77,12 @@ export default function AgencyKit() {
               : "The invisible senior engineering desk for digital agencies. Fortify your technical crisis protocols with the 8-Slide Response Kit and 60-Second Crash Test 500 poster."
             }
           </p>
+
+          {!isTr && (
+            <p className="text-xs font-mono text-[var(--ink-muted)] bg-[var(--surface)] border border-[var(--rule)] py-1.5 px-3 rounded-[var(--r-control)] inline-block">
+              The slides and the poster are currently available in Turkish.
+            </p>
+          )}
 
           {/* Action CTAs */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-4 font-mono text-xs sm:text-sm">
@@ -263,8 +269,8 @@ export default function AgencyKit() {
                 </h3>
                 <p className="text-xs sm:text-sm text-[var(--ink-light)] leading-relaxed">
                   {isTr
-                    ? "Kriz kapıyı çalmadan önce ajansınızın ilk müdahale refleksini ölçün. 4 soruya yanıt vererek teknik hazırlık puanınızı ve cerrahi eylem planınızı anında alın."
-                    : "Measure your agency's incident triage reflexes before outage strikes. Answer 4 questions to calculate your readiness score and surgical action plan instantly."
+                    ? "Kriz kapıyı çalmadan önce ajansınızın ilk müdahale refleksini ölçün. 3 soruya yanıt vererek teknik hazırlık puanınızı ve cerrahi eylem planınızı anında alın."
+                    : "Measure your agency's incident triage reflexes before outage strikes. Answer 3 questions to calculate your readiness score and surgical action plan instantly."
                   }
                 </p>
               </div>
@@ -434,7 +440,7 @@ export default function AgencyKit() {
               <button
                 onClick={() => setActiveSlideIndex(null)}
                 className="p-2 min-h-[44px] min-w-[44px] rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer flex items-center justify-center"
-                aria-label="Kapat"
+                aria-label={isTr ? "Kapat" : "Close"}
               >
                 <X className="w-6 h-6" />
               </button>
@@ -447,7 +453,7 @@ export default function AgencyKit() {
             <button
               onClick={() => setActiveSlideIndex((prev) => (prev - 1 + 8) % 8)}
               className="absolute left-2 sm:left-6 z-20 p-2 sm:p-3 min-h-[44px] min-w-[44px] rounded-full bg-black/60 hover:bg-[var(--accent)] text-white border border-white/20 transition-all cursor-pointer shadow-2xl flex items-center justify-center"
-              aria-label="Önceki Slayt"
+              aria-label={isTr ? "Önceki Slayt" : "Previous Slide"}
             >
               <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
             </button>
@@ -465,7 +471,7 @@ export default function AgencyKit() {
             <button
               onClick={() => setActiveSlideIndex((prev) => (prev + 1) % 8)}
               className="absolute right-2 sm:right-6 z-20 p-2 sm:p-3 min-h-[44px] min-w-[44px] rounded-full bg-black/60 hover:bg-[var(--accent)] text-white border border-white/20 transition-all cursor-pointer shadow-2xl flex items-center justify-center"
-              aria-label="Sonraki Slayt"
+              aria-label={isTr ? "Sonraki Slayt" : "Next Slide"}
             >
               <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
             </button>
@@ -525,7 +531,7 @@ export default function AgencyKit() {
               <button
                 onClick={() => setIsPosterLightboxOpen(false)}
                 className="p-2 min-h-[44px] min-w-[44px] rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer flex items-center justify-center"
-                aria-label="Kapat"
+                aria-label={isTr ? "Kapat" : "Close"}
               >
                 <X className="w-6 h-6" />
               </button>

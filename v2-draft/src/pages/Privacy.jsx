@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ShieldCheck, Lock, ArrowLeft, Mail, PhoneCall, MapPin, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 const Privacy = () => {
@@ -10,22 +10,7 @@ const Privacy = () => {
   const isTr = isTurkish(i18n);
 
   useEffect(() => {
-    document.title = formatDocumentTitle(isTr 
-      ? "KVKK & Gizlilik Politikası | Trend Master Akademi"
-      : "Privacy Policy & NDA Commitment | Trend Master Academy");
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", isTr
-        ? "Trend Master Akademi KVKK aydınlatma metni, veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik standartları."
-        : "Trend Master Academy privacy policy, mutual NDA guidelines, and data protection standards."
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/privacy/');
-    }
+    setPageSeo('/privacy/', isTr ? 'tr' : 'en');
   }, [isTr]);
 
   return (
@@ -50,7 +35,7 @@ const Privacy = () => {
         <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed">
           {isTr 
             ? 'Trend Master Akademi Studio & Labs olarak, ajans çözüm ortaklarımızın ve ziyaretçilerimizin kişisel verilerinin güvenliğine, gizliliğine ve fikri mülkiyet haklarına en üst düzeyde önem veriyoruz.' 
-            : 'At Trend Master Academy Studio & Labs, we adhere to the highest standards of data privacy, mutual NDA, and intellectual property protection.'}
+            : 'At Trend Master Akademi Studio & Labs, we adhere to the highest standards of data privacy, mutual NDA, and intellectual property protection.'}
         </p>
       </div>
 

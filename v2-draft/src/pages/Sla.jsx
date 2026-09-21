@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { slaTiers, coreCommitments, slaScope, slaMetaDesc } from '../data/slaData';
 import { getCalendlyUrl } from '../utils/calendly';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 export const Sla = () => {
@@ -19,21 +19,7 @@ export const Sla = () => {
   const [activeTier, setActiveTier] = useState('SEV-0');
 
   useEffect(() => {
-    document.title = formatDocumentTitle(
-      isTr 
-        ? 'Şeffaf Mühendislik SLA & Yanıt Taahhütleri | Trend Master Akademi'
-        : 'Transparent Engineering SLA & Response Commitments | Trend Master Akademi'
-    );
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', slaMetaDesc[lang]);
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/sla/');
-    }
+    setPageSeo('/sla/', lang);
   }, [isTr, lang]);
 
   const selectedTier = slaTiers.find(t => t.level === activeTier) || slaTiers[0];

@@ -6,7 +6,7 @@ import {
   Clock, Database, Layers, CheckCircle2, Terminal, Calendar
 } from 'lucide-react';
 import { postMortems, postMortemDisclosure } from '../data/postMortemData';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 const PostMortemIndex = () => {
@@ -17,22 +17,7 @@ const PostMortemIndex = () => {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
 
   useEffect(() => {
-    document.title = formatDocumentTitle(isTr 
-      ? 'Public Post-Mortem & Kök Neden Analizi (RCA) | Trend Master Akademi'
-      : 'Public Incident Post-Mortem & RCA Archive | Trend Master Akademi');
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', isTr
-        ? 'Gerçek sistem krizlerinin saniye saniye zaman çizelgesi, kök neden analizi (RCA) ve cerrahi TMA hotfix müdahaleleri.'
-        : 'Anonymized production incident post-mortems, second-by-second timelines, root-cause analyses, and surgical TMA engineering fixes.'
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', isTr ? 'https://trendmasterakademi.com/post-mortem/' : 'https://trendmasterakademi.com/post-mortems/');
-    }
+    setPageSeo(isTr ? '/post-mortem/' : '/post-mortems/', lang);
   }, [lang]);
 
   const categories = ['ALL', ...new Set(postMortems.map(p => p.category.tr))];

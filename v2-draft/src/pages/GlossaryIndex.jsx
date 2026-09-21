@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { glossaryTerms } from '../data/glossaryData';
 import { getCalendlyUrl } from '../utils/calendly';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 const GlossaryIndex = () => {
@@ -16,22 +16,7 @@ const GlossaryIndex = () => {
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
-    document.title = formatDocumentTitle(isTr
-      ? "Teknik Terim Sözlüğü | Trend Master Akademi"
-      : "Developer-to-Agency Tech Glossary | Trend Master Academy");
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", isTr
-        ? "Yazılımcınız teknik bir bahane sunduğunda ne anlama geldiğini öğrenin. Deadlock, N+1, Race Condition, Webhook ve 12 temel terimin iş etkisi ve çözümü."
-        : "Demystifying developer terminology for digital agency owners. Understand business impact, urgency, and solutions for 12 core backend concepts."
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', isTr ? 'https://trendmasterakademi.com/sozluk/' : 'https://trendmasterakademi.com/glossary/');
-    }
+    setPageSeo(isTr ? '/sozluk/' : '/glossary/', isTr ? 'tr' : 'en');
   }, [isTr]);
 
   const filteredTerms = glossaryTerms.filter(t => 
@@ -85,14 +70,14 @@ const GlossaryIndex = () => {
               <div className="space-y-3">
                 <div className="flex items-center justify-between gap-2">
                   <span className={`text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full border ${term.urgencyColor}`}>
-                    {term.urgencyLevel}
+                    {isTr ? term.urgencyLevel : term.urgencyLevelEn}
                   </span>
-                  <span className="text-xs font-mono text-[var(--ink-muted)]">/sozluk/{term.slug}/</span>
+                  <span className="text-xs font-mono text-[var(--ink-muted)]">/{isTr ? 'sozluk' : 'glossary'}/{term.slug}/</span>
                 </div>
 
                 <h2 className="text-xl font-serif font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
-                  <Link to={`/sozluk/${term.slug}/`} className="hover:underline">
-                    {term.title}
+                  <Link to={isTr ? `/sozluk/${term.slug}/` : `/glossary/${term.slug}/`} className="hover:underline">
+                    {isTr ? term.title : term.titleEn}
                   </Link>
                 </h2>
 
@@ -103,7 +88,7 @@ const GlossaryIndex = () => {
 
               <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between">
                 <Link
-                  to={`/sozluk/${term.slug}/`}
+                  to={isTr ? `/sozluk/${term.slug}/` : `/glossary/${term.slug}/`}
                   className="text-xs font-semibold font-mono text-[var(--accent)] hover:underline flex items-center gap-1.5 group-hover:translate-x-1 transition-transform min-h-[44px]"
                 >
                   <span>{isTr ? 'Ajans Etkisini & Çözümü Gör' : 'Read Agency Impact'}</span>

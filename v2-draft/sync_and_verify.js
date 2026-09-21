@@ -187,7 +187,7 @@ if (pageDiffs.length > 0) {
 // Check PDFs SHA-256
 console.log('\n--- 3. VERIFYING PDF SHA-256 HASHES ---');
 const expectedPdfs = {
-  'agency-kit/tma-agency-crash-test-500.pdf': '700ed063f84766b4ae875aaf1f6b60973309e1f97db4d771f4bc22063c5ebb3e',
+  'agency-kit/tma-agency-crash-test-500.pdf': '79d156e6d5694492887fafaec1c64d351e118a188ed99e0c8cb917638160b04f',
   'agency-kit/tma-agency-response-kit.pdf': '2b7379cbd6b0a1f3f2acec38fbb92cef87ae9bd4bf5ebf8eaa1e62af3348f681',
   'sozlesme/tma-gizlilik-ve-calisma-sozlesmesi.pdf': '282805cfbabaf2ff91fa65fbd870b71e319c9c085e8dbc87bbf356e1e120c3c2'
 };

@@ -2,34 +2,15 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { radarData } from "../data/radarData";
 import { getCalendlyUrl } from "../utils/calendly";
-import { formatDocumentTitle } from "../utils/pageTitle";
+import { setPageSeo } from "../utils/pageTitle";
 
 export default function StatusRadar({ lang = "tr" }) {
   const t = radarData[lang] || radarData.tr;
   const isTr = lang === "tr";
 
   useEffect(() => {
-    document.title = formatDocumentTitle(
-      isTr
-        ? "SWAT Hazırbulunuşluk & Olay Radarı | Trend Master Akademi"
-        : "SWAT Readiness & Incident Radar | Trend Master Akademi"
-    );
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute(
-        "content",
-        isTr
-          ? "Trend Master Akademi SWAT hazırbulunuşluğu ve olay radarı. 90 günlük dönemde kaydedilen 34 müdahale, ilk yanıt ve çözüm süreleri, olay dağılımı."
-          : "Trend Master Akademi SWAT readiness and incident radar. 34 interventions recorded over 90 days, first-response and recovery times, incident distribution."
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute("href", "https://trendmasterakademi.com/radar/");
-    }
-  }, [isTr]);
+    setPageSeo('/radar/', lang);
+  }, [lang]);
 
   return (
     <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">

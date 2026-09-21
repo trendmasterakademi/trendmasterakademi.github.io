@@ -4,7 +4,7 @@ import { ShieldCheck, Server, Lock, Cpu, ArrowRight, ArrowLeft, Zap, PhoneCall, 
 import { Link } from 'react-router-dom';
 import { coreCommitments } from '../data/slaData';
 import { getCalendlyUrl } from '../utils/calendly';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 const About = () => {
@@ -12,22 +12,7 @@ const About = () => {
   const isTr = isTurkish(i18n);
 
   useEffect(() => {
-    document.title = formatDocumentTitle(isTr 
-      ? "Mühendislik Standartlarımız | Trend Master Akademi"
-      : "Engineering Standards & About | Trend Master Academy");
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", isTr
-        ? "Trend Master Akademi: Dijital ajansların ve kurumsal ekiplerin görünmez teknik gücü. Altı temel taahhüdümüz ve B2B SWAT vizyonumuz."
-        : "Trend Master Academy: The invisible backline engineering power for digital agencies. Our six core commitments and B2B crisis triage standard."
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/about/');
-    }
+    setPageSeo('/about/', isTr ? 'tr' : 'en');
   }, [isTr]);
 
   return (
@@ -90,7 +75,7 @@ const About = () => {
               <p>
                 I spent twenty years inside financial markets. Software was always inseparable from that work — but for a long time only for myself: I wrote my own systems, turned my own ideas into code, debugged my own mistakes.{' '}
                 <Link
-                  to="/hikayemiz/"
+                  to="/story/"
                   className="text-[var(--accent)] hover:underline font-semibold transition-colors inline-block"
                 >
                   Read more...

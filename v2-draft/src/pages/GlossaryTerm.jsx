@@ -8,7 +8,7 @@ import {
 import { glossaryTerms } from '../data/glossaryData';
 import { teshisSummaries } from '../data/teshis/indexSummary';
 import { getCalendlyUrl } from '../utils/calendly';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 const GlossaryTerm = () => {
@@ -29,20 +29,7 @@ const GlossaryTerm = () => {
   useEffect(() => {
     if (!term) return;
 
-    document.title = formatDocumentTitle(isTr
-      ? `${term.title} Nedir? | Trend Master Akademi`
-      : `${term.title} - Agency Executive Guide | Trend Master Academy`);
-
-    const shortTitle = term.title.split(' (')[0];
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", `${shortTitle}: ${term.shortDef[isTr ? 'tr' : 'en']}`);
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', isTr ? `https://trendmasterakademi.com/sozluk/${term.slug}/` : `https://trendmasterakademi.com/glossary/${term.slug}/`);
-    }
+    setPageSeo(isTr ? `/sozluk/${term.slug}/` : `/glossary/${term.slug}/`, isTr ? 'tr' : 'en');
 
     if (window.trackEvent) {
       window.trackEvent('glossary_term_viewed', { term: term.slug });
@@ -69,9 +56,10 @@ const GlossaryTerm = () => {
     if (window.trackEvent) {
       window.trackEvent('whatsapp_clicked', { source: `glossary_${term.slug}` });
     }
+    const termTitle = isTr ? term.title : (term.titleEn || term.title);
     const text = isTr
-      ? `Merhaba, sitenizdeki "${term.title}" terimiyle ilgili projemizde bir darboğaz yaşıyoruz. Acil teknik triyaj desteği alabilir miyiz?`
-      : `Hello, we are experiencing an incident related to "${term.title}" on our agency project. We need technical triage support.`;
+      ? `Merhaba, sitenizdeki "${termTitle}" terimiyle ilgili projemizde bir darboğaz yaşıyoruz. Acil teknik triyaj desteği alabilir miyiz?`
+      : `Hello, we are experiencing an incident related to "${termTitle}" on our agency project. We need technical triage support.`;
     window.open(`https://wa.me/905343713573?text=${encodeURIComponent(text)}`, '_blank');
   };
 
@@ -82,14 +70,14 @@ const GlossaryTerm = () => {
         {/* Navigation Breadcrumb */}
         <div className="flex items-center justify-between border-b border-[var(--rule)] pb-4">
           <Link
-            to="/sozluk/"
+            to={isTr ? "/sozluk/" : "/glossary/"}
             className="text-xs sm:text-sm font-mono text-[var(--accent)] hover:underline flex items-center gap-1.5 min-h-[44px]"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>{isTr ? '← Terim Sözlüğü Dizini' : '← Glossary Directory'}</span>
           </Link>
           <span className={`text-xs font-mono font-semibold px-3 py-1 rounded-full border ${term.urgencyColor}`}>
-            {term.urgencyLevel}
+            {isTr ? term.urgencyLevel : term.urgencyLevelEn}
           </span>
         </div>
 
@@ -99,7 +87,7 @@ const GlossaryTerm = () => {
             {isTr ? 'TEKNİK TERİM REHBERİ' : 'TECHNICAL GLOSSARY ITEM'} // {term.slug.toUpperCase()}
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
-            {term.title}
+            {isTr ? term.title : (term.titleEn || term.title.split(' (')[0])}
           </h1>
           <p className="text-lg sm:text-xl text-[var(--ink)] font-medium leading-relaxed p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
             {term.shortDef[isTr ? 'tr' : 'en']}
@@ -154,7 +142,7 @@ const GlossaryTerm = () => {
                 return (
                   <Link
                     key={diag.slug}
-                    to={`/teshis/${diag.slug}/`}
+                    to={isTr ? `/teshis/${diag.slug}/` : `/diagnostic/${diag.slug}/`}
                     className="group flex items-center gap-2 text-sm sm:text-base text-[var(--ink-light)] hover:text-[var(--accent)] transition-colors min-h-[44px]"
                   >
                     <span className="text-[var(--accent)] font-mono font-semibold">→</span>
@@ -167,7 +155,7 @@ const GlossaryTerm = () => {
               {remainingCount > 0 && (
                 <div className="pt-2">
                   <Link
-                    to="/teshis/"
+                    to={isTr ? "/teshis/" : "/diagnostic/"}
                     className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono text-[var(--accent)] hover:underline transition-colors font-semibold min-h-[44px]"
                   >
                     <span>{isTr ? `ve ${remainingCount} teşhis daha →` : `and ${remainingCount} more diagnostics →`}</span>
@@ -184,9 +172,11 @@ const GlossaryTerm = () => {
             <span className="text-xs font-mono font-semibold text-[var(--accent)] uppercase">
               {isTr ? 'İLGİLİ TMA ÇÖZÜMÜ' : 'RELATED TMA SOLUTION'}
             </span>
-            <h3 className="text-lg font-serif font-semibold text-[var(--ink)]">{term.relatedService.title}</h3>
+            <h3 className="text-lg font-serif font-semibold text-[var(--ink)]">
+              {typeof term.relatedService.title === 'object' ? term.relatedService.title[isTr ? 'tr' : 'en'] : term.relatedService.title}
+            </h3>
             <p className="text-xs sm:text-sm text-[var(--ink-light)]">
-              {isTr ? 'Ajansınız adına %100 White-Label ve resmi NDA altında mühendislik desteği.' : '%100 White-Label engineering support under mutual NDA.'}
+              {isTr ? 'Ajansınız adına %100 White-Label ve resmi NDA altında mühendislik desteği.' : '100% White-Label engineering support under mutual NDA.'}
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-3">
@@ -227,11 +217,11 @@ const GlossaryTerm = () => {
               {relatedTermObjects.map(rel => (
                 <Link
                   key={rel.slug}
-                  to={`/sozluk/${rel.slug}/`}
+                  to={isTr ? `/sozluk/${rel.slug}/` : `/glossary/${rel.slug}/`}
                   className="p-4 rounded-xl bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-all flex flex-col justify-between space-y-2 group min-h-[44px]"
                 >
                   <strong className="text-sm font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
-                    {rel.title}
+                    {isTr ? rel.title : (rel.titleEn || rel.title.split(' (')[0])}
                   </strong>
                   <span className="text-xs font-mono text-[var(--accent)] flex items-center gap-1">
                     {isTr ? 'İncele →' : 'Read →'}

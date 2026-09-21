@@ -1,10 +1,15 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { techStackData } from "../data/techStackData";
 import { getCalendlyUrl } from "../utils/calendly";
 import { ShieldCheck } from "lucide-react";
+import { setPageSeo } from "../utils/pageTitle";
 
 export default function TechMatrix({ lang = "tr" }) {
   const t = techStackData[lang] || techStackData.tr;
+
+  useEffect(() => {
+    setPageSeo(lang === 'tr' ? '/teknoloji-uyumluluk/' : '/tech-matrix/', lang);
+  }, [lang]);
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [selectedTechIds, setSelectedTechIds] = useState(["nodejs", "postgresql", "docker_k8s"]);
   const [copied, setCopied] = useState(false);

@@ -1,9 +1,14 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { rescueRoiData } from "../data/rescueRoiData";
 import { getCalendlyUrl } from "../utils/calendly";
+import { setPageSeo } from "../utils/pageTitle";
 
 export default function RescueRoi({ lang = "tr" }) {
   const t = rescueRoiData[lang] || rescueRoiData.tr;
+
+  useEffect(() => {
+    setPageSeo(lang === 'tr' ? '/kurtarma-maliyeti/' : '/rescue-roi/', lang);
+  }, [lang]);
 
   const [selectedPreset, setSelectedPreset] = useState("saas");
   const [teamSize, setTeamSize] = useState(3);

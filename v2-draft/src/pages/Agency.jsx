@@ -9,7 +9,7 @@ import {
 import EmergencySOSModal from '../components/EmergencySOSModal';
 import FAQ from '../components/FAQ';
 import { getCalendlyUrl } from '../utils/calendly';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
 const capabilities = [
@@ -172,22 +172,7 @@ const Agency = () => {
   const [isSOSOpen, setIsSOSOpen] = useState(false);
 
   React.useEffect(() => {
-    document.title = formatDocumentTitle(isTr
-      ? "Ajanslar İçin White-Label Mühendislik | Trend Master Akademi"
-      : "B2B Agency Partnership & White-Label SWAT | Trend Master Academy");
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute("content", isTr
-        ? "Dijital ajansların görünmez teknik gücü: %100 White-Label, resmi NDA güvencesi, 20+ teknik yetkinlik ve acil kriz masası."
-        : "Behind-the-scenes engineering firepower for digital agencies: 100% White-Label, binding NDA protection, and emergency SWAT recovery."
-      );
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', 'https://trendmasterakademi.com/agency/');
-    }
+    setPageSeo('/agency/', isTr ? 'tr' : 'en');
   }, [isTr]);
 
   return (

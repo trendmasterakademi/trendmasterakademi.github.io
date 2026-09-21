@@ -3,7 +3,7 @@ import { useParams, Link, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, AlertTriangle, Terminal, MessageSquare, PhoneCall } from 'lucide-react';
 import TeshisDiyagram from '../components/TeshisDiyagram';
-import { formatDocumentTitle } from '../utils/pageTitle';
+import { setPageSeo } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
 
@@ -128,32 +128,8 @@ const TeshisDetay = () => {
 
   useEffect(() => {
     if (!teshis) return;
-
-    const baslikText = teshis.baslik[lang] || teshis.baslik.tr;
-    const ozetText = teshis.ozet[lang] || teshis.ozet.tr;
-    const sentences = ozetText.split(/(?<=\.)\s+/);
-    let desc = sentences[0];
-    if (desc.length < 80 && sentences[1]) {
-      desc = desc + ' ' + sentences[1];
-    }
-    if (desc.length > 160) {
-      desc = desc.slice(0, 157) + '...';
-    }
-
-    document.title = formatDocumentTitle(isTr
-      ? `${baslikText} | Trend Master Akademi`
-      : `${baslikText} | Trend Master Academy`);
-
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) {
-      metaDesc.setAttribute('content', desc);
-    }
-
-    const canonical = document.querySelector('link[rel="canonical"]');
-    if (canonical) {
-      canonical.setAttribute('href', isTr ? `https://trendmasterakademi.com/teshis/${teshis.slug}/` : `https://trendmasterakademi.com/diagnostic/${teshis.slug}/`);
-    }
-  }, [teshis, lang]);
+    setPageSeo(isTr ? `/teshis/${teshis.slug}/` : `/diagnostic/${teshis.slug}/`, lang);
+  }, [teshis, lang, isTr]);
 
   if (notFound) {
     return <Navigate to="/teshis/" replace />;
@@ -185,7 +161,7 @@ const TeshisDetay = () => {
       {/* Back Link */}
       <div className="mb-6">
         <Link 
-          to="/teshis/" 
+          to={isTr ? "/teshis/" : "/diagnostic/"} 
           className="inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--accent)] hover:underline font-mono transition-colors min-h-[44px]"
         >
           <ArrowLeft className="w-4 h-4" /> {isTr ? '← Teşhis Kataloğuna Dön' : '← Back to Diagnostic Catalog'}
@@ -198,7 +174,7 @@ const TeshisDetay = () => {
         {/* Terminal Header Bar */}
         <div className="flex items-center gap-2 px-4 sm:px-6 py-3 border-b border-[var(--rule)] bg-[var(--paper)] text-xs font-mono text-[var(--ink-muted)] overflow-x-auto">
           <span className="text-[var(--ink-muted)] whitespace-nowrap">
-            trendmasterakademi.com/teshis/{teshis.slug}/
+            trendmasterakademi.com/{isTr ? 'teshis' : 'diagnostic'}/{teshis.slug}/
           </span>
         </div>
 
@@ -388,7 +364,7 @@ const TeshisDetay = () => {
               {teshis.ilgiliTerimler.map((termSlug) => (
                 <Link
                   key={termSlug}
-                  to={`/sozluk/${termSlug}/`}
+                  to={isTr ? `/sozluk/${termSlug}/` : `/glossary/${termSlug}/`}
                   className="px-3 py-1.5 rounded-lg border border-[var(--rule)] bg-[var(--paper)] font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors min-h-[44px] inline-flex items-center"
                 >
                   {termSlug}

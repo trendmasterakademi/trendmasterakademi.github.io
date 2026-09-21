@@ -14,6 +14,7 @@ import { outageSimulatorData } from './src/data/outageSimulatorData.js';
 import { radarData } from './src/data/radarData.js';
 import { codeHealthData } from './src/data/codeHealthData.js';
 import { rescueRoiData } from './src/data/rescueRoiData.js';
+import { seoData } from './src/data/seoData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -119,6 +120,16 @@ function escapeHtml(str) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+}
+
+function unescapeHtml(str) {
+  if (str == null) return '';
+  return String(str)
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
 }
 
 // 3.5 — Veri Kaynağı Sapma Kontrolü (teshisData.js vs src/data/teshis/<slug>.js)
@@ -259,6 +270,25 @@ const teshisHubExtraContent = `
   </section>
 `;
 
+const teshisHubExtraContentEn = `
+  <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Published Incident Catalog — 20 Diagnoses</h2>
+    <ul class="space-y-4">
+      ${teshisData.map(item => {
+        const firstSentence = item.ozet?.en ? (item.ozet.en.split('.')[0] + '.') : '';
+        return `
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/${escapeHtml(item.slug)}/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ ${escapeHtml(item.no)} · ${escapeHtml(item.baslik?.en || item.baslik?.tr || '')}</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">${escapeHtml(item.aciliyet?.etiket?.en || '')} · ${escapeHtml(item.kirinti?.en || '')}</span>
+          </div>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(firstSentence)}</p>
+        </li>`;
+      }).join('\n      ')}
+    </ul>
+  </section>
+`;
+
 // 2.2 — /sozluk/ Sözlük Hub'ı İçeriği (12 Terim)
 const glossaryHubExtraContent = `
   <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
@@ -271,6 +301,25 @@ const glossaryHubExtraContent = `
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/${escapeHtml(term.slug)}/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ ${escapeHtml(term.title)}</a>
             <span class="text-xs font-mono text-amber-700">${escapeHtml(term.urgencyLevel || '')}</span>
+          </div>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(firstSentence)}</p>
+        </li>`;
+      }).join('\n      ')}
+    </ul>
+  </section>
+`;
+
+const glossaryHubExtraContentEn = `
+  <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Technical Glossary — 12 Terms</h2>
+    <ul class="space-y-4">
+      ${glossaryTerms.map(term => {
+        const firstSentence = term.shortDef?.en ? (term.shortDef.en.split('.')[0] + '.') : '';
+        return `
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/glossary/${escapeHtml(term.slug)}/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ ${escapeHtml(term.titleEn || term.title)}</a>
+            <span class="text-xs font-mono text-amber-700">${escapeHtml(term.urgencyLevelEn || term.urgencyLevel || '')}</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(firstSentence)}</p>
         </li>`;
@@ -326,8 +375,12 @@ const aboutExtraContent = `
       <div class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <h3 class="text-lg font-bold text-[var(--accent)]">${escapeHtml(c.no)} · ${escapeHtml(c.title?.tr || '')}</h3>
         <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(c.desc?.tr || '')}</p>
+        ${c.no === '02' ? '<p class="pt-2"><a href="/nda/" class="text-[var(--accent)] hover:underline font-bold font-mono text-xs">→ Gizlilik ve Çalışma Sözleşmesini okuyun</a></p>' : ''}
       </div>`).join('\n      ')}
     </div>
+    <p class="text-[var(--ink-muted)] text-sm pt-2">
+      Trend Master Akademi adı nereden geliyor? <a href="/hikayemiz/" class="text-[var(--accent)] hover:underline font-bold">Kuruluş hikâyemizi okuyun →</a>
+    </p>
   </section>
 `;
 
@@ -341,6 +394,19 @@ const storyExtraContent = `
     <p>Kursiyerlerden biriyle ortak olduktan sonra asıl ihtiyacın sınıfta değil sahada olduğunu gördük. Özellikle pandemiden sonra dijital ajanslarda ciddi bir nitelikli yazılımcı darboğazı oluşmuştu. Yarım kalmış projeler, kaybolmuş erişimler, geçmiş teslim tarihleri ve krizler... Bu projeleri devralıp tek tek ayağa kaldırdık.</p>
     <p>Bugün yaptığımız iş bu: biz bir son kullanıcı ajansı değiliz. Dijital ajansların, yazılım evlerinin ve girişimlerin arka planında krizleri çözen, karmaşık mimarileri kuran ve %100 White-Label çalışan kıdemli bir mühendislik masasıyız.</p>
     <p>Adımız hâlâ "Akademi" — çünkü bir sistemi kurtarmak, onu anlatabilecek kadar anlamayı gerektirir. Sitemizdeki <a href="/sozluk/" class="text-[var(--accent)] hover:underline">Teknik Terim Sözlüğü</a> ve <a href="/teshis/" class="text-[var(--accent)] hover:underline">Teşhis Kataloğu</a> da bu anlayışla yayındadır.</p>
+  </section>
+`;
+
+const storyExtraContentEn = `
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6 text-[var(--ink-muted)] leading-relaxed">
+    <h2 class="text-2xl font-bold text-[var(--ink)] tracking-tight">Our Story & Founding Origins</h2>
+    <p>This business actually started in an online class.</p>
+    <p>I spent twenty years inside financial markets. Software was always inseparable from that work — but for a long time only for myself: I wrote my own systems, turned my own ideas into code, debugged my own mistakes. I didn't work for anyone else, and I didn't want to. For twenty years I believed this was a one-person job, that I only ever needed to be enough for myself.</p>
+    <p>In 2020, when COVID stopped everything and everyone was talking about scarcity, I started teaching what I knew. I ended up training around fifty people. Teaching changed me: having to turn twenty years of instinct into something another person could follow changed everything, bringing discipline to what had been scattered.</p>
+    <p class="font-bold text-[var(--ink)]">The idea for Trend Master Akademi was born in those online classes. That is where our name comes from, and we never changed it.</p>
+    <p>After partnering with one of those students, we both saw that the real need was in the field, not the classroom. Digital agencies were facing a severe bottleneck of qualified software engineers. Abandoned codebases, lost credentials, missed delivery deadlines, and escalating crises... We took over these troubled projects and brought them to completion one by one.</p>
+    <p>That is what we do today: we are not an end-client agency. We are a senior engineering back-office operating 100% white-label behind digital agencies, software houses, and startups to resolve production crises and build resilient architectures.</p>
+    <p>Our name remains "Akademi" — because rescuing a system requires understanding it deeply enough to explain it. Our <a href="/glossary/" class="text-[var(--accent)] hover:underline">Technical Glossary</a> and <a href="/diagnostic/" class="text-[var(--accent)] hover:underline">Diagnostic Catalog</a> are published with this exact philosophy.</p>
   </section>
 `;
 
@@ -370,6 +436,35 @@ const kesintiExtraContent = `
     </div>
 
     <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Doğrudan kayba ek olarak; Google reklam bütçesi israfı, arama motoru sıralama kaybı (SERP cezası) ve müşteri güven kaybı gibi dolaylı maliyetler genellikle doğrudan ciro kaybının 2 ila 3 katına ulaşır.</p>
+  </section>
+`;
+
+const kesintiExtraContentEn = `
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-2xl font-bold text-[var(--ink)] tracking-tight">How Downtime Cost is Calculated</h2>
+    <p class="text-[var(--ink-muted)] leading-relaxed">When an e-commerce platform or client API experiences an outage, direct lost revenue follows a transparent mathematical formula:</p>
+    
+    <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--accent)] space-y-2">
+      <p>Hourly Revenue Loss = (Monthly Revenue / 720 Hours) x Traffic Multiplier</p>
+      <p>Total Downtime Cost = Hourly Loss x Outage Duration (Hours)</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
+      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
+        <h3 class="text-sm font-bold text-[var(--ink)]">Peak Hours</h3>
+        <p class="text-xs text-[var(--ink-muted)] mt-1">2.0x Multiplier · Campaign blasts or peak user checkout traffic.</p>
+      </div>
+      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
+        <h3 class="text-sm font-bold text-[var(--ink)]">Standard Hours</h3>
+        <p class="text-xs text-[var(--ink-muted)] mt-1">1.0x Multiplier · Regular daytime business operations.</p>
+      </div>
+      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
+        <h3 class="text-sm font-bold text-[var(--ink)]">Off-Peak / Night</h3>
+        <p class="text-xs text-[var(--ink-muted)] mt-1">0.5x Multiplier · Low traffic volume and background processing.</p>
+      </div>
+    </div>
+
+    <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Beyond direct checkout losses; burned advertising spend, search engine ranking degradation (SERP penalties), and damaged client trust often total 2x to 3x the direct revenue loss.</p>
   </section>
 `;
 
@@ -468,6 +563,126 @@ const devirExtraContent = `
         <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(item.desc?.tr || '')}</p>
         <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: ${escapeHtml(item.weight)} puan</p>
       </article>`).join('\n      ')}
+    </div>
+  </section>
+`;
+
+const devirExtraContentEn = `
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">12 Critical Checkpoints Audited</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      ${handoverItems.map(item => `
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">${escapeHtml(item.title?.en || item.title?.tr || '')}</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(item.desc?.en || item.desc?.tr || '')}</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Weight: ${escapeHtml(item.weight)} points</p>
+      </article>`).join('\n      ')}
+    </div>
+  </section>
+`;
+
+const ndaExtraContent = `
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)]">
+      <div>
+        <h2 class="text-xl font-bold text-[var(--ink)] font-serif">Sözleşmenin Tam Metni (16 Madde)</h2>
+        <p class="text-xs text-[var(--ink-muted)] font-mono mt-1">Standart B2B Gizlilik ve Çalışma Sözleşmesi Metni</p>
+      </div>
+      <a href="/sozlesme/tma-gizlilik-ve-calisma-sozlesmesi.pdf" download="tma-gizlilik-ve-calisma-sozlesmesi.pdf" class="inline-flex items-center justify-center px-4 py-2.5 rounded bg-[var(--accent)] text-white font-semibold text-xs hover:opacity-90 transition-opacity">
+        Sözleşmeyi PDF Olarak İndir
+      </a>
+    </div>
+
+    <div class="space-y-6 text-sm text-[var(--ink-muted)] leading-relaxed">
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 1 — TARAFLAR</h3>
+        <p>1.1. Hizmet Sağlayıcı: Trend Master Akademi markası altında faaliyet gösteren Mehmet Şahin (Şahıs İşletmesi) — Konak VD / VKN: 7930336132 — Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir ("TMA").</p>
+        <p>Hizmet Alan: İş Emri'nde unvanı, vergi dairesi ve yetkilisi belirtilen dijital ajans veya yazılım evi ("AJANS").</p>
+        <p>1.2. TMA ve AJANS birlikte "Taraflar", ayrı ayrı "Taraf" olarak anılır.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 2 — SÖZLEŞMENİN KONUSU VE KAPSAMI</h3>
+        <p>2.1. İşbu sözleşme, AJANS'ın müşterisine ait veya kendi bünyesindeki yazılım projelerinde TMA'dan alacağı teknik hizmetlerin gizlilik, çalışma ve fikri mülkiyet koşullarını düzenler.</p>
+        <p>2.2. Hizmetler; kod devralma, acil müdahale (SWAT), mimari danışmanlık, kriz çözümü ve teknik denetimi kapsar.</p>
+        <p>2.3. Her iş için kapsam, süre ve bedel yazılı İş Emri ile belirlenir.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 3 — GİZLİ BİLGİ</h3>
+        <p>3.1. Kaynak kodlar, veritabanı şemaları, API anahtarları, sunucu erişimleri, müşteri kimlikleri, fiyat teklifleri ve ticari sırlar Gizli Bilgi kapsamındadır.</p>
+        <p>3.2. Kamuya açık bilgiler, alıcı tarafın önceden bildiği veya bağımsız geliştirdiği bilgiler hariçtir.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 4 — GİZLİLİK YÜKÜMLÜLÜĞÜ (KARŞILIKLI)</h3>
+        <p>4.1. Taraflar, Gizli Bilgileri yalnızca iş için kullanır; üçüncü kişilere aktarmaz veya kopyalamaz.</p>
+        <p>4.2. Gizlilik yükümlülüğü sözleşme sona erdikten sonra 5 yıl sürer; ticari sır ve kişisel verilerde süresizdir.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 5 — BEYAZ ETİKET VE MÜŞTERİYE TEMAS YASAĞI</h3>
+        <p>5.1. Çalışma %100 White-Label yürütülür; TMA logosu veya adı teslim edilen işte yer almaz.</p>
+        <p>5.2. TMA, AJANS'ın müşterisiyle yazılı onay olmadan doğrudan temas kurmaz; bu yasak 2 yıl sürer.</p>
+        <p>5.3. TMA, AJANS'ın veya müşterisinin kimliğini referans veya vaka analizi olarak yazılı onaysız açıklamaz.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 6 — KİŞİSEL VERİLERİN KORUNMASI (KVKK)</h3>
+        <p>6.1. 6698 sayılı KVKK uyarınca AJANS/müşteri veri sorumlusu, TMA veri işleyen sıfatındadır.</p>
+        <p>6.2. Kişisel veriler yalnızca talimat doğrultusunda işlenir ve iş bitiminde silinir veya iade edilir. İhlal durumunda 24 saat içinde bildirim yapılır.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 7 — ÜCRETSİZ TEŞHİS AŞAMASI</h3>
+        <p>7.1. İlk teknik teşhis ve triyaj ücretsiz ve taahhütsüzdür. Teşhis aşamasında paylaşılan bilgiler de tam gizlilik koruması altındadır.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 8 — BEDEL, ÖDEME VE KAPSAM</h3>
+        <p>8.1. Bedel sabittir; saatlik veya ucu açık çalışılmaz. Kapsam dışı işler ayrıca fiyatlandırılır ve onay alınmadan uygulanmaz.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 9 — FİKRİ MÜLKİYET VE MALİ HAKLARIN DEVRİ</h3>
+        <p>9.1. Bedelin tamamı ödendiğinde 5846 sayılı FSEK kapsamındaki işleme, çoğaltma, yayma, temsil ve umuma iletim hakları eksiksiz olarak AJANS'a devredilir.</p>
+        <p>9.2. AJANS devraldığı hakları üçüncü kişilere devredebilir veya alt lisanslayabilir.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 10 — DEVRALINAN KOD VE MEVCUT KUSURLAR</h3>
+        <p>10.1. TMA devraldığı koddaki önceden var olan hatalardan, güvenlik açıklarından veya lisans ihlallerinden sorumlu değildir. Müdahale öncesi yedek almak AJANS'ın sorumluluğundadır.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 11 — SORUMLULUK VE SINIRLARI</h3>
+        <p>11.1. TMA'nın toplam sorumluluğu ilgili İş Emri için ödenen bedelle sınırlıdır; dolaylı zararları kapsamaz. Kast ve ağır kusur bu tavanın dışındadır.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 12 — PERSONEL AYARTMA YASAĞI</h3>
+        <p>12.1. Taraflar, sözleşme süresince ve bitiminden itibaren 1 yıl boyunca birbirlerinin çalışanlarına doğrudan iş teklifi sunamaz.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 13 — SÜRE VE FESİH</h3>
+        <p>13.1. Sözleşme 30 gün önceden yazılı bildirimle feshedilebilir. Gizlilik, temas yasağı ve mülkiyet hükümleri fesihten sonra da yürürlükte kalır.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 14 — MÜCBİR SEBEP</h3>
+        <p>14.1. Doğal afet, savaş, salgın veya ülke çapında altyapı çökmesi durumunda yükümlülükler askıya alınır; 30 günü aşarsa fesih hakkı doğar.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 15 — MUHTELİF HÜKÜMLER</h3>
+        <p>15.1. Yazılı tebligat geçerlidir. Hükümlerin bölünebilirliği esastır. Değişiklikler ancak yazılı olarak yapılabilir.</p>
+      </article>
+
+      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 16 — DELİL SÖZLEŞMESİ, UYGULANACAK HUKUK VE YETKİ</h3>
+        <p>16.1. İşbu sözleşme Türk Hukukuna tabidir. Uyuşmazlıklarda İzmir Mahkemeleri ve İcra Daireleri münhasıran yetkilidir. Taraflar elektronik yazışmaları HMK m.193 uyarınca kesin delil kabul eder.</p>
+      </article>
     </div>
   </section>
 `;
@@ -672,6 +887,7 @@ const slaExtraContentTr = `
           <h3 class="text-sm font-bold text-[var(--ink)]">${escapeHtml(c.title?.tr || '')}</h3>
         </div>
         <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(c.desc?.tr || '')}</p>
+        ${c.no === '02' ? '<p class="pt-2"><a href="/nda/" class="text-[var(--accent)] hover:underline font-bold font-mono text-xs">→ Gizlilik ve Çalışma Sözleşmesini okuyun</a></p>' : ''}
       </article>
       `).join('\n      ')}
     </div>
@@ -714,6 +930,7 @@ const slaExtraContentEn = `
           <h3 class="text-sm font-bold text-[var(--ink)]">${escapeHtml(c.title?.en || c.title?.tr || '')}</h3>
         </div>
         <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(c.desc?.en || c.desc?.tr || '')}</p>
+        ${c.no === '02' ? '<p class="pt-2"><a href="/nda/" class="text-[var(--accent)] hover:underline font-bold font-mono text-xs">→ Read the Mutual NDA & Agreement</a></p>' : ''}
       </article>
       `).join('\n      ')}
     </div>
@@ -1234,7 +1451,7 @@ const basePages = [
   {
     dir: 'handover-audit',
     lang: 'en',
-    title: 'Developer Handover Readiness Audit (12 Checkpoints) | Trend Master Academy',
+    title: 'Developer Handover Readiness Audit (12 Checkpoints) | Trend Master Akademi',
     h1: 'Developer Handover Readiness Audit',
     description: 'Is your developer leaving or already left? Check 12 mission-critical items, get your handover risk score and missing inventory in 60 seconds.',
     canonical: 'https://trendmasterakademi.com/handover-audit/',
@@ -1243,7 +1460,7 @@ const basePages = [
     hreflangEn: 'https://trendmasterakademi.com/handover-audit/',
     heading: 'Developer Handover Readiness Audit // 12-Point Transition Checklist',
     subheading: 'Audit Git repos, environment variables, DNS, and payment keys to ensure zero project blockage during engineer transitions.',
-    extraContent: devirExtraContent,
+    extraContent: devirExtraContentEn,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -1303,7 +1520,7 @@ const basePages = [
   {
     dir: 'glossary',
     lang: 'en',
-    title: 'Developer-to-Agency Tech Glossary | Trend Master Academy',
+    title: 'Developer-to-Agency Tech Glossary | Trend Master Akademi',
     h1: 'Developer-to-Agency Tech Glossary',
     description: 'Understand technical explanations from developers. Deadlock, N+1, Race Condition, Webhook, and 12 core concepts translated into business impact.',
     canonical: 'https://trendmasterakademi.com/glossary/',
@@ -1312,7 +1529,7 @@ const basePages = [
     hreflangEn: 'https://trendmasterakademi.com/glossary/',
     heading: 'Developer-to-Agency Tech Glossary',
     subheading: 'A practical translation guide bridging technical jargon with business operations.',
-    extraContent: glossaryHubExtraContent,
+    extraContent: glossaryHubExtraContentEn,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -1328,7 +1545,7 @@ const basePages = [
           "itemListElement": glossaryTerms.map((term, idx) => ({
             "@type": "ListItem",
             "position": idx + 1,
-            "name": term.title,
+            "name": term.titleEn || term.title,
             "url": `https://trendmasterakademi.com/glossary/${term.slug}/`
           }))
         },
@@ -1372,7 +1589,7 @@ const basePages = [
   {
     dir: 'downtime-calc',
     lang: 'en',
-    title: 'Downtime Loss Calculator | Trend Master Academy',
+    title: 'Downtime Loss Calculator | Trend Master Akademi',
     h1: 'Downtime Loss Calculator',
     description: 'Calculate hourly and total estimated revenue loss during server crashes or HTTP 500 outages. Transparent math and recovery ROI analysis.',
     canonical: 'https://trendmasterakademi.com/downtime-calc/',
@@ -1381,7 +1598,7 @@ const basePages = [
     hreflangEn: 'https://trendmasterakademi.com/downtime-calc/',
     heading: 'Website & API Downtime Loss Calculator',
     subheading: 'Calculate the true financial and reputational cost of every minute your client systems remain offline.',
-    extraContent: kesintiExtraContent,
+    extraContent: kesintiExtraContentEn,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -1451,15 +1668,15 @@ const basePages = [
   {
     dir: 'story',
     lang: 'en',
-    title: 'Our Story & Founding Origins | Trend Master Academy',
-    h1: "The Story of Trend Master Academy",
+    title: 'Our Story & Founding Origins | Trend Master Akademi',
+    h1: "The Story of Trend Master Akademi",
     description: '20 years of financial software expertise, a name born in online education, and our B2B engineering desk vision.',
     canonical: 'https://trendmasterakademi.com/story/',
     ogUrl: 'https://trendmasterakademi.com/story/',
     hreflangTr: 'https://trendmasterakademi.com/hikayemiz/',
     hreflangEn: 'https://trendmasterakademi.com/story/',
     subheading: 'In truth, this concept originated in an online live class.',
-    extraContent: storyExtraContent,
+    extraContent: storyExtraContentEn,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -1531,6 +1748,7 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/nda/',
     ogUrl: 'https://trendmasterakademi.com/nda/',
     subheading: 'Çalışmaya başlamadan önce karşılıklı bir gizlilik ve çalışma sözleşmesi imzalıyoruz. Ne imzalayacağınızı önceden bilmeniz için sözleşmenin ne dediğini burada sade dille anlattık.',
+    extraContent: ndaExtraContent,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -1590,7 +1808,7 @@ const basePages = [
   {
     dir: 'diagnostic',
     lang: 'en',
-    title: 'Diagnostic Catalog // 20 Documented Outage Symptoms | Trend Master Academy',
+    title: 'Diagnostic Catalog // 20 Documented Outage Symptoms | Trend Master Akademi',
     h1: 'Diagnostic Catalog',
     description: 'From symptom to root cause: technical diagnosis guide for agency leaders and engineering managers.',
     canonical: 'https://trendmasterakademi.com/diagnostic/',
@@ -1599,7 +1817,7 @@ const basePages = [
     hreflangEn: 'https://trendmasterakademi.com/diagnostic/',
     heading: 'Diagnostic Catalog',
     subheading: 'You see the symptom but not the cause. Each diagnosis begins with an observable failure, isolates potential causes, and outlines triage protocols.',
-    extraContent: teshisHubExtraContent,
+    extraContent: teshisHubExtraContentEn,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -2151,9 +2369,10 @@ const glossaryPages = glossaryTerms.flatMap(term => {
   const visible = matching.slice(0, 4);
   const remaining = matching.length - 4;
   
-  let reverseBlock = '';
+  let reverseBlockTr = '';
+  let reverseBlockEn = '';
   if (matching.length > 0) {
-    reverseBlock = `
+    reverseBlockTr = `
       <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-3 mt-6">
         <h2 class="text-xl font-bold text-[var(--ink)]">Bu terim şu belirtilerde çıkar</h2>
         <ul class="space-y-2 font-mono text-sm text-[var(--accent)]">
@@ -2162,9 +2381,18 @@ const glossaryPages = glossaryTerms.flatMap(term => {
         ${remaining > 0 ? `<p class="text-xs text-[var(--ink-muted)] pt-1"><a href="/teshis/" class="text-[var(--accent)] hover:underline">ve ${remaining} teşhis daha →</a></p>` : ''}
       </section>
     `;
+    reverseBlockEn = `
+      <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-3 mt-6">
+        <h2 class="text-xl font-bold text-[var(--ink)]">This concept appears in these incident symptoms</h2>
+        <ul class="space-y-2 font-mono text-sm text-[var(--accent)]">
+          ${visible.map(d => `<li><a href="/diagnostic/${escapeHtml(d.slug)}/" class="hover:underline">→ ${escapeHtml(d.no)} · ${escapeHtml(d.baslik.en || d.baslik.tr)}</a></li>`).join('\n          ')}
+        </ul>
+        ${remaining > 0 ? `<p class="text-xs text-[var(--ink-muted)] pt-1"><a href="/diagnostic/" class="text-[var(--accent)] hover:underline">and ${remaining} more diagnoses →</a></p>` : ''}
+      </section>
+    `;
   }
 
-  const relatedTermsHtml = term.relatedTerms && term.relatedTerms.length > 0
+  const relatedTermsHtmlTr = term.relatedTerms && term.relatedTerms.length > 0
     ? `
       <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
         ${term.relatedTerms.map(rSlug => {
@@ -2176,11 +2404,27 @@ const glossaryPages = glossaryTerms.flatMap(term => {
     `
     : '';
 
-  const relatedServiceHtml = term.relatedService
-    ? `<p class="pt-2"><a href="${escapeHtml(term.relatedService.link)}" class="text-[var(--accent)] hover:underline font-bold">→ ${escapeHtml(term.relatedService.title)}</a></p>`
+  const relatedTermsHtmlEn = term.relatedTerms && term.relatedTerms.length > 0
+    ? `
+      <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
+        ${term.relatedTerms.map(rSlug => {
+          const rObj = glossaryTerms.find(g => g.slug === rSlug);
+          const rTitle = rObj ? (rObj.titleEn || rObj.title) : rSlug;
+          return `<li><a href="/glossary/${escapeHtml(rSlug)}/" class="hover:underline">→ ${escapeHtml(rTitle)}</a></li>`;
+        }).join('\n        ')}
+      </ul>
+    `
     : '';
 
-  const mainGlossaryContent = `
+  const relatedServiceHtmlTr = term.relatedService
+    ? `<p class="pt-2"><a href="${escapeHtml(term.relatedService.link)}" class="text-[var(--accent)] hover:underline font-bold">→ ${escapeHtml(typeof term.relatedService.title === 'object' ? (term.relatedService.title.tr || '') : term.relatedService.title)}</a></p>`
+    : '';
+
+  const relatedServiceHtmlEn = term.relatedService
+    ? `<p class="pt-2"><a href="${escapeHtml(term.relatedService.link)}" class="text-[var(--accent)] hover:underline font-bold">→ ${escapeHtml(typeof term.relatedService.title === 'object' ? (term.relatedService.title.en || term.relatedService.title.tr || '') : term.relatedService.title)}</a></p>`
+    : '';
+
+  const trExtraContent = `
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       ${term.urgencyLevel ? `<p class="text-sm font-mono text-[var(--accent)]">Aciliyet: ${escapeHtml(term.urgencyLevel)}</p>` : ''}
 
@@ -2201,13 +2445,40 @@ const glossaryPages = glossaryTerms.flatMap(term => {
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">İlgili terimler</h2>
-        ${relatedTermsHtml}
-        ${relatedServiceHtml}
+        ${relatedTermsHtmlTr}
+        ${relatedServiceHtmlTr}
       </section>
     </section>
+    ${reverseBlockTr}
   `;
 
-  const extraContent = `${mainGlossaryContent}\n${reverseBlock}`;
+  const enExtraContent = `
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      ${(term.urgencyLevelEn || term.urgencyLevel) ? `<p class="text-sm font-mono text-[var(--accent)]">Urgency: ${escapeHtml(term.urgencyLevelEn || term.urgencyLevel)}</p>` : ''}
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Definition</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(term.shortDef?.en || term.shortDef?.tr || '')}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">What It Means for Agencies</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(term.agencyImpact?.en || term.agencyImpact?.tr || '')}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(term.whoSolves?.en || term.whoSolves?.tr || '')}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts</h2>
+        ${relatedTermsHtmlEn}
+        ${relatedServiceHtmlEn}
+      </section>
+    </section>
+    ${reverseBlockEn}
+  `;
 
   const glossaryDates = getGitDates('v2-draft/src/data/glossaryData.js');
 
@@ -2254,32 +2525,132 @@ const glossaryPages = glossaryTerms.flatMap(term => {
     hreflangEn: `https://trendmasterakademi.com/glossary/${term.slug}/`,
     heading: term.title,
     subheading: `${term.shortDef.tr} ${term.agencyImpact.tr}`,
-    extraContent,
+    extraContent: trExtraContent,
     schema
   };
 
   const enPage = {
     dir: `glossary/${term.slug}`,
     lang: 'en',
-    title: formatPageTitle(`What is ${term.title}?`),
-    h1: `What is ${term.title}?`,
-    description: `${term.title.split(' (')[0]}: ${term.shortDef.en || term.shortDef.tr}`,
+    title: formatPageTitle(`What is ${term.titleEn || term.title}?`),
+    h1: `What is ${term.titleEn || term.title}?`,
+    description: `${(term.titleEn || term.title).split(' (')[0]}: ${term.shortDef.en || term.shortDef.tr}`,
     canonical: `https://trendmasterakademi.com/glossary/${term.slug}/`,
     ogUrl: `https://trendmasterakademi.com/glossary/${term.slug}/`,
     hreflangTr: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
     hreflangEn: `https://trendmasterakademi.com/glossary/${term.slug}/`,
-    heading: term.title,
+    heading: term.titleEn || term.title,
     subheading: `${term.shortDef.en || term.shortDef.tr} ${term.agencyImpact?.en || term.agencyImpact?.tr || ''}`,
-    extraContent,
+    extraContent: enExtraContent,
     schema
   };
 
   return [trPage, enPage];
 });
 
+const diagnosticLogEnMap = {
+  // ayni-stok-iki-musteriye-satildi
+  "UPDATE products SET stock = stock - 1  ← kontrol ve yazma ayrı": "UPDATE products SET stock = stock - 1  <- check and write separated",
+  
+  // odeme-alindi-siparis-olusmadi
+  "Webhook adresi: 404 / 500 / zaman aşımı": "Webhook endpoint: 404 / 500 / timeout",
+  "Ödeme sağlayıcı paneli: callback failed · retry 3/3": "Payment gateway panel: callback failed · retry 3/3",
+  "Uygulama log'unda ödeme referansı hiç geçmiyor": "App logs contain no trace of payment reference",
+  "HTTP 302 — bildirim yönlendirmeyi takip etmiyor": "HTTP 302 - notification fails to follow redirect",
+
+  // odeme-iki-kez-alindi
+  "Aynı ödeme referansıyla iki başarılı işlem": "Two successful charges with identical payment reference",
+  "Bildirim log'u: aynı olay kimliği iki kez işlenmiş": "Webhook logs: identical event ID processed twice",
+  "Uygulama log'u: iki gönderim, aynı saniye, aynı oturum": "App logs: two submissions, same second, same session",
+  "Sağlayıcı panelinde 'duplicate transaction' uyarısı yok": "Payment gateway dashboard shows no duplicate transaction alert",
+
+  // islemler-kilitlendi-sayfa-donuyor
+  "Veritabanında uzun süredir açık işlem (idle in transaction)": "Database holds long-running idle in transaction locks",
+  "Uygulama log'u: aynı saniyede iki toplu güncelleme": "App logs: two concurrent batch updates in same second",
+
+  // guncelleme-sonrasi-veri-kayboldu
+  "Göç log'u: rolled back veya yarıda kesilmiş": "Migration logs: rolled back or interrupted mid-execution",
+  "Kayıt sayısı: tablodaki satır sayısı hâlâ eski değerde mi?": "Row count: does table row count still match previous value?",
+  "Durum veya silme alanı toplu güncellenmiş mi?": "Were status or soft-delete flags updated in bulk?",
+
+  // deploy-sonrasi-site-bozuldu
+  "Yayın kaydı: hangi sürüm, ne zaman, kim tarafından?": "Deployment log: which version, timestamp, deployed by whom?",
+  "Yeni hata mesajları yayın saatinde mi başlıyor?": "Do new error signatures correlate with deploy timestamp?",
+  "Statik dosyalar eski sürümde kalmış (önbellek)": "Static assets served from stale cache version",
+  "Veritabanı göçü yayınla birlikte çalıştı mı?": "Did database migrations execute alongside deploy?",
+
+  // site-500-veriyor-dun-calisiyordu
+  "PHP Fatal error / Uncaught Error        ← uygulama log'u": "PHP Fatal error / Uncaught Error        <- application logs",
+
+  // bulut-hesabi-askiya-alindi
+  "403 Forbidden  /  sağlayıcının bakım veya askı sayfası": "403 Forbidden / provider maintenance or suspension page",
+  "E-posta kutusu: 'Payment failed' · 'Final notice' · 'Account suspended'": "Inbox: 'Payment failed' · 'Final notice' · 'Account suspended'",
+  "DNS çözülüyor ama: Connection refused / 502 Bad Gateway": "DNS resolves but: Connection refused / 502 Bad Gateway",
+
+  // yedek-var-sanildi-yedek-yok
+  "Yedek klasöründeki son dosyanın tarihi   ← aylar öncesi mi?": "Last backup file timestamp in directory <- months outdated?",
+  "Yedek dosya boyutu 0 byte / birkaç KB": "Backup archive size 0 bytes / empty archive",
+  "Depolama sağlayıcısı: quota exceeded": "Storage provider: quota exceeded",
+
+  // ssl-suresi-doldu
+  "NET::ERR_CERT_DATE_INVALID              ← süre doldu": "NET::ERR_CERT_DATE_INVALID              <- certificate expired",
+  "NET::ERR_CERT_COMMON_NAME_INVALID       ← alan adı eşleşmiyor": "NET::ERR_CERT_COMMON_NAME_INVALID       <- hostname mismatch",
+
+  // site-yavasladi-sunucu-bos
+  "Sayfa başına veritabanı sorgu sayısı: yüzlerce": "Database queries per page load: hundreds of queries",
+  "Yavaş sorgu log'u: aynı sorgu defalarca tekrarlıyor": "Slow query log: identical query repeated dozens of times",
+  "Harici servis çağrısı: 2–8 saniye bekleme": "External 3rd-party API call: 2-8s blocking latency",
+  "İlk bayt süresi yüksek, indirme hızlı": "Time to First Byte (TTFB) high, download payload fast",
+
+  // entegrasyon-429-veriyor
+  "Sağlayıcı paneli: quota exceeded for this period": "Provider dashboard: quota exceeded for this period",
+
+  // sunucu-her-gun-yeniden-baslatiliyor
+  "Bellek kullanımı zamanla artıyor, hiç düşmüyor": "Memory consumption climbs steadily without dropping",
+  "Süreç yöneticisi: yeniden başlatma sayısı her gün artıyor": "Process manager (PM2): daily restart count increasing",
+  "Yanıt süreleri gün içinde giderek uzuyor": "Response latencies degrade progressively during peak hours",
+
+  // testte-calisiyor-canlida-calismiyor
+  "Yalnız canlıda 500, testte 200": "Fails with 500 only on production, passes 200 on staging",
+  "Kütüphane sürümleri: kilit dosyası var mı, uyuşuyor mu?": "Dependency versions: lockfile present and synchronized?",
+  "Permission denied — dosya izni veya yol hatası": "Permission denied - file permissions or path mismatch",
+
+  // her-yeni-ozellik-oncekini-bozuyor
+  "Aynı hata kaydının aylar içinde tekrar açılması": "Regression: identical bug ticket reopened across sprints",
+  "Test yok, ya da var ama çalıştırılmıyor": "No automated test coverage, or tests skipped in CI",
+  "Tek bir dosyanın binlerce satır olması": "God class anti-pattern: single source file spans thousands of lines",
+  "Aynı mantığın üç ayrı yerde kopyalanmış olması": "Duplicate logic copy-pasted across multiple modules",
+
+  // yazilimci-gitti-koda-girilemiyor
+  "git log -1 --format=%cd            ← son commit ne zaman?": "git log -1 --format=%cd            <- timestamp of last commit?",
+  "git log --format='%an' | sort -u   ← koda kaç kişi dokunmuş?": "git log --format='%an' | sort -u   <- how many contributors touched code?",
+  "~/.ssh/authorized_keys             ← sunucuya kimin anahtarı var?": "~/.ssh/authorized_keys             <- who has SSH keys to production?",
+  "WHOIS + hosting hesabı             ← hangi e-postaya kayıtlı?": "WHOIS + cloud account             <- registered to which email?",
+
+  // domain-hosting-erisimi-yok
+  "WHOIS sorgusu → kayıt sahibi e-postası kim?": "WHOIS lookup -> who is registrant contact email?",
+  "Hosting / bulut faturası hangi adrese gidiyor?": "Hosting / cloud invoice billed to which address?",
+  "DNS kayıtları hangi sağlayıcıda tutuluyor?": "DNS zone authoritative name servers and provider?",
+  "Alan adının son kullanma tarihi": "Domain registration expiration date",
+
+  // form-gonderiliyor-mail-gelmiyor
+  "Mail kuyruğu: deferred / stuck": "Mail queue: deferred / stuck",
+  "Uygulama log'u: 'mail sent'    ← ama teslim edilmedi": "App logs: 'mail sent'    <- but never delivered by MTA",
+
+  // site-aramalarda-gorunmez-oldu
+  "Sunucu yanıtı: 5xx veya çok yavaş ilk bayt süresi": "Server response: 5xx errors or excessively slow TTFB",
+  "Yönlendirme zinciri: 302 → 302 → 200": "Redirect chain loop: 302 -> 302 -> 200",
+
+  // kucuk-degisiklik-gunler-suruyor
+  "Görev süresi: tahmin 2 saat, gerçekleşen 2 gün": "Task duration: 2h estimated, 2 days actual delivery",
+  "Kurulum: yeni bir geliştirici projeyi kaç günde çalıştırıyor?": "Onboarding: how many days for new engineer to boot project?",
+  "Belge var mı: kurulum notu, mimari şeması, karar kaydı": "Documentation exists: setup guide, architecture schema, ADRs?",
+  "Yayın sıklığı: haftada kaç kez canlıya çıkılabiliyor?": "Deploy cadence: how many production releases per week?"
+};
+
 // 3.1 & 3.2 — Add each diagnostic page dynamically with full extraContent and schema
 const teshisPages = teshisData.flatMap(item => {
-  const logRowsHtml = item.logSatirlari && item.logSatirlari.length > 0
+  const logRowsHtmlTr = item.logSatirlari && item.logSatirlari.length > 0
     ? `
       <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
         ${item.logSatirlari.map((log, idx) => {
@@ -2292,7 +2663,21 @@ const teshisPages = teshisData.flatMap(item => {
     `
     : '';
 
-  const nedenlerHtml = item.nedenler && item.nedenler.length > 0
+  const logRowsHtmlEn = item.logSatirlari && item.logSatirlari.length > 0
+    ? `
+      <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
+        ${item.logSatirlari.map((log, idx) => {
+          const enLog = diagnosticLogEnMap[log] || log;
+          const eslesme = item.logEslesme?.find(e => e.satir === idx && e.harf);
+          const neden = eslesme ? item.nedenler?.find(n => n.harf === eslesme.harf) : null;
+          const badgeHtml = neden ? ` <span>→ ${escapeHtml(eslesme.harf)} · ${escapeHtml(neden.ad?.en || neden.ad?.tr || '')}</span>` : '';
+          return `<li><code>${escapeHtml(enLog)}</code>${badgeHtml}</li>`;
+        }).join('\n        ')}
+      </ul>
+    `
+    : '';
+
+  const nedenlerHtmlTr = item.nedenler && item.nedenler.length > 0
     ? item.nedenler.map(n => {
         const testStr = Array.isArray(n.diyagramTest?.tr) ? n.diyagramTest.tr.join(' ') : (n.diyagramTest?.tr || '');
         const cozumStr = Array.isArray(n.diyagramCozum?.tr) ? n.diyagramCozum.tr.join(' ') : (n.diyagramCozum?.tr || '');
@@ -2311,7 +2696,26 @@ const teshisPages = teshisData.flatMap(item => {
       }).join('\n')
     : '';
 
-  const termsHtml = item.ilgiliTerimler && item.ilgiliTerimler.length > 0
+  const nedenlerHtmlEn = item.nedenler && item.nedenler.length > 0
+    ? item.nedenler.map(n => {
+        const testStr = Array.isArray(n.diyagramTest?.en) ? n.diyagramTest.en.join(' ') : (n.diyagramTest?.en || Array.isArray(n.diyagramTest?.tr) ? n.diyagramTest.tr.join(' ') : (n.diyagramTest?.tr || ''));
+        const cozumStr = Array.isArray(n.diyagramCozum?.en) ? n.diyagramCozum.en.join(' ') : (n.diyagramCozum?.en || Array.isArray(n.diyagramCozum?.tr) ? n.diyagramCozum.tr.join(' ') : (n.diyagramCozum?.tr || ''));
+        const yanlisDuzeltmeHtml = (n.yanlisDuzeltme?.en || n.yanlisDuzeltme?.tr)
+          ? `\n            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> ${escapeHtml(n.yanlisDuzeltme.en || n.yanlisDuzeltme.tr)}</p>`
+          : '';
+        return `
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">${escapeHtml(n.harf)} · ${escapeHtml(n.ad?.en || n.ad?.tr || '')}</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(n.aciklama?.en || n.aciklama?.tr || '')}</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> ${escapeHtml(testStr)}</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> ${escapeHtml(n.kanit?.en || n.kanit?.tr || '')}</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> ${escapeHtml(cozumStr)}</p>${yanlisDuzeltmeHtml}
+          </div>
+        `;
+      }).join('\n')
+    : '';
+
+  const termsHtmlTr = item.ilgiliTerimler && item.ilgiliTerimler.length > 0
     ? `
       <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
         ${item.ilgiliTerimler.map(tSlug => {
@@ -2323,11 +2727,27 @@ const teshisPages = teshisData.flatMap(item => {
     `
     : '';
 
-  const serviceHtml = item.ilgiliHizmet
+  const termsHtmlEn = item.ilgiliTerimler && item.ilgiliTerimler.length > 0
+    ? `
+      <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
+        ${item.ilgiliTerimler.map(tSlug => {
+          const tObj = glossaryTerms.find(g => g.slug === tSlug);
+          const tTitle = tObj ? (tObj.titleEn || tObj.title) : tSlug;
+          return `<li><a href="/glossary/${escapeHtml(tSlug)}/" class="hover:underline">→ ${escapeHtml(tTitle)}</a></li>`;
+        }).join('\n        ')}
+      </ul>
+    `
+    : '';
+
+  const serviceHtmlTr = item.ilgiliHizmet
     ? `<p class="pt-2"><a href="${escapeHtml(item.ilgiliHizmet.link)}" class="text-[var(--accent)] hover:underline font-bold">→ ${escapeHtml(item.ilgiliHizmet.baslik?.tr || '')}</a></p>`
     : '';
 
-  const sahadaHtml = item.sahadaNasilGorunur?.tr
+  const serviceHtmlEn = item.ilgiliHizmet
+    ? `<p class="pt-2"><a href="${escapeHtml(item.ilgiliHizmet.link)}" class="text-[var(--accent)] hover:underline font-bold">→ ${escapeHtml(item.ilgiliHizmet.baslik?.en || item.ilgiliHizmet.baslik?.tr || '')}</a></p>`
+    : '';
+
+  const sahadaHtmlTr = item.sahadaNasilGorunur?.tr
     ? `
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Sahada nasıl görünür</h2>
@@ -2336,19 +2756,28 @@ const teshisPages = teshisData.flatMap(item => {
     `
     : '';
 
-  const extraContent = `
+  const sahadaHtmlEn = (item.sahadaNasilGorunur?.en || item.sahadaNasilGorunur?.tr)
+    ? `
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.sahadaNasilGorunur.en || item.sahadaNasilGorunur.tr)}</p>
+      </section>
+    `
+    : '';
+
+  const trExtraContent = `
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Aciliyet: ${escapeHtml(item.aciliyet?.etiket?.tr || '')} · Kategori: ${escapeHtml(item.kirinti?.tr || '')}</p>
-${sahadaHtml}
+${sahadaHtmlTr}
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-[var(--ink)]">Sisteminizde bu satırları görüyorsanız</h2>
-        ${logRowsHtml}
+        ${logRowsHtmlTr}
         ${item.logNotu?.tr ? `<p class="text-[var(--ink-muted)] text-sm">${escapeHtml(item.logNotu.tr)}</p>` : ''}
       </section>
 
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-[var(--ink)]">Üç olası neden ve ayırt edici testleri</h2>
-        ${nedenlerHtml}
+        ${nedenlerHtmlTr}
       </section>
 
       <section class="space-y-2">
@@ -2363,8 +2792,41 @@ ${sahadaHtml}
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">İlgili terimler ve hizmet</h2>
-        ${termsHtml}
-        ${serviceHtml}
+        ${termsHtmlTr}
+        ${serviceHtmlTr}
+      </section>
+    </section>
+  `;
+
+  const enExtraContent = `
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      <p class="text-sm font-mono text-[var(--accent)]">Urgency: ${escapeHtml(item.aciliyet?.etiket?.en || item.aciliyet?.etiket?.tr || '')} · Category: ${escapeHtml(item.kirinti?.en || item.kirinti?.tr || '')}</p>
+${sahadaHtmlEn}
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
+        ${logRowsHtmlEn}
+        ${item.logNotu?.en ? `<p class="text-[var(--ink-muted)] text-sm">${escapeHtml(item.logNotu.en)}</p>` : ''}
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Three Potential Root Causes & Differential Tests</h2>
+        ${nedenlerHtmlEn}
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.kimCozer?.en || item.kimCozer?.tr || '')}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.cozulmezse?.en || item.cozulmezse?.tr || '')}</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts & Services</h2>
+        ${termsHtmlEn}
+        ${serviceHtmlEn}
       </section>
     </section>
   `;
@@ -2463,7 +2925,7 @@ ${sahadaHtml}
     hreflangTr: `https://trendmasterakademi.com/teshis/${item.slug}/`,
     hreflangEn: `https://trendmasterakademi.com/diagnostic/${item.slug}/`,
     subheading: item.ozet.tr,
-    extraContent,
+    extraContent: trExtraContent,
     schema
   };
 
@@ -2478,7 +2940,7 @@ ${sahadaHtml}
     hreflangTr: `https://trendmasterakademi.com/teshis/${item.slug}/`,
     hreflangEn: `https://trendmasterakademi.com/diagnostic/${item.slug}/`,
     subheading: item.ozet.en || item.ozet.tr,
-    extraContent,
+    extraContent: enExtraContent,
     schema
   };
 
@@ -2676,6 +3138,18 @@ pages.forEach(page => {
     fs.mkdirSync(targetDir, { recursive: true });
   }
 
+  // Single-source SEO from seoData.js
+  const cleanPath = page.dir ? '/' + page.dir.replace(/\/$/, '') + '/' : '/';
+  const pageSeo = seoData[cleanPath] || (cleanPath === '/gizlilik/' ? seoData['/privacy/'] : null);
+  if (pageSeo) {
+    const langKey = page.lang === 'en' ? 'en' : 'tr';
+    const entry = pageSeo[langKey] || pageSeo['tr'];
+    if (entry) {
+      page.title = entry.title;
+      page.description = entry.desc || entry.description;
+    }
+  }
+
   let html = template;
 
   if (page.lang === 'en') {
@@ -2691,11 +3165,13 @@ pages.forEach(page => {
   // Replace Canonical
   html = html.replace(/<link rel="canonical" href=".*?" \/>/i, `<link rel="canonical" href="${escapeHtml(page.canonical)}" />`);
   
-  // Replace OpenGraph Title & URL
+  // Replace OpenGraph Title & URL & Locale
+  const ogLocale = page.lang === 'en' ? 'en_US' : 'tr_TR';
   html = html.replace(/<meta property="og:title" content=".*?" \/>/i, `<meta property="og:title" content="${escapeHtml(page.title)}" />`);
   html = html.replace(/<meta property="og:url" content=".*?" \/>/i, `<meta property="og:url" content="${escapeHtml(page.ogUrl)}" />`);
   html = html.replace(/<meta property="og:description" content=".*?" \/>/i, `<meta property="og:description" content="${escapeHtml(page.description)}" />`);
   html = html.replace(/<meta property="og:image" content=".*?" \/>/i, `<meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />`);
+  html = html.replace(/<meta property="og:locale" content=".*?" \/>/i, `<meta property="og:locale" content="${ogLocale}" />`);
 
   // Replace Twitter Title & URL
   html = html.replace(/<meta name="twitter:title" content=".*?" \/>/i, `<meta name="twitter:title" content="${escapeHtml(page.title)}" />`);
@@ -2733,6 +3209,7 @@ pages.forEach(page => {
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">${page.lang === 'en' ? 'Home' : 'Ana Sayfa'}</a>
           <a href="/agency/" class="hover:underline">${page.lang === 'en' ? 'Capacity & Infrastructure' : 'Kapasite & Altyapı'}</a>
+          <a href="${page.lang === 'en' ? '/agency-kit/' : '/kit/'}" class="hover:underline">${page.lang === 'en' ? 'Agency Kit' : 'Ajans Kiti'}</a>
           <a href="/crash-test/" class="hover:underline">${page.lang === 'en' ? 'Crash Test (60s)' : 'Crash Test (60sn)'}</a>
           <a href="${page.lang === 'en' ? '/handover-audit/' : '/devir-kontrolu/'}" class="hover:underline">${page.lang === 'en' ? 'Handover Audit' : 'Devir Kontrolü'}</a>
           <a href="${page.lang === 'en' ? '/diagnostic/' : '/teshis/'}" class="hover:underline">${page.lang === 'en' ? 'Diagnostic Catalog' : 'Teşhis Kataloğu'}</a>
@@ -2742,11 +3219,14 @@ pages.forEach(page => {
           <a href="/sla/" class="hover:underline">${page.lang === 'en' ? 'SLA & Commitments' : 'SLA & Taahhütler'}</a>
           <a href="${page.lang === 'en' ? '/tech-matrix/' : '/teknoloji-uyumluluk/'}" class="hover:underline">${page.lang === 'en' ? 'Tech Matrix' : 'Teknoloji Matrisi'}</a>
           <a href="${page.lang === 'en' ? '/mutual-nda/' : '/gizlilik-sozlesmesi/'}" class="hover:underline">${page.lang === 'en' ? 'Mutual NDA' : 'Gizlilik Sözleşmesi'}</a>
+          <a href="/nda/" class="hover:underline">${page.lang === 'en' ? 'Unilateral NDA' : 'Tek Taraflı NDA'}</a>
           <a href="${page.lang === 'en' ? '/outage-simulator/' : '/hasar-tespiti/'}" class="hover:underline">${page.lang === 'en' ? 'Damage Simulator' : 'Hasar Simülatörü'}</a>
           <a href="/radar/" class="hover:underline">${page.lang === 'en' ? 'Status Radar' : 'SWAT Radarı'}</a>
           <a href="${page.lang === 'en' ? '/codebase-health/' : '/kod-sagligi/'}" class="hover:underline">${page.lang === 'en' ? 'Codebase Health' : 'Kod Sağlığı'}</a>
           <a href="${page.lang === 'en' ? '/rescue-roi/' : '/kurtarma-maliyeti/'}" class="hover:underline">${page.lang === 'en' ? 'Rescue ROI' : 'Kurtarma ROI'}</a>
           <a href="${page.lang === 'en' ? '/downtime-calc/' : '/kesinti-maliyeti/'}" class="hover:underline">${page.lang === 'en' ? 'Downtime Calculator' : 'Kesinti Maliyeti'}</a>
+          <a href="${page.lang === 'en' ? '/glossary/' : '/sozluk/'}" class="hover:underline">${page.lang === 'en' ? 'Technical Glossary' : 'Teknik Sözlük'}</a>
+          <a href="${page.lang === 'en' ? '/story/' : '/hikayemiz/'}" class="hover:underline">${page.lang === 'en' ? 'Our Story' : 'Hikayemiz'}</a>
           <a href="/sos/" class="hover:underline">${page.lang === 'en' ? 'Emergency Support' : 'Acil Teknik Destek'}</a>
           <a href="/about/" class="hover:underline">${page.lang === 'en' ? 'About Us' : 'Hakkımızda'}</a>
           <a href="/privacy/" class="hover:underline">${page.lang === 'en' ? 'Privacy Policy' : 'KVKK & Gizlilik'}</a>
@@ -2758,8 +3238,8 @@ pages.forEach(page => {
         ${page.extraContent || ''}
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+          <p class="text-sm text-[var(--ink-muted)]">${page.lang === 'en' ? 'B2B White-Label Engineering Desk' : 'B2B White-Label Mühendislik Masası'} | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-muted)]">${page.lang === 'en' ? 'Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir' : 'Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir'}</p>
         </section>
       </main>
     </div>
@@ -2774,73 +3254,12 @@ pages.forEach(page => {
 
 console.log(`All ${pages.length} static sub-pages generated successfully!`);
 
-// B3 — sitemap.xml <lastmod> güncellemesi (git tarihlerinden)
-const sitemapPageSourceMap = {
-  'https://trendmasterakademi.com/': 'v2-draft/src/pages/Home.jsx',
-  'https://trendmasterakademi.com/agency/': 'v2-draft/src/pages/Agency.jsx',
-  'https://trendmasterakademi.com/kit/': 'v2-draft/src/pages/AgencyKit.jsx',
-  'https://trendmasterakademi.com/agency-kit/': 'v2-draft/src/pages/AgencyKit.jsx',
-  'https://trendmasterakademi.com/crash-test/': 'v2-draft/src/pages/CrashTest.jsx',
-  'https://trendmasterakademi.com/devir-kontrolu/': 'v2-draft/src/pages/DevirKontrolu.jsx',
-  'https://trendmasterakademi.com/handover-audit/': 'v2-draft/src/pages/DevirKontrolu.jsx',
-  'https://trendmasterakademi.com/kurtarilabilirlik/': 'v2-draft/src/pages/Salvageability.jsx',
-  'https://trendmasterakademi.com/salvageability/': 'v2-draft/src/pages/Salvageability.jsx',
-  'https://trendmasterakademi.com/post-mortem/': 'v2-draft/src/pages/PostMortemIndex.jsx',
-  'https://trendmasterakademi.com/post-mortems/': 'v2-draft/src/pages/PostMortemIndex.jsx',
-  'https://trendmasterakademi.com/triyaj/': 'v2-draft/src/pages/Triage.jsx',
-  'https://trendmasterakademi.com/triage/': 'v2-draft/src/pages/Triage.jsx',
-  'https://trendmasterakademi.com/sla/': 'v2-draft/src/pages/Sla.jsx',
-  'https://trendmasterakademi.com/teknoloji-uyumluluk/': 'v2-draft/src/pages/TechMatrix.jsx',
-  'https://trendmasterakademi.com/tech-matrix/': 'v2-draft/src/pages/TechMatrix.jsx',
-  'https://trendmasterakademi.com/gizlilik-sozlesmesi/': 'v2-draft/src/pages/NdaGenerator.jsx',
-  'https://trendmasterakademi.com/mutual-nda/': 'v2-draft/src/pages/NdaGenerator.jsx',
-  'https://trendmasterakademi.com/hasar-tespiti/': 'v2-draft/src/pages/OutageSimulator.jsx',
-  'https://trendmasterakademi.com/outage-simulator/': 'v2-draft/src/pages/OutageSimulator.jsx',
-  'https://trendmasterakademi.com/radar/': 'v2-draft/src/pages/StatusRadar.jsx',
-  'https://trendmasterakademi.com/kod-sagligi/': 'v2-draft/src/pages/CodeHealth.jsx',
-  'https://trendmasterakademi.com/codebase-health/': 'v2-draft/src/pages/CodeHealth.jsx',
-  'https://trendmasterakademi.com/kurtarma-maliyeti/': 'v2-draft/src/pages/RescueRoi.jsx',
-  'https://trendmasterakademi.com/rescue-roi/': 'v2-draft/src/pages/RescueRoi.jsx',
-  'https://trendmasterakademi.com/sozluk/': 'v2-draft/src/data/glossaryData.js',
-  'https://trendmasterakademi.com/glossary/': 'v2-draft/src/data/glossaryData.js',
-  'https://trendmasterakademi.com/kesinti-maliyeti/': 'v2-draft/src/pages/KesintiMaliyeti.jsx',
-  'https://trendmasterakademi.com/downtime-calc/': 'v2-draft/src/pages/KesintiMaliyeti.jsx',
-  'https://trendmasterakademi.com/about/': 'v2-draft/src/pages/About.jsx',
-  'https://trendmasterakademi.com/hikayemiz/': 'v2-draft/src/pages/Story.jsx',
-  'https://trendmasterakademi.com/story/': 'v2-draft/src/pages/Story.jsx',
-  'https://trendmasterakademi.com/privacy/': 'v2-draft/src/pages/Privacy.jsx',
-  'https://trendmasterakademi.com/gizlilik/': 'v2-draft/src/pages/Privacy.jsx',
-  'https://trendmasterakademi.com/nda/': 'v2-draft/src/pages/Nda.jsx',
-  'https://trendmasterakademi.com/teshis/': 'v2-draft/src/data/teshisData.js',
-  'https://trendmasterakademi.com/diagnostic/': 'v2-draft/src/data/teshisData.js',
-  'https://trendmasterakademi.com/sos/': 'v2-draft/src/pages/Sos.jsx'
-};
-
-for (const term of glossaryTerms) {
-  sitemapPageSourceMap[`https://trendmasterakademi.com/sozluk/${term.slug}/`] = 'v2-draft/src/data/glossaryData.js';
-  sitemapPageSourceMap[`https://trendmasterakademi.com/glossary/${term.slug}/`] = 'v2-draft/src/data/glossaryData.js';
-}
-
-for (const item of teshisData) {
-  sitemapPageSourceMap[`https://trendmasterakademi.com/teshis/${item.slug}/`] = `v2-draft/src/data/teshis/${item.slug}.js`;
-  sitemapPageSourceMap[`https://trendmasterakademi.com/diagnostic/${item.slug}/`] = `v2-draft/src/data/teshis/${item.slug}.js`;
-}
-
-for (const item of postMortems) {
-  sitemapPageSourceMap[`https://trendmasterakademi.com/post-mortem/${item.slug}/`] = 'v2-draft/src/data/postMortemData.js';
-  sitemapPageSourceMap[`https://trendmasterakademi.com/post-mortems/${item.slug}/`] = 'v2-draft/src/data/postMortemData.js';
-}
-
+// Sitemap generator & updater with content-hash lastmod dates
 function updateSitemapLastmod() {
   const publicSitemapPath = path.join(__dirname, 'public/sitemap.xml');
   const distSitemapPath = path.join(__dirname, 'dist/sitemap.xml');
   const rootSitemapPath = path.join(repoRoot, 'sitemap.xml');
   const pageHashesPath = path.join(__dirname, 'page-hashes.json');
-
-  if (!fs.existsSync(publicSitemapPath)) {
-    console.warn('[SITEMAP WARNING] public/sitemap.xml not found');
-    return;
-  }
 
   let pageHashes = {};
   if (fs.existsSync(pageHashesPath)) {
@@ -2857,20 +3276,19 @@ function updateSitemapLastmod() {
   const day = String(now.getDate()).padStart(2, '0');
   const todayStr = `${year}-${month}-${day}`;
 
-  let content = fs.readFileSync(publicSitemapPath, 'utf8');
+  // Filter canonical pages (exclude /gizlilik/ alias, exactly 109 canonical pages)
+  const canonicalPages = pages.filter(p => p.dir !== 'gizlilik');
+
   let updatedCount = 0;
   let changedCount = 0;
   const changedUrls = [];
 
-  content = content.replace(/<url>([\s\S]*?)<\/url>/g, (match, urlInner) => {
-    const locMatch = urlInner.match(/<loc>(.*?)<\/loc>/);
-    if (!locMatch) return match;
-    const loc = locMatch[1].trim();
-
-    const rel = loc.replace('https://trendmasterakademi.com/', '').replace(/\/$/, '');
+  const urlEntries = canonicalPages.map(page => {
+    const loc = page.canonical;
+    const rel = page.dir ? page.dir.replace(/\/$/, '') : '';
     const htmlFile = path.join(distDir, rel, 'index.html');
 
-    let pageLastmod = urlInner.match(/<lastmod>(.*?)<\/lastmod>/)?.[1] || todayStr;
+    let pageLastmod = pageHashes[loc]?.lastmod || todayStr;
 
     if (fs.existsSync(htmlFile)) {
       const html = fs.readFileSync(htmlFile, 'utf8');
@@ -2897,8 +3315,21 @@ function updateSitemapLastmod() {
     }
 
     updatedCount++;
-    return match.replace(/<lastmod>.*?<\/lastmod>/, `<lastmod>${pageLastmod}</lastmod>`);
+
+    const priority = loc === 'https://trendmasterakademi.com/' ? '1.0' : (page.dir.includes('/') ? '0.8' : '0.9');
+    const changefreq = 'weekly';
+
+    let hreflangBlock = '';
+    if (page.hreflangTr && page.hreflangEn) {
+      hreflangBlock = `    <xhtml:link rel="alternate" hreflang="tr" href="${page.hreflangTr}" />\n    <xhtml:link rel="alternate" hreflang="en" href="${page.hreflangEn}" />\n    <xhtml:link rel="alternate" hreflang="x-default" href="${page.hreflangTr}" />`;
+    } else {
+      hreflangBlock = `    <xhtml:link rel="alternate" hreflang="tr" href="${page.canonical}" />\n    <xhtml:link rel="alternate" hreflang="x-default" href="${page.canonical}" />`;
+    }
+
+    return `  <url>\n    <loc>${loc}</loc>\n    <lastmod>${pageLastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n${hreflangBlock}\n  </url>`;
   });
+
+  const content = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n        xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urlEntries.join('\n')}\n</urlset>\n`;
 
   fs.writeFileSync(pageHashesPath, JSON.stringify(pageHashes, null, 2) + '\n', 'utf8');
 
@@ -2914,52 +3345,140 @@ function updateSitemapLastmod() {
 
 updateSitemapLastmod();
 
-// 1.3 Derleme koruması (build guard)
-function verifyGeneratedHtml() {
+// Build guard: SEO & HTML integrity verification
+function verifySeoAndHtmlIntegrity() {
   const forbidden = ['[object Object]', 'undefined', 'NaN', '>null<', '{tr', '{en'];
   let errors = [];
 
-  function scanDir(dir) {
-    const entries = fs.readdirSync(dir, { withFileTypes: true });
-    for (const entry of entries) {
-      const fullPath = path.join(dir, entry.name);
-      if (entry.isDirectory()) {
-        scanDir(fullPath);
-      } else if (entry.isFile() && entry.name.endsWith('.html')) {
-        const rawHtml = fs.readFileSync(fullPath, 'utf8');
-        // Replace <code>...</code> and <pre>...</pre> blocks with newlines to preserve line numbers
-        const sanitized = rawHtml.replace(/<(pre|code)[\s\S]*?<\/\1>/gi, match => {
-          const newlines = match.match(/\n/g);
-          return newlines ? newlines.join('') : '';
-        });
-        const lines = sanitized.split('\n');
-        lines.forEach((line, idx) => {
-          for (const pattern of forbidden) {
-            if (line.includes(pattern)) {
-              errors.push({
-                file: path.relative(distDir, fullPath),
-                line: idx + 1,
-                pattern,
-                content: line.trim()
-              });
-            }
-          }
-        });
+  const canonicalPages = pages.filter(p => p.dir !== 'gizlilik');
+  const seenTitles = new Map();
+  const seenDescs = new Map();
+
+  if (canonicalPages.length !== 109) {
+    errors.push(`Expected exactly 109 canonical pages, found ${canonicalPages.length}`);
+  }
+
+  canonicalPages.forEach(page => {
+    const rel = page.dir ? page.dir.replace(/\/$/, '') : '';
+    const htmlFile = path.join(distDir, rel, 'index.html');
+    if (!fs.existsSync(htmlFile)) {
+      errors.push(`Missing HTML file: ${htmlFile}`);
+      return;
+    }
+
+    const rawHtml = fs.readFileSync(htmlFile, 'utf8');
+
+    // Title checks
+    const titleMatch = rawHtml.match(/<title>(.*?)<\/title>/i);
+    const title = titleMatch ? unescapeHtml(titleMatch[1]) : '';
+    if (!title) {
+      errors.push(`Page ${page.canonical} is missing <title>`);
+    } else {
+      if (title.length > 60) {
+        errors.push(`Page ${page.canonical} title exceeds 60 chars (${title.length}): "${title}"`);
+      }
+      if (seenTitles.has(title)) {
+        errors.push(`Duplicate title "${title}" found in ${page.canonical} and ${seenTitles.get(title)}`);
+      } else {
+        seenTitles.set(title, page.canonical);
+      }
+      if (title.includes('Trend Master Academy')) {
+        errors.push(`Page ${page.canonical} title contains "Trend Master Academy"`);
       }
     }
-  }
 
-  scanDir(distDir);
+    // Description checks
+    const descMatch = rawHtml.match(/<meta name="description" content="(.*?)" \/>/i);
+    const desc = descMatch ? unescapeHtml(descMatch[1]) : '';
+    if (!desc) {
+      errors.push(`Page ${page.canonical} is missing meta description`);
+    } else {
+      if (desc.length < 120 || desc.length > 160) {
+        errors.push(`Page ${page.canonical} description length out of range [120, 160] (${desc.length}): "${desc}"`);
+      }
+      if (seenDescs.has(desc)) {
+        errors.push(`Duplicate description found in ${page.canonical} and ${seenDescs.get(desc)}`);
+      } else {
+        seenDescs.set(desc, page.canonical);
+      }
+      if (desc.includes('Trend Master Academy')) {
+        errors.push(`Page ${page.canonical} description contains "Trend Master Academy"`);
+      }
+    }
+
+    // English-specific checks (0 Turkish characters in EN titles, descriptions, and pre-render content)
+    // Exclude company name, founder name, address
+    if (page.lang === 'en') {
+      const turkishCharRegex = /[ğüşıöçĞÜŞİÖÇ]/;
+      if (turkishCharRegex.test(title)) {
+        errors.push(`EN page ${page.canonical} title contains Turkish characters: "${title}"`);
+      }
+      if (turkishCharRegex.test(desc)) {
+        errors.push(`EN page ${page.canonical} description contains Turkish characters: "${desc}"`);
+      }
+
+      // Check pre-rendered content (inside <div id="root">...</div>)
+      const rootMatch = rawHtml.match(/<div id="root">([\s\S]*?)<\/div>\s*<\/body>/i);
+      if (rootMatch) {
+        let contentToCheck = rootMatch[1];
+        // Strip company name, founder name, address
+        contentToCheck = contentToCheck
+          .replace(/Trend Master Akademi/g, '')
+          .replace(/Mehmet Şahin/g, '')
+          .replace(/Akdeniz Mah\..*?İzmir/g, '')
+          .replace(/Akdeniz Mah\..*?Izmir/g, '')
+          .replace(/Şehit Fethibey/g, '')
+          .replace(/İç Kapı/g, '')
+          .replace(/İzmir/g, '');
+
+        // Also exclude HTML tags
+        contentToCheck = contentToCheck.replace(/<[^>]+>/g, ' ');
+
+        const matchTr = contentToCheck.match(/[ğüşıöçĞÜŞİÖÇ]/);
+        if (matchTr) {
+          errors.push(`EN page ${page.canonical} pre-render content contains Turkish character "${matchTr[0]}" near: "...${contentToCheck.slice(Math.max(0, matchTr.index - 30), matchTr.index + 30)}..."`);
+        }
+      }
+    }
+
+    // Check forbidden strings
+    for (const pattern of forbidden) {
+      if (rawHtml.includes(pattern)) {
+        errors.push(`Page ${page.canonical} contains forbidden string "${pattern}"`);
+      }
+    }
+  });
+
+  // Verify orphan pages incoming links in dist (>= 3)
+  const orphanPaths = ['/kit/', '/agency-kit/', '/hikayemiz/', '/nda/'];
+  orphanPaths.forEach(orphanPath => {
+    let incomingLinks = 0;
+    canonicalPages.forEach(p => {
+      const rel = p.dir ? p.dir.replace(/\/$/, '') : '';
+      const htmlFile = path.join(distDir, rel, 'index.html');
+      if (fs.existsSync(htmlFile)) {
+        const rawHtml = fs.readFileSync(htmlFile, 'utf8');
+        if (rawHtml.includes(`href="${orphanPath}"`)) {
+          incomingLinks++;
+        }
+      }
+    });
+    if (incomingLinks < 3) {
+      errors.push(`Orphan page check failed: ${orphanPath} has only ${incomingLinks} incoming links (required >= 3)`);
+    } else {
+      console.log(`[BUILD GUARD] Orphan check passed: ${orphanPath} has ${incomingLinks} incoming links (>= 3).`);
+    }
+  });
 
   if (errors.length > 0) {
-    console.error('\n[BUILD GUARD ERROR] Forbidden strings found in generated HTML:');
-    errors.forEach(err => {
-      console.error(`  - ${err.file}:${err.line} contains "${err.pattern}" -> ${err.content.slice(0, 120)}`);
-    });
+    console.error(`\n[BUILD GUARD ERROR] Integrity check failed with ${errors.length} errors:`);
+    errors.forEach(err => console.error(`  - ${err}`));
     process.exit(1);
   }
-  console.log(`[BUILD GUARD] All generated HTML files in dist/ passed integrity verification (0 forbidden strings found).`);
+
+  console.log(`[BUILD GUARD] All 109 pages passed SEO & HTML integrity verification!`);
 }
 
-verifyGeneratedHtml();
+verifySeoAndHtmlIntegrity();
+
 

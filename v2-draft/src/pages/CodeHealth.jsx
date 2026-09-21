@@ -1,9 +1,14 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { codeHealthData } from "../data/codeHealthData";
 import { getCalendlyUrl } from "../utils/calendly";
+import { setPageSeo } from "../utils/pageTitle";
 
 export default function CodeHealth({ lang = "tr" }) {
   const t = codeHealthData[lang] || codeHealthData.tr;
+
+  useEffect(() => {
+    setPageSeo(lang === 'tr' ? '/kod-sagligi/' : '/codebase-health/', lang);
+  }, [lang]);
 
   // Default initial checked items (simulate typical mid-level debt)
   const [checkedIds, setCheckedIds] = useState(["c1", "c3", "c8", "c11", "c14", "c16", "c18", "c19"]);

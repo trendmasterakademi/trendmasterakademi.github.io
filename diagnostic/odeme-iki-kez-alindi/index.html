@@ -193,7 +193,7 @@
     </script>
     
     <title>Payment Charged Twice for Single Order</title>
-    <meta name="description" content="The client was billed twice for the same cart. A refund is mandatory, but isolating which tier duplicated the transaction is critical — patching the wrong layer allows duplicates to persist." />
+    <meta name="description" content="The client was billed twice for the same cart. A refund is mandatory, but isolating which tier duplicated the transaction is critical. Likely causes and fix." />
     <meta name="author" content="Trend Master Akademi" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/odeme-iki-kez-alindi/" />
@@ -207,14 +207,14 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/odeme-iki-kez-alindi/" />
     <meta property="og:title" content="Payment Charged Twice for Single Order" />
-    <meta property="og:description" content="The client was billed twice for the same cart. A refund is mandatory, but isolating which tier duplicated the transaction is critical — patching the wrong layer allows duplicates to persist." />
+    <meta property="og:description" content="The client was billed twice for the same cart. A refund is mandatory, but isolating which tier duplicated the transaction is critical. Likely causes and fix." />
     <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio" />
     <meta property="og:site_name" content="Trend Master Akademi" />
-    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:locale" content="en_US" />
 
     <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
 
@@ -222,7 +222,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/odeme-iki-kez-alindi/" />
     <meta name="twitter:title" content="Payment Charged Twice for Single Order" />
-    <meta name="twitter:description" content="The client was billed twice for the same cart. A refund is mandatory, but isolating which tier duplicated the transaction is critical — patching the wrong layer allows duplicates to persist." />
+    <meta name="twitter:description" content="The client was billed twice for the same cart. A refund is mandatory, but isolating which tier duplicated the transaction is critical. Likely causes and fix." />
     <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
 
     <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
@@ -309,7 +309,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DN9go0BT.js"></script>
+    <script type="module" crossorigin src="/assets/index-DTaQ5JRn.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -324,6 +324,7 @@
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">Home</a>
           <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
           <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
           <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
           <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
@@ -333,11 +334,14 @@
           <a href="/sla/" class="hover:underline">SLA & Commitments</a>
           <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
           <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Unilateral NDA</a>
           <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
           <a href="/radar/" class="hover:underline">Status Radar</a>
           <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
           <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
           <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
           <a href="/sos/" class="hover:underline">Emergency Support</a>
           <a href="/about/" class="hover:underline">About Us</a>
           <a href="/privacy/" class="hover:underline">Privacy Policy</a>
@@ -348,87 +352,87 @@
         <p class="text-[var(--ink-muted)] text-lg leading-relaxed">The client was billed twice for the same cart. A refund is mandatory, but isolating which tier duplicated the transaction is critical — patching the wrong layer allows duplicates to persist.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
-      <p class="text-sm font-mono text-[var(--accent)]">Aciliyet: Kritik · iade riski · Kategori: Sipariş &amp; Ödeme</p>
+      <p class="text-sm font-mono text-[var(--accent)]">Urgency: Critical · chargeback risk · Category: Orders &amp; Payments</p>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Sahada nasıl görünür</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Müşteri satın alma butonuna bastıktan sonra telefonuna peş peşe iki ayrı banka çekim bildirimi düşer. Sipariş panelinde tek bir sipariş numarası görünür; müşteri kartından iki defa tahsilat yapıldığını söyleyerek bankasına harcama itirazı açar.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Moments after clicking purchase, the customer receives two consecutive bank deduction alerts. Only one order number appears in the dashboard; the customer reports double billing and files a chargeback with their bank.</p>
       </section>
     
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Sisteminizde bu satırları görüyorsanız</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
         
       <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
-        <li><code>Aynı ödeme referansıyla iki başarılı işlem</code></li>
-        <li><code>Bildirim log'u: aynı olay kimliği iki kez işlenmiş</code></li>
-        <li><code>Uygulama log'u: iki gönderim, aynı saniye, aynı oturum</code></li>
-        <li><code>Sağlayıcı panelinde 'duplicate transaction' uyarısı yok</code></li>
+        <li><code>Two successful charges with identical payment reference</code></li>
+        <li><code>Webhook logs: identical event ID processed twice</code></li>
+        <li><code>App logs: two submissions, same second, same session</code></li>
+        <li><code>Payment gateway dashboard shows no duplicate transaction alert</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">Sağlayıcının işlem kimliği ile sizin sipariş referansınız farklı şeylerdir. Çiftlenmenin hangisinde olduğu, sorunun sizde mi sağlayıcıda mı olduğunu söyler.</p>
+        <p class="text-[var(--ink-muted)] text-sm">Gateway transaction IDs and internal order tokens are distinct. Which one is duplicated indicates whether concurrency stems from client UI or webhook replays.</p>
       </section>
 
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Üç olası neden ve ayırt edici testleri</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Three Potential Root Causes & Differential Tests</h2>
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">A · Çift gönderim</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Düğme kilitlenmedi, sayfa yavaş yanıt verdi, müşteri tekrar tıkladı.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> İki istek aynı oturumdan mı geldi?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> İki gönderim, aynı oturum → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Düğme kilidi + idempotency anahtarı</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Buton sadece JavaScript ile devre dışı bırakılır; fakat form klavyeden Enter tuşuyla gönderildiğinde backend kilidi olmadığı için çift çekim gerçekleşir.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">A · Client double submit</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Submit button was not disabled on click; slow response caused user double-click.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Did both requests originate from same session?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Two posts, same session → A</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Button lock + idempotency key header</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Disabling the button via JavaScript alone fails because submitting via the Enter key bypasses frontend guards without backend idempotency.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">B · Bildirim tekrarı</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Sağlayıcı aynı bildirimi tekrar gönderdi; bu normaldir. Uygulama ikisini de yeni sanıp işledi.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Aynı olay kimliği iki kez işlenmiş mi?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Aynı olay kimliği iki kez → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Olay kimliğini kaydet · tekrarı yok say</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Ağ geçidi zaman aşımı süresi uzatılır; fakat webhook işleyicisi gelen işlem kodunu kontrol etmediği için mükerrer istekler tekrar çekim tetikler.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">B · Webhook redelivery</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">Gateway redelivered standard retry callback. App treated both as novel transactions.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Was same event ID executed multiple times?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Same event ID processed twice → B</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Record event ID · ignore duplicate callbacks</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Increasing gateway timeout thresholds fails because the webhook handler still processes duplicate payloads without checking transaction references.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
-            <h3 class="text-lg font-bold text-[var(--accent)]">C · Yeniden deneme</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Uygulama zaman aşımı aldı ve isteği tekrarladı. Oysa ilki de başarılıydı.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> İlk istek zaman aşımına mı uğradı?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Zaman aşımı sonrası tekrar → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Tekrarı güvenli hâle getir · aynı anahtar</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Kullanıcı tarayıcısında geri tuşuna bastığında aynı oturum tekrar çalıştırılır; tek kullanımlık token mekanizması kurulmadığı için banka isteği yeniden onaylar.</p>
+            <h3 class="text-lg font-bold text-[var(--accent)]">C · Blind client retry</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">App got network timeout and blindly retried transaction, unaware first attempt succeeded.</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Did first attempt experience read timeout?</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Retry after timeout → C</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Safe retry logic · reuse identical idempotency key</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> When users press the browser back button, the session executes again; lacking single-use verification tokens allows the bank to reauthorize.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer, ne kadar sürer</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Backend mühendisi · 2–4 saat. Üç nedenin ortak çözümü aynı ilkedir: her ödeme isteğinin tekrarlandığında aynı sonucu üretmesi. Bu sağlandığında üç senaryo da kendiliğinden kapanır.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Backend engineer · 2–4 hours. The root solution for all three is strict idempotency: ensuring identical payment attempts return identical cached results without multiple charges.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Çözülmezse ne olur</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Çift tahsilat iadeyle kapanır ama iade komisyonu geri gelmez ve müşteri güveni birlikte gider. Ödeme kuruluşları yüksek iade oranını risk olarak işaretler.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Refunds settle double charges but merchant processing fees and customer trust are permanently lost. Gateway risk algorithms penalize high chargeback accounts.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">İlgili terimler ve hizmet</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts & Services</h2>
         
       <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
-        <li><a href="/sozluk/idempotency/" class="hover:underline">→ Idempotency (Çift İşlem Koruması)</a></li>
-        <li><a href="/sozluk/webhook/" class="hover:underline">→ Webhook (Sistemler Arası Anlık Bildirim)</a></li>
-        <li><a href="/sozluk/race-condition/" class="hover:underline">→ Race Condition (Yarış Durumu)</a></li>
+        <li><a href="/glossary/idempotency/" class="hover:underline">→ Idempotency</a></li>
+        <li><a href="/glossary/webhook/" class="hover:underline">→ Webhook</a></li>
+        <li><a href="/glossary/race-condition/" class="hover:underline">→ Race Condition</a></li>
       </ul>
     
-        <p class="pt-2"><a href="/crash-test/" class="text-[var(--accent)] hover:underline font-bold">→ Acil Kriz Müdahalesi &amp; Crash Test</a></p>
+        <p class="pt-2"><a href="/crash-test/" class="text-[var(--accent)] hover:underline font-bold">→ Emergency Incident Triage &amp; Crash Test</a></p>
       </section>
     </section>
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>
