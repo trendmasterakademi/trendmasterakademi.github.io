@@ -96,16 +96,16 @@ const Navbar = () => {
         {/* TMA Agency Response Kit & Crash Test Scrolling Banner */}
         <KitBanner />
 
-        <div className="py-2 sm:py-2.5 px-3 sm:px-5 lg:px-8 max-w-full">
+        <div className="h-8 sm:h-10 px-3 sm:px-5 lg:px-8 max-w-full flex items-center">
           <div className="w-full max-w-7xl 2xl:max-w-[1600px] mx-auto flex justify-between items-center gap-2 sm:gap-4">
           
           {/* Brand Logo & Active Response Desk Badge */}
           <div className="flex items-center gap-2 sm:gap-3 2xl:gap-4 flex-shrink-0">
             <Link to="/" className="flex items-center group flex-shrink-0" aria-label="Trend Master Akademi Ana Sayfa">
               <img 
-                src="/logo-light.png" 
+                src="/logo-light.svg" 
                 alt="Trend Master Akademi" 
-                className="h-7 sm:h-8 xl:h-9 2xl:h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                className="h-6 sm:h-7 lg:h-8 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                 width="200"
                 height="38"
               />
@@ -119,7 +119,7 @@ const Navbar = () => {
               title={isTr ? "Acil Incident & Kriz Müdahale Masası" : "Emergency Engineering & Crisis Desk"}
             >
               <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                krizHattiAcik ? 'bg-[#10B981]' : 'bg-[#F59E0B]'
+                krizHattiAcik ? 'bg-[var(--sev-ok-dot)]' : 'bg-[var(--sev-high)]'
               }`}></span>
               <span className="hidden xl:inline">
                 {krizHattiAcik
@@ -137,7 +137,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-1 2xl:gap-1.5 flex-shrink-0">
+          <nav className="hidden lg:flex items-center gap-1 2xl:gap-1.5 flex-shrink-0">
             <Link
               to="/agency/"
               className={`px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium transition-all whitespace-nowrap ${
@@ -276,7 +276,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="xl:hidden p-1.5 sm:p-2 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors cursor-pointer min-w-[34px] min-h-[34px] flex items-center justify-center flex-shrink-0"
+              className="lg:hidden p-1.5 sm:p-2 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors cursor-pointer min-w-[34px] min-h-[34px] flex items-center justify-center flex-shrink-0"
               aria-label="Toggle menu"
             >
               {isOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
@@ -287,7 +287,7 @@ const Navbar = () => {
 
         {/* Mobile / Tablet Navigation Drawer */}
         {isOpen && (
-          <div className="xl:hidden pt-3 pb-5 px-3 border-t border-[var(--rule)] mt-2.5 space-y-1.5 bg-[var(--surface)] rounded-[var(--r-panel)] shadow-navbar">
+          <div className="lg:hidden pt-3 pb-5 px-3 border-t border-[var(--rule)] mt-2.5 space-y-1.5 bg-[var(--surface)] rounded-[var(--r-panel)] shadow-navbar">
             <Link
               to="/kit/"
               onClick={() => setIsOpen(false)}

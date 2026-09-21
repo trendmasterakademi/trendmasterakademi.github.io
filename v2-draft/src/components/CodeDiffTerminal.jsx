@@ -20,7 +20,7 @@ export const incidents = [
       status: { tr: 'ÇÖZÜLDÜ (%99.8 Daha Hızlı)', en: 'RESOLVED (99.8% Faster)' }
     },
     beforeCode: {
-      tr: `// 🚨 ESKİ KOD: Her döngüde ayrı DB sorgusu & açık transaction kilidi
+      tr: `// [ESKİ KOD]: Her döngüde ayrı DB sorgusu & açık transaction kilidi
 const orders = await db.query('SELECT * FROM orders WHERE status = $1', ['pending']);
 
 // N+1 Felaketi: 2,500 sipariş için 2,500 kez ayrı SQL sorgusu atılıyor!
@@ -31,9 +31,9 @@ for (const order of orders) {
   // Transaction kapatılmadan uzun süren dış API çağrısı yapılıyor:
   await chargeCard(user.stripe_id, order.total); 
   await db.query('UPDATE orders SET status = $1 WHERE id = $2', ['paid', order.id]);
-  // 💥 SONUÇ: Lock wait timeout & bağlantı havuzu kilitlenmesi (HTTP 500)
+  // [SONUÇ]: Lock wait timeout & bağlantı havuzu kilitlenmesi (HTTP 500)
 }`,
-      en: `// 🚨 LEGACY CODE: Separate DB query per iteration & unclosed transaction lock
+      en: `// [LEGACY CODE]: Separate DB query per iteration & unclosed transaction lock
 const orders = await db.query('SELECT * FROM orders WHERE status = $1', ['pending']);
 
 // N+1 Disaster: 2,500 separate SQL queries executed for 2,500 orders!
@@ -44,11 +44,11 @@ for (const order of orders) {
   // Long-running external API call performed inside an open transaction:
   await chargeCard(user.stripe_id, order.total); 
   await db.query('UPDATE orders SET status = $1 WHERE id = $2', ['paid', order.id]);
-  // 💥 RESULT: Lock wait timeout & connection pool exhaustion (HTTP 500)
+  // [RESULT]: Lock wait timeout & connection pool exhaustion (HTTP 500)
 }`
     },
     afterCode: {
-      tr: `// 🛡️ TMA ÇÖZÜMÜ: Tek CTE sorgusu, Redis önbelleği ve asenkron kuyruk
+      tr: `// [TMA ÇÖZÜMÜ]: Tek CTE sorgusu, Redis önbelleği ve asenkron kuyruk
 // 1. Tek batch join ile 2,500 sorgu 1 tek optimize sorguya indirildi:
 const ordersWithDetails = await db.query(\`
   WITH pending_batch AS (
@@ -64,8 +64,8 @@ const ordersWithDetails = await db.query(\`
 
 // 2. İşlem kuyruğu (BullMQ + Redis) ile lock süresi <5ms'ye çekildi:
 await paymentQueue.addBulk(ordersWithDetails.rows.map(o => ({ name: 'process', data: o })));
-// ✅ SONUÇ: 18.4s -> 24ms. Sıfır kilitlenme, 100,000 siparişte tam istikrar.`,
-      en: `// 🛡️ TMA SOLUTION: Single CTE query, Redis cache, and async worker queue
+// [SONUÇ]: 18.4s -> 24ms. Sıfır kilitlenme, 100,000 siparişte tam istikrar.`,
+      en: `// [TMA SOLUTION]: Single CTE query, Redis cache, and async worker queue
 // 1. Reduced 2,500 queries to 1 optimized batch query via CTE & join:
 const ordersWithDetails = await db.query(\`
   WITH pending_batch AS (
@@ -81,7 +81,7 @@ const ordersWithDetails = await db.query(\`
 
 // 2. Lock duration reduced to <5ms via job queue (BullMQ + Redis):
 await paymentQueue.addBulk(ordersWithDetails.rows.map(o => ({ name: 'process', data: o })));
-// ✅ RESULT: 18.4s -> 24ms. Zero deadlocks, absolute stability under 100k orders.`
+// [RESULT]: 18.4s -> 24ms. Zero deadlocks, absolute stability under 100k orders.`
     }
   },
   {
@@ -100,37 +100,37 @@ await paymentQueue.addBulk(ordersWithDetails.rows.map(o => ({ name: 'process', d
       status: { tr: 'DOĞRULANMIŞ IDEMPOTENCY', en: 'VERIFIED IDEMPOTENCY' }
     },
     beforeCode: {
-      tr: `// 🚨 ESKİ KOD: Güvensiz Webhook Handler (Race Condition Riski)
+      tr: `// [ESKİ KOD]: Güvensiz Webhook Handler (Race Condition Riski)
 app.post('/api/webhook/payment', async (req, res) => {
   const { event, order_id, amount } = req.body;
   
-  // ❌ HATA: Webhook 40ms arayla iki kez geldiğinde ikisi de aynı anda geçer!
+  // [HATA]: Webhook 40ms arayla iki kez geldiğinde ikisi de aynı anda geçer!
   const order = await db.orders.findById(order_id);
   if (order.status !== 'completed') {
     // İki thread de buraya aynı anda girer:
     await deductStock(order.items);
     await markOrderAsPaid(order_id);
-    await sendInvoice(order.user_email); // 💥 Müşteriye iki kez fatura ve çift çekim!
+    await sendInvoice(order.user_email); // Müşteriye iki kez fatura ve çift çekim!
   }
   res.sendStatus(200);
 });`,
-      en: `// 🚨 LEGACY CODE: Vulnerable Webhook Handler (Race Condition Risk)
+      en: `// [LEGACY CODE]: Vulnerable Webhook Handler (Race Condition Risk)
 app.post('/api/webhook/payment', async (req, res) => {
   const { event, order_id, amount } = req.body;
   
-  // ❌ BUG: When webhook arrives twice within 40ms, both pass simultaneously!
+  // [BUG]: When webhook arrives twice within 40ms, both pass simultaneously!
   const order = await db.orders.findById(order_id);
   if (order.status !== 'completed') {
     // Both threads enter here concurrently:
     await deductStock(order.items);
     await markOrderAsPaid(order_id);
-    await sendInvoice(order.user_email); // 💥 Duplicate invoice and double charge!
+    await sendInvoice(order.user_email); // Duplicate invoice and double charge!
   }
   res.sendStatus(200);
 });`
     },
     afterCode: {
-      tr: `// 🛡️ TMA ÇÖZÜMÜ: Redis Distributed Lock + Idempotency Key Tablosu
+      tr: `// [TMA ÇÖZÜMÜ]: Redis Distributed Lock + Idempotency Key Tablosu
 app.post('/api/webhook/payment', async (req, res) => {
   const idempotencyKey = req.headers['idempotency-key'] || req.body.event_id;
   
@@ -153,9 +153,9 @@ app.post('/api/webhook/payment', async (req, res) => {
   } finally {
     await redis.del(\`lock:webhook:\${idempotencyKey}\`);
   }
-  // ✅ SONUÇ: Sıfır mükerrer işlem. Sağlayıcı 10 kez denese bile tam 1 kez işlenir.
+  // [SONUÇ]: Sıfır mükerrer işlem. Sağlayıcı 10 kez denese bile tam 1 kez işlenir.
 });`,
-      en: `// 🛡️ TMA SOLUTION: Redis Distributed Lock + Idempotency Key Table
+      en: `// [TMA SOLUTION]: Redis Distributed Lock + Idempotency Key Table
 app.post('/api/webhook/payment', async (req, res) => {
   const idempotencyKey = req.headers['idempotency-key'] || req.body.event_id;
   
@@ -178,7 +178,7 @@ app.post('/api/webhook/payment', async (req, res) => {
   } finally {
     await redis.del(\`lock:webhook:\${idempotencyKey}\`);
   }
-  // ✅ RESULT: Zero duplicate charges. Even if provider retries 10 times, processed exactly once.
+  // [RESULT]: Zero duplicate charges. Even if provider retries 10 times, processed exactly once.
 });`
     }
   },
@@ -198,37 +198,37 @@ app.post('/api/webhook/payment', async (req, res) => {
       status: { tr: 'STABİLİZE EDİLDİ (Sıfır Sızıntı)', en: 'STABILIZED (Zero Leak)' }
     },
     beforeCode: {
-      tr: `// 🚨 ESKİ KOD: Unclosed Stream Buffers & Global Event Listeners
+      tr: `// [ESKİ KOD]: Unclosed Stream Buffers & Global Event Listeners
 const globalEventEmitter = new EventEmitter();
 
 app.get('/api/export-report', async (req, res) => {
-  // ❌ HATA 1: 500MB veritabanı verisini tek seferde RAM dizisine yüklemek
+  // [HATA 1]: 500MB veritabanı verisini tek seferde RAM dizisine yüklemek
   const rawData = await db.query('SELECT * FROM audit_logs'); // 2 Milyon Satır!
   const buffer = Buffer.from(JSON.stringify(rawData));
   
-  // ❌ HATA 2: Her HTTP isteğinde global emitter'a listener ekleyip silmemek
+  // [HATA 2]: Her HTTP isteğinde global emitter'a listener ekleyip silmemek
   globalEventEmitter.on('log_exported', () => { /* Garbage Collector temizleyemez */ });
   
   res.send(buffer);
-  // 💥 SONUÇ: Heap bellek 4GB'a tırmanır, Linux OOM-Killer servisi öldürür!
+  // [SONUÇ]: Heap bellek 4GB'a tırmanır, Linux OOM-Killer servisi öldürür!
 });`,
-      en: `// 🚨 LEGACY CODE: Unclosed Stream Buffers & Global Event Listeners
+      en: `// [LEGACY CODE]: Unclosed Stream Buffers & Global Event Listeners
 const globalEventEmitter = new EventEmitter();
 
 app.get('/api/export-report', async (req, res) => {
-  // ❌ BUG 1: Loading 500MB database query directly into in-memory array
+  // [BUG 1]: Loading 500MB database query directly into in-memory array
   const rawData = await db.query('SELECT * FROM audit_logs'); // 2 Million Rows!
   const buffer = Buffer.from(JSON.stringify(rawData));
   
-  // ❌ BUG 2: Attaching listeners to global event emitter on every HTTP request without unbinding
+  // [BUG 2]: Attaching listeners to global event emitter on every HTTP request without unbinding
   globalEventEmitter.on('log_exported', () => { /* Garbage Collector cannot reclaim */ });
   
   res.send(buffer);
-  // 💥 RESULT: Heap memory spikes to 4GB, Linux OOM-Killer kills process!
+  // [RESULT]: Heap memory spikes to 4GB, Linux OOM-Killer kills process!
 });`
     },
     afterCode: {
-      tr: `// 🛡️ TMA ÇÖZÜMÜ: Backpressure Stream Piping & Garbage Collection Güvenliği
+      tr: `// [TMA ÇÖZÜMÜ]: Backpressure Stream Piping & Garbage Collection Güvenliği
 import { pipeline } from 'stream/promises';
 import QueryStream from 'pg-query-stream';
 
@@ -248,9 +248,9 @@ app.get('/api/export-report', async (req, res) => {
   } finally {
     client.release(); // Bağlantı havuza iade edilir
   }
-  // ✅ SONUÇ: 4GB RAM tüketimi 82MB'a sabitlendi. 10 milyon kayıt sıfır sızıntıyla akar.
+  // [SONUÇ]: 4GB RAM tüketimi 82MB'a sabitlendi. 10 milyon kayıt sıfır sızıntıyla akar.
 });`,
-      en: `// 🛡️ TMA SOLUTION: Backpressure Stream Piping & GC Safety
+      en: `// [TMA SOLUTION]: Backpressure Stream Piping & GC Safety
 import { pipeline } from 'stream/promises';
 import QueryStream from 'pg-query-stream';
 
@@ -270,7 +270,7 @@ app.get('/api/export-report', async (req, res) => {
   } finally {
     client.release(); // Connection safely returned to pool
   }
-  // ✅ RESULT: 4GB RAM consumption stabilized at 82MB. 10M rows stream with zero leak.
+  // [RESULT]: 4GB RAM consumption stabilized at 82MB. 10M rows stream with zero leak.
 });`
     }
   }
@@ -350,7 +350,7 @@ export const CodeDiffTerminal = () => {
         <div className="rounded-[var(--r-panel)] bg-[var(--term-bg)] border border-[var(--term-rule)] shadow-md overflow-hidden max-w-5xl mx-auto">
           
           {/* Terminal Window Chrome */}
-          <div className="bg-[#0a0d12] px-4 sm:px-6 py-3 border-b border-[var(--term-rule)] flex flex-wrap items-center justify-between gap-3">
+          <div className="bg-[var(--term-bg-2)] px-4 sm:px-6 py-3 border-b border-[var(--term-rule)] flex flex-wrap items-center justify-between gap-3">
             {/* Source Header (replaced fake macOS dots) */}
             <div className="flex items-center gap-2">
               <span className="font-mono text-xs text-[var(--term-rule)] flex items-center gap-2">
@@ -360,12 +360,12 @@ export const CodeDiffTerminal = () => {
             </div>
 
             {/* Before / After Toggle Switch */}
-            <div className="flex items-center bg-[#05070a] p-1 rounded-[var(--r-control)] border border-[var(--term-rule)] text-xs font-mono">
+            <div className="flex items-center bg-[var(--term-bg-2)] p-1 rounded-[var(--r-control)] border border-[var(--term-rule)] text-xs font-mono">
               <button
                 onClick={() => setViewMode('before')}
                 className={`px-3 py-1.5 rounded-[var(--r-control)] font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
                   viewMode === 'before'
-                    ? 'bg-[var(--sev-1)]/20 text-[#FFA39E] border border-[var(--sev-1)]/40 shadow-sm'
+                    ? 'bg-[var(--sev-1)]/20 text-[var(--term-diff-del)] border border-[var(--sev-1)]/40 shadow-sm'
                     : 'text-[var(--term-rule)] hover:text-[var(--term-ink)]'
                 }`}
               >
@@ -377,7 +377,7 @@ export const CodeDiffTerminal = () => {
                 onClick={() => setViewMode('after')}
                 className={`px-3 py-1.5 rounded-[var(--r-control)] font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
                   viewMode === 'after'
-                    ? 'bg-[var(--sev-4)]/20 text-[#B7EB8F] border border-[var(--sev-4)]/40 shadow-sm'
+                    ? 'bg-[var(--sev-4)]/20 text-[var(--term-diff-add)] border border-[var(--sev-4)]/40 shadow-sm'
                     : 'text-[var(--term-rule)] hover:text-[var(--term-ink)]'
                 }`}
               >
@@ -388,12 +388,12 @@ export const CodeDiffTerminal = () => {
           </div>
 
           {/* Incident Meta & Metric Banner */}
-          <div className="bg-[#0a0d12] px-5 sm:px-7 py-4 border-b border-[var(--term-rule)] flex flex-wrap items-center justify-between gap-4">
+          <div className="bg-[var(--term-bg-2)] px-5 sm:px-7 py-4 border-b border-[var(--term-rule)] flex flex-wrap items-center justify-between gap-4">
             <div className="space-y-1">
               <h3 className="text-sm sm:text-base font-semibold text-[var(--term-ink)] font-mono flex items-center gap-2">
                 <span>{current.title[isTr ? 'tr' : 'en']}</span>
               </h3>
-              <p className="text-xs font-mono text-[#8B949E] break-all">
+              <p className="text-xs font-mono text-[var(--term-dim)] break-all">
                 <span className="text-[var(--sev-1)] font-semibold">{isTr ? 'Belirti:' : 'Symptom:'}</span> {current.symptom}
               </p>
             </div>
@@ -401,13 +401,13 @@ export const CodeDiffTerminal = () => {
             {/* Metric Comparison Badges */}
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap font-mono text-xs">
               <div className="px-3 py-1 rounded-[var(--r-control)] bg-[var(--term-bg)] border border-[var(--term-rule)] text-[var(--term-ink)]">
-                <span className="text-[#8B949E] text-[12px] block">{isTr ? 'GECİKME' : 'LATENCY'}</span>
+                <span className="text-[var(--term-dim)] text-xs block">{isTr ? 'GECİKME' : 'LATENCY'}</span>
                 <span className={viewMode === 'before' ? 'text-[var(--sev-1)] font-semibold' : 'text-[var(--sev-4)] font-semibold'}>
                   {viewMode === 'before' ? current.metrics.latencyBefore : current.metrics.latencyAfter}
                 </span>
               </div>
               <div className="px-3 py-1 rounded-[var(--r-control)] bg-[var(--term-bg)] border border-[var(--term-rule)] text-[var(--term-ink)]">
-                <span className="text-[#8B949E] text-[12px] block">{isTr ? 'KAYNAK' : 'RESOURCE'}</span>
+                <span className="text-[var(--term-dim)] text-xs block">{isTr ? 'KAYNAK' : 'RESOURCE'}</span>
                 <span className={viewMode === 'before' ? 'text-[var(--sev-2)] font-semibold' : 'text-[var(--sev-4)] font-semibold'}>
                   {viewMode === 'before' ? getMetricValue(current.metrics.cpuBefore) : getMetricValue(current.metrics.cpuAfter)}
                 </span>
@@ -421,14 +421,14 @@ export const CodeDiffTerminal = () => {
 
           {/* Code Body */}
           <div className="p-4 sm:p-6 bg-[var(--term-bg)] overflow-x-auto text-xs sm:text-sm font-mono leading-relaxed">
-            <pre className={viewMode === 'before' ? 'text-[#FFA39E]' : 'text-[#B7EB8F]'}>
+            <pre className={viewMode === 'before' ? 'text-[var(--term-diff-del)]' : 'text-[var(--term-diff-add)]'}>
               <code>{viewMode === 'before' ? getCodeContent(current.beforeCode) : getCodeContent(current.afterCode)}</code>
             </pre>
           </div>
 
           {/* Terminal Footer Action Bar */}
-          <div className="bg-[#0a0d12] px-5 sm:px-7 py-3.5 border-t border-[var(--term-rule)] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-            <div className="flex items-center gap-2 text-[#8B949E]">
+          <div className="bg-[var(--term-bg-2)] px-5 sm:px-7 py-3.5 border-t border-[var(--term-rule)] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+            <div className="flex items-center gap-2 text-[var(--term-dim)]">
               <ShieldCheck className="w-4 h-4 text-[var(--sev-4)]" />
               <span>{isTr ? '%100 White-Label & Resmi NDA güvencesiyle onarılır.' : 'Rescued under 100% White-Label & Binding NDA.'}</span>
             </div>

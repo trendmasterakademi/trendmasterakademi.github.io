@@ -18,7 +18,7 @@ const ArchitectureGraph = () => {
         tr: 'Yüksek hacimli web, mobil (iOS/Android) ve 3. parti API istekleri.', 
         en: 'High-volume web, mobile (iOS/Android) and 3rd party API requests.' 
       },
-      color: 'border-blue-500/40 text-blue-400 bg-blue-500/10'
+      color: 'border-[var(--rule)] text-[var(--ink-2)] bg-[var(--surface)]'
     },
     {
       id: 1,
@@ -29,7 +29,7 @@ const ArchitectureGraph = () => {
         tr: 'SSR, ISR, küresel önbellek ve DDoS kalkanı.', 
         en: 'SSR, ISR, global caching and DDoS mitigation.' 
       },
-      color: 'border-teal-600/30 text-teal-700 bg-teal-50'
+      color: 'border-[var(--rule)] text-[var(--ink)] bg-[var(--surface)]'
     },
     {
       id: 2,
@@ -40,7 +40,7 @@ const ArchitectureGraph = () => {
         tr: 'Asenkron mikroservisler, yetkilendirme, iş mantığı ve acil hotfix koruması.', 
         en: 'Asynchronous microservices, authentication, business logic, and hotfix isolation.' 
       },
-      color: 'border-emerald-500/40 text-emerald-400 bg-emerald-500/10'
+      color: 'border-[var(--accent)]/30 text-[var(--accent)] bg-[var(--accent-wash)]'
     },
     {
       id: 3,
@@ -51,7 +51,7 @@ const ArchitectureGraph = () => {
         tr: 'B-Tree indeksleme, bağlantı havuzlama (Pooling) ve mikro-saniye caching.', 
         en: 'B-Tree indexed partitions, connection pooling, and sub-millisecond in-memory cache.' 
       },
-      color: 'border-purple-500/40 text-purple-400 bg-purple-500/10'
+      color: 'border-[var(--rule)] text-[var(--sev-ok)] bg-[var(--surface)]'
     },
     {
       id: 4,
@@ -62,7 +62,7 @@ const ArchitectureGraph = () => {
         tr: "OpenAI/LLM otomasyonları, Stripe/iyzico idempotent güvenli ödeme pipeline'ları.", 
         en: 'OpenAI/LLM pipelines, Stripe/iyzico idempotent atomic webhook queues.' 
       },
-      color: 'border-amber-500/40 text-amber-400 bg-amber-500/10'
+      color: 'border-[var(--rule)] text-[var(--sev-high)] bg-[var(--surface)]'
     }
   ];
 

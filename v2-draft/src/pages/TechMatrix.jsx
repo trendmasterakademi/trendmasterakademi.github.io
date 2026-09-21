@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { techStackData } from "../data/techStackData";
 import { getCalendlyUrl } from "../utils/calendly";
+import { ShieldCheck } from "lucide-react";
 
 export default function TechMatrix({ lang = "tr" }) {
   const t = techStackData[lang] || techStackData.tr;
@@ -78,8 +79,9 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
         <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-3xl mx-auto mb-4">
           {t.hero.subtitle}
         </p>
-        <p className="text-xs text-[var(--ink-muted)] font-mono">
-          🛡️ {t.hero.notice}
+        <p className="text-xs text-[var(--ink-muted)] font-mono flex items-center justify-center gap-1.5">
+          <ShieldCheck className="w-3.5 h-3.5 text-[var(--accent)]" />
+          <span>{t.hero.notice}</span>
         </p>
       </div>
 

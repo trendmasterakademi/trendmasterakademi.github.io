@@ -152,7 +152,7 @@ const Hero = () => {
           {/* Studio & Availability Badge */}
           <div className="flex flex-wrap items-center gap-2.5">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] border border-[var(--rule)] bg-[var(--surface)] text-[var(--ink-2)] text-xs font-medium">
-              <span className="w-2 h-2 rounded-full bg-[#10B981]"></span>
+              <span className="w-2 h-2 rounded-full bg-[var(--sev-ok-dot)]"></span>
               <span className="label-caps">{t('hero-badge', 'INCIDENT TRIAGE & SYSTEMS ARCHITECTURE // KERNEL DESK')}</span>
             </div>
             <span className="text-xs text-[var(--ink-3)]">
@@ -295,7 +295,7 @@ const Hero = () => {
                           <Link
                             key={pIdx}
                             to={item.href}
-                            className="block p-3.5 rounded-[var(--r-control)] bg-[var(--term-bg)] hover:bg-[#151921] border border-[var(--term-dim)]/30 hover:border-[var(--term-accent)]/60 transition-colors"
+                            className="block p-3.5 rounded-[var(--r-control)] bg-[var(--term-bg)] hover:bg-[var(--term-bg-2)] border border-[var(--term-dim)]/30 hover:border-[var(--term-accent)]/60 transition-colors"
                           >
                             <div className="font-mono text-xs sm:text-sm text-[var(--term-accent)] mb-1.5 leading-snug break-words">
                               {item.log}
@@ -329,7 +329,7 @@ const Hero = () => {
                       >
                         <Link
                           to={item.href}
-                          className="block p-3.5 rounded-[var(--r-control)] bg-[var(--term-bg)] hover:bg-[#151921] border border-[var(--term-dim)]/30 hover:border-[var(--term-accent)]/60 transition-colors"
+                          className="block p-3.5 rounded-[var(--r-control)] bg-[var(--term-bg)] hover:bg-[var(--term-bg-2)] border border-[var(--term-dim)]/30 hover:border-[var(--term-accent)]/60 transition-colors"
                         >
                           <div className="font-mono text-xs sm:text-sm text-[var(--term-accent)] mb-2 leading-snug break-words">
                             {item.log}

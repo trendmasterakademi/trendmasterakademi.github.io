@@ -111,7 +111,7 @@ const Sos = () => {
           href="https://wa.me/905343713573"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-4 rounded bg-[#1f7a4d] hover:bg-[#18633e] text-white font-semibold text-sm sm:text-base shadow-sm flex items-center justify-center gap-2.5 transition-colors min-h-[44px]"
+          className="p-4 rounded bg-[var(--sev-ok)] hover:bg-[var(--sev-ok-hover)] text-white font-semibold text-sm sm:text-base shadow-sm flex items-center justify-center gap-2.5 transition-colors min-h-[44px]"
         >
           <MessageSquare className="w-4 h-4" />
           <span>{isTr ? "WhatsApp'tan yaz" : 'Message on WhatsApp'}</span>

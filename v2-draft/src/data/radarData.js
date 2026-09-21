@@ -69,10 +69,10 @@ export const radarData = {
     incidentDistribution: {
       title: "Son 90 Gün Vaka Dağılım Radarı",
       categories: [
-        { label: "Veritabanı & Connection Deadlock", percentage: 38, count: 13, color: "bg-rose-500" },
-        { label: "Ödeme Webhook & Çift Çekim / Race Condition", percentage: 26, count: 9, color: "bg-amber-500" },
-        { label: "Bellek Sızıntısı & OOMKilled Pod Döngüsü", percentage: 21, count: 7, color: "bg-blue-600" },
-        { label: "Deploy Pipeline & Kayıp Konfigürasyon Kilidi", percentage: 15, count: 5, color: "bg-purple-500" }
+        { label: "Veritabanı & Connection Deadlock", percentage: 38, count: 13, color: "bg-[var(--accent)]" },
+        { label: "Ödeme Webhook & Çift Çekim / Race Condition", percentage: 26, count: 9, color: "bg-[var(--sev-high)]" },
+        { label: "Bellek Sızıntısı & OOMKilled Pod Döngüsü", percentage: 21, count: 7, color: "bg-[var(--ink-2)]" },
+        { label: "Deploy Pipeline & Kayıp Konfigürasyon Kilidi", percentage: 15, count: 5, color: "bg-[var(--ink-3)]" }
       ]
     }
   },
@@ -146,10 +146,10 @@ export const radarData = {
     incidentDistribution: {
       title: "90-Day Incident Distribution Radar",
       categories: [
-        { label: "Database & Connection Pool Deadlocks", percentage: 38, count: 13, color: "bg-rose-500" },
-        { label: "Payment Webhooks & Race Conditions", percentage: 26, count: 9, color: "bg-amber-500" },
-        { label: "Memory Leaks & OOMKilled Pod Cascades", percentage: 21, count: 7, color: "bg-blue-600" },
-        { label: "Deploy Pipeline & Missing Env Locks", percentage: 15, count: 5, color: "bg-purple-500" }
+        { label: "Database & Connection Pool Deadlocks", percentage: 38, count: 13, color: "bg-[var(--accent)]" },
+        { label: "Payment Webhooks & Race Conditions", percentage: 26, count: 9, color: "bg-[var(--sev-high)]" },
+        { label: "Memory Leaks & OOMKilled Pod Cascades", percentage: 21, count: 7, color: "bg-[var(--ink-2)]" },
+        { label: "Deploy Pipeline & Missing Env Locks", percentage: 15, count: 5, color: "bg-[var(--ink-3)]" }
       ]
     }
   }

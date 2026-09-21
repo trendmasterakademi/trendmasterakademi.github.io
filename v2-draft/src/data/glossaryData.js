@@ -12,7 +12,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: During high-traffic launches, carts freeze, checkouts fail, and database CPU hits 100%. Clients see a completely unresponsive store.'
     },
     urgencyLevel: 'Kritik (P0)',
-    urgencyColor: 'text-red-400 bg-red-500/10 border-red-500/30',
+    urgencyColor: 'text-[var(--accent)] bg-[var(--accent-wash)] border border-[var(--accent)]/30',
     whoSolves: {
       tr: 'İç ekip veya TMA SWAT Masası. Veritabanı transaction sırasının izole edilmesi, lock sürelerinin düşürülmesi veya kuyruk (Redis/Queue) mimarisine geçilmesi gerekir.',
       en: 'Senior backend engineer or TMA SWAT. Requires transaction isolation reordering, optimistic locking, or async queues.'
@@ -35,7 +35,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: A page that feels fast with 10 test items slows to 8+ seconds when 500 items are added. Often misdiagnosed as server hardware limits.'
     },
     urgencyLevel: 'Orta / Yüksek',
-    urgencyColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+    urgencyColor: 'text-[var(--sev-high)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'Kıdemli Backend Mühendisi. Eager loading (with/include) ve batch sorgu optimizasyonuyla birkaç saatte kalıcı olarak çözülür.',
       en: 'Backend Engineer. Resolved via eager loading relationships or dedicated SQL joins.'
@@ -58,7 +58,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: The last inventory item gets sold twice simultaneously, or coupon codes get redeemed multiple times in parallel.'
     },
     urgencyLevel: 'Kritik (P0)',
-    urgencyColor: 'text-red-400 bg-red-500/10 border-red-500/30',
+    urgencyColor: 'text-[var(--accent)] bg-[var(--accent-wash)] border border-[var(--accent)]/30',
     whoSolves: {
       tr: 'Kıdemli Mühendislik Masası. Mutex kilitleme, atomik veritabanı operasyonları veya Redis distributed lock mimarisi ile çözülür.',
       en: 'Senior Backend Engineer / SWAT. Solved using atomic database increments or Redis distributed locks.'
@@ -81,7 +81,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Prevents charging a customer credit card multiple times when they impatiently click checkout repeatedly.'
     },
     urgencyLevel: 'Yüksek',
-    urgencyColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+    urgencyColor: 'text-[var(--sev-high)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'Backend / Entegrasyon Ekibi. Benzersiz `Idempotency-Key` başlıkları ve veritabanı tekillik kısıtları ile kurulur.',
       en: 'Backend Engineer. Implemented via unique Idempotency-Key tokens and unique DB constraints.'
@@ -104,7 +104,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Automatically activates user subscriptions upon billing events. If broken, money is collected but orders stay pending.'
     },
     urgencyLevel: 'Kritik (P0)',
-    urgencyColor: 'text-red-400 bg-red-500/10 border-red-500/30',
+    urgencyColor: 'text-[var(--accent)] bg-[var(--accent-wash)] border border-[var(--accent)]/30',
     whoSolves: {
       tr: 'Entegrasyon Mühendisi. Webhook signing secret doğrulaması, payload parsing ve retry mekanizmalarıyla devreye alınır.',
       en: 'Integration Engineer. Requires signature HMAC validation, retry queues, and idempotent handlers.'
@@ -127,7 +127,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Quick feature tweaks that used to take 2 hours now take weeks because modifying one line breaks 5 unrelated modules.'
     },
     urgencyLevel: 'Orta / Stratejik',
-    urgencyColor: 'text-blue-400 bg-blue-500/10 border-blue-500/30',
+    urgencyColor: 'text-[var(--ink-2)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'TMA Mimari & Refactor Masası. Planlı kod refactoring sprintleri ve modüler katman ayrımı ile temizlenir.',
       en: 'Senior Architecture SWAT. Handled through disciplined modular refactoring sprints.'
@@ -150,7 +150,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Cleans up inherited messy code into a maintainable, extensible base without interrupting live operations.'
     },
     urgencyLevel: 'Orta',
-    urgencyColor: 'text-blue-700 bg-blue-50 border-blue-200',
+    urgencyColor: 'text-[var(--ink-2)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'Kıdemli Yazılım Mühendisleri. Kod analizi, unit test koruması ve katmanlı mimari standartlarıyla yapılır.',
       en: 'Senior Software Engineers. Executed alongside automated test coverage to prevent regressions.'
@@ -173,7 +173,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Eliminates fragile manual FTP file editing; guarantees tested, reproducible server deployments.'
     },
     urgencyLevel: 'Yüksek',
-    urgencyColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
+    urgencyColor: 'text-[var(--sev-ok)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'DevOps / Altyapı Uzmanı. GitHub Actions, GitLab CI veya Docker otomasyonları ile birkaç günde kurulur.',
       en: 'DevOps Specialist. Configured via GitHub Actions, Docker containers, and automated workflows.'
@@ -196,7 +196,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Prevents clients from catching bugs on production; gives a safe sandbox for client review and staging tests.'
     },
     urgencyLevel: 'Orta',
-    urgencyColor: 'text-blue-700 bg-blue-50 border-blue-200',
+    urgencyColor: 'text-[var(--ink-2)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'DevOps / Sunucu Ekibi. Subdomain ve izole veritabanı staging konfigürasyonu ile kurulur.',
       en: 'DevOps Engineer. Provisioned via isolated databases and password-protected staging domains.'
@@ -219,7 +219,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Enables a new developer to bootstrap the database in 10 seconds. Without migrations, takeover requires manual DB archaeology.'
     },
     urgencyLevel: 'Yüksek',
-    urgencyColor: 'text-amber-400 bg-amber-500/10 border-amber-500/30',
+    urgencyColor: 'text-[var(--sev-high)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'Backend Mühendisi. Prisma, TypeORM, Alembic, Django veya Laravel migration araçları ile yönetilir.',
       en: 'Backend Engineer. Executed via migration tools like Prisma, TypeORM, Alembic, or Flyway.'
@@ -242,7 +242,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Stops malicious bots from exhausting SMS/email budgets or brute-forcing customer login credentials.'
     },
     urgencyLevel: 'Yüksek',
-    urgencyColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
+    urgencyColor: 'text-[var(--sev-ok)] bg-[var(--paper)] border border-[var(--rule)]',
     whoSolves: {
       tr: 'Altyapı & Güvenlik Masası. Cloudflare kuralları, NGINX limitleri veya Redis tabanlı token bucket algoritmaları ile uygulanır.',
       en: 'Security / Infrastructure Engineer. Enforced at Cloudflare, NGINX reverse proxies, or Redis rate limiters.'
@@ -265,7 +265,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: The site runs smoothly on day 1, but mysteriously crashes every 48 hours requiring frantic manual server reboots.'
     },
     urgencyLevel: 'Kritik (P0)',
-    urgencyColor: 'text-red-400 bg-red-500/10 border-red-500/30',
+    urgencyColor: 'text-[var(--accent)] bg-[var(--accent-wash)] border border-[var(--accent)]/30',
     whoSolves: {
       tr: 'Kıdemli Backend / Node.js SWAT Masası. Profiling araçları, heap snapshot analizi ve garbage collection optimizasyonu ile tespit edilir.',
       en: 'Senior Backend SWAT. Profiled via memory heap snapshots, event listener cleanup, and worker monitoring.'

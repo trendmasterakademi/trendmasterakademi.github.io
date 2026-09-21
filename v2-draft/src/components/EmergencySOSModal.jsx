@@ -157,7 +157,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
           <div className="overflow-y-auto p-5 sm:p-7 space-y-4">
             {/* Header */}
             <div className="flex items-center gap-3 pr-8 mb-2">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center text-[var(--accent)] flex-shrink-0">
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[var(--accent-wash)] border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] flex-shrink-0">
                 <AlertTriangle className="w-5 h-5" />
               </div>
               <div>
@@ -182,11 +182,11 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
             {/* Durum Şeridi */}
             <div className={`p-2.5 sm:p-3 rounded-lg border text-xs leading-relaxed flex items-center gap-2 mb-2 ${
               krizHattiAcik 
-                ? 'bg-emerald-50 border-emerald-200 text-emerald-800' 
-                : 'bg-amber-50 border-amber-200 text-amber-800'
+                ? 'bg-[var(--surface)] border-[var(--rule)] text-[var(--sev-ok)]' 
+                : 'bg-[var(--surface)] border-[var(--rule)] text-[var(--sev-high)]'
             }`}>
               <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                krizHattiAcik ? 'bg-emerald-600' : 'bg-amber-600'
+                krizHattiAcik ? 'bg-[var(--sev-ok)]' : 'bg-[var(--sev-high)]'
               }`}></span>
               <span>
                 {krizHattiAcik
@@ -202,7 +202,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 
           {submitStatus === 'success' ? (
             <div className="py-8 text-center flex flex-col items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-300 flex items-center justify-center text-emerald-600">
+              <div className="w-16 h-16 rounded-full bg-[var(--surface)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-ok)]">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               <h4 className="text-xl font-serif font-semibold text-[var(--ink)]">
@@ -233,13 +233,13 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
             </div>
           ) : submitStatus === 'error' ? (
             <div className="py-8 text-center flex flex-col items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-amber-50 border border-amber-300 flex items-center justify-center text-amber-600">
+              <div className="w-16 h-16 rounded-full bg-[var(--surface)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-high)]">
                 <AlertTriangle className="w-8 h-8" />
               </div>
               <h4 className="text-xl font-serif font-semibold text-[var(--ink)]">
                 {isTr ? 'Ağ Kesintisi Nedeniyle Otomatik İletilemedi' : 'Network Interruption During Dispatch'}
               </h4>
-              <p className="text-sm text-amber-900 max-w-md">
+              <p className="text-sm text-[var(--ink)] max-w-md">
                 {isTr 
                   ? 'Kriz bilgileriniz hazırlandı. Aşağıdaki butona basarak doğrudan WhatsApp üzerinden kriz masamıza anında iletebilirsiniz:' 
                   : 'Your crisis scope is ready. Dispatch directly via WhatsApp below:'}
@@ -347,7 +347,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                       onClick={() => setUrgency(item.id)}
                       className={`p-3 rounded-lg text-left border text-xs sm:text-sm transition-all flex flex-col justify-between cursor-pointer ${
                         urgency === item.id
-                          ? 'border-[var(--accent)] bg-red-50 text-[var(--accent)] font-semibold'
+                          ? 'border-[var(--accent)] bg-[var(--accent-wash)] text-[var(--accent-ink)] font-semibold'
                           : 'border-[var(--rule)] bg-[var(--surface)] text-[var(--ink-secondary)] hover:border-[var(--rule-strong)]'
                       }`}
                     >
@@ -392,7 +392,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               {/* Trust Badges */}
               <div className="flex flex-wrap items-center justify-between text-xs text-[var(--ink-muted)] pt-2 border-t border-[var(--rule)] gap-2">
                 <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600" /> %100 White-Label & <a href="/nda/" target="_blank" rel="noopener" className="underline hover:text-[var(--ink)] transition-colors">NDA</a>
+                  <ShieldCheck className="w-4 h-4 text-[var(--sev-ok)]" /> %100 White-Label & <a href="/nda/" target="_blank" rel="noopener" className="underline hover:text-[var(--ink)] transition-colors">NDA</a>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'İlk Yanıt: ~15 Dakika' : 'First Response: ~15 Mins'}
@@ -420,7 +420,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   className="btn-secondary px-6 min-h-[44px] flex items-center justify-center gap-2"
                   title="Doğrudan Telefonla Ara"
                 >
-                  <PhoneCall className="w-4 h-4 text-emerald-600" />
+                  <PhoneCall className="w-4 h-4 text-[var(--sev-ok)]" />
                   <span>{isTr ? 'Ara' : 'Call'}</span>
                 </a>
               </div>

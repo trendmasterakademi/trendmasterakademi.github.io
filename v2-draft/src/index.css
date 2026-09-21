@@ -6,11 +6,12 @@
   --surface:      #FFFFFF;   /* yükseltilmiş panel */
   --rule:         #DCE0E5;   /* saç teli çizgi */
   --rule-strong:  #B8BFC8;   /* vurgulu ayraç */
+  --rule-input:   #7E8794;   /* form alanı kenarlığı (3.29:1 kontrast >= 3:1) */
 
   /* Mürekkep */
   --ink:          #14181F;   /* başlık */
   --ink-2:        #4A5461;   /* gövde */
-  --ink-3:        #78828F;   /* etiket, açıklama */
+  --ink-3:        #68727F;   /* etiket, açıklama (4.51:1 kontrast >= 4.5:1) */
 
   /* Aksan — sayfadaki TEK aksan */
   --accent:       #C02430;   /* logonun kendi kırmızısı */
@@ -19,36 +20,42 @@
 
   /* Terminal bandı — yalnız log / kod / hata çıktısı */
   --term-bg:      #0E1116;
+  --term-bg-2:    #05070A;
   --term-ink:     #C7CEDA;
   --term-dim:     #6F7B8C;
   --term-accent:  #E4636C;   /* koyu zeminde aksanın açılmış hali */
+  --term-diff-add:#B7EB8F;
+  --term-diff-del:#FFA39E;
 
   /* Aciliyet — YALNIZ teşhis katalogunda */
   --sev-critical: #C02430;
   --sev-high:     #A85B12;
   --sev-normal:   #5A6472;
+  --sev-ok:       #1F7A4D;
+  --sev-ok-hover: #18633E;
+  --sev-ok-dot:   #10B981;
 
   /* Tipografi ölçeği (6 basamak) */
-  --t-xs:   12px;
-  --t-sm:   14px;
-  --t-base: 17px;
-  --t-lg:   21px;
-  --t-xl:   30px;
-  --t-2xl:  44px;
+  --t-xs:   0.75rem;    /* 12.75px */
+  --t-sm:   0.875rem;   /* 14.875px */
+  --t-base: 1rem;       /* 17px */
+  --t-lg:   1.25rem;    /* 21.25px */
+  --t-xl:   1.875rem;   /* 31.875px */
+  --t-2xl:  2.75rem;    /* 46.75px */
 
-  /* Dikey Ritim (3 basamak) */
-  --sp-section-sm: 64px;
-  --sp-section:    96px;
+  /* Dikey Ritim (3 basamak: 136 / 102 / 68) */
+  --sp-section-sm: 68px;
+  --sp-section:    102px;
   --sp-section-lg: 136px;
 
-  /* Köşe yarıçapı (2 basamak) */
+  /* Köşe yarıçapı (2 basamak + hap) */
   --r-control: 6px;
   --r-panel:   10px;
 
-  /* Font aileleri */
-  --font-serif: "Source Serif 4", Georgia, serif;
-  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "IBM Plex Mono", Menlo, Monaco, monospace;
+  /* Font aileleri (Türkçe karakter destekli yedek yığınlar) */
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", Consolas, "Courier New", monospace;
 }
 
 @theme {
@@ -56,6 +63,7 @@
   --color-surface: var(--surface);
   --color-rule: var(--rule);
   --color-rule-strong: var(--rule-strong);
+  --color-rule-input: var(--rule-input);
 
   --color-ink: var(--ink);
   --color-ink-2: var(--ink-2);
@@ -66,13 +74,19 @@
   --color-accent-wash: var(--accent-wash);
 
   --color-term-bg: var(--term-bg);
+  --color-term-bg-2: var(--term-bg-2);
   --color-term-ink: var(--term-ink);
   --color-term-dim: var(--term-dim);
   --color-term-accent: var(--term-accent);
+  --color-term-diff-add: var(--term-diff-add);
+  --color-term-diff-del: var(--term-diff-del);
 
   --color-sev-critical: var(--sev-critical);
   --color-sev-high: var(--sev-high);
   --color-sev-normal: var(--sev-normal);
+  --color-sev-ok: var(--sev-ok);
+  --color-sev-ok-hover: var(--sev-ok-hover);
+  --color-sev-ok-dot: var(--sev-ok-dot);
 
   --font-serif: var(--font-serif);
   --font-sans: var(--font-sans);
@@ -81,6 +95,19 @@
 
   --radius-control: var(--r-control);
   --radius-panel: var(--r-panel);
+  --radius-sm: var(--r-control);
+  --radius: var(--r-control);
+  --radius-md: var(--r-control);
+  --radius-lg: var(--r-panel);
+  --radius-xl: var(--r-panel);
+  --radius-2xl: var(--r-panel);
+
+  --text-xs: var(--t-xs);
+  --text-sm: var(--t-sm);
+  --text-base: var(--t-base);
+  --text-lg: var(--t-lg);
+  --text-xl: var(--t-xl);
+  --text-2xl: var(--t-2xl);
 }
 
 @layer base {
@@ -121,7 +148,21 @@
   }
 
   p {
-    max-width: 68ch;
+    max-width: 34rem;
+  }
+
+  input, textarea, select {
+    font-size: 1rem !important;
+    border: 1px solid var(--rule-input) !important;
+    border-radius: var(--r-control) !important;
+    background-color: var(--surface) !important;
+    color: var(--ink) !important;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--accent) !important;
+    outline-offset: 1px !important;
+    border-color: var(--accent) !important;
   }
 }
 
@@ -144,6 +185,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    min-height: 44px;
     background-color: var(--accent);
     color: #ffffff;
     font-family: var(--font-sans);
@@ -167,6 +209,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    min-height: 44px;
     background-color: transparent;
     color: var(--ink);
     font-family: var(--font-sans);
@@ -190,6 +233,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.375rem;
+    min-height: 44px;
     color: var(--accent-ink);
     font-family: var(--font-sans);
     font-weight: 500;
@@ -204,7 +248,7 @@
   }
 
   /* Panel ve Kart Yüzeyi */
-  .panel {
+  .panel, .card {
     background-color: var(--surface);
     border: 1px solid var(--rule);
     border-radius: var(--r-panel);

@@ -112,7 +112,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
           {activeTab === 'response-kit' && (
             <div className="space-y-8 animate-in fade-in duration-150">
               <div className="text-center max-w-2xl mx-auto space-y-2">
-                <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[var(--accent)] bg-red-50 px-3 py-1 rounded-full border border-red-200">
+                <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[var(--accent)] bg-[var(--accent-wash)] px-3 py-1 rounded-full border border-[var(--accent)]/20">
                   {data.responseKit.badge}
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ink)] tracking-tight">
@@ -133,7 +133,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">01 // {data.responseKit.slides[0].tag}</span>
-                    <span className="px-2.5 py-0.5 rounded bg-emerald-50 border border-emerald-200 text-emerald-800 font-semibold text-xs">
+                    <span className="px-2.5 py-0.5 rounded bg-[var(--surface)] border border-[var(--rule)] text-[var(--sev-ok)] font-semibold text-xs">
                       {data.responseKit.slides[0].status}
                     </span>
                   </div>
@@ -146,7 +146,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   <ul className="space-y-2 text-xs text-[var(--ink-secondary)] pt-1 font-mono">
                     {data.responseKit.slides[0].points.map((pt, i) => (
                       <li key={i} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--sev-ok)] flex-shrink-0 mt-0.5" />
                         <span>{pt}</span>
                       </li>
                     ))}
@@ -244,7 +244,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">05 // {data.responseKit.slides[4].tag}</span>
-                    <span className="text-amber-700 font-semibold font-mono text-xs">30 MIN TARGET</span>
+                    <span className="text-[var(--sev-high)] font-semibold font-mono text-xs">30 MIN TARGET</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[4].title}
@@ -252,7 +252,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   <div className="space-y-2.5 pt-1">
                     {data.responseKit.slides[4].steps.map((st, i) => (
                       <div key={i} className="p-3 rounded-lg bg-[var(--paper)] border border-[var(--rule)] flex items-start gap-3">
-                        <span className="w-6 h-6 rounded-full bg-red-50 text-[var(--accent)] border border-red-200 flex items-center justify-center font-mono font-semibold text-xs flex-shrink-0">
+                        <span className="w-6 h-6 rounded-full bg-[var(--accent-wash)] text-[var(--accent-ink)] border border-[var(--accent)]/20 flex items-center justify-center font-mono font-semibold text-xs flex-shrink-0">
                           {st.step}
                         </span>
                         <div className="space-y-0.5">
@@ -262,7 +262,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                       </div>
                     ))}
                   </div>
-                  <div className="p-2.5 rounded-lg bg-red-50 border border-red-200 text-center font-mono text-xs font-semibold text-[var(--accent)]">
+                  <div className="p-2.5 rounded-lg bg-[var(--accent-wash)] border border-[var(--accent)]/20 text-center font-mono text-xs font-semibold text-[var(--accent-ink)]">
                     {data.responseKit.slides[4].highlight}
                   </div>
                 </div>
@@ -296,7 +296,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">07 // {data.responseKit.slides[6].tag}</span>
-                    <span className="text-emerald-800 font-semibold font-mono text-xs">STANDARDS</span>
+                    <span className="text-[var(--sev-ok)] font-semibold font-mono text-xs">STANDARDS</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[6].title}
@@ -322,7 +322,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                     </div>
                     <div className="flex justify-between items-center text-xs font-mono mb-2">
                       <span className="text-[var(--accent)] font-semibold">08 // {data.responseKit.slides[7].tag}</span>
-                      <span className="px-2 py-0.5 rounded bg-red-50 border border-red-200 text-[var(--accent)] font-semibold text-xs">HOTLINE</span>
+                      <span className="px-2 py-0.5 rounded bg-[var(--accent-wash)] border border-[var(--accent)]/20 text-[var(--accent-ink)] font-semibold text-xs">HOTLINE</span>
                     </div>
                     <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug mb-2">
                       {data.responseKit.slides[7].title}
@@ -332,7 +332,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                     </p>
                     <div className="space-y-2 text-xs font-mono text-[var(--ink-secondary)]">
                       <div className="flex items-center gap-2">
-                        <PhoneCall className="w-4 h-4 text-emerald-600" />
+                        <PhoneCall className="w-4 h-4 text-[var(--sev-ok)]" />
                         <a href="tel:+905343713573" className="hover:text-[var(--accent)] font-semibold text-[var(--ink)] text-sm">{data.responseKit.slides[7].phone}</a>
                       </div>
                       <div className="text-xs text-[var(--ink-muted)]">
@@ -379,7 +379,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                 </div>
 
                 <div className="space-y-2 relative z-10">
-                  <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase bg-red-50 px-3.5 py-1 rounded-full border border-red-200">
+                  <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase bg-[var(--accent-wash)] px-3.5 py-1 rounded-full border border-[var(--accent)]/20">
                     {data.crashTest.badge}
                   </span>
                   <div className="text-5xl sm:text-6xl font-mono font-bold text-[var(--accent)] tracking-tight pt-2">
@@ -407,7 +407,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                           <p className="text-xs text-[var(--ink-secondary)] leading-snug">{sc.desc}</p>
                         </div>
                       </div>
-                      <span className="font-mono text-xs font-semibold text-[var(--accent)] bg-red-50 px-2 py-0.5 rounded border border-red-200 flex-shrink-0">
+                      <span className="font-mono text-xs font-semibold text-[var(--accent-ink)] bg-[var(--accent-wash)] px-2 py-0.5 rounded border border-[var(--accent)]/20 flex-shrink-0">
                         {sc.tag}
                       </span>
                     </div>
@@ -449,7 +449,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
             <span className="text-[var(--accent)] font-semibold">White-Label Engineering Desk</span>
           </div>
           <div className="flex items-center gap-3">
-            <a href="tel:+905343713573" className="text-emerald-700 hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-semibold">
+            <a href="tel:+905343713573" className="text-[var(--sev-ok)] hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-semibold">
               <PhoneCall className="w-3.5 h-3.5" />
               <span>+90 534 371 35 73</span>
             </a>

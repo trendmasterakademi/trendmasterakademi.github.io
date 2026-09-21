@@ -94,14 +94,24 @@ const locMatches = [...sitemapContent.matchAll(/<loc>(.*?)<\/loc>/g)].map(m => m
 console.log(`Sitemap contains ${locMatches.length} URLs.`);
 
 function extractHtmlDetails(html) {
+  const stripped = html.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ' ')
+                       .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, ' ')
+                       .replace(/<[^>]+>/g, ' ')
+                       .replace(/\s+/g, ' ')
+                       .trim();
+  const words = stripped ? stripped.split(/\s+/).length : 0;
+
   const bodyMatch = html.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
   const body = bodyMatch ? bodyMatch[1] : html;
-  const text = body.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-                   .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
-                   .replace(/<[^>]+>/g, ' ')
-                   .replace(/\s+/g, ' ')
-                   .trim();
-  const words = text ? text.split(/\s+/).length : 0;
+
+  // Content words (excluding common pre-render nav bar)
+  const contentHtml = body.replace(/<nav\b[^<]*(?:(?!<\/nav>)<[^<]*)*<\/nav>/gi, '');
+  const contentText = contentHtml.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+                                 .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
+                                 .replace(/<[^>]+>/g, ' ')
+                                 .replace(/\s+/g, ' ')
+                                 .trim();
+  const contentWords = contentText ? contentText.split(/\s+/).length : 0;
 
   const schemas = (html.match(/<script type="application\/ld\+json">/g) || []).length;
   const titleMatch = html.match(/<title>([^<]*)<\/title>/i);
@@ -109,6 +119,7 @@ function extractHtmlDetails(html) {
 
   return {
     words,
+    contentWords,
     schemas,
     title: titleMatch ? titleMatch[1].trim() : '',
     desc: descMatch ? descMatch[1].trim() : ''
@@ -206,6 +217,16 @@ let cyanCount = 0;
 let fontBlackCount = 0;
 let gradientTextCount = 0;
 
+const approvedHexes = new Set([
+  '#f5f6f7', '#ffffff', '#dce0e5', '#b8bfc8', '#7e8794',
+  '#14181f', '#4a5461', '#68727f', '#c02430', '#8e1a23',
+  '#fbeff0', '#0e1116', '#05070a', '#c7ceda', '#6f7b8c',
+  '#e4636c', '#b7eb8f', '#ffa39e', '#a85b12', '#5a6472',
+  '#1f7a4d', '#18633e', '#10b981', '#25d366'
+]);
+
+const unapprovedHexes = new Map();
+
 for (const cssFile of cssFiles) {
   const cssContent = fs.readFileSync(path.join(repoRoot, 'assets', cssFile), 'utf8');
   
@@ -220,11 +241,80 @@ for (const cssFile of cssFiles) {
   // Check gradient text clipping
   const bctMatches = cssContent.match(/background-clip:\s*text|-webkit-background-clip:\s*text/gi) || [];
   gradientTextCount += bctMatches.length;
+
+  // Find all 6-digit hex codes (Section 1 requirement)
+  const hexMatches = cssContent.match(/#[0-9a-fA-F]{6}\b/gi) || [];
+  for (const h of hexMatches) {
+    const lower = h.toLowerCase();
+    if (!approvedHexes.has(lower)) {
+      unapprovedHexes.set(lower, (unapprovedHexes.get(lower) || 0) + 1);
+    }
+  }
 }
 
 console.log(`CSS Cyan Count: ${cyanCount}`);
 console.log(`CSS font-weight: 900 Count: ${fontBlackCount}`);
 console.log(`CSS text-clip Count: ${gradientTextCount}`);
+console.log(`Unapproved 6-Digit Hex Count: ${unapprovedHexes.size}`);
+if (unapprovedHexes.size > 0) {
+  console.log('Unapproved Hexes found:', Object.fromEntries(unapprovedHexes));
+}
+
+// 5. Check 15 Anchor Pages Word Count
+console.log('\n--- 5. CHECKING 15 ANCHOR PAGES WORD COUNT ---');
+const anchorUrls = [
+  { url: 'https://trendmasterakademi.com/', target: 549 },
+  { url: 'https://trendmasterakademi.com/agency/', target: 568 },
+  { url: 'https://trendmasterakademi.com/sos/', target: 210 },
+  { url: 'https://trendmasterakademi.com/kit/', target: 126 },
+  { url: 'https://trendmasterakademi.com/crash-test/', target: 352 },
+  { url: 'https://trendmasterakademi.com/teshis/', target: 632 },
+  { url: 'https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/', target: 503 },
+  { url: 'https://trendmasterakademi.com/sozluk/', target: 382 },
+  { url: 'https://trendmasterakademi.com/sozluk/deadlock/', target: 247 },
+  { url: 'https://trendmasterakademi.com/post-mortem/', target: 438 },
+  { url: 'https://trendmasterakademi.com/about/', target: 273 },
+  { url: 'https://trendmasterakademi.com/privacy/', target: 114 },
+  { url: 'https://trendmasterakademi.com/sla/', target: 439 },
+  { url: 'https://trendmasterakademi.com/radar/', target: 266 },
+  { url: 'https://trendmasterakademi.com/triyaj/', target: 444 }
+];
+
+let anchorDeviations = 0;
+for (const item of anchorUrls) {
+  const rel = item.url.replace('https://trendmasterakademi.com/', '').replace(/\/$/, '');
+  const htmlPath = rel === '' ? path.join(repoRoot, 'index.html') : path.join(repoRoot, rel, 'index.html');
+  if (fs.existsSync(htmlPath)) {
+    const html = fs.readFileSync(htmlPath, 'utf8');
+    const details = extractHtmlDetails(html);
+    const diff = details.words - item.target;
+    if (diff !== 0) {
+      anchorDeviations++;
+      console.log(`ANCHOR DIFF: ${item.url} -> actual: ${details.words}, target: ${item.target} (diff: ${diff})`);
+    } else {
+      console.log(`ANCHOR OK: ${item.url} -> ${details.words} words (diff: 0)`);
+    }
+  } else {
+    console.error(`ANCHOR MISSING: ${item.url}`);
+    anchorDeviations++;
+  }
+}
+
+// 6. Check Untouchable 3 Sections
+console.log('\n--- 6. VERIFYING UNTOUCHABLE 3 SECTIONS ---');
+const rootHtml = fs.readFileSync(path.join(repoRoot, 'index.html'), 'utf8');
+const hasPreRenderTokens = rootHtml.includes('id="pre-render-tokens"');
+console.log(`Pre-render tokens present: ${hasPreRenderTokens}`);
+
+let hasFocusVisible = false;
+let hasReducedMotion = false;
+for (const cssFile of cssFiles) {
+  const cssContent = fs.readFileSync(path.join(repoRoot, 'assets', cssFile), 'utf8');
+  if (cssContent.includes(':focus-visible')) hasFocusVisible = true;
+  if (cssContent.includes('prefers-reduced-motion')) hasReducedMotion = true;
+}
+console.log(`:focus-visible present: ${hasFocusVisible}`);
+console.log(`prefers-reduced-motion present: ${hasReducedMotion}`);
 
 console.log('\n=== VERIFICATION COMPLETED ===');
 process.exit(0);
