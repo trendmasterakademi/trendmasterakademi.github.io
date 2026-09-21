@@ -119,7 +119,7 @@ const Footer = () => {
                   to="/nda/" 
                   className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1 text-[var(--ink-3)]"
                 >
-                  {isTr ? 'Gizlilik ve Çalışma Sözleşmesi' : 'Confidentiality Agreement (NDA)'}
+                  {isTr ? 'Gizlilik ve Çalışma Sözleşmesi' : 'Confidentiality and Engagement Agreement'}
                 </Link>
               </li>
             </ul>

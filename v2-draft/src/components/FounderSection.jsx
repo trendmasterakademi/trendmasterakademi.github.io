@@ -39,17 +39,11 @@ export const FounderSection = () => {
           {/* Left: Founder Letter & Ethos (7 Cols) */}
           <div className="lg:col-span-7 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] p-7 sm:p-9 flex flex-col justify-between space-y-6 shadow-sm relative overflow-hidden">
             <div className="space-y-4 text-[var(--ink-2)] text-sm sm:text-base leading-relaxed">
-              <div className="flex items-center gap-4 border-b border-[var(--rule)] pb-4 mb-4">
-                {/* Visual Placeholder Box 1: Founder Portrait (4:5 aspect ratio) */}
-                <div className="w-16 sm:w-20 aspect-[4/5] rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center p-1.5 text-center text-xs font-mono text-[var(--ink-3)] leading-tight flex-shrink-0">
-                  <span>Mehmet Şahin</span>
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-[var(--ink)]">Mehmet Şahin</h3>
-                  <p className="text-xs font-mono text-[var(--accent)] font-medium">
-                    {isTr ? 'Kurucu & Baş Yazılım Mimarı (Lead Architect)' : 'Founder & Lead Software Architect'}
-                  </p>
-                </div>
+              <div className="border-b border-[var(--rule)] pb-4 mb-4">
+                <h3 className="text-lg font-semibold text-[var(--ink)]">Mehmet Şahin</h3>
+                <p className="text-xs font-mono text-[var(--accent)] font-medium">
+                  {isTr ? 'Kurucu & Baş Yazılım Mimarı (Lead Architect)' : 'Founder & Lead Software Architect'}
+                </p>
               </div>
 
               {isTr ? (

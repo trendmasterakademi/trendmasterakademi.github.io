@@ -96,7 +96,7 @@ const ArchitectureGraph = () => {
             const Icon = node.icon;
             const isSelected = selectedNode === node.id;
             return (
-              <div key={node.id} className="relative flex flex-col">
+              <div key={node.id} className={`relative flex flex-col ${idx === 4 ? 'sm:col-span-2 sm:max-w-md sm:w-full sm:mx-auto lg:max-w-none lg:col-span-1' : ''}`}>
                 <button
                   onClick={() => setSelectedNode(node.id)}
                   className={`p-4 sm:p-5 rounded-[var(--r-panel)] text-left border transition-all duration-200 cursor-pointer flex-1 flex flex-col justify-between ${

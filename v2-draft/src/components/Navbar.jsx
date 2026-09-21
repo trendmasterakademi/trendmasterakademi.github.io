@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, lazy } from 'react';
+import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Globe, AlertTriangle, ShieldCheck, Zap, BookOpen, Sun, Moon } from 'lucide-react';
@@ -52,11 +52,46 @@ const Navbar = () => {
     }
   };
 
+  const menuBtnRef = useRef(null);
+  const drawerRef = useRef(null);
+
   useEffect(() => {
     const handleOpenSOS = () => setIsSOSOpen(true);
     window.addEventListener('open-sos-modal', handleOpenSOS);
     return () => window.removeEventListener('open-sos-modal', handleOpenSOS);
   }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsOpen(false);
+        if (menuBtnRef.current) {
+          menuBtnRef.current.focus();
+        }
+      }
+    };
+
+    const handleClickOutside = (e) => {
+      if (
+        drawerRef.current && !drawerRef.current.contains(e.target) &&
+        menuBtnRef.current && !menuBtnRef.current.contains(e.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     if (location.pathname !== '/' && location.pathname !== '') {
@@ -111,9 +146,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`fixed w-full max-w-[100vw] overflow-x-clip top-0 left-0 z-50 transition-all duration-300 ${
-        isOpen ? '' : 'max-h-[56px] sm:max-h-[64px]'
-      } ${
+      <header className={`fixed w-full max-w-[100vw] top-0 left-0 z-50 transition-all duration-300 ${
         scrolled 
           ? 'bg-[var(--surface)] border-b border-[var(--rule)] shadow-navbar' 
           : 'bg-[var(--surface)] border-b border-[var(--rule)]'
@@ -316,21 +349,31 @@ const Navbar = () => {
 
             {/* Mobile / Tablet / Laptop Hamburger Toggle (< 1440px) */}
             <button
+              ref={menuBtnRef}
+              id="nav-menu-btn"
               type="button"
               onClick={() => setIsOpen(!isOpen)}
+              aria-expanded={isOpen}
+              aria-controls="nav-drawer"
               className="min-[1440px]:hidden p-1.5 sm:p-2 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors cursor-pointer min-w-[44px] min-h-[44px] flex items-center justify-center flex-shrink-0"
-              aria-label="Toggle menu"
+              aria-label={isOpen ? (isTr ? "Menüyü kapat" : "Close menu") : (isTr ? "Menüyü aç" : "Open menu")}
             >
               {isOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
             </button>
           </div>
 
         </div>
+      </div>
 
         {/* Mobile / Tablet / Laptop Navigation Drawer (< 1440px) */}
         {isOpen && (
-          <div className="min-[1440px]:hidden pt-3 pb-5 px-3 border-t border-[var(--rule)] mt-2.5 space-y-1.5 bg-[var(--surface)] rounded-[var(--r-panel)] shadow-navbar max-h-[calc(100dvh-70px)] overflow-y-auto">
-            
+          <div
+            ref={drawerRef}
+            id="nav-drawer"
+            role="region"
+            aria-labelledby="nav-menu-btn"
+            className="min-[1440px]:hidden absolute top-full right-4 sm:right-6 lg:right-8 w-[calc(100%-32px)] sm:w-80 sm:min-w-[320px] max-w-sm pt-3 pb-5 px-3 border border-[var(--rule)] space-y-1 bg-[var(--surface)] rounded-[var(--r-panel)] shadow-navbar max-h-[calc(100dvh-80px)] overflow-y-auto z-50 mt-1"
+          >
             {/* Top controls row for < 640px: TR/EN and Theme Switcher */}
             <div className="sm:hidden flex items-center justify-between pb-2.5 mb-2 border-b border-[var(--rule)]">
               <button
@@ -345,6 +388,8 @@ const Navbar = () => {
               <button
                 type="button"
                 onClick={toggleTheme}
+                aria-label={theme === 'dark' ? (isTr ? 'Açık temaya geç' : 'Switch to light theme') : (isTr ? 'Koyu temaya geç' : 'Switch to dark theme')}
+                aria-pressed={theme === 'dark'}
                 className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] text-xs font-medium flex items-center gap-1.5 min-h-[44px]"
               >
                 {theme === 'dark' ? <Sun className="w-4 h-4 text-[var(--ink-2)]" /> : <Moon className="w-4 h-4 text-[var(--ink-2)]" />}
@@ -372,16 +417,16 @@ const Navbar = () => {
             <Link
               to="/kit/"
               onClick={() => setIsOpen(false)}
-              className="w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-semibold flex items-center gap-2 text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20 mb-1"
+              className="w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-semibold flex items-center gap-2 text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20 mb-1 min-h-[44px]"
             >
               <BookOpen className="w-4 h-4 text-[var(--accent)] flex-shrink-0" />
-              <span>{isTr ? 'TMA Agency Response Kit (Görsel Kılavuz)' : 'TMA Agency Response Kit (Visual Guide)'}</span>
+              <span className="truncate">{isTr ? 'TMA Agency Response Kit (Görsel Kılavuz)' : 'TMA Agency Response Kit (Visual Guide)'}</span>
             </Link>
 
             <Link
               to="/agency/"
               onClick={() => setIsOpen(false)}
-              className={`w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium flex items-center gap-2 ${
+              className={`w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium flex items-center gap-2 min-h-[44px] ${
                 path.startsWith('/agency')
                   ? 'bg-[var(--accent-wash)] text-[var(--accent-ink)] border border-[var(--accent)]/20'
                   : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
@@ -394,7 +439,7 @@ const Navbar = () => {
             <Link
               to="/crash-test/"
               onClick={() => setIsOpen(false)}
-              className={`w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium flex items-center gap-2 ${
+              className={`w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium flex items-center gap-2 min-h-[44px] ${
                 path.startsWith('/crash-test')
                   ? 'bg-[var(--accent-wash)] text-[var(--accent-ink)] border border-[var(--accent)]/20'
                   : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
@@ -407,7 +452,7 @@ const Navbar = () => {
             <Link
               to={isTr ? "/devir-kontrolu/" : "/handover-audit/"}
               onClick={() => setIsOpen(false)}
-              className={`block w-full text-left px-3.5 py-2 rounded-[var(--r-control)] text-xs sm:text-sm font-medium ${
+              className={`flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium whitespace-nowrap min-h-[44px] ${
                 path.startsWith('/devir-kontrolu') || path.startsWith('/handover-audit')
                   ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)]'
                   : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
@@ -419,7 +464,7 @@ const Navbar = () => {
             <Link
               to={isTr ? "/teshis/" : "/diagnostic/"}
               onClick={() => setIsOpen(false)}
-              className={`block w-full text-left px-3.5 py-2 rounded-[var(--r-control)] text-xs sm:text-sm font-medium ${
+              className={`flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium min-h-[44px] ${
                 path.startsWith('/teshis') || path.startsWith('/diagnostic')
                   ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)]'
                   : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
@@ -431,7 +476,7 @@ const Navbar = () => {
             <Link
               to={isTr ? "/kesinti-maliyeti/" : "/downtime-calc/"}
               onClick={() => setIsOpen(false)}
-              className={`block w-full text-left px-3.5 py-2 rounded-[var(--r-control)] text-xs sm:text-sm font-medium ${
+              className={`flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium min-h-[44px] ${
                 path.startsWith('/kesinti-maliyeti') || path.startsWith('/downtime-calc') || path.startsWith('/downtime-cost')
                   ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)]'
                   : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
@@ -443,7 +488,7 @@ const Navbar = () => {
             <Link
               to="/about/"
               onClick={() => setIsOpen(false)}
-              className={`block w-full text-left px-3.5 py-2 rounded-[var(--r-control)] text-xs sm:text-sm font-medium ${
+              className={`flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium min-h-[44px] ${
                 path.startsWith('/about')
                   ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)]'
                   : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
@@ -455,13 +500,12 @@ const Navbar = () => {
             <a
               href="/#contact"
               onClick={(e) => handleNavClick(e, 'contact')}
-              className="block w-full text-left px-3.5 py-2 rounded-[var(--r-control)] text-xs sm:text-sm font-medium text-[var(--ink-2)] hover:bg-[var(--paper)]"
+              className="flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium text-[var(--ink-2)] hover:bg-[var(--paper)] min-h-[44px]"
             >
               {t('nav-contact')}
             </a>
           </div>
         )}
-        </div>
       </header>
 
       {/* Emergency SOS Modal (Lazy Loaded) */}

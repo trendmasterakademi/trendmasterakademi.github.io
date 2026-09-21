@@ -6,6 +6,7 @@ import TeshisDiyagram from '../components/TeshisDiyagram';
 import { setPageSeo } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
+import { diagnosticLogEnMap } from '../data/diagnosticLogEnMap';
 
 // Dynamic code-split loaders: Each diagnostic chunk is loaded strictly on demand!
 const teshisLoaders = {
@@ -236,13 +237,14 @@ const TeshisDetay = () => {
             
             <div className="p-4 sm:p-5 space-y-2 overflow-x-auto select-text font-mono text-xs sm:text-sm">
               {teshis.logSatirlari.map((log, idx) => {
+                const displayLog = (!isTr && diagnosticLogEnMap[log]) ? diagnosticLogEnMap[log] : log;
                 const eslesme = teshis.logEslesme?.find(e => e.satir === idx && e.harf);
                 const neden = eslesme ? teshis.nedenler?.find(n => n.harf === eslesme.harf) : null;
                 const nedenAd = neden ? (isTr ? (neden.ad?.tr || '') : (neden.ad?.en || neden.ad?.tr || '')) : '';
                 return (
                   <div key={`log-${idx}`} className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
                     <code className="block text-emerald-300 whitespace-pre">
-                      {log}
+                      {displayLog}
                     </code>
                     {neden && (
                       <span className="text-emerald-400 text-xs font-mono shrink-0">

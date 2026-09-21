@@ -39,7 +39,7 @@ const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
         viewBox={`0 0 ${totalWidth} ${totalHeight}`}
         role="img"
         aria-label={ariaLabel}
-        className="block w-full min-w-[660px] h-auto font-mono text-slate-300 select-none"
+        className="block w-full min-w-[820px] h-auto font-mono text-slate-300 select-none"
       >
         <defs>
           <marker
@@ -70,7 +70,7 @@ const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
             x={centerCx}
             y={31}
             textAnchor="middle"
-            fontSize="9.5"
+            fontSize="12"
             fill="#f87171"
             letterSpacing="1.4"
           >
@@ -123,7 +123,7 @@ const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
                 <text
                   x={col.x + 16}
                   y={137}
-                  fontSize="9.5"
+                  fontSize="12"
                   fill={color}
                   letterSpacing="1.2"
                 >
@@ -132,7 +132,7 @@ const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
                 <text
                   x={col.x + 16}
                   y={156}
-                  fontSize="12.5"
+                  fontSize="13"
                   fill="#f1f5f9"
                   fontFamily="Inter, system-ui, sans-serif"
                   fontWeight="600"
@@ -161,7 +161,7 @@ const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
                 <text
                   x={col.x + 16}
                   y={223}
-                  fontSize="9.5"
+                  fontSize="12"
                   fill="#64748b"
                   letterSpacing="1.2"
                 >
@@ -177,7 +177,7 @@ const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
                       key={`test-line-${idx}-${lineIdx}`}
                       x={col.x + 16}
                       y={lineY}
-                      fontSize="11.5"
+                      fontSize="12.5"
                       fill={isHighlight ? '#F5F6F7' : '#cbd5e1'}
                     >
                       {line}
@@ -225,7 +225,7 @@ const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
                 <text
                   x={col.x + 16}
                   y={383}
-                  fontSize="9.5"
+                  fontSize="12"
                   fill="#34d399"
                   letterSpacing="1.2"
                 >
@@ -240,7 +240,7 @@ const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
                       key={`sol-line-${idx}-${lineIdx}`}
                       x={col.x + 16}
                       y={lineY}
-                      fontSize="11.5"
+                      fontSize="12.5"
                       fill="#cbd5e1"
                     >
                       {line}

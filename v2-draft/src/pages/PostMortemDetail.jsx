@@ -218,6 +218,13 @@ const PostMortemDetail = () => {
             <span>{isTr ? 'Salvageability Index (60sn) →' : 'Salvageability Index (60s) →'}</span>
           </Link>
         </div>
+        <p className="text-xs text-[var(--ink-muted)] pt-2">
+          {isTr ? (
+            <>Tüm teknik incelemeler ve müdahaleler <Link to="/nda/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)] transition-colors">Gizlilik ve Çalışma Sözleşmesi (NDA)</Link> kapsamındadır.</>
+          ) : (
+            <>All technical reviews and interventions are covered under our <Link to="/nda/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)] transition-colors">Confidentiality and Engagement Agreement (NDA)</Link>.</>
+          )}
+        </p>
       </footer>
 
     </article>

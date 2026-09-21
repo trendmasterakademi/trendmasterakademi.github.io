@@ -78,7 +78,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
       `📝 *${isTr ? 'Kriz Özeti:' : 'Crisis Scope:'}* ${problemDesc}\n\n` +
       `_TMA Response Desk üzerinden gönderildi._`
     );
-    return `https://wa.me/${phone}?text=${text}`;
+    return `https://wa.me/905343713573?text=${text}`;
   };
 
   const handleSubmit = async (e) => {
@@ -409,19 +409,30 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               </p>
 
               {/* Sticky Bottom Action Bar */}
-              <div className="sticky bottom-0 -mx-5 -mb-5 sm:-mx-7 sm:-mb-7 bg-[var(--surface)] border-t border-[var(--rule)] p-3 sm:p-4 z-10">
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="btn-primary flex-1 min-h-[44px] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 text-xs sm:text-sm font-semibold whitespace-normal text-center"
+              <div className="sticky bottom-0 -mx-5 -mb-5 sm:-mx-7 sm:-mb-7 bg-[var(--surface)] border-t border-[var(--rule)] p-3 sm:p-4 z-10 space-y-2">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn-primary w-full min-h-[44px] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 text-xs sm:text-sm font-semibold whitespace-normal text-center"
+                >
+                  <Send className="w-4 h-4 shrink-0" />
+                  <span>{isSubmitting ? (isTr ? 'Kaydediliyor...' : 'Saving...') : (isTr ? 'Kriz Masasına Anında Bildir' : 'Dispatch Crisis Desk')}</span>
+                </button>
+                <div className="grid grid-cols-2 gap-2">
+                  <a
+                    href={getWhatsAppUrl()}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'sos_bottom_bar' })}
+                    className="btn-secondary min-h-[44px] flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold"
+                    title="WhatsApp ile İletişim"
                   >
-                    <Send className="w-4 h-4 shrink-0" />
-                    <span>{isSubmitting ? (isTr ? 'Kaydediliyor...' : 'Saving...') : (isTr ? 'Kriz Masasına Anında Bildir (WhatsApp)' : 'Dispatch Crisis Desk (WhatsApp)')}</span>
-                  </button>
+                    <MessageSquare className="w-4 h-4 text-[#25D366] shrink-0" />
+                    <span>WhatsApp</span>
+                  </a>
                   <a
                     href="tel:+905343713573"
-                    className="btn-secondary px-6 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold shrink-0"
+                    className="btn-secondary min-h-[44px] flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold"
                     title="Doğrudan Telefonla Ara"
                   >
                     <PhoneCall className="w-4 h-4 text-[var(--sev-ok)] shrink-0" />

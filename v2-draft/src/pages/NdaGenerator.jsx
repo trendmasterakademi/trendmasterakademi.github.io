@@ -266,7 +266,7 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
             {/* Document Header */}
             <div className="text-center border-b border-[var(--rule)] pb-8 mb-8">
               <span className="text-xs font-mono tracking-widest uppercase text-[var(--accent)] block mb-2 font-semibold">
-                TREND MASTER AKADEMİ HUKUK & MÜHENDİSLİK DANIŞMANLIĞI
+                {lang === "en" ? "TREND MASTER AKADEMİ SOFTWARE SERVICES" : "TREND MASTER AKADEMİ YAZILIM HİZMETLERİ"}
               </span>
               <h2 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)] tracking-tight mb-2 uppercase">
                 {t.hero.title}

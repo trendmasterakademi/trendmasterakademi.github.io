@@ -8,11 +8,16 @@ import {
 } from 'lucide-react';
 import { agencyKitData } from '../data/agencyKitData';
 import { isTurkish } from '../i18n';
+import { setPageSeo } from '../utils/pageTitle';
 
 export default function AgencyKit({ lang }) {
   const { i18n } = useTranslation();
   const isTr = lang ? lang === 'tr' : isTurkish(i18n);
   const data = isTr ? agencyKitData.tr : agencyKitData.en;
+
+  useEffect(() => {
+    setPageSeo(isTr ? '/kit/' : '/agency-kit/', isTr ? 'tr' : 'en');
+  }, [isTr]);
 
   // Lightbox state for slide inspection
   const [activeSlideIndex, setActiveSlideIndex] = useState(null);

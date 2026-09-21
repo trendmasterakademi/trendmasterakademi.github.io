@@ -10,6 +10,7 @@ import { triageScenarios } from './src/data/triageData.js';
 import { slaTiers, coreCommitments, slaScope, slaMetaDesc } from './src/data/slaData.js';
 import { techStackData } from './src/data/techStackData.js';
 import { ndaData } from './src/data/ndaData.js';
+import { ndaFullAgreementData } from './src/data/ndaFullAgreementData.js';
 import { outageSimulatorData } from './src/data/outageSimulatorData.js';
 import { radarData } from './src/data/radarData.js';
 import { codeHealthData } from './src/data/codeHealthData.js';
@@ -375,7 +376,7 @@ const aboutExtraContent = `
       <div class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <h3 class="text-lg font-bold text-[var(--accent)]">${escapeHtml(c.no)} · ${escapeHtml(c.title?.tr || '')}</h3>
         <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(c.desc?.tr || '')}</p>
-        ${c.no === '02' ? '<p class="pt-2"><a href="/nda/" class="text-[var(--accent)] hover:underline font-bold font-mono text-xs">→ Gizlilik ve Çalışma Sözleşmesini okuyun</a></p>' : ''}
+        ${c.no === '02' ? '<p class="pt-2"><a href="/nda/" class="text-[var(--accent)] hover:underline font-bold font-mono text-xs">Sözleşmeyi okuyun →</a></p>' : ''}
       </div>`).join('\n      ')}
     </div>
     <p class="text-[var(--ink-muted)] text-sm pt-2">
@@ -582,107 +583,128 @@ const devirExtraContentEn = `
 `;
 
 const ndaExtraContent = `
-  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+  <section class="space-y-12 mt-8 border-t border-[var(--rule)] pt-8">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)]">
       <div>
-        <h2 class="text-xl font-bold text-[var(--ink)] font-serif">Sözleşmenin Tam Metni (16 Madde)</h2>
-        <p class="text-xs text-[var(--ink-muted)] font-mono mt-1">Standart B2B Gizlilik ve Çalışma Sözleşmesi Metni</p>
+        <h2 class="text-xl font-bold text-[var(--ink)] font-serif">Gizlilik ve Çalışma Sözleşmesi (16 Madde)</h2>
+        <p class="text-xs text-[var(--ink-muted)] font-mono mt-1">Resmi B2B Karşılıklı Gizlilik ve Çalışma Sözleşmesi Tam Metni</p>
       </div>
       <a href="/sozlesme/tma-gizlilik-ve-calisma-sozlesmesi.pdf" download="tma-gizlilik-ve-calisma-sozlesmesi.pdf" class="inline-flex items-center justify-center px-4 py-2.5 rounded bg-[var(--accent)] text-white font-semibold text-xs hover:opacity-90 transition-opacity">
         Sözleşmeyi PDF Olarak İndir
       </a>
     </div>
 
-    <div class="space-y-6 text-sm text-[var(--ink-muted)] leading-relaxed">
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 1 — TARAFLAR</h3>
-        <p>1.1. Hizmet Sağlayıcı: Trend Master Akademi markası altında faaliyet gösteren Mehmet Şahin (Şahıs İşletmesi) — Konak VD / VKN: 7930336132 — Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir ("TMA").</p>
-        <p>Hizmet Alan: İş Emri'nde unvanı, vergi dairesi ve yetkilisi belirtilen dijital ajans veya yazılım evi ("AJANS").</p>
-        <p>1.2. TMA ve AJANS birlikte "Taraflar", ayrı ayrı "Taraf" olarak anılır.</p>
-      </article>
+    <!-- Bölüm 1: Size ne sağlıyor -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-serif font-semibold text-[var(--ink)] border-b border-[var(--rule)] pb-4">
+        Size Ne Sağlıyor?
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        ${ndaFullAgreementData.whatItGivesYou.map(item => `
+          <div class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <h3 class="text-base font-semibold font-serif text-[var(--ink)]">${escapeHtml(item.title.tr)}</h3>
+            <p class="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.desc.tr)}</p>
+          </div>
+        `).join('')}
+      </div>
+    </section>
 
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 2 — SÖZLEŞMENİN KONUSU VE KAPSAMI</h3>
-        <p>2.1. İşbu sözleşme, AJANS'ın müşterisine ait veya kendi bünyesindeki yazılım projelerinde TMA'dan alacağı teknik hizmetlerin gizlilik, çalışma ve fikri mülkiyet koşullarını düzenler.</p>
-        <p>2.2. Hizmetler; kod devralma, acil müdahale (SWAT), mimari danışmanlık, kriz çözümü ve teknik denetimi kapsar.</p>
-        <p>2.3. Her iş için kapsam, süre ve bedel yazılı İş Emri ile belirlenir.</p>
-      </article>
+    <!-- Bölüm 2: Bizi ne koruyor -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-serif font-semibold text-[var(--ink)] border-b border-[var(--rule)] pb-4">
+        Bizi Ne Koruyor?
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        ${ndaFullAgreementData.protectsUsToo.map(item => `
+          <div class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <h3 class="text-base font-semibold font-serif text-[var(--ink)]">${escapeHtml(item.title.tr)}</h3>
+            <p class="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.desc.tr)}</p>
+          </div>
+        `).join('')}
+      </div>
+    </section>
 
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 3 — GİZLİ BİLGİ</h3>
-        <p>3.1. Kaynak kodlar, veritabanı şemaları, API anahtarları, sunucu erişimleri, müşteri kimlikleri, fiyat teklifleri ve ticari sırlar Gizli Bilgi kapsamındadır.</p>
-        <p>3.2. Kamuya açık bilgiler, alıcı tarafın önceden bildiği veya bağımsız geliştirdiği bilgiler hariçtir.</p>
-      </article>
+    <!-- Bölüm 3: 16 Maddelik Sözleşme Metni -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-serif font-semibold text-[var(--ink)] border-b border-[var(--rule)] pb-4">
+        Sözleşme Maddeleri (16 Madde)
+      </h2>
+      <div class="space-y-6 text-sm text-[var(--ink-muted)] leading-relaxed">
+        ${ndaFullAgreementData.clauses.map(clause => `
+          <article class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+            <h3 class="text-base font-bold text-[var(--ink)] font-serif">${escapeHtml(clause.title)}</h3>
+            ${clause.paragraphs.map(p => `<p class="leading-relaxed">${escapeHtml(p)}</p>`).join('')}
+          </article>
+        `).join('')}
+      </div>
+    </section>
 
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 4 — GİZLİLİK YÜKÜMLÜLÜĞÜ (KARŞILIKLI)</h3>
-        <p>4.1. Taraflar, Gizli Bilgileri yalnızca iş için kullanır; üçüncü kişilere aktarmaz veya kopyalamaz.</p>
-        <p>4.2. Gizlilik yükümlülüğü sözleşme sona erdikten sonra 5 yıl sürer; ticari sır ve kişisel verilerde süresizdir.</p>
-      </article>
+    <!-- Öncelik Kaydı -->
+    <div class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 text-xs font-mono text-[var(--ink-muted)] leading-relaxed">
+      <strong class="text-[var(--ink)] block uppercase">${escapeHtml(ndaFullAgreementData.precedenceNotice.title.tr)}</strong>
+      <p>${escapeHtml(ndaFullAgreementData.precedenceNotice.text)}</p>
+    </div>
+  </section>
+`;
 
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 5 — BEYAZ ETİKET VE MÜŞTERİYE TEMAS YASAĞI</h3>
-        <p>5.1. Çalışma %100 White-Label yürütülür; TMA logosu veya adı teslim edilen işte yer almaz.</p>
-        <p>5.2. TMA, AJANS'ın müşterisiyle yazılı onay olmadan doğrudan temas kurmaz; bu yasak 2 yıl sürer.</p>
-        <p>5.3. TMA, AJANS'ın veya müşterisinin kimliğini referans veya vaka analizi olarak yazılı onaysız açıklamaz.</p>
-      </article>
+const kitExtraContentTr = `
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-8">
+    <div class="space-y-4 max-w-3xl">
+      <p class="text-base text-[var(--ink)] leading-relaxed">
+        TMA Ajans Kiti, dijital ajansların ve yazılım evlerinin kritik üretim kesintilerinde, beklenmedik veri kaybı veya devir krizlerinde başvurabileceği kıdemli mühendislik masası kılavuzudur.
+      </p>
+      <p class="text-base text-[var(--ink)] leading-relaxed">
+        8 slaytlık görsel sunum seti ile 60 saniyelik Crash Test 500 posteri, teknik borç ve sistem risklerinizi dakikalar içinde tespit etmenizi sağlar.
+      </p>
+      <p class="text-base text-[var(--ink)] leading-relaxed">
+        Tüm materyaller doğrudan indirilebilir, ekibinizle paylaşılabilir ve acil durumlarda başvuru kaynağı olarak kullanılabilir.
+      </p>
+    </div>
 
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 6 — KİŞİSEL VERİLERİN KORUNMASI (KVKK)</h3>
-        <p>6.1. 6698 sayılı KVKK uyarınca AJANS/müşteri veri sorumlusu, TMA veri işleyen sıfatındadır.</p>
-        <p>6.2. Kişisel veriler yalnızca talimat doğrultusunda işlenir ve iş bitiminde silinir veya iade edilir. İhlal durumunda 24 saat içinde bildirim yapılır.</p>
-      </article>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+      <a href="/agency-kit/tma-agency-response-kit.pdf" download="tma-agency-response-kit.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">TMA Ajans Kiti (PDF)</strong>
+        <span class="text-xs text-[var(--accent)] font-mono">İndir (PDF) →</span>
+      </a>
+      <a href="/agency-kit/tma-agency-crash-test-500.pdf" download="tma-agency-crash-test-500.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">Crash Test 500 (PDF)</strong>
+        <span class="text-xs text-[var(--accent)] font-mono">İndir (PDF) →</span>
+      </a>
+      <a href="/sozlesme/tma-gizlilik-ve-calisma-sozlesmesi.pdf" download="tma-gizlilik-ve-calisma-sozlesmesi.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">Gizlilik Sözleşmesi (PDF)</strong>
+        <span class="text-xs text-[var(--accent)] font-mono">İndir (PDF) →</span>
+      </a>
+    </div>
+  </section>
+`;
 
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 7 — ÜCRETSİZ TEŞHİS AŞAMASI</h3>
-        <p>7.1. İlk teknik teşhis ve triyaj ücretsiz ve taahhütsüzdür. Teşhis aşamasında paylaşılan bilgiler de tam gizlilik koruması altındadır.</p>
-      </article>
+const kitExtraContentEn = `
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-8">
+    <div class="space-y-4 max-w-3xl">
+      <p class="text-base text-[var(--ink)] leading-relaxed">
+        The TMA Agency Kit is an executive engineering guide designed for digital agencies facing critical production outages, unforeseen data loss, or complex codebase handovers.
+      </p>
+      <p class="text-base text-[var(--ink)] leading-relaxed">
+        The 8-slide visual response deck and the 60-Second Crash Test 500 poster empower your team to diagnose systemic vulnerabilities and technical debt in minutes.
+      </p>
+      <p class="text-base text-[var(--ink)] leading-relaxed">
+        All assets are readily downloadable, distributable across your engineering leadership, and serve as an immediate protocol in emergency scenarios.
+      </p>
+    </div>
 
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 8 — BEDEL, ÖDEME VE KAPSAM</h3>
-        <p>8.1. Bedel sabittir; saatlik veya ucu açık çalışılmaz. Kapsam dışı işler ayrıca fiyatlandırılır ve onay alınmadan uygulanmaz.</p>
-      </article>
-
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 9 — FİKRİ MÜLKİYET VE MALİ HAKLARIN DEVRİ</h3>
-        <p>9.1. Bedelin tamamı ödendiğinde 5846 sayılı FSEK kapsamındaki işleme, çoğaltma, yayma, temsil ve umuma iletim hakları eksiksiz olarak AJANS'a devredilir.</p>
-        <p>9.2. AJANS devraldığı hakları üçüncü kişilere devredebilir veya alt lisanslayabilir.</p>
-      </article>
-
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 10 — DEVRALINAN KOD VE MEVCUT KUSURLAR</h3>
-        <p>10.1. TMA devraldığı koddaki önceden var olan hatalardan, güvenlik açıklarından veya lisans ihlallerinden sorumlu değildir. Müdahale öncesi yedek almak AJANS'ın sorumluluğundadır.</p>
-      </article>
-
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 11 — SORUMLULUK VE SINIRLARI</h3>
-        <p>11.1. TMA'nın toplam sorumluluğu ilgili İş Emri için ödenen bedelle sınırlıdır; dolaylı zararları kapsamaz. Kast ve ağır kusur bu tavanın dışındadır.</p>
-      </article>
-
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 12 — PERSONEL AYARTMA YASAĞI</h3>
-        <p>12.1. Taraflar, sözleşme süresince ve bitiminden itibaren 1 yıl boyunca birbirlerinin çalışanlarına doğrudan iş teklifi sunamaz.</p>
-      </article>
-
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 13 — SÜRE VE FESİH</h3>
-        <p>13.1. Sözleşme 30 gün önceden yazılı bildirimle feshedilebilir. Gizlilik, temas yasağı ve mülkiyet hükümleri fesihten sonra da yürürlükte kalır.</p>
-      </article>
-
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 14 — MÜCBİR SEBEP</h3>
-        <p>14.1. Doğal afet, savaş, salgın veya ülke çapında altyapı çökmesi durumunda yükümlülükler askıya alınır; 30 günü aşarsa fesih hakkı doğar.</p>
-      </article>
-
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 15 — MUHTELİF HÜKÜMLER</h3>
-        <p>15.1. Yazılı tebligat geçerlidir. Hükümlerin bölünebilirliği esastır. Değişiklikler ancak yazılı olarak yapılabilir.</p>
-      </article>
-
-      <article class="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <h3 class="text-base font-bold text-[var(--ink)] font-serif">MADDE 16 — DELİL SÖZLEŞMESİ, UYGULANACAK HUKUK VE YETKİ</h3>
-        <p>16.1. İşbu sözleşme Türk Hukukuna tabidir. Uyuşmazlıklarda İzmir Mahkemeleri ve İcra Daireleri münhasıran yetkilidir. Taraflar elektronik yazışmaları HMK m.193 uyarınca kesin delil kabul eder.</p>
-      </article>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+      <a href="/agency-kit/tma-agency-response-kit.pdf" download="tma-agency-response-kit.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">TMA Agency Kit (PDF)</strong>
+        <span class="text-xs text-[var(--accent)] font-mono">Download (PDF) →</span>
+      </a>
+      <a href="/agency-kit/tma-agency-crash-test-500.pdf" download="tma-agency-crash-test-500.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">Crash Test 500 (PDF)</strong>
+        <span class="text-xs text-[var(--accent)] font-mono">Download (PDF) →</span>
+      </a>
+      <a href="/sozlesme/tma-gizlilik-ve-calisma-sozlesmesi.pdf" download="tma-gizlilik-ve-calisma-sozlesmesi.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">Mutual Agreement (PDF)</strong>
+        <span class="text-xs text-[var(--accent)] font-mono">Download (PDF) →</span>
+      </a>
     </div>
   </section>
 `;
@@ -887,7 +909,7 @@ const slaExtraContentTr = `
           <h3 class="text-sm font-bold text-[var(--ink)]">${escapeHtml(c.title?.tr || '')}</h3>
         </div>
         <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(c.desc?.tr || '')}</p>
-        ${c.no === '02' ? '<p class="pt-2"><a href="/nda/" class="text-[var(--accent)] hover:underline font-bold font-mono text-xs">→ Gizlilik ve Çalışma Sözleşmesini okuyun</a></p>' : ''}
+        ${c.no === '02' ? '<p class="pt-2"><a href="/nda/" class="text-[var(--accent)] hover:underline font-bold font-mono text-xs">Sözleşmeyi okuyun →</a></p>' : ''}
       </article>
       `).join('\n      ')}
     </div>
@@ -930,7 +952,7 @@ const slaExtraContentEn = `
           <h3 class="text-sm font-bold text-[var(--ink)]">${escapeHtml(c.title?.en || c.title?.tr || '')}</h3>
         </div>
         <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(c.desc?.en || c.desc?.tr || '')}</p>
-        ${c.no === '02' ? '<p class="pt-2"><a href="/nda/" class="text-[var(--accent)] hover:underline font-bold font-mono text-xs">→ Read the Mutual NDA & Agreement</a></p>' : ''}
+        ${c.no === '02' ? '<p class="pt-2"><a href="/nda/" class="text-[var(--accent)] hover:underline font-bold font-mono text-xs">Read the agreement →</a></p>' : ''}
       </article>
       `).join('\n      ')}
     </div>
@@ -1354,6 +1376,7 @@ const basePages = [
     hreflangEn: 'https://trendmasterakademi.com/agency-kit/',
     heading: 'TMA Agency Kit // 8 Slaytlık Görsel Kılavuz & Crash Test 500',
     subheading: 'Ajansınız teknik bir krize hazır mı? Yüksek çözünürlüklü slaytlar, poster vitrini ve resmi PDF indirme alanı.',
+    extraContent: kitExtraContentTr,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -1381,6 +1404,7 @@ const basePages = [
     hreflangEn: 'https://trendmasterakademi.com/agency-kit/',
     heading: 'TMA Agency Kit // 8-Slide Visual Guide & Crash Test 500',
     subheading: 'Is your agency prepared for a technical outage? High-resolution slides, poster showcase, and official PDF download.',
+    extraContent: kitExtraContentEn,
     schema: {
       "@context": "https://schema.org",
       "@graph": [
@@ -2994,6 +3018,12 @@ const postMortemPages = postMortems.flatMap(item => {
         <h2 class="text-xl font-bold text-[var(--ink)]">Kalıcı Önleyici Tedbirler</h2>
         <p class="text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">${escapeHtml(item.permanentMitigation?.tr || '')}</p>
       </section>
+
+      <div class="mt-8 p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-center space-y-2">
+        <p class="text-xs text-[var(--ink-muted)]">
+          Tüm teknik incelemeler ve müdahaleler <a href="/nda/" class="text-[var(--accent)] underline hover:text-[var(--accent-hover)]">Gizlilik ve Çalışma Sözleşmesi (NDA)</a> kapsamındadır.
+        </p>
+      </div>
     </section>
   `;
 
@@ -3043,6 +3073,12 @@ const postMortemPages = postMortems.flatMap(item => {
         <h2 class="text-xl font-bold text-[var(--ink)]">Permanent Mitigations</h2>
         <p class="text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">${escapeHtml(item.permanentMitigation?.en || item.permanentMitigation?.tr || '')}</p>
       </section>
+
+      <div class="mt-8 p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-center space-y-2">
+        <p class="text-xs text-[var(--ink-muted)]">
+          All technical reviews and interventions are covered under our <a href="/nda/" class="text-[var(--accent)] underline hover:text-[var(--accent-hover)]">Confidentiality and Engagement Agreement (NDA)</a>.
+        </p>
+      </div>
     </section>
   `;
 
@@ -3219,7 +3255,7 @@ pages.forEach(page => {
           <a href="/sla/" class="hover:underline">${page.lang === 'en' ? 'SLA & Commitments' : 'SLA & Taahhütler'}</a>
           <a href="${page.lang === 'en' ? '/tech-matrix/' : '/teknoloji-uyumluluk/'}" class="hover:underline">${page.lang === 'en' ? 'Tech Matrix' : 'Teknoloji Matrisi'}</a>
           <a href="${page.lang === 'en' ? '/mutual-nda/' : '/gizlilik-sozlesmesi/'}" class="hover:underline">${page.lang === 'en' ? 'Mutual NDA' : 'Gizlilik Sözleşmesi'}</a>
-          <a href="/nda/" class="hover:underline">${page.lang === 'en' ? 'Unilateral NDA' : 'Tek Taraflı NDA'}</a>
+          <a href="/nda/" class="hover:underline">${page.lang === 'en' ? 'Confidentiality and Engagement Agreement' : 'Gizlilik ve Çalışma Sözleşmesi'}</a>
           <a href="${page.lang === 'en' ? '/outage-simulator/' : '/hasar-tespiti/'}" class="hover:underline">${page.lang === 'en' ? 'Damage Simulator' : 'Hasar Simülatörü'}</a>
           <a href="/radar/" class="hover:underline">${page.lang === 'en' ? 'Status Radar' : 'SWAT Radarı'}</a>
           <a href="${page.lang === 'en' ? '/codebase-health/' : '/kod-sagligi/'}" class="hover:underline">${page.lang === 'en' ? 'Codebase Health' : 'Kod Sağlığı'}</a>
@@ -3238,7 +3274,7 @@ pages.forEach(page => {
         ${page.extraContent || ''}
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">${page.lang === 'en' ? 'B2B White-Label Engineering Desk' : 'B2B White-Label Mühendislik Masası'} | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-sm text-[var(--ink-muted)]">${page.lang === 'en' ? 'B2B White-Label Engineering Desk' : 'B2B White-Label Mühendislik Masası'} | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | ${page.lang === 'en' ? 'Email:' : 'E-posta:'} <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
           <p class="text-xs text-[var(--ink-muted)]">${page.lang === 'en' ? 'Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir' : 'Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir'}</p>
         </section>
       </main>
@@ -3469,6 +3505,25 @@ function verifySeoAndHtmlIntegrity() {
       console.log(`[BUILD GUARD] Orphan check passed: ${orphanPath} has ${incomingLinks} incoming links (>= 3).`);
     }
   });
+
+  // Verify /nda/index.html word count (>= 1800 words)
+  const ndaHtmlFile = path.join(distDir, 'nda', 'index.html');
+  if (fs.existsSync(ndaHtmlFile)) {
+    const ndaHtml = fs.readFileSync(ndaHtmlFile, 'utf8');
+    const textOnly = ndaHtml.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, ' ')
+                            .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, ' ')
+                            .replace(/<[^>]+>/g, ' ')
+                            .replace(/\s+/g, ' ')
+                            .trim();
+    const wordCount = textOnly.split(' ').filter(Boolean).length;
+    if (wordCount < 1800) {
+      errors.push(`/nda/index.html word count check failed: found ${wordCount} words, required >= 1800 words.`);
+    } else {
+      console.log(`[BUILD GUARD] /nda/index.html word count check passed: ${wordCount} words (>= 1800).`);
+    }
+  } else {
+    errors.push(`/nda/index.html not found in dist!`);
+  }
 
   if (errors.length > 0) {
     console.error(`\n[BUILD GUARD ERROR] Integrity check failed with ${errors.length} errors:`);

@@ -55,7 +55,8 @@ export default function CodeHealth({ lang = "tr" }) {
   }, [t.categories, checkedIds]);
 
   const copyReport = () => {
-    const brief = `[TMA KOD TABANI SAĞLIK & TEKNİK BORÇ RAPORU]
+    const isTr = lang === 'tr';
+    const brief = isTr ? `[TMA KOD TABANI SAĞLIK & TEKNİK BORÇ RAPORU]
 ============================================================
 Hesaplanan Skor: ${score} / 100 (${scoreTier.range})
 Değerlendirme: ${scoreTier.title}
@@ -70,7 +71,23 @@ ${topUncheckedRisks.map((r, idx) => `  ${idx + 1}. ${r.title}: ${r.risk}`).join(
 ${scoreTier.action}
 
 TMA Kod Devri & Audit Sandbox: info@trendmasterakademi.com | +90 534 371 35 73
-Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
+Sözleşme & NDA Koruma: https://trendmasterakademi.com/nda/
+============================================================` : `[TMA CODEBASE HEALTH & TECHNICAL DEBT REPORT]
+============================================================
+Calculated Score: ${score} / 100 (${scoreTier.range})
+Assessment: ${scoreTier.title}
+
+Summary:
+${scoreTier.desc}
+
+Top Critical Fire Risks:
+${topUncheckedRisks.map((r, idx) => `  ${idx + 1}. ${r.title}: ${r.risk}`).join("\n")}
+
+Recommended Action:
+${scoreTier.action}
+
+TMA Code Handover & Audit Sandbox: info@trendmasterakademi.com | +90 534 371 35 73
+Agreement & NDA Protection: https://trendmasterakademi.com/nda/
 ============================================================`;
 
     navigator.clipboard.writeText(brief).then(() => {
@@ -202,7 +219,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                   {scoreTier.desc}
                 </p>
                 <div className="p-3 rounded-lg bg-[var(--surface)] border border-[var(--rule)] text-xs font-mono text-[var(--ink)]">
-                  <strong className="text-[var(--accent)] block mb-1">Önerilen Eylem:</strong>
+                  <strong className="text-[var(--accent)] block mb-1">{lang === 'en' ? 'Recommended Action:' : 'Önerilen Eylem:'}</strong>
                   {scoreTier.action}
                 </div>
               </div>

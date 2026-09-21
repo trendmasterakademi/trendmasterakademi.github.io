@@ -17,14 +17,15 @@ const PostMortemIndex = () => {
   const [selectedCategory, setSelectedCategory] = useState('ALL');
 
   useEffect(() => {
+    setSelectedCategory('ALL');
     setPageSeo(isTr ? '/post-mortem/' : '/post-mortems/', lang);
   }, [lang]);
 
-  const categories = ['ALL', ...new Set(postMortems.map(p => p.category.tr))];
+  const categories = ['ALL', ...new Set(postMortems.map(p => p.category[lang]))];
 
   const filteredItems = selectedCategory === 'ALL'
     ? postMortems
-    : postMortems.filter(p => p.category.tr === selectedCategory);
+    : postMortems.filter(p => p.category[lang] === selectedCategory);
 
   return (
     <div className="min-h-screen pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">

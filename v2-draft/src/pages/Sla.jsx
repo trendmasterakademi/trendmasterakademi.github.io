@@ -212,7 +212,7 @@ export const Sla = () => {
                     to={isTr ? "/nda/" : "/nda/"}
                     className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--accent)] hover:underline font-mono"
                   >
-                    <span>{isTr ? 'Sözleşme Metnini Oku →' : 'Read Full NDA →'}</span>
+                    <span>{isTr ? 'Sözleşmeyi okuyun →' : 'Read the agreement →'}</span>
                   </Link>
                 </div>
               )}

@@ -68,7 +68,7 @@ function KitBanner() {
   return (
     <>
       <div 
-        className="w-full h-6 bg-[var(--surface)] border-b border-[var(--rule)] flex items-center justify-between text-xs font-sans select-none overflow-hidden relative z-50 text-[var(--ink-2)]"
+        className="w-full h-[44px] sm:h-6 bg-[var(--surface)] border-b border-[var(--rule)] flex items-center justify-between text-xs font-sans select-none overflow-hidden relative z-50 text-[var(--ink-2)]"
         role="region"
         aria-label="TMA Agency Response Kit Banner"
       >
@@ -84,7 +84,7 @@ function KitBanner() {
         <div className="flex-1 overflow-hidden h-full flex items-center px-3">
           <Link 
             to="/kit/" 
-            className="flex items-center gap-2 text-xs text-[var(--ink-2)] hover:text-[var(--accent-ink)] transition-colors truncate h-full" 
+            className="flex items-center gap-2 text-xs text-[var(--ink-2)] hover:text-[var(--accent-ink)] transition-colors truncate h-full min-h-[44px] sm:min-h-0" 
             title={isTr ? "Görsel Kılavuzu Aç" : "Open Visual Guide"}
           >
             <span className="px-1.5 py-0.5 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)]/20 text-[var(--accent-ink)] font-semibold text-xs uppercase tracking-wider flex-shrink-0">
@@ -112,20 +112,20 @@ function KitBanner() {
 
           <button
             onClick={() => setIsModalOpen(true)}
-            className="px-2 py-0.5 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-[var(--on-accent)] font-medium text-xs flex items-center gap-1 transition-colors cursor-pointer h-5"
+            className="px-2.5 py-1 sm:px-2 sm:py-0.5 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-[var(--on-accent)] font-medium text-xs flex items-center gap-1 transition-colors cursor-pointer min-h-[44px] sm:min-h-0 sm:h-5"
             aria-label="TMA Kiti İncele"
           >
-            <BookOpen className="w-3 h-3 flex-shrink-0" />
+            <BookOpen className="w-3.5 h-3.5 sm:w-3 sm:h-3 flex-shrink-0" />
             <span className="hidden xs:inline">{data.cta}</span>
           </button>
 
           <button
             onClick={handleDismiss}
-            className="p-0.5 rounded-[var(--r-control)] text-[var(--ink-3)] hover:text-[var(--ink)] hover:bg-[var(--paper)] transition-colors cursor-pointer h-5 w-5 flex items-center justify-center"
+            className="p-1 sm:p-0.5 rounded-[var(--r-control)] text-[var(--ink-3)] hover:text-[var(--ink)] hover:bg-[var(--paper)] transition-colors cursor-pointer min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 sm:h-5 sm:w-5 flex items-center justify-center"
             aria-label="Kapat"
             title={isTr ? "Banner'ı gizle" : "Hide banner"}
           >
-            <X className="w-3.5 h-3.5" />
+            <X className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
           </button>
         </div>
       </div>

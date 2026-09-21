@@ -269,7 +269,7 @@ const KesintiMaliyeti = () => {
                   3. {isTr ? 'Zirve Katsayısı (Trafik Yoğunluğu)' : 'Peak Factor (Traffic Intensity)'}
                 </label>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-[var(--ink-muted)] font-mono">Katsayı:</span>
+                  <span className="text-xs text-[var(--ink-muted)] font-mono">{isTr ? 'Katsayı:' : 'Multiplier:'}</span>
                   <input
                     type="number"
                     step="0.1"
@@ -322,7 +322,7 @@ const KesintiMaliyeti = () => {
                   {isTr ? 'TAHMİNİ KAYIP ANALİZİ' : 'ESTIMATED LOSS BLUEPRINT'}
                 </span>
                 <span className="text-xs font-mono px-2 py-0.5 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--ink-muted)] border border-[var(--rule)]">
-                  {durationHours} Saatlik Simülasyon
+                  {durationHours} {isTr ? 'Saatlik Simülasyon' : 'Hour Simulation'}
                 </span>
               </div>
 
