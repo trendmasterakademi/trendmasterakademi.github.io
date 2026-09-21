@@ -8,7 +8,7 @@ export const radarData = {
     },
     systemStatus: {
       state: "operational",
-      label: "TÜM SİSTEMLER VE TRİYAJ MASASI AKTİF",
+      label: "NÖBETÇİ MASA",
       currentMtta: "8,4 dk",
       targetMtta: "≤ 15 dk",
       onDutyArchitect: "Mehmet Şahin & Kıdemli Sistem Masası",
@@ -68,8 +68,7 @@ export const radarData = {
       metrics: [
         { label: "Ortalama İlk Yanıt (MTTA)", value: "8,4 dk", sub: "Taahhüt: ≤ 15 dk (SEV-0)" },
         { label: "Ortalama Kalıcı Çözüm (TTR)", value: "3,2 saat", sub: "90 günlük 34 müdahale" },
-        { label: "SLA Süresi İçinde Yanıt", value: "%99,8", sub: "Taahhüt edilen sürede masada" },
-        { label: "Çözülen Kritik Vaka", value: "34", sub: "SEV-0 & SEV-1 Operasyonu" }
+        { label: "Çözülen Vaka", value: "34", sub: "90 günlük dönem" }
       ]
     },
     incidentDistribution: {
@@ -91,7 +90,7 @@ export const radarData = {
     },
     systemStatus: {
       state: "operational",
-      label: "ALL SYSTEMS & TRIAGE DESK FULLY OPERATIONAL",
+      label: "ON-DUTY DESK",
       currentMtta: "8.4 mins",
       targetMtta: "≤ 15 mins",
       onDutyArchitect: "Mehmet Şahin & Principal Systems Desk",
@@ -151,8 +150,7 @@ export const radarData = {
       metrics: [
         { label: "Average First Response (MTTA)", value: "8.4 mins", sub: "Target: ≤ 15 mins (SEV-0)" },
         { label: "Average Resolution Time (TTR)", value: "3.2 hours", sub: "34 incidents over 90 days" },
-        { label: "SLA Response Compliance", value: "99.8%", sub: "On table within SLA timeframe" },
-        { label: "Critical Incidents Resolved", value: "34", sub: "SEV-0 & SEV-1 Operations" }
+        { label: "Resolved Incidents", value: "34", sub: "90-day period" }
       ]
     },
     incidentDistribution: {

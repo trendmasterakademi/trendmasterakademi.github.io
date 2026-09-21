@@ -12,7 +12,7 @@ export default function StatusRadar({ lang = "tr" }) {
     document.title = formatDocumentTitle(
       isTr
         ? "SWAT Hazırbulunuşluk & Olay Radarı | Trend Master Akademi"
-        : "SWAT Readiness & Incident Radar | Trend Master Academy"
+        : "SWAT Readiness & Incident Radar | Trend Master Akademi"
     );
 
     const metaDesc = document.querySelector('meta[name="description"]');
@@ -21,7 +21,7 @@ export default function StatusRadar({ lang = "tr" }) {
         "content",
         isTr
           ? "Trend Master Akademi SWAT hazırbulunuşluğu ve olay radarı. 90 günlük dönemde kaydedilen 34 müdahale, ilk yanıt ve çözüm süreleri, olay dağılımı."
-          : "Trend Master Academy SWAT readiness and incident radar. 34 interventions recorded over 90 days, first-response and recovery times, incident distribution."
+          : "Trend Master Akademi SWAT readiness and incident radar. 34 interventions recorded over 90 days, first-response and recovery times, incident distribution."
       );
     }
 
@@ -55,7 +55,6 @@ export default function StatusRadar({ lang = "tr" }) {
         <div className="bg-[var(--surface)] border border-emerald-300 rounded-2xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
-              <div className="w-4 h-4 rounded-full bg-emerald-600"></div>
               <div>
                 <span className="text-xs font-mono text-emerald-800 uppercase tracking-widest block font-bold">
                   {t.systemStatus.label}
@@ -123,7 +122,9 @@ export default function StatusRadar({ lang = "tr" }) {
             {t.telemetry90Days.metrics.map((m, idx) => (
               <div
                 key={idx}
-                className="bg-[var(--surface)] border border-[var(--rule)] rounded-xl p-4 space-y-1 shadow-sm"
+                className={`bg-[var(--surface)] border border-[var(--rule)] rounded-xl p-4 space-y-1 shadow-sm ${
+                  idx === 0 ? "col-span-2" : "col-span-1"
+                }`}
               >
                 <span className="text-xs font-mono text-[var(--ink-muted)] block uppercase">
                   {m.label}

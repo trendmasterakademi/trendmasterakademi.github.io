@@ -26,7 +26,7 @@ export const Triage = () => {
     document.title = formatDocumentTitle(
       isTr 
         ? 'Canlı Kriz & Triyaj Simülatörü // İlk 15 Dakika Protokolü | Trend Master Akademi'
-        : 'Emergency Triage & Incident Simulator // First 15-Min Protocol | Trend Master Academy'
+        : 'Emergency Triage & Incident Simulator // First 15-Min Protocol | Trend Master Akademi'
     );
 
     const metaDesc = document.querySelector('meta[name="description"]');

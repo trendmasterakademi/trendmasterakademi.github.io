@@ -203,7 +203,7 @@ const Salvageability = () => {
   useEffect(() => {
     document.title = formatDocumentTitle(isTr 
       ? 'Salvageability Index // Kurtarılabilirlik Karar Matrisi | Trend Master Akademi'
-      : 'Salvageability Index // Refactor vs Rebuild Matrix | Trend Master Academy');
+      : 'Salvageability Index // Refactor vs Rebuild Matrix | Trend Master Akademi');
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {

@@ -5,7 +5,7 @@ import {
   FileText, AlertTriangle, ArrowRight, ShieldCheck, 
   Clock, Database, Layers, CheckCircle2, Terminal, Calendar
 } from 'lucide-react';
-import { postMortems } from '../data/postMortemData';
+import { postMortems, postMortemDisclosure } from '../data/postMortemData';
 import { formatDocumentTitle } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
@@ -19,7 +19,7 @@ const PostMortemIndex = () => {
   useEffect(() => {
     document.title = formatDocumentTitle(isTr 
       ? 'Public Post-Mortem & Kök Neden Analizi (RCA) | Trend Master Akademi'
-      : 'Public Incident Post-Mortem & RCA Archive | Trend Master Academy');
+      : 'Public Incident Post-Mortem & RCA Archive | Trend Master Akademi');
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
@@ -73,9 +73,7 @@ const PostMortemIndex = () => {
 
         {/* Disclosure Notice */}
         <div className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed font-mono">
-          {isTr
-            ? "Aşağıdaki kayıtlar TMA'nın gerçek müdahalelerinden alınmıştır. Müşteri ve ajans kimlikleri paylaşılmaz; tanımlayıcı ayrıntılar genelleştirilmiştir."
-            : 'The following incident logs are drawn from authentic TMA interventions. Client and agency identities are never shared; identifying details have been generalized.'}
+          {postMortemDisclosure.index[lang]}
         </div>
       </header>
 

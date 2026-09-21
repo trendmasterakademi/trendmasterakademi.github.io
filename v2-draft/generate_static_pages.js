@@ -5,9 +5,9 @@ import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
 import { glossaryTerms } from './src/data/glossaryData.js';
 import { teshisData } from './src/data/teshisData.js';
-import { postMortems } from './src/data/postMortemData.js';
+import { postMortems, postMortemDisclosure } from './src/data/postMortemData.js';
 import { triageScenarios } from './src/data/triageData.js';
-import { slaTiers, coreCommitments } from './src/data/slaData.js';
+import { slaTiers, coreCommitments, slaScope, slaMetaDesc } from './src/data/slaData.js';
 import { techStackData } from './src/data/techStackData.js';
 import { ndaData } from './src/data/ndaData.js';
 import { outageSimulatorData } from './src/data/outageSimulatorData.js';
@@ -37,6 +37,14 @@ function getGitDates(relativeFilePath) {
 function cleanLogForQuestion(log) {
   if (!log) return '';
   return log.split('←')[0].replace(/\s+/g, ' ').trim();
+}
+
+function resolveText(val, lang = 'tr') {
+  if (val == null) return '';
+  if (typeof val === 'object') {
+    return val[lang] || val.tr || val.en || '';
+  }
+  return String(val);
 }
 
 function formatPageTitle(baseTitle) {
@@ -534,6 +542,10 @@ const salvageabilityExtraContentEn = `
 
 const postMortemHubExtraContentTr = `
   <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed font-mono">
+      ${escapeHtml(postMortemDisclosure.index.tr)}
+    </div>
+
     <h2 class="text-xl font-bold text-[var(--ink)]">Yayınlanmış Post-Mortem Vakaları</h2>
     <ul class="space-y-4">
       ${postMortems.map(item => `
@@ -552,6 +564,10 @@ const postMortemHubExtraContentTr = `
 
 const postMortemHubExtraContentEn = `
   <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed font-mono">
+      ${escapeHtml(postMortemDisclosure.index.en)}
+    </div>
+
     <h2 class="text-xl font-bold text-[var(--ink)]">Published Incident Post-Mortems</h2>
     <ul class="space-y-4">
       ${postMortems.map(item => `
@@ -644,7 +660,7 @@ const slaExtraContentTr = `
     </div>
 
     <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
-      <strong>Kapsam:</strong> Taahhüt edilen süreler, nöbet saatleri (her gün 09:00–24:00, resmî tatiller ve bayramlar dâhil) içinde geçerlidir. Nöbet saatleri dışındaki bildirimler ertesi gün 09:00 itibarıyla işleme alınır.
+      <strong>Kapsam:</strong> ${escapeHtml(slaScope.tr)}
     </div>
 
     <h2 class="text-xl font-bold text-[var(--ink)] pt-4">Altı Temel Taahhüdümüz</h2>
@@ -686,7 +702,7 @@ const slaExtraContentEn = `
     </div>
 
     <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
-      <strong>Scope:</strong> Committed response times apply during duty hours (every day 09:00–24:00, including public and religious holidays). Tickets submitted outside duty hours are queued for 09:00 next morning.
+      <strong>Scope:</strong> ${escapeHtml(slaScope.en)}
     </div>
 
     <h2 class="text-xl font-bold text-[var(--ink)] pt-4">Six Core Non-Negotiable Commitments</h2>
@@ -853,14 +869,14 @@ const radarExtraContentTr = `
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
       <div><strong class="text-[var(--ink)] block text-sm">8,4 Dk MTTA</strong> Son 90 Gün Masaya Oturma Ortalaması</div>
       <div><strong class="text-[var(--accent)] block text-sm">3,2 Saat TTR</strong> Ortalama Kalıcı Çözüm Süresi</div>
-      <div><strong class="text-purple-700 block text-sm">%99,8</strong> SLA Taahhüt Başarı Oranı</div>
+      <div><strong class="text-purple-700 block text-sm">34</strong> Çözülen Vaka · 90 günlük dönem</div>
     </div>
 
     <p class="text-xs text-[var(--ink-muted)] font-mono">
       Bu değerler 90 günlük dönemde kaydedilen 34 müdahaleden hesaplanmıştır. Son güncelleme: 21 Eylül 2026. Taahhüt edilen süreler için: <a href="/sla/" class="text-[var(--accent)] hover:underline font-bold">SLA ve Yanıt Taahhütleri →</a>
     </p>
 
-    <h2 class="text-xl font-bold text-[var(--ink)]">Operasyonel Servis Masaları & Altyapı</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">NÖBET SAATLERİNDE ERİŞİLEBİLİRLİK (09:00–24:00)</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${radarData.tr.components.map(comp => `
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
@@ -869,7 +885,7 @@ const radarExtraContentTr = `
           <span class="text-xs font-mono text-emerald-700">${escapeHtml(comp.uptime)}</span>
         </div>
         <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(comp.desc)}</p>
-        <p class="text-xs font-mono text-[var(--accent)] pt-1">Ortalama Yanıt Hızı: ${escapeHtml(comp.latency)}</p>
+        <p class="text-xs font-mono text-[var(--accent)] pt-1">${escapeHtml(comp.latencyLabel)}: ${escapeHtml(comp.latency)}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -881,14 +897,14 @@ const radarExtraContentEn = `
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
       <div><strong class="text-[var(--ink)] block text-sm">8.4 Min MTTA</strong> 90-Day Average Time to Table</div>
       <div><strong class="text-[var(--accent)] block text-sm">3.2 Hr TTR</strong> 90-Day Mean Time to Recovery</div>
-      <div><strong class="text-purple-700 block text-sm">99.8%</strong> SLA Commitment Compliance</div>
+      <div><strong class="text-purple-700 block text-sm">34</strong> Resolved Incidents · 90-day period</div>
     </div>
 
     <p class="text-xs text-[var(--ink-muted)] font-mono">
       Calculated from 34 recorded interventions over a 90-day window. Last updated: September 21, 2026. For contractual response times: <a href="/sla/" class="text-[var(--accent)] hover:underline font-bold">SLA & Response Commitments →</a>
     </p>
 
-    <h2 class="text-xl font-bold text-[var(--ink)]">Operational Service Desks & Infrastructure</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">DUTY HOURS AVAILABILITY (09:00–24:00)</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${radarData.en.components.map(comp => `
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
@@ -897,7 +913,7 @@ const radarExtraContentEn = `
           <span class="text-xs font-mono text-emerald-700">${escapeHtml(comp.uptime)}</span>
         </div>
         <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(comp.desc)}</p>
-        <p class="text-xs font-mono text-[var(--accent)] pt-1">Average Response: ${escapeHtml(comp.latency)}</p>
+        <p class="text-xs font-mono text-[var(--accent)] pt-1">${escapeHtml(comp.latencyLabel)}: ${escapeHtml(comp.latency)}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -1667,7 +1683,7 @@ const basePages = [
   {
     dir: 'salvageability',
     lang: 'en',
-    title: 'Salvageability Index (Refactor vs Rebuild Matrix) | Trend Master Academy',
+    title: 'Salvageability Index (Refactor vs Rebuild Matrix) | Trend Master Akademi',
     h1: 'Salvageability Index — Refactor vs Rebuild Decision Matrix',
     description: 'Should you rescue, strangle, or scrap legacy code? 5-dimensional objective risk analysis and actionable CTO decision matrix.',
     canonical: 'https://trendmasterakademi.com/salvageability/',
@@ -1722,7 +1738,7 @@ const basePages = [
   {
     dir: 'post-mortems',
     lang: 'en',
-    title: 'Public Incident Post-Mortems & RCA Library | Trend Master Academy',
+    title: 'Public Incident Post-Mortems & RCA Library | Trend Master Akademi',
     h1: 'Public Incident Post-Mortems & RCA Library',
     description: 'Real-world production outages, PostgreSQL deadlocks, payment race conditions, and permanent engineering mitigations.',
     canonical: 'https://trendmasterakademi.com/post-mortems/',
@@ -1777,7 +1793,7 @@ const basePages = [
   {
     dir: 'triage',
     lang: 'en',
-    title: 'Emergency Triage & Incident Simulator // First 15-Min Protocol | Trend Master Academy',
+    title: 'Emergency Triage & Incident Simulator // First 15-Min Protocol | Trend Master Akademi',
     h1: 'Emergency Triage & Incident Simulator',
     description: 'Is your production system down? Select your symptom, discover what NOT to do in the first 15 minutes, extract critical logs, and get immediate triage steps.',
     canonical: 'https://trendmasterakademi.com/triage/',
@@ -1806,7 +1822,7 @@ const basePages = [
     dir: 'sla',
     title: 'Şeffaf Mühendislik SLA & Yanıt Taahhütleri | Trend Master Akademi',
     h1: 'Şeffaf Mühendislik SLA & Yanıt Süresi Matrisi',
-    description: 'Muğlak vaatler yerine dakikalarla tanımlı mühendislik taahhütleri: SEV-0 için 15 dk yanıt, %100 White-Label garantisi, resmi NDA ve sıfır veri kaybı güvencesi.',
+    description: slaMetaDesc.tr,
     canonical: 'https://trendmasterakademi.com/sla/',
     ogUrl: 'https://trendmasterakademi.com/sla/',
     heading: 'Şeffaf Mühendislik SLA & Yanıt Süresi Matrisi',
@@ -1857,7 +1873,7 @@ const basePages = [
   {
     dir: 'tech-matrix',
     lang: 'en',
-    title: 'Tech Stack Compatibility & Rescue Matrix | Trend Master Academy',
+    title: 'Tech Stack Compatibility & Rescue Matrix | Trend Master Akademi',
     h1: 'Tech Stack Compatibility & Rescue Matrix',
     description: 'Inspect TMA surgical rescue depth, known mission-critical bottlenecks, and operational readiness times across your languages, databases, and cloud infrastructure.',
     canonical: 'https://trendmasterakademi.com/tech-matrix/',
@@ -1912,7 +1928,7 @@ const basePages = [
   {
     dir: 'mutual-nda',
     lang: 'en',
-    title: 'Mutual Non-Disclosure & IP Protection Agreement (NDA) | Trend Master Academy',
+    title: 'Mutual Non-Disclosure & IP Protection Agreement (NDA) | Trend Master Akademi',
     h1: 'Mutual Non-Disclosure & IP Protection Agreement (NDA)',
     description: 'Generate, print, or download your binding bilateral confidentiality and 100% intellectual property protection agreement in 30 seconds before sharing code.',
     canonical: 'https://trendmasterakademi.com/mutual-nda/',
@@ -1967,7 +1983,7 @@ const basePages = [
   {
     dir: 'outage-simulator',
     lang: 'en',
-    title: 'Outage & Reputational Damage Simulator (TCOD) | Trend Master Academy',
+    title: 'Outage & Reputational Damage Simulator (TCOD) | Trend Master Akademi',
     h1: 'Outage & Reputational Damage Simulator (TCOD)',
     description: 'Calculate the true total cost of downtime: direct revenue loss, burned advertising budgets, contractual SLA penalties, churn, and developer drag.',
     canonical: 'https://trendmasterakademi.com/outage-simulator/',
@@ -1994,12 +2010,12 @@ const basePages = [
   },
   {
     dir: 'radar',
-    title: 'Sistem Durumu ve Güvenilirlik Raporu | Trend Master Akademi',
-    h1: 'Sistem Durumu ve Güvenilirlik Raporu',
+    title: 'SWAT Hazırbulunuşluk & Olay Radarı | Trend Master Akademi',
+    h1: 'SWAT Hazırbulunuşluk & Olay Radarı',
     description: 'TMA mühendislik masası hazırbulunuşluğu, nöbet saatleri, 90 günlük SLA telemetrisi ve vaka dağılım özeti.',
     canonical: 'https://trendmasterakademi.com/radar/',
     ogUrl: 'https://trendmasterakademi.com/radar/',
-    heading: 'Sistem Durumu ve Güvenilirlik Raporu',
+    heading: 'SWAT Hazırbulunuşluk & Olay Radarı',
     subheading: 'Operasyonel hazırbulunuşluk, nöbet saatleri, son 90 günlük masaya oturma süreleri (MTTA) ve çözülen krizlerin kategori dağılımı.',
     extraContent: radarExtraContentTr,
     schema: {
@@ -2047,7 +2063,7 @@ const basePages = [
   {
     dir: 'codebase-health',
     lang: 'en',
-    title: 'Codebase Health & Technical Debt Audit Checklist | Trend Master Academy',
+    title: 'Codebase Health & Technical Debt Audit Checklist | Trend Master Akademi',
     h1: 'Codebase Health & Technical Debt Audit Checklist',
     description: 'Score your codebase across 20 weighted checkpoints: architectural debt, database lock risks, security vulnerabilities, and get an instant audit report.',
     canonical: 'https://trendmasterakademi.com/codebase-health/',
@@ -2102,7 +2118,7 @@ const basePages = [
   {
     dir: 'rescue-roi',
     lang: 'en',
-    title: 'SWAT Rescue vs Rebuild Financial ROI Calculator | Trend Master Academy',
+    title: 'SWAT Rescue vs Rebuild Financial ROI Calculator | Trend Master Akademi',
     h1: 'SWAT Rescue vs Rebuild Financial ROI Calculator',
     description: 'Ground-up rewrite vs surgical rescue: calculate preserved capital, months saved to market, developer drag, and clear financial ROI multiplier.',
     canonical: 'https://trendmasterakademi.com/rescue-roi/',
@@ -2476,7 +2492,11 @@ const postMortemPages = postMortems.flatMap(item => {
         <div><span class="text-[var(--ink-subtle)] block">SEVERITY</span><strong class="text-amber-700">${escapeHtml(item.severity)}</strong></div>
         <div><span class="text-[var(--ink-subtle)] block">KATEGORİ</span><strong class="text-[var(--ink)]">${escapeHtml(item.category?.tr || '')}</strong></div>
         <div><span class="text-[var(--ink-subtle)] block">KESİNTİ SÜRESİ</span><strong class="text-emerald-700">${escapeHtml(item.duration?.tr || '')}</strong></div>
-        <div><span class="text-[var(--ink-subtle)] block">TARİH</span><strong class="text-[var(--accent)]">${escapeHtml(item.date)}</strong></div>
+        <div><span class="text-[var(--ink-subtle)] block">TARİH</span><strong class="text-[var(--accent)]">${escapeHtml(resolveText(item.date, 'tr'))}</strong></div>
+      </div>
+
+      <div class="p-4 rounded-xl bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed font-mono">
+        <p>${escapeHtml(postMortemDisclosure.detail.tr)}</p>
       </div>
 
       <section class="space-y-2">
@@ -2521,7 +2541,11 @@ const postMortemPages = postMortems.flatMap(item => {
         <div><span class="text-[var(--ink-subtle)] block">SEVERITY</span><strong class="text-amber-700">${escapeHtml(item.severity)}</strong></div>
         <div><span class="text-[var(--ink-subtle)] block">CATEGORY</span><strong class="text-[var(--ink)]">${escapeHtml(item.category?.en || '')}</strong></div>
         <div><span class="text-[var(--ink-subtle)] block">DURATION</span><strong class="text-emerald-700">${escapeHtml(item.duration?.en || '')}</strong></div>
-        <div><span class="text-[var(--ink-subtle)] block">DATE</span><strong class="text-[var(--accent)]">${escapeHtml(item.date)}</strong></div>
+        <div><span class="text-[var(--ink-subtle)] block">DATE</span><strong class="text-[var(--accent)]">${escapeHtml(resolveText(item.date, 'en'))}</strong></div>
+      </div>
+
+      <div class="p-4 rounded-xl bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed font-mono">
+        <p>${escapeHtml(postMortemDisclosure.detail.en)}</p>
       </div>
 
       <section class="space-y-2">
@@ -2889,3 +2913,53 @@ function updateSitemapLastmod() {
 }
 
 updateSitemapLastmod();
+
+// 1.3 Derleme koruması (build guard)
+function verifyGeneratedHtml() {
+  const forbidden = ['[object Object]', 'undefined', 'NaN', '>null<', '{tr', '{en'];
+  let errors = [];
+
+  function scanDir(dir) {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        scanDir(fullPath);
+      } else if (entry.isFile() && entry.name.endsWith('.html')) {
+        const rawHtml = fs.readFileSync(fullPath, 'utf8');
+        // Replace <code>...</code> and <pre>...</pre> blocks with newlines to preserve line numbers
+        const sanitized = rawHtml.replace(/<(pre|code)[\s\S]*?<\/\1>/gi, match => {
+          const newlines = match.match(/\n/g);
+          return newlines ? newlines.join('') : '';
+        });
+        const lines = sanitized.split('\n');
+        lines.forEach((line, idx) => {
+          for (const pattern of forbidden) {
+            if (line.includes(pattern)) {
+              errors.push({
+                file: path.relative(distDir, fullPath),
+                line: idx + 1,
+                pattern,
+                content: line.trim()
+              });
+            }
+          }
+        });
+      }
+    }
+  }
+
+  scanDir(distDir);
+
+  if (errors.length > 0) {
+    console.error('\n[BUILD GUARD ERROR] Forbidden strings found in generated HTML:');
+    errors.forEach(err => {
+      console.error(`  - ${err.file}:${err.line} contains "${err.pattern}" -> ${err.content.slice(0, 120)}`);
+    });
+    process.exit(1);
+  }
+  console.log(`[BUILD GUARD] All generated HTML files in dist/ passed integrity verification (0 forbidden strings found).`);
+}
+
+verifyGeneratedHtml();
+

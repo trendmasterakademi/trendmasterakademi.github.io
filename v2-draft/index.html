@@ -231,10 +231,10 @@
 
     <!-- Theme Stamp: Prevent FOUC -->
     <script>
-    (function(){try{
+    (function() { try {
       var t=localStorage.getItem('tma_theme');
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
-    }catch(e){}})();
+    } catch(e) {} })();
     </script>
   </head>
   <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">

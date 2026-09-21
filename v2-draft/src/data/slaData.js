@@ -128,3 +128,13 @@ export const coreCommitments = [
     }
   }
 ];
+
+export const slaScope = {
+  tr: "Kapsam: Bu süreler, kriz hattının açık olduğu her gün 09:00 – 24:00 arasında (resmî tatiller ve bayramlar dâhil) gelen bildirimler için geçerlidir. Bu saatler dışında gelen bildirimler ertesi sabah 09:00'da SEV sırasına göre ele alınır ve süre o andan başlar.",
+  en: "Coverage: These times apply to incidents reported while the crisis line is open, every day 09:00 – 24:00 (Istanbul time), public and religious holidays included. Incidents reported outside these hours are picked up at 09:00 the next morning in SEV order, and the clock starts then."
+};
+
+export const slaMetaDesc = {
+  tr: "Muğlak vaatler yerine dakikalarla tanımlı mühendislik taahhütleri: SEV-0 için 15 dk yanıt, %100 White-Label garantisi, resmi NDA ve müdahale öncesi snapshot kuralı.",
+  en: "Strict engineering commitments defined in minutes: 15-min MTTA for SEV-0, 100% White-Label guarantee, enforceable NDA, and pre-intervention snapshot rule."
+};

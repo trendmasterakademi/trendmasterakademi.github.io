@@ -309,3 +309,14 @@ export const postMortems = [
     }
   }
 ];
+
+export const postMortemDisclosure = {
+  detail: {
+    tr: "Olay akışı, süreler ve kök neden gerçektir. Müşteri ve ajans kimlikleri paylaşılmaz; tarih, tutar ve hacim gibi tanımlayıcı ayrıntılar genelleştirilmiştir.",
+    en: "The incident flow, timings and root cause are real. Client and agency identities are not disclosed; identifying details such as dates, amounts and volumes have been generalized."
+  },
+  index: {
+    tr: "Aşağıdaki kayıtlar TMA'nın gerçek müdahalelerinden alınmıştır. Müşteri ve ajans kimlikleri paylaşılmaz; tanımlayıcı ayrıntılar genelleştirilmiştir.",
+    en: "The records below are taken from real TMA interventions. Client and agency identities are not disclosed; identifying details have been generalized."
+  }
+};

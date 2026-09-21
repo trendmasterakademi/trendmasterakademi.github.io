@@ -6,7 +6,7 @@ import {
   AlertTriangle, PhoneCall, ExternalLink, ArrowRight, 
   Check, Lock, Activity, Users, HelpCircle
 } from 'lucide-react';
-import { slaTiers, coreCommitments } from '../data/slaData';
+import { slaTiers, coreCommitments, slaScope, slaMetaDesc } from '../data/slaData';
 import { getCalendlyUrl } from '../utils/calendly';
 import { formatDocumentTitle } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
@@ -22,24 +22,19 @@ export const Sla = () => {
     document.title = formatDocumentTitle(
       isTr 
         ? 'Şeffaf Mühendislik SLA & Yanıt Taahhütleri | Trend Master Akademi'
-        : 'Transparent Engineering SLA & Response Commitments | Trend Master Academy'
+        : 'Transparent Engineering SLA & Response Commitments | Trend Master Akademi'
     );
 
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
-      metaDesc.setAttribute(
-        'content',
-        isTr
-          ? 'Muğlak vaatler yerine dakikalarla tanımlı mühendislik taahhütleri: SEV-0 için 15 dk yanıt, %100 White-Label garantisi, resmi NDA ve müdahale öncesi snapshot kuralı.'
-          : 'Strict engineering commitments defined in minutes: 15-min MTTA for SEV-0, 100% White-Label guarantee, enforceable NDA, and pre-intervention snapshot rule.'
-      );
+      metaDesc.setAttribute('content', slaMetaDesc[lang]);
     }
 
     const canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) {
       canonical.setAttribute('href', 'https://trendmasterakademi.com/sla/');
     }
-  }, [isTr]);
+  }, [isTr, lang]);
 
   const selectedTier = slaTiers.find(t => t.level === activeTier) || slaTiers[0];
 
@@ -200,28 +195,16 @@ export const Sla = () => {
         {/* Coverage Note */}
         <div className="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed">
           <p>
-            <strong className="text-[var(--ink)] font-semibold font-mono">
-              {isTr ? 'Kapsam: ' : 'Coverage: '}
-            </strong>
-            {isTr
-              ? "Bu süreler, kriz hattının açık olduğu her gün 09:00 – 24:00 arasında gelen bildirimler için geçerlidir. Bu saatler dışında gelen bildirimler ertesi sabah 09:00'da SEV sırasına göre ele alınır ve süre o andan başlar."
-              : 'These times apply to incidents reported while the crisis line is open, every day 09:00 – 24:00 (Istanbul time). Incidents reported outside these hours are picked up at 09:00 the next morning in SEV order, and the clock starts then.'
-            }
+            {slaScope[lang]}
           </p>
         </div>
       </div>
 
       {/* 6 Core Engineering Commitments */}
       <div className="space-y-8">
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-[var(--accent)] font-semibold">
-            <Lock className="w-3.5 h-3.5" />
-            <span>{isTr ? 'KURUMSAL & HUKUKİ GÜVENCELER' : 'CORPORATE & LEGAL ASSURANCES'}</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
-            {isTr ? 'Altı Temel Taahhüdümüz' : 'Our Six Core Commitments'}
-          </h2>
-        </div>
+        <h2 className="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          {isTr ? 'Altı Temel Taahhüdümüz' : 'Our Six Core Commitments'}
+        </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {coreCommitments.map((c) => (
@@ -229,7 +212,6 @@ export const Sla = () => {
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xl font-bold font-mono text-[var(--accent)]">{c.no}</span>
-                  <span className="text-xs font-mono text-[var(--ink-muted)] uppercase">{isTr ? 'GÜVENCE' : 'ASSURANCE'}</span>
                 </div>
                 <h3 className="text-lg font-semibold font-serif text-[var(--ink)]">
                   {c.title[lang]}

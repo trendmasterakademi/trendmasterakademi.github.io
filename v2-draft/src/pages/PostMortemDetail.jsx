@@ -5,7 +5,7 @@ import {
   AlertTriangle, ArrowLeft, Clock, ShieldCheck, 
   Terminal, CheckCircle2, Flame, Wrench, AlertCircle, Calendar
 } from 'lucide-react';
-import { postMortems } from '../data/postMortemData';
+import { postMortems, postMortemDisclosure } from '../data/postMortemData';
 import { getCalendlyUrl } from '../utils/calendly';
 import { formatDocumentTitle } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
@@ -119,9 +119,7 @@ const PostMortemDetail = () => {
         {/* Disclosure / Künye Box */}
         <div className="p-4 rounded-xl bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed font-mono">
           <p>
-            {isTr
-              ? 'Olay akışı, süreler ve kök neden gerçektir. Müşteri ve ajans kimlikleri paylaşılmaz; tarih, tutar ve hacim gibi tanımlayıcı ayrıntılar genelleştirilmiştir.'
-              : 'Timeline, durations and root cause are authentic. Client and agency identities are never shared; identifying details such as dates, financial figures and volume metrics have been generalized.'}
+            {postMortemDisclosure.detail[lang]}
           </p>
         </div>
       </header>

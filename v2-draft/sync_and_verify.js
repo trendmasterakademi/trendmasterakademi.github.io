@@ -393,5 +393,81 @@ function scanForPills(dir) {
 scanForPills(srcDir);
 console.log(`Pill badges (rounded-full) in source: ${pillCount}`);
 
+// 8. Check Adım 56 Specific Criteria
+console.log('\n--- 8. ADIM 56 CHECKS ---');
+
+// 8.1 Check 8 pages for "Trend Master Academy" in title
+const target8Pages = [
+  'salvageability/index.html',
+  'post-mortems/index.html',
+  'triage/index.html',
+  'tech-matrix/index.html',
+  'mutual-nda/index.html',
+  'outage-simulator/index.html',
+  'codebase-health/index.html',
+  'rescue-roi/index.html'
+];
+let academyTitleCount = 0;
+for (const p of target8Pages) {
+  const filePath = path.join(repoRoot, p);
+  if (fs.existsSync(filePath)) {
+    const html = fs.readFileSync(filePath, 'utf8');
+    const titleMatch = html.match(/<title>(.*?)<\/title>/i);
+    const title = titleMatch ? titleMatch[1] : '';
+    if (title.includes('Trend Master Academy')) {
+      console.error(`[FAIL] ${p} has "Trend Master Academy" in title: ${title}`);
+      academyTitleCount++;
+    } else {
+      console.log(`[PASS] ${p} title: ${title}`);
+    }
+  }
+}
+console.log(`Pages with "Trend Master Academy" in title: ${academyTitleCount} (expected: 0)`);
+
+// 8.2 Check /radar/ for removed 99.8% metric
+const radarHtmlPath = path.join(repoRoot, 'radar/index.html');
+let radarHas998 = false;
+if (fs.existsSync(radarHtmlPath)) {
+  const radarHtml = fs.readFileSync(radarHtmlPath, 'utf8');
+  if (radarHtml.includes('99,8') || radarHtml.includes('99.8%')) {
+    console.error(`[FAIL] /radar/index.html still contains 99.8% metric!`);
+    radarHas998 = true;
+  } else {
+    console.log(`[PASS] /radar/index.html does not contain 99.8% metric.`);
+  }
+}
+
+// 8.3 Check for forbidden strings in repoRoot HTML files
+const forbiddenPatterns = ['[object Object]', 'undefined', 'NaN', '>null<', '{tr', '{en'];
+let forbiddenFoundCount = 0;
+function scanRepoHtml(dir) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    if (['node_modules', '.git', 'v2-draft', 'v1-vanilla-backup'].includes(entry.name)) continue;
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      scanRepoHtml(fullPath);
+    } else if (entry.isFile() && entry.name.endsWith('.html')) {
+      const raw = fs.readFileSync(fullPath, 'utf8');
+      const san = raw.replace(/<(pre|code)[\s\S]*?<\/\1>/gi, m => (m.match(/\n/g) || []).join(''));
+      san.split('\n').forEach((line, idx) => {
+        for (const pat of forbiddenPatterns) {
+          if (line.includes(pat)) {
+            console.error(`[FAIL] ${path.relative(repoRoot, fullPath)}:${idx + 1} contains "${pat}"`);
+            forbiddenFoundCount++;
+          }
+        }
+      });
+    }
+  }
+}
+scanRepoHtml(repoRoot);
+console.log(`Forbidden strings found in root HTML files: ${forbiddenFoundCount} (expected: 0)`);
+
+if (academyTitleCount > 0 || radarHas998 || forbiddenFoundCount > 0) {
+  console.error('\n[ERROR] Step 56 verification failed!');
+  process.exit(1);
+}
+
 console.log('\n=== VERIFICATION COMPLETED ===');
 process.exit(0);
