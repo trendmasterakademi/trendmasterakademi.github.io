@@ -112,7 +112,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
           {activeTab === 'response-kit' && (
             <div className="space-y-8 animate-in fade-in duration-150">
               <div className="text-center max-w-2xl mx-auto space-y-2">
-                <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[var(--accent)] bg-[var(--accent-wash)] px-3 py-1 rounded-full border border-[var(--accent)]/20">
+                <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[var(--accent)] bg-[var(--accent-wash)] px-3 py-1 rounded-[var(--r-control)] border border-[var(--accent)]/20">
                   {data.responseKit.badge}
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ink)] tracking-tight">
@@ -352,7 +352,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                     <Link
                       to="/crash-test/"
                       onClick={onClose}
-                      className="btn-secondary flex-1 min-w-[140px] px-3 py-2 font-mono text-xs rounded-lg flex items-center justify-center gap-1.5 cursor-pointer"
+                      className="btn-secondary flex-1 min-w-[140px]"
                     >
                       <Zap className="w-3.5 h-3.5 text-[var(--accent)]" />
                       <span>{isTr ? 'Crash Test Başlat' : 'Start Crash Test'}</span>
@@ -379,7 +379,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                 </div>
 
                 <div className="space-y-2 relative z-10">
-                  <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase bg-[var(--accent-wash)] px-3.5 py-1 rounded-full border border-[var(--accent)]/20">
+                  <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase bg-[var(--accent-wash)] px-3.5 py-1 rounded-[var(--r-control)] border border-[var(--accent)]/20">
                     {data.crashTest.badge}
                   </span>
                   <div className="text-5xl sm:text-6xl font-mono font-bold text-[var(--accent)] tracking-tight pt-2">
@@ -428,7 +428,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   <Link
                     to="/crash-test/"
                     onClick={onClose}
-                    className="btn-primary inline-flex items-center justify-center gap-2 px-8 py-3.5 font-mono font-semibold text-sm uppercase tracking-wider cursor-pointer w-full sm:w-auto"
+                    className="btn-primary w-full sm:w-auto"
                   >
                     <Zap className="w-4 h-4" />
                     <span>{isTr ? '60 Saniyelik Testi Başlat →' : 'Start 60-Second Test →'}</span>
@@ -455,7 +455,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
             </a>
             <button
               onClick={onClose}
-              className="btn-secondary px-3 py-1 rounded text-xs cursor-pointer"
+              className="btn-secondary"
             >
               {isTr ? 'Kapat' : 'Close'}
             </button>

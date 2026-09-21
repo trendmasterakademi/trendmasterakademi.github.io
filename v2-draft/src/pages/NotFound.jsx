@@ -34,14 +34,14 @@ const NotFound = () => {
 
       {/* Header & h1 */}
       <header className="space-y-4 mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-amber-50 border border-amber-300 text-amber-800">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] text-xs font-mono bg-amber-50 border border-amber-300 text-amber-800">
           <AlertCircle className="w-3.5 h-3.5" />
           <span>HTTP 404 // NOT FOUND</span>
         </div>
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
           {isTr ? 'Bu sayfa yok — ama hat açık' : 'This page does not exist — but the desk is open'}
         </h1>
-        <p className="text-sm sm:text-base text-[var(--ink-light)] leading-relaxed max-w-2xl">
+        <p className="text-sm sm:text-base text-[var(--ink-light)] leading-relaxed max-w-[34rem]">
           {isTr 
             ? 'Aradığınız adres taşınmış ya da hiç var olmamış olabilir. Acil bir durumdaysanız kriz hattı aşağıda.'
             : 'The address you are looking for may have moved or never existed. If you are facing an emergency, the crisis desk is below.'}

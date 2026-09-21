@@ -325,7 +325,7 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
       
       {/* Header */}
       <header className="mb-12 space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider">
           <Activity className="w-4 h-4" />
           {isTr ? 'TEKNİK FİZİBİLİTE & KARAR MATRİSİ' : 'TECHNICAL FEASIBILITY & DECISION MATRIX'}
         </div>
@@ -334,17 +334,17 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
           {isTr ? 'Salvageability Index' : 'Salvageability Index'}
         </h1>
 
-        <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-3xl">
+        <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-[34rem]">
           {isTr 
             ? 'Bir yazılım krizinde sorulması gereken en kritik soru: «Bu kodu kurtarmaya değer mi, yoksa sıfırdan mı yazılmalı?» 5 boyutlu risk analizini yanıtlayın, tarafsız kurtarılabilirlik skorunu ve eylem planını anında görün.'
             : 'The most decisive question in a software crisis: "Is this codebase worth saving or should you rebuild?" Answer 5 risk dimensions to determine your salvageability score and action blueprint.'}
         </p>
 
         <div className="flex flex-wrap gap-2.5 pt-2 font-mono text-xs">
-          <span className="px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] font-semibold">
+          <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] font-semibold">
             {isTr ? 'Refactor vs. Rebuild vs. Scrap' : 'Refactor vs. Rebuild vs. Scrap'}
           </span>
-          <span className="px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-light)] font-semibold">
+          <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-light)] font-semibold">
             {isTr ? '60 Saniyede Matematiksel Karar' : 'Mathematical Decision in 60s'}
           </span>
         </div>

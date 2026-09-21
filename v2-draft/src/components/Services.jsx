@@ -61,7 +61,7 @@ const Services = () => {
           <h4 className="text-xs sm:text-sm font-mono font-medium text-[var(--ink-3)] uppercase tracking-wider mb-3">
             {t('services-subtitle')}
           </h4>
-          <h2 className="font-serif text-[32px] sm:text-[40px] md:text-[44px] font-semibold text-[var(--ink)] tracking-tight leading-tight mb-6">
+          <h2 className="font-serif text-xl sm:text-2xl font-semibold text-[var(--ink)] tracking-tight leading-tight mb-6">
             {t('services-title')}
           </h2>
           <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
@@ -125,7 +125,7 @@ const Services = () => {
 
                 <a 
                   href="#contact"
-                  className="btn-secondary w-full py-3 rounded-[var(--r-control)] font-medium text-sm sm:text-base text-center flex items-center justify-center gap-2 cursor-pointer mt-auto"
+                  className="btn-secondary w-full cursor-pointer mt-auto flex items-center justify-center gap-2"
                 >
                   <span>{t('card-btn-contact')}</span>
                   <ArrowRight className="w-4 h-4" />

@@ -46,7 +46,7 @@ const GlossaryIndex = () => {
         
         {/* Header Eyebrow */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-wider">
             <BookOpen className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'AJANS PATRONU REHBERİ' : 'AGENCY EXECUTIVE GUIDE'}
           </div>
 

@@ -116,7 +116,7 @@ const Contact = () => {
             <h4 className="text-xs sm:text-sm font-mono font-medium text-[var(--ink-3)] uppercase tracking-wider mb-3">
               {t('contact-subtitle')}
             </h4>
-            <h2 className="font-serif text-[32px] sm:text-[40px] md:text-[44px] font-semibold text-[var(--ink)] tracking-tight leading-tight mb-6">
+            <h2 className="font-serif text-xl sm:text-2xl font-semibold text-[var(--ink)] tracking-tight leading-tight mb-6">
               {t('contact-title')}
             </h2>
             <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
@@ -236,7 +236,7 @@ const Contact = () => {
                 <h3 className="text-2xl font-semibold text-[var(--ink)] font-serif">
                   {isTr ? 'Talebiniz Başarıyla Kaydedildi!' : 'Inquiry Successfully Saved!'}
                 </h3>
-                <p className="text-[var(--ink-2)] text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+                <p className="text-[var(--ink-2)] text-sm sm:text-base max-w-[34rem] mx-auto leading-relaxed">
                   {isTr 
                     ? 'Talebiniz kriz masası gelen kutumuza güvenle ulaştı. Dilerseniz hemen WhatsApp üzerinden doğrudan iletişime geçebilirsiniz.' 
                     : 'Your inquiry has reached our engineering triage desk. You can also forward it directly on WhatsApp.'}
@@ -247,7 +247,7 @@ const Contact = () => {
                 <button
                   type="button"
                   onClick={handleOpenWhatsApp}
-                  className="btn-primary px-6 py-3 rounded-[var(--r-control)] font-medium text-sm flex items-center gap-2 cursor-pointer"
+                  className="btn-primary flex items-center gap-2"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>{isTr ? 'WhatsApp’tan Şimdi İlet →' : 'Forward to WhatsApp Now →'}</span>
@@ -255,7 +255,7 @@ const Contact = () => {
 
                 <a
                   href="tel:+905343713573"
-                  className="btn-secondary px-6 py-3 rounded-[var(--r-control)] font-medium text-sm flex items-center gap-2 transition-colors"
+                  className="btn-secondary flex items-center gap-2"
                 >
                   <PhoneCall className="w-4 h-4 text-[var(--accent)]" />
                   <span>+90 534 371 35 73</span>
@@ -264,7 +264,7 @@ const Contact = () => {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="btn-link px-5 py-2.5 rounded-[var(--r-control)] text-xs font-semibold cursor-pointer w-full"
+                  className="btn-link w-full"
                 >
                   {isTr ? '← Yeni Form Doldur' : '← Submit Another Inquiry'}
                 </button>
@@ -280,7 +280,7 @@ const Contact = () => {
                 <h3 className="text-2xl font-semibold text-[var(--ink)] font-serif">
                   {isTr ? 'Sunucu Bağlantısı Kurulamadı' : 'Server Connection Interrupted'}
                 </h3>
-                <p className="text-[var(--ink-2)] text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+                <p className="text-[var(--ink-2)] text-sm sm:text-base max-w-[34rem] mx-auto leading-relaxed">
                   {isTr 
                     ? 'Ağ kesintisi nedeniyle otomatik kayıt iletilemedi. Ancak bilgileriniz hazır; aşağıdaki butona tıklayarak tek tıkla WhatsApp kriz masasına iletebilirsiniz:' 
                     : 'Network timeout prevented automated form storage. Your brief is preserved below — dispatch directly via WhatsApp:'}
@@ -291,7 +291,7 @@ const Contact = () => {
                 <button
                   type="button"
                   onClick={handleOpenWhatsApp}
-                  className="btn-primary px-7 py-3.5 rounded-[var(--r-control)] font-medium text-sm sm:text-base flex items-center gap-2 cursor-pointer"
+                  className="btn-primary flex items-center gap-2"
                 >
                   <MessageSquare className="w-5 h-5" />
                   <span>{isTr ? 'WhatsApp ile Anında Gönder (Tek Tıkla)' : 'Send via WhatsApp (One-Click)'}</span>
@@ -299,7 +299,7 @@ const Contact = () => {
 
                 <a
                   href="tel:+905343713573"
-                  className="btn-secondary px-6 py-3.5 rounded-[var(--r-control)] font-medium text-sm flex items-center gap-2 transition-colors"
+                  className="btn-secondary flex items-center gap-2"
                 >
                   <PhoneCall className="w-4 h-4 text-[var(--accent)]" />
                   <span>+90 534 371 35 73</span>
@@ -308,7 +308,7 @@ const Contact = () => {
                 <button
                   type="button"
                   onClick={() => setSubmitStatus(null)}
-                  className="btn-link px-5 py-2.5 rounded-[var(--r-control)] text-xs font-semibold cursor-pointer w-full flex items-center justify-center gap-1.5"
+                  className="btn-link w-full flex items-center justify-center gap-1.5"
                 >
                   <RefreshCw className="w-3.5 h-3.5" />
                   <span>{isTr ? 'Tekrar Dene' : 'Try Again'}</span>
@@ -448,7 +448,7 @@ const Contact = () => {
               <button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="btn-primary w-full py-3.5 px-6 rounded-[var(--r-control)] flex items-center justify-center gap-2.5 transition-all text-base cursor-pointer mt-2 disabled:opacity-50"
+                className="btn-primary w-full mt-2 disabled:opacity-50"
               >
                 <Send className="w-5 h-5" />
                 <span>{isSubmitting ? (isTr ? 'Kaydediliyor...' : 'Submitting...') : t('contact-btn-submit')}</span>

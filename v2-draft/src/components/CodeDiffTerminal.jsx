@@ -308,7 +308,7 @@ export const CodeDiffTerminal = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] text-xs font-mono font-medium uppercase tracking-wider mb-4">
             <Terminal className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'GERÇEK MÜHENDİSLİK KANITI' : 'REAL CODE TRIAGE BENCHMARK'}
           </div>
-          <h2 className="font-serif text-[26px] sm:text-[30px] font-semibold text-[var(--ink)] tracking-tight leading-tight">
+          <h2 className="font-serif text-lg sm:text-xl font-semibold text-[var(--ink)] tracking-tight leading-tight">
             <span className="block">
               {isTr ? 'Pazarlama Sloganı Değil,' : 'No Marketing Buzzwords.'}
             </span>

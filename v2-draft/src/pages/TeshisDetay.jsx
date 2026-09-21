@@ -227,7 +227,7 @@ const TeshisDetay = () => {
               {baslikText}
             </h1>
 
-            <p className="text-[var(--ink-light)] text-sm sm:text-base md:text-lg leading-relaxed max-w-3xl">
+            <p className="text-[var(--ink-light)] text-sm sm:text-base md:text-lg leading-relaxed max-w-[34rem]">
               {ozetText}
             </p>
 
@@ -236,7 +236,7 @@ const TeshisDetay = () => {
                 <h2 className="text-xs sm:text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)]">
                   {isTr ? 'Sahada nasıl görünür' : 'How it shows up in the field'}
                 </h2>
-                <p className="text-[var(--ink-light)] text-sm sm:text-base leading-relaxed max-w-3xl">
+                <p className="text-[var(--ink-light)] text-sm sm:text-base leading-relaxed max-w-[34rem]">
                   {teshis.sahadaNasilGorunur[lang] || teshis.sahadaNasilGorunur.tr}
                 </p>
               </div>

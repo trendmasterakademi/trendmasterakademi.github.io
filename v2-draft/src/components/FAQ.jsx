@@ -110,7 +110,7 @@ const FAQ = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] text-xs font-mono font-medium uppercase tracking-wider mb-4">
             <HelpCircle className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'SIKÇA SORULAN SORULAR' : 'FREQUENTLY ASKED QUESTIONS'}
           </div>
-          <h2 className="font-serif text-[26px] sm:text-[30px] font-semibold text-[var(--ink)] tracking-tight leading-tight">
+          <h2 className="font-serif text-lg sm:text-xl font-semibold text-[var(--ink)] tracking-tight leading-tight">
             <span className="block">
               {isTr ? 'Ajansların En Çok Merak Ettiği' : 'Key Questions from Partner'}
             </span>
@@ -203,7 +203,7 @@ const FAQ = () => {
               target="_blank"
               rel="noreferrer"
               onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'faq_box' })}
-              className="btn-primary px-5 py-2.5 rounded-[var(--r-control)] font-medium text-xs sm:text-sm transition-all whitespace-nowrap flex items-center gap-2 shadow-sm"
+              className="btn-primary flex items-center gap-2"
             >
               <Calendar className="w-4 h-4" />
               <span>{isTr ? '30 Dakikalık Randevu Seç →' : 'Schedule 30-Min Call →'}</span>
@@ -213,7 +213,7 @@ const FAQ = () => {
               target="_blank"
               rel="noreferrer"
               onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'faq_box' })}
-              className="btn-secondary px-5 py-2.5 rounded-[var(--r-control)] font-medium text-xs sm:text-sm transition-all whitespace-nowrap flex items-center gap-2 shadow-sm"
+              className="btn-secondary flex items-center gap-2"
             >
               <span>{isTr ? 'WhatsApp’tan Sorun →' : 'Ask on WhatsApp →'}</span>
             </a>

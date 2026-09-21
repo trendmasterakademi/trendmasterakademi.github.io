@@ -61,9 +61,9 @@ const CookieBanner = () => {
         <div className="space-y-1 sm:space-y-2.5 text-xs leading-relaxed">
           <div className="font-semibold text-[var(--ink)] text-xs sm:text-sm flex items-center gap-2">
             <span>{isTr ? 'Gizlilik & Analitik Tercihleri' : 'Privacy & Analytics Preferences'}</span>
-            <span className="hidden sm:inline-flex px-2 py-0.5 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--accent)] text-[12px] font-mono border border-[var(--rule)]">%100 NDA</span>
+            <span className="hidden sm:inline-flex px-2 py-0.5 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--accent)] text-xs font-mono border border-[var(--rule)]">%100 NDA</span>
           </div>
-          <p className="text-[var(--ink-2)] text-[12px] leading-snug sm:leading-relaxed">
+          <p className="text-[var(--ink-2)] text-xs leading-snug sm:leading-relaxed">
             {isTr 
               ? 'Analitik (GA4) ve oturum ölçüm (Clarity) araçları kullanıyoruz. Formlara yazdığınız kriz ve kod detayları maskelenir.' 
               : 'We use analytics (GA4) and session telemetry (Clarity). Submitted crisis and code details are strictly masked.'}{' '}

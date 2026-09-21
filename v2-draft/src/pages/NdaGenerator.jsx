@@ -116,14 +116,14 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
 
       {/* Screen Header (No Print) */}
       <div className="max-w-5xl mx-auto text-center mb-12 no-print">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
           <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
           {t.hero.badge}
         </div>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[var(--ink)] mb-4">
           {t.hero.title}
         </h1>
-        <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-3xl mx-auto mb-4">
+        <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-[34rem] mx-auto mb-4">
           {t.hero.subtitle}
         </p>
         <p className="text-xs text-[var(--ink-muted)] font-mono">

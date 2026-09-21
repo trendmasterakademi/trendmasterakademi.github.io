@@ -20,7 +20,7 @@ const CaseStudySection = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] text-xs font-mono font-medium uppercase tracking-wider">
             <Stethoscope className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'GERÇEK VAKA ANALİZLERİ & POST-MORTEM' : 'AUTHENTIC CASE POST-MORTEMS'}
           </div>
-          <h2 className="font-serif text-[26px] sm:text-[30px] font-semibold text-[var(--ink)] tracking-tight leading-tight">
+          <h2 className="font-serif text-lg sm:text-xl font-semibold text-[var(--ink)] tracking-tight leading-tight">
             <span className="block">
               {isTr ? 'Kriz Anında Neler Yaşandı?' : 'What Actually Happened in the Crisis?'}
             </span>
@@ -100,7 +100,7 @@ const CaseStudySection = () => {
               <div className="text-xs font-mono font-medium uppercase tracking-wider text-[var(--ink-3)]">
                 {isTr ? 'Durum' : 'The Situation'}
               </div>
-              <p className="max-w-[75ch]">
+              <p className="max-w-[34rem]">
                 {activeCase.durum[isTr ? 'tr' : 'en']}
               </p>
             </div>
@@ -110,7 +110,7 @@ const CaseStudySection = () => {
               <div className="text-xs font-mono font-medium uppercase tracking-wider text-[var(--ink-3)]">
                 {isTr ? 'Teşhis' : 'Diagnosis'}
               </div>
-              <p className="max-w-[75ch]">
+              <p className="max-w-[34rem]">
                 {activeCase.teshis[isTr ? 'tr' : 'en']}
               </p>
             </div>
@@ -120,7 +120,7 @@ const CaseStudySection = () => {
               <div className="text-xs font-mono font-medium uppercase tracking-wider text-[var(--ink-3)]">
                 {isTr ? 'Kök Neden' : 'Root Cause'}
               </div>
-              <p className="max-w-[75ch]">
+              <p className="max-w-[34rem]">
                 {activeCase.kokNeden[isTr ? 'tr' : 'en']}
               </p>
             </div>
@@ -130,7 +130,7 @@ const CaseStudySection = () => {
               <div className="text-xs font-mono font-medium uppercase tracking-wider text-[var(--ink-3)]">
                 {isTr ? 'Sonuç' : 'Outcome'}
               </div>
-              <p className="max-w-[75ch]">
+              <p className="max-w-[34rem]">
                 {activeCase.sonuc[isTr ? 'tr' : 'en']}{' '}
                 <strong className="text-[var(--ink)] font-semibold font-mono block sm:inline mt-1 sm:mt-0">
                   {activeCase.sonuc.highlight[isTr ? 'tr' : 'en']}
@@ -143,7 +143,7 @@ const CaseStudySection = () => {
               <div className="text-xs font-mono font-semibold uppercase tracking-wider text-[var(--accent)]">
                 {isTr ? 'Ajansınız İçin Ne Anlama Geliyor?' : 'What This Means for Your Agency'}
               </div>
-              <p className="text-[var(--ink)] max-w-[75ch] leading-relaxed">
+              <p className="text-[var(--ink)] max-w-[34rem] leading-relaxed">
                 {activeCase.ajansIcin[isTr ? 'tr' : 'en']}
               </p>
             </div>

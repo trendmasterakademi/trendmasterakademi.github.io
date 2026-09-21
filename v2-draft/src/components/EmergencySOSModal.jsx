@@ -147,7 +147,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink-secondary)] hover:text-[var(--ink)] transition-colors cursor-pointer z-20"
+            className="absolute top-4 right-4 sm:top-5 sm:right-5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink-secondary)] hover:text-[var(--ink)] transition-colors cursor-pointer z-20"
             aria-label={isTr ? 'Kapat' : 'Close'}
           >
             <X className="w-5 h-5" />
@@ -217,7 +217,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'sos_success_screen' })}
-                  className="px-6 py-3 rounded-lg bg-[#25D366] text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-sm"
+                  className="px-6 py-3 rounded-lg bg-[#25D366] text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-sm min-h-[44px]"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>{isTr ? 'WhatsApp Mesajını Aç' : 'Open WhatsApp'}</span>
@@ -225,7 +225,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-5 py-3 rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink)] text-xs font-semibold cursor-pointer border border-[var(--rule)]"
+                  className="px-5 py-3 rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink)] text-xs font-semibold cursor-pointer border border-[var(--rule)] min-h-[44px]"
                 >
                   {isTr ? 'Pencereyi Kapat' : 'Close Window'}
                 </button>
@@ -250,14 +250,14 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'sos_error_fallback' })}
-                  className="px-7 py-3.5 rounded-lg bg-[#25D366] text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-sm"
+                  className="px-7 py-3.5 rounded-lg bg-[#25D366] text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-sm min-h-[44px]"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>{isTr ? 'WhatsApp ile Anında Gönder (Tek Tıkla)' : 'Send via WhatsApp (One-Click)'}</span>
                 </a>
                 <a
                   href="tel:+905343713573"
-                  className="px-5 py-3.5 rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink)] font-semibold text-xs sm:text-sm flex items-center gap-2 border border-[var(--rule)]"
+                  className="px-5 py-3.5 rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink)] font-semibold text-xs sm:text-sm flex items-center gap-2 border border-[var(--rule)] min-h-[44px]"
                 >
                   <PhoneCall className="w-4 h-4 text-[var(--accent)]" />
                   <span>+90 534 371 35 73</span>
@@ -345,7 +345,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                       key={item.id}
                       type="button"
                       onClick={() => setUrgency(item.id)}
-                      className={`p-3 rounded-lg text-left border text-xs sm:text-sm transition-all flex flex-col justify-between cursor-pointer ${
+                      className={`p-3 rounded-lg text-left border text-xs sm:text-sm transition-all flex flex-col justify-between cursor-pointer min-h-[44px] ${
                         urgency === item.id
                           ? 'border-[var(--accent)] bg-[var(--accent-wash)] text-[var(--accent-ink)] font-semibold'
                           : 'border-[var(--rule)] bg-[var(--surface)] text-[var(--ink-secondary)] hover:border-[var(--rule-strong)]'

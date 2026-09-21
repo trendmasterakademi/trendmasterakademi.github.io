@@ -988,7 +988,7 @@ const CrashTest = () => {
                     ? (isTr ? 'Bu Krizi Birlikte Çözelim' : 'Let’s Resolve This Together')
                     : (isTr ? 'Kapsamı ve Çözümü Birlikte Konuşalım' : 'Let’s Scope the Solution Together')}
                 </h3>
-                <p className="text-[var(--ink-muted)] text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                <p className="text-[var(--ink-muted)] text-sm sm:text-base md:text-lg max-w-[34rem] mx-auto leading-relaxed">
                   {matchResult.matched
                     ? (isTr 
                         ? 'Müşteriniz sizin müşteriniz olarak kalırken; arka planda ihtiyacınız olan teknik gücü ve kurtarma mühendisliğini doğrudan devreye alalım.' 

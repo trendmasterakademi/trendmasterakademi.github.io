@@ -35,7 +35,7 @@ const TeshisIndex = () => {
       
       {/* Header */}
       <header className="mb-14 space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider">
           <Stethoscope className="w-4 h-4" />
           {isTr ? 'B2B TEŞHİS & TRİYAJ REHBERİ' : 'B2B DIAGNOSTIC & TRIAGE CATALOG'}
         </div>
@@ -44,7 +44,7 @@ const TeshisIndex = () => {
           {isTr ? 'Teşhis Kataloğu' : 'Diagnostic Catalog'}
         </h1>
 
-        <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-3xl">
+        <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-[34rem]">
           {isTr 
             ? 'Belirtiyi görüyorsunuz ama nedenini bilmiyorsunuz. Buradaki her teşhis bir belirtiyle başlar, aynı belirtiyi üretebilecek nedenleri ayırır ve hangisiyle karşı karşıya olduğunuzu nasıl anlayacağınızı gösterir.'
             : 'You can see the symptom but not the cause. Each entry starts from a symptom, separates the causes that could produce it, and shows you how to tell which one you are facing.'}
@@ -52,10 +52,10 @@ const TeshisIndex = () => {
 
         {/* Feature Badges */}
         <div className="flex flex-wrap gap-2.5 pt-2 font-mono text-xs">
-          <span className="px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-emerald-800 font-semibold">
+          <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-emerald-800 font-semibold">
             {isTr ? '20 belirti' : '20 symptoms'}
           </span>
-          <span className="px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] font-semibold">
+          <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] font-semibold">
             {isTr ? 'İlk teşhis ücretsiz' : 'First diagnosis is free'}
           </span>
         </div>

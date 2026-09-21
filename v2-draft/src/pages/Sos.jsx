@@ -42,7 +42,7 @@ const Sos = () => {
   };
 
   return (
-    <div className="pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto text-[var(--ink)] font-sans">
+    <div className="pt-32 pb-36 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto text-[var(--ink)] font-sans">
       
       {/* Breadcrumb Navigation */}
       <div className="mb-8">
@@ -53,7 +53,7 @@ const Sos = () => {
           <ArrowLeft className="w-4 h-4" /> {isTr ? '← Ana Sayfaya Dön' : '← Back to Home'}
         </Link>
         <div className="flex items-center gap-2 text-xs font-mono text-[var(--ink-muted)] mb-3">
-          <Link to="/" className="hover:text-[var(--ink)] transition-colors">{isTr ? 'Ana Sayfa' : 'Home'}</Link>
+          <Link to="/" className="hover:text-[var(--ink)] transition-colors min-h-[44px] inline-flex items-center">{isTr ? 'Ana Sayfa' : 'Home'}</Link>
           <span>/</span>
           <span className="text-[var(--accent)] font-semibold">{isTr ? 'Acil Teknik Destek' : 'Emergency Technical Support'}</span>
         </div>
@@ -68,7 +68,7 @@ const Sos = () => {
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold font-serif text-[var(--ink)] tracking-tight leading-tight">
           {isTr ? 'Acil Teknik Destek — Kriz Hattı' : 'Emergency Technical Support — Response Desk'}
         </h1>
-        <p className="text-sm sm:text-base text-[var(--ink-muted)] leading-relaxed max-w-3xl">
+        <p className="text-sm sm:text-base text-[var(--ink-muted)] leading-relaxed max-w-[34rem]">
           {isTr 
             ? 'Burası ajansların imdat butonu. Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa doğrudan buraya yazın. İlk teşhis ücretsizdir.'
             : 'If your agency’s live system is down, deadline is burning, or inherited codebase won’t start, reach out directly. Initial diagnosis is free.'}

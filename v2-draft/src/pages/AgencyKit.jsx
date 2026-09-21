@@ -54,7 +54,7 @@ export default function AgencyKit() {
             HERO SECTION: TMA AGENCY KIT // VISUAL RELEASE
         ======================================================== */}
         <section className="text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] font-mono text-xs tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] font-mono text-xs tracking-wider uppercase">
             <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
             <span>TMA AGENCY KIT // 2026 OFFICIAL RELEASE</span>
           </div>
@@ -71,7 +71,7 @@ export default function AgencyKit() {
             )}
           </h1>
 
-          <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-[34rem] mx-auto leading-relaxed">
             {isTr 
               ? "Dijital ajansların görünmeyen kıdemli teknik masası. 8 Slaytlık Response Kit ve 60 Saniyelik Crash Test 500 posteri ile teknik kriz protokollerinizi şimdi güvenceye alın."
               : "The invisible senior engineering desk for digital agencies. Fortify your technical crisis protocols with the 8-Slide Response Kit and 60-Second Crash Test 500 poster."
@@ -255,7 +255,7 @@ export default function AgencyKit() {
             {/* Poster Details & Scenarios */}
             <div className="lg:col-span-7 space-y-6 relative z-10">
               <div className="space-y-2">
-                <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase bg-[var(--accent-subtle)] px-3 py-1 rounded-full border border-[var(--accent)]/20">
+                <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase bg-[var(--accent-subtle)] px-3 py-1 rounded-[var(--r-control)] border border-[var(--accent)]/20">
                   {data.crashTest.badge}
                 </span>
                 <h3 className="text-2xl sm:text-4xl font-serif font-semibold text-[var(--ink)]">

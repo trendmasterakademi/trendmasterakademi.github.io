@@ -90,7 +90,7 @@ const KVKKModal = ({ isOpen, onClose }) => {
           <div className="p-4 border-t border-[var(--rule)] flex justify-end">
             <button
               onClick={onClose}
-              className="btn-primary px-6 py-2.5 rounded-[var(--r-control)] font-medium text-xs sm:text-sm cursor-pointer"
+              className="btn-primary"
             >
               {isTr ? 'Anladım ve Kapat' : 'Got it & Close'}
             </button>

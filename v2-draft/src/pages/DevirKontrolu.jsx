@@ -751,7 +751,7 @@ const DevirKontrolu = () => {
                           {answers[item.id] === 'no' ? (isTr ? 'YOK' : 'MISSING') : (isTr ? 'EMİN DEĞİL' : 'UNSURE')}
                         </span>
                       </div>
-                      <p className="text-xs sm:text-[13px] text-[var(--ink-muted)] leading-relaxed border-l-2 border-[var(--accent)] pl-3">
+                      <p className="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed border-l-2 border-[var(--accent)] pl-3">
                         <strong className="text-[var(--accent)] block">{isTr ? 'Bu olmazsa ne olur?' : 'Impact if missing:'}</strong>
                         {item.impact[isTr ? 'tr' : 'en']}
                       </p>
@@ -847,7 +847,7 @@ const DevirKontrolu = () => {
                   <button
                     type="button"
                     onClick={openWhatsAppDispatch}
-                    className="w-full py-3 px-4 rounded bg-[#1f7a4d] hover:bg-[#18633e] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-sm min-h-[44px]"
+                    className="w-full py-3 px-4 rounded bg-[var(--sev-ok)] hover:opacity-90 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-sm min-h-[44px]"
                   >
                     <PhoneCall className="w-4 h-4" />
                     <span>{isTr ? 'WhatsApp ile Raporu Talep Et →' : 'Request Report via WhatsApp →'}</span>
@@ -922,7 +922,7 @@ const DevirKontrolu = () => {
                 <button
                   type="button"
                   onClick={openWhatsAppDispatch}
-                  className="px-5 py-3 rounded bg-[#1f7a4d] hover:bg-[#18633e] text-white font-semibold text-sm flex items-center gap-2 whitespace-nowrap cursor-pointer transition-colors min-h-[44px]"
+                  className="px-5 py-3 rounded bg-[var(--sev-ok)] hover:opacity-90 text-white font-semibold text-sm flex items-center gap-2 whitespace-nowrap cursor-pointer transition-colors min-h-[44px]"
                 >
                   <PhoneCall className="w-4 h-4" />
                   <span>{isTr ? 'WhatsApp ile Danışın' : 'Consult via WhatsApp'}</span>

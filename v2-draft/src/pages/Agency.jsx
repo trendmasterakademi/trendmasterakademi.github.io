@@ -198,7 +198,7 @@ const Agency = () => {
         <section className="text-center max-w-4xl mx-auto pt-6 pb-20">
           
           {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 border border-red-200 text-[var(--accent)] text-xs sm:text-sm font-mono font-semibold tracking-widest uppercase mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-[var(--r-control)] bg-red-50 border border-red-200 text-[var(--accent)] text-xs sm:text-sm font-mono font-semibold tracking-widest uppercase mb-6">
             <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
             {isTr ? 'TMA RESPONSE DESK // B2B AJANS ÇÖZÜM ORTAKLIĞI' : 'TMA RESPONSE DESK // B2B AGENCY PARTNERSHIP'}
           </div>
@@ -212,7 +212,7 @@ const Agency = () => {
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-[var(--ink-secondary)] leading-relaxed mb-10 max-w-3xl mx-auto font-normal">
+          <p className="text-base sm:text-lg md:text-xl text-[var(--ink-secondary)] leading-relaxed mb-10 max-w-[34rem] mx-auto font-normal">
             {isTr 
               ? 'Bir projede teknik olarak tıkandığınızda, ekibinizin kapasitesi dolduğunda, teslim tarihi yaklaştığında veya müşterinizin talebi mevcut uzmanlık alanınızın dışına çıktığında güvenilir teknik çözüm ortağınız ve kriz kurtarma ekibiniziz.' 
               : 'When you are technically blocked, when your team is over capacity, when deadlines loom, or when client requirements exceed your internal stack — we are your reliable technical partner and crisis SWAT force.'}
@@ -335,7 +335,7 @@ const Agency = () => {
               const cardContent = (
                 <>
                   <div>
-                    <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)] mb-5">
+                    <span className="inline-block px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)] mb-5">
                       {sq.tag[isTr ? 'tr' : 'en']}
                     </span>
                     <p className="text-base sm:text-lg text-[var(--ink)] italic font-medium leading-relaxed mb-6">
@@ -463,7 +463,7 @@ const Agency = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Ajanslar Adına Kurtarılan & Teslim Edilen Projeler' : 'Rescued & Delivered on Behalf of Partner Agencies'}
             </h2>
-            <p className="text-sm sm:text-base text-[var(--ink-secondary)] mt-4 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-[var(--ink-secondary)] mt-4 leading-relaxed max-w-[34rem] mx-auto">
               {isTr 
                 ? 'Bu sayfada hiçbir müşterinin adı yazmıyor — sizinki de yazmayacak. Anlatılan senaryolar yürüttüğümüz gerçek projelerden alınmıştır; kimliğe dair her ayrıntı çıkarılmıştır.' 
                 : 'No client is named on this page — and yours never will be. These scenarios are drawn from real engagements; every identifying detail has been removed.'}
@@ -484,7 +484,7 @@ const Agency = () => {
             <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between space-y-6 shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-red-50 text-[var(--accent)] border border-red-200">
+                  <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-red-50 text-[var(--accent)] border border-red-200">
                     {isTr ? 'Lansman T-24H Kriz SWAT' : 'Launch T-24H SWAT Hotfix'}
                   </span>
                   <span className="text-xs font-mono text-[var(--ink-muted)]">2.5 {isTr ? 'Saat' : 'Hours'}</span>
@@ -520,7 +520,7 @@ const Agency = () => {
             <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between space-y-6 shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                  <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-amber-50 text-amber-800 border border-amber-200">
                     {isTr ? 'Yarım Kalan Repo Devralma' : 'Abandoned Codebase Takeover'}
                   </span>
                   <span className="text-xs font-mono text-[var(--ink-muted)]">6 {isTr ? 'Gün Sprint' : 'Days Sprint'}</span>
@@ -556,7 +556,7 @@ const Agency = () => {
             <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between space-y-6 shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-blue-50 text-blue-800 border border-blue-200">
+                  <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-blue-50 text-blue-800 border border-blue-200">
                     {isTr ? 'Trafik & API Ölçekleme' : 'Traffic & Scale Triaging'}
                   </span>
                   <span className="text-xs font-mono text-[var(--ink-muted)]">14 {isTr ? 'Saat' : 'Hours'}</span>
@@ -609,7 +609,7 @@ const Agency = () => {
               <div className="p-7 rounded-xl bg-[var(--surface)] border-2 border-emerald-500/50 relative flex flex-col justify-between space-y-6 shadow-sm">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                    <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
                       {isTr ? 'HER İŞTE' : 'EVERY ENGAGEMENT'}
                     </span>
                     <span className="text-xs font-mono font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
@@ -631,7 +631,7 @@ const Agency = () => {
               <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] relative flex flex-col justify-between space-y-6 shadow-sm">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[var(--paper)] text-[var(--ink-secondary)] border border-[var(--rule)]">
+                    <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--paper)] text-[var(--ink-secondary)] border border-[var(--rule)]">
                       {isTr ? 'PLANLI İŞLER' : 'PLANNED WORK'}
                     </span>
                     <span className="text-xs font-mono font-semibold text-[var(--accent)] bg-red-50 px-2.5 py-1 rounded-lg border border-red-200">
@@ -653,7 +653,7 @@ const Agency = () => {
               <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] relative flex flex-col justify-between space-y-6 shadow-sm">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-red-50 text-[var(--accent)] border border-red-200">
+                    <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-red-50 text-[var(--accent)] border border-red-200">
                       {isTr ? 'ACİL MÜDAHALE' : 'EMERGENCY RESPONSE'}
                     </span>
                     <span className="text-xs font-mono font-semibold text-[var(--accent)] bg-red-50 px-2.5 py-1 rounded-lg border border-red-200">
@@ -682,7 +682,7 @@ const Agency = () => {
                 <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
                   {isTr ? 'Teklif iki taraftan da gelebilir.' : 'A quote can come from either side.'}
                 </h3>
-                <p className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed max-w-3xl">
+                <p className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed max-w-[34rem]">
                   {isTr 
                     ? <>Tanımadığınız birine kriz anında rakam taahhüt etmek zorunda değilsiniz. Kapsamı görüp bedeli biz veririz; <strong className="text-[var(--ink)]">siz de kendi bütçenizi iletebilirsiniz.</strong> İki durumda da net cevap alırsınız: yapılır ya da yapılmaz.</>
                     : <>You shouldn't have to commit to a figure with someone you don't know, mid-crisis. We can review the scope and quote it; <strong className="text-[var(--ink)]">or you can tell us your budget.</strong> Either way you get a straight answer: we can do it, or we can't.</>}
@@ -743,7 +743,7 @@ const Agency = () => {
           <div className="p-8 sm:p-14 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-center relative overflow-hidden shadow-sm">
             
             <div className="max-w-3xl mx-auto space-y-6">
-              <span className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-mono font-semibold bg-red-50 text-[var(--accent)] border border-red-200 uppercase inline-block">
+              <span className="px-4 py-1.5 rounded-[var(--r-control)] text-xs sm:text-sm font-mono font-semibold bg-red-50 text-[var(--accent)] border border-red-200 uppercase inline-block">
                 {isTr ? 'İş Ortaklığı Daveti' : 'Partnership Invitation'}
               </span>
 

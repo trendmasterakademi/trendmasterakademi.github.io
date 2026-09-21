@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { isTurkish } from '../i18n';
 
-const DAL_COLORS = ['#f87171', '#fbbf24', '#a78bfa', '#22d3ee'];
+const DAL_COLORS = ['#f87171', '#fbbf24', '#a78bfa', '#68727F'];
 
 const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
   const { i18n } = useTranslation();
@@ -178,7 +178,7 @@ const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
                       x={col.x + 16}
                       y={lineY}
                       fontSize="11.5"
-                      fill={isHighlight ? '#2dd4bf' : '#cbd5e1'}
+                      fill={isHighlight ? '#F5F6F7' : '#cbd5e1'}
                     >
                       {line}
                     </text>

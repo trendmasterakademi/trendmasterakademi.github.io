@@ -18,7 +18,7 @@ export const FounderSection = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] text-xs font-mono font-medium uppercase tracking-wider mb-4">
             <Award className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'KURUCUDAN AÇIK NOT & MASA KİMLİĞİ' : 'FOUNDER COMMITMENT & DESK IDENTITY'}
           </div>
-          <h2 className="font-serif text-[26px] sm:text-[30px] font-semibold text-[var(--ink)] tracking-tight leading-tight">
+          <h2 className="font-serif text-lg sm:text-xl font-semibold text-[var(--ink)] tracking-tight leading-tight">
             <span className="block">
               {isTr ? 'Kelimelerle Değil,' : 'Not With Marketing Words,'}
             </span>
@@ -41,7 +41,7 @@ export const FounderSection = () => {
             <div className="space-y-4 text-[var(--ink-2)] text-sm sm:text-base leading-relaxed">
               <div className="flex items-center gap-4 border-b border-[var(--rule)] pb-4 mb-4">
                 {/* Visual Placeholder Box 1: Founder Portrait (4:5 aspect ratio) */}
-                <div className="w-16 sm:w-20 aspect-[4/5] rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center p-1.5 text-center text-[12px] font-mono text-[var(--ink-3)] leading-tight flex-shrink-0">
+                <div className="w-16 sm:w-20 aspect-[4/5] rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center p-1.5 text-center text-xs font-mono text-[var(--ink-3)] leading-tight flex-shrink-0">
                   <span>Mehmet Şahin</span>
                 </div>
                 <div>

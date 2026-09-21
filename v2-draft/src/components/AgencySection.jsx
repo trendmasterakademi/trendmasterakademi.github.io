@@ -16,7 +16,7 @@ const AgencySection = () => {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] text-xs font-mono font-medium mb-4">
               <ShieldCheck className="w-4 h-4 text-[var(--accent)]" /> {t('agency-sec-badge')}
             </div>
-            <h2 className="font-serif text-[32px] sm:text-[40px] md:text-[44px] font-semibold text-[var(--ink)] tracking-tight leading-tight">
+            <h2 className="font-serif text-xl sm:text-2xl font-semibold text-[var(--ink)] tracking-tight leading-tight">
               <span className="block">
                 {t('agency-sec-title')}
               </span>

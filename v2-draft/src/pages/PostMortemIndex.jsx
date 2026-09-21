@@ -46,7 +46,7 @@ const PostMortemIndex = () => {
       
       {/* Header */}
       <header className="mb-14 space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider">
           <Terminal className="w-4 h-4" />
           {isTr ? 'AÇIK KAYNAKLI TEKNİK OTOPSİ ARŞİVİ' : 'PUBLIC INCIDENT POST-MORTEM ARCHIVE'}
         </div>
@@ -55,7 +55,7 @@ const PostMortemIndex = () => {
           {isTr ? 'Incident Post-Mortem & RCA' : 'Incident Post-Mortems & RCA'}
         </h1>
 
-        <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-3xl">
+        <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-[34rem]">
           {isTr 
             ? 'Pazarlama laflarıyla değil, mühendislik ciddiyetiyle: Çözdüğümüz kritik altyapı krizlerinin müşteri gizliliği korunarak hazırlanmış saniye saniye zaman çizelgesi, kök neden analizi (5 Whys) ve kalıcı önlem raporları.'
             : 'Engineering rigor over marketing claims: Anonymized post-mortems detailing second-by-second incident chronologies, root-cause analyses, and surgical TMA hotfix protocols.'}
@@ -63,10 +63,10 @@ const PostMortemIndex = () => {
 
         {/* Feature Badges */}
         <div className="flex flex-wrap gap-2.5 pt-2 font-mono text-xs">
-          <span className="px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-emerald-800 font-semibold">
+          <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-emerald-800 font-semibold">
             {isTr ? 'Sıfır İsim / %100 Anonim' : 'Zero Client Identifiers'}
           </span>
-          <span className="px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] font-semibold">
+          <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] font-semibold">
             {isTr ? 'Gerçek Üretim Vakaları' : 'Real Production Outages'}
           </span>
         </div>

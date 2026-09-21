@@ -13,12 +13,12 @@ const Footer = () => {
   const krizHattiAcik = useKrizHattiAcik();
 
   return (
-    <footer className="border-t border-[var(--rule)] bg-[var(--surface)] pt-10 pb-8 px-4 sm:px-6 md:px-12 text-[var(--ink-2)] text-xs sm:text-sm">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-8">
+    <footer className="border-t border-[var(--rule)] bg-[var(--surface)] pt-6 pb-6 px-4 sm:px-6 md:px-12 text-[var(--ink-2)] text-xs sm:text-sm">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 mb-4">
         
         {/* Brand Column */}
         <div className="lg:col-span-3 space-y-3">
-          <Link to="/" className="inline-block group" aria-label="Trend Master Akademi Ana Sayfa">
+          <Link to="/" className="inline-block group min-h-[44px] flex items-center" aria-label="Trend Master Akademi Ana Sayfa">
             <img 
               src="/logo-light.svg" 
               alt="Trend Master Akademi" 
@@ -32,15 +32,15 @@ const Footer = () => {
               ? 'Yüksek işlem hacimli platformlar, teknoloji ekipleri ve kurumsal sistemler için %100 White-Label ve resmi NDA korumasıyla çalışan kıdemli mühendislik masası ve kriz kurtarma stüdyosu.' 
               : 'Senior engineering desk and crisis recovery studio for high-throughput platforms and tech teams operating under 100% White-Label and strict mutual NDA.'}
           </p>
-          <div className="text-[11px] font-mono text-[var(--ink-3)] flex flex-wrap items-center gap-2">
+          <div className="text-xs font-mono text-[var(--ink-3)] flex flex-wrap items-center gap-2">
             <span>Sistem & Operasyon Masası: <strong className="text-[var(--ink)]">Trend Master Akademi Studio & Labs</strong></span>
             <span>•</span>
-            <a href="https://www.linkedin.com/in/trendmasterakademi/" target="_blank" rel="noreferrer" className="text-[var(--accent)] hover:underline">LinkedIn</a>
+            <a href="https://www.linkedin.com/in/trendmasterakademi/" target="_blank" rel="noreferrer" className="text-[var(--accent)] hover:underline min-h-[44px] inline-flex items-center">LinkedIn</a>
           </div>
 
           {/* Yasal Bilgiler / Legal Information - Compact */}
-          <div className="pt-2 text-[11px] font-mono text-[var(--ink-3)] space-y-0.5 border-t border-[var(--rule)]">
-            <span className="text-[11px] font-semibold text-[var(--ink)] block uppercase tracking-wider">
+          <div className="pt-2 text-xs font-mono text-[var(--ink-3)] space-y-0.5 border-t border-[var(--rule)]">
+            <span className="text-xs font-semibold text-[var(--ink)] block uppercase tracking-wider">
               {isTr ? 'Yasal Bilgiler' : 'Legal Information'}
             </span>
             <p className="text-[var(--ink)] font-medium">
@@ -59,50 +59,50 @@ const Footer = () => {
         <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
           {/* Column 1: Engineering & Incident */}
           <div>
-            <h3 className="text-[var(--ink-3)] font-semibold text-xs uppercase tracking-wider mb-3">
+            <h3 className="text-[var(--ink-3)] font-semibold text-xs uppercase tracking-wider mb-2">
               {isTr ? 'Mühendislik & Kriz' : 'Engineering & Incident'}
             </h3>
-            <ul className="space-y-1.5 text-xs">
-              <li><Link to="/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center">{t('nav-home')}</Link></li>
-              <li><Link to="/agency/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {t('nav-agency')}</Link></li>
-              <li><Link to="/crash-test/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {t('nav-crashtest')}</Link></li>
-              <li><Link to={isTr ? "/kurtarilabilirlik/" : "/salvageability/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center">{isTr ? 'Salvageability Index (Karar Matrisi)' : 'Salvageability Index'}</Link></li>
-              <li><Link to={isTr ? "/post-mortem/" : "/post-mortems/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center">{isTr ? 'Incident Post-Mortem & RCA' : 'Incident Post-Mortems & RCA'}</Link></li>
-              <li><Link to={isTr ? "/triyaj/" : "/triage/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center gap-1.5"><Terminal className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'Kriz Triyaj Simülatörü' : 'Emergency Triage Simulator'}</Link></li>
-              <li><Link to="/sos/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center">{isTr ? 'Acil Teknik Destek' : 'Emergency Support'}</Link></li>
+            <ul className="space-y-1 text-xs">
+              <li><Link to="/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{t('nav-home')}</Link></li>
+              <li><Link to="/agency/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {t('nav-agency')}</Link></li>
+              <li><Link to="/crash-test/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {t('nav-crashtest')}</Link></li>
+              <li><Link to={isTr ? "/kurtarilabilirlik/" : "/salvageability/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{isTr ? 'Salvageability Index (Karar Matrisi)' : 'Salvageability Index'}</Link></li>
+              <li><Link to={isTr ? "/post-mortem/" : "/post-mortems/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{isTr ? 'Incident Post-Mortem & RCA' : 'Incident Post-Mortems & RCA'}</Link></li>
+              <li><Link to={isTr ? "/triyaj/" : "/triage/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><Terminal className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'Kriz Triyaj Simülatörü' : 'Emergency Triage Simulator'}</Link></li>
+              <li><Link to="/sos/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{isTr ? 'Acil Teknik Destek' : 'Emergency Support'}</Link></li>
             </ul>
           </div>
 
           {/* Column 2: Tools & Audit */}
           <div>
-            <h3 className="text-[var(--ink-3)] font-semibold text-xs uppercase tracking-wider mb-3">
+            <h3 className="text-[var(--ink-3)] font-semibold text-xs uppercase tracking-wider mb-2">
               {isTr ? 'Araçlar & Denetim' : 'Tools & Audit'}
             </h3>
-            <ul className="space-y-1.5 text-xs">
-              <li><Link to="/sla/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'Şeffaf Mühendislik SLA' : 'Engineering SLA Matrix'}</Link></li>
-              <li><Link to={isTr ? "/teknoloji-uyumluluk/" : "/tech-matrix/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center gap-1.5"><Layers className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'Teknoloji & Kurtarma Matrisi' : 'Tech Compatibility Matrix'}</Link></li>
-              <li><Link to={isTr ? "/hasar-tespiti/" : "/outage-simulator/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center gap-1.5"><AlertTriangle className="w-3.5 h-3.5 text-[var(--sev-critical)] flex-shrink-0" /> {isTr ? 'Gelişmiş Hasar Simülatörü' : 'Outage Damage Simulator'}</Link></li>
-              <li><Link to="/radar/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center gap-1.5"><Activity className="w-3.5 h-3.5 text-[var(--sev-ok)] flex-shrink-0" /> {isTr ? 'SWAT Durum Radarı' : 'Live Status Radar'}</Link></li>
-              <li><Link to={isTr ? "/kod-sagligi/" : "/codebase-health/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'Kod Sağlığı & Borç Denetimi' : 'Codebase Health Audit'}</Link></li>
-              <li><Link to={isTr ? "/kurtarma-maliyeti/" : "/rescue-roi/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-[var(--sev-ok)] flex-shrink-0" /> {isTr ? 'Kurtarma vs Yeniden Yazım ROI' : 'Rescue vs Rebuild ROI'}</Link></li>
-              <li><a href="/#faq" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center">{isTr ? 'Sıkça Sorulan Sorular (SSS)' : 'FAQ'}</a></li>
+            <ul className="space-y-1 text-xs">
+              <li><Link to="/sla/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'Şeffaf Mühendislik SLA' : 'Engineering SLA Matrix'}</Link></li>
+              <li><Link to={isTr ? "/teknoloji-uyumluluk/" : "/tech-matrix/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><Layers className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'Teknoloji & Kurtarma Matrisi' : 'Tech Compatibility Matrix'}</Link></li>
+              <li><Link to={isTr ? "/hasar-tespiti/" : "/outage-simulator/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><AlertTriangle className="w-3.5 h-3.5 text-[var(--sev-critical)] flex-shrink-0" /> {isTr ? 'Gelişmiş Hasar Simülatörü' : 'Outage Damage Simulator'}</Link></li>
+              <li><Link to="/radar/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><Activity className="w-3.5 h-3.5 text-[var(--sev-ok)] flex-shrink-0" /> {isTr ? 'SWAT Durum Radarı' : 'Live Status Radar'}</Link></li>
+              <li><Link to={isTr ? "/kod-sagligi/" : "/codebase-health/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'Kod Sağlığı & Borç Denetimi' : 'Codebase Health Audit'}</Link></li>
+              <li><Link to={isTr ? "/kurtarma-maliyeti/" : "/rescue-roi/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-[var(--sev-ok)] flex-shrink-0" /> {isTr ? 'Kurtarma vs Yeniden Yazım ROI' : 'Rescue vs Rebuild ROI'}</Link></li>
+              <li><a href="/#faq" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{isTr ? 'Sıkça Sorulan Sorular (SSS)' : 'FAQ'}</a></li>
             </ul>
           </div>
 
           {/* Column 3: Corporate & Legal */}
           <div>
-            <h3 className="text-[var(--ink-3)] font-semibold text-xs uppercase tracking-wider mb-3">
+            <h3 className="text-[var(--ink-3)] font-semibold text-xs uppercase tracking-wider mb-2">
               {isTr ? 'Kurumsal & Yasal' : 'Corporate & Legal'}
             </h3>
-            <ul className="space-y-1.5 text-xs">
-              <li><Link to="/about/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center">{t('nav-about')}</Link></li>
-              <li><Link to={isTr ? "/hikayemiz/" : "/story/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center">{isTr ? 'Marka Hikâyemiz' : 'Our Story'}</Link></li>
-              <li><a href="/#contact" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center">{t('nav-contact')}</a></li>
-              <li><Link to={isTr ? "/gizlilik-sozlesmesi/" : "/mutual-nda/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center gap-1.5"><FileText className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'İnteraktif Gizlilik Sözleşmesi (NDA)' : 'Interactive Mutual NDA'}</Link></li>
+            <ul className="space-y-1 text-xs">
+              <li><Link to="/about/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{t('nav-about')}</Link></li>
+              <li><Link to={isTr ? "/hikayemiz/" : "/story/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{isTr ? 'Marka Hikâyemiz' : 'Our Story'}</Link></li>
+              <li><a href="/#contact" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{t('nav-contact')}</a></li>
+              <li><Link to={isTr ? "/gizlilik-sozlesmesi/" : "/mutual-nda/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><FileText className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'İnteraktif Gizlilik Sözleşmesi (NDA)' : 'Interactive Mutual NDA'}</Link></li>
               <li>
                 <Link 
                   to="/privacy/" 
-                  className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center gap-1 text-[var(--ink-3)]"
+                  className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1 text-[var(--ink-3)]"
                 >
                   {isTr ? 'KVKK & Gizlilik Politikası' : 'Privacy Policy & KVKK'}
                 </Link>
@@ -110,7 +110,7 @@ const Footer = () => {
               <li>
                 <Link 
                   to="/nda/" 
-                  className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[36px] sm:min-h-0 flex items-center gap-1 text-[var(--ink-3)]"
+                  className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1 text-[var(--ink-3)]"
                 >
                   {isTr ? 'Gizlilik ve Çalışma Sözleşmesi' : 'Confidentiality Agreement (NDA)'}
                 </Link>
@@ -142,22 +142,22 @@ const Footer = () => {
               <button
                 type="button"
                 onClick={() => window.dispatchEvent(new CustomEvent('open-sos-modal'))}
-                className="text-[var(--accent)] font-mono font-medium hover:underline focus:outline-none rounded cursor-pointer transition-colors text-right"
+                className="text-[var(--accent)] font-mono font-medium hover:underline focus:outline-none rounded cursor-pointer transition-colors text-right min-h-[44px] flex items-center"
               >
                 {isTr ? 'Kriz Masasına Teklif İletin →' : 'Inquire with Crisis Desk →'}
               </button>
             </div>
           </div>
-          <p className="text-[11px] text-[var(--ink-3)] leading-relaxed">
+          <p className="text-xs text-[var(--ink-3)] leading-relaxed">
             {isTr ? 'Bedel işin kapsamına göre, piyasa koşullarıyla uyumlu şekilde belirlenir.' : 'Pricing is set according to the scope of the work, aligned with prevailing market rates.'}
           </p>
-          <div className="pt-1.5 text-xs space-y-1 font-mono text-[var(--ink-2)]">
-            <div className="flex items-center gap-2">
+          <div className="pt-1 text-xs space-y-1 font-mono text-[var(--ink-2)]">
+            <div className="flex items-center gap-2 min-h-[44px]">
               <PhoneCall className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" />
-              <a href="tel:+905343713573" className="hover:text-[var(--accent)] font-medium text-[var(--ink)]">+90 534 371 35 73</a>
-              <span className="text-[11px] text-[var(--ink-3)] font-mono">({isTr ? '09:00 – 24:00' : '09:00 – 24:00'})</span>
+              <a href="tel:+905343713573" className="hover:text-[var(--accent)] font-medium text-[var(--ink)] min-h-[44px] inline-flex items-center">+90 534 371 35 73</a>
+              <span className="text-xs text-[var(--ink-3)] font-mono">({isTr ? '09:00 – 24:00' : '09:00 – 24:00'})</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 min-h-[44px]">
               <Mail className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" />
               <span className="font-mono text-xs text-[var(--ink)] select-all">info@trendmasterakademi.com</span>
             </div>
@@ -172,7 +172,7 @@ const Footer = () => {
           © {new Date().getFullYear()} Trend Master Akademi Studio & Labs. {isTr ? 'Tüm hakları saklıdır.' : 'All rights reserved.'}
         </p>
         <div className="flex items-center gap-4 text-[var(--ink-2)]">
-          <span className="flex items-center gap-1.5">
+          <span className="flex items-center gap-1.5 min-h-[44px]">
             <span className={`w-2 h-2 rounded-full ${krizHattiAcik ? 'bg-[var(--sev-ok)]' : 'bg-[var(--sev-high)]'}`}></span>
             <span>
               {krizHattiAcik
@@ -182,7 +182,7 @@ const Footer = () => {
             </span>
           </span>
           <span>•</span>
-          <button onClick={() => setIsKVKKOpen(true)} className="hover:text-[var(--accent)] transition-colors cursor-pointer">
+          <button onClick={() => setIsKVKKOpen(true)} className="hover:text-[var(--accent)] transition-colors cursor-pointer min-h-[44px] inline-flex items-center">
             {isTr ? 'KVKK ve Gizlilik' : 'Privacy & Terms'}
           </button>
         </div>

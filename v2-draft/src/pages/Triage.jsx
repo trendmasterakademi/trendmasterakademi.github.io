@@ -82,7 +82,7 @@ Rapor Tarihi: ${new Date().toISOString()}`;
     <div className="min-h-screen pt-28 pb-20 px-4 sm:px-6 max-w-6xl mx-auto space-y-12 bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-white">
       {/* Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] font-mono text-xs">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] font-mono text-xs">
           <Activity className="w-3.5 h-3.5" />
           <span>{isTr ? 'CANLI KRİZ & ACİL TRİYAJ MASASI' : 'EMERGENCY TRIAGE & CRISIS DESK'}</span>
         </div>

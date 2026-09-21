@@ -136,7 +136,7 @@ const KesintiMaliyeti = () => {
         
         {/* Eyebrow & Header */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider">
             <Calculator className="w-4 h-4" /> {isTr ? 'FİNANSAL RİSK & ETKİ SİMÜLATÖRÜ' : 'FINANCIAL LOSS SIMULATOR'}
           </div>
 
@@ -336,7 +336,7 @@ const KesintiMaliyeti = () => {
                   <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
                   {isTr ? 'TAHMİNİ KAYIP ANALİZİ' : 'ESTIMATED LOSS BLUEPRINT'}
                 </span>
-                <span className="text-xs font-mono px-2 py-0.5 rounded-full bg-[var(--paper)] text-[var(--ink-muted)] border border-[var(--rule)]">
+                <span className="text-xs font-mono px-2 py-0.5 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--ink-muted)] border border-[var(--rule)]">
                   {durationHours} Saatlik Simülasyon
                 </span>
               </div>

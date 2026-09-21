@@ -75,7 +75,7 @@ const ArchitectureGraph = () => {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] text-xs font-mono font-medium uppercase tracking-wider mb-4">
             <Zap className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'GÖRSEL MİMARİ & VERİ AKIŞI' : 'VISUAL ARCHITECTURE & DATA FLOW'}
           </div>
-          <h2 className="font-serif text-[26px] sm:text-[30px] font-semibold text-[var(--ink)] tracking-tight leading-tight">
+          <h2 className="font-serif text-lg sm:text-xl font-semibold text-[var(--ink)] tracking-tight leading-tight">
             <span className="block">
               {isTr ? 'Kriz Geçirmez, Yüksek Hızlı' : 'Resilient, High-Speed'}
             </span>
@@ -110,7 +110,7 @@ const ArchitectureGraph = () => {
                       <div className="w-10 h-10 rounded-[var(--r-control)] flex items-center justify-center border border-[var(--rule)] bg-[var(--paper)] text-[var(--ink)]">
                         <Icon className="w-5 h-5" />
                       </div>
-                      <span className="text-[12px] font-mono font-medium text-[var(--ink-3)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
+                      <span className="text-xs font-mono font-medium text-[var(--ink-3)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
                         {node.badge}
                       </span>
                     </div>
@@ -147,7 +147,7 @@ const ArchitectureGraph = () => {
             <h4 className="text-xl sm:text-2xl font-semibold text-[var(--ink)] font-serif">
               {nodes[selectedNode].title[isTr ? 'tr' : 'en']}
             </h4>
-            <p className="text-sm text-[var(--ink-2)] max-w-2xl leading-relaxed">
+            <p className="text-sm text-[var(--ink-2)] max-w-[34rem] leading-relaxed">
               {nodes[selectedNode].desc[isTr ? 'tr' : 'en']}
             </p>
           </div>

@@ -89,6 +89,8 @@ const Navbar = () => {
   return (
     <>
       <header className={`fixed w-full max-w-[100vw] overflow-x-clip top-0 left-0 z-50 transition-all duration-300 ${
+        isOpen ? '' : 'max-h-[56px] sm:max-h-[64px]'
+      } ${
         scrolled 
           ? 'bg-[var(--surface)] border-b border-[var(--rule)] shadow-navbar' 
           : 'bg-[var(--surface)] border-b border-[var(--rule)]'
@@ -96,12 +98,12 @@ const Navbar = () => {
         {/* TMA Agency Response Kit & Crash Test Scrolling Banner */}
         <KitBanner />
 
-        <div className="h-8 sm:h-10 px-3 sm:px-5 lg:px-8 max-w-full flex items-center">
+        <div className="h-[31px] sm:h-[39px] px-3 sm:px-5 lg:px-8 max-w-full flex items-center">
           <div className="w-full max-w-7xl 2xl:max-w-[1600px] mx-auto flex justify-between items-center gap-2 sm:gap-4">
           
           {/* Brand Logo & Active Response Desk Badge */}
           <div className="flex items-center gap-2 sm:gap-3 2xl:gap-4 flex-shrink-0">
-            <Link to="/" className="flex items-center group flex-shrink-0" aria-label="Trend Master Akademi Ana Sayfa">
+            <Link to="/" className="flex items-center group flex-shrink-0 min-h-[44px]" aria-label="Trend Master Akademi Ana Sayfa">
               <img 
                 src="/logo-light.svg" 
                 alt="Trend Master Akademi" 
@@ -253,7 +255,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsSOSOpen(true)}
-              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-white text-xs sm:text-sm font-medium flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-sm flex-shrink-0"
+              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-white text-xs sm:text-sm font-medium flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-sm flex-shrink-0 min-h-[44px]"
               title={isTr ? 'Acil Kriz ve Incident Müdahalesi (SOS)' : 'Emergency Technical Incident (SOS)'}
             >
               <AlertTriangle className="w-3.5 h-3.5 text-white flex-shrink-0" />
@@ -265,7 +267,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={toggleLang}
-              className="px-2.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] text-xs font-mono font-medium flex items-center gap-1 transition-colors cursor-pointer flex-shrink-0"
+              className="px-2.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] text-xs font-mono font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer flex-shrink-0 min-h-[44px] min-w-[44px]"
               title={isTr ? 'Switch to English' : 'Türkçe Dil Seçeneği'}
             >
               <Globe className="w-3.5 h-3.5 text-[var(--ink-3)] flex-shrink-0" />
@@ -276,7 +278,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-1.5 sm:p-2 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors cursor-pointer min-w-[34px] min-h-[34px] flex items-center justify-center flex-shrink-0"
+              className="lg:hidden p-1.5 sm:p-2 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors cursor-pointer min-w-[44px] min-h-[44px] flex items-center justify-center flex-shrink-0"
               aria-label="Toggle menu"
             >
               {isOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}

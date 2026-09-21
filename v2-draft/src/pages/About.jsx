@@ -45,7 +45,7 @@ const About = () => {
 
         {/* Header section */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200 text-[var(--accent)] text-xs font-mono font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-red-50 border border-red-200 text-[var(--accent)] text-xs font-mono font-semibold uppercase tracking-wider">
             <Cpu className="w-4 h-4" /> {isTr ? 'MÜHENDİSLİK STANDARTLARIMIZ' : 'ENGINEERING STANDARDS'}
           </div>
           
@@ -206,7 +206,7 @@ const About = () => {
             <h3 className="text-2xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Ajansınız İçin Mühendislik Masası Oluşturun' : 'Establish Your Engineering Backline Today'}
             </h3>
-            <p className="text-[var(--ink-secondary)] text-sm max-w-xl">
+            <p className="text-[var(--ink-secondary)] text-sm max-w-[34rem]">
               {isTr 
                 ? 'Kriz yaşayan projeleriniz, tıkanan API entegrasyonlarınız veya ekibinizin kapasitesini aşan teknik işler için resmi NDA ile çalışmaya başlayın.' 
                 : 'Deploy reliable senior engineering power for your agency projects under mutual NDA.'}
@@ -218,14 +218,14 @@ const About = () => {
               target="_blank"
               rel="noreferrer"
               onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'about_cta' })}
-              className="btn-primary w-full sm:w-auto px-5 sm:px-6 py-3.5 sm:py-4 flex items-center justify-center gap-2 text-center"
+              className="btn-primary w-full sm:w-auto flex items-center justify-center gap-2"
             >
               <Calendar className="w-4 h-4 flex-shrink-0" />
               <span>{isTr ? 'Takvimden 30 Dakikalık Görüşme Seç' : 'Schedule a 30-Minute Call'}</span>
             </a>
             <Link
               to="/agency/"
-              className="btn-secondary w-full sm:w-auto px-5 sm:px-6 py-3.5 sm:py-4 flex items-center justify-center gap-2 text-center"
+              className="btn-secondary w-full sm:w-auto flex items-center justify-center gap-2"
             >
               <span>{isTr ? 'Teknik Müdahale Modelini İncele' : 'Review Technical Operations Model'}</span>
               <ArrowRight className="w-4 h-4 flex-shrink-0" />

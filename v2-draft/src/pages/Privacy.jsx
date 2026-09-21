@@ -39,7 +39,7 @@ const Privacy = () => {
           <ArrowLeft className="w-4 h-4" /> {isTr ? '← Ana Sayfaya Dön' : '← Back to Home'}
         </Link>
         
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider mb-4">
           <ShieldCheck className="w-4 h-4" /> {isTr ? 'RESMİ BİLDİRİM & GİZLİLİK' : 'LEGAL & PRIVACY'}
         </div>
         

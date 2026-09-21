@@ -75,7 +75,7 @@ const FloatingActions = () => {
               window.trackEvent('whatsapp_clicked', { source: 'floating_widget' });
             }
           }}
-          className="w-12 h-12 sm:w-13 sm:h-13 rounded-[var(--r-control)] bg-[#25D366] text-white shadow-md flex items-center justify-center transition-all duration-200 hover:opacity-95 cursor-pointer group"
+          className="pointer-events-auto w-12 h-12 sm:w-13 sm:h-13 rounded-[var(--r-control)] bg-[#25D366] text-white shadow-md flex items-center justify-center transition-all duration-200 hover:opacity-95 cursor-pointer group"
           aria-label="WhatsApp Acil Destek"
         >
           {/* Custom Modern WhatsApp SVG */}
