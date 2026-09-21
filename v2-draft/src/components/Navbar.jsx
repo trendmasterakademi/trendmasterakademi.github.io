@@ -96,11 +96,11 @@ const Navbar = () => {
         {/* TMA Agency Response Kit & Crash Test Scrolling Banner */}
         <KitBanner />
 
-        <div className="py-2 sm:py-3 px-3 sm:px-4 lg:px-6 2xl:px-8 max-w-full overflow-x-clip">
-          <div className="max-w-7xl mx-auto flex justify-between items-center w-full gap-2 sm:gap-4">
+        <div className="py-2 sm:py-2.5 px-3 sm:px-5 lg:px-8 max-w-full">
+          <div className="w-full max-w-7xl 2xl:max-w-[1600px] mx-auto flex justify-between items-center gap-2 sm:gap-4">
           
           {/* Brand Logo & Active Response Desk Badge */}
-          <div className="flex items-center gap-2 sm:gap-3 2xl:gap-4 flex-shrink-0 min-w-0">
+          <div className="flex items-center gap-2 sm:gap-3 2xl:gap-4 flex-shrink-0">
             <Link to="/" className="flex items-center group flex-shrink-0" aria-label="Trend Master Akademi Ana Sayfa">
               <img 
                 src="/logo-dark.png" 
@@ -115,7 +115,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsSOSOpen(true)}
-              className={`hidden md:inline-flex items-center gap-1.5 2xl:gap-2 px-2.5 2xl:px-3 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 ${
+              className={`hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 ${
                 krizHattiAcik
                   ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 shadow-sm shadow-emerald-500/10'
                   : 'bg-amber-500/10 border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 shadow-sm shadow-amber-500/10'
@@ -125,13 +125,13 @@ const Navbar = () => {
               <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
                 krizHattiAcik ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'
               }`}></span>
-              <span className="hidden 2xl:inline">
+              <span className="hidden xl:inline">
                 {krizHattiAcik
                   ? (isTr ? "Canlı Kriz Masası" : "Live SWAT Desk")
-                  : (isTr ? "Kriz Masası · 09:00'da" : "Crisis Desk · from 09:00")
+                  : (isTr ? "Kriz Masası · 09:00" : "Crisis Desk · 09:00")
                 }
               </span>
-              <span className="2xl:hidden">
+              <span className="xl:hidden">
                 {krizHattiAcik
                   ? (isTr ? "Canlı SWAT" : "Live SWAT")
                   : (isTr ? "SWAT · 09:00" : "SWAT · 09:00")
@@ -141,88 +141,87 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden xl:flex items-center gap-0.5 2xl:gap-1.5 min-w-0 flex-shrink">
+          <nav className="hidden xl:flex items-center gap-1 2xl:gap-1.5 flex-shrink-0">
             <Link
               to="/agency/"
-              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                 path.startsWith('/agency')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
+              title={isTr ? 'Kapasite & Altyapı' : 'Capacity & Infra'}
             >
-              <ShieldCheck className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 text-cyan-400 hidden 2xl:inline-flex flex-shrink-0" />
-              <span className="hidden 2xl:inline">{t('nav-agency')}</span>
-              <span className="2xl:hidden">{isTr ? 'Kapasite' : 'Agency'}</span>
+              {isTr ? 'Kapasite' : 'Capacity'}
             </Link>
 
             <Link
               to="/kit/"
-              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                 path.startsWith('/kit') || path.startsWith('/agency-kit')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
+              title={isTr ? 'TMA Agency Response Kit (Görsel Kılavuz)' : 'TMA Agency Response Kit (Visual Guide)'}
             >
-              <BookOpen className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 text-cyan-400 hidden 2xl:inline-flex flex-shrink-0" />
-              <span>Agency Kit</span>
+              Agency Kit
             </Link>
 
             <Link
               to="/crash-test/"
-              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                 path.startsWith('/crash-test')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
+              title={isTr ? 'Crash Test (60sn Risk Analizi)' : 'Crash Test (60s Risk Audit)'}
             >
-              <Zap className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 text-cyan-400 hidden 2xl:inline-flex flex-shrink-0" />
-              <span className="hidden 2xl:inline">{t('nav-crashtest')}</span>
-              <span className="2xl:hidden">Crash Test</span>
+              Crash Test
             </Link>
 
             <Link
               to={isTr ? "/devir-kontrolu/" : "/handover-audit/"}
-              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                 path.startsWith('/devir-kontrolu') || path.startsWith('/handover-audit')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
+              title={isTr ? 'Devir Kontrolü & Kod Tabanı Denetimi' : 'Handover Audit & Code Health'}
             >
-              <span className="hidden 2xl:inline">{isTr ? 'Devir Kontrolü' : 'Handover Audit'}</span>
-              <span className="2xl:hidden">{isTr ? 'Devir' : 'Handover'}</span>
+              {isTr ? 'Devir' : 'Handover'}
             </Link>
 
             <Link
               to={isTr ? "/teshis/" : "/diagnostic/"}
-              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                 path.startsWith('/teshis') || path.startsWith('/diagnostic')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
+              title={isTr ? 'Teşhis Kataloğu & Kriz Çözümleri' : 'Diagnostic Catalog & Incident Playbooks'}
             >
-              <span className="hidden 2xl:inline">{isTr ? 'Teşhis Kataloğu' : 'Diagnostic Catalog'}</span>
-              <span className="2xl:hidden">{isTr ? 'Teşhis' : 'Diagnostic'}</span>
+              {isTr ? 'Teşhis' : 'Diagnostic'}
             </Link>
 
             <Link
               to={isTr ? "/kesinti-maliyeti/" : "/downtime-calc/"}
-              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                 path.startsWith('/kesinti-maliyeti') || path.startsWith('/downtime-calc') || path.startsWith('/downtime-cost')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
+              title={isTr ? 'Kesinti Maliyeti Hesaplayıcı' : 'Downtime Cost Calculator'}
             >
-              <span className="hidden 2xl:inline">{isTr ? 'Kesinti Maliyeti' : 'Downtime Calc'}</span>
-              <span className="2xl:hidden">{isTr ? 'Maliyet' : 'Downtime'}</span>
+              {isTr ? 'Maliyet' : 'Downtime'}
             </Link>
 
             <Link
               to="/about/"
-              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                 path.startsWith('/about')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
+              title={t('nav-about')}
             >
               {t('nav-about')}
             </Link>
@@ -231,18 +230,20 @@ const Navbar = () => {
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, 'contact')}
-                className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+                className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                   activeSection === 'contact'
                     ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                     : 'text-slate-300 hover:text-white hover:bg-white/5'
                 }`}
+                title={t('nav-contact')}
               >
                 {t('nav-contact')}
               </a>
             ) : (
               <Link
                 to="/#contact"
-                className="px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap"
+                className="px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap"
+                title={t('nav-contact')}
               >
                 {t('nav-contact')}
               </Link>
@@ -250,13 +251,13 @@ const Navbar = () => {
           </nav>
 
           {/* Action CTAs: Emergency SOS Button & Language Switcher & Hamburger */}
-          <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0">
             
-            {/* SOS Emergency Button - Compact on Mobile */}
+            {/* SOS Emergency Button */}
             <button
               type="button"
               onClick={() => setIsSOSOpen(true)}
-              className="px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/40 text-red-400 hover:text-red-300 text-[11px] sm:text-sm font-bold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer whitespace-nowrap shadow-sm shadow-red-500/20 flex-shrink-0"
+              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/40 text-red-400 hover:text-red-300 text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap shadow-sm shadow-red-500/20 flex-shrink-0"
               title={isTr ? 'Acil Kriz ve Incident Müdahalesi (SOS)' : 'Emergency Technical Incident (SOS)'}
             >
               <AlertTriangle className="w-3.5 h-3.5 text-red-400 animate-bounce flex-shrink-0" />
