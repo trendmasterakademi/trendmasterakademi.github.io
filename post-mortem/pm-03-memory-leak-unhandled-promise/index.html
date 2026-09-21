@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
-    <meta name="theme-color" content="#080b11" />
+    <meta name="theme-color" content="#F5F6F7" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     
@@ -57,10 +57,10 @@
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
 
-    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
     
     <!-- GitHub Pages SPA Redirect Handling -->
     <script type="text/javascript">
@@ -151,19 +151,19 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CscrmgB1.js"></script>
+    <script type="module" crossorigin src="/assets/index-BCXhSv6F.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BLOyUBBX.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BBSKylVN.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-OgwtdHg2.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-UyoIMVfH.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DgKzotWK.css">
   </head>
-  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
     <div id="root">
-    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
-      <header class="mb-8 border-b border-white/10 pb-6">
-        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">PM-03 · Her 6 Saatte Bir Çöken Node.js API ve Gizli Event Listener Bellek Sızıntısı</h1>
-        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">PM-03 · Her 6 Saatte Bir Çöken Node.js API ve Gizli Event Listener Bellek Sızıntısı</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">Ana Sayfa</a>
           <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
           <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
@@ -186,71 +186,71 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">PM-03 // Bellek & Performans</h2>
-        <p class="text-slate-300 text-lg leading-relaxed">Bir SaaS girişiminin ana backend API sunucusu her 5.5-6 saatte bir bellek tüketimini 1.4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu.</p>
+        <h2 class="text-2xl font-bold text-[var(--ink)]">PM-03 // Bellek & Performans</h2>
+        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Bir SaaS girişiminin ana backend API sunucusu her 5.5-6 saatte bir bellek tüketimini 1.4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu.</p>
         
-    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
-      <div class="p-4 rounded-xl bg-white/5 border border-white/10 font-mono text-xs text-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div><span class="text-slate-500 block">SEVERITY</span><strong class="text-amber-400">SEV-2 MAJOR</strong></div>
-        <div><span class="text-slate-500 block">KATEGORİ</span><strong class="text-white">Bellek &amp; Performans</strong></div>
-        <div><span class="text-slate-500 block">KESİNTİ SÜRESİ</span><strong class="text-emerald-400">3 hafta süren kronik arıza → 4 saatte kalıcı çözüm</strong></div>
-        <div><span class="text-slate-500 block">TARİH</span><strong class="text-cyan-300">2026-01-18</strong></div>
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-xs text-[var(--ink-muted)] grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div><span class="text-[var(--ink-subtle)] block">SEVERITY</span><strong class="text-amber-700">SEV-2 MAJOR</strong></div>
+        <div><span class="text-[var(--ink-subtle)] block">KATEGORİ</span><strong class="text-[var(--ink)]">Bellek &amp; Performans</strong></div>
+        <div><span class="text-[var(--ink-subtle)] block">KESİNTİ SÜRESİ</span><strong class="text-emerald-700">3 hafta süren kronik arıza → 4 saatte kalıcı çözüm</strong></div>
+        <div><span class="text-[var(--ink-subtle)] block">TARİH</span><strong class="text-[var(--accent)]">2026-01-18</strong></div>
       </div>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Olay Özeti</h2>
-        <p class="text-slate-300 leading-relaxed">Bir SaaS girişiminin ana backend API sunucusu her 5.5-6 saatte bir bellek tüketimini 1.4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Olay Özeti</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Bir SaaS girişiminin ana backend API sunucusu her 5.5-6 saatte bir bellek tüketimini 1.4 GB sınırına ulaştırarak OOM (Out Of Memory) hatasıyla çöküyordu. Ekip geçici çözüm olarak sunucuyu cron ile 4 saatte bir yeniden başlatıyordu.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Etki & Kayıp</h2>
-        <p class="text-slate-300 leading-relaxed">Günde 4 kez beklenmedik API çökmesi, PM2 yeniden başlatmaları sırasında kopan WebSocket bağlantıları, mobil uygulamalarda oturum düşmesi.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Etki & Kayıp</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">Günde 4 kez beklenmedik API çökmesi, PM2 yeniden başlatmaları sırasında kopan WebSocket bağlantıları, mobil uygulamalarda oturum düşmesi.</p>
       </section>
 
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-white">Kronolojik Olay Akışı</h2>
-        <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Kronolojik Olay Akışı</h2>
+        <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)]">
           
-            <li><span class="text-cyan-300 font-bold">T+00h</span> · <span class="text-white">Kronik Kriz Masaya Getirildi</span> — <span class="text-slate-300">Müşteri ekibi 3 haftadır çözülemeyen bellek sızıntısını TMA SWAT masasına iletti.</span></li>
-          
-          
-            <li><span class="text-cyan-300 font-bold">T+01h</span> · <span class="text-white">V8 Heap Snapshot Karşılaştırması</span> — <span class="text-slate-300">Sunucu ayağa kalktıktan hemen sonra (Baseline: 85MB) ve 3 saat sonra (Bloat: 740MB) iki heap snapshot alındı. Chrome DevTools ile diff incelendi.</span></li>
+            <li><span class="text-[var(--accent)] font-bold">T+00h</span> · <span class="text-[var(--ink)]">Kronik Kriz Masaya Getirildi</span> — <span class="text-[var(--ink-muted)]">Müşteri ekibi 3 haftadır çözülemeyen bellek sızıntısını TMA SWAT masasına iletti.</span></li>
           
           
-            <li><span class="text-cyan-300 font-bold">T+02h</span> · <span class="text-white">Kök Neden: Dinamik Event Listener</span> — <span class="text-slate-300">Her gelen HTTP isteği için `notificationService.on(&quot;event&quot;)` dinleyicisi kaydedildiği ve istek bittiğinde `removeListener` çağrılmadığı tespit edildi (240.000 birikmiş closure).</span></li>
+            <li><span class="text-[var(--accent)] font-bold">T+01h</span> · <span class="text-[var(--ink)]">V8 Heap Snapshot Karşılaştırması</span> — <span class="text-[var(--ink-muted)]">Sunucu ayağa kalktıktan hemen sonra (Baseline: 85MB) ve 3 saat sonra (Bloat: 740MB) iki heap snapshot alındı. Chrome DevTools ile diff incelendi.</span></li>
           
           
-            <li><span class="text-cyan-300 font-bold">T+03h</span> · <span class="text-white">Singleton Refactor &amp; Stream Drenajı</span> — <span class="text-slate-300">Event emitter dinamik middleware içinden çıkarılıp uygulama ömrü boyunca yaşayan statik singleton mimariye dönüştürüldü.</span></li>
+            <li><span class="text-[var(--accent)] font-bold">T+02h</span> · <span class="text-[var(--ink)]">Kök Neden: Dinamik Event Listener</span> — <span class="text-[var(--ink-muted)]">Her gelen HTTP isteği için `notificationService.on(&quot;event&quot;)` dinleyicisi kaydedildiği ve istek bittiğinde `removeListener` çağrılmadığı tespit edildi (240.000 birikmiş closure).</span></li>
           
           
-            <li><span class="text-cyan-300 font-bold">T+04h</span> · <span class="text-white">Doğrulama &amp; Bellek Düz Çizgide</span> — <span class="text-slate-300">Stres testinde 100.000 ardışık istek atıldı; bellek tüketimi 110MB seviyesinde sabitlendi, sızıntı sıfırlandı.</span></li>
+            <li><span class="text-[var(--accent)] font-bold">T+03h</span> · <span class="text-[var(--ink)]">Singleton Refactor &amp; Stream Drenajı</span> — <span class="text-[var(--ink-muted)]">Event emitter dinamik middleware içinden çıkarılıp uygulama ömrü boyunca yaşayan statik singleton mimariye dönüştürüldü.</span></li>
+          
+          
+            <li><span class="text-[var(--accent)] font-bold">T+04h</span> · <span class="text-[var(--ink)]">Doğrulama &amp; Bellek Düz Çizgide</span> — <span class="text-[var(--ink-muted)]">Stres testinde 100.000 ardışık istek atıldı; bellek tüketimi 110MB seviyesinde sabitlendi, sızıntı sıfırlandı.</span></li>
           
         </ul>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Kök Neden (5 Whys)</h2>
-        <p class="text-slate-300 leading-relaxed whitespace-pre-line">HTTP request handler fonksiyonu içinde her istek için global bir EventEmitter nesnesine yeni dinleyici (`.on()`) eklenmesi ve V8 garbage collector’ın closure içindeki tüm request/response nesnelerini bellekte rehin tutması.</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Kök Neden (5 Whys)</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">HTTP request handler fonksiyonu içinde her istek için global bir EventEmitter nesnesine yeni dinleyici (`.on()`) eklenmesi ve V8 garbage collector’ın closure içindeki tüm request/response nesnelerini bellekte rehin tutması.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Uygulanan SWAT Müdahalesi & Hotfix</h2>
-        <p class="text-slate-300 leading-relaxed whitespace-pre-line">1. Per-request event binding kaldırıldı, singleton publish/subscribe yapısına geçildi.
+        <h2 class="text-xl font-bold text-[var(--ink)]">Uygulanan SWAT Müdahalesi & Hotfix</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">1. Per-request event binding kaldırıldı, singleton publish/subscribe yapısına geçildi.
 2. Node.js `--max-old-space-size` parametresi optimize edildi.
 3. Acil durum bellek koruması için `process.on(&quot;warning&quot;)` dinleyicisi eklenerek potansiyel sızıntı alarmları kuruldu.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Kalıcı Önleyici Tedbirler</h2>
-        <p class="text-slate-300 leading-relaxed whitespace-pre-line">• CI/CD aşamasına otomatik bellek sızıntı testi (`clinic.js / autocannon`) entegre edildi.
+        <h2 class="text-xl font-bold text-[var(--ink)]">Kalıcı Önleyici Tedbirler</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">• CI/CD aşamasına otomatik bellek sızıntı testi (`clinic.js / autocannon`) entegre edildi.
 • Bellek kullanımının 30 dakika boyunca sürekli artması durumunda uyarı veren Datadog metrik alarmı yapılandırıldı.</p>
       </section>
     </section>
   
-        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
-          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
         </section>
       </main>
     </div>

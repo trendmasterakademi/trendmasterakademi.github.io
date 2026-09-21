@@ -42,33 +42,33 @@ const Sos = () => {
   };
 
   return (
-    <div className="pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto text-slate-200">
+    <div className="pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto text-[var(--ink)] font-sans">
       
       {/* Breadcrumb Navigation */}
       <div className="mb-8">
         <Link 
           to="/" 
-          className="inline-flex items-center gap-2 text-xs sm:text-sm text-cyan-400 hover:text-cyan-300 font-mono transition-colors mb-6"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--accent)] hover:underline font-mono transition-colors mb-6 min-h-[44px]"
         >
           <ArrowLeft className="w-4 h-4" /> {isTr ? '← Ana Sayfaya Dön' : '← Back to Home'}
         </Link>
-        <div className="flex items-center gap-2 text-xs font-mono text-slate-400 mb-3">
-          <Link to="/" className="hover:text-white transition-colors">{isTr ? 'Ana Sayfa' : 'Home'}</Link>
+        <div className="flex items-center gap-2 text-xs font-mono text-[var(--ink-muted)] mb-3">
+          <Link to="/" className="hover:text-[var(--ink)] transition-colors">{isTr ? 'Ana Sayfa' : 'Home'}</Link>
           <span>/</span>
-          <span className="text-red-400 font-semibold">{isTr ? 'Acil Teknik Destek' : 'Emergency Technical Support'}</span>
+          <span className="text-[var(--accent)] font-semibold">{isTr ? 'Acil Teknik Destek' : 'Emergency Technical Support'}</span>
         </div>
       </div>
 
       {/* Header & h1 */}
       <header className="space-y-4 mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-red-500/10 border border-red-500/30 text-red-400">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded text-xs font-mono bg-[var(--accent-soft)] border border-[var(--accent)] text-[var(--accent)] font-semibold">
           <AlertTriangle className="w-3.5 h-3.5" />
           <span>{isTr ? 'KRİZ MASASI // EMERGENCY DISPATCH' : 'CRISIS DESK // EMERGENCY DISPATCH'}</span>
         </div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold font-serif text-[var(--ink)] tracking-tight leading-tight">
           {isTr ? 'Acil Teknik Destek — Kriz Hattı' : 'Emergency Technical Support — Response Desk'}
         </h1>
-        <p className="text-sm sm:text-base text-slate-300 leading-relaxed max-w-3xl">
+        <p className="text-sm sm:text-base text-[var(--ink-muted)] leading-relaxed max-w-3xl">
           {isTr 
             ? 'Burası ajansların imdat butonu. Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa doğrudan buraya yazın. İlk teşhis ücretsizdir.'
             : 'If your agency’s live system is down, deadline is burning, or inherited codebase won’t start, reach out directly. Initial diagnosis is free.'}
@@ -76,13 +76,13 @@ const Sos = () => {
       </header>
 
       {/* Kriz Hattı Durum Şeridi */}
-      <div className={`p-4 rounded-2xl border text-xs sm:text-sm leading-relaxed flex items-center gap-3 mb-8 ${
+      <div className={`p-4 rounded border text-xs sm:text-sm leading-relaxed flex items-center gap-3 mb-8 ${
         krizHattiAcik 
-          ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' 
-          : 'bg-amber-500/10 border-amber-500/30 text-amber-300'
+          ? 'bg-emerald-50 border-emerald-300 text-emerald-900' 
+          : 'bg-amber-50 border-amber-300 text-amber-900'
       }`}>
         <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${
-          krizHattiAcik ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'
+          krizHattiAcik ? 'bg-emerald-600' : 'bg-amber-600'
         }`}></span>
         <span>
           {krizHattiAcik
@@ -101,7 +101,7 @@ const Sos = () => {
         <button
           type="button"
           onClick={handleOpenModal}
-          className="p-4 rounded-2xl bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-bold text-sm sm:text-base shadow-lg shadow-red-600/30 flex items-center justify-center gap-2.5 transition-all cursor-pointer min-h-[52px]"
+          className="p-4 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-sm sm:text-base shadow-sm flex items-center justify-center gap-2.5 transition-colors cursor-pointer min-h-[44px]"
         >
           <AlertTriangle className="w-4 h-4" />
           <span>{isTr ? 'Acil SOS Formunu Aç' : 'Open Emergency SOS Form'}</span>
@@ -111,7 +111,7 @@ const Sos = () => {
           href="https://wa.me/905343713573"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-4 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm sm:text-base shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2.5 transition-all min-h-[52px]"
+          className="p-4 rounded bg-[#1f7a4d] hover:bg-[#18633e] text-white font-semibold text-sm sm:text-base shadow-sm flex items-center justify-center gap-2.5 transition-colors min-h-[44px]"
         >
           <MessageSquare className="w-4 h-4" />
           <span>{isTr ? "WhatsApp'tan yaz" : 'Message on WhatsApp'}</span>
@@ -119,70 +119,70 @@ const Sos = () => {
 
         <a
           href="tel:+905343713573"
-          className="p-4 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-bold text-sm sm:text-base border border-white/10 flex items-center justify-center gap-2.5 transition-colors min-h-[52px]"
+          className="p-4 rounded bg-[var(--surface)] hover:bg-[var(--paper)] text-[var(--ink)] font-semibold text-sm sm:text-base border border-[var(--rule)] flex items-center justify-center gap-2.5 transition-colors min-h-[44px]"
         >
-          <PhoneCall className="w-4 h-4 text-emerald-400" />
+          <PhoneCall className="w-4 h-4 text-emerald-700" />
           <span>+90 534 371 35 73</span>
         </a>
       </div>
 
       {/* Section: Yazarken şunları ekleyin */}
-      <section className="p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10 space-y-5 mb-10">
-        <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+      <section className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-5 mb-10 shadow-sm">
+        <h2 className="text-lg sm:text-xl font-semibold font-serif text-[var(--ink)] flex items-center gap-2">
           <span>{isTr ? 'Yazarken şunları ekleyin' : 'What to include when reaching out'}</span>
         </h2>
-        <ol className="space-y-3.5 text-sm sm:text-base text-slate-300">
+        <ol className="space-y-3.5 text-sm sm:text-base text-[var(--ink)]">
           <li className="flex items-start gap-3">
-            <span className="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">1</span>
+            <span className="w-6 h-6 rounded bg-[var(--accent-soft)] text-[var(--accent)] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-semibold">1</span>
             <span>{isTr ? 'Ajans adı ve size ulaşılacak numara' : 'Agency name and your direct contact number'}</span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">2</span>
+            <span className="w-6 h-6 rounded bg-[var(--accent-soft)] text-[var(--accent)] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-semibold">2</span>
             <span>{isTr ? 'Ne oldu: hata ekranı, hata satırı ya da sistemin davranışı' : 'What happened: error screen, error line, or unexpected system behavior'}</span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">3</span>
+            <span className="w-6 h-6 rounded bg-[var(--accent-soft)] text-[var(--accent)] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-semibold">3</span>
             <span>{isTr ? 'Ne zaman başladı ve o sırada ne değişti (yayın, güncelleme, ödeme sağlayıcı)' : 'When it started and what changed at that time (deploy, update, payment gateway)'}</span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-400 font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-bold">4</span>
+            <span className="w-6 h-6 rounded bg-[var(--accent-soft)] text-[var(--accent)] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-semibold">4</span>
             <span>{isTr ? 'Erişim var mı: sunucu, repo, panel — yoksa da yazın, teşhis için şart değil' : 'Access status: server, repo, dashboard — reach out even if unavailable, not required for initial diagnosis'}</span>
           </li>
         </ol>
-        <div className="pt-4 border-t border-white/10 flex items-center gap-2 text-xs sm:text-sm text-slate-400 italic">
-          <ShieldCheck className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+        <div className="pt-4 border-t border-[var(--rule)] flex items-center gap-2 text-xs sm:text-sm text-[var(--ink-muted)] italic">
+          <ShieldCheck className="w-4 h-4 text-emerald-700 flex-shrink-0" />
           <span>{isTr ? 'İlk teşhis için şifre ya da repo erişimi istemiyoruz.' : 'We do not require passwords or repository access for the initial diagnosis.'}</span>
         </div>
       </section>
 
       {/* Section: Aciliyet yoksa */}
-      <section className="p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10 space-y-4">
-        <h2 className="text-lg sm:text-xl font-bold text-white">
+      <section className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-4 shadow-sm">
+        <h2 className="text-lg sm:text-xl font-semibold font-serif text-[var(--ink)]">
           {isTr ? 'Aciliyet yoksa' : 'If not an active emergency'}
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
           <Link
             to="/crash-test/"
-            className="p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all flex items-center justify-between gap-3 group"
+            className="p-4 rounded bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] transition-colors flex items-center justify-between gap-3 group min-h-[44px]"
           >
-            <span className="text-xs sm:text-sm text-slate-200 group-hover:text-cyan-300 transition-colors">
+            <span className="text-xs sm:text-sm text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
               {isTr 
                 ? '60 saniyelik Agency Crash Test ile durumu kendiniz teşhis edin' 
                 : 'Diagnose the situation yourself with the 60-second Agency Crash Test'}
             </span>
-            <ArrowRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+            <ArrowRight className="w-4 h-4 text-[var(--accent)] group-hover:translate-x-1 transition-transform flex-shrink-0" />
           </Link>
 
           <Link
             to="/teshis/"
-            className="p-4 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all flex items-center justify-between gap-3 group"
+            className="p-4 rounded bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] transition-colors flex items-center justify-between gap-3 group min-h-[44px]"
           >
-            <span className="text-xs sm:text-sm text-slate-200 group-hover:text-cyan-300 transition-colors">
+            <span className="text-xs sm:text-sm text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
               {isTr 
                 ? '20 arızanın belgelenmiş teşhis kataloğu' 
                 : 'Documented diagnosis catalog for 20 failure patterns'}
             </span>
-            <ArrowRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+            <ArrowRight className="w-4 h-4 text-[var(--accent)] group-hover:translate-x-1 transition-transform flex-shrink-0" />
           </Link>
         </div>
       </section>

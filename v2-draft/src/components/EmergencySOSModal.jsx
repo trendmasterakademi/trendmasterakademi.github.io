@@ -132,22 +132,22 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 
   return (
     <React.Fragment>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md overflow-y-auto">
+      <div className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/60 overflow-y-auto">
         <div
           ref={modalRef}
           role="dialog"
           aria-modal="true"
           aria-labelledby="sos-modal-basligi"
           tabIndex={-1}
-          className="w-full max-w-xl max-h-[92vh] flex flex-col bg-[#0d121d] border border-red-500/40 rounded-2xl sm:rounded-3xl shadow-[0_0_50px_rgba(239,68,68,0.25)] relative text-slate-100 my-auto overflow-hidden outline-none"
+          className="w-full max-w-xl max-h-[92vh] flex flex-col bg-[var(--surface)] border border-[var(--rule)] rounded-2xl shadow-2xl relative text-[var(--ink)] my-auto overflow-hidden outline-none"
         >
-          {/* Top glow line */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-yellow-500 to-red-500 animate-pulse z-10"></div>
+          {/* Top accent line */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-[var(--accent)] z-10"></div>
 
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 sm:p-2.5 rounded-full bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors cursor-pointer z-20"
+            className="absolute top-4 right-4 sm:top-5 sm:right-5 p-2 rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink-secondary)] hover:text-[var(--ink)] transition-colors cursor-pointer z-20"
             aria-label={isTr ? 'Kapat' : 'Close'}
           >
             <X className="w-5 h-5" />
@@ -157,36 +157,36 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
           <div className="overflow-y-auto p-5 sm:p-7 space-y-4">
             {/* Header */}
             <div className="flex items-center gap-3 pr-8 mb-2">
-              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-red-500/20 border border-red-500/40 flex items-center justify-center text-red-400 flex-shrink-0">
-                <AlertTriangle className="w-5 h-5 animate-bounce" />
+              <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-red-50 border border-red-200 flex items-center justify-center text-[var(--accent)] flex-shrink-0">
+                <AlertTriangle className="w-5 h-5" />
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-ping"></span>
-                  <span className="text-[10px] sm:text-xs font-mono font-bold tracking-widest text-red-400 uppercase">
+                  <span className="inline-block w-2 h-2 rounded-full bg-[var(--accent)]"></span>
+                  <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase">
                     TMA Response Desk // {isTr ? 'Kriz Masası' : 'Crisis Desk'}
                   </span>
                 </div>
-                <h3 id="sos-modal-basligi" className="text-lg sm:text-xl font-black text-white leading-tight">
+                <h3 id="sos-modal-basligi" className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-tight">
                   {isTr ? 'Acil Teknik Müdahale & İmdat Butonu' : 'Emergency Technical Intervention & SOS'}
                 </h3>
               </div>
             </div>
 
-            <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed mb-3">
+            <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed mb-3">
               {isTr 
                 ? 'Teslim tarihi sıkışan, geliştiricisi ayrılan veya canlıda kilitlenen projeler için doğrudan kıdemli mühendislik masamız devreye girer.' 
                 : 'Direct senior engineering dispatch for locked codebases, abandoned repos, or mission-critical launch deadlines.'}
             </p>
 
             {/* Durum Şeridi */}
-            <div className={`p-2.5 sm:p-3 rounded-xl border text-xs leading-relaxed flex items-center gap-2 mb-2 ${
+            <div className={`p-2.5 sm:p-3 rounded-lg border text-xs leading-relaxed flex items-center gap-2 mb-2 ${
               krizHattiAcik 
-                ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' 
-                : 'bg-amber-500/10 border-amber-500/30 text-amber-300'
+                ? 'bg-emerald-50 border-emerald-200 text-emerald-800' 
+                : 'bg-amber-50 border-amber-200 text-amber-800'
             }`}>
               <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                krizHattiAcik ? 'bg-emerald-400' : 'bg-amber-400'
+                krizHattiAcik ? 'bg-emerald-600' : 'bg-amber-600'
               }`}></span>
               <span>
                 {krizHattiAcik
@@ -202,13 +202,13 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 
           {submitStatus === 'success' ? (
             <div className="py-8 text-center flex flex-col items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500 flex items-center justify-center text-emerald-400">
+              <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-300 flex items-center justify-center text-emerald-600">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h4 className="text-xl font-bold text-white">
+              <h4 className="text-xl font-serif font-semibold text-[var(--ink)]">
                 {isTr ? 'Kriz Bildirimi Kaydedildi & İletildi!' : 'Crisis Ticket Saved & Dispatched!'}
               </h4>
-              <p className="text-sm text-slate-300 max-w-md">
+              <p className="text-sm text-[var(--ink-secondary)] max-w-md">
                 {isTr ? 'Bildiriminiz kriz masamıza kaydedildi ve WhatsApp üzerinden kıdemli mühendislik masamıza aktarıldı.' : 'Your ticket is logged and forwarded directly to our senior engineering desk.'}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
@@ -217,7 +217,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'sos_success_screen' })}
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-xs sm:text-sm flex items-center gap-2"
+                  className="px-6 py-3 rounded-lg bg-[#25D366] text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-sm"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>{isTr ? 'WhatsApp Mesajını Aç' : 'Open WhatsApp'}</span>
@@ -225,7 +225,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                 <button
                   type="button"
                   onClick={onClose}
-                  className="px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold cursor-pointer"
+                  className="px-5 py-3 rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink)] text-xs font-semibold cursor-pointer border border-[var(--rule)]"
                 >
                   {isTr ? 'Pencereyi Kapat' : 'Close Window'}
                 </button>
@@ -233,13 +233,13 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
             </div>
           ) : submitStatus === 'error' ? (
             <div className="py-8 text-center flex flex-col items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-amber-500/20 border border-amber-500 flex items-center justify-center text-amber-400">
+              <div className="w-16 h-16 rounded-full bg-amber-50 border border-amber-300 flex items-center justify-center text-amber-600">
                 <AlertTriangle className="w-8 h-8" />
               </div>
-              <h4 className="text-xl font-bold text-white">
+              <h4 className="text-xl font-serif font-semibold text-[var(--ink)]">
                 {isTr ? 'Ağ Kesintisi Nedeniyle Otomatik İletilemedi' : 'Network Interruption During Dispatch'}
               </h4>
-              <p className="text-sm text-amber-200 max-w-md">
+              <p className="text-sm text-amber-900 max-w-md">
                 {isTr 
                   ? 'Kriz bilgileriniz hazırlandı. Aşağıdaki butona basarak doğrudan WhatsApp üzerinden kriz masamıza anında iletebilirsiniz:' 
                   : 'Your crisis scope is ready. Dispatch directly via WhatsApp below:'}
@@ -250,16 +250,16 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'sos_error_fallback' })}
-                  className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/25 animate-pulse"
+                  className="px-7 py-3.5 rounded-lg bg-[#25D366] text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-sm"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>{isTr ? 'WhatsApp ile Anında Gönder (Tek Tıkla)' : 'Send via WhatsApp (One-Click)'}</span>
                 </a>
                 <a
                   href="tel:+905343713573"
-                  className="px-5 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs sm:text-sm flex items-center gap-2"
+                  className="px-5 py-3.5 rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink)] font-semibold text-xs sm:text-sm flex items-center gap-2 border border-[var(--rule)]"
                 >
-                  <PhoneCall className="w-4 h-4 text-cyan-400" />
+                  <PhoneCall className="w-4 h-4 text-[var(--accent)]" />
                   <span>+90 534 371 35 73</span>
                 </a>
               </div>
@@ -272,7 +272,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label htmlFor="sos-ajans" className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
+                  <label htmlFor="sos-ajans" className="block text-xs sm:text-sm font-semibold text-[var(--ink)] mb-1.5">
                     {isTr ? 'Ajans / Şirket Adı' : 'Agency / Company Name'}
                   </label>
                   <input
@@ -283,11 +283,11 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                     placeholder={isTr ? 'Örn: Acme Creative' : 'e.g. Acme Creative'}
                     value={agencyName}
                     onChange={(e) => setAgencyName(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base focus:border-red-500 focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] text-sm focus:border-[var(--accent)] focus:outline-none transition-colors"
                   />
                 </div>
                 <div>
-                  <label htmlFor="sos-yetkili" className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
+                  <label htmlFor="sos-yetkili" className="block text-xs sm:text-sm font-semibold text-[var(--ink)] mb-1.5">
                     {isTr ? 'Yetkili / İletişim Kişisi' : 'Contact Person'}
                   </label>
                   <input
@@ -298,14 +298,14 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                     placeholder={isTr ? 'Adınız & Soyadınız' : 'Your Full Name'}
                     value={contactPerson}
                     onChange={(e) => setContactPerson(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base focus:border-red-500 focus:outline-none transition-colors"
+                    className="w-full px-4 py-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] text-sm focus:border-[var(--accent)] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="sos-telefon" className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
-                  {isTr ? 'Telefon / WhatsApp Numarası' : 'Phone / WhatsApp Number'} <span className="text-red-400">*</span>
+                <label htmlFor="sos-telefon" className="block text-xs sm:text-sm font-semibold text-[var(--ink)] mb-1.5">
+                  {isTr ? 'Telefon / WhatsApp Numarası' : 'Phone / WhatsApp Number'} <span className="text-[var(--accent)]">*</span>
                 </label>
                 <input
                   id="sos-telefon"
@@ -315,29 +315,29 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   placeholder="+90 534 000 0000"
                   value={contactPhone}
                   onChange={(e) => setContactPhone(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base focus:border-red-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] text-sm focus:border-[var(--accent)] focus:outline-none transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
+                <label className="block text-xs sm:text-sm font-semibold text-[var(--ink)] mb-1.5">
                   {isTr ? 'Aciliyet Düzeyi' : 'Urgency Level'}
                 </label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                   {[
                     { 
                       id: 'critical', 
-                      label: isTr ? '🔴 Canlı kesinti' : '🔴 Live outage', 
+                      label: isTr ? 'Canlı kesinti' : 'Live outage', 
                       sub: isTr ? 'Şu an yaşanıyor · site veya ödeme durdu' : 'Happening now · site or payments down' 
                     },
                     { 
                       id: 'high', 
-                      label: isTr ? '🟠 Teslim / devir baskısı' : '🟠 Delivery / handover crunch', 
+                      label: isTr ? 'Teslim / devir baskısı' : 'Delivery / handover crunch', 
                       sub: isTr ? 'Bugün çözülmesi gerekiyor' : 'Must be resolved today' 
                     },
                     { 
                       id: 'medium', 
-                      label: isTr ? '🟡 Planlı destek' : '🟡 Planned support', 
+                      label: isTr ? 'Planlı destek' : 'Planned support', 
                       sub: isTr ? 'Kapasite artışı' : 'Team capacity surge' 
                     }
                   ].map((item) => (
@@ -345,21 +345,21 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                       key={item.id}
                       type="button"
                       onClick={() => setUrgency(item.id)}
-                      className={`p-3 rounded-xl text-left border text-xs sm:text-sm transition-all flex flex-col justify-between cursor-pointer ${
+                      className={`p-3 rounded-lg text-left border text-xs sm:text-sm transition-all flex flex-col justify-between cursor-pointer ${
                         urgency === item.id
-                          ? 'border-red-500 bg-red-500/20 text-white font-bold shadow-md shadow-red-500/20'
-                          : 'border-white/10 bg-white/5 text-slate-300 hover:border-white/25'
+                          ? 'border-[var(--accent)] bg-red-50 text-[var(--accent)] font-semibold'
+                          : 'border-[var(--rule)] bg-[var(--surface)] text-[var(--ink-secondary)] hover:border-[var(--rule-strong)]'
                       }`}
                     >
                       <span>{item.label}</span>
-                      <span className="text-[11px] text-slate-400 mt-1">{item.sub}</span>
+                      <span className="text-xs text-[var(--ink-muted)] mt-1">{item.sub}</span>
                     </button>
                   ))}
                 </div>
               </div>
 
               <div>
-                <label htmlFor="sos-butce" className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
+                <label htmlFor="sos-butce" className="block text-xs sm:text-sm font-semibold text-[var(--ink)] mb-1.5">
                   {isTr ? 'Bütçe aralığınız (opsiyonel)' : 'Budget range (optional)'}
                 </label>
                 <input
@@ -369,12 +369,12 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   placeholder={isTr ? 'Örn. 40.000 – 60.000 ₺ / henüz netleşmedi' : 'e.g. 40,000 – 60,000 ₺ / not finalized yet'}
                   value={budget}
                   onChange={(e) => setBudget(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base focus:border-red-500 focus:outline-none transition-colors"
+                  className="w-full px-4 py-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] text-sm focus:border-[var(--accent)] focus:outline-none transition-colors"
                 />
               </div>
 
               <div>
-                <label htmlFor="sos-sorun" className="block text-xs sm:text-sm font-semibold text-slate-300 mb-1.5">
+                <label htmlFor="sos-sorun" className="block text-xs sm:text-sm font-semibold text-[var(--ink)] mb-1.5">
                   {isTr ? 'Kriz Durumu / Hata Özeti' : 'Crisis Summary / Error Details'}
                 </label>
                 <textarea
@@ -385,22 +385,22 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   placeholder={isTr ? 'Hatanın türü, kilitlenen teknoloji veya teslimat darboğazı hakkında kısaca bilgi verin...' : 'Briefly describe the error, bottleneck, or missing delivery component...'}
                   value={problemDesc}
                   onChange={(e) => setProblemDesc(e.target.value)}
-                  className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white text-sm sm:text-base focus:border-red-500 focus:outline-none transition-colors resize-none leading-relaxed"
+                  className="w-full px-4 py-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] text-sm focus:border-[var(--accent)] focus:outline-none transition-colors resize-none leading-relaxed"
                 ></textarea>
               </div>
 
               {/* Trust Badges */}
-              <div className="flex flex-wrap items-center justify-between text-xs text-slate-300 pt-2 border-t border-white/10 gap-2">
+              <div className="flex flex-wrap items-center justify-between text-xs text-[var(--ink-muted)] pt-2 border-t border-[var(--rule)] gap-2">
                 <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-400" /> %100 White-Label & <a href="/nda/" target="_blank" rel="noopener" className="underline hover:text-white transition-colors">NDA</a>
+                  <ShieldCheck className="w-4 h-4 text-emerald-600" /> %100 White-Label & <a href="/nda/" target="_blank" rel="noopener" className="underline hover:text-[var(--ink)] transition-colors">NDA</a>
                 </span>
                 <span className="flex items-center gap-1.5">
-                  <Clock className="w-4 h-4 text-cyan-400" /> {isTr ? 'İlk Yanıt: ~15 Dakika' : 'First Response: ~15 Mins'}
+                  <Clock className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'İlk Yanıt: ~15 Dakika' : 'First Response: ~15 Mins'}
                 </span>
               </div>
 
               {/* Süreklilik Satırı */}
-              <p className="text-[11px] sm:text-xs text-slate-400 text-center">
+              <p className="text-xs text-[var(--ink-muted)] text-center">
                 {isTr 
                   ? 'Kriz masası tek kişilik değildir; başlayan iş yarıda kalmaz.' 
                   : 'The response desk is not a single person; work under way is not left unfinished.'}
@@ -410,17 +410,17 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 py-4 rounded-2xl bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-white font-black text-sm sm:text-base shadow-lg shadow-red-600/30 flex items-center justify-center gap-2 transition-all cursor-pointer min-h-[48px] disabled:opacity-50"
+                  className="btn-primary flex-1 min-h-[44px] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                 >
                   <Send className="w-4 h-4" />
                   <span>{isSubmitting ? (isTr ? 'Kaydediliyor...' : 'Saving...') : (isTr ? 'Kriz Masasına Anında Bildir (WhatsApp)' : 'Dispatch Crisis Desk (WhatsApp)')}</span>
                 </button>
                 <a
                   href="tel:+905343713573"
-                  className="px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-bold text-sm sm:text-base border border-white/10 flex items-center justify-center gap-2 transition-colors min-h-[48px]"
+                  className="btn-secondary px-6 min-h-[44px] flex items-center justify-center gap-2"
                   title="Doğrudan Telefonla Ara"
                 >
-                  <PhoneCall className="w-4 h-4 text-emerald-400" />
+                  <PhoneCall className="w-4 h-4 text-emerald-600" />
                   <span>{isTr ? 'Ara' : 'Call'}</span>
                 </a>
               </div>
@@ -434,3 +434,4 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 };
 
 export default EmergencySOSModal;
+

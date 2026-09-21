@@ -103,27 +103,27 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
   };
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-rose-500/30">
+    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-white">
       {/* Header */}
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-950/60 border border-rose-800/60 text-rose-400 text-xs font-mono font-medium uppercase tracking-widest mb-4">
-          <span className="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
+          <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
           {t.hero.badge}
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[var(--ink)] mb-4">
           {t.hero.title}
         </h1>
-        <p className="text-base sm:text-lg text-neutral-400 max-w-3xl mx-auto mb-4">
+        <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-3xl mx-auto mb-4">
           {t.hero.subtitle}
         </p>
-        <p className="text-xs text-neutral-500 font-mono">
+        <p className="text-xs text-[var(--ink-muted)] font-mono">
           🚨 {t.hero.notice}
         </p>
       </div>
 
       {/* Preset Selector */}
       <div className="max-w-6xl mx-auto mb-10">
-        <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider block mb-3 text-center">
+        <span className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider block mb-3 text-center">
           {t.labels.selectPreset}
         </span>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -131,14 +131,14 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
             <button
               key={preset.id}
               onClick={() => applyPreset(preset.id)}
-              className={`p-3.5 rounded-xl text-left border transition-all ${
+              className={`p-3.5 rounded-xl text-left border transition-all cursor-pointer min-h-[48px] ${
                 selectedPreset === preset.id
-                  ? "bg-rose-950/40 border-rose-500 text-white shadow-lg shadow-rose-950/30"
-                  : "bg-neutral-900/60 border-neutral-800 text-neutral-400 hover:border-neutral-700 hover:text-white"
+                  ? "bg-[var(--accent-subtle)] border-[var(--accent)] text-[var(--ink)] shadow-sm"
+                  : "bg-[var(--surface)] border-[var(--rule)] text-[var(--ink-light)] hover:border-[var(--ink-muted)] hover:text-[var(--ink)]"
               }`}
             >
               <h3 className="text-xs font-bold font-mono tracking-tight">{preset.name}</h3>
-              <p className="text-[11px] text-neutral-500 mt-1 font-mono">
+              <p className="text-xs text-[var(--ink-muted)] mt-1 font-mono">
                 {formatCurrency(preset.monthlyRevenue)} / {lang === "en" ? "mo" : "ay"}
               </p>
             </button>
@@ -150,17 +150,17 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Controls Column */}
         <div className="lg:col-span-6 space-y-5">
-          <div className="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-6 shadow-xl space-y-5">
-            <h2 className="text-base font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+          <div className="bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-6 shadow-sm space-y-5">
+            <h2 className="text-base font-serif font-semibold text-[var(--ink)] flex items-center gap-2 border-b border-[var(--rule)] pb-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
               {lang === "en" ? "Incident Variables & Exposure" : "Kesinti Değişkenleri & Maruziyet"}
             </h2>
 
             {/* Duration Slider */}
             <div>
               <div className="flex justify-between text-xs font-mono mb-2">
-                <label htmlFor="duration-slider" className="text-neutral-300 font-medium">{t.labels.durationHours}</label>
-                <span className="text-rose-400 font-bold">{durationHours} {lang === "en" ? "Hours" : "Saat"}</span>
+                <label htmlFor="duration-slider" className="text-[var(--ink)] font-medium">{t.labels.durationHours}</label>
+                <span className="text-[var(--accent)] font-bold">{durationHours} {lang === "en" ? "Hours" : "Saat"}</span>
               </div>
               <input
                 id="duration-slider"
@@ -171,13 +171,13 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
                 aria-label={t.labels.durationHours}
                 value={durationHours}
                 onChange={(e) => setDurationHours(Number(e.target.value))}
-                className="w-full accent-rose-500 cursor-pointer"
+                className="w-full accent-[var(--accent)] cursor-pointer"
               />
             </div>
 
             {/* Peak Timing Multiplier */}
             <div>
-              <label htmlFor="peak-multiplier-select" className="text-xs font-mono text-neutral-300 font-medium block mb-2">
+              <label htmlFor="peak-multiplier-select" className="text-xs font-mono text-[var(--ink)] font-medium block mb-2">
                 {t.labels.peakMultiplier}
               </label>
               <select
@@ -185,7 +185,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
                 value={peakMultiplier}
                 onChange={(e) => setPeakMultiplier(Number(e.target.value))}
                 aria-label={t.labels.peakMultiplier}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-xs text-white focus:outline-none focus:border-rose-500 font-mono"
+                className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-xs text-[var(--ink)] focus:outline-none focus:border-[var(--accent)] font-mono"
               >
                 <option value={2.0}>{t.labels.peakOptions.peak}</option>
                 <option value={1.0}>{t.labels.peakOptions.normal}</option>
@@ -196,26 +196,26 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
             {/* Revenue & Ad Spend Inputs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
               <div>
-                <label htmlFor="monthly-rev-input" className="block text-neutral-400 mb-1">{t.labels.monthlyRevenue}</label>
+                <label htmlFor="monthly-rev-input" className="block text-[var(--ink-light)] mb-1">{t.labels.monthlyRevenue}</label>
                 <input
                   id="monthly-rev-input"
                   type="number"
                   aria-label={t.labels.monthlyRevenue}
                   value={monthlyRevenue}
                   onChange={(e) => setMonthlyRevenue(Math.max(0, Number(e.target.value)))}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-rose-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               <div>
-                <label htmlFor="daily-ad-input" className="block text-neutral-400 mb-1">{t.labels.dailyAdSpend}</label>
+                <label htmlFor="daily-ad-input" className="block text-[var(--ink-light)] mb-1">{t.labels.dailyAdSpend}</label>
                 <input
                   id="daily-ad-input"
                   type="number"
                   aria-label={t.labels.dailyAdSpend}
                   value={dailyAdSpend}
                   onChange={(e) => setDailyAdSpend(Math.max(0, Number(e.target.value)))}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-rose-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
             </div>
@@ -223,7 +223,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
             {/* SLA Penalty & Churn */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
               <div>
-                <label htmlFor="sla-penalty-input" className="block text-neutral-400 mb-1">{t.labels.slaPenaltyRate}</label>
+                <label htmlFor="sla-penalty-input" className="block text-[var(--ink-light)] mb-1">{t.labels.slaPenaltyRate}</label>
                 <input
                   id="sla-penalty-input"
                   type="number"
@@ -232,12 +232,12 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
                   aria-label={t.labels.slaPenaltyRate}
                   value={slaPenaltyRate}
                   onChange={(e) => setSlaPenaltyRate(Math.max(0, Number(e.target.value)))}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-rose-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               <div>
-                <label htmlFor="churn-risk-input" className="block text-neutral-400 mb-1">{t.labels.churnRiskRate}</label>
+                <label htmlFor="churn-risk-input" className="block text-[var(--ink-light)] mb-1">{t.labels.churnRiskRate}</label>
                 <input
                   id="churn-risk-input"
                   type="number"
@@ -247,7 +247,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
                   aria-label={t.labels.churnRiskRate}
                   value={churnRiskRate}
                   onChange={(e) => setChurnRiskRate(Math.max(0, Number(e.target.value)))}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-rose-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
             </div>
@@ -255,7 +255,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
             {/* Engineering Team Drag */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
               <div>
-                <label htmlFor="eng-team-input" className="block text-neutral-400 mb-1">{t.labels.engTeamSize}</label>
+                <label htmlFor="eng-team-input" className="block text-[var(--ink-light)] mb-1">{t.labels.engTeamSize}</label>
                 <input
                   id="eng-team-input"
                   type="number"
@@ -264,19 +264,19 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
                   aria-label={t.labels.engTeamSize}
                   value={engTeamSize}
                   onChange={(e) => setEngTeamSize(Math.max(1, Number(e.target.value)))}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-rose-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               <div>
-                <label htmlFor="eng-rate-input" className="block text-neutral-400 mb-1">{t.labels.engHourlyRate}</label>
+                <label htmlFor="eng-rate-input" className="block text-[var(--ink-light)] mb-1">{t.labels.engHourlyRate}</label>
                 <input
                   id="eng-rate-input"
                   type="number"
                   aria-label={t.labels.engHourlyRate}
                   value={engHourlyRate}
                   onChange={(e) => setEngHourlyRate(Math.max(0, Number(e.target.value)))}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-rose-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
             </div>
@@ -286,56 +286,54 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
         {/* Real-time TCOD Output & Breakdown Column */}
         <div className="lg:col-span-6 space-y-5">
           {/* Main TCOD Banner */}
-          <div className="bg-neutral-900/90 border border-rose-900/60 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-rose-500/10 rounded-full blur-3xl -z-10"></div>
-            
-            <span className="text-xs font-mono uppercase text-rose-400 tracking-wider block mb-2 font-semibold">
+          <div className="bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
+            <span className="text-xs font-mono uppercase text-[var(--accent)] tracking-wider block mb-2 font-semibold">
               {t.labels.totalTcod}
             </span>
-            <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-mono tracking-tight mb-3">
+            <div className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-[var(--ink)] font-mono tracking-tight mb-3">
               {formatCurrency(metrics.totalTcod)}
             </div>
 
             {/* Hidden Cost Alert */}
-            <div className="p-3.5 rounded-xl bg-rose-950/50 border border-rose-800/60 text-xs font-mono text-rose-200">
+            <div className="p-3.5 rounded-xl bg-[var(--accent-subtle)] border border-[var(--accent)]/30 text-xs font-mono text-[var(--accent)]">
               ⚠ <strong>{t.labels.hiddenCostWarning}</strong>{" "}
-              <span className="text-white font-extrabold underline">{metrics.hiddenMultiplier}x</span>{" "}
+              <span className="font-bold underline">{metrics.hiddenMultiplier}x</span>{" "}
               {lang === "en" ? "of direct sales losses." : "katına ulaşıyor!"}
             </div>
 
             {/* Breakdown Cards */}
-            <div className="mt-6 space-y-2.5 border-t border-neutral-800/80 pt-6 text-xs font-mono">
-              <div className="flex justify-between items-center p-2.5 rounded-lg bg-neutral-950 border border-neutral-800/80">
-                <span className="text-neutral-300">1. {t.dimensions[0].title}</span>
-                <span className="font-bold text-white">{formatCurrency(metrics.directRevenueLoss)}</span>
+            <div className="mt-6 space-y-2.5 border-t border-[var(--rule)] pt-6 text-xs font-mono">
+              <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
+                <span className="text-[var(--ink-light)]">1. {t.dimensions[0].title}</span>
+                <span className="font-bold text-[var(--ink)]">{formatCurrency(metrics.directRevenueLoss)}</span>
               </div>
 
-              <div className="flex justify-between items-center p-2.5 rounded-lg bg-neutral-950 border border-neutral-800/80">
-                <span className="text-neutral-300">2. {t.dimensions[1].title}</span>
-                <span className="font-bold text-amber-400">{formatCurrency(metrics.wastedAdSpend)}</span>
+              <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
+                <span className="text-[var(--ink-light)]">2. {t.dimensions[1].title}</span>
+                <span className="font-bold text-amber-700">{formatCurrency(metrics.wastedAdSpend)}</span>
               </div>
 
-              <div className="flex justify-between items-center p-2.5 rounded-lg bg-neutral-950 border border-neutral-800/80">
-                <span className="text-neutral-300">3. {t.dimensions[2].title}</span>
-                <span className="font-bold text-rose-400">{formatCurrency(metrics.slaPenalty)}</span>
+              <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
+                <span className="text-[var(--ink-light)]">3. {t.dimensions[2].title}</span>
+                <span className="font-bold text-rose-700">{formatCurrency(metrics.slaPenalty)}</span>
               </div>
 
-              <div className="flex justify-between items-center p-2.5 rounded-lg bg-neutral-950 border border-neutral-800/80">
-                <span className="text-neutral-300">4. {t.dimensions[3].title}</span>
-                <span className="font-bold text-purple-400">{formatCurrency(metrics.churnLoss)}</span>
+              <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
+                <span className="text-[var(--ink-light)]">4. {t.dimensions[3].title}</span>
+                <span className="font-bold text-purple-700">{formatCurrency(metrics.churnLoss)}</span>
               </div>
 
-              <div className="flex justify-between items-center p-2.5 rounded-lg bg-neutral-950 border border-neutral-800/80">
-                <span className="text-neutral-300">5. {t.dimensions[4].title}</span>
-                <span className="font-bold text-cyan-400">{formatCurrency(metrics.engDrag)}</span>
+              <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
+                <span className="text-[var(--ink-light)]">5. {t.dimensions[4].title}</span>
+                <span className="font-bold text-blue-700">{formatCurrency(metrics.engDrag)}</span>
               </div>
             </div>
 
             {/* Actions */}
-            <div className="mt-6 space-y-2.5 border-t border-neutral-800/80 pt-6">
+            <div className="mt-6 space-y-2.5 border-t border-[var(--rule)] pt-6">
               <button
                 onClick={copyBrief}
-                className="w-full py-2.5 px-4 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-xs font-mono font-medium text-white transition flex items-center justify-center gap-2"
+                className="btn-secondary min-h-[44px] w-full text-xs font-mono font-medium flex items-center justify-center gap-2 cursor-pointer"
               >
                 📋 {copied ? t.labels.copied : t.labels.copyBrief}
               </button>
@@ -344,7 +342,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
                 href={getCalendlyUrl(lang)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-xl bg-rose-600 hover:bg-rose-500 text-xs font-mono font-bold text-white transition flex items-center justify-center gap-2 text-center shadow-lg shadow-rose-950/60"
+                className="btn-primary min-h-[44px] w-full text-xs font-mono font-semibold flex items-center justify-center gap-2 text-center"
               >
                 🚨 {t.labels.triageCta}
               </a>

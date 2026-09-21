@@ -233,18 +233,18 @@ const webSiteNode = {
 
 // 2.1 — /teshis/ Katalog Hub'ı İçeriği (20 Teşhis)
 const teshisHubExtraContent = `
-  <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
-    <h2 class="text-xl font-bold text-white">Yayınlanmış arıza kataloğu — 20 teşhis</h2>
+  <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Yayınlanmış arıza kataloğu — 20 teşhis</h2>
     <ul class="space-y-4">
       ${teshisData.map(item => {
         const firstSentence = item.ozet?.tr ? (item.ozet.tr.split('.')[0] + '.') : '';
         return `
-        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/teshis/${escapeHtml(item.slug)}/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ ${escapeHtml(item.no)} · ${escapeHtml(item.baslik?.tr || '')}</a>
-            <span class="text-xs font-mono text-slate-400">${escapeHtml(item.aciliyet?.etiket?.tr || '')} · ${escapeHtml(item.kirinti?.tr || '')}</span>
+            <a href="/teshis/${escapeHtml(item.slug)}/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ ${escapeHtml(item.no)} · ${escapeHtml(item.baslik?.tr || '')}</a>
+            <span class="text-xs font-mono text-[var(--ink-muted)]">${escapeHtml(item.aciliyet?.etiket?.tr || '')} · ${escapeHtml(item.kirinti?.tr || '')}</span>
           </div>
-          <p class="text-sm text-slate-300 leading-relaxed">${escapeHtml(firstSentence)}</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(firstSentence)}</p>
         </li>`;
       }).join('\n      ')}
     </ul>
@@ -253,18 +253,18 @@ const teshisHubExtraContent = `
 
 // 2.2 — /sozluk/ Sözlük Hub'ı İçeriği (12 Terim)
 const glossaryHubExtraContent = `
-  <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
-    <h2 class="text-xl font-bold text-white">Terim sözlüğü — 12 terim</h2>
+  <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Terim sözlüğü — 12 terim</h2>
     <ul class="space-y-4">
       ${glossaryTerms.map(term => {
         const firstSentence = term.shortDef?.tr ? (term.shortDef.tr.split('.')[0] + '.') : '';
         return `
-        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/sozluk/${escapeHtml(term.slug)}/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ ${escapeHtml(term.title)}</a>
-            <span class="text-xs font-mono text-amber-400">${escapeHtml(term.urgencyLevel || '')}</span>
+            <a href="/sozluk/${escapeHtml(term.slug)}/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ ${escapeHtml(term.title)}</a>
+            <span class="text-xs font-mono text-amber-700">${escapeHtml(term.urgencyLevel || '')}</span>
           </div>
-          <p class="text-sm text-slate-300 leading-relaxed">${escapeHtml(firstSentence)}</p>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(firstSentence)}</p>
         </li>`;
       }).join('\n      ')}
     </ul>
@@ -273,13 +273,13 @@ const glossaryHubExtraContent = `
 
 // 2.3 — Ana Sayfa Şerit Log Eşleşmeleri ve SSS Bölümü (Hero.jsx ve FAQ.jsx'ten okunan veriler)
 const homeFaqHtml = `
-  <section class="space-y-4 mt-8 border-t border-white/10 pt-6">
-    <h2 class="text-xl font-bold text-white">Sıkça Sorulan Sorular</h2>
+  <section class="space-y-4 mt-8 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Sıkça Sorulan Sorular</h2>
     <div class="space-y-4">
       ${faqData.map(item => `
-        <div class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-          <h3 class="text-lg font-bold text-cyan-300">${escapeHtml(item.question?.tr || '')}</h3>
-          <p class="text-slate-300 leading-relaxed text-sm sm:text-base">${escapeHtml(item.answer?.tr || '')}</p>
+        <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <h3 class="text-lg font-bold text-[var(--accent)]">${escapeHtml(item.question?.tr || '')}</h3>
+          <p class="text-[var(--ink-muted)] leading-relaxed text-sm sm:text-base">${escapeHtml(item.answer?.tr || '')}</p>
         </div>
       `).join('\n      ')}
     </div>
@@ -287,152 +287,152 @@ const homeFaqHtml = `
 `;
 
 const homePageExtraContent = `
-  <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
-    <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+  <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Sisteminizde bu satırları görüyorsanız</h2>
     <ul class="space-y-3">
       ${diagnosticLogs.map(entry => {
         const slug = entry.href.replace(/^\/teshis\/|\/$/g, '');
         const item = teshisData.find(d => d.slug === slug);
         const titleText = item ? `${item.no} · ${item.baslik.tr}` : (entry.title?.tr || slug);
         return `
-        <li class="p-3 rounded-xl bg-black/40 border border-white/10 space-y-1 font-mono text-sm">
-          <div class="text-slate-400"><code>${escapeHtml(entry.log)}</code></div>
-          <div><a href="/teshis/${escapeHtml(slug)}/" class="text-cyan-300 hover:underline font-bold">→ ${escapeHtml(titleText)}</a></div>
+        <li class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1 font-mono text-sm">
+          <div class="text-[var(--ink-muted)]"><code>${escapeHtml(entry.log)}</code></div>
+          <div><a href="/teshis/${escapeHtml(slug)}/" class="text-[var(--accent)] hover:underline font-bold">→ ${escapeHtml(titleText)}</a></div>
         </li>`;
       }).join('\n      ')}
     </ul>
     <p class="pt-2">
-      <a href="/teshis/" class="text-cyan-400 hover:underline font-bold">Tüm teşhis kataloğunu inceleyin (20 belirti) →</a>
+      <a href="/teshis/" class="text-[var(--accent)] hover:underline font-bold">Tüm teşhis kataloğunu inceleyin (20 belirti) →</a>
     </p>
   </section>
   ${homeFaqHtml}
 `;
 
 const aboutExtraContent = `
-  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
-    <h2 class="text-2xl font-bold text-white tracking-tight">Dört Temel Mühendislik Standardımız</h2>
-    <p class="text-slate-300 leading-relaxed">Ajanslarla çalışırken taviz vermediğimiz 5 temel operasyonel ve hukuki kuralımız:</p>
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-2xl font-bold text-[var(--ink)] tracking-tight">Dört Temel Mühendislik Standardımız</h2>
+    <p class="text-[var(--ink-muted)] leading-relaxed">Ajanslarla çalışırken taviz vermediğimiz 5 temel operasyonel ve hukuki kuralımız:</p>
     
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
-      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-lg font-bold text-cyan-300">01 · %100 White-Label & Görünmezlik</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Müşteriniz hiçbir zaman bizim adımızı duymaz. Projeler ajansınızın markası, logosu ve kurumsal kimliği altında teslim edilir. İletişim isterseniz ajans alan adı e-postanız üzerinden yürütülür.</p>
+      <div class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-lg font-bold text-[var(--accent)]">01 · %100 White-Label & Görünmezlik</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Müşteriniz hiçbir zaman bizim adımızı duymaz. Projeler ajansınızın markası, logosu ve kurumsal kimliği altında teslim edilir. İletişim isterseniz ajans alan adı e-postanız üzerinden yürütülür.</p>
       </div>
 
-      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-lg font-bold text-emerald-300">02 · Resmi NDA & Fikri Mülkiyet Devri</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Projeye başlamadan önce bağlayıcı Gizlilik Sözleşmesi (NDA) imzalanır. Geliştirilen tüm kaynak kodlar, mimari ve fikri mülkiyet %100 ajansınıza ve müşterinize aittir. <a href="/nda/" class="text-cyan-400 hover:underline">Sözleşmeyi inceleyin →</a></p>
+      <div class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-lg font-bold text-emerald-700">02 · Resmi NDA & Fikri Mülkiyet Devri</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Projeye başlamadan önce bağlayıcı Gizlilik Sözleşmesi (NDA) imzalanır. Geliştirilen tüm kaynak kodlar, mimari ve fikri mülkiyet %100 ajansınıza ve müşterinize aittir. <a href="/nda/" class="text-[var(--accent)] hover:underline">Sözleşmeyi inceleyin →</a></p>
       </div>
 
-      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-lg font-bold text-amber-300">03 · Şeffaf Ücretlendirme</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">İlk kod teşhisi ve triyaj ücretsizdir. Sonraki çalışmanın kapsamı ve bedeli teşhis tamamlandıktan sonra işe özel belirlenir; bedel piyasa koşullarıyla uyumludur ve çalışma başlamadan önce yazılı olarak netleşir.</p>
+      <div class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-lg font-bold text-amber-700">03 · Şeffaf Ücretlendirme</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">İlk kod teşhisi ve triyaj ücretsizdir. Sonraki çalışmanın kapsamı ve bedeli teşhis tamamlandıktan sonra işe özel belirlenir; bedel piyasa koşullarıyla uyumludur ve çalışma başlamadan önce yazılı olarak netleşir.</p>
       </div>
 
-      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-lg font-bold text-purple-300">04 · Doğrudan Mühendislik Masası Muhatabı</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Arada teknik bilgisi olmayan satış temsilcileri veya bürokrasi katmanları yoktur. İletişim doğrudan projeyi yürüten kıdemli mühendislik masamız üzerinden anlık yürütülür.</p>
+      <div class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-lg font-bold text-purple-700">04 · Doğrudan Mühendislik Masası Muhatabı</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Arada teknik bilgisi olmayan satış temsilcileri veya bürokrasi katmanları yoktur. İletişim doğrudan projeyi yürüten kıdemli mühendislik masamız üzerinden anlık yürütülür.</p>
       </div>
 
-      <div class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 md:col-span-2">
-        <h3 class="text-lg font-bold text-blue-300">05 · Süreklilik Güvencesi</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Kriz masası tek kişilik değildir. Bir işi başlatan mühendis devre dışı kalırsa masadaki bir başkası devralır; iş yarıda kalmaz. Repo süreç boyunca ajansınızın kontrolündedir ve dokümantasyon teslim edilir.</p>
+      <div class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 md:col-span-2">
+        <h3 class="text-lg font-bold text-blue-700">05 · Süreklilik Güvencesi</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Kriz masası tek kişilik değildir. Bir işi başlatan mühendis devre dışı kalırsa masadaki bir başkası devralır; iş yarıda kalmaz. Repo süreç boyunca ajansınızın kontrolündedir ve dokümantasyon teslim edilir.</p>
       </div>
     </div>
   </section>
 `;
 
 const storyExtraContent = `
-  <section class="space-y-6 mt-8 border-t border-white/10 pt-6 text-slate-300 leading-relaxed">
-    <h2 class="text-2xl font-bold text-white tracking-tight">Kuruluş Hikâyemiz ve Vizyonumuz</h2>
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6 text-[var(--ink-muted)] leading-relaxed">
+    <h2 class="text-2xl font-bold text-[var(--ink)] tracking-tight">Kuruluş Hikâyemiz ve Vizyonumuz</h2>
     <p>Aslında bu iş fikri bir online derste doğdu.</p>
     <p>Yirmi yıldır finansal piyasaların içerisindeydim. Yazılım hep işimin ayrılmaz bir parçasıydı ama uzun süre yalnızca kendim için: kendi sistemlerimi yazdım, kendi fikirlerimi koda döktüm, kendi hatalarımı kendim ayıkladım. Dışarıya iş yapmıyordum, yapmak da istemiyordum. Yirmi yıl boyunca bunun tek kişilik bir iş olduğunu, ancak kendime yetebileceğimi sanıyordum.</p>
     <p>2020'de, COVID salgınında her şeyin durduğu ve herkesin kıtlık konuştuğu dönemde bildiklerimi anlatmaya başladım. Yaklaşık elli kişi eğittim. Öğretmek beni değiştirdi: yirmi yıldır sezgiyle yaptığım her şeyi başkalarının anlayabileceği hâle getirmek her şeyi sistemleştirdi.</p>
-    <p class="font-bold text-white">Trend Master Akademi fikri o online derslerde doğdu. Adımız oradan geliyor ve değiştirmedik.</p>
+    <p class="font-bold text-[var(--ink)]">Trend Master Akademi fikri o online derslerde doğdu. Adımız oradan geliyor ve değiştirmedik.</p>
     <p>Kursiyerlerden biriyle ortak olduktan sonra asıl ihtiyacın sınıfta değil sahada olduğunu gördük. Özellikle pandemiden sonra dijital ajanslarda ciddi bir nitelikli yazılımcı darboğazı oluşmuştu. Yarım kalmış projeler, kaybolmuş erişimler, geçmiş teslim tarihleri ve krizler... Bu projeleri devralıp tek tek ayağa kaldırdık.</p>
     <p>Bugün yaptığımız iş bu: biz bir son kullanıcı ajansı değiliz. Dijital ajansların, yazılım evlerinin ve girişimlerin arka planında krizleri çözen, karmaşık mimarileri kuran ve %100 White-Label çalışan kıdemli bir mühendislik masasıyız.</p>
-    <p>Adımız hâlâ "Akademi" — çünkü bir sistemi kurtarmak, onu anlatabilecek kadar anlamayı gerektirir. Sitemizdeki <a href="/sozluk/" class="text-cyan-400 hover:underline">Teknik Terim Sözlüğü</a> ve <a href="/teshis/" class="text-cyan-400 hover:underline">Teşhis Kataloğu</a> da bu anlayışla yayındadır.</p>
+    <p>Adımız hâlâ "Akademi" — çünkü bir sistemi kurtarmak, onu anlatabilecek kadar anlamayı gerektirir. Sitemizdeki <a href="/sozluk/" class="text-[var(--accent)] hover:underline">Teknik Terim Sözlüğü</a> ve <a href="/teshis/" class="text-[var(--accent)] hover:underline">Teşhis Kataloğu</a> da bu anlayışla yayındadır.</p>
   </section>
 `;
 
 const kesintiExtraContent = `
-  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
-    <h2 class="text-2xl font-bold text-white tracking-tight">Kesinti Maliyeti Nasıl Hesaplanır?</h2>
-    <p class="text-slate-300 leading-relaxed">Bir web sitesi veya e-ticaret altyapısı çöktüğünde oluşan doğrudan ciro kaybı şeffaf bir matematiksel formüle dayanır:</p>
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-2xl font-bold text-[var(--ink)] tracking-tight">Kesinti Maliyeti Nasıl Hesaplanır?</h2>
+    <p class="text-[var(--ink-muted)] leading-relaxed">Bir web sitesi veya e-ticaret altyapısı çöktüğünde oluşan doğrudan ciro kaybı şeffaf bir matematiksel formüle dayanır:</p>
     
-    <div class="p-5 rounded-2xl bg-white/5 border border-white/10 font-mono text-sm text-cyan-300 space-y-2">
+    <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--accent)] space-y-2">
       <p>Saatlik Ciro Kaybı = (Aylık Ciro / 720 Saat) × Zaman Çarpanı</p>
       <p>Toplam Kesinti Maliyeti = Saatlik Kayıp × Kesinti Süresi (Saat)</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
-      <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-        <h3 class="text-sm font-bold text-white">Zirve Saat (Peak)</h3>
-        <p class="text-xs text-slate-400 mt-1">2.0x Çarpan · Kampanya veya yoğun ziyaret saatleri.</p>
+      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
+        <h3 class="text-sm font-bold text-[var(--ink)]">Zirve Saat (Peak)</h3>
+        <p class="text-xs text-[var(--ink-muted)] mt-1">2.0x Çarpan · Kampanya veya yoğun ziyaret saatleri.</p>
       </div>
-      <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-        <h3 class="text-sm font-bold text-white">Normal Saat</h3>
-        <p class="text-xs text-slate-400 mt-1">1.0x Çarpan · Günlük standart trafik akışı.</p>
+      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
+        <h3 class="text-sm font-bold text-[var(--ink)]">Normal Saat</h3>
+        <p class="text-xs text-[var(--ink-muted)] mt-1">1.0x Çarpan · Günlük standart trafik akışı.</p>
       </div>
-      <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-        <h3 class="text-sm font-bold text-white">Gece Saati</h3>
-        <p class="text-xs text-slate-400 mt-1">0.5x Çarpan · Düşük trafik ve işlem hacmi.</p>
+      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
+        <h3 class="text-sm font-bold text-[var(--ink)]">Gece Saati</h3>
+        <p class="text-xs text-[var(--ink-muted)] mt-1">0.5x Çarpan · Düşük trafik ve işlem hacmi.</p>
       </div>
     </div>
 
-    <p class="text-slate-300 text-sm leading-relaxed">Doğrudan kayba ek olarak; Google reklam bütçesi israfı, arama motoru sıralama kaybı (SERP cezası) ve müşteri güven kaybı gibi dolaylı maliyetler genellikle doğrudan ciro kaybının 2 ila 3 katına ulaşır.</p>
+    <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Doğrudan kayba ek olarak; Google reklam bütçesi israfı, arama motoru sıralama kaybı (SERP cezası) ve müşteri güven kaybı gibi dolaylı maliyetler genellikle doğrudan ciro kaybının 2 ila 3 katına ulaşır.</p>
   </section>
 `;
 
 const sosPageExtraContent = `
   <section class="space-y-6">
-    <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-sm">
+    <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-700 text-sm">
       <span>Kriz hattı her gün 09:00 – 24:00 açık · acil bildirimlere tipik ilk yanıt 15 dakika.</span>
     </div>
     <div class="flex flex-wrap gap-4 text-sm font-semibold">
-      <a href="tel:+905343713573" class="text-cyan-400 hover:underline">+90 534 371 35 73</a>
-      <a href="https://wa.me/905343713573" target="_blank" rel="noopener" class="text-emerald-400 hover:underline">WhatsApp'tan yaz</a>
+      <a href="tel:+905343713573" class="text-[var(--accent)] hover:underline">+90 534 371 35 73</a>
+      <a href="https://wa.me/905343713573" target="_blank" rel="noopener" class="text-emerald-700 hover:underline">WhatsApp'tan yaz</a>
     </div>
     <div class="space-y-3">
-      <h2 class="text-xl font-bold text-white">Yazarken şunları ekleyin</h2>
-      <ol class="list-decimal list-inside space-y-2 text-slate-300">
+      <h2 class="text-xl font-bold text-[var(--ink)]">Yazarken şunları ekleyin</h2>
+      <ol class="list-decimal list-inside space-y-2 text-[var(--ink-muted)]">
         <li>Ajans adı ve size ulaşılacak numara</li>
         <li>Ne oldu: hata ekranı, hata satırı ya da sistemin davranışı</li>
         <li>Ne zaman başladı ve o sırada ne değişti (yayın, güncelleme, ödeme sağlayıcı)</li>
         <li>Erişim var mı: sunucu, repo, panel — yoksa da yazın, teşhis için şart değil</li>
       </ol>
-      <p class="text-sm text-slate-400 italic">İlk teşhis için şifre ya da repo erişimi istemiyoruz.</p>
+      <p class="text-sm text-[var(--ink-muted)] italic">İlk teşhis için şifre ya da repo erişimi istemiyoruz.</p>
     </div>
-    <div class="space-y-3 pt-4 border-t border-white/10">
-      <h2 class="text-xl font-bold text-white">Aciliyet yoksa</h2>
-      <ul class="space-y-2 text-slate-300">
-        <li><a href="/crash-test/" class="text-cyan-400 hover:underline">60 saniyelik Agency Crash Test ile durumu kendiniz teşhis edin</a></li>
-        <li><a href="/teshis/" class="text-cyan-400 hover:underline">20 arızanın belgelenmiş teşhis kataloğu</a></li>
+    <div class="space-y-3 pt-4 border-t border-[var(--rule)]">
+      <h2 class="text-xl font-bold text-[var(--ink)]">Aciliyet yoksa</h2>
+      <ul class="space-y-2 text-[var(--ink-muted)]">
+        <li><a href="/crash-test/" class="text-[var(--accent)] hover:underline">60 saniyelik Agency Crash Test ile durumu kendiniz teşhis edin</a></li>
+        <li><a href="/teshis/" class="text-[var(--accent)] hover:underline">20 arızanın belgelenmiş teşhis kataloğu</a></li>
       </ul>
     </div>
   </section>
 `;
 
 const agencyExtraContent = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
     <div class="space-y-4">
-      <h2 class="text-xl font-bold text-white">Ajansların bize geldiği altı durum</h2>
+      <h2 class="text-xl font-bold text-[var(--ink)]">Ajansların bize geldiği altı durum</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         ${situationQuotes.map(sq => `
-        <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-          <h3 class="text-base font-bold text-cyan-300 font-mono">${escapeHtml(sq.tag?.tr || '')}</h3>
-          <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(sq.quote?.tr || '')}</p>
+        <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <h3 class="text-base font-bold text-[var(--accent)] font-mono">${escapeHtml(sq.tag?.tr || '')}</h3>
+          <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(sq.quote?.tr || '')}</p>
         </article>`).join('\n        ')}
       </div>
     </div>
 
     <div class="space-y-4">
-      <h2 class="text-xl font-bold text-white">Teknik yetkinlikler</h2>
+      <h2 class="text-xl font-bold text-[var(--ink)]">Teknik yetkinlikler</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         ${capabilities.map(cap => `
-        <article class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
-          <h3 class="text-sm font-bold text-cyan-300 font-mono">${escapeHtml(cap.title?.tr || '')} · ${escapeHtml(cap.cat || '')}</h3>
-          <p class="text-slate-300 text-xs leading-relaxed">${escapeHtml(cap.desc?.tr || '')}</p>
+        <article class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+          <h3 class="text-sm font-bold text-[var(--accent)] font-mono">${escapeHtml(cap.title?.tr || '')} · ${escapeHtml(cap.cat || '')}</h3>
+          <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(cap.desc?.tr || '')}</p>
         </article>`).join('\n        ')}
       </div>
     </div>
@@ -440,26 +440,26 @@ const agencyExtraContent = `
 `;
 
 const crashTestExtraContent = `
-  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-white block text-sm">60 Saniye</strong> Ortalama test süresi</div>
-      <div><strong class="text-emerald-400 block text-sm">0 Erişim</strong> Şifre veya repo erişimi istemez</div>
-      <div><strong class="text-cyan-400 block text-sm">1 Teşhis</strong> Doğrudan arıza kataloğu eşleşmesi ve eylem reçetesi</div>
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-[var(--ink)] block text-sm">60 Saniye</strong> Ortalama test süresi</div>
+      <div><strong class="text-emerald-700 block text-sm">0 Erişim</strong> Şifre veya repo erişimi istemez</div>
+      <div><strong class="text-[var(--accent)] block text-sm">1 Teşhis</strong> Doğrudan arıza kataloğu eşleşmesi ve eylem reçetesi</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Testin kapsadığı beş kriz senaryosu</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Testin kapsadığı beş kriz senaryosu</h2>
     <div class="space-y-4">
       ${scenarios.map(sc => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-3">
         <div class="flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
-          <span class="text-cyan-300 font-bold">${escapeHtml(sc.tag?.tr || '')}</span>
-          <span class="text-slate-400">${escapeHtml(sc.code || '')}</span>
+          <span class="text-[var(--accent)] font-bold">${escapeHtml(sc.tag?.tr || '')}</span>
+          <span class="text-[var(--ink-muted)]">${escapeHtml(sc.code || '')}</span>
         </div>
-        <h3 class="text-lg font-bold text-white">${escapeHtml(sc.title?.tr || '')}</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(sc.subtitle?.tr || '')}</p>
-        <div class="space-y-1 pt-1 border-t border-white/5">
-          <p class="text-xs font-semibold text-slate-400 font-mono">Senaryoda değerlendirilen sorular:</p>
-          <ul class="list-disc list-inside space-y-1 text-xs text-slate-400 font-mono">
+        <h3 class="text-lg font-bold text-[var(--ink)]">${escapeHtml(sc.title?.tr || '')}</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(sc.subtitle?.tr || '')}</p>
+        <div class="space-y-1 pt-1 border-t border-[var(--rule)]">
+          <p class="text-xs font-semibold text-[var(--ink-muted)] font-mono">Senaryoda değerlendirilen sorular:</p>
+          <ul class="list-disc list-inside space-y-1 text-xs text-[var(--ink-muted)] font-mono">
             ${(sc.questions || []).map(q => `
             <li>${escapeHtml(q.label?.tr || '')}</li>`).join('\n            ')}
           </ul>
@@ -470,99 +470,99 @@ const crashTestExtraContent = `
 `;
 
 const devirExtraContent = `
-  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
-    <h2 class="text-xl font-bold text-white">Kontrol edilen 12 kalem</h2>
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Kontrol edilen 12 kalem</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${handoverItems.map(item => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">${escapeHtml(item.title?.tr || '')}</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(item.desc?.tr || '')}</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: ${escapeHtml(item.weight)} puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">${escapeHtml(item.title?.tr || '')}</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(item.desc?.tr || '')}</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: ${escapeHtml(item.weight)} puan</p>
       </article>`).join('\n      ')}
     </div>
   </section>
 `;
 
 const salvageabilityExtraContentTr = `
-  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-white block text-sm">5 Boyutlu Risk</strong> Mimari, Test, Veritabanı, Trafik, Teknik Borç</div>
-      <div><strong class="text-emerald-400 block text-sm">0 Erişim</strong> Şifre veya repo istemez</div>
-      <div><strong class="text-cyan-400 block text-sm">3 Stratejik Karar</strong> SWAT Rescue, Strangler Fig veya Clean Slate</div>
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-[var(--ink)] block text-sm">5 Boyutlu Risk</strong> Mimari, Test, Veritabanı, Trafik, Teknik Borç</div>
+      <div><strong class="text-emerald-700 block text-sm">0 Erişim</strong> Şifre veya repo istemez</div>
+      <div><strong class="text-[var(--accent)] block text-sm">3 Stratejik Karar</strong> SWAT Rescue, Strangler Fig veya Clean Slate</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Değerlendirilen 5 Kritik Boyut</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Değerlendirilen 5 Kritik Boyut</h2>
     <div class="space-y-4">
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">1. Mimari Bağımlılık & Spagetti Yoğunluğu</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Bir modüldeki değişiklik alakasız yerleri patlatıyor mu? Monolitik düğümler ve kontrolsüz bağımlılıklar.</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">1. Mimari Bağımlılık & Spagetti Yoğunluğu</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Bir modüldeki değişiklik alakasız yerleri patlatıyor mu? Monolitik düğümler ve kontrolsüz bağımlılıklar.</p>
       </article>
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">2. Test Kapsamı & Alan Bilgisi (Domain Knowledge)</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Sistemi yazan kişi ayrıldı mı? Otomatik unit/entegrasyon testi var mı yoksa canlı ortamda mı test ediliyor?</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">2. Test Kapsamı & Alan Bilgisi (Domain Knowledge)</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Sistemi yazan kişi ayrıldı mı? Otomatik unit/entegrasyon testi var mı yoksa canlı ortamda mı test ediliyor?</p>
       </article>
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">3. Veritabanı Bütünlüğü & Şema Karmaşası</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Foreign key, constraint veya migrasyon disiplini var mı yoksa veritabanı kilitlenme veya tutarsızlık içinde mi?</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">3. Veritabanı Bütünlüğü & Şema Karmaşası</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Foreign key, constraint veya migrasyon disiplini var mı yoksa veritabanı kilitlenme veya tutarsızlık içinde mi?</p>
       </article>
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">4. Canlı Trafik Baskısı & Teslimat Süresi</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Sistem şu an aktif ciro üretiyor mu ve acil bir lansman/sözleşme tarihi var mı?</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">4. Canlı Trafik Baskısı & Teslimat Süresi</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Sistem şu an aktif ciro üretiyor mu ve acil bir lansman/sözleşme tarihi var mı?</p>
       </article>
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">5. Teknik Borç / Bakım Maliyeti Oranı</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Yeni bir özellik eklemek kaç gün sürüyor? Bakım maliyeti ciro ve geliştirme hızını kilitliyor mu?</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">5. Teknik Borç / Bakım Maliyeti Oranı</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Yeni bir özellik eklemek kaç gün sürüyor? Bakım maliyeti ciro ve geliştirme hızını kilitliyor mu?</p>
       </article>
     </div>
   </section>
 `;
 
 const salvageabilityExtraContentEn = `
-  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-white block text-sm">5 Risk Dimensions</strong> Architecture, Tests, Database, Traffic, Debt Drag</div>
-      <div><strong class="text-emerald-400 block text-sm">Zero Access</strong> No credentials or repo access needed</div>
-      <div><strong class="text-cyan-400 block text-sm">3 Strategic Paths</strong> SWAT Rescue, Strangler Fig, or Clean Slate</div>
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-[var(--ink)] block text-sm">5 Risk Dimensions</strong> Architecture, Tests, Database, Traffic, Debt Drag</div>
+      <div><strong class="text-emerald-700 block text-sm">Zero Access</strong> No credentials or repo access needed</div>
+      <div><strong class="text-[var(--accent)] block text-sm">3 Strategic Paths</strong> SWAT Rescue, Strangler Fig, or Clean Slate</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">5 Critical Dimensions Evaluated</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">5 Critical Dimensions Evaluated</h2>
     <div class="space-y-4">
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">1. Architectural Coupling & Spaghetti Density</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Does changing one module break unrelated endpoints? Monolithic tangles and hidden dependencies.</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">1. Architectural Coupling & Spaghetti Density</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Does changing one module break unrelated endpoints? Monolithic tangles and hidden dependencies.</p>
       </article>
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">2. Test Coverage & Domain Knowledge</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Did the original developers vanish? Are automated test suites nonexistent, leaving code untested until production?</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">2. Test Coverage & Domain Knowledge</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Did the original developers vanish? Are automated test suites nonexistent, leaving code untested until production?</p>
       </article>
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">3. Database Integrity & Schema Hygiene</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Are foreign keys and constraints intact, or is the schema fraught with deadlocks and orphaned data?</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">3. Database Integrity & Schema Hygiene</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Are foreign keys and constraints intact, or is the schema fraught with deadlocks and orphaned data?</p>
       </article>
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">4. Live Traffic Pressure & Deadline Urgency</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Is the system currently processing real revenue with tight contractual delivery milestones?</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">4. Live Traffic Pressure & Deadline Urgency</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Is the system currently processing real revenue with tight contractual delivery milestones?</p>
       </article>
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">5. Technical Debt Drag Ratio</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Does shipping a minor feature take weeks instead of hours due to crippling maintenance overhead?</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">5. Technical Debt Drag Ratio</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Does shipping a minor feature take weeks instead of hours due to crippling maintenance overhead?</p>
       </article>
     </div>
   </section>
 `;
 
 const postMortemHubExtraContentTr = `
-  <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
-    <h2 class="text-xl font-bold text-white">Yayınlanmış Post-Mortem Vakaları</h2>
+  <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Yayınlanmış Post-Mortem Vakaları</h2>
     <ul class="space-y-4">
       ${postMortems.map(item => `
-        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/post-mortem/${escapeHtml(item.slug)}/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ ${escapeHtml(item.no)} · ${escapeHtml(item.title?.tr || '')}</a>
-            <span class="text-xs font-mono text-amber-400">${escapeHtml(item.severity)} · ${escapeHtml(item.category?.tr || '')}</span>
+            <a href="/post-mortem/${escapeHtml(item.slug)}/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ ${escapeHtml(item.no)} · ${escapeHtml(item.title?.tr || '')}</a>
+            <span class="text-xs font-mono text-amber-700">${escapeHtml(item.severity)} · ${escapeHtml(item.category?.tr || '')}</span>
           </div>
-          <p class="text-sm text-slate-300 leading-relaxed">${escapeHtml(item.summary?.tr || '')}</p>
-          <div class="text-xs font-mono text-slate-400">Süre: ${escapeHtml(item.duration?.tr || '')} · Etki: ${escapeHtml(item.impact?.tr || '')}</div>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.summary?.tr || '')}</p>
+          <div class="text-xs font-mono text-[var(--ink-muted)]">Süre: ${escapeHtml(item.duration?.tr || '')} · Etki: ${escapeHtml(item.impact?.tr || '')}</div>
         </li>
       `).join('\n      ')}
     </ul>
@@ -570,17 +570,17 @@ const postMortemHubExtraContentTr = `
 `;
 
 const postMortemHubExtraContentEn = `
-  <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
-    <h2 class="text-xl font-bold text-white">Published Incident Post-Mortems</h2>
+  <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Published Incident Post-Mortems</h2>
     <ul class="space-y-4">
       ${postMortems.map(item => `
-        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/post-mortems/${escapeHtml(item.slug)}/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ ${escapeHtml(item.no)} · ${escapeHtml(item.title?.en || item.title?.tr || '')}</a>
-            <span class="text-xs font-mono text-amber-400">${escapeHtml(item.severity)} · ${escapeHtml(item.category?.en || '')}</span>
+            <a href="/post-mortems/${escapeHtml(item.slug)}/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ ${escapeHtml(item.no)} · ${escapeHtml(item.title?.en || item.title?.tr || '')}</a>
+            <span class="text-xs font-mono text-amber-700">${escapeHtml(item.severity)} · ${escapeHtml(item.category?.en || '')}</span>
           </div>
-          <p class="text-sm text-slate-300 leading-relaxed">${escapeHtml(item.summary?.en || item.summary?.tr || '')}</p>
-          <div class="text-xs font-mono text-slate-400">Duration: ${escapeHtml(item.duration?.en || '')} · Impact: ${escapeHtml(item.impact?.en || '')}</div>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.summary?.en || item.summary?.tr || '')}</p>
+          <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: ${escapeHtml(item.duration?.en || '')} · Impact: ${escapeHtml(item.impact?.en || '')}</div>
         </li>
       `).join('\n      ')}
     </ul>
@@ -588,23 +588,23 @@ const postMortemHubExtraContentEn = `
 `;
 
 const triageExtraContentTr = `
-  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-white block text-sm">6 Kriz Tipi</strong> Veritabanı, Ödeme, Bellek, Deploy, 429, Devir</div>
-      <div><strong class="text-emerald-400 block text-sm">İlk 15 Dk</strong> Kritik "Ne Yapma!" kuralları ve CLI komutları</div>
-      <div><strong class="text-cyan-400 block text-sm">Ücretsiz Triyaj</strong> Masaya doğrudan kıdemli mühendis bağlanır</div>
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-[var(--ink)] block text-sm">6 Kriz Tipi</strong> Veritabanı, Ödeme, Bellek, Deploy, 429, Devir</div>
+      <div><strong class="text-emerald-700 block text-sm">İlk 15 Dk</strong> Kritik "Ne Yapma!" kuralları ve CLI komutları</div>
+      <div><strong class="text-[var(--accent)] block text-sm">Ücretsiz Triyaj</strong> Masaya doğrudan kıdemli mühendis bağlanır</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Canlı Kriz Simülatöründe Kapsanan Senaryolar</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Canlı Kriz Simülatöründe Kapsanan Senaryolar</h2>
     <div class="space-y-4">
       ${triageScenarios.map(sc => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
-          <h3 class="text-base font-bold text-cyan-300 font-mono">${escapeHtml(sc.category?.tr || '')}</h3>
-          <span class="text-xs font-mono text-amber-400">${escapeHtml(sc.severity)} · İlk Yanıt: ${escapeHtml(sc.firstResponseTime?.tr || '')}</span>
+          <h3 class="text-base font-bold text-[var(--accent)] font-mono">${escapeHtml(sc.category?.tr || '')}</h3>
+          <span class="text-xs font-mono text-amber-700">${escapeHtml(sc.severity)} · İlk Yanıt: ${escapeHtml(sc.firstResponseTime?.tr || '')}</span>
         </div>
-        <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(sc.symptom?.tr || '')}</p>
-        <div class="pt-2 text-xs font-mono text-red-300">
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(sc.symptom?.tr || '')}</p>
+        <div class="pt-2 text-xs font-mono text-rose-700">
           <strong>Önemli:</strong> ${escapeHtml(sc.doNot?.[0]?.tr || '')}
         </div>
       </article>
@@ -614,23 +614,23 @@ const triageExtraContentTr = `
 `;
 
 const triageExtraContentEn = `
-  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-white block text-sm">6 Outage Types</strong> Database, Payment, Memory, Deploy, 429, Handover</div>
-      <div><strong class="text-emerald-400 block text-sm">First 15 Mins</strong> Critical DO NOTs and diagnostic CLI commands</div>
-      <div><strong class="text-cyan-400 block text-sm">Free Triage</strong> Senior engineering desk engages directly</div>
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-[var(--ink)] block text-sm">6 Outage Types</strong> Database, Payment, Memory, Deploy, 429, Handover</div>
+      <div><strong class="text-emerald-700 block text-sm">First 15 Mins</strong> Critical DO NOTs and diagnostic CLI commands</div>
+      <div><strong class="text-[var(--accent)] block text-sm">Free Triage</strong> Senior engineering desk engages directly</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Scenarios Covered in the Emergency Simulator</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Scenarios Covered in the Emergency Simulator</h2>
     <div class="space-y-4">
       ${triageScenarios.map(sc => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
-          <h3 class="text-base font-bold text-cyan-300 font-mono">${escapeHtml(sc.category?.en || '')}</h3>
-          <span class="text-xs font-mono text-amber-400">${escapeHtml(sc.severity)} · MTTA: ${escapeHtml(sc.firstResponseTime?.en || '')}</span>
+          <h3 class="text-base font-bold text-[var(--accent)] font-mono">${escapeHtml(sc.category?.en || '')}</h3>
+          <span class="text-xs font-mono text-amber-700">${escapeHtml(sc.severity)} · MTTA: ${escapeHtml(sc.firstResponseTime?.en || '')}</span>
         </div>
-        <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(sc.symptom?.en || '')}</p>
-        <div class="pt-2 text-xs font-mono text-red-300">
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(sc.symptom?.en || '')}</p>
+        <div class="pt-2 text-xs font-mono text-rose-700">
           <strong>Caution:</strong> ${escapeHtml(sc.doNot?.[0]?.en || '')}
         </div>
       </article>
@@ -640,37 +640,37 @@ const triageExtraContentEn = `
 `;
 
 const slaExtraContentTr = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-red-400 block text-sm">SEV-0</strong> ≤ 15 Dk MTTA</div>
-      <div><strong class="text-amber-400 block text-sm">SEV-1</strong> ≤ 30 Dk MTTA</div>
-      <div><strong class="text-blue-400 block text-sm">SEV-2</strong> ≤ 2 Saat MTTA</div>
-      <div><strong class="text-purple-400 block text-sm">SEV-3</strong> ≤ 4 Saat MTTA</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-rose-700 block text-sm">SEV-0</strong> ≤ 15 Dk MTTA</div>
+      <div><strong class="text-amber-700 block text-sm">SEV-1</strong> ≤ 30 Dk MTTA</div>
+      <div><strong class="text-blue-700 block text-sm">SEV-2</strong> ≤ 2 Saat MTTA</div>
+      <div><strong class="text-purple-700 block text-sm">SEV-3</strong> ≤ 4 Saat MTTA</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Hizmet Seviyesi Taahhütleri (SLA Seviyeleri)</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Hizmet Seviyesi Taahhütleri (SLA Seviyeleri)</h2>
     <div class="space-y-4">
       ${slaTiers.map(tier => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
-          <h3 class="text-base font-bold text-white font-mono">${escapeHtml(tier.level)} · ${escapeHtml(tier.title?.tr || '')}</h3>
-          <span class="text-xs font-mono text-cyan-300">İlk Yanıt: ${escapeHtml(tier.mtta?.tr || '')} · Masaya Oturma: ${escapeHtml(tier.timeToTable?.tr || '')}</span>
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(tier.level)} · ${escapeHtml(tier.title?.tr || '')}</h3>
+          <span class="text-xs font-mono text-[var(--accent)]">İlk Yanıt: ${escapeHtml(tier.mtta?.tr || '')} · Masaya Oturma: ${escapeHtml(tier.timeToTable?.tr || '')}</span>
         </div>
-        <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(tier.definition?.tr || '')}</p>
-        <p class="text-xs font-mono text-slate-400">Rapor Sıklığı: ${escapeHtml(tier.updateCadence?.tr || '')}</p>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(tier.definition?.tr || '')}</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Rapor Sıklığı: ${escapeHtml(tier.updateCadence?.tr || '')}</p>
       </article>
       `).join('\n      ')}
     </div>
 
-    <h2 class="text-xl font-bold text-white pt-4">Taviz Verilmeyen 5 Temel Mühendislik Taahhüdümüz</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)] pt-4">Taviz Verilmeyen 5 Temel Mühendislik Taahhüdümüz</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${coreCommitments.map(c => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between">
-          <span class="text-base font-bold font-mono text-cyan-400">${escapeHtml(c.no)}</span>
-          <h3 class="text-sm font-bold text-white">${escapeHtml(c.title?.tr || '')}</h3>
+          <span class="text-base font-bold font-mono text-[var(--accent)]">${escapeHtml(c.no)}</span>
+          <h3 class="text-sm font-bold text-[var(--ink)]">${escapeHtml(c.title?.tr || '')}</h3>
         </div>
-        <p class="text-slate-300 text-xs leading-relaxed">${escapeHtml(c.desc?.tr || '')}</p>
+        <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(c.desc?.tr || '')}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -678,37 +678,37 @@ const slaExtraContentTr = `
 `;
 
 const slaExtraContentEn = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-red-400 block text-sm">SEV-0</strong> ≤ 15 Mins MTTA</div>
-      <div><strong class="text-amber-400 block text-sm">SEV-1</strong> ≤ 30 Mins MTTA</div>
-      <div><strong class="text-blue-400 block text-sm">SEV-2</strong> ≤ 2 Hours MTTA</div>
-      <div><strong class="text-purple-400 block text-sm">SEV-3</strong> ≤ 4 Hours MTTA</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-rose-700 block text-sm">SEV-0</strong> ≤ 15 Mins MTTA</div>
+      <div><strong class="text-amber-700 block text-sm">SEV-1</strong> ≤ 30 Mins MTTA</div>
+      <div><strong class="text-blue-700 block text-sm">SEV-2</strong> ≤ 2 Hours MTTA</div>
+      <div><strong class="text-purple-700 block text-sm">SEV-3</strong> ≤ 4 Hours MTTA</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Service Level Agreements (SLA Tiers)</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Service Level Agreements (SLA Tiers)</h2>
     <div class="space-y-4">
       ${slaTiers.map(tier => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
-          <h3 class="text-base font-bold text-white font-mono">${escapeHtml(tier.level)} · ${escapeHtml(tier.title?.en || tier.title?.tr || '')}</h3>
-          <span class="text-xs font-mono text-cyan-300">MTTA: ${escapeHtml(tier.mtta?.en || '')} · Table: ${escapeHtml(tier.timeToTable?.en || '')}</span>
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(tier.level)} · ${escapeHtml(tier.title?.en || tier.title?.tr || '')}</h3>
+          <span class="text-xs font-mono text-[var(--accent)]">MTTA: ${escapeHtml(tier.mtta?.en || '')} · Table: ${escapeHtml(tier.timeToTable?.en || '')}</span>
         </div>
-        <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(tier.definition?.en || '')}</p>
-        <p class="text-xs font-mono text-slate-400">Cadence: ${escapeHtml(tier.updateCadence?.en || '')}</p>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(tier.definition?.en || '')}</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Cadence: ${escapeHtml(tier.updateCadence?.en || '')}</p>
       </article>
       `).join('\n      ')}
     </div>
 
-    <h2 class="text-xl font-bold text-white pt-4">5 Core Non-Negotiable Commitments</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)] pt-4">5 Core Non-Negotiable Commitments</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${coreCommitments.map(c => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between">
-          <span class="text-base font-bold font-mono text-cyan-400">${escapeHtml(c.no)}</span>
-          <h3 class="text-sm font-bold text-white">${escapeHtml(c.title?.en || c.title?.tr || '')}</h3>
+          <span class="text-base font-bold font-mono text-[var(--accent)]">${escapeHtml(c.no)}</span>
+          <h3 class="text-sm font-bold text-[var(--ink)]">${escapeHtml(c.title?.en || c.title?.tr || '')}</h3>
         </div>
-        <p class="text-slate-300 text-xs leading-relaxed">${escapeHtml(c.desc?.en || c.desc?.tr || '')}</p>
+        <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(c.desc?.en || c.desc?.tr || '')}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -716,30 +716,30 @@ const slaExtraContentEn = `
 `;
 
 const techMatrixExtraContentTr = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-emerald-400 block text-sm">4 Kategori</strong> Backend, Frontend, DB, Infra</div>
-      <div><strong class="text-white block text-sm">15+ Bileşen</strong> Node, Go, Python, Postgres, K8s</div>
-      <div><strong class="text-cyan-400 block text-sm">≤ 15 Dk</strong> SEV-0 Anında SWAT Triyajı</div>
-      <div><strong class="text-amber-400 block text-sm">%100</strong> Zero-Loss Rollback Garantisi</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-emerald-700 block text-sm">4 Kategori</strong> Backend, Frontend, DB, Infra</div>
+      <div><strong class="text-[var(--ink)] block text-sm">15+ Bileşen</strong> Node, Go, Python, Postgres, K8s</div>
+      <div><strong class="text-[var(--accent)] block text-sm">≤ 15 Dk</strong> SEV-0 Anında SWAT Triyajı</div>
+      <div><strong class="text-amber-700 block text-sm">%100</strong> Zero-Loss Rollback Garantisi</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Desteklenen Teknolojiler & Cerrahi Müdahale Derinliği</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Desteklenen Teknolojiler & Cerrahi Müdahale Derinliği</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${techStackData.tr.items.map(tech => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
-          <h3 class="text-base font-bold text-white font-mono">${escapeHtml(tech.name)}</h3>
-          <span class="text-xs font-mono text-emerald-400">${escapeHtml(tech.supportLevel)}</span>
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(tech.name)}</h3>
+          <span class="text-xs font-mono text-emerald-700">${escapeHtml(tech.supportLevel)}</span>
         </div>
-        <p class="text-xs font-mono text-slate-400">Hazırbulunuşluk: ${escapeHtml(tech.readiness)}</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Hazırbulunuşluk: ${escapeHtml(tech.readiness)}</p>
         <div class="pt-1">
-          <p class="text-xs font-semibold text-amber-300 font-mono">Kritik Arıza Noktaları:</p>
-          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+          <p class="text-xs font-semibold text-amber-700 font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-muted)]">
             ${tech.commonIncidents.slice(0, 2).map(inc => `<li>${escapeHtml(inc)}</li>`).join('\n            ')}
           </ul>
         </div>
-        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> ${escapeHtml(tech.rescueCapability)}</p>
+        <p class="text-xs text-[var(--ink-muted)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> ${escapeHtml(tech.rescueCapability)}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -747,30 +747,30 @@ const techMatrixExtraContentTr = `
 `;
 
 const techMatrixExtraContentEn = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-emerald-400 block text-sm">4 Categories</strong> Backend, Frontend, DB, Infra</div>
-      <div><strong class="text-white block text-sm">15+ Stacks</strong> Node, Go, Python, Postgres, K8s</div>
-      <div><strong class="text-cyan-400 block text-sm">≤ 15 Mins</strong> SEV-0 Immediate SWAT Triage</div>
-      <div><strong class="text-amber-400 block text-sm">100%</strong> Zero-Loss Rollback Guarantee</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-emerald-700 block text-sm">4 Categories</strong> Backend, Frontend, DB, Infra</div>
+      <div><strong class="text-[var(--ink)] block text-sm">15+ Stacks</strong> Node, Go, Python, Postgres, K8s</div>
+      <div><strong class="text-[var(--accent)] block text-sm">≤ 15 Mins</strong> SEV-0 Immediate SWAT Triage</div>
+      <div><strong class="text-amber-700 block text-sm">100%</strong> Zero-Loss Rollback Guarantee</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Supported Technologies & Surgical Rescue Depth</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Supported Technologies & Surgical Rescue Depth</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${techStackData.en.items.map(tech => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
-          <h3 class="text-base font-bold text-white font-mono">${escapeHtml(tech.name)}</h3>
-          <span class="text-xs font-mono text-emerald-400">${escapeHtml(tech.supportLevel)}</span>
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(tech.name)}</h3>
+          <span class="text-xs font-mono text-emerald-700">${escapeHtml(tech.supportLevel)}</span>
         </div>
-        <p class="text-xs font-mono text-slate-400">Readiness: ${escapeHtml(tech.readiness)}</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Readiness: ${escapeHtml(tech.readiness)}</p>
         <div class="pt-1">
-          <p class="text-xs font-semibold text-amber-300 font-mono">Outage Vectors:</p>
-          <ul class="list-disc list-inside space-y-0.5 text-xs text-slate-300">
+          <p class="text-xs font-semibold text-amber-700 font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-muted)]">
             ${tech.commonIncidents.slice(0, 2).map(inc => `<li>${escapeHtml(inc)}</li>`).join('\n            ')}
           </ul>
         </div>
-        <p class="text-xs text-slate-400 pt-1"><strong class="text-cyan-300">TMA SWAT:</strong> ${escapeHtml(tech.rescueCapability)}</p>
+        <p class="text-xs text-[var(--ink-muted)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> ${escapeHtml(tech.rescueCapability)}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -778,19 +778,19 @@ const techMatrixExtraContentEn = `
 `;
 
 const ndaGeneratorExtraContentTr = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-emerald-400 block text-sm">%100 IP Koruma</strong> Kod ve mimari tamamen müşteriye aittir</div>
-      <div><strong class="text-white block text-sm">White-Label</strong> Müşterinizin adı ve arızası asla yayınlanmaz</div>
-      <div><strong class="text-cyan-400 block text-sm">Anında PDF / Yazdır</strong> 30 saniyede resmi sözleşme çıktısı</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-emerald-700 block text-sm">%100 IP Koruma</strong> Kod ve mimari tamamen müşteriye aittir</div>
+      <div><strong class="text-[var(--ink)] block text-sm">White-Label</strong> Müşterinizin adı ve arızası asla yayınlanmaz</div>
+      <div><strong class="text-[var(--accent)] block text-sm">Anında PDF / Yazdır</strong> 30 saniyede resmi sözleşme çıktısı</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Sözleşmede Yer Alan 7 Temel Hukuki ve Mühendislik Maddesi</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Sözleşmede Yer Alan 7 Temel Hukuki ve Mühendislik Maddesi</h2>
     <div class="space-y-4">
       ${ndaData.tr.clauses.map(clause => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
-        <h3 class="text-sm font-bold text-white font-mono uppercase">MADDE ${escapeHtml(clause.num)}. ${escapeHtml(clause.title)}</h3>
-        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">${escapeHtml(clause.content)}</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+        <h3 class="text-sm font-bold text-[var(--ink)] font-mono uppercase">MADDE ${escapeHtml(clause.num)}. ${escapeHtml(clause.title)}</h3>
+        <p class="text-[var(--ink-muted)] text-xs sm:text-sm leading-relaxed">${escapeHtml(clause.content)}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -798,19 +798,19 @@ const ndaGeneratorExtraContentTr = `
 `;
 
 const ndaGeneratorExtraContentEn = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-emerald-400 block text-sm">100% IP Ownership</strong> All code & architecture belongs to client</div>
-      <div><strong class="text-white block text-sm">Ghost Delivery</strong> Client identity and incident history strictly confidential</div>
-      <div><strong class="text-cyan-400 block text-sm">Instant Print / PDF</strong> Official executive agreement in 30 seconds</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-emerald-700 block text-sm">100% IP Ownership</strong> All code & architecture belongs to client</div>
+      <div><strong class="text-[var(--ink)] block text-sm">Ghost Delivery</strong> Client identity and incident history strictly confidential</div>
+      <div><strong class="text-[var(--accent)] block text-sm">Instant Print / PDF</strong> Official executive agreement in 30 seconds</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">7 Core Legal & Engineering Clauses</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">7 Core Legal & Engineering Clauses</h2>
     <div class="space-y-4">
       ${ndaData.en.clauses.map(clause => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
-        <h3 class="text-sm font-bold text-white font-mono uppercase">SECTION ${escapeHtml(clause.num)}. ${escapeHtml(clause.title)}</h3>
-        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">${escapeHtml(clause.content)}</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+        <h3 class="text-sm font-bold text-[var(--ink)] font-mono uppercase">SECTION ${escapeHtml(clause.num)}. ${escapeHtml(clause.title)}</h3>
+        <p class="text-[var(--ink-muted)] text-xs sm:text-sm leading-relaxed">${escapeHtml(clause.content)}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -818,20 +818,20 @@ const ndaGeneratorExtraContentEn = `
 `;
 
 const outageSimulatorExtraContentTr = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-rose-400 block text-sm">5 Boyutlu Zarar</strong> Ciro, Reklam, SLA, Churn, Mühendislik</div>
-      <div><strong class="text-white block text-sm">TCOD Motoru</strong> True Cost of Downtime hesaplaması</div>
-      <div><strong class="text-amber-400 block text-sm">Gizli Maliyet</strong> Ciro kaybının 2x - 4x katı teminat riski</div>
-      <div><strong class="text-emerald-400 block text-sm">≤ 15 Dk</strong> Masaya bağlanarak hasarı durdurma</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-rose-700 block text-sm">5 Boyutlu Zarar</strong> Ciro, Reklam, SLA, Churn, Mühendislik</div>
+      <div><strong class="text-[var(--ink)] block text-sm">TCOD Motoru</strong> True Cost of Downtime hesaplaması</div>
+      <div><strong class="text-amber-700 block text-sm">Gizli Maliyet</strong> Ciro kaybının 2x - 4x katı teminat riski</div>
+      <div><strong class="text-emerald-700 block text-sm">≤ 15 Dk</strong> Masaya bağlanarak hasarı durdurma</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Hesaplanan 5 Kurumsal Hasar Kalemi (TCOD)</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Hesaplanan 5 Kurumsal Hasar Kalemi (TCOD)</h2>
     <div class="space-y-4">
       ${outageSimulatorData.tr.dimensions.map(dim => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
-        <h3 class="text-base font-bold text-white font-mono">${escapeHtml(dim.title)}</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(dim.desc)}</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+        <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(dim.title)}</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(dim.desc)}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -839,20 +839,20 @@ const outageSimulatorExtraContentTr = `
 `;
 
 const outageSimulatorExtraContentEn = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-rose-400 block text-sm">5 Damage Vectors</strong> Revenue, Ads, SLA, Churn, Engineering</div>
-      <div><strong class="text-white block text-sm">TCOD Engine</strong> True Cost of Downtime arithmetic</div>
-      <div><strong class="text-amber-400 block text-sm">Hidden Drag</strong> 2x to 4x direct lost checkout sales</div>
-      <div><strong class="text-emerald-400 block text-sm">≤ 15 Mins</strong> Stop bleeding via instant senior triage</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-rose-700 block text-sm">5 Damage Vectors</strong> Revenue, Ads, SLA, Churn, Engineering</div>
+      <div><strong class="text-[var(--ink)] block text-sm">TCOD Engine</strong> True Cost of Downtime arithmetic</div>
+      <div><strong class="text-amber-700 block text-sm">Hidden Drag</strong> 2x to 4x direct lost checkout sales</div>
+      <div><strong class="text-emerald-700 block text-sm">≤ 15 Mins</strong> Stop bleeding via instant senior triage</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">5 Modeled Damage Components (TCOD)</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">5 Modeled Damage Components (TCOD)</h2>
     <div class="space-y-4">
       ${outageSimulatorData.en.dimensions.map(dim => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
-        <h3 class="text-base font-bold text-white font-mono">${escapeHtml(dim.title)}</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">${escapeHtml(dim.desc)}</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+        <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(dim.title)}</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">${escapeHtml(dim.desc)}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -860,24 +860,24 @@ const outageSimulatorExtraContentEn = `
 `;
 
 const radarExtraContentTr = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-emerald-400 block text-sm">Canlı Durum</strong> 0 Bekleyen SEV-0 / Masada Aktif</div>
-      <div><strong class="text-white block text-sm">8.4 Dk MTTA</strong> Son 90 Gün Masaya Oturma Ortalaması</div>
-      <div><strong class="text-cyan-400 block text-sm">3.2 Saat TTR</strong> Ortalama Kalıcı Çözüm Süresi</div>
-      <div><strong class="text-purple-400 block text-sm">%99.8</strong> SLA Taahhüt Başarı Oranı</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-emerald-700 block text-sm">Canlı Durum</strong> 0 Bekleyen SEV-0 / Masada Aktif</div>
+      <div><strong class="text-[var(--ink)] block text-sm">8.4 Dk MTTA</strong> Son 90 Gün Masaya Oturma Ortalaması</div>
+      <div><strong class="text-[var(--accent)] block text-sm">3.2 Saat TTR</strong> Ortalama Kalıcı Çözüm Süresi</div>
+      <div><strong class="text-purple-700 block text-sm">%99.8</strong> SLA Taahhüt Başarı Oranı</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Operasyonel Servis Masaları & Altyapı</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Operasyonel Servis Masaları & Altyapı</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${radarData.tr.components.map(comp => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between">
-          <h3 class="text-base font-bold text-white font-mono">${escapeHtml(comp.name)}</h3>
-          <span class="text-xs font-mono text-emerald-400">${escapeHtml(comp.uptime)}</span>
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(comp.name)}</h3>
+          <span class="text-xs font-mono text-emerald-700">${escapeHtml(comp.uptime)}</span>
         </div>
-        <p class="text-slate-300 text-xs leading-relaxed">${escapeHtml(comp.desc)}</p>
-        <p class="text-[11px] font-mono text-cyan-300 pt-1">Yanıt Hızı: ${escapeHtml(comp.latency)}</p>
+        <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(comp.desc)}</p>
+        <p class="text-xs font-mono text-[var(--accent)] pt-1">Yanıt Hızı: ${escapeHtml(comp.latency)}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -885,24 +885,24 @@ const radarExtraContentTr = `
 `;
 
 const radarExtraContentEn = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-emerald-400 block text-sm">Live Status</strong> 0 Active SEV-0 Queue / All Operational</div>
-      <div><strong class="text-white block text-sm">8.4 Min MTTA</strong> 90-Day Average Time to Table</div>
-      <div><strong class="text-cyan-400 block text-sm">3.2 Hr TTR</strong> 90-Day Mean Time to Recovery</div>
-      <div><strong class="text-purple-400 block text-sm">99.8%</strong> SLA Commitment Compliance</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-emerald-700 block text-sm">Live Status</strong> 0 Active SEV-0 Queue / All Operational</div>
+      <div><strong class="text-[var(--ink)] block text-sm">8.4 Min MTTA</strong> 90-Day Average Time to Table</div>
+      <div><strong class="text-[var(--accent)] block text-sm">3.2 Hr TTR</strong> 90-Day Mean Time to Recovery</div>
+      <div><strong class="text-purple-700 block text-sm">99.8%</strong> SLA Commitment Compliance</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Operational Service Desks & Infrastructure</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Operational Service Desks & Infrastructure</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${radarData.en.components.map(comp => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between">
-          <h3 class="text-base font-bold text-white font-mono">${escapeHtml(comp.name)}</h3>
-          <span class="text-xs font-mono text-emerald-400">${escapeHtml(comp.uptime)}</span>
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(comp.name)}</h3>
+          <span class="text-xs font-mono text-emerald-700">${escapeHtml(comp.uptime)}</span>
         </div>
-        <p class="text-slate-300 text-xs leading-relaxed">${escapeHtml(comp.desc)}</p>
-        <p class="text-[11px] font-mono text-cyan-300 pt-1">Response Latency: ${escapeHtml(comp.latency)}</p>
+        <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(comp.desc)}</p>
+        <p class="text-xs font-mono text-[var(--accent)] pt-1">Response Latency: ${escapeHtml(comp.latency)}</p>
       </article>
       `).join('\n      ')}
     </div>
@@ -910,29 +910,29 @@ const radarExtraContentEn = `
 `;
 
 const codeHealthExtraContentTr = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-rose-400 block text-sm">4 Kritik Boyut</strong> Mimari, DB, Güvenlik, Borç</div>
-      <div><strong class="text-white block text-sm">20 Parametre</strong> Ağırlıklı risk değerlendirme kriteri</div>
-      <div><strong class="text-amber-400 block text-sm">Yangın Riski</strong> İlk 3 acil müdahale noktası tespiti</div>
-      <div><strong class="text-emerald-400 block text-sm">Anında Rapor</strong> CTO & Yönetim Kurulu için Markdown çıktısı</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-rose-700 block text-sm">4 Kritik Boyut</strong> Mimari, DB, Güvenlik, Borç</div>
+      <div><strong class="text-[var(--ink)] block text-sm">20 Parametre</strong> Ağırlıklı risk değerlendirme kriteri</div>
+      <div><strong class="text-amber-700 block text-sm">Yangın Riski</strong> İlk 3 acil müdahale noktası tespiti</div>
+      <div><strong class="text-emerald-700 block text-sm">Anında Rapor</strong> CTO & Yönetim Kurulu için Markdown çıktısı</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">4 Boyutlu Kod Sağlığı ve Teknik Borç Denetim Kapsamı</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">4 Boyutlu Kod Sağlığı ve Teknik Borç Denetim Kapsamı</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${codeHealthData.tr.categories.map(cat => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-        <div class="border-b border-white/10 pb-2">
-          <h3 class="text-base font-bold text-white font-mono">${escapeHtml(cat.title)}</h3>
-          <p class="text-xs text-slate-400">${escapeHtml(cat.desc)}</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+        <div class="border-b border-[var(--rule)] pb-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(cat.title)}</h3>
+          <p class="text-xs text-[var(--ink-muted)]">${escapeHtml(cat.desc)}</p>
         </div>
-        <ul class="space-y-2 text-xs text-slate-300">
+        <ul class="space-y-2 text-xs text-[var(--ink-muted)]">
           ${cat.items.slice(0, 3).map(item => `
           <li class="flex items-start gap-2">
-            <span class="text-amber-400 font-mono font-bold">•</span>
+            <span class="text-amber-700 font-mono font-bold">•</span>
             <div>
-              <span class="text-slate-200 font-medium">${escapeHtml(item.text)}</span>
-              <p class="text-[11px] text-rose-300/80 font-mono">${escapeHtml(item.risk)}</p>
+              <span class="text-[var(--ink)] font-medium">${escapeHtml(item.text)}</span>
+              <p class="text-xs text-rose-700 font-mono">${escapeHtml(item.risk)}</p>
             </div>
           </li>
           `).join('\n          ')}
@@ -944,29 +944,29 @@ const codeHealthExtraContentTr = `
 `;
 
 const codeHealthExtraContentEn = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-rose-400 block text-sm">4 Critical Vectors</strong> Architecture, DB, Security, Debt</div>
-      <div><strong class="text-white block text-sm">20 Checkpoints</strong> Weighted risk assessment criteria</div>
-      <div><strong class="text-amber-400 block text-sm">Fire Hazards</strong> Top 3 urgent triage vectors</div>
-      <div><strong class="text-emerald-400 block text-sm">Instant Brief</strong> Copyable executive Markdown report</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-rose-700 block text-sm">4 Critical Vectors</strong> Architecture, DB, Security, Debt</div>
+      <div><strong class="text-[var(--ink)] block text-sm">20 Checkpoints</strong> Weighted risk assessment criteria</div>
+      <div><strong class="text-amber-700 block text-sm">Fire Hazards</strong> Top 3 urgent triage vectors</div>
+      <div><strong class="text-emerald-700 block text-sm">Instant Brief</strong> Copyable executive Markdown report</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">4-Dimensional Codebase Health & Technical Debt Scope</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">4-Dimensional Codebase Health & Technical Debt Scope</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${codeHealthData.en.categories.map(cat => `
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-        <div class="border-b border-white/10 pb-2">
-          <h3 class="text-base font-bold text-white font-mono">${escapeHtml(cat.title)}</h3>
-          <p class="text-xs text-slate-400">${escapeHtml(cat.desc)}</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+        <div class="border-b border-[var(--rule)] pb-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(cat.title)}</h3>
+          <p class="text-xs text-[var(--ink-muted)]">${escapeHtml(cat.desc)}</p>
         </div>
-        <ul class="space-y-2 text-xs text-slate-300">
+        <ul class="space-y-2 text-xs text-[var(--ink-muted)]">
           ${cat.items.slice(0, 3).map(item => `
           <li class="flex items-start gap-2">
-            <span class="text-amber-400 font-mono font-bold">•</span>
+            <span class="text-amber-700 font-mono font-bold">•</span>
             <div>
-              <span class="text-slate-200 font-medium">${escapeHtml(item.text)}</span>
-              <p class="text-[11px] text-rose-300/80 font-mono">${escapeHtml(item.risk)}</p>
+              <span class="text-[var(--ink)] font-medium">${escapeHtml(item.text)}</span>
+              <p class="text-xs text-rose-700 font-mono">${escapeHtml(item.risk)}</p>
             </div>
           </li>
           `).join('\n          ')}
@@ -978,33 +978,33 @@ const codeHealthExtraContentEn = `
 `;
 
 const rescueRoiExtraContentTr = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-emerald-400 block text-sm">%60 - %80</strong> Korunan Sermaye & Bütçe</div>
-      <div><strong class="text-white block text-sm">4x - 10x ROI</strong> Cerrahi Kurtarma Çarpanı</div>
-      <div><strong class="text-cyan-400 block text-sm">4 - 8 Ay</strong> Kazanılan Pazar Süresi</div>
-      <div><strong class="text-amber-400 block text-sm">Zero-Rebuild Risk</strong> Sıfırdan yazım tuzaklarını bertaraf</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-emerald-700 block text-sm">%60 - %80</strong> Korunan Sermaye & Bütçe</div>
+      <div><strong class="text-[var(--ink)] block text-sm">4x - 10x ROI</strong> Cerrahi Kurtarma Çarpanı</div>
+      <div><strong class="text-[var(--accent)] block text-sm">4 - 8 Ay</strong> Kazanılan Pazar Süresi</div>
+      <div><strong class="text-amber-700 block text-sm">Zero-Rebuild Risk</strong> Sıfırdan yazım tuzaklarını bertaraf</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Sıfırdan Yazım Riskleri vs. TMA SWAT Kurtarma Modeli</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Sıfırdan Yazım Riskleri vs. TMA SWAT Kurtarma Modeli</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <article class="p-5 rounded-2xl bg-rose-500/5 border border-rose-500/20 space-y-3">
-        <h3 class="text-base font-bold text-rose-300 font-mono">Sıfırdan Yazım (Rebuild) Maliyet & Risk Kalemleri</h3>
-        <ul class="space-y-2 text-xs text-slate-300">
+      <article class="p-5 rounded-2xl bg-rose-50 border border-rose-200 space-y-3">
+        <h3 class="text-base font-bold text-rose-700 font-mono">Sıfırdan Yazım (Rebuild) Maliyet & Risk Kalemleri</h3>
+        <ul class="space-y-2 text-xs text-[var(--ink-muted)]">
           ${rescueRoiData.tr.rebuildItems.map(item => `
           <li class="flex items-start gap-2">
-            <span class="text-rose-400 font-mono font-bold">✕</span>
+            <span class="text-rose-700 font-mono font-bold">✕</span>
             <span>${escapeHtml(item)}</span>
           </li>
           `).join('\n          ')}
         </ul>
       </article>
-      <article class="p-5 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 space-y-3">
-        <h3 class="text-base font-bold text-emerald-300 font-mono">TMA SWAT Kurtarma (Rescue) Avantajları</h3>
-        <ul class="space-y-2 text-xs text-slate-300">
+      <article class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
+        <h3 class="text-base font-bold text-emerald-700 font-mono">TMA SWAT Kurtarma (Rescue) Avantajları</h3>
+        <ul class="space-y-2 text-xs text-[var(--ink-muted)]">
           ${rescueRoiData.tr.rescueItems.map(item => `
           <li class="flex items-start gap-2">
-            <span class="text-emerald-400 font-mono font-bold">✓</span>
+            <span class="text-emerald-700 font-mono font-bold">✓</span>
             <span>${escapeHtml(item)}</span>
           </li>
           `).join('\n          ')}
@@ -1015,33 +1015,33 @@ const rescueRoiExtraContentTr = `
 `;
 
 const rescueRoiExtraContentEn = `
-  <section class="space-y-8 mt-8 border-t border-white/10 pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 font-mono">
-      <div><strong class="text-emerald-400 block text-sm">60% - 80%</strong> Capital Preserved</div>
-      <div><strong class="text-white block text-sm">4x - 10x ROI</strong> Surgical Rescue Multiplier</div>
-      <div><strong class="text-cyan-400 block text-sm">4 - 8 Months</strong> Time to Market Saved</div>
-      <div><strong class="text-amber-400 block text-sm">Zero-Rebuild Trap</strong> Eliminates ground-up rewrite failure risk</div>
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+      <div><strong class="text-emerald-700 block text-sm">60% - 80%</strong> Capital Preserved</div>
+      <div><strong class="text-[var(--ink)] block text-sm">4x - 10x ROI</strong> Surgical Rescue Multiplier</div>
+      <div><strong class="text-[var(--accent)] block text-sm">4 - 8 Months</strong> Time to Market Saved</div>
+      <div><strong class="text-amber-700 block text-sm">Zero-Rebuild Trap</strong> Eliminates ground-up rewrite failure risk</div>
     </div>
 
-    <h2 class="text-xl font-bold text-white">Rebuild Liabilities vs. TMA SWAT Rescue Advantages</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Rebuild Liabilities vs. TMA SWAT Rescue Advantages</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <article class="p-5 rounded-2xl bg-rose-500/5 border border-rose-500/20 space-y-3">
-        <h3 class="text-base font-bold text-rose-300 font-mono">Ground-Up Rebuild Liabilities</h3>
-        <ul class="space-y-2 text-xs text-slate-300">
+      <article class="p-5 rounded-2xl bg-rose-50 border border-rose-200 space-y-3">
+        <h3 class="text-base font-bold text-rose-700 font-mono">Ground-Up Rebuild Liabilities</h3>
+        <ul class="space-y-2 text-xs text-[var(--ink-muted)]">
           ${rescueRoiData.en.rebuildItems.map(item => `
           <li class="flex items-start gap-2">
-            <span class="text-rose-400 font-mono font-bold">✕</span>
+            <span class="text-rose-700 font-mono font-bold">✕</span>
             <span>${escapeHtml(item)}</span>
           </li>
           `).join('\n          ')}
         </ul>
       </article>
-      <article class="p-5 rounded-2xl bg-emerald-500/5 border border-emerald-500/20 space-y-3">
-        <h3 class="text-base font-bold text-emerald-300 font-mono">TMA SWAT Rescue Advantages</h3>
-        <ul class="space-y-2 text-xs text-slate-300">
+      <article class="p-5 rounded-2xl bg-emerald-50 border border-emerald-200 space-y-3">
+        <h3 class="text-base font-bold text-emerald-700 font-mono">TMA SWAT Rescue Advantages</h3>
+        <ul class="space-y-2 text-xs text-[var(--ink-muted)]">
           ${rescueRoiData.en.rescueItems.map(item => `
           <li class="flex items-start gap-2">
-            <span class="text-emerald-400 font-mono font-bold">✓</span>
+            <span class="text-emerald-700 font-mono font-bold">✓</span>
             <span>${escapeHtml(item)}</span>
           </li>
           `).join('\n          ')}
@@ -2135,19 +2135,19 @@ const glossaryPages = glossaryTerms.flatMap(term => {
   let reverseBlock = '';
   if (matching.length > 0) {
     reverseBlock = `
-      <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3 mt-6">
-        <h2 class="text-xl font-bold text-white">Bu terim şu belirtilerde çıkar</h2>
-        <ul class="space-y-2 font-mono text-sm text-cyan-300">
+      <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-3 mt-6">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Bu terim şu belirtilerde çıkar</h2>
+        <ul class="space-y-2 font-mono text-sm text-[var(--accent)]">
           ${visible.map(d => `<li><a href="/teshis/${escapeHtml(d.slug)}/" class="hover:underline">→ ${escapeHtml(d.no)} · ${escapeHtml(d.baslik.tr)}</a></li>`).join('\n          ')}
         </ul>
-        ${remaining > 0 ? `<p class="text-xs text-slate-400 pt-1"><a href="/teshis/" class="text-cyan-400 hover:underline">ve ${remaining} teşhis daha →</a></p>` : ''}
+        ${remaining > 0 ? `<p class="text-xs text-[var(--ink-muted)] pt-1"><a href="/teshis/" class="text-[var(--accent)] hover:underline">ve ${remaining} teşhis daha →</a></p>` : ''}
       </section>
     `;
   }
 
   const relatedTermsHtml = term.relatedTerms && term.relatedTerms.length > 0
     ? `
-      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+      <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
         ${term.relatedTerms.map(rSlug => {
           const rObj = glossaryTerms.find(g => g.slug === rSlug);
           const rTitle = rObj ? rObj.title : rSlug;
@@ -2158,30 +2158,30 @@ const glossaryPages = glossaryTerms.flatMap(term => {
     : '';
 
   const relatedServiceHtml = term.relatedService
-    ? `<p class="pt-2"><a href="${escapeHtml(term.relatedService.link)}" class="text-cyan-400 hover:underline font-bold">→ ${escapeHtml(term.relatedService.title)}</a></p>`
+    ? `<p class="pt-2"><a href="${escapeHtml(term.relatedService.link)}" class="text-[var(--accent)] hover:underline font-bold">→ ${escapeHtml(term.relatedService.title)}</a></p>`
     : '';
 
   const mainGlossaryContent = `
-    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
-      ${term.urgencyLevel ? `<p class="text-sm font-mono text-cyan-400">Aciliyet: ${escapeHtml(term.urgencyLevel)}</p>` : ''}
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      ${term.urgencyLevel ? `<p class="text-sm font-mono text-[var(--accent)]">Aciliyet: ${escapeHtml(term.urgencyLevel)}</p>` : ''}
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Tanım</h2>
-        <p class="text-slate-300 leading-relaxed">${escapeHtml(term.shortDef?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Tanım</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(term.shortDef?.tr || '')}</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Ajans için ne anlama gelir</h2>
-        <p class="text-slate-300 leading-relaxed">${escapeHtml(term.agencyImpact?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Ajans için ne anlama gelir</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(term.agencyImpact?.tr || '')}</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Kim çözer</h2>
-        <p class="text-slate-300 leading-relaxed">${escapeHtml(term.whoSolves?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(term.whoSolves?.tr || '')}</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">İlgili terimler</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">İlgili terimler</h2>
         ${relatedTermsHtml}
         ${relatedServiceHtml}
       </section>
@@ -2262,7 +2262,7 @@ const glossaryPages = glossaryTerms.flatMap(term => {
 const teshisPages = teshisData.flatMap(item => {
   const logRowsHtml = item.logSatirlari && item.logSatirlari.length > 0
     ? `
-      <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10 my-3">
+      <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
         ${item.logSatirlari.map((log, idx) => {
           const eslesme = item.logEslesme?.find(e => e.satir === idx && e.harf);
           const neden = eslesme ? item.nedenler?.find(n => n.harf === eslesme.harf) : null;
@@ -2278,15 +2278,15 @@ const teshisPages = teshisData.flatMap(item => {
         const testStr = Array.isArray(n.diyagramTest?.tr) ? n.diyagramTest.tr.join(' ') : (n.diyagramTest?.tr || '');
         const cozumStr = Array.isArray(n.diyagramCozum?.tr) ? n.diyagramCozum.tr.join(' ') : (n.diyagramCozum?.tr || '');
         const yanlisDuzeltmeHtml = n.yanlisDuzeltme?.tr
-          ? `\n            <p class="text-slate-300 text-sm"><strong class="text-white">Sık yapılan yanlış düzeltme:</strong> ${escapeHtml(n.yanlisDuzeltme.tr)}</p>`
+          ? `\n            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> ${escapeHtml(n.yanlisDuzeltme.tr)}</p>`
           : '';
         return `
-          <div class="space-y-2 p-5 rounded-2xl bg-white/5 border border-white/10 my-4">
-            <h3 class="text-lg font-bold text-cyan-300">${escapeHtml(n.harf)} · ${escapeHtml(n.ad?.tr || '')}</h3>
-            <p class="text-slate-300 leading-relaxed">${escapeHtml(n.aciklama?.tr || '')}</p>
-            <p class="text-slate-300 text-sm"><strong class="text-white">Ayırt edici test:</strong> ${escapeHtml(testStr)}</p>
-            <p class="text-slate-300 text-sm"><strong class="text-white">Kanıt:</strong> ${escapeHtml(n.kanit?.tr || '')}</p>
-            <p class="text-slate-300 text-sm"><strong class="text-white">Çözüm:</strong> ${escapeHtml(cozumStr)}</p>${yanlisDuzeltmeHtml}
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">${escapeHtml(n.harf)} · ${escapeHtml(n.ad?.tr || '')}</h3>
+            <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(n.aciklama?.tr || '')}</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> ${escapeHtml(testStr)}</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> ${escapeHtml(n.kanit?.tr || '')}</p>
+            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> ${escapeHtml(cozumStr)}</p>${yanlisDuzeltmeHtml}
           </div>
         `;
       }).join('\n')
@@ -2294,7 +2294,7 @@ const teshisPages = teshisData.flatMap(item => {
 
   const termsHtml = item.ilgiliTerimler && item.ilgiliTerimler.length > 0
     ? `
-      <ul class="space-y-1 font-mono text-sm text-cyan-300 my-3">
+      <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
         ${item.ilgiliTerimler.map(tSlug => {
           const tObj = glossaryTerms.find(g => g.slug === tSlug);
           const tTitle = tObj ? tObj.title : tSlug;
@@ -2305,45 +2305,45 @@ const teshisPages = teshisData.flatMap(item => {
     : '';
 
   const serviceHtml = item.ilgiliHizmet
-    ? `<p class="pt-2"><a href="${escapeHtml(item.ilgiliHizmet.link)}" class="text-cyan-400 hover:underline font-bold">→ ${escapeHtml(item.ilgiliHizmet.baslik?.tr || '')}</a></p>`
+    ? `<p class="pt-2"><a href="${escapeHtml(item.ilgiliHizmet.link)}" class="text-[var(--accent)] hover:underline font-bold">→ ${escapeHtml(item.ilgiliHizmet.baslik?.tr || '')}</a></p>`
     : '';
 
   const sahadaHtml = item.sahadaNasilGorunur?.tr
     ? `
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Sahada nasıl görünür</h2>
-        <p class="text-slate-300 leading-relaxed">${escapeHtml(item.sahadaNasilGorunur.tr)}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Sahada nasıl görünür</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.sahadaNasilGorunur.tr)}</p>
       </section>
     `
     : '';
 
   const extraContent = `
-    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
-      <p class="text-sm font-mono text-cyan-400">Aciliyet: ${escapeHtml(item.aciliyet?.etiket?.tr || '')} · Kategori: ${escapeHtml(item.kirinti?.tr || '')}</p>
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      <p class="text-sm font-mono text-[var(--accent)]">Aciliyet: ${escapeHtml(item.aciliyet?.etiket?.tr || '')} · Kategori: ${escapeHtml(item.kirinti?.tr || '')}</p>
 ${sahadaHtml}
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-white">Sisteminizde bu satırları görüyorsanız</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Sisteminizde bu satırları görüyorsanız</h2>
         ${logRowsHtml}
-        ${item.logNotu?.tr ? `<p class="text-slate-300 text-sm">${escapeHtml(item.logNotu.tr)}</p>` : ''}
+        ${item.logNotu?.tr ? `<p class="text-[var(--ink-muted)] text-sm">${escapeHtml(item.logNotu.tr)}</p>` : ''}
       </section>
 
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-white">Üç olası neden ve ayırt edici testleri</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Üç olası neden ve ayırt edici testleri</h2>
         ${nedenlerHtml}
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Kim çözer, ne kadar sürer</h2>
-        <p class="text-slate-300 leading-relaxed">${escapeHtml(item.kimCozer?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer, ne kadar sürer</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.kimCozer?.tr || '')}</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Çözülmezse ne olur</h2>
-        <p class="text-slate-300 leading-relaxed">${escapeHtml(item.cozulmezse?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Çözülmezse ne olur</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.cozulmezse?.tr || '')}</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">İlgili terimler ve hizmet</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">İlgili terimler ve hizmet</h2>
         ${termsHtml}
         ${serviceHtml}
       </section>
@@ -2468,91 +2468,91 @@ ${sahadaHtml}
 
 const postMortemPages = postMortems.flatMap(item => {
   const trExtraContent = `
-    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
-      <div class="p-4 rounded-xl bg-white/5 border border-white/10 font-mono text-xs text-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div><span class="text-slate-500 block">SEVERITY</span><strong class="text-amber-400">${escapeHtml(item.severity)}</strong></div>
-        <div><span class="text-slate-500 block">KATEGORİ</span><strong class="text-white">${escapeHtml(item.category?.tr || '')}</strong></div>
-        <div><span class="text-slate-500 block">KESİNTİ SÜRESİ</span><strong class="text-emerald-400">${escapeHtml(item.duration?.tr || '')}</strong></div>
-        <div><span class="text-slate-500 block">TARİH</span><strong class="text-cyan-300">${escapeHtml(item.date)}</strong></div>
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-xs text-[var(--ink-muted)] grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div><span class="text-[var(--ink-subtle)] block">SEVERITY</span><strong class="text-amber-700">${escapeHtml(item.severity)}</strong></div>
+        <div><span class="text-[var(--ink-subtle)] block">KATEGORİ</span><strong class="text-[var(--ink)]">${escapeHtml(item.category?.tr || '')}</strong></div>
+        <div><span class="text-[var(--ink-subtle)] block">KESİNTİ SÜRESİ</span><strong class="text-emerald-700">${escapeHtml(item.duration?.tr || '')}</strong></div>
+        <div><span class="text-[var(--ink-subtle)] block">TARİH</span><strong class="text-[var(--accent)]">${escapeHtml(item.date)}</strong></div>
       </div>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Olay Özeti</h2>
-        <p class="text-slate-300 leading-relaxed">${escapeHtml(item.summary?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Olay Özeti</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.summary?.tr || '')}</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Etki & Kayıp</h2>
-        <p class="text-slate-300 leading-relaxed">${escapeHtml(item.impact?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Etki & Kayıp</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.impact?.tr || '')}</p>
       </section>
 
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-white">Kronolojik Olay Akışı</h2>
-        <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Kronolojik Olay Akışı</h2>
+        <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)]">
           ${(item.timeline || []).map(t => `
-            <li><span class="text-cyan-300 font-bold">${escapeHtml(t.time)}</span> · <span class="text-white">${escapeHtml(t.title?.tr || '')}</span> — <span class="text-slate-300">${escapeHtml(t.desc?.tr || '')}</span></li>
+            <li><span class="text-[var(--accent)] font-bold">${escapeHtml(t.time)}</span> · <span class="text-[var(--ink)]">${escapeHtml(t.title?.tr || '')}</span> — <span class="text-[var(--ink-muted)]">${escapeHtml(t.desc?.tr || '')}</span></li>
           `).join('\n          ')}
         </ul>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Kök Neden (5 Whys)</h2>
-        <p class="text-slate-300 leading-relaxed whitespace-pre-line">${escapeHtml(item.rootCause?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Kök Neden (5 Whys)</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">${escapeHtml(item.rootCause?.tr || '')}</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Uygulanan SWAT Müdahalesi & Hotfix</h2>
-        <p class="text-slate-300 leading-relaxed whitespace-pre-line">${escapeHtml(item.tmaHotfix?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Uygulanan SWAT Müdahalesi & Hotfix</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">${escapeHtml(item.tmaHotfix?.tr || '')}</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Kalıcı Önleyici Tedbirler</h2>
-        <p class="text-slate-300 leading-relaxed whitespace-pre-line">${escapeHtml(item.permanentMitigation?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Kalıcı Önleyici Tedbirler</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">${escapeHtml(item.permanentMitigation?.tr || '')}</p>
       </section>
     </section>
   `;
 
   const enExtraContent = `
-    <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
-      <div class="p-4 rounded-xl bg-white/5 border border-white/10 font-mono text-xs text-slate-300 grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div><span class="text-slate-500 block">SEVERITY</span><strong class="text-amber-400">${escapeHtml(item.severity)}</strong></div>
-        <div><span class="text-slate-500 block">CATEGORY</span><strong class="text-white">${escapeHtml(item.category?.en || '')}</strong></div>
-        <div><span class="text-slate-500 block">DURATION</span><strong class="text-emerald-400">${escapeHtml(item.duration?.en || '')}</strong></div>
-        <div><span class="text-slate-500 block">DATE</span><strong class="text-cyan-300">${escapeHtml(item.date)}</strong></div>
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-xs text-[var(--ink-muted)] grid grid-cols-2 sm:grid-cols-4 gap-3">
+        <div><span class="text-[var(--ink-subtle)] block">SEVERITY</span><strong class="text-amber-700">${escapeHtml(item.severity)}</strong></div>
+        <div><span class="text-[var(--ink-subtle)] block">CATEGORY</span><strong class="text-[var(--ink)]">${escapeHtml(item.category?.en || '')}</strong></div>
+        <div><span class="text-[var(--ink-subtle)] block">DURATION</span><strong class="text-emerald-700">${escapeHtml(item.duration?.en || '')}</strong></div>
+        <div><span class="text-[var(--ink-subtle)] block">DATE</span><strong class="text-[var(--accent)]">${escapeHtml(item.date)}</strong></div>
       </div>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Incident Summary</h2>
-        <p class="text-slate-300 leading-relaxed">${escapeHtml(item.summary?.en || item.summary?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Incident Summary</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.summary?.en || item.summary?.tr || '')}</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Business & Technical Impact</h2>
-        <p class="text-slate-300 leading-relaxed">${escapeHtml(item.impact?.en || item.impact?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Business & Technical Impact</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.impact?.en || item.impact?.tr || '')}</p>
       </section>
 
       <section class="space-y-3">
-        <h2 class="text-xl font-bold text-white">Incident Timeline</h2>
-        <ul class="space-y-2 font-mono text-sm bg-black/40 p-4 rounded-xl border border-white/10">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Incident Timeline</h2>
+        <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)]">
           ${(item.timeline || []).map(t => `
-            <li><span class="text-cyan-300 font-bold">${escapeHtml(t.time)}</span> · <span class="text-white">${escapeHtml(t.title?.en || t.title?.tr || '')}</span> — <span class="text-slate-300">${escapeHtml(t.desc?.en || t.desc?.tr || '')}</span></li>
+            <li><span class="text-[var(--accent)] font-bold">${escapeHtml(t.time)}</span> · <span class="text-[var(--ink)]">${escapeHtml(t.title?.en || t.title?.tr || '')}</span> — <span class="text-[var(--ink-muted)]">${escapeHtml(t.desc?.en || t.desc?.tr || '')}</span></li>
           `).join('\n          ')}
         </ul>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Root Cause Analysis (5 Whys)</h2>
-        <p class="text-slate-300 leading-relaxed whitespace-pre-line">${escapeHtml(item.rootCause?.en || item.rootCause?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Root Cause Analysis (5 Whys)</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">${escapeHtml(item.rootCause?.en || item.rootCause?.tr || '')}</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">TMA SWAT Resolution & Hotfix</h2>
-        <p class="text-slate-300 leading-relaxed whitespace-pre-line">${escapeHtml(item.tmaHotfix?.en || item.tmaHotfix?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">TMA SWAT Resolution & Hotfix</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">${escapeHtml(item.tmaHotfix?.en || item.tmaHotfix?.tr || '')}</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-white">Permanent Mitigations</h2>
-        <p class="text-slate-300 leading-relaxed whitespace-pre-line">${escapeHtml(item.permanentMitigation?.en || item.permanentMitigation?.tr || '')}</p>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Permanent Mitigations</h2>
+        <p class="text-[var(--ink-muted)] leading-relaxed whitespace-pre-line">${escapeHtml(item.permanentMitigation?.en || item.permanentMitigation?.tr || '')}</p>
       </section>
     </section>
   `;
@@ -2700,10 +2700,10 @@ pages.forEach(page => {
 
   // Ensure Pre-rendered Semantic HTML is visible & corporate branded with distinct h1
   const semanticBlock = `
-    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
-      <header class="mb-8 border-b border-white/10 pb-6">
-        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">${page.h1}</h1>
-        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">${page.h1}</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">${page.lang === 'en' ? 'Home' : 'Ana Sayfa'}</a>
           <a href="/agency/" class="hover:underline">${page.lang === 'en' ? 'Capacity & Infrastructure' : 'Kapasite & Altyapı'}</a>
           <a href="/crash-test/" class="hover:underline">${page.lang === 'en' ? 'Crash Test (60s)' : 'Crash Test (60sn)'}</a>
@@ -2726,13 +2726,13 @@ pages.forEach(page => {
         </nav>
       </header>
       <main class="space-y-6">
-        ${page.heading ? `<h2 class="text-2xl font-bold text-white">${page.heading}</h2>` : ''}
-        <p class="text-slate-300 text-lg leading-relaxed">${page.subheading}</p>
+        ${page.heading ? `<h2 class="text-2xl font-bold text-[var(--ink)]">${page.heading}</h2>` : ''}
+        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">${page.subheading}</p>
         ${page.extraContent || ''}
-        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
-          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
         </section>
       </main>
     </div>

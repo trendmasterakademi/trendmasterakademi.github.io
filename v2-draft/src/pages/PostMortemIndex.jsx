@@ -42,20 +42,20 @@ const PostMortemIndex = () => {
     : postMortems.filter(p => p.category.tr === selectedCategory);
 
   return (
-    <div className="pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto text-slate-200">
+    <div className="min-h-screen pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-white">
       
       {/* Header */}
       <header className="mb-14 space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-wider">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider">
           <Terminal className="w-4 h-4" />
           {isTr ? 'AÇIK KAYNAKLI TEKNİK OTOPSİ ARŞİVİ' : 'PUBLIC INCIDENT POST-MORTEM ARCHIVE'}
         </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight">
           {isTr ? 'Incident Post-Mortem & RCA' : 'Incident Post-Mortems & RCA'}
         </h1>
 
-        <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl">
+        <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-3xl">
           {isTr 
             ? 'Pazarlama laflarıyla değil, mühendislik ciddiyetiyle: Çözdüğümüz kritik altyapı krizlerinin müşteri gizliliği korunarak hazırlanmış saniye saniye zaman çizelgesi, kök neden analizi (5 Whys) ve kalıcı önlem raporları.'
             : 'Engineering rigor over marketing claims: Anonymized post-mortems detailing second-by-second incident chronologies, root-cause analyses, and surgical TMA hotfix protocols.'}
@@ -63,26 +63,26 @@ const PostMortemIndex = () => {
 
         {/* Feature Badges */}
         <div className="flex flex-wrap gap-2.5 pt-2 font-mono text-xs">
-          <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold">
+          <span className="px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-emerald-800 font-semibold">
             {isTr ? 'Sıfır İsim / %100 Anonim' : 'Zero Client Identifiers'}
           </span>
-          <span className="px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold">
+          <span className="px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] font-semibold">
             {isTr ? 'Gerçek Üretim Vakaları' : 'Real Production Outages'}
           </span>
         </div>
       </header>
 
       {/* Category Filter */}
-      <div className="flex flex-wrap gap-2 mb-8 border-b border-white/10 pb-4">
+      <div className="flex flex-wrap gap-2 mb-8 border-b border-[var(--rule)] pb-4">
         {categories.map((cat, idx) => (
           <button
             key={idx}
             type="button"
             onClick={() => setSelectedCategory(cat)}
-            className={`px-3.5 py-1.5 rounded-xl font-mono text-xs font-semibold transition-all cursor-pointer ${
+            className={`px-3.5 py-1.5 min-h-[44px] rounded-xl font-mono text-xs font-semibold transition-all cursor-pointer ${
               selectedCategory === cat
-                ? 'bg-cyan-500 text-black shadow-md shadow-cyan-500/20'
-                : 'bg-white/5 hover:bg-white/10 text-slate-300 border border-white/5'
+                ? 'btn-primary'
+                : 'btn-secondary'
             }`}
           >
             {cat === 'ALL' ? (isTr ? 'Tüm Vakalar' : 'All Incidents') : cat}
@@ -99,46 +99,46 @@ const PostMortemIndex = () => {
             <Link
               key={item.slug}
               to={isTr ? `/post-mortem/${item.slug}/` : `/post-mortems/${item.slug}/`}
-              className="block group border border-white/10 hover:border-cyan-500/40 rounded-3xl bg-[#0d121d] hover:bg-[#111827] transition-all p-6 sm:p-8 space-y-4 shadow-xl hover:shadow-[0_0_30px_rgba(0,229,255,0.1)]"
+              className="block group border border-[var(--rule)] hover:border-[var(--accent)] rounded-2xl bg-[var(--surface)] transition-all p-6 sm:p-8 space-y-4 shadow-sm"
             >
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-xs text-slate-400 font-bold">
+                  <span className="font-mono text-xs text-[var(--accent)] font-bold">
                     #{item.no}
                   </span>
                   <span className={`inline-flex items-center gap-1.5 px-3 py-0.5 rounded-lg font-mono text-xs font-bold uppercase ${
                     isSev1 
-                      ? 'bg-red-500/10 border border-red-500/30 text-red-400' 
-                      : 'bg-amber-500/10 border border-amber-500/30 text-amber-400'
+                      ? 'bg-rose-50 border border-rose-300 text-rose-800' 
+                      : 'bg-amber-50 border border-amber-300 text-amber-800'
                   }`}>
                     <AlertTriangle className="w-3 h-3" />
                     {item.severity}
                   </span>
-                  <span className="font-mono text-xs text-slate-400">
+                  <span className="font-mono text-xs text-[var(--ink-muted)]">
                     {item.category[lang]}
                   </span>
                 </div>
 
-                <div className="font-mono text-xs text-slate-400 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-cyan-400" />
+                <div className="font-mono text-xs text-[var(--ink-muted)] flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-[var(--accent)]" />
                   <span>{item.duration[lang]}</span>
                 </div>
               </div>
 
-              <h2 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors leading-snug">
+              <h2 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors leading-snug">
                 {item.title[lang]}
               </h2>
 
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+              <p className="text-[var(--ink-light)] text-sm sm:text-base leading-relaxed">
                 {item.summary[lang]}
               </p>
 
-              <div className="pt-2 flex items-center justify-between border-t border-white/5 text-xs font-mono">
-                <span className="text-slate-400">
-                  <strong className="text-slate-300">{isTr ? 'Etki: ' : 'Impact: '}</strong>
+              <div className="pt-2 flex items-center justify-between border-t border-[var(--rule)] text-xs font-mono">
+                <span className="text-[var(--ink-light)]">
+                  <strong className="text-[var(--ink)]">{isTr ? 'Etki: ' : 'Impact: '}</strong>
                   {item.impact[lang]}
                 </span>
-                <span className="text-cyan-400 font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform flex-shrink-0 ml-4">
+                <span className="text-[var(--accent)] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform flex-shrink-0 ml-4 min-h-[44px]">
                   <span>{isTr ? 'Otopsiyi Oku' : 'Read Post-Mortem'}</span>
                   <ArrowRight className="w-4 h-4" />
                 </span>

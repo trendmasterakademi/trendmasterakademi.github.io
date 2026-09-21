@@ -53,31 +53,31 @@ const Services = () => {
   const activeServices = activeTab === 'swat' ? swatServices : softwareServices;
 
   return (
-    <section id="services" className="py-24 md:py-32 px-4 sm:px-6 md:px-12 bg-bg-dark relative">
+    <section id="services" className="py-[136px] px-4 sm:px-6 md:px-12 bg-[var(--paper)] relative border-b border-[var(--rule)]">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
         <div className="text-center mb-16 max-w-3xl mx-auto">
-          <h4 className="text-cyan-400 font-mono font-bold tracking-widest uppercase text-xs sm:text-sm mb-3">
+          <h4 className="text-xs sm:text-sm font-mono font-medium text-[var(--ink-3)] uppercase tracking-wider mb-3">
             {t('services-subtitle')}
           </h4>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white mb-6">
+          <h2 className="font-serif text-[32px] sm:text-[40px] md:text-[44px] font-semibold text-[var(--ink)] tracking-tight leading-tight mb-6">
             {t('services-title')}
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+          <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
             {t('services-desc')}
           </p>
         </div>
 
         {/* Dynamic Category Tabs */}
         <div className="flex justify-center mb-14">
-          <div className="flex bg-white/5 p-1.5 rounded-full border border-white/10 max-w-md w-full justify-between">
+          <div className="flex bg-[var(--surface)] p-1 rounded-[var(--r-control)] border border-[var(--rule)] max-w-md w-full justify-between shadow-sm">
             <button 
               onClick={() => setActiveTab('swat')}
-              className={`flex-1 py-3 px-4 rounded-full font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+              className={`flex-1 py-2.5 px-4 rounded-[var(--r-control)] font-medium text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
                 activeTab === 'swat' 
-                  ? 'bg-cyan-500 text-bg-dark shadow-lg shadow-cyan-500/25' 
-                  : 'text-slate-300 hover:text-white'
+                  ? 'bg-[var(--accent)] text-white shadow-sm' 
+                  : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
               }`}
             >
               <ShieldAlert className="w-4 h-4" />
@@ -85,10 +85,10 @@ const Services = () => {
             </button>
             <button 
               onClick={() => setActiveTab('software')}
-              className={`flex-1 py-3 px-4 rounded-full font-bold text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
+              className={`flex-1 py-2.5 px-4 rounded-[var(--r-control)] font-medium text-xs sm:text-sm transition-all flex items-center justify-center gap-2 cursor-pointer ${
                 activeTab === 'software' 
-                  ? 'bg-cyan-500 text-bg-dark shadow-lg shadow-cyan-500/25' 
-                  : 'text-slate-300 hover:text-white'
+                  ? 'bg-[var(--accent)] text-white shadow-sm' 
+                  : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
               }`}
             >
               <Cpu className="w-4 h-4" />
@@ -103,20 +103,20 @@ const Services = () => {
             {activeServices.map((service, index) => (
               <div
                 key={service.id}
-                className="glass-panel rounded-3xl p-7 md:p-8 hover:border-cyan-500/50 transition-all group flex flex-col justify-between bg-[#111827]/70 shadow-xl"
+                className="bg-[var(--surface)] border border-[var(--rule)] rounded-[var(--r-panel)] p-7 md:p-8 hover:border-[var(--rule-strong)] transition-all group flex flex-col justify-between shadow-sm"
               >
                 <div>
-                  <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 group-hover:text-cyan-300 transition-colors">
+                  <h3 className="text-xl sm:text-2xl font-semibold text-[var(--ink)] font-serif mb-4 group-hover:text-[var(--accent)] transition-colors">
                     {t(service.titleKey)}
                   </h3>
-                  <p className="text-slate-300 text-sm sm:text-base leading-relaxed mb-8">
+                  <p className="text-[var(--ink-2)] text-sm sm:text-base leading-relaxed mb-8">
                     {t(service.descKey)}
                   </p>
                   
                   <ul className="space-y-3.5 mb-8">
                     {service.features.map((featKey, idx) => (
-                      <li key={idx} className="flex items-start text-sm sm:text-base text-slate-200 gap-3">
-                        <CheckCircle2 className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-0.5" />
+                      <li key={idx} className="flex items-start text-sm sm:text-base text-[var(--ink)] gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-[var(--accent)] flex-shrink-0 mt-0.5" />
                         <span>{t(featKey)}</span>
                       </li>
                     ))}
@@ -125,7 +125,7 @@ const Services = () => {
 
                 <a 
                   href="#contact"
-                  className="w-full py-3.5 rounded-2xl border border-white/20 font-bold text-sm sm:text-base text-center hover:bg-cyan-500 hover:text-bg-dark hover:border-cyan-500 transition-all flex items-center justify-center gap-2 cursor-pointer mt-auto"
+                  className="btn-secondary w-full py-3 rounded-[var(--r-control)] font-medium text-sm sm:text-base text-center flex items-center justify-center gap-2 cursor-pointer mt-auto"
                 >
                   <span>{t('card-btn-contact')}</span>
                   <ArrowRight className="w-4 h-4" />

@@ -65,35 +65,35 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
   };
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-emerald-500/30">
+    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-white">
       {/* Header */}
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-800/60 text-emerald-400 text-xs font-mono font-medium uppercase tracking-widest mb-4">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
+          <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
           {t.hero.badge}
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[var(--ink)] mb-4">
           {t.hero.title}
         </h1>
-        <p className="text-base sm:text-lg text-neutral-400 max-w-3xl mx-auto mb-4">
+        <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-3xl mx-auto mb-4">
           {t.hero.subtitle}
         </p>
-        <p className="text-xs text-neutral-500 font-mono">
+        <p className="text-xs text-[var(--ink-muted)] font-mono">
           🛡️ {t.hero.notice}
         </p>
       </div>
 
       {/* Category Tabs & Filter Actions */}
-      <div className="max-w-6xl mx-auto mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-neutral-800/80 pb-4">
+      <div className="max-w-6xl mx-auto mb-8 flex flex-wrap items-center justify-between gap-4 border-b border-[var(--rule)] pb-4">
         <div className="flex flex-wrap gap-2">
           {t.categories.map((cat) => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`px-3 py-1.5 rounded-md text-xs font-medium transition-all ${
+              className={`px-3 py-1.5 min-h-[36px] rounded-lg text-xs font-semibold transition-all cursor-pointer ${
                 selectedCategory === cat.id
-                  ? "bg-emerald-600 text-white shadow-sm shadow-emerald-950"
-                  : "bg-neutral-900/80 text-neutral-400 hover:text-white hover:bg-neutral-800 border border-neutral-800"
+                  ? "bg-[var(--accent)] text-white shadow-sm"
+                  : "bg-[var(--surface)] text-[var(--ink-light)] hover:text-[var(--ink)] hover:bg-[var(--paper)] border border-[var(--rule)]"
               }`}
             >
               {cat.label}
@@ -103,14 +103,14 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
         <div className="flex items-center gap-3 text-xs font-mono">
           <button
             onClick={selectAllFiltered}
-            className="text-neutral-400 hover:text-emerald-400 transition"
+            className="text-[var(--ink-light)] hover:text-[var(--accent)] transition cursor-pointer min-h-[44px] flex items-center"
           >
             {lang === "en" ? "+ Select All in View" : "+ Görünenleri Seç"}
           </button>
-          <span className="text-neutral-700">|</span>
+          <span className="text-[var(--rule)]">|</span>
           <button
             onClick={clearAll}
-            className="text-neutral-400 hover:text-rose-400 transition"
+            className="text-[var(--ink-light)] hover:text-rose-700 transition cursor-pointer min-h-[44px] flex items-center"
           >
             {lang === "en" ? "Clear" : "Temizle"} ({selectedTechIds.length})
           </button>
@@ -130,25 +130,25 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                   onClick={() => toggleTech(tech.id)}
                   className={`cursor-pointer rounded-xl p-5 border transition-all relative ${
                     isSelected
-                      ? "bg-neutral-900/90 border-emerald-500/70 shadow-lg shadow-emerald-950/30"
-                      : "bg-neutral-900/40 border-neutral-800/70 hover:border-neutral-700 hover:bg-neutral-900/60"
+                      ? "bg-[var(--surface)] border-[var(--accent)] shadow-sm"
+                      : "bg-[var(--surface)] border-[var(--rule)] hover:border-[var(--ink-muted)]"
                   }`}
                 >
                   {/* Selection Indicator */}
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div>
-                      <h3 className="text-base font-bold text-white tracking-tight flex items-center gap-2">
+                      <h3 className="text-base font-semibold text-[var(--ink)] tracking-tight flex items-center gap-2">
                         {tech.name}
                       </h3>
-                      <span className="text-[11px] font-mono text-neutral-400">
+                      <span className="text-xs font-mono text-[var(--ink-muted)]">
                         {tech.versionRange}
                       </span>
                     </div>
                     <div
                       className={`w-5 h-5 rounded flex items-center justify-center text-xs font-bold transition-all ${
                         isSelected
-                          ? "bg-emerald-500 text-neutral-950"
-                          : "border border-neutral-700 text-transparent"
+                          ? "bg-[var(--accent)] text-white"
+                          : "border border-[var(--rule)] text-transparent"
                       }`}
                     >
                       ✓
@@ -157,20 +157,20 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
 
                   {/* Readiness & Support Level */}
                   <div className="flex flex-wrap gap-2 mb-3">
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-emerald-950/60 text-emerald-400 border border-emerald-800/50">
+                    <span className="px-2 py-0.5 rounded text-xs font-mono bg-emerald-50 text-emerald-800 border border-emerald-200">
                       {tech.readiness}
                     </span>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-neutral-800/80 text-neutral-300 border border-neutral-700/50">
+                    <span className="px-2 py-0.5 rounded text-xs font-mono bg-[var(--paper)] text-[var(--ink)] border border-[var(--rule)]">
                       {tech.supportLevel}
                     </span>
                   </div>
 
                   {/* Common Incidents */}
                   <div className="space-y-1 mb-3">
-                    <span className="text-[11px] font-mono font-medium text-neutral-400 uppercase tracking-wider block">
+                    <span className="text-xs font-mono font-semibold text-[var(--ink-muted)] uppercase tracking-wider block">
                       {lang === "en" ? "Common Outage Vectors:" : "Tipik Kritik Arıza Noktaları:"}
                     </span>
-                    <ul className="text-xs text-neutral-300 space-y-1 list-disc list-inside">
+                    <ul className="text-xs text-[var(--ink-light)] space-y-1 list-disc list-inside">
                       {tech.commonIncidents.slice(0, 2).map((inc, idx) => (
                         <li key={idx} className="truncate">
                           {inc}
@@ -180,8 +180,8 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                   </div>
 
                   {/* Rescue Capability Preview */}
-                  <div className="border-t border-neutral-800/60 pt-2 text-[11px] text-neutral-400">
-                    <span className="text-emerald-400 font-mono font-medium">TMA SWAT: </span>
+                  <div className="border-t border-[var(--rule)] pt-2 text-xs text-[var(--ink-light)]">
+                    <span className="text-[var(--accent)] font-mono font-semibold">TMA SWAT: </span>
                     <span className="line-clamp-2">{tech.rescueCapability}</span>
                   </div>
                 </div>
@@ -192,40 +192,40 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
 
         {/* Live Stack Evaluation Sidebar */}
         <div className="lg:col-span-4">
-          <div className="sticky top-8 bg-neutral-900/90 border border-neutral-800 rounded-2xl p-6 shadow-2xl backdrop-blur-md">
-            <h2 className="text-lg font-bold text-white mb-2 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <div className="sticky top-8 bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-6 shadow-sm">
+            <h2 className="text-lg font-serif font-semibold text-[var(--ink)] mb-2 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
               {t.summaryBox.title}
             </h2>
 
             {selectedItems.length === 0 ? (
-              <p className="text-xs text-neutral-400 leading-relaxed font-mono py-6">
+              <p className="text-xs text-[var(--ink-muted)] leading-relaxed font-mono py-6">
                 {t.summaryBox.emptyNotice}
               </p>
             ) : (
               <div className="space-y-6">
                 {/* Score & TTR */}
                 <div className="grid grid-cols-2 gap-3 pt-2">
-                  <div className="bg-neutral-950 p-3 rounded-xl border border-neutral-800/80">
-                    <span className="text-[10px] font-mono text-neutral-400 uppercase block mb-1">
+                  <div className="bg-[var(--paper)] p-3 rounded-xl border border-[var(--rule)]">
+                    <span className="text-xs font-mono text-[var(--ink-muted)] uppercase block mb-1">
                       {t.summaryBox.rescueScore}
                     </span>
-                    <span className="text-xl font-extrabold text-emerald-400 font-mono">
+                    <span className="text-xl font-bold text-[var(--accent)] font-mono">
                       %99.2
                     </span>
-                    <span className="text-[10px] text-neutral-500 block font-mono">
+                    <span className="text-xs text-[var(--ink-muted)] block font-mono">
                       {lang === "en" ? "Full Surgical SWAT" : "Tam Cerrahi Kapsam"}
                     </span>
                   </div>
 
-                  <div className="bg-neutral-950 p-3 rounded-xl border border-neutral-800/80">
-                    <span className="text-[10px] font-mono text-neutral-400 uppercase block mb-1">
+                  <div className="bg-[var(--paper)] p-3 rounded-xl border border-[var(--rule)]">
+                    <span className="text-xs font-mono text-[var(--ink-muted)] uppercase block mb-1">
                       {t.summaryBox.estimatedTtr}
                     </span>
-                    <span className="text-xl font-extrabold text-white font-mono">
+                    <span className="text-xl font-bold text-[var(--ink)] font-mono">
                       ≤ 15 Dk
                     </span>
-                    <span className="text-[10px] text-neutral-500 block font-mono">
+                    <span className="text-xs text-[var(--ink-muted)] block font-mono">
                       {lang === "en" ? "SEV-0/1 Hot Desk" : "Kriz Masası Masada"}
                     </span>
                   </div>
@@ -233,19 +233,19 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
 
                 {/* Selected Badges */}
                 <div>
-                  <span className="text-[11px] font-mono text-neutral-400 uppercase tracking-wider block mb-2">
+                  <span className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider block mb-2">
                     {lang === "en" ? "Selected Components:" : "Seçili Bileşenler:"} ({selectedItems.length})
                   </span>
                   <div className="flex flex-wrap gap-1.5 max-h-32 overflow-y-auto pr-1">
                     {selectedItems.map((item) => (
                       <span
                         key={item.id}
-                        className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-neutral-800 text-xs font-mono text-neutral-200 border border-neutral-700/60"
+                        className="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-[var(--paper)] text-xs font-mono text-[var(--ink)] border border-[var(--rule)]"
                       >
                         {item.name.split(" ")[0]}
                         <button
                           onClick={() => toggleTech(item.id)}
-                          className="text-neutral-400 hover:text-rose-400 ml-1"
+                          className="text-[var(--ink-muted)] hover:text-rose-700 ml-1 cursor-pointer"
                         >
                           ×
                         </button>
@@ -255,11 +255,11 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                 </div>
 
                 {/* Combined Outage Risks */}
-                <div className="border-t border-neutral-800/80 pt-4">
-                  <span className="text-[11px] font-mono text-amber-400 uppercase tracking-wider block mb-2">
+                <div className="border-t border-[var(--rule)] pt-4">
+                  <span className="text-xs font-mono text-amber-700 uppercase tracking-wider block mb-2">
                     ⚠ {t.summaryBox.keyRisks}:
                   </span>
-                  <ul className="text-xs text-neutral-300 space-y-2 list-disc list-inside bg-neutral-950/60 p-3 rounded-xl border border-neutral-800/80">
+                  <ul className="text-xs text-[var(--ink-light)] space-y-2 list-disc list-inside bg-[var(--paper)] p-3 rounded-xl border border-[var(--rule)]">
                     {selectedItems
                       .flatMap((item) => item.commonIncidents)
                       .slice(0, 4)
@@ -275,7 +275,7 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                 <div className="space-y-2 pt-2">
                   <button
                     onClick={copyStackBrief}
-                    className="w-full py-2.5 px-4 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-xs font-mono font-medium text-white transition flex items-center justify-center gap-2"
+                    className="btn-secondary min-h-[44px] w-full text-xs font-mono font-medium flex items-center justify-center gap-2 cursor-pointer"
                   >
                     📋 {copied ? t.summaryBox.copiedNotice : (lang === "en" ? "Copy Stack Briefing" : "Mimari Brifingini Kopyala")}
                   </button>
@@ -284,12 +284,12 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                     href={getCalendlyUrl(lang)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-mono font-bold text-white transition flex items-center justify-center gap-2 text-center shadow-lg shadow-emerald-950/50"
+                    className="btn-primary min-h-[44px] w-full text-xs font-mono font-semibold flex items-center justify-center gap-2 text-center"
                   >
                     ⚡ {t.summaryBox.actionCta}
                   </a>
 
-                  <p className="text-[10px] text-neutral-500 font-mono text-center pt-1">
+                  <p className="text-xs text-[var(--ink-muted)] font-mono text-center pt-1">
                     {lang === "en"
                       ? "Direct senior desk • NDA protected • No sales reps"
                       : "Doğrudan kıdemli mühendis masası • NDA korumalı • Aracı yok"}

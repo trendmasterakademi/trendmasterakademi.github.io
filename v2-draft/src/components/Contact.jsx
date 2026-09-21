@@ -107,21 +107,19 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 px-4 sm:px-6 md:px-12 relative overflow-hidden bg-[#080b11] border-t border-white/10">
-      <div className="absolute top-1/2 left-0 w-[550px] h-[550px] bg-cyan-500/10 rounded-full blur-[120px] -z-10 -translate-x-1/2 pointer-events-none"></div>
-      
+    <section id="contact" className="py-[136px] px-4 sm:px-6 md:px-12 relative overflow-hidden bg-[var(--paper)] border-t border-[var(--rule)]">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
         
         {/* Left Column: Direct Channels & Trust */}
         <div className="lg:col-span-5 space-y-8">
           <div>
-            <h4 className="text-cyan-400 font-mono font-bold tracking-widest uppercase text-xs sm:text-sm mb-3">
+            <h4 className="text-xs sm:text-sm font-mono font-medium text-[var(--ink-3)] uppercase tracking-wider mb-3">
               {t('contact-subtitle')}
             </h4>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white mb-6">
+            <h2 className="font-serif text-[32px] sm:text-[40px] md:text-[44px] font-semibold text-[var(--ink)] tracking-tight leading-tight mb-6">
               {t('contact-title')}
             </h2>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
               {t('contact-desc')}
             </p>
           </div>
@@ -134,33 +132,33 @@ const Contact = () => {
               target="_blank" 
               rel="noreferrer" 
               onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'contact_box' })}
-              className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-emerald-500/30 hover:border-emerald-500/60 hover:bg-white/[0.08] transition-all group shadow-lg"
+              className="flex items-center gap-4 p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all group shadow-sm"
             >
-              <div className="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+              <div className="w-12 h-12 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                 <MessageSquare className="w-6 h-6" />
               </div>
               <div>
-                <div className="text-white font-bold text-base">
+                <div className="text-[var(--ink)] font-semibold text-base">
                   {isTr ? 'WhatsApp Kriz & Destek Masası' : 'WhatsApp Crisis & Support Desk'}
                 </div>
-                <div className="text-emerald-400 text-sm font-mono font-bold">+90 534 371 35 73</div>
+                <div className="text-[var(--accent)] text-sm font-mono font-semibold">+90 534 371 35 73</div>
               </div>
             </a>
             
             {/* Direct Call Box */}
             <a 
               href="tel:+905343713573" 
-              className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-cyan-500/40 hover:bg-white/[0.08] transition-all group shadow-lg"
+              className="flex items-center gap-4 p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all group shadow-sm"
             >
-              <div className="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+              <div className="w-12 h-12 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--ink)] border border-[var(--rule)] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                 <PhoneCall className="w-6 h-6" />
               </div>
               <div>
-                <div className="text-white font-bold text-base">
+                <div className="text-[var(--ink)] font-semibold text-base">
                   {isTr ? 'Kriz Hattı · her gün 09:00 – 24:00' : 'Response Desk · daily 09:00 – 24:00'}
                 </div>
-                <div className="text-cyan-400 text-sm font-mono font-bold">+90 534 371 35 73</div>
-                <div className="text-xs text-slate-400 font-mono mt-0.5">
+                <div className="text-[var(--ink)] text-sm font-mono font-semibold">+90 534 371 35 73</div>
+                <div className="text-xs text-[var(--ink-3)] font-mono mt-0.5">
                   {isTr ? 'acil bildirimlere tipik ilk yanıt: 15 dakika' : 'typical first reply to emergencies: 15 minutes'}
                 </div>
               </div>
@@ -169,14 +167,14 @@ const Contact = () => {
             {/* Email Box */}
             <a 
               href="mailto:info@trendmasterakademi.com" 
-              className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 hover:border-white/20 hover:bg-white/[0.08] transition-all group shadow-lg"
+              className="flex items-center gap-4 p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all group shadow-sm"
             >
-              <div className="w-12 h-12 rounded-xl bg-white/10 text-slate-200 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+              <div className="w-12 h-12 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--ink)] border border-[var(--rule)] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                 <Mail className="w-6 h-6" />
               </div>
               <div>
-                <div className="text-white font-bold text-base">{t('contact-direct-email')}</div>
-                <div className="text-slate-300 text-sm font-mono">info@trendmasterakademi.com</div>
+                <div className="text-[var(--ink)] font-semibold text-base">{t('contact-direct-email')}</div>
+                <div className="text-[var(--ink-2)] text-sm font-mono">info@trendmasterakademi.com</div>
               </div>
             </a>
 
@@ -186,59 +184,59 @@ const Contact = () => {
               target="_blank" 
               rel="noreferrer"
               onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'contact_card' })}
-              className="flex items-center gap-4 p-5 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 hover:border-cyan-400 hover:bg-cyan-500/20 transition-all group shadow-lg"
+              className="flex items-center gap-4 p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--accent)] hover:border-[var(--accent-hover)] transition-all group shadow-sm"
             >
-              <div className="w-12 h-12 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+              <div className="w-12 h-12 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                 <Calendar className="w-6 h-6" />
               </div>
               <div>
-                <div className="text-white font-bold text-base">
+                <div className="text-[var(--ink)] font-semibold text-base">
                   {isTr ? '30 Dakikalık Tanışma Randevusu' : '30-Minute Intro Meeting'}
                 </div>
-                <div className="text-cyan-400 text-xs sm:text-sm font-mono">
+                <div className="text-[var(--accent)] text-xs sm:text-sm font-mono font-medium">
                   {isTr ? 'Takvimden uygun saati seçin' : 'Pick a time on our calendar'}
                 </div>
               </div>
             </a>
 
             {/* Address Box */}
-            <div className="flex items-center gap-4 p-5 rounded-2xl bg-white/5 border border-white/10 text-slate-300">
-              <div className="w-12 h-12 rounded-xl bg-white/10 text-slate-400 flex items-center justify-center flex-shrink-0">
+            <div className="flex items-center gap-4 p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)]">
+              <div className="w-12 h-12 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--ink-3)] border border-[var(--rule)] flex items-center justify-center flex-shrink-0">
                 <MapPin className="w-6 h-6" />
               </div>
               <div>
-                <div className="text-white font-bold text-base">{t('contact-direct-address')}</div>
-                <div className="text-slate-400 text-xs sm:text-sm">{t('contact-address-text')}</div>
+                <div className="text-[var(--ink)] font-semibold text-base">{t('contact-direct-address')}</div>
+                <div className="text-[var(--ink-3)] text-xs sm:text-sm">{t('contact-address-text')}</div>
               </div>
             </div>
 
           </div>
 
-          <div className="p-4 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-xs sm:text-sm flex items-center gap-2.5">
-            <ShieldCheck className="w-5 h-5 flex-shrink-0 text-cyan-400" />
+          <div className="p-4 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] text-xs sm:text-sm flex items-center gap-2.5">
+            <ShieldCheck className="w-5 h-5 flex-shrink-0 text-[var(--accent)]" />
             <span>
               {isTr ? (
-                <>Tüm başvurular ve görüşmeler <Link to="/nda/" className="underline hover:text-white transition-colors">gizlilik sözleşmesi (NDA)</Link> kapsamındadır.</>
+                <>Tüm başvurular ve görüşmeler <Link to="/nda/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)] transition-colors">gizlilik sözleşmesi (NDA)</Link> kapsamındadır.</>
               ) : (
-                <>All inquiries and consultations are protected under <Link to="/nda/" className="underline hover:text-white transition-colors">mutual non-disclosure agreement (NDA)</Link>.</>
+                <>All inquiries and consultations are protected under <Link to="/nda/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)] transition-colors">mutual non-disclosure agreement (NDA)</Link>.</>
               )}
             </span>
           </div>
         </div>
         
         {/* Right Column: Contact Form with Backend Lead Capture */}
-        <div className="lg:col-span-7 glass-panel p-7 sm:p-10 rounded-3xl border border-cyan-500/25 bg-[#111827]/85 shadow-2xl">
+        <div className="lg:col-span-7 p-7 sm:p-10 rounded-[var(--r-panel)] border border-[var(--rule)] bg-[var(--surface)] shadow-sm">
           {submitStatus === 'success' ? (
             <div className="flex flex-col items-center justify-center text-center py-8 space-y-6">
-              <div className="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.3)]">
+              <div className="w-16 h-16 rounded-full bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-4)]">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               
               <div className="space-y-2">
-                <h3 className="text-2xl font-bold text-white">
+                <h3 className="text-2xl font-semibold text-[var(--ink)] font-serif">
                   {isTr ? 'Talebiniz Başarıyla Kaydedildi!' : 'Inquiry Successfully Saved!'}
                 </h3>
-                <p className="text-slate-300 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+                <p className="text-[var(--ink-2)] text-sm sm:text-base max-w-md mx-auto leading-relaxed">
                   {isTr 
                     ? 'Talebiniz kriz masası gelen kutumuza güvenle ulaştı. Dilerseniz hemen WhatsApp üzerinden doğrudan iletişime geçebilirsiniz.' 
                     : 'Your inquiry has reached our engineering triage desk. You can also forward it directly on WhatsApp.'}
@@ -249,7 +247,7 @@ const Contact = () => {
                 <button
                   type="button"
                   onClick={handleOpenWhatsApp}
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-sm flex items-center gap-2 shadow-lg shadow-emerald-500/20 hover:opacity-95 transition-all cursor-pointer"
+                  className="btn-primary px-6 py-3 rounded-[var(--r-control)] font-medium text-sm flex items-center gap-2 cursor-pointer"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>{isTr ? 'WhatsApp’tan Şimdi İlet →' : 'Forward to WhatsApp Now →'}</span>
@@ -257,16 +255,16 @@ const Contact = () => {
 
                 <a
                   href="tel:+905343713573"
-                  className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm flex items-center gap-2 transition-colors"
+                  className="btn-secondary px-6 py-3 rounded-[var(--r-control)] font-medium text-sm flex items-center gap-2 transition-colors"
                 >
-                  <PhoneCall className="w-4 h-4 text-cyan-400" />
+                  <PhoneCall className="w-4 h-4 text-[var(--accent)]" />
                   <span>+90 534 371 35 73</span>
                 </a>
 
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="px-5 py-2.5 rounded-xl text-slate-400 hover:text-white text-xs font-semibold transition-colors cursor-pointer w-full"
+                  className="btn-link px-5 py-2.5 rounded-[var(--r-control)] text-xs font-semibold cursor-pointer w-full"
                 >
                   {isTr ? '← Yeni Form Doldur' : '← Submit Another Inquiry'}
                 </button>
@@ -274,15 +272,15 @@ const Contact = () => {
             </div>
           ) : submitStatus === 'error' ? (
             <div className="flex flex-col items-center justify-center text-center py-8 space-y-6">
-              <div className="w-16 h-16 rounded-full bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-[0_0_30px_rgba(245,158,11,0.3)]">
+              <div className="w-16 h-16 rounded-full bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-1)]">
                 <AlertTriangle className="w-8 h-8" />
               </div>
               
               <div className="space-y-2">
-                <h3 className="text-2xl font-bold text-white">
+                <h3 className="text-2xl font-semibold text-[var(--ink)] font-serif">
                   {isTr ? 'Sunucu Bağlantısı Kurulamadı' : 'Server Connection Interrupted'}
                 </h3>
-                <p className="text-amber-200 text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+                <p className="text-[var(--ink-2)] text-sm sm:text-base max-w-md mx-auto leading-relaxed">
                   {isTr 
                     ? 'Ağ kesintisi nedeniyle otomatik kayıt iletilemedi. Ancak bilgileriniz hazır; aşağıdaki butona tıklayarak tek tıkla WhatsApp kriz masasına iletebilirsiniz:' 
                     : 'Network timeout prevented automated form storage. Your brief is preserved below — dispatch directly via WhatsApp:'}
@@ -293,7 +291,7 @@ const Contact = () => {
                 <button
                   type="button"
                   onClick={handleOpenWhatsApp}
-                  className="px-7 py-3.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-sm sm:text-base flex items-center gap-2 shadow-xl shadow-emerald-500/30 hover:opacity-95 transition-all cursor-pointer animate-pulse"
+                  className="btn-primary px-7 py-3.5 rounded-[var(--r-control)] font-medium text-sm sm:text-base flex items-center gap-2 cursor-pointer"
                 >
                   <MessageSquare className="w-5 h-5" />
                   <span>{isTr ? 'WhatsApp ile Anında Gönder (Tek Tıkla)' : 'Send via WhatsApp (One-Click)'}</span>
@@ -301,16 +299,16 @@ const Contact = () => {
 
                 <a
                   href="tel:+905343713573"
-                  className="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm flex items-center gap-2 transition-colors"
+                  className="btn-secondary px-6 py-3.5 rounded-[var(--r-control)] font-medium text-sm flex items-center gap-2 transition-colors"
                 >
-                  <PhoneCall className="w-4 h-4 text-cyan-400" />
+                  <PhoneCall className="w-4 h-4 text-[var(--accent)]" />
                   <span>+90 534 371 35 73</span>
                 </a>
 
                 <button
                   type="button"
                   onClick={() => setSubmitStatus(null)}
-                  className="px-5 py-2.5 rounded-xl text-slate-400 hover:text-white text-xs font-semibold transition-colors cursor-pointer w-full flex items-center justify-center gap-1.5"
+                  className="btn-link px-5 py-2.5 rounded-[var(--r-control)] text-xs font-semibold cursor-pointer w-full flex items-center justify-center gap-1.5"
                 >
                   <RefreshCw className="w-3.5 h-3.5" />
                   <span>{isTr ? 'Tekrar Dene' : 'Try Again'}</span>
@@ -333,8 +331,8 @@ const Contact = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="iletisim-ad" className="block text-sm font-bold text-slate-200 mb-2">
-                    {t('contact-label-name')} <span className="text-red-400">*</span>
+                  <label htmlFor="iletisim-ad" className="block text-sm font-medium text-[var(--ink)] mb-2">
+                    {t('contact-label-name')} <span className="text-[var(--accent)]">*</span>
                   </label>
                   <input 
                     id="iletisim-ad"
@@ -343,12 +341,12 @@ const Contact = () => {
                     name="name"
                     value={formData.name} 
                     onChange={e => setFormData({...formData, name: e.target.value})} 
-                    className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
+                    className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-[var(--r-control)] px-4 py-3 text-[var(--ink)] text-sm sm:text-base focus:outline-none focus:border-[var(--accent)] transition-colors placeholder:text-[var(--ink-3)]" 
                     placeholder={isTr ? "Adınız Soyadınız" : "Your Full Name"} 
                   />
                 </div>
                 <div>
-                  <label htmlFor="iletisim-ajans" className="block text-sm font-bold text-slate-200 mb-2">
+                  <label htmlFor="iletisim-ajans" className="block text-sm font-medium text-[var(--ink)] mb-2">
                     {t('contact-label-agency')}
                   </label>
                   <input 
@@ -357,7 +355,7 @@ const Contact = () => {
                     name="agency"
                     value={formData.agency} 
                     onChange={e => setFormData({...formData, agency: e.target.value})} 
-                    className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
+                    className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-[var(--r-control)] px-4 py-3 text-[var(--ink)] text-sm sm:text-base focus:outline-none focus:border-[var(--accent)] transition-colors placeholder:text-[var(--ink-3)]" 
                     placeholder={isTr ? "Örn: Kurum / Şirket Adı" : "E.g. Company / Organization"} 
                   />
                 </div>
@@ -365,7 +363,7 @@ const Contact = () => {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="iletisim-eposta" className="block text-sm font-bold text-slate-200 mb-2">
+                  <label htmlFor="iletisim-eposta" className="block text-sm font-medium text-[var(--ink)] mb-2">
                     {t('contact-label-email')}
                   </label>
                   <input 
@@ -377,12 +375,12 @@ const Contact = () => {
                       setFormData({...formData, email: e.target.value});
                       if (contactChannelError) setContactChannelError(false);
                     }} 
-                    className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
+                    className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-[var(--r-control)] px-4 py-3 text-[var(--ink)] text-sm sm:text-base focus:outline-none focus:border-[var(--accent)] transition-colors placeholder:text-[var(--ink-3)]" 
                     placeholder={isTr ? "ornek@sirket.com" : "name@company.com"} 
                   />
                 </div>
                 <div>
-                  <label htmlFor="iletisim-telefon" className="block text-sm font-bold text-slate-200 mb-2">
+                  <label htmlFor="iletisim-telefon" className="block text-sm font-medium text-[var(--ink)] mb-2">
                     {t('contact-label-phone')}
                   </label>
                   <input 
@@ -394,7 +392,7 @@ const Contact = () => {
                       setFormData({...formData, phone: e.target.value});
                       if (contactChannelError) setContactChannelError(false);
                     }} 
-                    className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors" 
+                    className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-[var(--r-control)] px-4 py-3 text-[var(--ink)] text-sm sm:text-base focus:outline-none focus:border-[var(--accent)] transition-colors placeholder:text-[var(--ink-3)]" 
                     placeholder={isTr ? "+90 534 000 0000" : "+1 (555) 000-0000"} 
                   />
                 </div>
@@ -402,11 +400,11 @@ const Contact = () => {
 
               {/* Helper text & Contact Channel Validation Alert */}
               <div className="-mt-2 space-y-1.5">
-                <p className="text-xs text-slate-400 font-mono">
+                <p className="text-xs text-[var(--ink-3)] font-mono">
                   {isTr ? 'İkisinden biri yeterli.' : 'Either one is enough.'}
                 </p>
                 {contactChannelError && (
-                  <p className="text-xs text-red-400 font-medium flex items-center gap-1.5" role="alert">
+                  <p className="text-xs text-[var(--accent)] font-medium flex items-center gap-1.5" role="alert">
                     <AlertTriangle className="w-3.5 h-3.5 flex-shrink-0" />
                     <span>{isTr ? 'Size dönebilmemiz için e-posta ya da telefon girin.' : 'Enter an email or a phone number so we can reply.'}</span>
                   </p>
@@ -414,8 +412,8 @@ const Contact = () => {
               </div>
 
               <div>
-                <label htmlFor="iletisim-mesaj" className="block text-sm font-bold text-slate-200 mb-2">
-                  {t('contact-label-message')} <span className="text-red-400">*</span>
+                <label htmlFor="iletisim-mesaj" className="block text-sm font-medium text-[var(--ink)] mb-2">
+                  {t('contact-label-message')} <span className="text-[var(--accent)]">*</span>
                 </label>
                 <textarea 
                   id="iletisim-mesaj"
@@ -424,7 +422,7 @@ const Contact = () => {
                   name="message"
                   value={formData.message} 
                   onChange={e => setFormData({...formData, message: e.target.value})} 
-                  className="w-full bg-black/50 border border-white/15 rounded-xl px-4 py-3.5 text-white text-sm sm:text-base focus:outline-none focus:border-cyan-400 transition-colors resize-none leading-relaxed" 
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-[var(--r-control)] px-4 py-3 text-[var(--ink)] text-sm sm:text-base focus:outline-none focus:border-[var(--accent)] transition-colors resize-none leading-relaxed placeholder:text-[var(--ink-3)]" 
                   placeholder={t('contact-placeholder-msg')}
                 ></textarea>
               </div>
@@ -438,19 +436,19 @@ const Contact = () => {
                   required
                   checked={formData.kvkkConsent}
                   onChange={e => setFormData({...formData, kvkkConsent: e.target.checked})}
-                  className="mt-1 w-4 h-4 rounded bg-black/50 border-white/20 text-cyan-500 focus:ring-0 cursor-pointer"
+                  className="mt-1 w-4 h-4 rounded bg-[var(--paper)] border-[var(--rule)] text-[var(--accent)] focus:ring-0 cursor-pointer accent-[var(--accent)]"
                 />
-                <label htmlFor="kvkk" className="text-xs text-slate-400 leading-relaxed cursor-pointer">
+                <label htmlFor="kvkk" className="text-xs text-[var(--ink-3)] leading-relaxed cursor-pointer">
                   {isTr 
-                    ? <>İletişim bilgilerimin kriz masası değerlendirmesi ve geri dönüş amacıyla işlenmesini onaylıyorum (<Link to="/privacy/" className="text-cyan-400 underline hover:text-cyan-300">KVKK ve Gizlilik Politikası</Link> uyarınca bilgileriniz 3. taraflarla paylaşılmaz).</>
-                    : <>I consent to the processing of my contact details for triage and response under <Link to="/privacy/" className="text-cyan-400 underline hover:text-cyan-300">Privacy Policy</Link> standards.</>}
+                    ? <>İletişim bilgilerimin kriz masası değerlendirmesi ve geri dönüş amacıyla işlenmesini onaylıyorum (<Link to="/privacy/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)]">KVKK ve Gizlilik Politikası</Link> uyarınca bilgileriniz 3. taraflarla paylaşılmaz).</>
+                    : <>I consent to the processing of my contact details for triage and response under <Link to="/privacy/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)]">Privacy Policy</Link> standards.</>}
                 </label>
               </div>
               
               <button 
                 type="submit" 
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black py-4 px-6 rounded-2xl flex items-center justify-center gap-2.5 transition-all shadow-xl shadow-emerald-500/20 text-base cursor-pointer transform hover:-translate-y-0.5 mt-2 disabled:opacity-50"
+                className="btn-primary w-full py-3.5 px-6 rounded-[var(--r-control)] flex items-center justify-center gap-2.5 transition-all text-base cursor-pointer mt-2 disabled:opacity-50"
               >
                 <Send className="w-5 h-5" />
                 <span>{isSubmitting ? (isTr ? 'Kaydediliyor...' : 'Submitting...') : t('contact-btn-submit')}</span>

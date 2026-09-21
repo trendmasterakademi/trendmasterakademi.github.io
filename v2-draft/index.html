@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
-    <meta name="theme-color" content="#080b11" />
+    <meta name="theme-color" content="#F5F6F7" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     
@@ -57,10 +57,10 @@
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
 
-    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
     
     <!-- GitHub Pages SPA Redirect Handling -->
     <script type="text/javascript">
@@ -113,16 +113,16 @@
     {}
     </script>
   </head>
-  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
     <div id="root">
       <!-- Visible, semantic fallback container for search engine crawlers & instant FCP -->
-      <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
-        <header class="mb-8 border-b border-white/10 pb-6">
+      <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+        <header class="mb-8 border-b border-[var(--rule)] pb-6">
           <div class="mb-4">
-            <img src="/logo-dark.png" alt="Trend Master Akademi" width="220" height="42" style="height:42px; width:auto;" />
+            <img src="/logo-light.png" alt="Trend Master Akademi" width="220" height="42" style="height:42px; width:auto;" />
           </div>
-          <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio</h1>
-          <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+          <h1 class="text-3xl sm:text-4xl font-serif font-semibold text-[var(--ink)] mb-3 tracking-tight">Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio</h1>
+          <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
             <a href="/" class="hover:underline">Ana Sayfa</a>
             <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
             <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
@@ -131,14 +131,14 @@
           </nav>
         </header>
         <main class="space-y-6">
-          <h2 class="text-2xl font-bold text-white">Teknik olarak projesi tıkanmış ajanslar için: Kodu Devralır, Ajansınız Adına Eksiksiz Teslim Ederiz.</h2>
-          <p class="text-slate-300 text-lg leading-relaxed">Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), PostgreSQL Deadlock Onarımı, SaaS Mimarisi ve 7/24 Kriz Çözüm Stüdyosu.</p>
+          <h2 class="text-2xl font-serif font-semibold text-[var(--ink)]">Teknik olarak projesi tıkanmış ajanslar için: Kodu Devralır, Ajansınız Adına Eksiksiz Teslim Ederiz.</h2>
+          <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Dijital ajanslar ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), PostgreSQL Deadlock Onarımı, SaaS Mimarisi ve 7/24 Kriz Çözüm Stüdyosu.</p>
           <h2>Gerçek bir vaka</h2>
           <h3>"Veriler kayboldu" sanılan sistemin gerçek hikâyesi</h3>
-          <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
-            <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
-            <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
-            <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+          <section class="p-6 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+            <h3 class="text-base font-semibold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+            <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)] font-semibold">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)] font-semibold">info@trendmasterakademi.com</a></p>
+            <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
           </section>
         </main>
       </div>

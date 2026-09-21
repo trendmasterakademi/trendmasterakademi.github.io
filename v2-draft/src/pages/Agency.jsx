@@ -191,33 +191,28 @@ const Agency = () => {
   }, [isTr]);
 
   return (
-    <div className="min-h-screen pt-28 pb-28 bg-[#080b11] text-slate-200 relative  font-sans">
-      
-      {/* Background Cyber Atmosphere */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[650px] bg-gradient-to-b from-cyan-500/10 via-blue-500/5 to-transparent blur-[150px] pointer-events-none -z-10"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none -z-10"></div>
-
+    <div className="min-h-screen pt-28 pb-28 bg-[var(--paper)] text-[var(--ink)] relative font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
 
         {/* HERO SECTION */}
         <section className="text-center max-w-4xl mx-auto pt-6 pb-20">
           
           {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs sm:text-sm font-mono font-bold tracking-widest uppercase mb-6 shadow-[0_0_20px_rgba(0,229,255,0.15)]">
-            <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-50 border border-red-200 text-[var(--accent)] text-xs sm:text-sm font-mono font-semibold tracking-widest uppercase mb-6">
+            <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
             {isTr ? 'TMA RESPONSE DESK // B2B AJANS ÇÖZÜM ORTAKLIĞI' : 'TMA RESPONSE DESK // B2B AGENCY PARTNERSHIP'}
           </div>
 
-          <h1 className="text-3xl sm:text-5xl md:text-6xl font-black font-mono tracking-tight text-white leading-[1.18] mb-6">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-semibold tracking-tight text-[var(--ink)] leading-[1.18] mb-6">
             <span className="block">
               {isTr ? 'Ajansınızın yerine değil,' : 'Not to replace your agency,'}
             </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">
+            <span className="block text-[var(--accent)]">
               {isTr ? 'ajansınızın yanında.' : 'to stand right beside it.'}
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed mb-10 max-w-3xl mx-auto font-normal">
+          <p className="text-base sm:text-lg md:text-xl text-[var(--ink-secondary)] leading-relaxed mb-10 max-w-3xl mx-auto font-normal">
             {isTr 
               ? 'Bir projede teknik olarak tıkandığınızda, ekibinizin kapasitesi dolduğunda, teslim tarihi yaklaştığında veya müşterinizin talebi mevcut uzmanlık alanınızın dışına çıktığında güvenilir teknik çözüm ortağınız ve kriz kurtarma ekibiniziz.' 
               : 'When you are technically blocked, when your team is over capacity, when deadlines loom, or when client requirements exceed your internal stack — we are your reliable technical partner and crisis SWAT force.'}
@@ -227,60 +222,60 @@ const Agency = () => {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/crash-test/"
-              className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center gap-3 transition-all transform hover:-translate-y-0.5 min-h-[48px]"
+              className="btn-primary px-8 py-4 flex items-center gap-3 min-h-[48px]"
             >
-              <Zap className="w-5 h-5 fill-current" />
+              <Zap className="w-5 h-5" />
               <span>{isTr ? "Sistem Crash Test'ini Başlat (60 sn)" : "Run System Crash Test (60s)"}</span>
               <ArrowRight className="w-5 h-5" />
             </Link>
 
             <button
               onClick={() => setIsSOSOpen(true)}
-              className="px-8 py-4 rounded-2xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/40 text-red-300 font-bold text-sm sm:text-base flex items-center gap-2.5 transition-colors cursor-pointer min-h-[48px]"
+              className="btn-secondary px-8 py-4 text-[var(--accent)] flex items-center gap-2.5 cursor-pointer min-h-[48px]"
             >
-              <AlertTriangle className="w-5 h-5 text-red-400 animate-bounce" />
+              <AlertTriangle className="w-5 h-5 text-[var(--accent)]" />
               <span>{isTr ? 'Acil Kriz Masası (SOS)' : 'Emergency Crisis Desk (SOS)'}</span>
             </button>
           </div>
 
           {/* Trust Guarantees Bar */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-8 border-t border-white/10 text-left">
-            <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
-              <div className="flex items-center gap-2 text-cyan-400">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mt-16 pt-8 border-t border-[var(--rule)] text-left">
+            <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5 shadow-sm">
+              <div className="flex items-center gap-2 text-[var(--accent)]">
                 <ShieldCheck className="w-5 h-5" />
-                <span className="font-bold text-xs sm:text-sm uppercase font-mono">%100 White-Label</span>
+                <span className="font-semibold text-xs sm:text-sm uppercase font-mono">%100 White-Label</span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
                 {isTr ? 'Sizin müşteriniz, sizin logonuz; arka plandaki görünmez güç biziz.' : 'Your client, your brand; we operate purely as your invisible engineering backline.'}
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
-              <div className="flex items-center gap-2 text-emerald-400">
+            <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5 shadow-sm">
+              <div className="flex items-center gap-2 text-emerald-700">
                 <Lock className="w-5 h-5" />
-                <span className="font-bold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Resmi NDA / Gizlilik' : 'Mutual Legal NDA'}</span>
+                <span className="font-semibold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Resmi NDA / Gizlilik' : 'Mutual Legal NDA'}</span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
                 {isTr ? 'Tüm kaynak kod, veri ve müşteri ilişkileri yasal sözleşme korumasında.' : 'All source code, data, and client relations are protected under strict NDA.'}
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
-              <div className="flex items-center gap-2 text-orange-400">
+            <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5 shadow-sm">
+              <div className="flex items-center gap-2 text-amber-700">
                 <Clock className="w-5 h-5" />
-                <span className="font-bold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Hızlı SWAT Triyajı' : 'Rapid SWAT Triage'}</span>
+                <span className="font-semibold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Hızlı SWAT Triyajı' : 'Rapid SWAT Triage'}</span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
                 {isTr ? 'Kriz hattı her gün 09:00 – 24:00 açık; acil bildirimlere tipik ilk yanıt 15 dakika.' : 'Response desk open daily 09:00 – 24:00; typical first reply to emergencies 15 minutes.'}
               </p>
             </div>
 
-            <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
-              <div className="flex items-center gap-2 text-purple-400">
+            <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5 shadow-sm">
+              <div className="flex items-center gap-2 text-purple-700">
                 <FileCode className="w-5 h-5" />
-                <span className="font-bold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Temiz Kod Devri' : 'Clean Code Handover'}</span>
+                <span className="font-semibold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Temiz Kod Devri' : 'Clean Code Handover'}</span>
               </div>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
                 {isTr ? 'Dokümante edilmiş, bağımsız, sürdürülebilir tam mülkiyet teslimi.' : 'Documented, modular, tested code with 100% intellectual property transfer.'}
               </p>
             </div>
@@ -289,17 +284,17 @@ const Agency = () => {
         </section>
 
         {/* MANIFESTO SECTION */}
-        <section className="py-16 border-t border-white/10">
-          <div className="max-w-4xl mx-auto p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-[#111827] to-[#0d131f] border border-cyan-500/20 relative shadow-2xl space-y-6">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-cyan-400 uppercase block">
+        <section className="py-16 border-t border-[var(--rule)]">
+          <div className="max-w-4xl mx-auto p-8 sm:p-12 rounded-xl bg-[var(--surface)] border border-[var(--rule)] relative shadow-sm space-y-6">
+            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest text-[var(--accent)] uppercase block">
               {isTr ? 'Çalışma Felsefemiz' : 'Our Working Philosophy'}
             </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white leading-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-[var(--ink)] leading-tight">
               {isTr 
                 ? 'Müşterinizle aranıza girmek için değil; arkanızdaki teknik gücü büyütmek için buradayız.' 
                 : 'Not to step between you and your client; but to multiply your technical power from behind.'}
             </h2>
-            <div className="space-y-4 text-slate-300 text-base sm:text-lg leading-relaxed">
+            <div className="space-y-4 text-[var(--ink-secondary)] text-base sm:text-lg leading-relaxed">
               <p>
                 {isTr 
                   ? 'Ajansların zaman zaman karşılaştığı çok tanıdık bir problemi biliyoruz: Müşteri vardır, proje alınmıştır, tasarım hazırlanmıştır; ancak bir noktada özel bir backend geliştirmesi, karmaşık bir API entegrasyonu, performans problemi, yarım bırakılmış bir kod tabanı, ödeme altyapısı veya ekibin kapasitesini aşan teknik bir ihtiyaç ortaya çıkar.' 
@@ -310,11 +305,11 @@ const Agency = () => {
                   ? 'Ajans tarafında teknik bir iş outsource edildiğinde en büyük problemin yalnızca kod yazılması olmadığını biliyoruz. İletişim kopukluğu, teslim tarihlerinin sürekli ötelenmesi, dokümantasyonsuz kod veya teslimden sonra ulaşılamayan kişiler ajansın itibarını riske atar.' 
                   : 'We understand that outsourcing technical work involves more than code. Poor communication, missed deadlines, spaghetti code, and unresponsive developers risk your agency’s hard-earned client reputation.'}
               </p>
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                  {isTr 
-                    ? 'Bu nedenle çalışma modelimizi %100 şeffaf tutuyor; doğrudan kıdemli mühendislik masamız üzerinden hızlı, güvenilir ve sürdürülebilir çözümler üretiyoruz.' 
-                    : 'That’s why our model is 100% transparent, executing directly via our senior engineering desk with speed and dependable code.'}
-                </p>
+              <p className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed">
+                {isTr 
+                  ? 'Bu nedenle çalışma modelimizi %100 şeffaf tutuyor; doğrudan kıdemli mühendislik masamız üzerinden hızlı, güvenilir ve sürdürülebilir çözümler üretiyoruz.' 
+                  : 'That’s why our model is 100% transparent, executing directly via our senior engineering desk with speed and dependable code.'}
+              </p>
             </div>
           </div>
         </section>
@@ -322,17 +317,17 @@ const Agency = () => {
         {/* SITUATION QUOTES */}
         <section className="py-16">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-orange-400 uppercase block mb-3">
+            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest text-amber-700 uppercase block mb-3">
               {isTr ? 'Kriz & İhtiyaç Senaryoları' : 'Real-World Crisis Scenarios'}
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Özellikle şu durumlarda bizi hatırlamanızı isteriz:' : 'Especially remember us when you hear:'}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {situationQuotes.map((sq, idx) => {
-              const cardClass = "p-7 rounded-3xl bg-[#111827]/80 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between group shadow-lg";
+              const cardClass = "p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between group shadow-sm";
               const arrowText = sq.yol
                 ? (isTr ? "60 saniyede teşhis et →" : "Diagnose in 60s →")
                 : (isTr ? "30 dakikalık görüşme →" : "Book a 30-min call →");
@@ -340,16 +335,16 @@ const Agency = () => {
               const cardContent = (
                 <>
                   <div>
-                    <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/5 text-cyan-400 border border-white/10 mb-5">
+                    <span className="inline-block px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)] mb-5">
                       {sq.tag[isTr ? 'tr' : 'en']}
                     </span>
-                    <p className="text-base sm:text-lg text-slate-200 italic font-medium leading-relaxed mb-6 group-hover:text-white transition-colors">
+                    <p className="text-base sm:text-lg text-[var(--ink)] italic font-medium leading-relaxed mb-6">
                       {sq.quote[isTr ? 'tr' : 'en']}
                     </p>
                   </div>
-                  <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs sm:text-sm text-slate-400">
+                  <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs sm:text-sm text-[var(--ink-secondary)]">
                     <span>{isTr ? 'TMA Çözüm Modeli' : 'TMA Solution'}</span>
-                    <span className="text-cyan-400 font-mono font-bold">{arrowText}</span>
+                    <span className="text-[var(--accent)] font-mono font-semibold">{arrowText}</span>
                   </div>
                 </>
               );
@@ -378,15 +373,15 @@ const Agency = () => {
         </section>
 
         {/* 20 CAPABILITIES MATRIX */}
-        <section className="py-16 border-t border-white/10">
+        <section className="py-16 border-t border-[var(--rule)]">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-cyan-400 uppercase block mb-3">
+            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest text-[var(--accent)] uppercase block mb-3">
               {isTr ? 'Teknik Yetkinlik Alanları' : 'Core Technical Capabilities'}
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Ajansınıza güç katabileceğimiz başlıca alanlar' : 'Where we empower your agency'}
             </h2>
-            <p className="text-slate-300 text-base sm:text-lg mt-3 leading-relaxed">
+            <p className="text-[var(--ink-secondary)] text-base sm:text-lg mt-3 leading-relaxed">
               {isTr 
                 ? 'Modern frontend mimarilerinden karmaşık backend, AI otomasyonları ve kriz hotfix müdahalelerine kadar tam kapsamlı mühendislik.' 
                 : 'Comprehensive full-stack engineering from modern frontend stacks to complex backends, AI automations, and crisis hotfixes.'}
@@ -397,17 +392,17 @@ const Agency = () => {
             {capabilities.map((cap, idx) => (
               <div
                 key={idx}
-                className="p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/[0.08] hover:border-cyan-500/40 transition-all flex flex-col justify-between"
+                className="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between shadow-sm"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span lang="en" className="text-xs font-mono uppercase px-2.5 py-1 rounded bg-white/10 text-slate-300 font-semibold">
+                    <span lang="en" className="text-xs font-mono uppercase px-2.5 py-1 rounded bg-[var(--paper)] text-[var(--ink-secondary)] font-semibold border border-[var(--rule)]">
                       {cap.cat}
                     </span>
-                    <span className="text-xs font-mono text-cyan-400 font-bold">#{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
+                    <span className="text-xs font-mono text-[var(--accent)] font-semibold">#{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
                   </div>
-                  <h3 className="text-base font-bold text-white mb-2 leading-snug">{cap.title[isTr ? 'tr' : 'en']}</h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{cap.desc[isTr ? 'tr' : 'en']}</p>
+                  <h3 className="text-base font-serif font-semibold text-[var(--ink)] mb-2 leading-snug">{cap.title[isTr ? 'tr' : 'en']}</h3>
+                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">{cap.desc[isTr ? 'tr' : 'en']}</p>
                 </div>
               </div>
             ))}
@@ -415,12 +410,12 @@ const Agency = () => {
         </section>
 
         {/* 4-STEP TIMELINE */}
-        <section className="py-16 border-t border-white/10">
+        <section className="py-16 border-t border-[var(--rule)]">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-emerald-400 uppercase block mb-3">
+            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest text-emerald-700 uppercase block mb-3">
               {isTr ? 'Süreç Nasıl İlerliyor?' : 'How It Works'}
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? '4 Adımda Pürüzsüz White-Label Entegrasyonu' : 'Seamless 4-Step White-Label Integration'}
             </h2>
           </div>
@@ -448,27 +443,27 @@ const Agency = () => {
                 desc: { tr: 'Eksiksiz dokümantasyon, test edilmiş kod ve %100 mülkiyet devriyle projeyi teslim ediyoruz.', en: 'Tested, documented codebase handed over with 100% intellectual property rights transferred to you.' }
               }
             ].map((p, idx) => (
-              <div key={idx} className="p-7 rounded-3xl bg-[#111827] border border-white/10 relative space-y-3">
-                <span className="text-3xl sm:text-4xl font-black font-mono text-cyan-400/40 block">
+              <div key={idx} className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] relative space-y-3 shadow-sm">
+                <span className="text-3xl sm:text-4xl font-mono font-bold text-[var(--accent)] block">
                   {p.step}
                 </span>
-                <h3 className="text-lg sm:text-xl font-bold text-white">{p.title[isTr ? 'tr' : 'en']}</h3>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">{p.desc[isTr ? 'tr' : 'en']}</p>
+                <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)]">{p.title[isTr ? 'tr' : 'en']}</h3>
+                <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">{p.desc[isTr ? 'tr' : 'en']}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* B2B SWAT CASE STUDIES SECTION */}
-        <section className="py-16 border-t border-white/10">
+        <section className="py-16 border-t border-[var(--rule)]">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-cyan-400 uppercase block mb-3">
+            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest text-[var(--accent)] uppercase block mb-3">
               {isTr ? 'Gerçek Müdahale Örnekleri (NDA Güvencesinde)' : 'Real-World Incident Case Studies (Under Strict NDA)'}
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Ajanslar Adına Kurtarılan & Teslim Edilen Projeler' : 'Rescued & Delivered on Behalf of Partner Agencies'}
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 mt-4 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-sm sm:text-base text-[var(--ink-secondary)] mt-4 leading-relaxed max-w-2xl mx-auto">
               {isTr 
                 ? 'Bu sayfada hiçbir müşterinin adı yazmıyor — sizinki de yazmayacak. Anlatılan senaryolar yürüttüğümüz gerçek projelerden alınmıştır; kimliğe dair her ayrıntı çıkarılmıştır.' 
                 : 'No client is named on this page — and yours never will be. These scenarios are drawn from real engagements; every identifying detail has been removed.'}
@@ -476,7 +471,7 @@ const Agency = () => {
             <div className="mt-3.5">
               <Link
                 to="/about/"
-                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono font-bold text-cyan-400 hover:text-cyan-300 transition-colors underline decoration-cyan-500/40 hover:decoration-cyan-400"
+                className="btn-link inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono font-semibold"
               >
                 <span>{isTr ? 'Kendi kimliğimizi yayınlıyoruz. Müşterilerimizinkini asla.' : "We publish our own legal identity. Never our clients'."}</span>
                 <span>→</span>
@@ -486,122 +481,122 @@ const Agency = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Case 01 */}
-            <div className="p-7 rounded-3xl bg-[#111827] border border-red-500/20 hover:border-red-500/40 transition-all flex flex-col justify-between space-y-6">
+            <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between space-y-6 shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-red-500/10 text-red-400 border border-red-500/30">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-red-50 text-[var(--accent)] border border-red-200">
                     {isTr ? 'Lansman T-24H Kriz SWAT' : 'Launch T-24H SWAT Hotfix'}
                   </span>
-                  <span className="text-xs font-mono text-slate-400">2.5 {isTr ? 'Saat' : 'Hours'}</span>
+                  <span className="text-xs font-mono text-[var(--ink-muted)]">2.5 {isTr ? 'Saat' : 'Hours'}</span>
                 </div>
-                <h3 className="text-xl font-bold text-white leading-snug">
+                <h3 className="text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                   {isTr ? 'PostgreSQL Deadlock & Ödeme Webhook Kopması' : 'PostgreSQL Deadlock & Payment Webhook Break'}
                 </h3>
-                <div className="text-xs font-mono text-cyan-400">
+                <div className="text-xs font-mono text-[var(--accent)]">
                   Next.js · Node.js · PostgreSQL · Redis · Stripe / iyzico
                 </div>
-                <div className="space-y-2 text-xs sm:text-sm text-slate-300">
-                  <p className="border-l-2 border-red-400/60 pl-3 text-slate-300">
-                    <strong className="text-white block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
+                <div className="space-y-2 text-xs sm:text-sm text-[var(--ink-secondary)]">
+                  <p className="border-l-2 border-red-500 pl-3">
+                    <strong className="text-[var(--ink)] block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
                     {isTr 
                       ? 'Lansman arifesinde 800+ eşzamanlı sepette veritabanı kilitlenmesi ve ödeme callback kayıpları yaşandı.' 
                       : 'Severe DB row deadlocks and lost payment webhook callbacks occurred on eve of launch with 800+ concurrent checkouts.'}
                   </p>
-                  <p className="border-l-2 border-emerald-400/60 pl-3 text-slate-300">
-                    <strong className="text-white block">{isTr ? 'TMA Müdahalesi:' : 'TMA Intervention:'}</strong>
+                  <p className="border-l-2 border-emerald-600 pl-3">
+                    <strong className="text-[var(--ink)] block">{isTr ? 'TMA Müdahalesi:' : 'TMA Intervention:'}</strong>
                     {isTr 
                       ? 'Sandbox staging fork oluşturuldu, row lock yapısı asenkron Redis kuyruğuna taşındı, webhook idempotent yapıldı.' 
                       : 'Forked to staging sandbox, replaced row locks with async Redis queues, made webhooks fully idempotent.'}
                   </p>
                 </div>
               </div>
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-400">{isTr ? 'Kayıp Oranı:' : 'Loss Rate:'} <strong className="text-emerald-400">%0</strong></span>
-                <span className="text-slate-400">{isTr ? 'Mülkiyet:' : 'Ownership:'} <strong className="text-cyan-300">%100 Ajans</strong></span>
+              <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs font-mono">
+                <span className="text-[var(--ink-secondary)]">{isTr ? 'Kayıp Oranı:' : 'Loss Rate:'} <strong className="text-emerald-700">%0</strong></span>
+                <span className="text-[var(--ink-secondary)]">{isTr ? 'Mülkiyet:' : 'Ownership:'} <strong className="text-[var(--ink)] font-semibold">%100 Ajans</strong></span>
               </div>
             </div>
 
             {/* Case 02 */}
-            <div className="p-7 rounded-3xl bg-[#111827] border border-orange-500/20 hover:border-orange-500/40 transition-all flex flex-col justify-between space-y-6">
+            <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between space-y-6 shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-orange-500/10 text-orange-400 border border-orange-500/30">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-amber-50 text-amber-800 border border-amber-200">
                     {isTr ? 'Yarım Kalan Repo Devralma' : 'Abandoned Codebase Takeover'}
                   </span>
-                  <span className="text-xs font-mono text-slate-400">6 {isTr ? 'Gün Sprint' : 'Days Sprint'}</span>
+                  <span className="text-xs font-mono text-[var(--ink-muted)]">6 {isTr ? 'Gün Sprint' : 'Days Sprint'}</span>
                 </div>
-                <h3 className="text-xl font-bold text-white leading-snug">
+                <h3 className="text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                   {isTr ? 'Geliştirici Ayrılığı Sonrası B2B SaaS Mimarisi' : 'B2B SaaS Platform Takeover Post-Dev Departure'}
                 </h3>
-                <div className="text-xs font-mono text-cyan-400">
+                <div className="text-xs font-mono text-[var(--accent)]">
                   React · Python / FastAPI · PostgreSQL · Docker · AWS
                 </div>
-                <div className="space-y-2 text-xs sm:text-sm text-slate-300">
-                  <p className="border-l-2 border-orange-400/60 pl-3 text-slate-300">
-                    <strong className="text-white block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
+                <div className="space-y-2 text-xs sm:text-sm text-[var(--ink-secondary)]">
+                  <p className="border-l-2 border-amber-500 pl-3">
+                    <strong className="text-[var(--ink)] block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
                     {isTr 
                       ? 'Önceki ekibin dokümantasyonsuz ayrıldığı, 42 backend uç noktasının yarım kaldığı ve yetkilendirme mimarisinin çöktüğü sistem.' 
                       : 'Previous dev departed abruptly leaving 42 broken endpoints, missing docs, and failing JWT authorization.'}
                   </p>
-                  <p className="border-l-2 border-emerald-400/60 pl-3 text-slate-300">
-                    <strong className="text-white block">{isTr ? 'TMA Müdahalesi:' : 'TMA Intervention:'}</strong>
+                  <p className="border-l-2 border-emerald-600 pl-3">
+                    <strong className="text-[var(--ink)] block">{isTr ? 'TMA Müdahalesi:' : 'TMA Intervention:'}</strong>
                     {isTr 
                       ? 'Mimari haritalandırıldı, eksik REST uçları tamamlandı, OpenAPI şeması üretildi ve tüm spagetti kod refactor edildi.' 
                       : 'Codebase audited, completed all REST endpoints, auto-generated OpenAPI schemas, and refactored modular backend.'}
                   </p>
                 </div>
               </div>
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-400">{isTr ? 'Teslimat:' : 'Delivery:'} <strong className="text-emerald-400">Zamanında</strong></span>
-                <span className="text-slate-400">{isTr ? 'Dokümantasyon:' : 'Docs:'} <strong className="text-cyan-300">Swagger UI</strong></span>
+              <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs font-mono">
+                <span className="text-[var(--ink-secondary)]">{isTr ? 'Teslimat:' : 'Delivery:'} <strong className="text-emerald-700">Zamanında</strong></span>
+                <span className="text-[var(--ink-secondary)]">{isTr ? 'Dokümantasyon:' : 'Docs:'} <strong className="text-[var(--ink)] font-semibold">Swagger UI</strong></span>
               </div>
             </div>
 
             {/* Case 03 */}
-            <div className="p-7 rounded-3xl bg-[#111827] border border-cyan-500/20 hover:border-cyan-500/40 transition-all flex flex-col justify-between space-y-6">
+            <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between space-y-6 shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                  <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-blue-50 text-blue-800 border border-blue-200">
                     {isTr ? 'Trafik & API Ölçekleme' : 'Traffic & Scale Triaging'}
                   </span>
-                  <span className="text-xs font-mono text-slate-400">14 {isTr ? 'Saat' : 'Hours'}</span>
+                  <span className="text-xs font-mono text-[var(--ink-muted)]">14 {isTr ? 'Saat' : 'Hours'}</span>
                 </div>
-                <h3 className="text-xl font-bold text-white leading-snug">
+                <h3 className="text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                   {isTr ? '150K+ Anlık Trafikte Gateway 504 Darboğazı' : '150K+ Concurrent Traffic Gateway 504 Bottleneck'}
                 </h3>
-                <div className="text-xs font-mono text-cyan-400">
+                <div className="text-xs font-mono text-[var(--accent)]">
                   Flutter · Node.js · MongoDB · Socket.io · AWS Lambda
                 </div>
-                <div className="space-y-2 text-xs sm:text-sm text-slate-300">
-                  <p className="border-l-2 border-cyan-400/60 pl-3 text-slate-300">
-                    <strong className="text-white block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
+                <div className="space-y-2 text-xs sm:text-sm text-[var(--ink-secondary)]">
+                  <p className="border-l-2 border-blue-500 pl-3">
+                    <strong className="text-[var(--ink)] block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
                     {isTr 
                       ? 'Mobil biletleme kampanyasında HTTP 504 Gateway Timeout ve socket connection kilitlenmeleri yaşandı.' 
                       : 'Severe HTTP 504 timeouts and websocket connection saturation during sudden live ticketing surges.'}
                   </p>
-                  <p className="border-l-2 border-emerald-400/60 pl-3 text-slate-300">
-                    <strong className="text-white block">{isTr ? 'TMA Müdahalesi:' : 'TMA Intervention:'}</strong>
+                  <p className="border-l-2 border-emerald-600 pl-3">
+                    <strong className="text-[var(--ink)] block">{isTr ? 'TMA Müdahalesi:' : 'TMA Intervention:'}</strong>
                     {isTr 
                       ? 'Redis cache katmanı, query indexing ve socket connection throttling devreye alındı; mikroservis yükü dengelendi.' 
                       : 'Deployed Redis caching, indexed bottleneck queries, and throttled socket reconnections to stabilize Lambda workers.'}
                   </p>
                 </div>
               </div>
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-400">{isTr ? 'Yanıt Süresi:' : 'Latency:'} <strong className="text-emerald-400">4.2s → 120ms</strong></span>
-                <span className="text-slate-400">{isTr ? 'Uptime:' : 'Uptime:'} <strong className="text-cyan-300">%99.98</strong></span>
+              <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs font-mono">
+                <span className="text-[var(--ink-secondary)]">{isTr ? 'Yanıt Süresi:' : 'Latency:'} <strong className="text-emerald-700">4.2s → 120ms</strong></span>
+                <span className="text-[var(--ink-secondary)]">{isTr ? 'Uptime:' : 'Uptime:'} <strong className="text-[var(--ink)] font-semibold">%99.98</strong></span>
               </div>
             </div>
           </div>
         </section>
 
         {/* TRANSPARENT PRICING SECTION / ÜCRETLENDİRME MODELİ */}
-        <section className="py-16 border-t border-white/10">
+        <section className="py-16 border-t border-[var(--rule)]">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs sm:text-sm font-mono font-bold tracking-widest text-emerald-400 uppercase block mb-3">
+            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest text-emerald-700 uppercase block mb-3">
               {isTr ? 'ŞEFFAF ÜCRETLENDİRME' : 'TRANSPARENT PRICING'}
             </span>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Bedeli teşhisten sonra, yazılı ve sabit veriyoruz' : 'We quote after diagnosis — fixed and in writing'}
             </h2>
           </div>
@@ -611,20 +606,20 @@ const Agency = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               
               {/* Katman 01 */}
-              <div className="p-7 rounded-3xl bg-[#111827] border-2 border-emerald-500/40 relative flex flex-col justify-between space-y-6 shadow-xl">
+              <div className="p-7 rounded-xl bg-[var(--surface)] border-2 border-emerald-500/50 relative flex flex-col justify-between space-y-6 shadow-sm">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
                       {isTr ? 'HER İŞTE' : 'EVERY ENGAGEMENT'}
                     </span>
-                    <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-lg border border-emerald-500/20">
+                    <span className="text-xs font-mono font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
                       {isTr ? 'Ücretsiz · taahhüt yok' : 'Free · no commitment'}
                     </span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
+                  <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {isTr ? 'İlk teşhis ücretsizdir — ve yüzeysel değildir.' : "The initial diagnosis is free — and it isn't superficial."}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
                     {isTr 
                       ? 'Kod tabanını, altyapıyı ve devir durumunu inceler; sorunun gerçekte nerede olduğunu, ne gerektirdiğini ve ne kadar süreceğini yazılı olarak iletiriz. Bu aşamada ücret talep edilmez, taahhüt istenmez.' 
                       : 'We review the codebase, the infrastructure and the handover state, then set out in writing where the fault actually is, what it takes to fix, and how long it will take. No fee, no commitment at this stage.'}
@@ -633,42 +628,42 @@ const Agency = () => {
               </div>
 
               {/* Katman 02 */}
-              <div className="p-7 rounded-3xl bg-[#111827] border border-white/10 relative flex flex-col justify-between space-y-6 shadow-xl">
+              <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] relative flex flex-col justify-between space-y-6 shadow-sm">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-white/10 text-slate-300 border border-white/20">
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-[var(--paper)] text-[var(--ink-secondary)] border border-[var(--rule)]">
                       {isTr ? 'PLANLI İŞLER' : 'PLANNED WORK'}
                     </span>
-                    <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded-lg border border-cyan-500/20">
+                    <span className="text-xs font-mono font-semibold text-[var(--accent)] bg-red-50 px-2.5 py-1 rounded-lg border border-red-200">
                       {isTr ? 'Sabit teklif · kapsam netleşince' : 'Fixed quote · once scope is defined'}
                     </span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
+                  <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {isTr ? 'Bedel teşhisten sonra belirlenir.' : 'The fee follows the diagnosis.'}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
                     {isTr 
-                      ? <>Devralma, kapasite takviyesi ve mimari işlerde kapsam netleştikten sonra sabit teklif iletilir; çalışma başlamadan önce bedel yazılı olarak nettir. <strong className="text-white">Saatlik ve ucu açık çalışmıyoruz.</strong></>
-                      : <>For takeovers, capacity support and architecture work, a fixed quote follows once scope is defined; the fee is confirmed in writing before work starts. <strong className="text-white">We don't bill hourly or open-ended.</strong></>}
+                      ? <>Devralma, kapasite takviyesi ve mimari işlerde kapsam netleştikten sonra sabit teklif iletilir; çalışma başlamadan önce bedel yazılı olarak nettir. <strong className="text-[var(--ink)]">Saatlik ve ucu açık çalışmıyoruz.</strong></>
+                      : <>For takeovers, capacity support and architecture work, a fixed quote follows once scope is defined; the fee is confirmed in writing before work starts. <strong className="text-[var(--ink)]">We don't bill hourly or open-ended.</strong></>}
                   </p>
                 </div>
               </div>
 
               {/* Katman 03 */}
-              <div className="p-7 rounded-3xl bg-[#111827] border border-cyan-500/30 relative flex flex-col justify-between space-y-6 shadow-xl">
+              <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] relative flex flex-col justify-between space-y-6 shadow-sm">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/40">
+                    <span className="px-3 py-1 rounded-full text-xs font-mono font-semibold bg-red-50 text-[var(--accent)] border border-red-200">
                       {isTr ? 'ACİL MÜDAHALE' : 'EMERGENCY RESPONSE'}
                     </span>
-                    <span className="text-xs font-mono font-bold text-cyan-300 bg-cyan-500/10 px-2.5 py-1 rounded-lg border border-cyan-500/30">
+                    <span className="text-xs font-mono font-semibold text-[var(--accent)] bg-red-50 px-2.5 py-1 rounded-lg border border-red-200">
                       {isTr ? 'Sabit bedel · işin kapsamına göre' : 'Fixed fee · depending on scope'}
                     </span>
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
+                  <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {isTr ? 'Teşhis ve bedel aynı anda verilir.' : 'Diagnosis and price arrive together.'}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
                     {isTr 
                       ? 'Saatler içinde çözülmesi gereken durumlarda teşhisi beklemek anlamsızdır; teşhis ve sabit bedel birlikte iletilir.' 
                       : 'When something has to be resolved within hours, waiting for a diagnosis makes no sense: we deliver the diagnosis and a fixed fee at the same time.'}
@@ -678,46 +673,46 @@ const Agency = () => {
 
             </div>
 
-            {/* Acil Teklif Hattı (3 katmanın ALTINDA, ayrı ve yeşil çerçeveli) */}
-            <div className="p-7 sm:p-9 rounded-3xl bg-emerald-950/20 border-2 border-emerald-500/40 space-y-6 shadow-xl">
+            {/* Acil Teklif Hattı */}
+            <div className="p-7 sm:p-9 rounded-xl bg-emerald-50 border-2 border-emerald-300 space-y-6 shadow-sm">
               <div className="space-y-2">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-emerald-800">
                   {isTr ? 'ACİL TEKLİF HATTI' : 'URGENT QUOTE LINE'}
                 </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
                   {isTr ? 'Teklif iki taraftan da gelebilir.' : 'A quote can come from either side.'}
                 </h3>
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl">
+                <p className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed max-w-3xl">
                   {isTr 
-                    ? <>Tanımadığınız birine kriz anında rakam taahhüt etmek zorunda değilsiniz. Kapsamı görüp bedeli biz veririz; <strong className="text-white">siz de kendi bütçenizi iletebilirsiniz.</strong> İki durumda da net cevap alırsınız: yapılır ya da yapılmaz.</>
-                    : <>You shouldn't have to commit to a figure with someone you don't know, mid-crisis. We can review the scope and quote it; <strong className="text-white">or you can tell us your budget.</strong> Either way you get a straight answer: we can do it, or we can't.</>}
+                    ? <>Tanımadığınız birine kriz anında rakam taahhüt etmek zorunda değilsiniz. Kapsamı görüp bedeli biz veririz; <strong className="text-[var(--ink)]">siz de kendi bütçenizi iletebilirsiniz.</strong> İki durumda da net cevap alırsınız: yapılır ya da yapılmaz.</>
+                    : <>You shouldn't have to commit to a figure with someone you don't know, mid-crisis. We can review the scope and quote it; <strong className="text-[var(--ink)]">or you can tell us your budget.</strong> Either way you get a straight answer: we can do it, or we can't.</>}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-1">
-                  <div className="text-white font-bold text-sm sm:text-base">
+                <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+                  <div className="text-[var(--ink)] font-semibold text-sm sm:text-base">
                     {isTr ? 'Biz teklif veririz' : 'We quote'}
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-300">
+                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)]">
                     {isTr ? 'Teşhisi yapar, sabit bedeli iletiriz.' : 'We run the diagnosis and give you a fixed fee.'}
                   </p>
                 </div>
 
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3 flex flex-col justify-between">
+                <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-3 flex flex-col justify-between">
                   <div className="space-y-1">
-                    <div className="text-white font-bold text-sm sm:text-base">
+                    <div className="text-[var(--ink)] font-semibold text-sm sm:text-base">
                       {isTr ? 'Siz teklif verirsiniz' : 'You quote'}
                     </div>
-                    <p className="text-xs sm:text-sm text-slate-300">
+                    <p className="text-xs sm:text-sm text-[var(--ink-secondary)]">
                       {isTr ? 'Bütçenizi söylersiniz, kapsamı ona göre konuşuruz.' : 'You name your budget, we shape the scope around it.'}
                     </p>
                   </div>
-                  <div className="pt-2 border-t border-white/10">
+                  <div className="pt-2 border-t border-[var(--rule)]">
                     <button
                       type="button"
                       onClick={() => window.dispatchEvent(new CustomEvent('open-sos-modal'))}
-                      className="text-emerald-400 font-mono font-bold text-xs sm:text-sm hover:underline focus:outline-none focus:ring-1 focus:ring-emerald-400 rounded cursor-pointer transition-colors text-left"
+                      className="text-emerald-700 font-mono font-semibold text-xs sm:text-sm hover:underline focus:outline-none focus:ring-1 focus:ring-emerald-700 rounded cursor-pointer transition-colors text-left"
                     >
                       {isTr ? 'Bütçenizi iletin →' : 'Send us your budget →'}
                     </button>
@@ -728,8 +723,8 @@ const Agency = () => {
 
             {/* Alt not */}
             <div className="text-center pt-2">
-              <p className="text-xs sm:text-sm text-slate-400 font-mono">
-                <Link to="/nda/" className="hover:text-cyan-300 underline underline-offset-4 decoration-cyan-500/40 transition-colors">
+              <p className="text-xs sm:text-sm text-[var(--ink-muted)] font-mono">
+                <Link to="/nda/" className="btn-link underline underline-offset-4">
                   {isTr 
                     ? 'Tüm çalışmalar resmi NDA kapsamındadır; kaynak kod ve fikri mülkiyet %100 ajansınıza aittir.' 
                     : 'All work is covered by a formal NDA; source code and IP belong 100% to your agency.'}
@@ -745,35 +740,35 @@ const Agency = () => {
 
         {/* MEETING INVITATION */}
         <section className="py-16">
-          <div className="p-8 sm:p-14 rounded-3xl bg-gradient-to-br from-[#111827] via-[#0b121f] to-[#151f33] border border-cyan-500/30 text-center relative overflow-hidden shadow-2xl">
+          <div className="p-8 sm:p-14 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-center relative overflow-hidden shadow-sm">
             
             <div className="max-w-3xl mx-auto space-y-6">
-              <span className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 uppercase inline-block">
+              <span className="px-4 py-1.5 rounded-full text-xs sm:text-sm font-mono font-semibold bg-red-50 text-[var(--accent)] border border-red-200 uppercase inline-block">
                 {isTr ? 'İş Ortaklığı Daveti' : 'Partnership Invitation'}
               </span>
 
-              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
                 {isTr ? 'Her projede birlikte çalışmak zorunda değiliz.' : 'We don’t need to work on every project.'}
               </h2>
 
-              <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+              <p className="text-[var(--ink-secondary)] text-base sm:text-lg leading-relaxed">
                 {isTr 
                   ? 'Belki aylar boyunca birbirimize hiç ihtiyaç duymayacaksınız. Ama günün birinde teknik olarak zor bir iş masanıza geldiğinde veya güvenilir bir geliştiriciye “Şuna bir bakabilir misiniz?” demek istediğinizde bizi hatırlamanız bizim için yeterli.' 
                   : 'You might not need us for months. But when a high-stakes bottleneck arrives or when you need a trusted developer to ask “Can you take a look at this?”, knowing we are ready is all that matters.'}
               </p>
 
-              <div className="p-6 rounded-2xl bg-white/5 border border-white/10 max-w-xl mx-auto text-left space-y-3">
-                <h4 className="text-base font-bold text-white flex items-center gap-2">
-                  <Calendar className="w-5 h-5 text-cyan-400" /> {isTr ? '30 Dakikalık Online Tanışma Görüşmesi' : '30-Minute Online Introductory Call'}
+              <div className="p-6 rounded-xl bg-[var(--paper)] border border-[var(--rule)] max-w-xl mx-auto text-left space-y-3">
+                <h4 className="text-base font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
+                  <Calendar className="w-5 h-5 text-[var(--accent)]" /> {isTr ? '30 Dakikalık Online Tanışma Görüşmesi' : '30-Minute Online Introductory Call'}
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
                   {isTr 
                     ? 'Ortada aktif bir proje olması gerekmiyor; birbirimizi tanımamız ve ihtiyaç oluştuğunda kiminle iletişime geçeceğinizi bilmeniz yeterli.' 
                     : 'No active project required; just getting acquainted so you know who to call when a critical crunch occurs.'}
                 </p>
-                <div className="pt-2 flex flex-wrap gap-4 text-xs sm:text-sm font-mono text-slate-300">
-                  <span>📞 <a href="tel:+905343713573" className="hover:text-cyan-400 font-bold">+90 534 371 35 73</a></span>
-                  <span>✉️ <a href="mailto:info@trendmasterakademi.com" className="hover:text-cyan-400 font-bold">info@trendmasterakademi.com</a></span>
+                <div className="pt-2 flex flex-wrap gap-4 text-xs sm:text-sm font-mono text-[var(--ink-secondary)]">
+                  <span><a href="tel:+905343713573" className="hover:text-[var(--accent)] font-semibold">+90 534 371 35 73</a></span>
+                  <span><a href="mailto:info@trendmasterakademi.com" className="hover:text-[var(--accent)] font-semibold">info@trendmasterakademi.com</a></span>
                 </div>
               </div>
 
@@ -783,7 +778,7 @@ const Agency = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'agency_card' })}
-                  className="px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black text-sm sm:text-base shadow-xl shadow-emerald-500/25 flex items-center gap-3 transition-all transform hover:-translate-y-0.5 min-h-[48px]"
+                  className="btn-primary px-8 py-4 flex items-center gap-3 min-h-[48px]"
                 >
                   <Calendar className="w-5 h-5" />
                   <span>{isTr ? 'Takvimden Randevu Seç' : 'Select Time from Calendar'}</span>
@@ -794,17 +789,17 @@ const Agency = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'agency_intro_call' })}
-                  className="px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm sm:text-base flex items-center gap-2.5 transition-colors min-h-[48px]"
+                  className="btn-secondary px-6 py-4 flex items-center gap-2.5 min-h-[48px]"
                 >
-                  <MessageSquare className="w-5 h-5 text-emerald-400" />
+                  <MessageSquare className="w-5 h-5 text-emerald-600" />
                   <span>{isTr ? 'Tanışma Randevusu Al (WhatsApp)' : 'Book Intro Call (WhatsApp)'}</span>
                 </a>
 
                 <Link
                   to="/crash-test/"
-                  className="px-6 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white font-semibold text-sm sm:text-base flex items-center gap-2 transition-colors min-h-[48px]"
+                  className="btn-secondary px-6 py-4 flex items-center gap-2 min-h-[48px]"
                 >
-                  <Zap className="w-5 h-5 text-cyan-400 fill-current" />
+                  <Zap className="w-5 h-5 text-[var(--accent)]" />
                   <span>{isTr ? "Crash Test'i Çalıştır" : "Run Crash Test"}</span>
                 </Link>
               </div>

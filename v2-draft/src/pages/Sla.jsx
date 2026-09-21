@@ -44,17 +44,17 @@ export const Sla = () => {
   const selectedTier = slaTiers.find(t => t.level === activeTier) || slaTiers[0];
 
   return (
-    <div className="pt-28 pb-20 px-4 sm:px-6 max-w-6xl mx-auto space-y-16">
+    <div className="pt-28 pb-20 px-4 sm:px-6 max-w-6xl mx-auto space-y-16 text-[var(--ink)] font-sans">
       {/* Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-mono text-xs">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[var(--accent-soft)] border border-[var(--accent)] text-[var(--accent)] font-mono text-xs font-semibold">
           <ShieldCheck className="w-3.5 h-3.5" />
           <span>{isTr ? 'B2B HİZMET SEVİYESİ TAAHHÜTLERİ (SLA)' : 'B2B SERVICE LEVEL AGREEMENTS (SLA)'}</span>
         </div>
-        <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight">
+        <h1 className="text-3xl sm:text-5xl font-semibold font-serif text-[var(--ink)] tracking-tight">
           {isTr ? 'Şeffaf Mühendislik SLA & Yanıt Süresi Matrisi' : 'Transparent Engineering SLA & Response Matrix'}
         </h1>
-        <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+        <p className="text-[var(--ink-muted)] text-base sm:text-lg leading-relaxed">
           {isTr
             ? 'Ajanslar ve kurumsal şirketler için muğlak "en kısa sürede inceleriz" sözleri yerine; dakikalarla tanımlanmış, bağlayıcı mühendislik masası taahhütleri.'
             : 'Instead of vague "we will look into it ASAP" promises; strictly defined, minute-by-minute senior engineering desk commitments.'}
@@ -63,12 +63,12 @@ export const Sla = () => {
 
       {/* SLA Tiers Interactive Matrix */}
       <div className="space-y-6">
-        <div className="flex items-center justify-between flex-wrap gap-4 border-b border-white/10 pb-4">
-          <h2 className="text-lg font-bold text-white font-mono flex items-center gap-2">
-            <Zap className="w-4 h-4 text-cyan-400" />
+        <div className="flex items-center justify-between flex-wrap gap-4 border-b border-[var(--rule)] pb-4">
+          <h2 className="text-lg font-semibold font-serif text-[var(--ink)] flex items-center gap-2">
+            <Zap className="w-4 h-4 text-[var(--accent)]" />
             <span>{isTr ? 'Olay Ciddiyet Seviyeleri (Severity Tiers)' : 'Incident Severity Tiers'}</span>
           </h2>
-          <span className="text-xs font-mono text-slate-400">
+          <span className="text-xs font-mono text-[var(--ink-muted)]">
             {isTr ? 'Ortalama SLA Uyum Oranı: %99.3' : 'Overall SLA Compliance Rate: 99.3%'}
           </span>
         </div>
@@ -81,27 +81,27 @@ export const Sla = () => {
               <button
                 key={t.level}
                 onClick={() => setActiveTier(t.level)}
-                className={`p-4 rounded-2xl border text-left transition-all duration-150 relative ${
+                className={`p-4 rounded border text-left transition-all duration-150 relative min-h-[44px] cursor-pointer ${
                   isActive
-                    ? 'bg-white/10 border-cyan-400 shadow-lg shadow-cyan-500/10 ring-1 ring-cyan-400/30'
-                    : 'bg-white/[0.02] border-white/10 hover:bg-white/[0.05] hover:border-white/20'
+                    ? 'bg-[var(--surface)] border-[var(--accent)] shadow-sm ring-1 ring-[var(--accent)]'
+                    : 'bg-[var(--surface)] border-[var(--rule)] hover:border-[var(--ink-muted)]'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
-                  <span className={`text-xs font-mono font-bold px-2 py-0.5 rounded ${
-                    t.level === 'SEV-0' ? 'bg-red-500/20 text-red-300 border border-red-500/30' :
-                    t.level === 'SEV-1' ? 'bg-amber-500/20 text-amber-300 border border-amber-500/30' :
-                    t.level === 'SEV-2' ? 'bg-blue-500/20 text-blue-300 border border-blue-500/30' :
-                    'bg-purple-500/20 text-purple-300 border border-purple-500/30'
+                  <span className={`text-xs font-mono font-semibold px-2 py-0.5 rounded ${
+                    t.level === 'SEV-0' ? 'bg-red-50 text-red-800 border border-red-300' :
+                    t.level === 'SEV-1' ? 'bg-amber-50 text-amber-800 border border-amber-300' :
+                    t.level === 'SEV-2' ? 'bg-blue-50 text-blue-800 border border-blue-300' :
+                    'bg-purple-50 text-purple-800 border border-purple-300'
                   }`}>
                     {t.level}
                   </span>
-                  <span className="text-[11px] font-mono text-slate-400">{t.slaComplianceRate}</span>
+                  <span className="text-xs font-mono text-[var(--ink-muted)]">{t.slaComplianceRate}</span>
                 </div>
-                <div className="text-sm font-bold text-white line-clamp-1">
+                <div className="text-sm font-semibold font-serif text-[var(--ink)] line-clamp-1">
                   {t.title[lang]}
                 </div>
-                <div className="text-xs font-mono text-cyan-300 mt-1">
+                <div className="text-xs font-mono text-[var(--accent)] mt-1 font-semibold">
                   MTTA: {t.mtta[lang]}
                 </div>
               </button>
@@ -110,40 +110,40 @@ export const Sla = () => {
         </div>
 
         {/* Selected Tier Expanded Sheet */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-black/60 border border-white/10 space-y-8 backdrop-blur-xl relative overflow-hidden">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-b border-white/10 pb-6 font-mono">
-            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
-              <span className="text-[11px] text-slate-400 uppercase tracking-wider block">
+        <div className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-8 shadow-sm relative overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-b border-[var(--rule)] pb-6 font-mono">
+            <div className="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-1">
+              <span className="text-xs text-[var(--ink-muted)] uppercase tracking-wider block font-semibold">
                 {isTr ? 'İLK YANIT (MTTA)' : 'FIRST RESPONSE (MTTA)'}
               </span>
-              <strong className="text-xl sm:text-2xl font-black text-cyan-300">
+              <strong className="text-xl sm:text-2xl font-bold text-[var(--accent)]">
                 {selectedTier.mtta[lang]}
               </strong>
-              <p className="text-[11px] text-slate-400">
+              <p className="text-xs text-[var(--ink-muted)]">
                 {isTr ? 'Acil çağrı sonrası mühendisin ilk teyidi' : 'Initial acknowledgment by senior engineer'}
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
-              <span className="text-[11px] text-slate-400 uppercase tracking-wider block">
+            <div className="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-1">
+              <span className="text-xs text-[var(--ink-muted)] uppercase tracking-wider block font-semibold">
                 {isTr ? 'MASAYA OTURMA & TRİYAJ' : 'TIME TO ENGAGE (TABLE)'}
               </span>
-              <strong className="text-xl sm:text-2xl font-black text-emerald-400">
+              <strong className="text-xl sm:text-2xl font-bold text-emerald-700">
                 {selectedTier.timeToTable[lang]}
               </strong>
-              <p className="text-[11px] text-slate-400">
+              <p className="text-xs text-[var(--ink-muted)]">
                 {isTr ? 'Canlı sisteme SSH/Repo erişimiyle müdahale' : 'Active production triage and containment'}
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-white/5 border border-white/10 space-y-1">
-              <span className="text-[11px] text-slate-400 uppercase tracking-wider block">
+            <div className="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-1">
+              <span className="text-xs text-[var(--ink-muted)] uppercase tracking-wider block font-semibold">
                 {isTr ? 'DURUM GÜNCELLEME SIKLIĞI' : 'STATUS CADENCE'}
               </span>
-              <strong className="text-base sm:text-lg font-bold text-white block mt-1">
+              <strong className="text-base sm:text-lg font-semibold text-[var(--ink)] block mt-1">
                 {selectedTier.updateCadence[lang]}
               </strong>
-              <p className="text-[11px] text-slate-400">
+              <p className="text-xs text-[var(--ink-muted)]">
                 {isTr ? 'Yazılı durum ve kriz brifingi' : 'Written brief and incident milestones'}
               </p>
             </div>
@@ -151,44 +151,44 @@ export const Sla = () => {
 
           {/* Definition */}
           <div className="space-y-2">
-            <h3 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+            <h3 className="text-xs font-mono font-semibold text-[var(--ink-muted)] uppercase tracking-wider">
               {isTr ? 'KAPSAM & TANIM' : 'SCOPE & DEFINITION'}
             </h3>
-            <p className="text-slate-200 text-base leading-relaxed">
+            <p className="text-[var(--ink)] text-base leading-relaxed">
               {selectedTier.definition[lang]}
             </p>
           </div>
 
           {/* Typical Incidents */}
           <div className="space-y-3">
-            <h3 className="text-xs font-mono font-bold text-slate-400 uppercase tracking-wider">
+            <h3 className="text-xs font-mono font-semibold text-[var(--ink-muted)] uppercase tracking-wider">
               {isTr ? 'BU SEVİYEYE GİREN TİPİK VAKALAR' : 'TYPICAL INCIDENT PATTERNS'}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {selectedTier.typicalIncidents.map((inc, i) => (
-                <div key={i} className="p-3.5 rounded-xl bg-white/5 border border-white/10 flex items-start gap-2.5">
-                  <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
-                  <span className="text-xs text-slate-200 leading-snug">{inc[lang]}</span>
+                <div key={i} className="p-3.5 rounded bg-[var(--paper)] border border-[var(--rule)] flex items-start gap-2.5">
+                  <CheckCircle2 className="w-4 h-4 text-[var(--accent)] shrink-0 mt-0.5" />
+                  <span className="text-xs text-[var(--ink)] leading-snug">{inc[lang]}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Quick CTA inside tier */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/10">
-            <div className="text-xs text-slate-400 font-mono">
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[var(--rule)]">
+            <div className="text-xs text-[var(--ink-muted)] font-mono">
               {isTr ? 'Bu seviyede aktif bir kriziniz mi var?' : 'Experiencing an incident at this severity?'}
             </div>
             <div className="flex items-center gap-3">
               <Link
                 to={isTr ? "/triyaj/" : "/triage/"}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/10 text-white text-xs font-mono hover:bg-white/20 transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-[var(--paper)] text-[var(--ink)] border border-[var(--rule)] text-xs font-mono hover:bg-[var(--surface)] transition-colors min-h-[44px]"
               >
                 <span>{isTr ? 'Triyaj Simülatörü →' : 'Triage Simulator →'}</span>
               </Link>
               <Link
                 to={isTr ? "/sos/" : "/sos/"}
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-red-500 text-white text-xs font-bold hover:bg-red-400 transition-colors shadow-lg shadow-red-500/20"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-[var(--accent)] text-white text-xs font-semibold hover:bg-[var(--accent-hover)] transition-colors shadow-sm min-h-[44px]"
               >
                 <PhoneCall className="w-3.5 h-3.5" />
                 <span>{isTr ? 'Acil Kriz Masası (SOS)' : 'Emergency Crisis Desk'}</span>
@@ -201,41 +201,41 @@ export const Sla = () => {
       {/* 5 Core Engineering Commitments */}
       <div className="space-y-8">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 font-mono text-xs text-cyan-400">
+          <div className="inline-flex items-center gap-2 font-mono text-xs text-[var(--accent)] font-semibold">
             <Lock className="w-3.5 h-3.5" />
             <span>{isTr ? 'KURUMSAL & HUKUKİ GÜVENCELER' : 'CORPORATE & LEGAL ASSURANCES'}</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
             {isTr ? 'Ajanslarla Çalışırken Taviz Vermediğimiz 5 Temel Taahhüt' : '5 Core Commitments We Never Compromise On'}
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {coreCommitments.map((c) => (
-            <article key={c.no} className="p-6 rounded-2xl bg-white/[0.02] border border-white/10 space-y-3 hover:border-white/20 transition-colors">
+            <article key={c.no} className="p-6 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-3 shadow-sm hover:border-[var(--ink-muted)] transition-colors">
               <div className="flex items-center justify-between">
-                <span className="text-xl font-black font-mono text-cyan-400">{c.no}</span>
-                <span className="text-xs font-mono text-slate-500 uppercase">{isTr ? 'GARANTİ' : 'GUARANTEE'}</span>
+                <span className="text-xl font-bold font-mono text-[var(--accent)]">{c.no}</span>
+                <span className="text-xs font-mono text-[var(--ink-muted)] uppercase">{isTr ? 'GARANTİ' : 'GUARANTEE'}</span>
               </div>
-              <h3 className="text-lg font-bold text-white">
+              <h3 className="text-lg font-semibold font-serif text-[var(--ink)]">
                 {c.title[lang]}
               </h3>
-              <p className="text-slate-300 text-sm leading-relaxed">
+              <p className="text-[var(--ink-muted)] text-sm leading-relaxed">
                 {c.desc[lang]}
               </p>
             </article>
           ))}
 
           {/* 6th Card: NDA Link */}
-          <article className="p-6 rounded-2xl bg-cyan-950/20 border border-cyan-500/30 space-y-3 flex flex-col justify-between">
+          <article className="p-6 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-3 flex flex-col justify-between shadow-sm">
             <div className="space-y-2">
-              <span className="text-xs font-mono font-bold text-cyan-300 uppercase tracking-wide">
+              <span className="text-xs font-mono font-semibold text-[var(--accent)] uppercase tracking-wide">
                 {isTr ? 'RESMİ SÖZLEŞME METNİ' : 'LEGAL CONTRACT TEXT'}
               </span>
-              <h3 className="text-lg font-bold text-white">
+              <h3 className="text-lg font-semibold font-serif text-[var(--ink)]">
                 {isTr ? 'Standart Gizlilik Sözleşmemizi (NDA) İnceleyin' : 'Review Our Standard Non-Disclosure Agreement'}
               </h3>
-              <p className="text-slate-300 text-sm leading-relaxed">
+              <p className="text-[var(--ink-muted)] text-sm leading-relaxed">
                 {isTr
                   ? 'Ajansınızın fikri mülkiyetini ve görünmezlik şartlarını güvenceye alan şeffaf sözleşme şablonumuz.'
                   : 'Our transparent contract template safeguarding your agency IP, confidentiality, and white-label invisibility.'}
@@ -244,7 +244,7 @@ export const Sla = () => {
             <div className="pt-3">
               <Link
                 to={isTr ? "/nda/" : "/nda/"}
-                className="inline-flex items-center gap-1.5 text-sm font-bold text-cyan-400 hover:underline"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--accent)] hover:underline min-h-[44px]"
               >
                 <span>{isTr ? 'NDA Metnini Oku →' : 'Read Full NDA →'}</span>
               </Link>
@@ -254,11 +254,11 @@ export const Sla = () => {
       </div>
 
       {/* Bottom CTA Card */}
-      <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 text-center space-y-6 max-w-3xl mx-auto">
-        <h3 className="text-2xl sm:text-3xl font-black text-white">
+      <div className="p-8 sm:p-12 rounded bg-[var(--surface)] border border-[var(--rule)] text-center space-y-6 max-w-3xl mx-auto shadow-sm">
+        <h3 className="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)]">
           {isTr ? 'Kriz Kapınızı Çalmadan Tanışalım' : 'Meet Before Critical Outages Strike'}
         </h3>
-        <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
+        <p className="text-[var(--ink-muted)] text-sm sm:text-base leading-relaxed">
           {isTr
             ? 'Birçok ajansla ilk temasımız canlı sistem durduğunda gerçekleşir. Dilerseniz önceden 15 dakikalık bir triyaj tanışması yaparak acil durum protokolünüzü netleştirelim.'
             : 'Most agencies reach out when production is already on fire. Schedule a 15-minute intro triage to define your standby emergency protocol beforehand.'}
@@ -268,7 +268,7 @@ export const Sla = () => {
             href={getCalendlyUrl()}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-cyan-500 text-black font-bold text-sm hover:bg-cyan-400 transition-colors shadow-lg shadow-cyan-500/20"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded bg-[var(--accent)] text-white font-semibold text-sm hover:bg-[var(--accent-hover)] transition-colors shadow-sm min-h-[44px]"
           >
             <Clock className="w-4 h-4" />
             <span>{isTr ? '15 Dk Triyaj Tanışması' : '15-Min Intro Triage'}</span>
@@ -276,7 +276,7 @@ export const Sla = () => {
           </a>
           <Link
             to={isTr ? "/sos/" : "/sos/"}
-            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white/10 text-white font-mono text-sm hover:bg-white/20 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] font-mono text-sm hover:bg-[var(--surface)] transition-colors min-h-[44px]"
           >
             <span>{isTr ? 'Kriz Masası (SOS) →' : 'Crisis Desk (SOS) →'}</span>
           </Link>

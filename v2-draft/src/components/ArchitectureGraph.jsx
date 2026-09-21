@@ -29,7 +29,7 @@ const ArchitectureGraph = () => {
         tr: 'SSR, ISR, küresel önbellek ve DDoS kalkanı.', 
         en: 'SSR, ISR, global caching and DDoS mitigation.' 
       },
-      color: 'border-cyan-500/40 text-cyan-400 bg-cyan-500/10'
+      color: 'border-teal-600/30 text-teal-700 bg-teal-50'
     },
     {
       id: 2,
@@ -67,27 +67,23 @@ const ArchitectureGraph = () => {
   ];
 
   return (
-    <section className="py-20 md:py-28 px-4 sm:px-6 md:px-12 bg-[#080b11] relative border-b border-white/10 overflow-hidden">
-      
-      {/* Ambient glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
-
+    <section className="py-16 px-4 sm:px-6 md:px-12 bg-[var(--paper)] relative border-b border-[var(--rule)] overflow-hidden">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-wider mb-4">
-            <Zap className="w-4 h-4" /> {isTr ? 'GÖRSEL MİMARİ & VERİ AKIŞI' : 'VISUAL ARCHITECTURE & DATA FLOW'}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] text-xs font-mono font-medium uppercase tracking-wider mb-4">
+            <Zap className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'GÖRSEL MİMARİ & VERİ AKIŞI' : 'VISUAL ARCHITECTURE & DATA FLOW'}
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white tracking-tight leading-tight">
+          <h2 className="font-serif text-[26px] sm:text-[30px] font-semibold text-[var(--ink)] tracking-tight leading-tight">
             <span className="block">
               {isTr ? 'Kriz Geçirmez, Yüksek Hızlı' : 'Resilient, High-Speed'}
             </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">
+            <span className="block text-[var(--ink)]">
               {isTr ? "Mühendislik Veri Pipeline'ı" : 'Engineering Data Pipeline'}
             </span>
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg mt-4 leading-relaxed">
+          <p className="text-[var(--ink-2)] text-base sm:text-lg mt-4 leading-relaxed">
             {isTr 
               ? 'TMA olarak inşa ettiğimiz ve kurtardığımız sistemlerin arka plandaki canlı veri akışı ve mimari düğümleri.' 
               : 'The live architectural flow and resilient nodes behind the systems we engineer and rescue.'}
@@ -103,26 +99,26 @@ const ArchitectureGraph = () => {
               <div key={node.id} className="relative flex flex-col">
                 <button
                   onClick={() => setSelectedNode(node.id)}
-                  className={`p-4 sm:p-5 lg:p-4 xl:p-5 rounded-2xl sm:rounded-3xl text-left border transition-all duration-300 cursor-pointer flex-1 flex flex-col justify-between ${
+                  className={`p-4 sm:p-5 rounded-[var(--r-panel)] text-left border transition-all duration-200 cursor-pointer flex-1 flex flex-col justify-between ${
                     isSelected
-                      ? 'bg-gradient-to-b from-[#151f33] to-[#0c121e] border-cyan-400 shadow-[0_0_30px_rgba(0,229,255,0.25)] ring-1 ring-cyan-400/50'
-                      : 'bg-[#111827]/80 border-white/10 hover:border-white/25 hover:bg-[#151f33]/60'
+                      ? 'bg-[var(--surface)] border-[var(--accent)] shadow-sm ring-1 ring-[var(--accent)]'
+                      : 'bg-[var(--surface)] border-[var(--rule)] hover:border-[var(--rule-strong)]'
                   }`}
                 >
                   <div>
                     <div className="flex items-center justify-between mb-3.5">
-                      <div className={`w-10 h-10 sm:w-11 sm:h-11 rounded-xl sm:rounded-2xl flex items-center justify-center border ${node.color}`}>
-                        <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                      <div className="w-10 h-10 rounded-[var(--r-control)] flex items-center justify-center border border-[var(--rule)] bg-[var(--paper)] text-[var(--ink)]">
+                        <Icon className="w-5 h-5" />
                       </div>
-                      <span className="text-[9.5px] sm:text-[10px] font-mono font-bold text-slate-400 bg-white/5 px-2 py-0.5 rounded border border-white/10">
+                      <span className="text-[12px] font-mono font-medium text-[var(--ink-3)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
                         {node.badge}
                       </span>
                     </div>
 
-                    <h3 className="text-sm sm:text-base font-bold text-white mb-1.5 leading-snug">
+                    <h3 className="text-sm sm:text-base font-semibold text-[var(--ink)] mb-1.5 leading-snug">
                       {node.title[isTr ? 'tr' : 'en']}
                     </h3>
-                    <p className="text-xs text-slate-300 leading-relaxed line-clamp-3">
+                    <p className="text-xs text-[var(--ink-2)] leading-relaxed line-clamp-3">
                       {node.desc[isTr ? 'tr' : 'en']}
                     </p>
                   </div>
@@ -130,7 +126,7 @@ const ArchitectureGraph = () => {
 
                 {/* Arrow Connector on desktop between columns */}
                 {idx < nodes.length - 1 && (
-                  <div className="hidden lg:flex absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 w-5 h-5 rounded-full bg-cyan-500 text-bg-dark items-center justify-center font-bold text-xs shadow-lg shadow-cyan-500/50 pointer-events-none">
+                  <div className="hidden lg:flex absolute -right-2.5 top-1/2 -translate-y-1/2 z-10 w-5 h-5 rounded-full bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] items-center justify-center font-bold text-xs pointer-events-none">
                     →
                   </div>
                 )}
@@ -140,18 +136,18 @@ const ArchitectureGraph = () => {
         </div>
 
         {/* Selected Node Telemetry Detail Box */}
-        <div className="p-6 sm:p-8 rounded-3xl bg-[#0c121e] border border-cyan-500/30 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+        <div className="p-6 sm:p-8 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <div className="space-y-2">
             <div className="flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-              <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest">
+              <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
+              <span className="text-xs font-mono font-medium text-[var(--ink-3)] uppercase tracking-widest">
                 {isTr ? 'SEÇİLİ KATMAN' : 'SELECTED LAYER'}
               </span>
             </div>
-            <h4 className="text-xl sm:text-2xl font-bold text-white">
+            <h4 className="text-xl sm:text-2xl font-semibold text-[var(--ink)] font-serif">
               {nodes[selectedNode].title[isTr ? 'tr' : 'en']}
             </h4>
-            <p className="text-sm text-slate-300 max-w-2xl leading-relaxed">
+            <p className="text-sm text-[var(--ink-2)] max-w-2xl leading-relaxed">
               {nodes[selectedNode].desc[isTr ? 'tr' : 'en']}
             </p>
           </div>

@@ -31,20 +31,20 @@ const TeshisIndex = () => {
   }, [lang]);
 
   return (
-    <div className="pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto text-slate-200">
+    <div className="min-h-screen pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-white">
       
       {/* Header */}
       <header className="mb-14 space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-wider">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider">
           <Stethoscope className="w-4 h-4" />
           {isTr ? 'B2B TEŞHİS & TRİYAJ REHBERİ' : 'B2B DIAGNOSTIC & TRIAGE CATALOG'}
         </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight">
           {isTr ? 'Teşhis Kataloğu' : 'Diagnostic Catalog'}
         </h1>
 
-        <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl">
+        <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-3xl">
           {isTr 
             ? 'Belirtiyi görüyorsunuz ama nedenini bilmiyorsunuz. Buradaki her teşhis bir belirtiyle başlar, aynı belirtiyi üretebilecek nedenleri ayırır ve hangisiyle karşı karşıya olduğunuzu nasıl anlayacağınızı gösterir.'
             : 'You can see the symptom but not the cause. Each entry starts from a symptom, separates the causes that could produce it, and shows you how to tell which one you are facing.'}
@@ -52,10 +52,10 @@ const TeshisIndex = () => {
 
         {/* Feature Badges */}
         <div className="flex flex-wrap gap-2.5 pt-2 font-mono text-xs">
-          <span className="px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 font-semibold">
+          <span className="px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-emerald-800 font-semibold">
             {isTr ? '20 belirti' : '20 symptoms'}
           </span>
-          <span className="px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold">
+          <span className="px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] font-semibold">
             {isTr ? 'İlk teşhis ücretsiz' : 'First diagnosis is free'}
           </span>
         </div>
@@ -79,48 +79,48 @@ const TeshisIndex = () => {
             <Link
               key={item.slug}
               to={`/teshis/${item.slug}/`}
-              className="block group border border-white/10 hover:border-cyan-500/40 rounded-3xl bg-[#0d121d] hover:bg-[#111827] transition-all p-6 sm:p-8 space-y-4 shadow-xl hover:shadow-[0_0_30px_rgba(0,229,255,0.1)]"
+              className="block group border border-[var(--rule)] hover:border-[var(--accent)] rounded-2xl bg-[var(--surface)] transition-all p-6 sm:p-8 space-y-4 shadow-sm"
             >
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <span className="font-mono text-xs text-slate-400 font-bold">
+                  <span className="font-mono text-xs text-[var(--accent)] font-bold">
                     #{item.no}
                   </span>
                   <span className={`inline-flex items-center gap-1.5 px-3 py-0.5 rounded-lg font-mono text-xs font-semibold uppercase ${
                     isKritik 
-                      ? 'bg-red-500/10 border border-red-500/30 text-red-400' 
-                      : 'bg-amber-500/10 border border-amber-500/30 text-amber-400'
+                      ? 'bg-rose-50 border border-rose-300 text-rose-800' 
+                      : 'bg-amber-50 border border-amber-300 text-amber-800'
                   }`}>
                     <AlertTriangle className="w-3 h-3" />
                     {aciliyetText}
                   </span>
-                  <span className="font-mono text-xs text-slate-400">
+                  <span className="font-mono text-xs text-[var(--ink-muted)]">
                     {kirintiText}
                   </span>
                 </div>
 
-                <span className="font-mono text-xs text-cyan-400 group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                <span className="font-mono text-xs text-[var(--accent)] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 font-semibold min-h-[44px]">
                   {isTr ? 'Teşhis Detayı' : 'Diagnostic Flow'} <ArrowRight className="w-3.5 h-3.5" />
                 </span>
               </div>
 
               <div>
-                <h2 className="text-xl sm:text-2xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                <h2 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
                   {baslikText}
                 </h2>
-                <p className="text-slate-300 text-xs sm:text-sm mt-2 leading-relaxed line-clamp-2">
+                <p className="text-[var(--ink-light)] text-xs sm:text-sm mt-2 leading-relaxed line-clamp-2">
                   {ozetText}
                 </p>
               </div>
 
-              <div className="pt-2 flex flex-wrap items-center gap-2 border-t border-white/5">
-                <span className="text-[11px] font-mono text-slate-400">
+              <div className="pt-2 flex flex-wrap items-center gap-2 border-t border-[var(--rule)]">
+                <span className="text-xs font-mono text-[var(--ink-muted)]">
                   {isTr ? 'Olası Nedenler:' : 'Root Causes:'}
                 </span>
                 {item.nedenler.map((cause) => (
                   <span 
                     key={cause.harf}
-                    className="px-2 py-0.5 rounded bg-white/5 font-mono text-[11px] text-slate-300"
+                    className="px-2 py-0.5 rounded bg-[var(--paper)] font-mono text-xs text-[var(--ink-light)] border border-[var(--rule)]"
                   >
                     {cause.harf}: {cause.ad[lang] || cause.ad.tr}
                   </span>
@@ -132,10 +132,10 @@ const TeshisIndex = () => {
       </div>
 
       {/* Glossary Reference Link */}
-      <div className="mt-12 text-center pt-8 border-t border-white/10">
+      <div className="mt-12 text-center pt-8 border-t border-[var(--rule)]">
         <Link 
           to="/sozluk/" 
-          className="text-xs sm:text-sm font-mono text-slate-400 hover:text-cyan-400 transition-colors inline-flex items-center gap-1.5"
+          className="text-xs sm:text-sm font-mono text-[var(--accent)] hover:underline inline-flex items-center gap-1.5 min-h-[44px]"
         >
           <span>{isTr ? 'Teknik terimlerin kısa karşılıkları için → Terim Sözlüğü' : 'Short definitions of the technical terms → Glossary'}</span>
         </Link>

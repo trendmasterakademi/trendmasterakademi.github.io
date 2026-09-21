@@ -231,7 +231,7 @@ const Salvageability = () => {
       tr: 'Cerrahi SWAT Müdahalesi Uygulanabilir (%70+ Kurtarılabilir)', 
       en: 'Surgical SWAT Rescue Viable (70%+ Salvageable)' 
     },
-    badgeColor: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
+    badgeColor: 'text-emerald-800 bg-emerald-50 border-emerald-300',
     tag: { tr: 'REFACTOR & STABILIZE', en: 'REFACTOR & STABILIZE' },
     summary: {
       tr: 'Kod tabanının çekirdeği ve veri omurgası kurtarılmaya değer. Sıfırdan yazım hem maliyet hem de zaman açısından gereksiz bir risk yaratır. Cerrahi bir SWAT müdahalesiyle 48-72 saatte kilit noktalar izole edilip sistem stabilize edilebilir.',
@@ -255,7 +255,7 @@ const Salvageability = () => {
         tr: 'Temiz Sayfa Tavsiyesi (Baştan Yazım Daha Ekonomik)', 
         en: 'Clean Slate Recommendation (Rebuild Is More Economical)' 
       },
-      badgeColor: 'text-red-400 bg-red-500/10 border-red-500/30',
+      badgeColor: 'text-rose-800 bg-rose-50 border-rose-300',
       tag: { tr: 'SCRAP & REBUILD', en: 'SCRAP & REBUILD' },
       summary: {
         tr: 'Mevcut kod tabanındaki teknik borç faizi, sıfırdan modern stack ile yazmaktan daha maliyetlidir. Bu koda harcanacak her geliştirici saati, yeni hatalar üretecek bir kara deliktir. Veritabanı şemasını dışa aktarıp temiz bir mimariyle baştan yazılması tavsiye edilir.',
@@ -278,7 +278,7 @@ const Salvageability = () => {
         tr: 'Kademeli Strangler Fig Dönüşümü Tavsiye Edilir', 
         en: 'Staged Strangler Fig Migration Recommended' 
       },
-      badgeColor: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30',
+      badgeColor: 'text-[var(--accent)] bg-[var(--accent-subtle)] border-[var(--accent)]/30',
       tag: { tr: 'STRANGLER MIGRATION', en: 'STRANGLER MIGRATION' },
       summary: {
         tr: 'Kod tabanı ne tamamen çöpe atılacak kadar çürük ne de tek seferde düzeltilecek kadar temiz. Canlı sistem durdurulamaz; bu nedenle monolitik yapı canlıda çalışırken, tıkanan modüller (ödeme, auth, api) paralel mikroservislerle kademeli olarak devralınmalıdır.',
@@ -321,30 +321,30 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
   };
 
   return (
-    <div className="pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto text-slate-200">
+    <div className="min-h-screen pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-white">
       
       {/* Header */}
       <header className="mb-12 space-y-4">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-wider">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-wider">
           <Activity className="w-4 h-4" />
           {isTr ? 'TEKNİK FİZİBİLİTE & KARAR MATRİSİ' : 'TECHNICAL FEASIBILITY & DECISION MATRIX'}
         </div>
 
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white tracking-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight">
           {isTr ? 'Salvageability Index' : 'Salvageability Index'}
         </h1>
 
-        <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl">
+        <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-3xl">
           {isTr 
             ? 'Bir yazılım krizinde sorulması gereken en kritik soru: «Bu kodu kurtarmaya değer mi, yoksa sıfırdan mı yazılmalı?» 5 boyutlu risk analizini yanıtlayın, tarafsız kurtarılabilirlik skorunu ve eylem planını anında görün.'
             : 'The most decisive question in a software crisis: "Is this codebase worth saving or should you rebuild?" Answer 5 risk dimensions to determine your salvageability score and action blueprint.'}
         </p>
 
         <div className="flex flex-wrap gap-2.5 pt-2 font-mono text-xs">
-          <span className="px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 font-semibold">
+          <span className="px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] font-semibold">
             {isTr ? 'Refactor vs. Rebuild vs. Scrap' : 'Refactor vs. Rebuild vs. Scrap'}
           </span>
-          <span className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-slate-300 font-semibold">
+          <span className="px-3 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-light)] font-semibold">
             {isTr ? '60 Saniyede Matematiksel Karar' : 'Mathematical Decision in 60s'}
           </span>
         </div>
@@ -356,16 +356,16 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
         {/* Questions Column (7 Cols) */}
         <div className="lg:col-span-7 space-y-6">
           {questions.map((q, idx) => (
-            <div key={q.id} className="p-6 rounded-3xl bg-[#0d121d] border border-white/10 space-y-4 shadow-xl">
+            <div key={q.id} className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 shadow-sm">
               <div className="space-y-1">
-                <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider">
+                <span className="text-xs font-mono font-semibold text-[var(--accent)] uppercase tracking-wider">
                   {q.category[lang]}
                 </span>
-                <h3 className="text-base sm:text-lg font-bold text-white">
+                <h3 className="text-base sm:text-lg font-serif font-semibold text-[var(--ink)]">
                   {q.title[lang]}
                 </h3>
                 {q.desc && (
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-[var(--ink-muted)]">
                     {q.desc[lang]}
                   </p>
                 )}
@@ -380,16 +380,16 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
                       key={oIdx}
                       type="button"
                       onClick={() => setAnswers(prev => ({ ...prev, [q.id]: opt.score }))}
-                      className={`w-full text-left p-3.5 rounded-2xl border text-xs sm:text-sm transition-all flex items-start gap-3 cursor-pointer ${
+                      className={`w-full text-left p-3.5 rounded-xl border text-xs sm:text-sm transition-all flex items-start gap-3 cursor-pointer min-h-[44px] ${
                         isSelected
-                          ? 'bg-cyan-500/15 border-cyan-500 text-white shadow-md shadow-cyan-500/10'
-                          : 'bg-white/5 border-white/5 text-slate-300 hover:bg-white/10 hover:border-white/10'
+                          ? 'bg-[var(--accent-subtle)] border-[var(--accent)] text-[var(--ink)] shadow-sm'
+                          : 'bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-light)] hover:bg-[var(--surface)] hover:text-[var(--ink)]'
                       }`}
                     >
                       <div className={`w-4 h-4 rounded-full border mt-0.5 flex-shrink-0 flex items-center justify-center ${
-                        isSelected ? 'border-cyan-400 bg-cyan-400' : 'border-slate-500'
+                        isSelected ? 'border-[var(--accent)] bg-[var(--accent)]' : 'border-[var(--rule)]'
                       }`}>
-                        {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-black"></div>}
+                        {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white"></div>}
                       </div>
                       <span className="leading-relaxed">{opt.label[lang]}</span>
                     </button>
@@ -403,32 +403,30 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
         {/* Live Score & Decision Matrix (5 Cols Sticky) */}
         <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
           
-          <div className="p-7 rounded-3xl bg-[#0d121d] border border-white/15 space-y-6 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
-
+          <div className="p-7 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-6 shadow-sm relative overflow-hidden">
             {/* Score Display */}
-            <div className="space-y-2 border-b border-white/10 pb-6">
+            <div className="space-y-2 border-b border-[var(--rule)] pb-6">
               <div className="flex justify-between items-center">
-                <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                <span className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider">
                   {isTr ? 'Kurtarılabilirlik Skoru' : 'Salvageability Score'}
                 </span>
-                <span className={`px-2.5 py-0.5 rounded-md text-[11px] font-mono font-bold uppercase border ${decision.badgeColor}`}>
+                <span className={`px-2.5 py-0.5 rounded-md text-xs font-mono font-semibold uppercase border ${decision.badgeColor}`}>
                   {decision.tag[lang]}
                 </span>
               </div>
 
               <div className="flex items-baseline gap-2">
-                <span className="text-5xl sm:text-6xl font-black font-mono text-white tracking-tight">
+                <span className="text-5xl sm:text-6xl font-serif font-semibold text-[var(--ink)] font-mono tracking-tight">
                   %{totalScore}
                 </span>
-                <span className="text-sm font-mono text-slate-400">/ 100</span>
+                <span className="text-sm font-mono text-[var(--ink-muted)]">/ 100</span>
               </div>
 
               {/* Progress Bar */}
-              <div className="w-full h-2 rounded-full bg-white/10 overflow-hidden mt-3">
+              <div className="w-full h-2 rounded-full bg-[var(--paper)] border border-[var(--rule)] overflow-hidden mt-3">
                 <div 
                   className={`h-full transition-all duration-500 rounded-full ${
-                    totalScore >= 70 ? 'bg-emerald-400' : totalScore >= 40 ? 'bg-cyan-400' : 'bg-red-400'
+                    totalScore >= 70 ? 'bg-emerald-600' : totalScore >= 40 ? 'bg-[var(--accent)]' : 'bg-rose-600'
                   }`}
                   style={{ width: `${totalScore}%` }}
                 ></div>
@@ -437,22 +435,22 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
 
             {/* Decision & Action */}
             <div className="space-y-4">
-              <h4 className="text-lg font-bold text-white leading-snug">
+              <h4 className="text-lg font-serif font-semibold text-[var(--ink)] leading-snug">
                 {decision.title[lang]}
               </h4>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--ink-light)] leading-relaxed">
                 {decision.summary[lang]}
               </p>
 
               {/* Action Blueprint */}
-              <div className="space-y-2 pt-2 border-t border-white/10">
-                <span className="text-xs font-mono text-cyan-400 font-bold uppercase block">
+              <div className="space-y-2 pt-2 border-t border-[var(--rule)]">
+                <span className="text-xs font-mono text-[var(--accent)] font-semibold uppercase block">
                   {isTr ? 'Öncelikli Eylem Planı:' : 'Recommended Action Plan:'}
                 </span>
-                <ul className="space-y-1.5 text-xs text-slate-300">
+                <ul className="space-y-1.5 text-xs text-[var(--ink-light)]">
                   {decision.actionPlan.map((action, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="text-cyan-400 font-mono font-bold">0{i + 1}.</span>
+                      <span className="text-[var(--accent)] font-mono font-semibold">0{i + 1}.</span>
                       <span>{action[lang]}</span>
                     </li>
                   ))}
@@ -460,20 +458,20 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
               </div>
 
               {/* Financial ROI Note */}
-              <div className="p-3.5 rounded-2xl bg-white/5 border border-white/10 text-xs font-mono text-slate-300">
-                <strong className="text-emerald-400 block mb-0.5">{isTr ? 'Finansal Etki:' : 'Financial Impact:'}</strong>
+              <div className="p-3.5 rounded-xl bg-[var(--paper)] border border-[var(--rule)] text-xs font-mono text-[var(--ink-light)]">
+                <strong className="text-emerald-800 block mb-0.5 font-semibold">{isTr ? 'Finansal Etki:' : 'Financial Impact:'}</strong>
                 {decision.financialRoi[lang]}
               </div>
             </div>
 
             {/* Actions */}
-            <div className="space-y-2.5 pt-2 border-t border-white/10">
+            <div className="space-y-2.5 pt-2 border-t border-[var(--rule)]">
               <button
                 type="button"
                 onClick={copyReport}
-                className="w-full py-3.5 px-4 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                className="btn-secondary min-h-[44px] w-full text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer"
               >
-                {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 text-slate-300" />}
+                {copied ? <Check className="w-4 h-4 text-emerald-700" /> : <Copy className="w-4 h-4 text-[var(--ink-muted)]" />}
                 <span>{copied ? (isTr ? 'Rapor Panoya Kopyalandı!' : 'Report Copied!') : (isTr ? 'Karar Raporunu Kopyala' : 'Copy Decision Report')}</span>
               </button>
 
@@ -481,7 +479,7 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
                 href={getCalendlyUrl('salvageability', { score: totalScore, strategy: decision.code })}
                 target="_blank"
                 rel="noreferrer"
-                className="w-full py-3.5 px-4 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-black text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors text-center shadow-lg shadow-cyan-500/20"
+                className="btn-primary min-h-[44px] w-full text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 text-center"
               >
                 <Calendar className="w-4 h-4" />
                 <span>{isTr ? 'Bu Skoru Kıdemli Masayla Değerlendir' : 'Discuss Score with Senior Desk'}</span>
@@ -491,7 +489,7 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
           </div>
 
           {/* Quiet Note */}
-          <div className="p-4 rounded-2xl bg-white/[0.02] border border-white/5 text-[11px] text-slate-400 font-mono leading-relaxed">
+          <div className="p-4 rounded-xl bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono leading-relaxed">
             {isTr 
               ? 'TMA Salvageability Matrix; son 5 yılda incelenen 60+ yarım kalmış, çökmüş veya sahipsiz kod tabanının ampirik kurtarma verilerine dayanır.' 
               : 'The TMA Salvageability Matrix is grounded in empirical recovery metrics from 60+ distressed and legacy codebases evaluated over 5 years.'}

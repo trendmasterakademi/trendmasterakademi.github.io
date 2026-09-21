@@ -84,7 +84,7 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
   )}`;
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-emerald-500/30">
+    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-white">
       {/* Print Styles */}
       <style dangerouslySetInnerHTML={{ __html: `
         @media print {
@@ -116,17 +116,17 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
 
       {/* Screen Header (No Print) */}
       <div className="max-w-5xl mx-auto text-center mb-12 no-print">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-800/60 text-emerald-400 text-xs font-mono font-medium uppercase tracking-widest mb-4">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
+          <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
           {t.hero.badge}
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[var(--ink)] mb-4">
           {t.hero.title}
         </h1>
-        <p className="text-base sm:text-lg text-neutral-400 max-w-3xl mx-auto mb-4">
+        <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-3xl mx-auto mb-4">
           {t.hero.subtitle}
         </p>
-        <p className="text-xs text-neutral-500 font-mono">
+        <p className="text-xs text-[var(--ink-muted)] font-mono">
           🔒 {t.hero.notice}
         </p>
       </div>
@@ -134,15 +134,15 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Form Inputs (No Print) */}
         <div className="lg:col-span-4 no-print space-y-5">
-          <div className="bg-neutral-900/90 border border-neutral-800 rounded-2xl p-6 shadow-xl sticky top-8">
-            <h2 className="text-base font-bold text-white mb-4 flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <div className="bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-6 shadow-sm sticky top-8">
+            <h2 className="text-base font-serif font-semibold text-[var(--ink)] mb-4 flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
               {lang === "en" ? "Agreement Parties & Scope" : "Sözleşme Tarafları ve Kapsam"}
             </h2>
 
             <div className="space-y-4 text-xs font-mono">
               <div>
-                <label className="block text-neutral-400 mb-1 font-medium">
+                <label className="block text-[var(--ink-light)] mb-1 font-medium">
                   {t.formLabels.companyName} *
                 </label>
                 <input
@@ -151,12 +151,12 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                   value={formData.companyName}
                   onChange={handleChange}
                   placeholder={t.formLabels.companyNamePlaceholder}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white placeholder-neutral-600 focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] placeholder-[var(--ink-muted)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               <div>
-                <label className="block text-neutral-400 mb-1 font-medium">
+                <label className="block text-[var(--ink-light)] mb-1 font-medium">
                   {t.formLabels.signatory} *
                 </label>
                 <input
@@ -165,12 +165,12 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                   value={formData.signatory}
                   onChange={handleChange}
                   placeholder={t.formLabels.signatoryPlaceholder}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white placeholder-neutral-600 focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] placeholder-[var(--ink-muted)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               <div>
-                <label className="block text-neutral-400 mb-1 font-medium">
+                <label className="block text-[var(--ink-light)] mb-1 font-medium">
                   {t.formLabels.signatoryTitle}
                 </label>
                 <input
@@ -179,12 +179,12 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                   value={formData.signatoryTitle}
                   onChange={handleChange}
                   placeholder={t.formLabels.signatoryTitlePlaceholder}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white placeholder-neutral-600 focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] placeholder-[var(--ink-muted)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               <div>
-                <label className="block text-neutral-400 mb-1 font-medium">
+                <label className="block text-[var(--ink-light)] mb-1 font-medium">
                   {t.formLabels.email} *
                 </label>
                 <input
@@ -193,19 +193,19 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                   value={formData.email}
                   onChange={handleChange}
                   placeholder={t.formLabels.emailPlaceholder}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white placeholder-neutral-600 focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] placeholder-[var(--ink-muted)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               <div>
-                <label className="block text-neutral-400 mb-1 font-medium">
+                <label className="block text-[var(--ink-light)] mb-1 font-medium">
                   {t.formLabels.scope}
                 </label>
                 <select
                   name="scope"
                   value={formData.scope}
                   onChange={handleChange}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-emerald-500 text-xs"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)] text-xs"
                 >
                   {t.scopeTypes.map((s) => (
                     <option key={s.id} value={s.id}>
@@ -216,7 +216,7 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
               </div>
 
               <div>
-                <label className="block text-neutral-400 mb-1 font-medium">
+                <label className="block text-[var(--ink-light)] mb-1 font-medium">
                   {t.formLabels.effectiveDate}
                 </label>
                 <input
@@ -224,30 +224,30 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                   name="effectiveDate"
                   value={formData.effectiveDate}
                   onChange={handleChange}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
             </div>
 
             {/* Actions */}
-            <div className="space-y-2 pt-6 border-t border-neutral-800 mt-6">
+            <div className="space-y-2 pt-6 border-t border-[var(--rule)] mt-6">
               <button
                 onClick={handlePrint}
-                className="w-full py-2.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-mono font-bold text-xs transition flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/40"
+                className="btn-primary min-h-[44px] w-full font-mono font-semibold text-xs flex items-center justify-center gap-2 cursor-pointer"
               >
                 🖨️ {t.formLabels.printCta}
               </button>
 
               <button
                 onClick={handleCopyText}
-                className="w-full py-2.5 px-4 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-neutral-200 font-mono text-xs transition flex items-center justify-center gap-2"
+                className="btn-secondary min-h-[44px] w-full text-[var(--ink)] font-mono text-xs flex items-center justify-center gap-2 cursor-pointer"
               >
                 📋 {copied ? t.formLabels.copiedNotice : t.formLabels.copyCta}
               </button>
 
               <a
                 href={mailtoUrl}
-                className="w-full py-2.5 px-4 rounded-xl bg-neutral-900 hover:bg-neutral-800 border border-neutral-700/60 text-emerald-400 font-mono text-xs transition flex items-center justify-center gap-2 text-center"
+                className="btn-secondary min-h-[44px] w-full text-[var(--accent)] font-mono text-xs flex items-center justify-center gap-2 text-center cursor-pointer"
               >
                 ✉️ {t.formLabels.requestSignedCta}
               </a>
@@ -259,56 +259,56 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
         <div className="lg:col-span-8">
           <div
             id="printable-nda"
-            className="bg-neutral-900/60 border border-neutral-800/90 rounded-2xl p-8 sm:p-12 shadow-2xl backdrop-blur-sm text-neutral-300 font-serif leading-relaxed"
+            className="bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-8 sm:p-12 shadow-sm text-[var(--ink)] font-serif leading-relaxed"
           >
             {/* Document Header */}
-            <div className="text-center border-b border-neutral-800 pb-8 mb-8">
-              <span className="text-[11px] font-mono tracking-widest uppercase text-emerald-400 block mb-2 font-semibold">
+            <div className="text-center border-b border-[var(--rule)] pb-8 mb-8">
+              <span className="text-xs font-mono tracking-widest uppercase text-[var(--accent)] block mb-2 font-semibold">
                 TREND MASTER AKADEMİ HUKUK & MÜHENDİSLİK DANIŞMANLIĞI
               </span>
-              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight mb-2 uppercase">
+              <h2 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)] tracking-tight mb-2 uppercase">
                 {t.hero.title}
               </h2>
-              <span className="text-xs font-mono text-neutral-400">
+              <span className="text-xs font-mono text-[var(--ink-muted)]">
                 Ref: TMA-NDA-{formData.effectiveDate.replace(/-/g, "")}-{formData.scope.toUpperCase()}
               </span>
             </div>
 
             {/* Parties Info Table */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-neutral-950/70 p-6 rounded-xl border border-neutral-800/80 mb-8 text-xs font-sans">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-[var(--paper)] p-6 rounded-xl border border-[var(--rule)] mb-8 text-xs font-sans">
               <div>
-                <h3 className="font-mono font-bold text-emerald-400 uppercase tracking-wider mb-2 border-b border-neutral-800 pb-1">
+                <h3 className="font-mono font-semibold text-[var(--accent)] uppercase tracking-wider mb-2 border-b border-[var(--rule)] pb-1">
                   1. {lang === "en" ? "Client / Disclosing Party:" : "Müşteri / Danışan Taraf:"}
                 </h3>
-                <p className="font-bold text-white text-sm mb-1">{clientCompanyDisplay}</p>
-                <p className="text-neutral-400 mb-1">
+                <p className="font-bold text-[var(--ink)] text-sm mb-1">{clientCompanyDisplay}</p>
+                <p className="text-[var(--ink-light)] mb-1">
                   {clientSignatoryDisplay} {formData.signatoryTitle ? `(${clientTitleDisplay})` : ""}
                 </p>
-                <p className="text-neutral-400 mb-1">{clientEmailDisplay}</p>
+                <p className="text-[var(--ink-light)] mb-1">{clientEmailDisplay}</p>
               </div>
 
               <div>
-                <h3 className="font-mono font-bold text-emerald-400 uppercase tracking-wider mb-2 border-b border-neutral-800 pb-1">
+                <h3 className="font-mono font-semibold text-[var(--accent)] uppercase tracking-wider mb-2 border-b border-[var(--rule)] pb-1">
                   2. {lang === "en" ? "Engineering Studio / Receiving Party:" : "Yüklenici / Mühendislik Masası:"}
                 </h3>
-                <p className="font-bold text-white text-sm mb-1">{t.tmaParty.companyName}</p>
-                <p className="text-neutral-400 mb-1">
+                <p className="font-bold text-[var(--ink)] text-sm mb-1">{t.tmaParty.companyName}</p>
+                <p className="text-[var(--ink-light)] mb-1">
                   {t.tmaParty.signatory} ({t.tmaParty.title})
                 </p>
-                <p className="text-neutral-400 mb-1">{t.tmaParty.address}</p>
-                <p className="text-neutral-400">{t.tmaParty.email} • {t.tmaParty.phone}</p>
+                <p className="text-[var(--ink-light)] mb-1">{t.tmaParty.address}</p>
+                <p className="text-[var(--ink-light)]">{t.tmaParty.email} • {t.tmaParty.phone}</p>
               </div>
             </div>
 
             {/* Scope & Date Banner */}
-            <div className="bg-neutral-950/40 p-4 rounded-lg border border-neutral-800/60 mb-8 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+            <div className="bg-[var(--paper)] p-4 rounded-lg border border-[var(--rule)] mb-8 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
               <div>
-                <span className="text-neutral-400">{lang === "en" ? "Scope: " : "Kapsam: "}</span>
-                <span className="text-white font-bold">{selectedScopeObj.label}</span>
+                <span className="text-[var(--ink-light)]">{lang === "en" ? "Scope: " : "Kapsam: "}</span>
+                <span className="text-[var(--ink)] font-bold">{selectedScopeObj.label}</span>
               </div>
               <div>
-                <span className="text-neutral-400">{lang === "en" ? "Effective Date: " : "Yürürlük Tarihi: "}</span>
-                <span className="text-emerald-400 font-bold">{formData.effectiveDate}</span>
+                <span className="text-[var(--ink-light)]">{lang === "en" ? "Effective Date: " : "Yürürlük Tarihi: "}</span>
+                <span className="text-[var(--accent)] font-bold">{formData.effectiveDate}</span>
               </div>
             </div>
 
@@ -316,11 +316,11 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
             <div className="space-y-6 text-sm">
               {t.clauses.map((clause) => (
                 <div key={clause.num} className="space-y-1.5">
-                  <h3 className="font-bold text-white tracking-wide font-sans text-xs uppercase flex items-center gap-2">
-                    <span className="text-emerald-400 font-mono">MADDE {clause.num}.</span>
+                  <h3 className="font-semibold text-[var(--ink)] tracking-wide font-sans text-xs uppercase flex items-center gap-2">
+                    <span className="text-[var(--accent)] font-mono">MADDE {clause.num}.</span>
                     {clause.title}
                   </h3>
-                  <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed text-justify">
+                  <p className="text-[var(--ink-light)] text-xs sm:text-sm leading-relaxed text-justify">
                     {clause.content}
                   </p>
                 </div>
@@ -328,25 +328,25 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
             </div>
 
             {/* Signature Block */}
-            <div className="mt-12 pt-8 border-t border-neutral-800 grid grid-cols-2 gap-8 text-xs font-sans">
+            <div className="mt-12 pt-8 border-t border-[var(--rule)] grid grid-cols-2 gap-8 text-xs font-sans">
               <div>
-                <p className="font-bold text-white mb-8">
+                <p className="font-semibold text-[var(--ink)] mb-8">
                   {lang === "en" ? "FOR AND ON BEHALF OF CLIENT:" : "MÜŞTERİ / DANIŞAN ADINA:"}
                 </p>
-                <div className="border-b border-neutral-700 w-3/4 mb-2"></div>
-                <p className="font-medium text-white">{clientSignatoryDisplay}</p>
-                <p className="text-neutral-400">{clientTitleDisplay}</p>
-                <p className="text-neutral-500 font-mono mt-1">{formData.effectiveDate}</p>
+                <div className="border-b border-[var(--rule)] w-3/4 mb-2"></div>
+                <p className="font-medium text-[var(--ink)]">{clientSignatoryDisplay}</p>
+                <p className="text-[var(--ink-light)]">{clientTitleDisplay}</p>
+                <p className="text-[var(--ink-muted)] font-mono mt-1">{formData.effectiveDate}</p>
               </div>
 
               <div>
-                <p className="font-bold text-white mb-8">
+                <p className="font-semibold text-[var(--ink)] mb-8">
                   {lang === "en" ? "FOR AND ON BEHALF OF TMA:" : "TREND MASTER AKADEMİ ADINA:"}
                 </p>
-                <div className="border-b border-neutral-700 w-3/4 mb-2"></div>
-                <p className="font-medium text-white">{t.tmaParty.signatory}</p>
-                <p className="text-neutral-400">{t.tmaParty.title}</p>
-                <p className="text-neutral-500 font-mono mt-1">{formData.effectiveDate}</p>
+                <div className="border-b border-[var(--rule)] w-3/4 mb-2"></div>
+                <p className="font-medium text-[var(--ink)]">{t.tmaParty.signatory}</p>
+                <p className="text-[var(--ink-light)]">{t.tmaParty.title}</p>
+                <p className="text-[var(--ink-muted)] font-mono mt-1">{formData.effectiveDate}</p>
               </div>
             </div>
           </div>

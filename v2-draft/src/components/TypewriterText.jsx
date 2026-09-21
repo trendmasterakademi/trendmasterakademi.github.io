@@ -23,7 +23,7 @@ export const TypewriterText = ({
   speed = 38, 
   delay = 120, 
   className = "", 
-  cursorColor = "text-cyan-400",
+  cursorColor = "text-[var(--accent)]",
   showCursor = true,
   onComplete
 }) => {
@@ -61,7 +61,7 @@ export const TypewriterText = ({
     <span ref={ref} className={`inline-block ${className}`}>
       {displayedText}
       {showCursor && !isDone && (
-        <span className={`inline-block w-2 h-4 sm:h-5 ml-1 bg-cyan-400 animate-pulse ${cursorColor} align-middle`} />
+        <span className={`inline-block w-2 h-4 sm:h-5 ml-1 bg-[var(--accent)] animate-pulse ${cursorColor} align-middle`} />
       )}
     </span>
   );

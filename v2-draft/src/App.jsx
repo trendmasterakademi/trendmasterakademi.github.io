@@ -6,7 +6,6 @@ import Footer from './components/Footer';
 import FloatingActions from './components/FloatingActions';
 import CookieBanner from './components/CookieBanner';
 import ScrollToTop from './components/ScrollToTop';
-import DetectiveBeam from './components/DetectiveBeam';
 import { isTurkish } from './i18n';
 
 // Route-based code-split components
@@ -41,14 +40,14 @@ const NotFound = lazy(() => import('./pages/NotFound'));
 // Lightweight, thematic skeleton fallback matching pre-render aesthetic
 const PageFallback = () => (
   <div className="min-h-[70vh] pt-32 pb-24 px-4 max-w-5xl mx-auto flex flex-col items-center justify-center text-center space-y-6 animate-pulse">
-    <div className="w-48 h-6 bg-cyan-500/20 rounded-full border border-cyan-500/30"></div>
-    <div className="w-3/4 max-w-lg h-10 bg-white/10 rounded-2xl"></div>
-    <div className="w-full max-w-md h-4 bg-white/5 rounded-lg"></div>
-    <div className="w-2/3 max-w-sm h-4 bg-white/5 rounded-lg"></div>
+    <div className="w-48 h-6 bg-[var(--rule)] rounded-[var(--r-control)]"></div>
+    <div className="w-3/4 max-w-lg h-10 bg-[var(--rule)] rounded-[var(--r-control)]"></div>
+    <div className="w-full max-w-md h-4 bg-[var(--rule)] rounded-[var(--r-control)]"></div>
+    <div className="w-2/3 max-w-sm h-4 bg-[var(--rule)] rounded-[var(--r-control)]"></div>
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 w-full max-w-2xl pt-6">
-      <div className="h-28 bg-white/5 rounded-2xl border border-white/5"></div>
-      <div className="h-28 bg-white/5 rounded-2xl border border-white/5"></div>
-      <div className="h-28 bg-white/5 rounded-2xl border border-white/5"></div>
+      <div className="h-28 bg-[var(--surface)] rounded-[var(--r-panel)] border border-[var(--rule)]"></div>
+      <div className="h-28 bg-[var(--surface)] rounded-[var(--r-panel)] border border-[var(--rule)]"></div>
+      <div className="h-28 bg-[var(--surface)] rounded-[var(--r-panel)] border border-[var(--rule)]"></div>
     </div>
   </div>
 );
@@ -60,11 +59,10 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-[#080b11] text-slate-200 selection:bg-cyan-500 selection:text-black w-full max-w-full relative font-sans">
-        <DetectiveBeam />
+      <div className="min-h-screen bg-[var(--paper)] text-[var(--ink-2)] selection:bg-[var(--accent)] selection:text-white w-full max-w-full relative font-sans">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-cyan-400 focus:text-slate-950 focus:font-bold focus:text-sm focus:rounded-xl focus:shadow-2xl focus:outline-none focus:ring-2 focus:ring-white transition-all"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-[var(--accent)] focus:text-white focus:font-medium focus:text-sm focus:rounded-[var(--r-control)] focus:shadow-navbar focus:outline-none transition-all"
         >
           {isTr ? 'İçeriğe atla' : 'Skip to content'}
         </a>

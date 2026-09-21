@@ -32,10 +32,10 @@ const teshisLoaders = {
 };
 
 const HARF_BG_COLORS = {
-  A: 'bg-red-400',
-  B: 'bg-amber-400',
-  C: 'bg-purple-400',
-  D: 'bg-cyan-400'
+  A: 'bg-red-700 text-white',
+  B: 'bg-amber-700 text-white',
+  C: 'bg-purple-700 text-white',
+  D: 'bg-blue-700 text-white'
 };
 
 const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
@@ -51,14 +51,14 @@ const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
   const waUrl = `https://wa.me/905343713573?text=${encodeURIComponent(waMessage)}`;
 
   return (
-    <section className="border border-emerald-500/30 rounded-2xl bg-emerald-500/[0.04] p-4 sm:p-5 space-y-3">
+    <section className="border border-emerald-300 rounded-2xl bg-emerald-50/50 p-4 sm:p-5 space-y-3">
       <div className="space-y-1.5">
-        <h3 className="text-sm sm:text-base font-bold text-white">
+        <h3 className="text-sm sm:text-base font-serif font-semibold text-[var(--ink)]">
           {isTr ? 'Bu belirti şu an sizin sisteminizde mi?' : 'Are you seeing this right now?'}
         </h3>
-        <div className="flex items-center gap-2 text-xs font-mono text-slate-300">
-          <span className={`w-2 h-2 rounded-full flex-shrink-0 ${krizHattiAcik ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`}></span>
-          <span className={krizHattiAcik ? 'text-emerald-300/90' : 'text-amber-300/90'}>
+        <div className="flex items-center gap-2 text-xs font-mono text-[var(--ink-light)]">
+          <span className={`w-2 h-2 rounded-full flex-shrink-0 ${krizHattiAcik ? 'bg-emerald-600 animate-pulse' : 'bg-amber-600'}`}></span>
+          <span className={krizHattiAcik ? 'text-emerald-900 font-medium' : 'text-amber-900 font-medium'}>
             {krizHattiAcik
               ? (isTr
                   ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt 15 dakika'
@@ -75,7 +75,7 @@ const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
           href={waUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-lg shadow-emerald-500/20 cursor-pointer min-h-[44px]"
+          className="btn-primary min-h-[44px] inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold"
         >
           <MessageSquare className="w-4 h-4 flex-shrink-0" />
           <span>{isTr ? "WhatsApp'tan yaz" : 'Message on WhatsApp'}</span>
@@ -83,9 +83,9 @@ const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
 
         <a
           href="tel:+905343713573"
-          className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 hover:text-white font-mono font-bold text-xs sm:text-sm transition-colors cursor-pointer min-h-[44px]"
+          className="btn-secondary min-h-[44px] inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold font-mono"
         >
-          <PhoneCall className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+          <PhoneCall className="w-4 h-4 text-emerald-700 flex-shrink-0" />
           <span>+90 534 371 35 73</span>
         </a>
       </div>
@@ -161,10 +161,10 @@ const TeshisDetay = () => {
 
   if (loading || !teshis) {
     return (
-      <div className="min-h-[70vh] pt-32 pb-24 px-4 max-w-5xl mx-auto flex flex-col items-center justify-center text-center space-y-6 animate-pulse">
-        <div className="w-48 h-6 bg-cyan-500/20 rounded-full border border-cyan-500/30"></div>
-        <div className="w-3/4 max-w-lg h-10 bg-white/10 rounded-2xl"></div>
-        <div className="w-full max-w-md h-4 bg-white/5 rounded-lg"></div>
+      <div className="min-h-[70vh] pt-32 pb-24 px-4 max-w-5xl mx-auto flex flex-col items-center justify-center text-center space-y-6 bg-[var(--paper)]">
+        <div className="w-48 h-6 bg-[var(--surface)] rounded-full border border-[var(--rule)]"></div>
+        <div className="w-3/4 max-w-lg h-10 bg-[var(--surface)] rounded-2xl border border-[var(--rule)]"></div>
+        <div className="w-full max-w-md h-4 bg-[var(--surface)] rounded-lg"></div>
       </div>
     );
   }
@@ -180,27 +180,24 @@ const TeshisDetay = () => {
   const isKritik = teshis.aciliyet.seviye === 'kritik';
 
   return (
-    <div className="pt-28 pb-24 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto text-slate-200">
+    <div className="min-h-screen pt-28 pb-24 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-white">
       
       {/* Back Link */}
       <div className="mb-6">
         <Link 
           to="/teshis/" 
-          className="inline-flex items-center gap-2 text-xs sm:text-sm text-cyan-400 hover:text-cyan-300 font-mono transition-colors"
+          className="inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--accent)] hover:underline font-mono transition-colors min-h-[44px]"
         >
           <ArrowLeft className="w-4 h-4" /> {isTr ? '← Teşhis Kataloğuna Dön' : '← Back to Diagnostic Catalog'}
         </Link>
       </div>
 
       {/* Main Diagnostic Article Box */}
-      <article className="border border-white/10 rounded-3xl bg-[#0d121d] overflow-hidden shadow-2xl">
+      <article className="border border-[var(--rule)] rounded-2xl bg-[var(--surface)] overflow-hidden shadow-sm">
         
         {/* Terminal Header Bar */}
-        <div className="flex items-center gap-2 px-4 sm:px-6 py-3 border-b border-white/5 bg-white/[0.02] text-xs font-mono text-slate-500 overflow-x-auto">
-          <span className="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
-          <span className="w-2.5 h-2.5 rounded-full bg-amber-500/40"></span>
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/40"></span>
-          <span className="ml-2 text-slate-400 whitespace-nowrap">
+        <div className="flex items-center gap-2 px-4 sm:px-6 py-3 border-b border-[var(--rule)] bg-[var(--paper)] text-xs font-mono text-[var(--ink-muted)] overflow-x-auto">
+          <span className="text-[var(--ink-muted)] whitespace-nowrap">
             trendmasterakademi.com/teshis/{teshis.slug}/
           </span>
         </div>
@@ -208,38 +205,38 @@ const TeshisDetay = () => {
         <div className="p-6 sm:p-8 md:p-10 space-y-8">
           
           {/* Header & Meta */}
-          <div className="space-y-4 border-b border-white/10 pb-8">
+          <div className="space-y-4 border-b border-[var(--rule)] pb-8">
             <div className="flex flex-wrap items-center gap-3">
-              <span className="font-mono text-xs text-slate-400 font-bold">
+              <span className="font-mono text-xs text-[var(--accent)] font-bold">
                 #{teshis.no}
               </span>
               <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg font-mono text-xs font-semibold uppercase tracking-wider ${
                 isKritik 
-                  ? 'bg-red-500/10 border border-red-500/30 text-red-400' 
-                  : 'bg-amber-500/10 border border-amber-500/30 text-amber-400'
+                  ? 'bg-rose-50 border border-rose-300 text-rose-800' 
+                  : 'bg-amber-50 border border-amber-300 text-amber-800'
               }`}>
                 <AlertTriangle className="w-3.5 h-3.5" />
                 {aciliyetText}
               </span>
-              <span className="font-mono text-xs text-slate-400">
+              <span className="font-mono text-xs text-[var(--ink-muted)]">
                 {isTr ? 'Teşhis Kataloğu' : 'Diagnostic Catalog'} › {kirintiText}
               </span>
             </div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-snug">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-snug">
               {baslikText}
             </h1>
 
-            <p className="text-slate-300 text-sm sm:text-base md:text-lg leading-relaxed max-w-3xl">
+            <p className="text-[var(--ink-light)] text-sm sm:text-base md:text-lg leading-relaxed max-w-3xl">
               {ozetText}
             </p>
 
             {teshis.sahadaNasilGorunur && (
-              <div className="pt-4 border-t border-white/5 space-y-2">
-                <h2 className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-cyan-400">
+              <div className="pt-4 border-t border-[var(--rule)] space-y-2">
+                <h2 className="text-xs sm:text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)]">
                   {isTr ? 'Sahada nasıl görünür' : 'How it shows up in the field'}
                 </h2>
-                <p className="text-slate-300 text-sm sm:text-base leading-relaxed max-w-3xl">
+                <p className="text-[var(--ink-light)] text-sm sm:text-base leading-relaxed max-w-3xl">
                   {teshis.sahadaNasilGorunur[lang] || teshis.sahadaNasilGorunur.tr}
                 </p>
               </div>
@@ -249,10 +246,10 @@ const TeshisDetay = () => {
           {/* Kriz Şeridi (Konum 1: Başlık + özet altı, log satırları üstü) */}
           <KrizSeridi teshis={teshis} isTr={isTr} lang={lang} krizHattiAcik={krizHattiAcik} />
 
-          {/* Section 1: Sisteminizde bunu arayın (Log Satırları) */}
-          <section className="border border-cyan-400/25 rounded-2xl bg-cyan-400/[0.04] overflow-hidden">
-            <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-cyan-400/20 bg-cyan-400/[0.06]">
-              <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-2">
+          {/* Section 1: Sisteminizde bunu arayın (Log Satırları - Terminal Theme) */}
+          <section className="border border-[var(--rule)] rounded-2xl bg-[var(--term-bg)] overflow-hidden">
+            <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-white/10 bg-white/5">
+              <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-2">
                 <Terminal className="w-4 h-4" />
                 {isTr ? 'Sisteminizde bunu arayın' : 'Look for this in your system'}
               </h2>
@@ -268,11 +265,11 @@ const TeshisDetay = () => {
                 const nedenAd = neden ? (isTr ? (neden.ad?.tr || '') : (neden.ad?.en || neden.ad?.tr || '')) : '';
                 return (
                   <div key={`log-${idx}`} className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                    <code className="block text-teal-300 whitespace-pre">
+                    <code className="block text-emerald-300 whitespace-pre">
                       {log}
                     </code>
                     {neden && (
-                      <span className="text-cyan-400 text-xs font-mono shrink-0">
+                      <span className="text-emerald-400 text-xs font-mono shrink-0">
                         {`→ ${eslesme.harf} · ${nedenAd}`}
                       </span>
                     )}
@@ -288,7 +285,7 @@ const TeshisDetay = () => {
 
           {/* Section 2: Teşhis akışı (Flow Diagram) */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-white flex items-center gap-2">
+            <h2 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
               {isTr ? 'Teşhis akışı' : 'Diagnostic flow'}
             </h2>
             <TeshisDiyagram 
@@ -300,7 +297,7 @@ const TeshisDetay = () => {
 
           {/* Section 3: Ayırt edici testler (Neden Kartları) */}
           <section className="space-y-4">
-            <h2 className="text-lg sm:text-xl font-bold text-white">
+            <h2 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Ayırt edici testler' : 'Differential tests'}
             </h2>
 
@@ -309,35 +306,35 @@ const TeshisDetay = () => {
                 const causeName = cause.ad[lang] || cause.ad.tr;
                 const causeDesc = cause.aciklama[lang] || cause.aciklama.tr;
                 const causeKanit = cause.kanit[lang] || cause.kanit.tr;
-                const bgClass = HARF_BG_COLORS[cause.harf] || 'bg-cyan-400';
+                const bgClass = HARF_BG_COLORS[cause.harf] || 'bg-[var(--accent)] text-white';
 
                 return (
                   <div 
                     key={`card-${idx}`}
-                    className="border border-white/10 rounded-2xl bg-white/[0.025] p-5 space-y-3 flex flex-col justify-between"
+                    className="border border-[var(--rule)] rounded-2xl bg-[var(--paper)] p-5 space-y-3 flex flex-col justify-between"
                   >
                     <div className="space-y-2.5">
                       <div className="flex items-center gap-2.5">
-                        <span className={`w-6 h-6 rounded-lg grid place-items-center font-mono text-xs font-bold text-slate-950 flex-shrink-0 ${bgClass}`}>
+                        <span className={`w-6 h-6 rounded-lg grid place-items-center font-mono text-xs font-bold flex-shrink-0 ${bgClass}`}>
                           {cause.harf}
                         </span>
-                        <h3 className="text-sm sm:text-base font-bold text-white">
+                        <h3 className="text-sm sm:text-base font-semibold text-[var(--ink)]">
                           {causeName}
                         </h3>
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                      <p className="text-xs sm:text-sm text-[var(--ink-light)] leading-relaxed">
                         {causeDesc}
                       </p>
                     </div>
 
                     <div className="pt-2 space-y-2.5">
-                      <div className="p-2.5 rounded-xl bg-black/40 border border-white/5 font-mono text-xs text-slate-200 overflow-x-auto whitespace-pre">
+                      <div className="p-2.5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-xs text-[var(--ink)] overflow-x-auto whitespace-pre">
                         {causeKanit}
                       </div>
 
                       {cause.yanlisDuzeltme && (
-                        <div className="p-2.5 rounded-xl bg-amber-500/[0.06] border border-amber-500/20 text-xs text-slate-300 space-y-1">
-                          <span className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-400 block">
+                        <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-950 space-y-1">
+                          <span className="font-mono text-xs font-semibold uppercase tracking-wider text-amber-800 block">
                             {isTr ? 'Sık yapılan yanlış düzeltme' : 'Common wrong fix'}
                           </span>
                           <p className="leading-relaxed">
@@ -354,25 +351,25 @@ const TeshisDetay = () => {
 
           {/* Section 4: Kim çözer / Çözülmezse */}
           <section className="space-y-3">
-            <h2 className="text-lg sm:text-xl font-bold text-white">
+            <h2 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Kim çözer / Çözülmezse' : 'Who resolves it / Cost of delay'}
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="border border-emerald-500/30 rounded-2xl p-5 bg-emerald-500/[0.05] space-y-2">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 block">
+              <div className="border border-emerald-300 rounded-2xl p-5 bg-emerald-50/50 space-y-2">
+                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-emerald-800 block">
                   {isTr ? 'Kim çözer' : 'Who resolves it'}
                 </span>
-                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                <p className="text-xs sm:text-sm text-emerald-950 leading-relaxed">
                   {kimCozerText}
                 </p>
               </div>
 
-              <div className="border border-amber-500/30 rounded-2xl p-5 bg-amber-500/[0.05] space-y-2">
-                <span className="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 block">
+              <div className="border border-amber-300 rounded-2xl p-5 bg-amber-50/50 space-y-2">
+                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-amber-800 block">
                   {isTr ? 'Çözülmezse' : 'If left unresolved'}
                 </span>
-                <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                <p className="text-xs sm:text-sm text-amber-950 leading-relaxed">
                   {cozulmezseText}
                 </p>
               </div>
@@ -383,16 +380,16 @@ const TeshisDetay = () => {
           <KrizSeridi teshis={teshis} isTr={isTr} lang={lang} krizHattiAcik={krizHattiAcik} />
 
           {/* Bottom Chips & CTA */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-white/10">
+          <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[var(--rule)]">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-mono text-slate-400 mr-1">
+              <span className="text-xs font-mono text-[var(--ink-muted)] mr-1">
                 {isTr ? 'İlgili Terimler:' : 'Related Terms:'}
               </span>
               {teshis.ilgiliTerimler.map((termSlug) => (
                 <Link
                   key={termSlug}
                   to={`/sozluk/${termSlug}/`}
-                  className="px-3 py-1.5 rounded-lg border border-white/10 bg-white/[0.03] font-mono text-xs text-slate-300 hover:text-cyan-400 hover:border-cyan-500/30 transition-colors"
+                  className="px-3 py-1.5 rounded-lg border border-[var(--rule)] bg-[var(--paper)] font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors min-h-[44px] inline-flex items-center"
                 >
                   {termSlug}
                 </Link>
@@ -401,7 +398,7 @@ const TeshisDetay = () => {
 
             <Link
               to={teshis.ilgiliHizmet?.link || '/crash-test/'}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm transition-all shadow-lg shadow-emerald-500/20 cursor-pointer"
+              className="btn-primary min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm font-semibold"
             >
               <span>{isTr ? 'Ücretsiz teşhis alın →' : 'Get a free triage →'}</span>
             </Link>

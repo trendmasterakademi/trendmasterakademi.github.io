@@ -144,61 +144,58 @@ const Hero = () => {
   const currentTotal = isDesktop ? desktopPairs.length : diagnosticLogs.length;
 
   return (
-    <section id="hero" className="relative pt-20 pb-14 sm:pt-28 md:pt-32 md:pb-24 lg:pt-32 overflow-hidden px-4 sm:px-6 md:px-12 w-full max-w-full">
-      {/* Background ambient lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[500px] sm:max-w-[800px] h-[450px] sm:h-[700px] bg-gradient-to-tr from-cyan-500/20 via-blue-600/12 to-purple-600/15 rounded-full blur-[110px] sm:blur-[140px] -z-10 pointer-events-none"></div>
-
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start w-full">
+    <section id="hero" className="relative pt-24 pb-16 md:pt-32 md:pb-20 overflow-hidden px-4 sm:px-6 md:px-12 w-full max-w-full bg-[var(--paper)]">
+      <div className="max-w-7xl 2xl:max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start w-full">
         
         {/* Left Column: Value Proposition */}
         <div className="lg:col-span-6 flex flex-col gap-5 sm:gap-6 self-start">
           {/* Studio & Availability Badge */}
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-300 text-xs sm:text-sm font-mono font-bold shadow-[0_0_20px_rgba(0,229,255,0.15)]">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>{t('hero-badge', 'INCIDENT TRIAGE & SYSTEMS ARCHITECTURE // KERNEL DESK')}</span>
+          <div className="flex flex-wrap items-center gap-2.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] border border-[var(--rule)] bg-[var(--surface)] text-[var(--ink-2)] text-xs font-medium">
+              <span className="w-2 h-2 rounded-full bg-[#10B981]"></span>
+              <span className="label-caps">{t('hero-badge', 'INCIDENT TRIAGE & SYSTEMS ARCHITECTURE // KERNEL DESK')}</span>
             </div>
-            <span className="text-xs font-mono text-slate-400">
+            <span className="text-xs text-[var(--ink-3)]">
               {isTr ? 'İzmir · Uzaktan (TR / EN)' : 'İzmir · Remote (TR / EN)'}
             </span>
           </div>
           
           {/* Main Hook Headline */}
-          <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-[2.6rem] xl:text-[3rem] font-black font-mono leading-[1.18] tracking-tight text-white">
-            <span className="block text-slate-200">
+          <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] font-serif font-semibold leading-[1.2] text-[var(--ink)]">
+            <span className="block text-[var(--ink)]">
               {t('hero-title-line1', isTr ? 'Kritik Sistem Kesintileri,' : 'Critical Systems Outages,')}
             </span>
-            <span className="block text-slate-300">
+            <span className="block text-[var(--ink)]">
               {t('hero-title-line2', isTr ? 'Kilitlenen Kod Tabanları:' : 'Locked Codebases:')}
             </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-400 text-[0.92em]">
+            <span className="block text-[var(--accent)] mt-1">
               {t('hero-title-highlight', isTr ? 'Çekirdek Seviyesinde Mühendislik Müdahalesi.' : 'Kernel-Level Engineering Triage.')}
             </span>
           </h1>
           
           {/* Body Description */}
-          <p className="text-sm sm:text-base md:text-lg text-slate-300 leading-relaxed max-w-xl font-normal">
+          <p className="text-base sm:text-lg text-[var(--ink-2)] leading-relaxed max-w-[68ch] font-normal">
             {t('hero-desc', isTr 
               ? "Yüksek eşzamanlılık (concurrency), veritabanı kilitlenmeleri (deadlock), kopan ödeme pipeline'ları ve devralınması gereken dokümantasyonsuz kod tabanları için derin operasyonel mühendislik masası. Sessiz, izole ve tamamen görünmez." 
               : "Deep operational engineering desk for high concurrency, database deadlocks, severed payment pipelines, and undocumented stranded codebases. Silent, isolated, and completely invisible.")}
           </p>
 
           {/* Above-the-fold Guarantees */}
-          <div className="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs font-mono text-slate-300 py-1">
-            <span className="flex items-center gap-1.5 text-emerald-400 font-bold">
-              <CheckCircle2 className="w-4 h-4" /> {isTr ? '%100 White-Label' : '100% White-Label'}
+          <div className="flex flex-wrap items-center gap-y-2 gap-x-5 text-sm text-[var(--ink-2)] py-1">
+            <span className="flex items-center gap-1.5 font-medium">
+              <CheckCircle2 className="w-4 h-4 text-[var(--accent)]" /> {isTr ? '%100 White-Label' : '100% White-Label'}
             </span>
-            <span className="flex items-center gap-1.5 text-cyan-300 font-bold">
-              <CheckCircle2 className="w-4 h-4" /> {isTr ? 'Resmi NDA Güvencesi' : 'Binding NDA'}
+            <span className="flex items-center gap-1.5 font-medium">
+              <CheckCircle2 className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'Resmi NDA Güvencesi' : 'Binding NDA'}
             </span>
-            <span className="flex items-center gap-1.5 text-amber-300 font-bold">
-              <CheckCircle2 className="w-4 h-4" /> {isTr ? 'Tam Kod Mülkiyeti' : 'Full Code Ownership'}
+            <span className="flex items-center gap-1.5 font-medium">
+              <CheckCircle2 className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'Tam Kod Mülkiyeti' : 'Full Code Ownership'}
             </span>
-            <span className="flex items-center gap-1.5 text-purple-300 font-bold">
-              <CheckCircle2 className="w-4 h-4" /> {isTr ? 'İlk Teşhis Ücretsiz' : 'First Diagnosis Free'}
+            <span className="flex items-center gap-1.5 font-medium">
+              <CheckCircle2 className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'İlk Teşhis Ücretsiz' : 'First Diagnosis Free'}
             </span>
-            <span className="flex items-center gap-1.5 text-rose-300 font-bold">
-              <CheckCircle2 className="w-4 h-4" /> {isTr ? 'Kriz Hattı 09:00 – 24:00' : 'Response Desk 09:00 – 24:00'}
+            <span className="flex items-center gap-1.5 font-medium">
+              <CheckCircle2 className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'Kriz Hattı 09:00 – 24:00' : 'Response Desk 09:00 – 24:00'}
             </span>
           </div>
           
@@ -207,11 +204,11 @@ const Hero = () => {
             <Link
               to="/crash-test/"
               onClick={() => window.trackEvent && window.trackEvent('crash_test_clicked', { source: 'hero_cta' })}
-              className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark px-6 sm:px-7 py-3.5 sm:py-4 rounded-2xl font-black text-sm sm:text-base shadow-xl shadow-cyan-500/25 flex items-center justify-center gap-2.5 transition-all transform hover:-translate-y-0.5 min-h-[48px] w-full sm:w-auto text-center"
+              className="btn-primary min-h-[44px]"
             >
-              <Zap className="w-5 h-5 fill-current" />
+              <Zap className="w-4 h-4" />
               <span>{t('btn-crashtest', isTr ? 'Sistem Arızasını Teşhis Edin (Simulator)' : 'Diagnose System Failure (Simulator)')}</span>
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-4 h-4" />
             </Link>
 
             <a
@@ -219,65 +216,66 @@ const Hero = () => {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'hero' })}
-              className="px-5 sm:px-6 py-3.5 sm:py-4 rounded-2xl font-bold text-sm sm:text-base border border-white/20 hover:bg-white/5 text-white transition-all flex items-center justify-center gap-2 min-h-[48px] w-full sm:w-auto text-center"
+              className="btn-secondary min-h-[44px]"
             >
-              <Calendar className="w-5 h-5 text-cyan-400" />
+              <Calendar className="w-4 h-4 text-[var(--ink-3)]" />
               <span>{isTr ? '30 Dakikalık Teknik Triyaj — Takvimden Seçin' : 'Book a 30-Minute Technical Triage'}</span>
             </a>
           </div>
 
           {/* Quick Trust Metrics Bar */}
-          <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-4 sm:pt-5 border-t border-white/10 max-w-xl text-center sm:text-left">
+          <div className="grid grid-cols-3 gap-4 pt-5 border-t border-[var(--rule)] max-w-xl text-left">
             <div>
-              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-white">
+              <strong className="block text-xl font-serif font-semibold text-[var(--ink)] tabular">
                 {isTr ? '14+ Yıl' : '14+ Years'}
               </strong>
-              <span className="text-[10px] sm:text-xs text-slate-400">
+              <span className="text-xs text-[var(--ink-3)]">
                 {isTr ? 'Yazılım & Mimari Deneyimi' : 'Engineering Experience'}
               </span>
             </div>
             <div>
-              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-cyan-400">40+ Repo</strong>
-              <span className="text-[10px] sm:text-xs text-slate-400">
+              <strong className="block text-xl font-serif font-semibold text-[var(--ink)] tabular">40+ Repo</strong>
+              <span className="text-xs text-[var(--ink-3)]">
                 {isTr ? 'Devralınan & Çözülen Kod' : 'Codebases Rescued'}
               </span>
             </div>
             <div>
-              <strong className="block text-sm sm:text-lg lg:text-xl font-black text-emerald-400">
+              <strong className="block text-xl font-serif font-semibold text-[var(--ink)] tabular">
                 {isTr ? '20 Teşhis' : '20 Diagnostics'}
               </strong>
-              <span className="text-[10px] sm:text-xs text-slate-400">
+              <span className="text-xs text-[var(--ink-3)]">
                 {isTr ? 'Yayınlanmış Arıza Kataloğu' : 'Published Fault Catalog'}
               </span>
             </div>
           </div>
         </div>
 
-        {/* Right Column: Rotating Real Diagnostic Logs Block */}
+        {/* Right Column: Rotating Real Diagnostic Logs Block (Technical Terminal) */}
         <div className="lg:col-span-6 relative w-full self-start lg:sticky lg:top-28 z-20 mt-4 lg:mt-0">
           <div 
-            className="p-[2px] rounded-2xl sm:rounded-3xl bg-gradient-to-br from-cyan-400/50 via-blue-500/30 to-emerald-400/40 shadow-[0_0_50px_rgba(0,229,255,0.15)] transition-all"
+            className="rounded-[var(--r-panel)] bg-[var(--term-bg)] border border-[var(--rule-strong)] shadow-sm overflow-hidden"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
             onFocus={() => setIsPaused(true)}
             onBlur={() => setIsPaused(false)}
           >
-            <div className="bg-[#080c16]/98 backdrop-blur-2xl rounded-[18px] sm:rounded-[22px] p-5 sm:p-7 border border-white/10 relative overflow-hidden">
+            <div className="p-5 sm:p-6 text-[var(--term-ink)]">
               
-              {/* Top Header Label */}
-              <div className="flex items-center justify-between gap-2 border-b border-white/10 pb-3.5 mb-5">
-                <span className="text-[11px] sm:text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase">
-                  {isTr ? 'SİSTEMİNİZDE BUNU GÖRÜYORSANIZ' : 'IF YOU SEE THIS IN YOUR SYSTEM'}
-                </span>
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                  <span className="text-[10px] font-mono text-slate-400">
-                    {displayCounterIndex + 1} / {currentTotal}
+              {/* Terminal Header: Source & File Context instead of fake traffic lights */}
+              <div className="flex items-center justify-between gap-2 border-b border-[var(--term-dim)]/30 pb-3 mb-4 font-mono text-xs text-[var(--term-dim)]">
+                <div className="flex items-center gap-2">
+                  <span className="text-[var(--term-accent)] font-semibold">tma://telemetry</span>
+                  <span>—</span>
+                  <span className="uppercase tracking-wider text-xs font-sans font-medium text-[var(--term-ink)]">
+                    {isTr ? 'SİSTEMİNİZDE BUNU GÖRÜYORSANIZ' : 'IF YOU SEE THIS IN YOUR SYSTEM'}
                   </span>
+                </div>
+                <div className="flex items-center gap-1.5 font-mono text-xs text-[var(--term-dim)]">
+                  <span>{displayCounterIndex + 1}/{currentTotal}</span>
                 </div>
               </div>
 
-              {/* Rotating Logs Container (All 8 links rendered in DOM for SEO and Accessibility) */}
+              {/* Rotating Logs Container */}
               {isDesktop ? (
                 /* Desktop: 4 Pairs of 2 stacked cards */
                 <div className="relative min-h-[220px] flex items-center">
@@ -286,7 +284,7 @@ const Hero = () => {
                     return (
                       <div
                         key={idx}
-                        className={`transition-opacity duration-300 w-full flex flex-col gap-3 ${
+                        className={`transition-opacity duration-200 w-full flex flex-col gap-3 ${
                           isActive 
                             ? 'opacity-100 relative pointer-events-auto z-10' 
                             : 'opacity-0 absolute inset-0 pointer-events-none -z-10'
@@ -297,14 +295,14 @@ const Hero = () => {
                           <Link
                             key={pIdx}
                             to={item.href}
-                            className="block group p-3.5 sm:p-4 rounded-xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-cyan-500/40 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                            className="block p-3.5 rounded-[var(--r-control)] bg-[var(--term-bg)] hover:bg-[#151921] border border-[var(--term-dim)]/30 hover:border-[var(--term-accent)]/60 transition-colors"
                           >
-                            <div className="font-mono text-xs sm:text-sm text-cyan-300 font-semibold mb-1.5 leading-snug break-words">
+                            <div className="font-mono text-xs sm:text-sm text-[var(--term-accent)] mb-1.5 leading-snug break-words">
                               {item.log}
                             </div>
-                            <div className="flex items-center gap-1.5 text-xs font-mono text-slate-300 group-hover:text-white transition-colors">
-                              <span className="text-cyan-400">→</span>
-                              <span className="group-hover:underline underline-offset-4">
+                            <div className="flex items-center gap-1.5 text-xs font-sans text-[var(--term-ink)] hover:text-white transition-colors">
+                              <span>→</span>
+                              <span className="underline underline-offset-4">
                                 {isTr ? item.title.tr : item.title.en}
                               </span>
                             </div>
@@ -322,7 +320,7 @@ const Hero = () => {
                     return (
                       <div
                         key={idx}
-                        className={`transition-opacity duration-300 w-full ${
+                        className={`transition-opacity duration-200 w-full ${
                           isActive 
                             ? 'opacity-100 relative pointer-events-auto z-10' 
                             : 'opacity-0 absolute inset-0 pointer-events-none -z-10'
@@ -331,14 +329,14 @@ const Hero = () => {
                       >
                         <Link
                           to={item.href}
-                          className="block group p-4 rounded-2xl bg-white/[0.03] hover:bg-white/[0.06] border border-white/10 hover:border-cyan-500/40 transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400"
+                          className="block p-3.5 rounded-[var(--r-control)] bg-[var(--term-bg)] hover:bg-[#151921] border border-[var(--term-dim)]/30 hover:border-[var(--term-accent)]/60 transition-colors"
                         >
-                          <div className="font-mono text-xs sm:text-sm text-cyan-300 font-semibold mb-3 leading-snug break-words">
+                          <div className="font-mono text-xs sm:text-sm text-[var(--term-accent)] mb-2 leading-snug break-words">
                             {item.log}
                           </div>
-                          <div className="flex items-center gap-2 text-xs sm:text-sm font-mono text-slate-300 group-hover:text-white transition-colors">
-                            <span className="text-cyan-400">→</span>
-                            <span className="group-hover:underline underline-offset-4">
+                          <div className="flex items-center gap-1.5 text-xs font-sans text-[var(--term-ink)] hover:text-white transition-colors">
+                            <span>→</span>
+                            <span className="underline underline-offset-4">
                               {isTr ? item.title.tr : item.title.en}
                             </span>
                           </div>
@@ -350,15 +348,15 @@ const Hero = () => {
               )}
 
               {/* Bottom Catalog Link */}
-              <div className="pt-3.5 mt-5 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+              <div className="pt-3 mt-4 border-t border-[var(--term-dim)]/30 flex items-center justify-between text-xs font-sans text-[var(--term-dim)]">
                 <Link
                   to="/teshis/"
-                  className="text-cyan-400 hover:text-cyan-300 font-bold transition-colors flex items-center gap-1.5 focus:outline-none focus:ring-1 focus:ring-cyan-400 rounded"
+                  className="text-[var(--term-accent)] hover:underline font-medium flex items-center gap-1.5"
                 >
                   <span>{isTr ? 'Tüm Teşhis Kataloğunu İncele (20 Belirti)' : 'Explore All Diagnostics (20 Symptoms)'}</span>
                   <span>→</span>
                 </Link>
-                <span className="text-slate-500 text-[11px] hidden sm:inline">
+                <span className="hidden sm:inline">
                   {isTr ? 'İlk teşhis ücretsiz' : 'First diagnosis free'}
                 </span>
               </div>

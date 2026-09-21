@@ -150,7 +150,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Cleans up inherited messy code into a maintainable, extensible base without interrupting live operations.'
     },
     urgencyLevel: 'Orta',
-    urgencyColor: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30',
+    urgencyColor: 'text-blue-700 bg-blue-50 border-blue-200',
     whoSolves: {
       tr: 'Kıdemli Yazılım Mühendisleri. Kod analizi, unit test koruması ve katmanlı mimari standartlarıyla yapılır.',
       en: 'Senior Software Engineers. Executed alongside automated test coverage to prevent regressions.'
@@ -196,7 +196,7 @@ export const glossaryTerms = [
       en: 'What it means for agencies: Prevents clients from catching bugs on production; gives a safe sandbox for client review and staging tests.'
     },
     urgencyLevel: 'Orta',
-    urgencyColor: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30',
+    urgencyColor: 'text-blue-700 bg-blue-50 border-blue-200',
     whoSolves: {
       tr: 'DevOps / Sunucu Ekibi. Subdomain ve izole veritabanı staging konfigürasyonu ile kurulur.',
       en: 'DevOps Engineer. Provisioned via isolated databases and password-protected staging domains.'

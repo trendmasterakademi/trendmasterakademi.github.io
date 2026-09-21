@@ -90,8 +90,8 @@ const Navbar = () => {
     <>
       <header className={`fixed w-full max-w-[100vw] overflow-x-clip top-0 left-0 z-50 transition-all duration-300 ${
         scrolled 
-          ? 'bg-[#080b11]/95 backdrop-blur-xl border-b border-cyan-500/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]' 
-          : 'bg-[#080b11]/80 backdrop-blur-md border-b border-white/10'
+          ? 'bg-[var(--surface)] border-b border-[var(--rule)] shadow-navbar' 
+          : 'bg-[var(--surface)] border-b border-[var(--rule)]'
       }`}>
         {/* TMA Agency Response Kit & Crash Test Scrolling Banner */}
         <KitBanner />
@@ -103,7 +103,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2 sm:gap-3 2xl:gap-4 flex-shrink-0">
             <Link to="/" className="flex items-center group flex-shrink-0" aria-label="Trend Master Akademi Ana Sayfa">
               <img 
-                src="/logo-dark.png" 
+                src="/logo-light.png" 
                 alt="Trend Master Akademi" 
                 className="h-7 sm:h-8 xl:h-9 2xl:h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                 width="200"
@@ -115,15 +115,11 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsSOSOpen(true)}
-              className={`hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 ${
-                krizHattiAcik
-                  ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 shadow-sm shadow-emerald-500/10'
-                  : 'bg-amber-500/10 border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 shadow-sm shadow-amber-500/10'
-              }`}
+              className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--r-control)] text-xs font-mono transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)]"
               title={isTr ? "Acil Incident & Kriz Müdahale Masası" : "Emergency Engineering & Crisis Desk"}
             >
               <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
-                krizHattiAcik ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'
+                krizHattiAcik ? 'bg-[#10B981]' : 'bg-[#F59E0B]'
               }`}></span>
               <span className="hidden xl:inline">
                 {krizHattiAcik
@@ -144,10 +140,10 @@ const Navbar = () => {
           <nav className="hidden xl:flex items-center gap-1 2xl:gap-1.5 flex-shrink-0">
             <Link
               to="/agency/"
-              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium transition-all whitespace-nowrap ${
                 path.startsWith('/agency')
-                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20'
+                  : 'text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--paper)]'
               }`}
               title={isTr ? 'Kapasite & Altyapı' : 'Capacity & Infra'}
             >
@@ -156,10 +152,10 @@ const Navbar = () => {
 
             <Link
               to="/kit/"
-              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium transition-all whitespace-nowrap ${
                 path.startsWith('/kit') || path.startsWith('/agency-kit')
-                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20'
+                  : 'text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--paper)]'
               }`}
               title={isTr ? 'TMA Agency Response Kit (Görsel Kılavuz)' : 'TMA Agency Response Kit (Visual Guide)'}
             >
@@ -168,10 +164,10 @@ const Navbar = () => {
 
             <Link
               to="/crash-test/"
-              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium transition-all whitespace-nowrap ${
                 path.startsWith('/crash-test')
-                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20'
+                  : 'text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--paper)]'
               }`}
               title={isTr ? 'Crash Test (60sn Risk Analizi)' : 'Crash Test (60s Risk Audit)'}
             >
@@ -180,10 +176,10 @@ const Navbar = () => {
 
             <Link
               to={isTr ? "/devir-kontrolu/" : "/handover-audit/"}
-              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium transition-all whitespace-nowrap ${
                 path.startsWith('/devir-kontrolu') || path.startsWith('/handover-audit')
-                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20'
+                  : 'text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--paper)]'
               }`}
               title={isTr ? 'Devir Kontrolü & Kod Tabanı Denetimi' : 'Handover Audit & Code Health'}
             >
@@ -192,10 +188,10 @@ const Navbar = () => {
 
             <Link
               to={isTr ? "/teshis/" : "/diagnostic/"}
-              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium transition-all whitespace-nowrap ${
                 path.startsWith('/teshis') || path.startsWith('/diagnostic')
-                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20'
+                  : 'text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--paper)]'
               }`}
               title={isTr ? 'Teşhis Kataloğu & Kriz Çözümleri' : 'Diagnostic Catalog & Incident Playbooks'}
             >
@@ -204,10 +200,10 @@ const Navbar = () => {
 
             <Link
               to={isTr ? "/kesinti-maliyeti/" : "/downtime-calc/"}
-              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium transition-all whitespace-nowrap ${
                 path.startsWith('/kesinti-maliyeti') || path.startsWith('/downtime-calc') || path.startsWith('/downtime-cost')
-                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20'
+                  : 'text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--paper)]'
               }`}
               title={isTr ? 'Kesinti Maliyeti Hesaplayıcı' : 'Downtime Cost Calculator'}
             >
@@ -216,10 +212,10 @@ const Navbar = () => {
 
             <Link
               to="/about/"
-              className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+              className={`px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium transition-all whitespace-nowrap ${
                 path.startsWith('/about')
-                  ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20'
+                  : 'text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--paper)]'
               }`}
               title={t('nav-about')}
             >
@@ -230,10 +226,10 @@ const Navbar = () => {
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, 'contact')}
-                className={`px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
+                className={`px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium transition-all whitespace-nowrap ${
                   activeSection === 'contact'
-                    ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                    ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20'
+                    : 'text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--paper)]'
                 }`}
                 title={t('nav-contact')}
               >
@@ -242,7 +238,7 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/#contact"
-                className="px-2.5 py-1.5 rounded-lg text-xs 2xl:text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap"
+                className="px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--paper)] transition-all whitespace-nowrap"
                 title={t('nav-contact')}
               >
                 {t('nav-contact')}
@@ -257,22 +253,22 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsSOSOpen(true)}
-              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/40 text-red-400 hover:text-red-300 text-xs sm:text-sm font-bold flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap shadow-sm shadow-red-500/20 flex-shrink-0"
+              className="px-2.5 sm:px-3.5 py-1.5 sm:py-2 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-white text-xs sm:text-sm font-medium flex items-center gap-1.5 transition-colors cursor-pointer whitespace-nowrap shadow-sm flex-shrink-0"
               title={isTr ? 'Acil Kriz ve Incident Müdahalesi (SOS)' : 'Emergency Technical Incident (SOS)'}
             >
-              <AlertTriangle className="w-3.5 h-3.5 text-red-400 animate-bounce flex-shrink-0" />
+              <AlertTriangle className="w-3.5 h-3.5 text-white flex-shrink-0" />
               <span className="hidden sm:inline">{isTr ? 'Acil Kriz (SOS)' : 'Emergency SOS'}</span>
-              <span className="sm:hidden font-mono font-black">SOS</span>
+              <span className="sm:hidden font-mono font-bold">SOS</span>
             </button>
 
             {/* Language Switcher */}
             <button
               type="button"
               onClick={toggleLang}
-              className="px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1 transition-colors cursor-pointer flex-shrink-0"
+              className="px-2.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] text-xs font-mono font-medium flex items-center gap-1 transition-colors cursor-pointer flex-shrink-0"
               title={isTr ? 'Switch to English' : 'Türkçe Dil Seçeneği'}
             >
-              <Globe className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-400 flex-shrink-0" />
+              <Globe className="w-3.5 h-3.5 text-[var(--ink-3)] flex-shrink-0" />
               <span>{isTr ? 'EN' : 'TR'}</span>
             </button>
 
@@ -280,7 +276,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="xl:hidden p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white transition-colors cursor-pointer min-w-[34px] min-h-[34px] flex items-center justify-center flex-shrink-0"
+              className="xl:hidden p-1.5 sm:p-2 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors cursor-pointer min-w-[34px] min-h-[34px] flex items-center justify-center flex-shrink-0"
               aria-label="Toggle menu"
             >
               {isOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
@@ -291,49 +287,49 @@ const Navbar = () => {
 
         {/* Mobile / Tablet Navigation Drawer */}
         {isOpen && (
-          <div className="xl:hidden pt-3 pb-5 px-3 border-t border-white/10 mt-2.5 space-y-1.5 bg-[#080b11]/98 backdrop-blur-2xl rounded-2xl animate-in fade-in slide-in-from-top-2 duration-200 shadow-2xl">
+          <div className="xl:hidden pt-3 pb-5 px-3 border-t border-[var(--rule)] mt-2.5 space-y-1.5 bg-[var(--surface)] rounded-[var(--r-panel)] shadow-navbar">
             <Link
               to="/kit/"
               onClick={() => setIsOpen(false)}
-              className="w-full text-left px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 text-cyan-300 bg-cyan-950/40 border border-cyan-500/30 hover:bg-cyan-900/50 transition-colors cursor-pointer mb-1"
+              className="w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-semibold flex items-center gap-2 text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20 mb-1"
             >
-              <BookOpen className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+              <BookOpen className="w-4 h-4 text-[var(--accent)] flex-shrink-0" />
               <span>{isTr ? 'TMA Agency Response Kit (Görsel Kılavuz)' : 'TMA Agency Response Kit (Visual Guide)'}</span>
             </Link>
 
             <Link
               to="/agency/"
               onClick={() => setIsOpen(false)}
-              className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 ${
+              className={`w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium flex items-center gap-2 ${
                 path.startsWith('/agency')
-                  ? 'bg-cyan-500/10 border border-cyan-500/30 text-cyan-400'
-                  : 'text-slate-200 hover:bg-white/5'
+                  ? 'bg-[var(--accent-wash)] text-[var(--accent-ink)] border border-[var(--accent)]/20'
+                  : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
               }`}
             >
-              <ShieldCheck className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-[var(--ink-3)] flex-shrink-0" />
               <span>{t('nav-agency')}</span>
             </Link>
 
             <Link
               to="/crash-test/"
               onClick={() => setIsOpen(false)}
-              className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2 ${
+              className={`w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium flex items-center gap-2 ${
                 path.startsWith('/crash-test')
-                  ? 'bg-cyan-500/10 border border-cyan-500/30 text-cyan-400'
-                  : 'text-slate-200 hover:bg-white/5'
+                  ? 'bg-[var(--accent-wash)] text-[var(--accent-ink)] border border-[var(--accent)]/20'
+                  : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
               }`}
             >
-              <Zap className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+              <Zap className="w-4 h-4 text-[var(--ink-3)] flex-shrink-0" />
               <span>{t('nav-crashtest')}</span>
             </Link>
 
             <Link
               to={isTr ? "/devir-kontrolu/" : "/handover-audit/"}
               onClick={() => setIsOpen(false)}
-              className={`block w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold ${
+              className={`block w-full text-left px-3.5 py-2 rounded-[var(--r-control)] text-xs sm:text-sm font-medium ${
                 path.startsWith('/devir-kontrolu') || path.startsWith('/handover-audit')
-                  ? 'text-cyan-400 bg-cyan-500/10'
-                  : 'text-slate-200 hover:bg-white/5'
+                  ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)]'
+                  : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
               }`}
             >
               {isTr ? '12 Kalemlik Devir Kontrolü' : 'Handover Readiness Audit'}
@@ -342,10 +338,10 @@ const Navbar = () => {
             <Link
               to={isTr ? "/teshis/" : "/diagnostic/"}
               onClick={() => setIsOpen(false)}
-              className={`block w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold ${
+              className={`block w-full text-left px-3.5 py-2 rounded-[var(--r-control)] text-xs sm:text-sm font-medium ${
                 path.startsWith('/teshis') || path.startsWith('/diagnostic')
-                  ? 'text-cyan-400 bg-cyan-500/10'
-                  : 'text-slate-200 hover:bg-white/5'
+                  ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)]'
+                  : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
               }`}
             >
               {isTr ? 'Teşhis Kataloğu' : 'Diagnostic Catalog'}
@@ -354,10 +350,10 @@ const Navbar = () => {
             <Link
               to={isTr ? "/kesinti-maliyeti/" : "/downtime-calc/"}
               onClick={() => setIsOpen(false)}
-              className={`block w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold ${
+              className={`block w-full text-left px-3.5 py-2 rounded-[var(--r-control)] text-xs sm:text-sm font-medium ${
                 path.startsWith('/kesinti-maliyeti') || path.startsWith('/downtime-calc') || path.startsWith('/downtime-cost')
-                  ? 'text-cyan-400 bg-cyan-500/10'
-                  : 'text-slate-200 hover:bg-white/5'
+                  ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)]'
+                  : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
               }`}
             >
               {isTr ? 'Kesinti Maliyeti Hesaplayıcı' : 'Downtime Loss Calculator'}
@@ -366,10 +362,10 @@ const Navbar = () => {
             <Link
               to="/about/"
               onClick={() => setIsOpen(false)}
-              className={`block w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold ${
+              className={`block w-full text-left px-3.5 py-2 rounded-[var(--r-control)] text-xs sm:text-sm font-medium ${
                 path.startsWith('/about')
-                  ? 'text-cyan-400 bg-cyan-500/10'
-                  : 'text-slate-200 hover:bg-white/5'
+                  ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)]'
+                  : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
               }`}
             >
               {t('nav-about')}
@@ -378,7 +374,7 @@ const Navbar = () => {
             <a
               href="/#contact"
               onClick={(e) => handleNavClick(e, 'contact')}
-              className="block w-full text-left px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold text-slate-200 hover:bg-white/5"
+              className="block w-full text-left px-3.5 py-2 rounded-[var(--r-control)] text-xs sm:text-sm font-medium text-[var(--ink-2)] hover:bg-[var(--paper)]"
             >
               {t('nav-contact')}
             </a>

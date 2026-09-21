@@ -104,23 +104,21 @@ const FAQ = () => {
   };
 
   return (
-    <section id="faq" className="py-20 md:py-28 px-4 sm:px-6 md:px-12 bg-[#090d15] relative border-b border-white/10 overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-cyan-500/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
-
+    <section id="faq" className="py-16 px-4 sm:px-6 md:px-12 bg-[var(--paper)] relative border-b border-[var(--rule)] overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-wider mb-4">
-            <HelpCircle className="w-4 h-4" /> {isTr ? 'SIKÇA SORULAN SORULAR' : 'FREQUENTLY ASKED QUESTIONS'}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] text-xs font-mono font-medium uppercase tracking-wider mb-4">
+            <HelpCircle className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'SIKÇA SORULAN SORULAR' : 'FREQUENTLY ASKED QUESTIONS'}
           </div>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white tracking-tight leading-tight">
+          <h2 className="font-serif text-[26px] sm:text-[30px] font-semibold text-[var(--ink)] tracking-tight leading-tight">
             <span className="block">
               {isTr ? 'Ajansların En Çok Merak Ettiği' : 'Key Questions from Partner'}
             </span>
-            <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-teal-300 to-blue-500">
+            <span className="block text-[var(--ink)]">
               {isTr ? 'Teknik & Operasyonel Sorular' : 'Agencies & Tech Leaders'}
             </span>
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg mt-4 leading-relaxed">
+          <p className="text-[var(--ink-2)] text-base sm:text-lg mt-4 leading-relaxed">
             {isTr 
               ? 'White-label çalışma disiplini, gizlilik protokolleri ve acil kod müdahale süreçlerimiz hakkında tüm detaylar.' 
               : 'Detailed operational transparency on our white-label protocols, NDAs, and emergency intervention SLAs.'}
@@ -135,10 +133,10 @@ const FAQ = () => {
             return (
               <div 
                 key={item.id}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                className={`rounded-[var(--r-panel)] border transition-all duration-200 overflow-hidden ${
                   isOpen 
-                    ? 'bg-[#111827] border-cyan-500/40 shadow-[0_0_30px_rgba(0,229,255,0.1)]' 
-                    : 'bg-[#0d131f]/70 border-white/10 hover:border-white/20 hover:bg-[#0d131f]'
+                    ? 'bg-[var(--surface)] border-[var(--rule-strong)] shadow-sm' 
+                    : 'bg-[var(--surface)] border-[var(--rule)] hover:border-[var(--rule-strong)]'
                 }`}
               >
                 <button
@@ -147,20 +145,20 @@ const FAQ = () => {
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-4">
-                    <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors ${
-                      isOpen ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/40' : 'bg-white/5 text-slate-400 border border-white/10'
+                    <div className={`w-10 h-10 rounded-[var(--r-control)] flex items-center justify-center flex-shrink-0 transition-colors ${
+                      isOpen ? 'bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)]' : 'bg-[var(--paper)] text-[var(--ink-3)] border border-[var(--rule)]'
                     }`}>
                       <IconComponent className="w-5 h-5" />
                     </div>
-                    <h3 className={`text-base sm:text-lg font-bold transition-colors ${
-                      isOpen ? 'text-cyan-300' : 'text-white'
+                    <h3 className={`text-base sm:text-lg font-semibold transition-colors ${
+                      isOpen ? 'text-[var(--accent)]' : 'text-[var(--ink)]'
                     }`}>
                       {item.question[isTr ? 'tr' : 'en']}
                     </h3>
                   </div>
 
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-300 ${
-                    isOpen ? 'rotate-180 bg-cyan-500/20 text-cyan-400' : 'bg-white/5 text-slate-400'
+                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-200 ${
+                    isOpen ? 'rotate-180 bg-[var(--paper)] text-[var(--accent)]' : 'bg-[var(--paper)] text-[var(--ink-3)]'
                   }`}>
                     <ChevronDown className="w-4 h-4" />
                   </div>
@@ -169,13 +167,13 @@ const FAQ = () => {
                 <React.Fragment>
                   {isOpen && (
                     <div>
-                      <div className="px-6 sm:px-7 pb-6 sm:pb-7 pt-1 text-slate-300 text-sm sm:text-base leading-relaxed border-t border-white/5 ml-14 sm:ml-14 space-y-3">
+                      <div className="px-6 sm:px-7 pb-6 sm:pb-7 pt-1 text-[var(--ink-2)] text-sm sm:text-base leading-relaxed border-t border-[var(--rule)] ml-14 sm:ml-14 space-y-3">
                         <p>{item.answer[isTr ? 'tr' : 'en']}</p>
                         {isHomePage && item.id === 'whitelabel-model' && (
                           <div className="pt-1">
                             <Link 
                               to="/nda/" 
-                              className="inline-flex items-center gap-1 text-emerald-400 hover:text-emerald-300 font-mono text-xs sm:text-sm font-bold transition-colors"
+                              className="inline-flex items-center gap-1 text-[var(--accent)] hover:text-[var(--accent-hover)] font-mono text-xs sm:text-sm font-semibold transition-colors"
                             >
                               {isTr ? 'Sözleşmeyi okuyun →' : 'Read the agreement →'}
                             </Link>
@@ -190,12 +188,12 @@ const FAQ = () => {
           })}
         </div>
 
-        <div className="mt-12 p-6 sm:p-8 rounded-2xl bg-white/5 border border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+        <div className="mt-12 p-6 sm:p-8 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left shadow-sm">
           <div>
-            <span className="text-white font-bold text-sm sm:text-base block">
+            <span className="text-[var(--ink)] font-semibold text-sm sm:text-base block">
               {isTr ? 'Aklınıza takılan farklı bir soru mu var?' : 'Have a different question in mind?'}
             </span>
-            <span className="text-slate-400 text-xs sm:text-sm">
+            <span className="text-[var(--ink-3)] text-xs sm:text-sm">
               {isTr ? 'Kriz masası ve kıdemli mühendislik ekibimizle doğrudan görüşebilirsiniz.' : 'Reach out directly to our senior engineering desk.'}
             </span>
           </div>
@@ -205,7 +203,7 @@ const FAQ = () => {
               target="_blank"
               rel="noreferrer"
               onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'faq_box' })}
-              className="px-5 py-3 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-bold text-xs sm:text-sm transition-all whitespace-nowrap flex items-center gap-2 shadow-lg shadow-cyan-500/20"
+              className="btn-primary px-5 py-2.5 rounded-[var(--r-control)] font-medium text-xs sm:text-sm transition-all whitespace-nowrap flex items-center gap-2 shadow-sm"
             >
               <Calendar className="w-4 h-4" />
               <span>{isTr ? '30 Dakikalık Randevu Seç →' : 'Schedule 30-Min Call →'}</span>
@@ -215,7 +213,7 @@ const FAQ = () => {
               target="_blank"
               rel="noreferrer"
               onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'faq_box' })}
-              className="px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-emerald-400 font-bold text-xs sm:text-sm transition-all whitespace-nowrap flex items-center gap-2"
+              className="btn-secondary px-5 py-2.5 rounded-[var(--r-control)] font-medium text-xs sm:text-sm transition-all whitespace-nowrap flex items-center gap-2 shadow-sm"
             >
               <span>{isTr ? 'WhatsApp’tan Sorun →' : 'Ask on WhatsApp →'}</span>
             </a>

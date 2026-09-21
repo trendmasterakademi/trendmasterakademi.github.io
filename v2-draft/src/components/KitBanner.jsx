@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { BookOpen, X, ArrowRight, Zap, ShieldCheck } from 'lucide-react';
+import { BookOpen, X, ArrowRight } from 'lucide-react';
 import { agencyKitData } from '../data/agencyKitData';
 import { isTurkish } from '../i18n';
 import AgencyKitModal from './AgencyKitModal';
@@ -47,14 +47,13 @@ function KitBanner() {
   if (!isVisible) {
     return (
       <>
-        {/* Subtle mini trigger tab when banner is dismissed */}
-        <div className="fixed top-2 right-24 z-50 animate-in fade-in duration-300">
+        <div className="fixed top-2 right-24 z-50">
           <button
             onClick={handleRestore}
-            className="px-2.5 py-1 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-300 text-[10px] font-mono hover:bg-cyan-900/90 transition-colors shadow-lg flex items-center gap-1.5 cursor-pointer backdrop-blur-md"
-            title={isTr ? "TMA Agency Kiti Banner'ını Aç" : "Open TMA Agency Kit Banner"}
+            className="px-2.5 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] text-xs hover:border-[var(--accent)] transition-colors shadow-sm flex items-center gap-1.5 cursor-pointer"
+            title={isTr ? "TMA Agency Kiti Bilgi Satırını Aç" : "Open TMA Agency Kit Bar"}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]"></span>
             <span>{isTr ? 'TMA Kit' : 'Agency Kit'}</span>
           </button>
         </div>
@@ -63,73 +62,66 @@ function KitBanner() {
     );
   }
 
-  // Ticker items duplicated for seamless infinite loop
-  const tickerLoop = [...data.tickerItems, ...data.tickerItems];
+  // Duran tek satır (Statik, sakin ve kurumsal bilgilendirme bandı)
+  const featuredItem = data.tickerItems[0] || { tag: 'TMA KIT', text: 'White-Label Mühendislik Dokümantasyonu' };
 
   return (
     <>
       <div 
-        className="w-full h-8 sm:h-9 bg-gradient-to-r from-[#03060c] via-[#080d19] to-[#03060c] border-b border-cyan-500/25 flex items-center justify-between text-xs font-mono select-none overflow-hidden relative z-50 text-slate-300"
+        className="w-full h-8 sm:h-9 bg-[var(--surface)] border-b border-[var(--rule)] flex items-center justify-between text-xs font-sans select-none overflow-hidden relative z-50 text-[var(--ink-2)]"
         role="region"
         aria-label="TMA Agency Response Kit Banner"
       >
-        {/* Left: Sticky Brand Badge */}
-        <div className="flex items-center gap-2 px-3 sm:px-4 bg-[#03060c]/95 h-full z-20 flex-shrink-0 border-r border-white/10 shadow-[4px_0_12px_rgba(0,0,0,0.6)]">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-          </span>
-          <span className="font-bold text-[11px] sm:text-xs text-white tracking-wider uppercase font-mono flex items-center gap-1">
-            <span className="text-cyan-400 font-black">TMA</span>
-            <span className="hidden sm:inline text-slate-300">AGENCY KIT</span>
+        {/* Left: Brand Badge */}
+        <div className="flex items-center gap-2 px-3 sm:px-4 bg-[var(--accent-wash)] h-full z-20 flex-shrink-0 border-r border-[var(--rule)]">
+          <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
+          <span className="font-semibold text-xs text-[var(--accent-ink)] tracking-wide uppercase">
+            TMA AGENCY KIT
           </span>
         </div>
 
-        {/* Middle: Infinite Scrolling Marquee Ticker */}
-        <div className="flex-1 overflow-hidden relative h-full flex items-center mask-linear-gradient">
-          <Link to="/kit/" className="animate-marquee flex items-center gap-8 sm:gap-12 whitespace-nowrap pl-4 cursor-pointer" title={isTr ? "Görsel Kılavuzu Aç" : "Open Visual Guide"}>
-            {tickerLoop.map((item, index) => (
-              <div 
-                key={index} 
-                className="inline-flex items-center gap-2 group hover:text-white transition-colors text-[11px] sm:text-xs"
-              >
-                <span className="px-1.5 py-0.5 rounded bg-cyan-500/15 border border-cyan-500/30 text-cyan-300 font-bold text-[10px] tracking-wider uppercase">
-                  {item.tag}
-                </span>
-                <span className="text-slate-300 group-hover:text-cyan-200 transition-colors">
-                  {item.text}
-                </span>
-                <span className="text-cyan-500/60 font-mono text-[10px] hidden sm:inline">
-                  [+]
-                </span>
-              </div>
-            ))}
+        {/* Middle: Static Informational Row */}
+        <div className="flex-1 overflow-hidden h-full flex items-center px-4">
+          <Link 
+            to="/kit/" 
+            className="flex items-center gap-3 text-xs text-[var(--ink-2)] hover:text-[var(--accent-ink)] transition-colors truncate" 
+            title={isTr ? "Görsel Kılavuzu Aç" : "Open Visual Guide"}
+          >
+            <span className="px-2 py-0.5 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)]/20 text-[var(--accent-ink)] font-semibold text-xs uppercase tracking-wider flex-shrink-0">
+              {featuredItem.tag}
+            </span>
+            <span className="truncate font-medium text-[var(--ink)]">
+              {featuredItem.text}
+            </span>
+            <span className="hidden md:inline text-[var(--ink-3)] text-xs">
+              — {data.tickerItems[1]?.text || ''}
+            </span>
           </Link>
         </div>
 
         {/* Right: Actions */}
-        <div className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 bg-[#03060c]/95 h-full z-20 flex-shrink-0 border-l border-white/10 shadow-[-4px_0_12px_rgba(0,0,0,0.6)]">
+        <div className="flex items-center gap-2 px-2 sm:px-3 bg-[var(--surface)] h-full z-20 flex-shrink-0 border-l border-[var(--rule)]">
           <Link
             to="/kit/"
-            className="hidden sm:inline-flex items-center gap-1 px-2 py-1 rounded text-[10px] sm:text-[11px] text-cyan-300 hover:text-white font-mono hover:bg-white/5 transition-colors whitespace-nowrap"
+            className="hidden sm:inline-flex items-center gap-1 px-2 py-1 rounded-[var(--r-control)] text-xs text-[var(--ink-2)] hover:text-[var(--accent-ink)] hover:bg-[var(--paper)] transition-colors whitespace-nowrap"
             title={isTr ? "TMA Agency Kit Görsel Sayfası" : "TMA Agency Kit Visual Page"}
           >
             <span>{isTr ? 'Görsel Galeri' : 'Gallery'}</span>
-            <ArrowRight className="w-3 h-3 text-cyan-400" />
+            <ArrowRight className="w-3 h-3 text-[var(--accent)]" />
           </Link>
 
           <button
             onClick={() => setIsModalOpen(true)}
-            className="px-2 sm:px-3 py-1 rounded-md bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold text-[11px] sm:text-xs flex items-center gap-1.5 transition-all shadow-[0_0_12px_rgba(0,229,255,0.3)] hover:scale-[1.02] cursor-pointer"
+            className="px-2.5 sm:px-3 py-1 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-white font-medium text-xs flex items-center gap-1.5 transition-colors cursor-pointer"
             aria-label="TMA Kiti İncele"
           >
-            <BookOpen className="w-3 h-3 text-slate-950 flex-shrink-0" />
+            <BookOpen className="w-3 h-3 flex-shrink-0" />
             <span className="hidden xs:inline">{data.cta}</span>
           </button>
 
           <button
             onClick={handleDismiss}
-            className="p-1 rounded text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+            className="p-1 rounded-[var(--r-control)] text-[var(--ink-3)] hover:text-[var(--ink)] hover:bg-[var(--paper)] transition-colors cursor-pointer"
             aria-label="Kapat"
             title={isTr ? "Banner'ı gizle" : "Hide banner"}
           >

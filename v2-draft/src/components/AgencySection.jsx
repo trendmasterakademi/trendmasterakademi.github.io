@@ -7,31 +7,31 @@ const AgencySection = () => {
   const { t } = useTranslation();
 
   return (
-    <section id="agency-preview" className="py-20 md:py-28 px-4 sm:px-6 md:px-12 bg-[#0a0f18] relative border-y border-white/10">
+    <section id="agency-preview" className="py-[136px] px-4 sm:px-6 md:px-12 bg-[var(--paper)] relative border-b border-[var(--rule)]">
       <div className="max-w-7xl mx-auto">
         
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-wider mb-4">
-              <ShieldCheck className="w-4 h-4" /> {t('agency-sec-badge')}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] text-xs font-mono font-medium mb-4">
+              <ShieldCheck className="w-4 h-4 text-[var(--accent)]" /> {t('agency-sec-badge')}
             </div>
-            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono text-white tracking-tight leading-tight">
+            <h2 className="font-serif text-[32px] sm:text-[40px] md:text-[44px] font-semibold text-[var(--ink)] tracking-tight leading-tight">
               <span className="block">
                 {t('agency-sec-title')}
               </span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+              <span className="block text-[var(--accent)]">
                 {t('agency-sec-title-highlight')}
               </span>
             </h2>
           </div>
           <div className="max-w-lg">
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed mb-4">
+            <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed mb-4">
               {t('agency-sec-desc')}
             </p>
             <Link
               to="/agency/"
-              className="text-sm font-mono font-bold text-cyan-400 hover:text-white flex items-center gap-1.5 group transition-colors"
+              className="text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center gap-1.5 group transition-colors"
             >
               <span>{t('agency-sec-link')}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -43,104 +43,104 @@ const AgencySection = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           
           {/* Card 1: HTTP 500 Outage */}
-          <div className="p-7 rounded-3xl bg-[#111827] border border-red-500/30 hover:border-red-500/60 transition-all flex flex-col justify-between group shadow-xl">
+          <div className="p-6 sm:p-7 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between group shadow-sm">
             <div>
               <div className="flex items-center justify-between mb-5">
-                <div className="w-12 h-12 rounded-2xl bg-red-500/15 border border-red-500/30 flex items-center justify-center text-red-400">
-                  <Flame className="w-6 h-6" />
+                <div className="w-10 h-10 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-1)]">
+                  <Flame className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-mono font-bold text-red-400 bg-red-500/10 px-2.5 py-1 rounded border border-red-500/20">
+                <span className="text-xs font-mono font-medium text-[var(--sev-1)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
                   {t('crisis-card1-tag')}
                 </span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors">
+              <h3 className="text-lg font-semibold text-[var(--ink)] mb-3 group-hover:text-[var(--accent)] transition-colors">
                 {t('crisis-card1-title')}
               </h3>
-              <p className="text-sm text-slate-300 leading-relaxed">
+              <p className="text-sm text-[var(--ink-2)] leading-relaxed">
                 {t('crisis-card1-desc')}
               </p>
             </div>
             <Link
               to="/crash-test/?senaryo=http500"
-              className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-red-400 hover:text-white flex items-center justify-between transition-colors"
+              className="mt-6 pt-4 border-t border-[var(--rule)] text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center justify-between transition-colors"
             >
               <span>{t('crisis-card1-action')}</span>
             </Link>
           </div>
 
           {/* Card 2: Handover Hell */}
-          <div className="p-7 rounded-3xl bg-[#111827] border border-amber-500/30 hover:border-amber-500/60 transition-all flex flex-col justify-between group shadow-xl">
+          <div className="p-6 sm:p-7 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between group shadow-sm">
             <div>
               <div className="flex items-center justify-between mb-5">
-                <div className="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/30 flex items-center justify-center text-amber-400">
-                  <Users className="w-6 h-6" />
+                <div className="w-10 h-10 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-2)]">
+                  <Users className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-mono font-bold text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded border border-amber-500/20">
+                <span className="text-xs font-mono font-medium text-[var(--sev-2)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
                   {t('crisis-card2-tag')}
                 </span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors">
+              <h3 className="text-lg font-semibold text-[var(--ink)] mb-3 group-hover:text-[var(--accent)] transition-colors">
                 {t('crisis-card2-title')}
               </h3>
-              <p className="text-sm text-slate-300 leading-relaxed">
+              <p className="text-sm text-[var(--ink-2)] leading-relaxed">
                 {t('crisis-card2-desc')}
               </p>
             </div>
             <Link
               to="/crash-test/?senaryo=handover"
-              className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-amber-400 hover:text-white flex items-center justify-between transition-colors"
+              className="mt-6 pt-4 border-t border-[var(--rule)] text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center justify-between transition-colors"
             >
               <span>{t('crisis-card2-action')}</span>
             </Link>
           </div>
 
           {/* Card 3: T-48H Crunch */}
-          <div className="p-7 rounded-3xl bg-[#111827] border border-cyan-500/30 hover:border-cyan-500/60 transition-all flex flex-col justify-between group shadow-xl">
+          <div className="p-6 sm:p-7 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between group shadow-sm">
             <div>
               <div className="flex items-center justify-between mb-5">
-                <div className="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
-                  <Clock className="w-6 h-6" />
+                <div className="w-10 h-10 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-3)]">
+                  <Clock className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-500/10 px-2.5 py-1 rounded border border-cyan-500/20">
+                <span className="text-xs font-mono font-medium text-[var(--sev-3)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
                   {t('crisis-card3-tag')}
                 </span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
+              <h3 className="text-lg font-semibold text-[var(--ink)] mb-3 group-hover:text-[var(--accent)] transition-colors">
                 {t('crisis-card3-title')}
               </h3>
-              <p className="text-sm text-slate-300 leading-relaxed">
+              <p className="text-sm text-[var(--ink-2)] leading-relaxed">
                 {t('crisis-card3-desc')}
               </p>
             </div>
             <Link
               to="/crash-test/?senaryo=t48h"
-              className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-cyan-400 hover:text-white flex items-center justify-between transition-colors"
+              className="mt-6 pt-4 border-t border-[var(--rule)] text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center justify-between transition-colors"
             >
               <span>{t('crisis-card3-action')}</span>
             </Link>
           </div>
 
           {/* Card 4: Capacity Overflow & White-Label Production */}
-          <div className="p-7 rounded-3xl bg-[#111827] border border-emerald-500/30 hover:border-emerald-500/60 transition-all flex flex-col justify-between group shadow-xl">
+          <div className="p-6 sm:p-7 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between group shadow-sm">
             <div>
               <div className="flex items-center justify-between mb-5">
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-                  <Layers className="w-6 h-6" />
+                <div className="w-10 h-10 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-4)]">
+                  <Layers className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-mono font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded border border-emerald-500/20">
+                <span className="text-xs font-mono font-medium text-[var(--sev-4)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
                   {t('crisis-card4-tag')}
                 </span>
               </div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors">
+              <h3 className="text-lg font-semibold text-[var(--ink)] mb-3 group-hover:text-[var(--accent)] transition-colors">
                 {t('crisis-card4-title')}
               </h3>
-              <p className="text-sm text-slate-300 leading-relaxed">
+              <p className="text-sm text-[var(--ink-2)] leading-relaxed">
                 {t('crisis-card4-desc')}
               </p>
             </div>
             <Link
               to="/crash-test/?senaryo=overflow"
-              className="mt-8 pt-4 border-t border-white/10 text-sm font-bold text-emerald-400 hover:text-white flex items-center justify-between transition-colors"
+              className="mt-6 pt-4 border-t border-[var(--rule)] text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center justify-between transition-colors"
             >
               <span>{t('crisis-card4-action')}</span>
             </Link>
@@ -149,26 +149,26 @@ const AgencySection = () => {
         </div>
 
         {/* Agency Guarantees Banner */}
-        <div className="p-6 md:p-8 rounded-3xl bg-white/5 border border-white/10 flex flex-wrap items-center justify-between gap-6">
-          <div className="flex flex-wrap items-center gap-6 text-sm text-slate-200">
+        <div className="p-6 md:p-8 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-wrap items-center justify-between gap-6 shadow-sm">
+          <div className="flex flex-wrap items-center gap-6 text-sm text-[var(--ink)]">
             <div className="flex items-center gap-2.5">
-              <ShieldCheck className="w-5 h-5 text-cyan-400 flex-shrink-0" />
-              <span className="font-semibold">{t('guarantee-whitelabel')}</span>
+              <ShieldCheck className="w-5 h-5 text-[var(--accent)] flex-shrink-0" />
+              <span className="font-medium">{t('guarantee-whitelabel')}</span>
             </div>
             <div className="flex items-center gap-2.5">
-              <Lock className="w-5 h-5 text-emerald-400 flex-shrink-0" />
-              <span className="font-semibold">{t('guarantee-nda')}</span>
+              <Lock className="w-5 h-5 text-[var(--ink-2)] flex-shrink-0" />
+              <span className="font-medium">{t('guarantee-nda')}</span>
             </div>
             <div className="flex items-center gap-2.5">
-              <FileCode className="w-5 h-5 text-orange-400 flex-shrink-0" />
-              <span className="font-semibold">{t('guarantee-ownership')}</span>
+              <FileCode className="w-5 h-5 text-[var(--ink-2)] flex-shrink-0" />
+              <span className="font-medium">{t('guarantee-ownership')}</span>
             </div>
           </div>
 
           <div className="flex items-center gap-3">
             <Link
               to="/crash-test/"
-              className="px-6 py-3 rounded-full bg-cyan-500 text-bg-dark font-bold text-sm hover:bg-cyan-400 transition-colors flex items-center gap-2 shadow-lg shadow-cyan-500/20"
+              className="btn-primary flex items-center gap-2"
             >
               <Zap className="w-4 h-4 fill-current" />
               <span>{t('guarantee-runtest')}</span>

@@ -422,24 +422,20 @@ const DevirKontrolu = () => {
   };
 
   return (
-    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[#080b11] text-slate-200 relative  font-sans">
-      {/* Background Ambience */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-gradient-to-b from-cyan-500/10 via-amber-500/5 to-transparent blur-[140px] pointer-events-none -z-10"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(#1f293d_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none -z-10"></div>
-
+    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[var(--paper)] text-[var(--ink)] relative font-sans">
       <div className="max-w-5xl mx-auto">
         
         {/* STEP 1: Eyebrow & Status Bar */}
         {step === 1 && (
-          <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-white/10">
+          <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-[var(--rule)]">
             <div className="flex items-center gap-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span lang="en" className="text-xs sm:text-sm font-mono tracking-widest text-slate-300 uppercase">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+              <span lang="en" className="text-xs sm:text-sm font-mono tracking-widest text-[var(--ink-muted)] uppercase">
                 TMA Diagnostic Tool // Handover Readiness v1.0
               </span>
             </div>
             <div className="flex items-center gap-2">
-              <span className="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+              <span className="px-2.5 py-1 rounded text-xs font-mono font-semibold bg-[var(--surface)] text-[var(--ink-muted)] border border-[var(--rule)]">
                 %100 Gizlilik Güvencesi
               </span>
             </div>
@@ -448,21 +444,17 @@ const DevirKontrolu = () => {
 
         {/* STEP 1: Intro Screen */}
         {step === 1 && (
-          <div
-            
-            
-            className="space-y-8"
-          >
+          <div className="space-y-8">
             <div className="text-center max-w-3xl mx-auto space-y-4">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-mono font-bold uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-[var(--accent-soft)] border border-[var(--accent)] text-[var(--accent)] text-xs font-mono font-semibold uppercase tracking-wider">
                 <AlertTriangle className="w-4 h-4" /> {isTr ? 'GELİŞTİRİCİ AYRILIK KONTROL LİSTESİ' : 'DEVELOPER HANDOVER CHECKLIST'}
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold font-serif text-[var(--ink)] tracking-tight leading-tight">
                 {isTr ? 'Yazılımcınız Ayrılıyor mu? Elinizde Gerçekten Ne Var?' : 'Is Your Developer Leaving? What Do You Truly Own?'}
               </h1>
 
-              <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+              <p className="text-[var(--ink-muted)] text-base sm:text-lg leading-relaxed">
                 {isTr 
                   ? 'Geliştiriciniz projeden çekildiğinde veya ayrılma arifesindeyken; elinizdeki repo, ortam değişkenleri ve sunucu erişimlerinin eksiksiz olup olmadığını 12 kritik maddede test edin.' 
                   : 'Audit whether your repository, secrets, deployment keys, and domain rights are fully transferable before your engineer departs.'}
@@ -470,16 +462,16 @@ const DevirKontrolu = () => {
             </div>
 
             {/* Reassurance Callout Card */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#111827]/80 border border-cyan-500/30 shadow-xl max-w-2xl mx-auto space-y-4">
+            <div className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] shadow-sm max-w-2xl mx-auto space-y-4">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-2xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded bg-[var(--accent-soft)] text-[var(--accent)] flex items-center justify-center flex-shrink-0">
                   <ShieldCheck className="w-6 h-6" />
                 </div>
                 <div className="space-y-1">
-                  <h2 className="text-base font-bold text-white">
+                  <h2 className="text-base font-semibold font-serif text-[var(--ink)]">
                     {isTr ? 'Sisteminize Bağlanmaz, Şifre veya Erişim İstemez' : 'Zero System Access, No Passwords Required'}
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">
                     {isTr 
                       ? 'Bu araç yalnızca durumunuzu anlamanıza yardımcı bir karar matrisidir. Hiçbir teknik şifre, anahtar veya sunucu bilgisi girmeniz gerekmez.' 
                       : 'This tool is a pure audit matrix. It does not connect to your servers or require any confidential keys.'}
@@ -487,18 +479,18 @@ const DevirKontrolu = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-3 pt-3 border-t border-white/10 text-center">
-                <div className="p-3 rounded-xl bg-white/5">
-                  <strong className="block text-white font-mono text-base sm:text-lg">12</strong>
-                  <span className="text-[10px] sm:text-xs text-slate-400">Kritik Kontrol</span>
+              <div className="grid grid-cols-3 gap-3 pt-3 border-t border-[var(--rule)] text-center">
+                <div className="p-3 rounded bg-[var(--paper)] border border-[var(--rule)]">
+                  <strong className="block text-[var(--ink)] font-mono text-base sm:text-lg">12</strong>
+                  <span className="text-xs text-[var(--ink-muted)]">Kritik Kontrol</span>
                 </div>
-                <div className="p-3 rounded-xl bg-white/5">
-                  <strong className="block text-cyan-400 font-mono text-base sm:text-lg">60 sn</strong>
-                  <span className="text-[10px] sm:text-xs text-slate-400">Tamamlama</span>
+                <div className="p-3 rounded bg-[var(--paper)] border border-[var(--rule)]">
+                  <strong className="block text-[var(--accent)] font-mono text-base sm:text-lg">60 sn</strong>
+                  <span className="text-xs text-[var(--ink-muted)]">Tamamlama</span>
                 </div>
-                <div className="p-3 rounded-xl bg-white/5">
-                  <strong className="block text-emerald-400 font-mono text-base sm:text-lg">%100</strong>
-                  <span className="text-[10px] sm:text-xs text-slate-400">
+                <div className="p-3 rounded bg-[var(--paper)] border border-[var(--rule)]">
+                  <strong className="block text-emerald-700 font-mono text-base sm:text-lg">%100</strong>
+                  <span className="text-xs text-[var(--ink-muted)]">
                     {isTr ? 'Ücretsiz Teşhis' : 'Free Diagnosis'}
                   </span>
                 </div>
@@ -510,7 +502,7 @@ const DevirKontrolu = () => {
               <button
                 type="button"
                 onClick={startChecklist}
-                className="px-10 py-4 sm:py-5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-base sm:text-lg shadow-xl shadow-cyan-500/25 flex items-center gap-3 transition-all transform hover:-translate-y-0.5 cursor-pointer min-h-[48px]"
+                className="px-10 py-4 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-base sm:text-lg shadow-sm flex items-center gap-3 transition-colors cursor-pointer min-h-[44px]"
               >
                 <span>{isTr ? 'Devir Kontrolünü Başlat (12 Soru)' : 'Start Handover Audit (12 Items)'}</span>
                 <ArrowRight className="w-5 h-5" />
@@ -521,22 +513,18 @@ const DevirKontrolu = () => {
 
         {/* STEP 2: 12-Item Checklist */}
         {step === 2 && (
-          <div
-            
-            
-            className="space-y-6"
-          >
+          <div className="space-y-6">
             {/* Sticky Unified Diagnostic & Progress Header */}
-            <div className="sticky top-[78px] sm:top-[92px] md:top-[100px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/98 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_15px_45px_rgba(0,0,0,0.95)] space-y-3.5 transition-all">
+            <div className="sticky top-[78px] sm:top-[92px] md:top-[100px] z-40 p-4 sm:p-5 rounded bg-[var(--surface)] border border-[var(--rule)] shadow-sm space-y-3.5 transition-all">
               {/* Eyebrow & Status Bar */}
-              <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-white/10 text-xs font-mono">
+              <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-[var(--rule)] text-xs font-mono">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span className="text-[11px] sm:text-xs text-slate-300 uppercase tracking-wider">
+                  <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+                  <span className="text-xs text-[var(--ink-muted)] uppercase tracking-wider">
                     TMA Diagnostic Tool // Handover Readiness v1.0
                   </span>
                 </div>
-                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                <span className="px-2 py-0.5 rounded text-xs font-semibold bg-[var(--surface)] text-[var(--ink-muted)] border border-[var(--rule)]">
                   %100 Gizlilik Güvencesi
                 </span>
               </div>
@@ -544,22 +532,22 @@ const DevirKontrolu = () => {
               {/* Progress & Title Row */}
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div>
-                  <span className="text-[10px] sm:text-xs font-mono uppercase text-cyan-400 font-bold block">
+                  <span className="text-xs font-mono uppercase text-[var(--accent)] font-semibold block">
                     {isTr ? 'Adım 2 / 2 · Canlı İlerleme' : 'Step 2 / 2 · Live Progress'}
                   </span>
-                  <h2 className="text-sm sm:text-lg md:text-xl font-bold text-white leading-tight">
+                  <h2 className="text-sm sm:text-lg md:text-xl font-semibold font-serif text-[var(--ink)] leading-tight">
                     {isTr ? '12 Kalemlik Devir Kontrol Listesi' : '12-Point Handover Audit Checklist'}
                   </h2>
-                  <span className="text-xs font-mono text-slate-300 block mt-0.5 font-semibold">
-                    <span className="text-cyan-400 font-bold">{answeredCount}</span> / {handoverItems.length} {isTr ? 'Kalem Yanıtlandı' : 'Answered'}
+                  <span className="text-xs font-mono text-[var(--ink-muted)] block mt-0.5 font-semibold">
+                    <span className="text-[var(--accent)] font-bold">{answeredCount}</span> / {handoverItems.length} {isTr ? 'Kalem Yanıtlandı' : 'Answered'}
                     {answeredCount === handoverItems.length && (
-                      <span className="text-emerald-400 ml-2 font-bold">{isTr ? '✓ Analiz Hazır' : '✓ Ready'}</span>
+                      <span className="text-emerald-700 ml-2 font-semibold">{isTr ? '✓ Analiz Hazır' : '✓ Ready'}</span>
                     )}
                   </span>
                 </div>
-                <div className="w-full sm:w-64 h-2.5 sm:h-3 bg-black/50 rounded-full overflow-hidden border border-white/10 flex-shrink-0">
+                <div className="w-full sm:w-64 h-2.5 sm:h-3 bg-[var(--paper)] rounded overflow-hidden border border-[var(--rule)] flex-shrink-0">
                   <div 
-                    className="h-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-300 shadow-[0_0_12px_rgba(0,229,255,0.5)]"
+                    className="h-full bg-[var(--accent)] transition-all duration-300"
                     style={{ width: `${(answeredCount / handoverItems.length) * 100}%` }}
                   />
                 </div>
@@ -575,22 +563,22 @@ const DevirKontrolu = () => {
                 return (
                   <div 
                     key={item.id}
-                    className="p-6 sm:p-7 rounded-3xl bg-[#111827]/85 border border-white/10 shadow-xl space-y-4 hover:border-white/20 transition-all"
+                    className="p-6 sm:p-7 rounded bg-[var(--surface)] border border-[var(--rule)] shadow-sm space-y-4 hover:border-[var(--ink-muted)] transition-all"
                   >
                     <div className="flex items-start gap-3.5">
-                      <div className="p-3 rounded-2xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex-shrink-0 mt-0.5">
+                      <div className="p-3 rounded bg-[var(--accent-soft)] text-[var(--accent)] border border-[var(--accent)] flex-shrink-0 mt-0.5">
                         <IconComponent className="w-5 h-5" />
                       </div>
                       <div className="space-y-1 flex-1">
                         <div className="flex items-center justify-between flex-wrap gap-2">
-                          <h3 className="text-base sm:text-lg font-bold text-white">
+                          <h3 className="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">
                             {item.title[isTr ? 'tr' : 'en']}
                           </h3>
-                          <span className="text-[11px] font-mono px-2.5 py-0.5 rounded-full bg-white/5 text-slate-400 border border-white/10">
+                          <span className="text-xs font-mono px-2.5 py-0.5 rounded bg-[var(--paper)] text-[var(--ink-muted)] border border-[var(--rule)]">
                             {isTr ? `Ağırlık: ${item.weight} Puan` : `Weight: ${item.weight} Pts`}
                           </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        <p className="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">
                           {item.desc[isTr ? 'tr' : 'en']}
                         </p>
                       </div>
@@ -601,39 +589,39 @@ const DevirKontrolu = () => {
                       <button
                         type="button"
                         onClick={() => handleSelectAnswer(item.id, 'yes')}
-                        className={`py-3 px-3 rounded-xl border text-xs sm:text-sm font-bold flex items-center justify-center gap-2 cursor-pointer transition-all min-h-[48px] ${
+                        className={`py-3 px-3 rounded border text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all min-h-[44px] ${
                           currentAnswer === 'yes'
-                            ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300 shadow-[0_0_15px_rgba(16,185,129,0.2)]'
-                            : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
+                            ? 'bg-emerald-50 border-emerald-400 text-emerald-900 shadow-sm'
+                            : 'bg-[var(--paper)] border-[var(--rule)] text-[var(--ink)] hover:border-[var(--ink-muted)]'
                         }`}
                       >
-                        <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                        <CheckCircle2 className="w-4 h-4 text-emerald-700" />
                         <span>{isTr ? 'Evet, Var' : 'Yes, Secured'}</span>
                       </button>
 
                       <button
                         type="button"
                         onClick={() => handleSelectAnswer(item.id, 'unsure')}
-                        className={`py-3 px-3 rounded-xl border text-xs sm:text-sm font-bold flex items-center justify-center gap-2 cursor-pointer transition-all min-h-[48px] ${
+                        className={`py-3 px-3 rounded border text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all min-h-[44px] ${
                           currentAnswer === 'unsure'
-                            ? 'bg-amber-500/20 border-amber-400 text-amber-300 shadow-[0_0_15px_rgba(245,158,11,0.2)]'
-                            : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
+                            ? 'bg-amber-50 border-amber-400 text-amber-900 shadow-sm'
+                            : 'bg-[var(--paper)] border-[var(--rule)] text-[var(--ink)] hover:border-[var(--ink-muted)]'
                         }`}
                       >
-                        <HelpCircle className="w-4 h-4 text-amber-400" />
+                        <HelpCircle className="w-4 h-4 text-amber-700" />
                         <span>{isTr ? 'Emin Değilim' : 'Unsure'}</span>
                       </button>
 
                       <button
                         type="button"
                         onClick={() => handleSelectAnswer(item.id, 'no')}
-                        className={`py-3 px-3 rounded-xl border text-xs sm:text-sm font-bold flex items-center justify-center gap-2 cursor-pointer transition-all min-h-[48px] ${
+                        className={`py-3 px-3 rounded border text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all min-h-[44px] ${
                           currentAnswer === 'no'
-                            ? 'bg-red-500/20 border-red-400 text-red-300 shadow-[0_0_15px_rgba(239,68,68,0.2)]'
-                            : 'bg-white/5 border-white/10 text-slate-300 hover:bg-white/10'
+                            ? 'bg-red-50 border-red-400 text-red-900 shadow-sm'
+                            : 'bg-[var(--paper)] border-[var(--rule)] text-[var(--ink)] hover:border-[var(--ink-muted)]'
                         }`}
                       >
-                        <AlertTriangle className="w-4 h-4 text-red-400" />
+                        <AlertTriangle className="w-4 h-4 text-red-700" />
                         <span>{isTr ? 'Hayır, Yok' : 'No / Missing'}</span>
                       </button>
                     </div>
@@ -647,7 +635,7 @@ const DevirKontrolu = () => {
               <button
                 type="button"
                 onClick={() => setStep(1)}
-                className="px-6 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 font-semibold text-sm flex items-center gap-2 cursor-pointer min-h-[48px]"
+                className="px-6 py-3.5 rounded bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] font-medium text-sm flex items-center gap-2 cursor-pointer min-h-[44px]"
               >
                 <ArrowLeft className="w-4 h-4" /> {isTr ? 'Geri' : 'Back'}
               </button>
@@ -656,10 +644,10 @@ const DevirKontrolu = () => {
                 type="button"
                 disabled={!isAllAnswered}
                 onClick={completeChecklist}
-                className={`px-8 py-4 rounded-2xl font-black text-sm sm:text-base tracking-wide flex items-center gap-3 transition-all cursor-pointer min-h-[48px] ${
+                className={`px-8 py-3.5 rounded font-semibold text-sm sm:text-base tracking-wide flex items-center gap-3 transition-colors cursor-pointer min-h-[44px] ${
                   isAllAnswered
-                    ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-bg-dark shadow-lg shadow-cyan-500/25 hover:opacity-95 transform hover:-translate-y-0.5'
-                    : 'bg-white/10 text-slate-500 cursor-not-allowed'
+                    ? 'bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm'
+                    : 'bg-[var(--rule)] text-[var(--ink-muted)] cursor-not-allowed'
                 }`}
               >
                 <span>{isTr ? 'Devir Raporunu & Teşhisi Üret' : 'Generate Handover Report'}</span>
@@ -671,104 +659,100 @@ const DevirKontrolu = () => {
 
         {/* STEP 3: Results, Missing Items & Action Protocol */}
         {step === 3 && (
-          <div
-            
-            
-            className="space-y-8"
-          >
+          <div className="space-y-8">
             {/* Header Result Card */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#111827] via-[#0d131f] to-[#151f33] border border-cyan-500/30 shadow-2xl relative overflow-hidden">
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-white/10">
+            <div className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] shadow-sm relative overflow-hidden">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-[var(--rule)]">
                 <div>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-ping"></span>
-                    <span className="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
+                    <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase">
                       {isTr ? 'DEVİR HAZIRLIK ANALİZ RAPORU' : 'HANDOVER READINESS BLUEPRINT'}
                     </span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white">
+                  <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold font-serif text-[var(--ink)]">
                     {riskDetails.level}
                   </h2>
-                  <p className="text-sm sm:text-base text-slate-300 mt-2 max-w-xl leading-relaxed">
+                  <p className="text-sm sm:text-base text-[var(--ink-muted)] mt-2 max-w-xl leading-relaxed">
                     {riskDetails.summary}
                   </p>
                 </div>
 
                 {/* Score Rating Gauge */}
-                <div className="flex items-center gap-4 bg-white/5 p-4 rounded-2xl border border-white/10 flex-shrink-0">
+                <div className="flex items-center gap-4 bg-[var(--paper)] p-4 rounded border border-[var(--rule)] flex-shrink-0">
                   <div className="text-right">
-                    <span className="text-xs font-mono uppercase text-slate-400 block">{isTr ? 'Devir Riski' : 'Takeover Risk'}</span>
-                    <span className={`text-xs font-bold px-2.5 py-0.5 rounded-full ${riskDetails.bgColor} ${riskDetails.color}`}>
+                    <span className="text-xs font-mono uppercase text-[var(--ink-muted)] block">{isTr ? 'Devir Riski' : 'Takeover Risk'}</span>
+                    <span className={`text-xs font-semibold px-2.5 py-0.5 rounded ${riskDetails.bgColor} ${riskDetails.color}`}>
                       {riskScore >= 65 ? 'YÜKSEK TEHLİKE' : riskScore >= 35 ? 'DİKKAT GEREKTİRİR' : 'GÜVENLİ'}
                     </span>
                   </div>
-                  <div className="w-20 h-20 rounded-2xl bg-black/40 border border-cyan-500/40 flex flex-col items-center justify-center shadow-inner">
-                    <span className="text-3xl font-black font-mono text-white">%{riskScore}</span>
-                    <span className="text-[9px] font-mono text-cyan-400">RISK</span>
+                  <div className="w-20 h-20 rounded bg-[var(--surface)] border border-[var(--rule)] flex flex-col items-center justify-center">
+                    <span className="text-3xl font-bold font-mono text-[var(--ink)]">%{riskScore}</span>
+                    <span className="text-xs font-mono text-[var(--accent)]">RISK</span>
                   </div>
                 </div>
               </div>
 
               {/* Metric Highlights */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-6">
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-                  <span className="text-xs sm:text-sm text-slate-400 block mb-1">{isTr ? 'Eksik / Belirsiz Kalem' : 'Missing Checkpoints'}</span>
-                  <strong className="text-base sm:text-lg font-bold text-amber-400">{missingItems.length} / 12 {isTr ? 'Kalem' : 'Items'}</strong>
-                  <span className="text-xs text-slate-400 block mt-1">{criticalMissing.length} {isTr ? 'kritik erişim kalemi' : 'critical items'}</span>
+                <div className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)]">
+                  <span className="text-xs sm:text-sm text-[var(--ink-muted)] block mb-1">{isTr ? 'Eksik / Belirsiz Kalem' : 'Missing Checkpoints'}</span>
+                  <strong className="text-base sm:text-lg font-semibold text-amber-700">{missingItems.length} / 12 {isTr ? 'Kalem' : 'Items'}</strong>
+                  <span className="text-xs text-[var(--ink-muted)] block mt-1">{criticalMissing.length} {isTr ? 'kritik erişim kalemi' : 'critical items'}</span>
                 </div>
-                <div className="p-5 rounded-2xl bg-white/5 border border-cyan-500/30 bg-cyan-500/5">
-                  <span className="text-xs sm:text-sm text-cyan-300 font-bold block mb-1">{isTr ? 'İlk Teşhis & Triyaj' : 'Initial Triage'}</span>
-                  <strong className="text-base sm:text-lg font-bold text-emerald-400 font-mono">{isTr ? 'Ücretsiz' : 'Free'}</strong>
-                  <span className="text-xs text-cyan-400/80 block mt-1">{isTr ? 'Sonraki adımlar kapsama göre belirlenir' : 'Next steps scoped per project'}</span>
+                <div className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)]">
+                  <span className="text-xs sm:text-sm text-[var(--ink)] font-semibold block mb-1">{isTr ? 'İlk Teşhis & Triyaj' : 'Initial Triage'}</span>
+                  <strong className="text-base sm:text-lg font-semibold text-emerald-700 font-mono">{isTr ? 'Ücretsiz' : 'Free'}</strong>
+                  <span className="text-xs text-[var(--ink-muted)] block mt-1">{isTr ? 'Sonraki adımlar kapsama göre belirlenir' : 'Next steps scoped per project'}</span>
                 </div>
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-                  <span className="text-xs sm:text-sm text-slate-400 block mb-1">{isTr ? 'Önerilen Devir SLA' : 'Recommended SLA'}</span>
-                  <strong className="text-base sm:text-lg font-bold text-cyan-400">{riskDetails.sla}</strong>
-                  <span className="text-xs text-slate-400 block mt-1">{isTr ? 'İzole repo testi & devir' : 'Isolated repo testing'}</span>
+                <div className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)]">
+                  <span className="text-xs sm:text-sm text-[var(--ink-muted)] block mb-1">{isTr ? 'Önerilen Devir SLA' : 'Recommended SLA'}</span>
+                  <strong className="text-base sm:text-lg font-semibold text-[var(--accent)]">{riskDetails.sla}</strong>
+                  <span className="text-xs text-[var(--ink-muted)] block mt-1">{isTr ? 'İzole repo testi & devir' : 'Isolated repo testing'}</span>
                 </div>
-                <div className="p-5 rounded-2xl bg-white/5 border border-white/10">
-                  <span className="text-xs sm:text-sm text-slate-400 block mb-1">{isTr ? 'Çalışma Güvencesi' : 'TMA Guarantee'}</span>
-                  <strong className="text-base sm:text-lg font-bold text-emerald-400">%100 White-Label</strong>
-                  <span className="text-xs text-slate-400 block mt-1">{isTr ? 'Resmi NDA güvencesiyle' : 'Under mutual NDA'}</span>
+                <div className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)]">
+                  <span className="text-xs sm:text-sm text-[var(--ink-muted)] block mb-1">{isTr ? 'Çalışma Güvencesi' : 'TMA Guarantee'}</span>
+                  <strong className="text-base sm:text-lg font-semibold text-emerald-700">%100 White-Label</strong>
+                  <span className="text-xs text-[var(--ink-muted)] block mt-1">{isTr ? 'Resmi NDA güvencesiyle' : 'Under mutual NDA'}</span>
                 </div>
               </div>
             </div>
 
             {/* Missing Items Breakdown List */}
             {missingItems.length > 0 && (
-              <div className="p-6 sm:p-8 rounded-3xl bg-[#111827] border border-red-500/20 space-y-6">
-                <div className="flex items-center justify-between flex-wrap gap-4 border-b border-white/10 pb-4">
+              <div className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-6 shadow-sm">
+                <div className="flex items-center justify-between flex-wrap gap-4 border-b border-[var(--rule)] pb-4">
                   <div>
-                    <h3 className="text-xl font-bold text-white">
+                    <h3 className="text-xl font-semibold font-serif text-[var(--ink)]">
                       {isTr ? 'Eksik veya Belirsiz Tespit Edilen Kalemler' : 'Identified Missing or Unsure Checkpoints'}
                     </h3>
-                    <p className="text-xs sm:text-sm text-slate-400">
+                    <p className="text-xs sm:text-sm text-[var(--ink-muted)]">
                       {isTr ? 'Aşağıdaki kalemlerin eksik olması durumunda karşılaşacağınız olası teknik ve operasyonel riskler:' : 'Operational risks if these checkpoints remain unverified:'}
                     </p>
                   </div>
                   <button
                     type="button"
                     onClick={copyReport}
-                    className="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 flex items-center gap-2 transition-colors cursor-pointer"
+                    className="px-4 py-2.5 rounded bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] text-xs sm:text-sm font-semibold text-[var(--ink)] flex items-center gap-2 transition-colors cursor-pointer min-h-[44px]"
                   >
-                    {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4" />}
+                    {copied ? <Check className="w-4 h-4 text-emerald-700" /> : <Copy className="w-4 h-4 text-[var(--ink-muted)]" />}
                     <span>{copied ? (isTr ? 'Kopyalandı!' : 'Copied!') : (isTr ? 'Raporu Kopyala' : 'Copy Blueprint')}</span>
                   </button>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {missingItems.map(item => (
-                    <div key={item.id} className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
+                    <div key={item.id} className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-2">
                       <div className="flex items-center justify-between">
-                        <strong className="text-white text-sm sm:text-base font-bold">{item.title[isTr ? 'tr' : 'en']}</strong>
-                        <span className={`text-[10px] font-mono font-bold px-2 py-0.5 rounded-full ${
-                          answers[item.id] === 'no' ? 'bg-red-500/20 text-red-400' : 'bg-amber-500/20 text-amber-400'
+                        <strong className="text-[var(--ink)] text-sm sm:text-base font-semibold font-serif">{item.title[isTr ? 'tr' : 'en']}</strong>
+                        <span className={`text-xs font-mono font-semibold px-2 py-0.5 rounded ${
+                          answers[item.id] === 'no' ? 'bg-red-50 text-red-800 border border-red-200' : 'bg-amber-50 text-amber-800 border border-amber-200'
                         }`}>
                           {answers[item.id] === 'no' ? (isTr ? 'YOK' : 'MISSING') : (isTr ? 'EMİN DEĞİL' : 'UNSURE')}
                         </span>
                       </div>
-                      <p className="text-xs sm:text-[13px] text-slate-300 leading-relaxed border-l-2 border-red-500/50 pl-3">
-                        <strong className="text-red-400 block">{isTr ? 'Bu olmazsa ne olur?' : 'Impact if missing:'}</strong>
+                      <p className="text-xs sm:text-[13px] text-[var(--ink-muted)] leading-relaxed border-l-2 border-[var(--accent)] pl-3">
+                        <strong className="text-[var(--accent)] block">{isTr ? 'Bu olmazsa ne olur?' : 'Impact if missing:'}</strong>
                         {item.impact[isTr ? 'tr' : 'en']}
                       </p>
                     </div>
@@ -778,48 +762,48 @@ const DevirKontrolu = () => {
             )}
 
             {/* 3-Step Recovery Recipe */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#111827] border border-white/10 space-y-6">
-              <h3 className="text-xl sm:text-2xl font-bold text-white">
+            <div className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-6 shadow-sm">
+              <h3 className="text-xl sm:text-2xl font-semibold font-serif text-[var(--ink)]">
                 {isTr ? 'TMA 3 Adımlı Devir Toparlama Reçetesi' : 'TMA 3-Step Codebase Recovery Protocol'}
               </h3>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                <div className="p-6 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-3">
+                  <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[var(--surface)] text-[var(--ink)] border border-[var(--rule)]">
                     {isTr ? 'ADIM 01 (0 - 24 Saat)' : 'STEP 01 (0 - 24 Hours)'}
                   </span>
-                  <h4 className="text-base font-bold text-white">
+                  <h4 className="text-base font-semibold font-serif text-[var(--ink)]">
                     {isTr ? 'Erişim Dondurma & İzolasyon' : 'Credential Freeze & Isolation'}
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">
                     {isTr 
                       ? 'Git repo, DNS, sunucu ve ödeme paneli yönetici yetkileri ajansınız adına devralınır; ayrılan geliştiricinin kişisel hesap bağı koparılır.' 
                       : 'Master administrative access is transferred to your agency domain; developer personal card bindings are severed.'}
                   </p>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-orange-500/10 text-orange-400 border border-orange-500/30">
+                <div className="p-6 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-3">
+                  <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[var(--surface)] text-[var(--ink)] border border-[var(--rule)]">
                     {isTr ? 'ADIM 02 (24 - 48 Saat)' : 'STEP 02 (24 - 48 Hours)'}
                   </span>
-                  <h4 className="text-base font-bold text-white">
+                  <h4 className="text-base font-semibold font-serif text-[var(--ink)]">
                     {isTr ? 'Sandbox Derleme & .env Doğrulama' : 'Sandbox Build & Secrets Audit'}
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">
                     {isTr 
                       ? 'Kod izole bir staging sunucusunda sıfırdan derlenir; eksik ortam değişkenleri ve API bağlantıları canlıya dokunmadan test edilir.' 
                       : 'Code is spun up in an isolated staging sandbox; missing env variables and API endpoints are verified.'}
                   </p>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
-                  <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                <div className="p-6 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-3">
+                  <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[var(--surface)] text-[var(--ink)] border border-[var(--rule)]">
                     {isTr ? 'ADIM 03 (48 - 72 Saat)' : 'STEP 03 (48 - 72 Hours)'}
                   </span>
-                  <h4 className="text-base font-bold text-white">
+                  <h4 className="text-base font-semibold font-serif text-[var(--ink)]">
                     {isTr ? 'Temiz Devir & Dokümantasyon' : 'Clean Handover & Docs'}
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">
                     {isTr 
                       ? 'Eksik kurulum rehberi (README), OpenAPI şeması ve test suite tamamlanarak ajansınıza bağımsız çalışabilir biçimde teslim edilir.' 
                       : 'Setup guides, API schemas, and deployment documentation are finalized and delivered with full IP ownership.'}
@@ -829,17 +813,17 @@ const DevirKontrolu = () => {
             </div>
 
             {/* Email Lead Capture Card */}
-            <div className="p-8 rounded-3xl bg-[#0e1626] border border-cyan-500/30 text-left space-y-5 shadow-2xl">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+            <div className="p-8 rounded bg-[var(--surface)] border border-[var(--rule)] text-left space-y-5 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--rule)] pb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                  <div className="w-10 h-10 rounded bg-[var(--accent-soft)] text-[var(--accent)] flex items-center justify-center">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-lg font-bold text-white">
+                    <h4 className="text-lg font-semibold font-serif text-[var(--ink)]">
                       {isTr ? 'Bu Devir Raporunu & Eksik Kalem Listesini E-Postama Gönder' : 'Send This Handover Audit Report to My Email'}
                     </h4>
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-[var(--ink-muted)]">
                       {isTr ? 'Ajans içi değerlendirme ve ayrılan ekiple paylaşım için hazır teknik liste formatında iletilir.' : 'Sent in a ready-to-share checklist format for your agency stakeholders.'}
                     </p>
                   </div>
@@ -847,23 +831,23 @@ const DevirKontrolu = () => {
               </div>
 
               {leadSent === 'success' ? (
-                <div className="p-5 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-emerald-300 text-sm font-bold">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-400" />
+                <div className="p-5 rounded bg-emerald-50 border border-emerald-300 flex items-center gap-3 text-emerald-900 text-sm font-semibold">
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-700" />
                   <span>{isTr ? 'Devir raporu talebiniz başarıyla kaydedildi! Ekibimiz analizi hazırlayıp iletecektir.' : 'Handover report request logged successfully! Our SWAT engineers will deliver your audit.'}</span>
                 </div>
               ) : leadSent === 'error' ? (
-                <div className="p-5 rounded-2xl bg-amber-500/10 border border-amber-500/30 space-y-3">
-                  <div className="flex items-center gap-3 text-amber-300 text-sm font-bold">
-                    <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-400" />
+                <div className="p-5 rounded bg-amber-50 border border-amber-300 space-y-3">
+                  <div className="flex items-center gap-3 text-amber-900 text-sm font-semibold">
+                    <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-700" />
                     <span>{isTr ? 'Ağ kesintisi nedeniyle otomatik iletilemedi.' : 'Network interruption during auto-dispatch.'}</span>
                   </div>
-                  <p className="text-xs text-slate-300">
+                  <p className="text-xs text-[var(--ink-muted)]">
                     {isTr ? 'Raporunuz hazır. Aşağıdaki butona tıklayarak WhatsApp üzerinden doğrudan talep edebilirsiniz:' : 'Your audit is ready. Request directly via WhatsApp:'}
                   </p>
                   <button
                     type="button"
                     onClick={openWhatsAppDispatch}
-                    className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                    className="w-full py-3 px-4 rounded bg-[#1f7a4d] hover:bg-[#18633e] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-sm min-h-[44px]"
                   >
                     <PhoneCall className="w-4 h-4" />
                     <span>{isTr ? 'WhatsApp ile Raporu Talep Et →' : 'Request Report via WhatsApp →'}</span>
@@ -883,7 +867,7 @@ const DevirKontrolu = () => {
                     placeholder={isTr ? 'Adınız Soyadınız' : 'Your Full Name'}
                     value={leadName}
                     onChange={e => setLeadName(e.target.value)}
-                    className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                    className="px-4 py-3 rounded bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] placeholder:text-[var(--ink-muted)] text-sm focus:border-[var(--accent)] focus:outline-none min-h-[44px]"
                   />
                   <input
                     type="email"
@@ -891,20 +875,20 @@ const DevirKontrolu = () => {
                     placeholder={isTr ? 'Kurumsal E-Posta Adresiniz' : 'Corporate Email Address'}
                     value={leadEmail}
                     onChange={e => setLeadEmail(e.target.value)}
-                    className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                    className="px-4 py-3 rounded bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] placeholder:text-[var(--ink-muted)] text-sm focus:border-[var(--accent)] focus:outline-none min-h-[44px]"
                   />
                   <input
                     type="tel"
                     placeholder={isTr ? 'WhatsApp / Telefon (Opsiyonel)' : 'Phone (Optional)'}
                     value={leadPhone}
                     onChange={e => setLeadPhone(e.target.value)}
-                    className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                    className="px-4 py-3 rounded bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] placeholder:text-[var(--ink-muted)] text-sm focus:border-[var(--accent)] focus:outline-none min-h-[44px]"
                   />
                   <div className="sm:col-span-3">
                     <button
                       type="submit"
                       disabled={isSendingLead}
-                      className="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm tracking-wide transition-all shadow-lg shadow-cyan-500/20 cursor-pointer disabled:opacity-50"
+                      className="w-full py-3 px-6 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-sm tracking-wide transition-colors shadow-sm cursor-pointer disabled:opacity-50 min-h-[44px]"
                     >
                       {isSendingLead ? (isTr ? 'İletiliyor...' : 'Sending...') : (isTr ? 'Raporu & Kontrol Listesini E-Postama Gönder →' : 'Send Blueprint to My Email →')}
                     </button>
@@ -914,12 +898,12 @@ const DevirKontrolu = () => {
             </div>
 
             {/* Direct Action Area */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-emerald-950/40 via-teal-950/20 to-transparent border border-emerald-500/30 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
               <div className="space-y-1 text-center sm:text-left">
-                <h4 className="text-lg sm:text-xl font-bold text-white">
+                <h4 className="text-lg sm:text-xl font-semibold font-serif text-[var(--ink)]">
                   {isTr ? 'Yazılımcınız Ayrılmadan Önce Devir Sürecini Birlikte Yönetelim' : 'Let’s Supervise the Handover Before Your Dev Leaves'}
                 </h4>
-                <p className="text-xs sm:text-sm text-slate-300">
+                <p className="text-xs sm:text-sm text-[var(--ink-muted)]">
                   {isTr ? 'Geliştiricinizle aranıza girmeden, %100 White-Label ve resmi NDA altında teknik denetimi yürütüyoruz.' : 'We audit codebase completeness invisibly under strict mutual NDA.'}
                 </p>
               </div>
@@ -929,7 +913,7 @@ const DevirKontrolu = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'handover_result', agency_code: campaignParams.agency_code })}
-                  className="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm sm:text-base flex items-center gap-2 whitespace-nowrap shadow-xl shadow-cyan-500/25 cursor-pointer transform hover:-translate-y-0.5 transition-all min-h-[48px]"
+                  className="px-6 py-3 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-sm sm:text-base flex items-center gap-2 whitespace-nowrap shadow-sm cursor-pointer transition-colors min-h-[44px]"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>{isTr ? 'Takvimden 30 Dakikalık Görüşme Seç' : 'Book a 30-Minute Intro Call'}</span>
@@ -938,9 +922,9 @@ const DevirKontrolu = () => {
                 <button
                   type="button"
                   onClick={openWhatsAppDispatch}
-                  className="px-5 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-bold text-sm flex items-center gap-2 whitespace-nowrap cursor-pointer transition-colors min-h-[48px]"
+                  className="px-5 py-3 rounded bg-[#1f7a4d] hover:bg-[#18633e] text-white font-semibold text-sm flex items-center gap-2 whitespace-nowrap cursor-pointer transition-colors min-h-[44px]"
                 >
-                  <PhoneCall className="w-4 h-4 text-emerald-400" />
+                  <PhoneCall className="w-4 h-4" />
                   <span>{isTr ? 'WhatsApp ile Danışın' : 'Consult via WhatsApp'}</span>
                 </button>
               </div>
@@ -955,7 +939,7 @@ const DevirKontrolu = () => {
                   setAnswers({});
                   setLeadSent(null);
                 }}
-                className="text-xs sm:text-sm text-slate-400 hover:text-white underline cursor-pointer flex items-center gap-1.5"
+                className="text-xs sm:text-sm text-[var(--ink-muted)] hover:text-[var(--ink)] underline cursor-pointer flex items-center gap-1.5 min-h-[44px]"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 <span>{isTr ? 'Kontrolü Baştan Başlat' : 'Restart Audit'}</span>

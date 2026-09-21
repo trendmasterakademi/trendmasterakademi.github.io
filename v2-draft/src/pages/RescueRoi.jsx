@@ -92,27 +92,27 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
   };
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-emerald-500/30">
+    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-white">
       {/* Header */}
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-800/60 text-emerald-400 text-xs font-mono font-medium uppercase tracking-widest mb-4">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
+          <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
           {t.hero.badge}
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[var(--ink)] mb-4">
           {t.hero.title}
         </h1>
-        <p className="text-base sm:text-lg text-neutral-400 max-w-3xl mx-auto mb-4">
+        <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-3xl mx-auto mb-4">
           {t.hero.subtitle}
         </p>
-        <p className="text-xs text-neutral-500 font-mono">
+        <p className="text-xs text-[var(--ink-muted)] font-mono">
           💼 {t.hero.notice}
         </p>
       </div>
 
       {/* Preset Selector */}
       <div className="max-w-6xl mx-auto mb-10">
-        <span className="text-xs font-mono text-neutral-400 uppercase tracking-wider block mb-3 text-center">
+        <span className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider block mb-3 text-center">
           {t.labels.presetTitle}
         </span>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -120,14 +120,14 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
             <button
               key={preset.id}
               onClick={() => applyPreset(preset.id)}
-              className={`p-4 rounded-xl text-left border transition-all ${
+              className={`p-4 rounded-xl text-left border transition-all cursor-pointer min-h-[48px] ${
                 selectedPreset === preset.id
-                  ? "bg-emerald-950/40 border-emerald-500 text-white shadow-lg shadow-emerald-950/30"
-                  : "bg-neutral-900/60 border-neutral-800 text-neutral-400 hover:border-neutral-700 hover:text-white"
+                  ? "bg-[var(--accent-subtle)] border-[var(--accent)] text-[var(--ink)] shadow-sm"
+                  : "bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-light)] hover:border-[var(--ink-muted)] hover:text-[var(--ink)]"
               }`}
             >
               <h3 className="text-sm font-bold font-mono tracking-tight">{preset.name}</h3>
-              <p className="text-xs text-neutral-500 mt-1 font-mono">
+              <p className="text-xs text-[var(--ink-muted)] mt-1 font-mono">
                 {preset.teamSize} Devs • {preset.rebuildMonths} Mo Rebuild
               </p>
             </button>
@@ -139,17 +139,17 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
         {/* Controls Column */}
         <div className="lg:col-span-6 space-y-5">
-          <div className="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-6 shadow-xl space-y-5">
-            <h2 className="text-base font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+          <div className="bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-6 shadow-sm space-y-5">
+            <h2 className="text-base font-serif font-semibold text-[var(--ink)] flex items-center gap-2 border-b border-[var(--rule)] pb-3">
+              <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
               {lang === "en" ? "Rebuild Assumptions & Team Metrics" : "Sıfırdan Yazım Parametreleri & Maliyetler"}
             </h2>
 
             {/* Team Size Slider */}
             <div>
               <div className="flex justify-between text-xs font-mono mb-2">
-                <label htmlFor="team-size-slider" className="text-neutral-300 font-medium">{t.labels.teamSize}</label>
-                <span className="text-emerald-400 font-bold">{teamSize} {lang === "en" ? "Engineers" : "Mühendis"}</span>
+                <label htmlFor="team-size-slider" className="text-[var(--ink)] font-medium">{t.labels.teamSize}</label>
+                <span className="text-[var(--accent)] font-bold">{teamSize} {lang === "en" ? "Engineers" : "Mühendis"}</span>
               </div>
               <input
                 id="team-size-slider"
@@ -160,15 +160,15 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                 aria-label={t.labels.teamSize}
                 value={teamSize}
                 onChange={(e) => setTeamSize(Number(e.target.value))}
-                className="w-full accent-emerald-500 cursor-pointer"
+                className="w-full accent-[var(--accent)] cursor-pointer"
               />
             </div>
 
             {/* Rebuild Duration Slider */}
             <div>
               <div className="flex justify-between text-xs font-mono mb-2">
-                <label htmlFor="rebuild-months-slider" className="text-neutral-300 font-medium">{t.labels.rebuildMonths}</label>
-                <span className="text-white font-bold">{rebuildMonths} {lang === "en" ? "Months" : "Ay"}</span>
+                <label htmlFor="rebuild-months-slider" className="text-[var(--ink)] font-medium">{t.labels.rebuildMonths}</label>
+                <span className="text-[var(--ink)] font-bold">{rebuildMonths} {lang === "en" ? "Months" : "Ay"}</span>
               </div>
               <input
                 id="rebuild-months-slider"
@@ -179,26 +179,26 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                 aria-label={t.labels.rebuildMonths}
                 value={rebuildMonths}
                 onChange={(e) => setRebuildMonths(Number(e.target.value))}
-                className="w-full accent-emerald-500 cursor-pointer"
+                className="w-full accent-[var(--accent)] cursor-pointer"
               />
             </div>
 
             {/* Numerical Inputs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
               <div>
-                <label htmlFor="monthly-rate-input" className="block text-neutral-400 mb-1">{t.labels.monthlyRate}</label>
+                <label htmlFor="monthly-rate-input" className="block text-[var(--ink-light)] mb-1">{t.labels.monthlyRate}</label>
                 <input
                   id="monthly-rate-input"
                   type="number"
                   aria-label={t.labels.monthlyRate}
                   value={monthlyRatePerDev}
                   onChange={(e) => setMonthlyRatePerDev(Math.max(0, Number(e.target.value)))}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               <div>
-                <label htmlFor="recruiting-months-input" className="block text-neutral-400 mb-1">{t.labels.recruitingMonths}</label>
+                <label htmlFor="recruiting-months-input" className="block text-[var(--ink-light)] mb-1">{t.labels.recruitingMonths}</label>
                 <input
                   id="recruiting-months-input"
                   type="number"
@@ -207,20 +207,20 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                   aria-label={t.labels.recruitingMonths}
                   value={recruitingMonths}
                   onChange={(e) => setRecruitingMonths(Math.max(0, Number(e.target.value)))}
-                  className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-emerald-500"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
             </div>
 
             <div className="text-xs font-mono">
-              <label htmlFor="monthly-rev-risk-input" className="block text-neutral-400 mb-1">{t.labels.monthlyRevenue}</label>
+              <label htmlFor="monthly-rev-risk-input" className="block text-[var(--ink-light)] mb-1">{t.labels.monthlyRevenue}</label>
               <input
                 id="monthly-rev-risk-input"
                 type="number"
                 aria-label={t.labels.monthlyRevenue}
                 value={monthlyRevenueAtRisk}
                 onChange={(e) => setMonthlyRevenueAtRisk(Math.max(0, Number(e.target.value)))}
-                className="w-full bg-neutral-950 border border-neutral-800 rounded-lg p-2.5 text-white focus:outline-none focus:border-emerald-500"
+                className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
               />
             </div>
           </div>
@@ -228,55 +228,53 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
 
         {/* Financial ROI Output Column */}
         <div className="lg:col-span-6 space-y-5">
-          <div className="bg-neutral-900/90 border border-emerald-900/60 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-3xl -z-10"></div>
-
-            <span className="text-xs font-mono uppercase text-emerald-400 tracking-wider block mb-2 font-semibold">
+          <div className="bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
+            <span className="text-xs font-mono uppercase text-[var(--accent)] tracking-wider block mb-2 font-semibold">
               {t.labels.capitalSaved}
             </span>
-            <div className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white font-mono tracking-tight mb-4">
+            <div className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-[var(--ink)] font-mono tracking-tight mb-4">
               {formatCurrency(metrics.netCapitalSaved)}
             </div>
 
             {/* Key Value Cards */}
             <div className="grid grid-cols-2 gap-3 mb-6 font-mono">
-              <div className="p-3.5 rounded-xl bg-neutral-950 border border-neutral-800/80">
-                <span className="text-[10px] text-neutral-400 uppercase block mb-1">
+              <div className="p-3.5 rounded-xl bg-[var(--paper)] border border-[var(--rule)]">
+                <span className="text-xs text-[var(--ink-muted)] uppercase block mb-1">
                   {t.labels.timeSaved}
                 </span>
-                <span className="text-2xl font-extrabold text-white">
+                <span className="text-2xl font-bold text-[var(--ink)]">
                   {metrics.timeSavedMonths} {lang === "en" ? "Mo" : "Ay"}
                 </span>
               </div>
 
-              <div className="p-3.5 rounded-xl bg-neutral-950 border border-neutral-800/80">
-                <span className="text-[10px] text-neutral-400 uppercase block mb-1">
+              <div className="p-3.5 rounded-xl bg-[var(--paper)] border border-[var(--rule)]">
+                <span className="text-xs text-[var(--ink-muted)] uppercase block mb-1">
                   {t.labels.roiMultiplier}
                 </span>
-                <span className="text-2xl font-extrabold text-emerald-400">
+                <span className="text-2xl font-bold text-[var(--accent)]">
                   {metrics.roiMultiplier}x
                 </span>
               </div>
             </div>
 
             {/* Comparison Details */}
-            <div className="space-y-3 border-t border-neutral-800/80 pt-5 text-xs font-mono">
-              <div className="flex justify-between items-center p-2.5 rounded-lg bg-neutral-950 border border-neutral-800">
-                <span className="text-neutral-400">{t.labels.rebuildSummaryTitle} ({metrics.totalRebuildMonths} Ay):</span>
-                <span className="font-bold text-rose-400">{formatCurrency(metrics.totalRebuildCost)}</span>
+            <div className="space-y-3 border-t border-[var(--rule)] pt-5 text-xs font-mono">
+              <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
+                <span className="text-[var(--ink-light)]">{t.labels.rebuildSummaryTitle} ({metrics.totalRebuildMonths} Ay):</span>
+                <span className="font-bold text-rose-700">{formatCurrency(metrics.totalRebuildCost)}</span>
               </div>
 
-              <div className="flex justify-between items-center p-2.5 rounded-lg bg-neutral-950 border border-neutral-800">
-                <span className="text-neutral-400">{t.labels.rescueSummaryTitle} (~3 Hafta):</span>
-                <span className="font-bold text-emerald-400">{formatCurrency(metrics.tmaRescueCost)}</span>
+              <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
+                <span className="text-[var(--ink-light)]">{t.labels.rescueSummaryTitle} (~3 Hafta):</span>
+                <span className="font-bold text-emerald-700">{formatCurrency(metrics.tmaRescueCost)}</span>
               </div>
             </div>
 
             {/* Actions */}
-            <div className="mt-6 space-y-2.5 border-t border-neutral-800/80 pt-6">
+            <div className="mt-6 space-y-2.5 border-t border-[var(--rule)] pt-6">
               <button
                 onClick={copyBrief}
-                className="w-full py-2.5 px-4 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-xs font-mono font-medium text-white transition flex items-center justify-center gap-2"
+                className="btn-secondary min-h-[44px] w-full text-xs font-mono font-medium flex items-center justify-center gap-2 cursor-pointer"
               >
                 📋 {copied ? t.labels.copiedNotice : t.labels.copyReport}
               </button>
@@ -285,7 +283,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                 href={getCalendlyUrl(lang)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-xs font-mono font-bold text-white transition flex items-center justify-center gap-2 text-center shadow-lg shadow-emerald-950/60"
+                className="btn-primary min-h-[44px] w-full text-xs font-mono font-semibold flex items-center justify-center gap-2 text-center"
               >
                 ⚡ {t.labels.triageCta}
               </a>
@@ -296,22 +294,22 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
 
       {/* Comparison Grid: Rebuild Liabilities vs Rescue Advantages */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="p-6 rounded-2xl bg-neutral-900/40 border border-neutral-800/80 space-y-3">
-          <h2 className="text-sm font-mono font-bold text-rose-400 uppercase tracking-wider">
+        <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+          <h2 className="text-sm font-mono font-semibold text-rose-700 uppercase tracking-wider">
             {t.labels.rebuildBreakdown}
           </h2>
-          <ul className="text-xs text-neutral-300 space-y-2 list-disc list-inside font-sans">
+          <ul className="text-xs text-[var(--ink-light)] space-y-2 list-disc list-inside font-sans">
             {t.rebuildItems.map((item, idx) => (
               <li key={idx} className="leading-relaxed">{item}</li>
             ))}
           </ul>
         </div>
 
-        <div className="p-6 rounded-2xl bg-neutral-900/40 border border-neutral-800/80 space-y-3">
-          <h2 className="text-sm font-mono font-bold text-emerald-400 uppercase tracking-wider">
+        <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+          <h2 className="text-sm font-mono font-semibold text-emerald-700 uppercase tracking-wider">
             {t.labels.rescueBreakdown}
           </h2>
-          <ul className="text-xs text-neutral-300 space-y-2 list-disc list-inside font-sans">
+          <ul className="text-xs text-[var(--ink-light)] space-y-2 list-disc list-inside font-sans">
             {t.rescueItems.map((item, idx) => (
               <li key={idx} className="leading-relaxed">{item}</li>
             ))}

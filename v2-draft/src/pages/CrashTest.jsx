@@ -125,9 +125,9 @@ const scenarios = [
     title: { tr: 'Teslime 48 Saat Kaldı / Lansman Krizi', en: '48 Hours to Launch / Delivery Crunch' },
     subtitle: { tr: 'Kapasite açığı · Yetişmeyen modüller · Acil bitirme baskısı', en: 'Capacity shortage · Pending modules · Urgent delivery crunch' },
     icon: Clock,
-    color: 'from-cyan-500/20 to-blue-500/20',
-    borderColor: 'border-cyan-500/40',
-    badgeColor: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/30',
+    color: 'bg-[var(--surface)]',
+    borderColor: 'border-[var(--rule)]',
+    badgeColor: 'text-[var(--accent)] bg-[var(--paper)] border-[var(--rule)]',
     questions: [
       {
         id: 'remainingWork',
@@ -526,28 +526,24 @@ const CrashTest = () => {
   };
 
   return (
-    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[#080b11] text-slate-200 relative font-sans">
-      {/* Background Glows */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] bg-gradient-to-b from-cyan-500/10 via-red-500/5 to-transparent blur-[140px] pointer-events-none -z-10"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(#1f293d_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none -z-10"></div>
-
+    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[var(--paper)] text-[var(--ink)] relative font-sans">
       <div className="max-w-6xl mx-auto">
         
         {/* Top Eyebrow & Status */}
-        <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-white/10">
+        <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-[var(--rule)]">
           <div className="flex items-center gap-3">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span lang="en" className="text-xs sm:text-sm font-mono tracking-widest text-slate-300 uppercase">
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+            <span lang="en" className="text-xs sm:text-sm font-mono tracking-widest text-[var(--ink-muted)] uppercase">
               TMA Response Desk // Diagnostic Engine
             </span>
           </div>
           <div className="flex items-center gap-2">
-            <span className="px-3 py-1 rounded-full text-xs font-mono bg-cyan-500/10 text-cyan-300 border border-cyan-500/30">
+            <span className="px-3 py-1 rounded text-xs font-mono bg-[var(--surface)] text-[var(--ink)] border border-[var(--rule)]">
               ⚡ {isTr ? '60 SANİYELİK SİMÜLASYON' : '60-SECOND SIMULATION'}
             </span>
             <button
               onClick={() => setIsSOSOpen(true)}
-              className="px-3 py-1 rounded-full text-xs font-bold bg-red-500/20 text-red-400 border border-red-500/40 hover:bg-red-500/30 transition-colors flex items-center gap-1.5 cursor-pointer"
+              className="px-3 py-1 rounded text-xs font-semibold bg-[var(--accent)]/10 text-[var(--accent)] border border-[var(--accent)]/30 hover:bg-[var(--accent)]/20 transition-colors flex items-center gap-1.5 cursor-pointer min-h-[44px]"
             >
               <AlertTriangle className="w-3.5 h-3.5" /> {isTr ? 'Acil SOS Masası' : 'Emergency SOS Desk'}
             </button>
@@ -557,36 +553,36 @@ const CrashTest = () => {
         {/* Hero of Crash Test */}
         {step < 3 && (
           <div className="text-center max-w-3xl mx-auto mb-12">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-mono font-bold uppercase tracking-wider mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded bg-[var(--accent)]/10 border border-[var(--accent)]/30 text-[var(--accent)] text-xs font-mono font-semibold uppercase tracking-wider mb-4">
               <ShieldAlert className="w-4 h-4" /> {isTr ? 'Ajans Kriz Dayanıklılık & Teşhis Testi' : 'Agency Crisis Resilience & Diagnostic Test'}
             </div>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black font-mono tracking-tight text-white mb-5 leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold tracking-tight text-[var(--ink)] mb-5 leading-tight">
               <span className="block">
                 {isTr ? 'Ajansınız teknik bir krize ' : 'Is your agency '}
               </span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-300 to-cyan-400">
+              <span className="block text-[var(--accent)]">
                 {isTr ? 'gerçekten hazır mı?' : 'truly ready for a technical crisis?'}
               </span>
             </h1>
-            <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+            <p className="text-[var(--ink-muted)] text-base sm:text-lg leading-relaxed">
               {isTr 
                 ? 'Kritik kod kilitlenmeleri, devir süreçleri tıkanmış yarım kalan projeler veya yaklaşan teslimat baskısı altında durumunuzu doğrudan teşhis edin. Eşleşen arıza tablosunu ve 3 aşamalı eylem reçetesini görün.' 
                 : 'Diagnose your situation under live outages, stranded repositories, or tight delivery deadlines. Review the matching fault blueprint and your 3-phase action recovery recipe.'}
             </p>
 
             {/* Quick Guarantees Bar */}
-            <div className="grid grid-cols-3 gap-3 max-w-md mx-auto mt-8 p-3.5 rounded-2xl bg-white/5 border border-white/10 text-xs sm:text-sm text-slate-200">
+            <div className="grid grid-cols-3 gap-3 max-w-md mx-auto mt-8 p-3.5 rounded bg-[var(--surface)] border border-[var(--rule)] text-xs sm:text-sm text-[var(--ink)]">
               <div className="text-center">
-                <strong className="block text-white font-bold text-sm sm:text-base">60 {isTr ? 'Sn' : 'Sec'}</strong>
-                <span className="text-slate-400 text-xs">{isTr ? 'Ortalama Süre' : 'Average Time'}</span>
+                <strong className="block text-[var(--ink)] font-semibold text-sm sm:text-base">60 {isTr ? 'Sn' : 'Sec'}</strong>
+                <span className="text-[var(--ink-muted)] text-xs">{isTr ? 'Ortalama Süre' : 'Average Time'}</span>
               </div>
-              <div className="text-center border-x border-white/10">
-                <strong className="block text-emerald-400 font-bold text-sm sm:text-base">0 {isTr ? 'Erişim' : 'Access'}</strong>
-                <span className="text-slate-400 text-xs">{isTr ? 'Şifre / Repo İstemez' : 'Zero Repo/Credentials'}</span>
+              <div className="text-center border-x border-[var(--rule)]">
+                <strong className="block text-emerald-600 font-semibold text-sm sm:text-base">0 {isTr ? 'Erişim' : 'Access'}</strong>
+                <span className="text-[var(--ink-muted)] text-xs">{isTr ? 'Şifre / Repo İstemez' : 'Zero Repo/Credentials'}</span>
               </div>
               <div className="text-center">
-                <strong className="block text-cyan-400 font-bold text-sm sm:text-base">1 {isTr ? 'Teşhis' : 'Diagnosis'}</strong>
-                <span className="text-slate-400 text-xs">{isTr ? 'Doğrudan Eşleşme' : 'Direct Blueprint Match'}</span>
+                <strong className="block text-[var(--accent)] font-semibold text-sm sm:text-base">1 {isTr ? 'Teşhis' : 'Diagnosis'}</strong>
+                <span className="text-[var(--ink-muted)] text-xs">{isTr ? 'Doğrudan Eşleşme' : 'Direct Blueprint Match'}</span>
               </div>
             </div>
           </div>
@@ -602,12 +598,12 @@ const CrashTest = () => {
             ].map((item) => (
               <div
                 key={item.s}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs sm:text-sm font-mono transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded text-xs sm:text-sm font-mono transition-all ${
                   step === item.s
-                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-bold shadow-[0_0_15px_rgba(0,229,255,0.2)]'
+                    ? 'bg-[var(--surface)] text-[var(--accent)] border border-[var(--accent)] font-semibold shadow-sm'
                     : step > item.s
-                    ? 'bg-white/5 text-emerald-400 border border-emerald-500/30'
-                    : 'bg-white/5 text-slate-500 border border-white/5'
+                    ? 'bg-[var(--surface)] text-emerald-600 border border-emerald-500/30'
+                    : 'bg-[var(--paper)] text-[var(--ink-muted)] border border-[var(--rule)]'
                 }`}
               >
                 <span>{item.label}</span>
@@ -627,30 +623,30 @@ const CrashTest = () => {
                   <button
                     key={sc.id}
                     onClick={() => handleScenarioSelect(sc)}
-                    className={`p-6 sm:p-7 rounded-3xl text-left border transition-all duration-300 relative group cursor-pointer overflow-hidden ${
+                    className={`p-6 sm:p-7 rounded-xl text-left border transition-all duration-300 relative group cursor-pointer overflow-hidden ${
                       sc.id === 'complex' ? 'md:col-span-2' : ''
                     } ${
                       isSelected
-                        ? `bg-gradient-to-br ${sc.color} ${sc.borderColor} shadow-[0_0_30px_rgba(0,229,255,0.15)] ring-1 ring-white/20`
-                        : 'bg-[#111827]/80 border-white/10 hover:border-white/25 hover:bg-[#151f33]'
+                        ? 'bg-[var(--surface)] border-[var(--accent)] shadow-sm ring-1 ring-[var(--accent)]'
+                        : 'bg-[var(--surface)] border-[var(--rule)] hover:border-[var(--rule-dark)]'
                     }`}
                   >
                     <div className="flex items-start justify-between mb-4">
-                      <div className={`p-3.5 rounded-2xl ${isSelected ? 'bg-white/10' : 'bg-white/5'} border border-white/10`}>
-                        <IconComponent className={`w-6 h-6 ${isSelected ? 'text-white' : 'text-slate-400 group-hover:text-white'}`} />
+                      <div className={`p-3.5 rounded ${isSelected ? 'bg-[var(--paper)] text-[var(--accent)]' : 'bg-[var(--paper)] text-[var(--ink-muted)]'} border border-[var(--rule)]`}>
+                        <IconComponent className="w-6 h-6" />
                       </div>
                       <div className="flex flex-col items-end gap-1">
-                        <span className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-bold border ${sc.badgeColor}`}>
+                        <span className={`px-2.5 py-0.5 rounded text-xs font-mono font-semibold border ${sc.badgeColor}`}>
                           {sc.tag[isTr ? 'tr' : 'en']}
                         </span>
-                        <span className="text-xs font-mono text-slate-400 font-bold">{sc.code}</span>
+                        <span className="text-xs font-mono text-[var(--ink-muted)] font-semibold">{sc.code}</span>
                       </div>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-cyan-300 transition-colors">
+                    <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] mb-2 group-hover:text-[var(--accent)] transition-colors">
                       {sc.title[isTr ? 'tr' : 'en']}
                     </h3>
-                    <p className="text-sm text-slate-300 leading-relaxed">
+                    <p className="text-sm text-[var(--ink-muted)] leading-relaxed">
                       {sc.subtitle[isTr ? 'tr' : 'en']}
                     </p>
                   </button>
@@ -671,7 +667,7 @@ const CrashTest = () => {
                     });
                   }
                 }}
-                className="px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-sm sm:text-base tracking-wide flex items-center gap-3 shadow-lg shadow-cyan-500/25 transition-all transform hover:-translate-y-0.5 cursor-pointer min-h-[48px]"
+                className="px-8 py-4 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-sm sm:text-base tracking-wide flex items-center gap-3 shadow-sm transition-colors cursor-pointer min-h-[48px]"
               >
                 <span>{isTr ? 'Durum Teşhisine Geç' : 'Proceed to Diagnosis'}</span>
                 <ArrowRight className="w-5 h-5" />
@@ -684,16 +680,16 @@ const CrashTest = () => {
         {step === 2 && (
           <div className="space-y-6">
             {/* Sticky Unified Scenario & Progress Header */}
-            <div className="sticky top-[78px] sm:top-[92px] md:top-[100px] z-40 p-4 sm:p-5 rounded-2xl bg-[#080b11]/98 backdrop-blur-2xl border border-cyan-500/40 shadow-[0_15px_45px_rgba(0,0,0,0.95)] space-y-3.5 transition-all">
+            <div className="sticky top-[78px] sm:top-[92px] md:top-[100px] z-40 p-4 sm:p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] shadow-sm space-y-3.5 transition-all">
               {/* Eyebrow & Status Bar */}
-              <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-white/10 text-xs font-mono">
+              <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-[var(--rule)] text-xs font-mono">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-red-400 animate-pulse"></span>
-                  <span className="text-[11px] sm:text-xs text-slate-300 uppercase tracking-wider">
+                  <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
+                  <span className="text-xs text-[var(--ink-muted)] uppercase tracking-wider">
                     TMA Crash Simulator // {selectedScenario.code}
                   </span>
                 </div>
-                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-red-500/10 text-red-400 border border-red-500/30">
+                <span className="px-2 py-0.5 rounded text-xs font-semibold bg-[var(--paper)] text-[var(--ink-muted)] border border-[var(--rule)]">
                   {isTr ? '%100 Güvenli Analiz' : '100% Confidential'}
                 </span>
               </div>
@@ -701,27 +697,27 @@ const CrashTest = () => {
               {/* Progress & Title Row */}
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <span className="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-mono font-bold bg-cyan-500/15 border border-cyan-500/30 text-cyan-300">
+                  <span className="px-2.5 py-1 rounded text-xs sm:text-sm font-mono font-semibold bg-[var(--paper)] border border-[var(--rule)] text-[var(--accent)]">
                     {selectedScenario.code}
                   </span>
                   <div>
-                    <strong className="text-white text-sm sm:text-base block">{selectedScenario.title[isTr ? 'tr' : 'en']}</strong>
-                    <span className="text-xs text-slate-400">
+                    <strong className="text-[var(--ink)] text-sm sm:text-base block">{selectedScenario.title[isTr ? 'tr' : 'en']}</strong>
+                    <span className="text-xs text-[var(--ink-muted)]">
                       {Object.keys(answers).length} / {currentQuestions.length} {isTr ? 'Soru Yanıtlandı' : 'Answered'}
                     </span>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-28 sm:w-48 h-2.5 sm:h-3 bg-black/50 rounded-full overflow-hidden border border-white/10">
+                  <div className="w-28 sm:w-48 h-2.5 sm:h-3 bg-[var(--paper)] rounded-full overflow-hidden border border-[var(--rule)]">
                     <div 
-                      className="h-full bg-gradient-to-r from-red-500 to-cyan-400 transition-all duration-300"
+                      className="h-full bg-[var(--accent)] transition-all duration-300"
                       style={{ width: `${(Object.keys(answers).length / currentQuestions.length) * 100}%` }}
                     />
                   </div>
                   <button
                     type="button"
                     onClick={() => setStep(1)}
-                    className="text-xs sm:text-sm text-slate-400 hover:text-white underline cursor-pointer whitespace-nowrap"
+                    className="text-xs sm:text-sm text-[var(--ink-muted)] hover:text-[var(--ink)] underline cursor-pointer whitespace-nowrap min-h-[44px] inline-flex items-center"
                   >
                     {isTr ? 'Senaryoyu Değiştir' : 'Change Scenario'}
                   </button>
@@ -732,12 +728,12 @@ const CrashTest = () => {
             {/* Questions List */}
             <div className="space-y-6">
               {currentQuestions.map((q, idx) => (
-                <div key={q.id} className="p-6 sm:p-7 rounded-3xl bg-[#111827]/85 border border-white/10 shadow-xl space-y-4">
+                <div key={q.id} className="p-6 sm:p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] shadow-sm space-y-4">
                   <div className="flex items-center gap-3">
-                    <span className="w-7 h-7 rounded-full bg-cyan-500/20 text-cyan-400 flex items-center justify-center font-mono text-xs sm:text-sm font-bold border border-cyan-500/40 flex-shrink-0">
+                    <span className="w-7 h-7 rounded-full bg-[var(--paper)] text-[var(--accent)] flex items-center justify-center font-mono text-xs sm:text-sm font-semibold border border-[var(--rule)] flex-shrink-0">
                       {idx + 1}
                     </span>
-                    <h3 className="text-base sm:text-lg font-bold text-white leading-snug">{q.label[isTr ? 'tr' : 'en']}</h3>
+                    <h3 className="text-base sm:text-lg font-serif font-semibold text-[var(--ink)] leading-snug">{q.label[isTr ? 'tr' : 'en']}</h3>
                   </div>
 
                   <div className="grid grid-cols-1 gap-3">
@@ -747,15 +743,15 @@ const CrashTest = () => {
                         <button
                           key={optIdx}
                           onClick={() => handleAnswerSelect(q.id, opt)}
-                          className={`p-4 sm:p-5 rounded-2xl text-left border transition-all text-sm sm:text-base flex items-center justify-between gap-3 cursor-pointer min-h-[52px] ${
+                          className={`p-4 sm:p-5 rounded-lg text-left border transition-all text-sm sm:text-base flex items-center justify-between gap-3 cursor-pointer min-h-[52px] ${
                             isSelected
-                              ? 'bg-cyan-500/15 border-cyan-400 text-white font-semibold shadow-[0_0_20px_rgba(0,229,255,0.1)]'
-                              : 'bg-white/5 border-white/5 text-slate-300 hover:border-white/20 hover:bg-white/10'
+                              ? 'bg-[var(--paper)] border-[var(--accent)] text-[var(--ink)] font-semibold shadow-sm'
+                              : 'bg-[var(--surface)] border-[var(--rule)] text-[var(--ink)] hover:border-[var(--rule-dark)]'
                           }`}
                         >
                           <span className="leading-snug">{opt.label[isTr ? 'tr' : 'en']}</span>
                           <div className={`w-6 h-6 rounded-full border flex items-center justify-center flex-shrink-0 ${
-                            isSelected ? 'border-cyan-400 bg-cyan-400 text-bg-dark' : 'border-white/20'
+                            isSelected ? 'border-[var(--accent)] bg-[var(--accent)] text-white' : 'border-[var(--rule-dark)]'
                           }`}>
                             {isSelected && <Check className="w-4 h-4 stroke-[3]" />}
                           </div>
@@ -771,7 +767,7 @@ const CrashTest = () => {
             <div className="flex items-center justify-between pt-4">
               <button
                 onClick={() => setStep(1)}
-                className="px-6 py-4 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 font-semibold text-sm sm:text-base flex items-center gap-2 cursor-pointer transition-colors min-h-[48px]"
+                className="px-6 py-4 rounded bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] font-semibold text-sm sm:text-base flex items-center gap-2 cursor-pointer transition-colors min-h-[48px]"
               >
                 <ArrowLeft className="w-4 h-4" /> {isTr ? 'Geri' : 'Back'}
               </button>
@@ -789,10 +785,10 @@ const CrashTest = () => {
                     });
                   }
                 }}
-                className={`px-8 py-4 rounded-2xl font-black text-sm sm:text-base tracking-wide flex items-center gap-3 transition-all cursor-pointer min-h-[48px] ${
+                className={`px-8 py-4 rounded font-semibold text-sm sm:text-base tracking-wide flex items-center gap-3 transition-all cursor-pointer min-h-[48px] ${
                   isAllAnswered
-                    ? 'bg-gradient-to-r from-red-500 via-orange-500 to-cyan-400 text-bg-dark shadow-lg shadow-orange-500/25 hover:opacity-95 transform hover:-translate-y-0.5'
-                    : 'bg-white/10 text-slate-500 cursor-not-allowed'
+                    ? 'bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm'
+                    : 'bg-[var(--surface)] text-[var(--ink-muted)] border border-[var(--rule)] cursor-not-allowed opacity-50'
                 }`}
               >
                 <span>{isTr ? 'Teşhis Eşleşmesini & Aksiyon Planını Üret' : 'Generate Diagnostic Match & Action Plan'}</span>
@@ -807,41 +803,41 @@ const CrashTest = () => {
           <div className="space-y-8">
             {/* Header / Diagnosis Matching Card */}
             {matchResult.matched ? (
-              <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#111827] via-[#0d131f] to-[#151d2f] border border-cyan-500/30 shadow-[0_0_50px_rgba(0,229,255,0.1)] relative overflow-hidden space-y-6">
+              <div className="p-6 sm:p-8 rounded-xl bg-[var(--surface)] border border-[var(--rule)] shadow-sm relative overflow-hidden space-y-6">
                 
                 {/* Priority Rule Banner (if applicable) */}
                 {matchResult.priorityReason && (
-                  <div className="p-4 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center gap-3 text-amber-300 text-sm">
-                    <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-400" />
+                  <div className="p-4 rounded bg-amber-50 border border-amber-200 flex items-center gap-3 text-amber-800 text-sm">
+                    <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-600" />
                     <span className="font-semibold">{matchResult.priorityReason[isTr ? 'tr' : 'en']}</span>
                   </div>
                 )}
 
                 {isLoadingDiag ? (
                   /* Loading State (No dummy text / no fake badges) */
-                  <div className="py-12 flex flex-col items-center justify-center gap-3 text-cyan-400">
+                  <div className="py-12 flex flex-col items-center justify-center gap-3 text-[var(--accent)]">
                     <Loader2 className="w-8 h-8 animate-spin" />
-                    <span className="text-xs font-mono text-slate-400 uppercase tracking-wider">
+                    <span className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider">
                       {isTr ? 'Teşhis Verisi Yükleniyor...' : 'Loading Diagnostic Data...'}
                     </span>
                   </div>
                 ) : (
                   <>
-                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-white/10">
+                    <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-6 border-b border-[var(--rule)]">
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
-                          <span className="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
-                          <span className="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase">
+                          <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
+                          <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase">
                             {isTr ? 'TEŞHİS KATALOĞU EŞLEŞMESİ' : 'DIAGNOSTIC CATALOG MATCH'} // {selectedScenario.code}
                           </span>
                         </div>
-                        <span className="text-xs sm:text-sm font-mono text-slate-400 block">
+                        <span className="text-xs sm:text-sm font-mono text-[var(--ink-muted)] block">
                           {isTr ? 'Verdiğiniz cevaplar şu tabloyla örtüşüyor:' : 'Your answers match the following failure profile:'}
                         </span>
-                        <h2 className="text-2xl sm:text-3xl font-black text-white flex flex-wrap items-center gap-3">
+                        <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ink)] flex flex-wrap items-center gap-3">
                           {diagData?.no && (
                             <>
-                              <span className="text-cyan-400 font-mono">#{diagData.no}</span>
+                              <span className="text-[var(--accent)] font-mono">#{diagData.no}</span>
                               <span>·</span>
                             </>
                           )}
@@ -852,10 +848,10 @@ const CrashTest = () => {
                       {/* Urgency Badge strictly from diagnostic data */}
                       {!diagError && diagData?.aciliyet?.etiket && (
                         <div className="flex-shrink-0">
-                          <span className={`px-4 py-2 rounded-2xl text-xs sm:text-sm font-mono font-bold border inline-flex items-center gap-2 ${
+                          <span className={`px-4 py-2 rounded text-xs sm:text-sm font-mono font-semibold border inline-flex items-center gap-2 ${
                             diagData.aciliyet.seviye === 'kritik'
-                              ? 'text-red-400 bg-red-500/10 border-red-500/30'
-                              : 'text-amber-400 bg-amber-500/10 border-amber-500/30'
+                              ? 'text-[var(--accent)] bg-[var(--accent)]/10 border-[var(--accent)]/30'
+                              : 'text-amber-800 bg-amber-50 border-amber-200'
                           }`}>
                             <span className="w-2 h-2 rounded-full bg-current"></span>
                             <span>{diagData.aciliyet.etiket[isTr ? 'tr' : 'en']}</span>
@@ -866,9 +862,9 @@ const CrashTest = () => {
 
                     {/* Distinguishing Tests Box strictly from diagnostic data */}
                     {!diagError && diagData?.nedenler && diagData.nedenler.length > 0 && (
-                      <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/10 space-y-4">
-                        <div className="flex items-center gap-2 text-sm font-mono font-bold text-slate-300">
-                          <Stethoscope className="w-4 h-4 text-cyan-400" />
+                      <div className="p-5 sm:p-6 rounded-lg bg-[var(--paper)] border border-[var(--rule)] space-y-4">
+                        <div className="flex items-center gap-2 text-sm font-mono font-semibold text-[var(--ink)]">
+                          <Stethoscope className="w-4 h-4 text-[var(--accent)]" />
                           <span>
                             {isTr 
                               ? 'Bu arızanın üç olası nedeni var ve ayırt edici testleri şunlar:' 
@@ -881,9 +877,9 @@ const CrashTest = () => {
                             const rawTest = neden.diyagramTest?.[isTr ? 'tr' : 'en'];
                             const testText = Array.isArray(rawTest) ? rawTest.join(' ') : (rawTest || '');
                             return (
-                              <div key={tIdx} className="p-4 rounded-xl bg-black/40 border border-white/10 flex items-start gap-2.5">
-                                <ArrowRight className="w-4 h-4 text-cyan-400 flex-shrink-0 mt-0.5" />
-                                <span className="text-xs sm:text-sm text-slate-200 leading-relaxed font-mono">{testText}</span>
+                              <div key={tIdx} className="p-4 rounded bg-[var(--surface)] border border-[var(--rule)] flex items-start gap-2.5">
+                                <ArrowRight className="w-4 h-4 text-[var(--accent)] flex-shrink-0 mt-0.5" />
+                                <span className="text-xs sm:text-sm text-[var(--ink)] leading-relaxed font-mono">{testText}</span>
                               </div>
                             );
                           })}
@@ -896,21 +892,21 @@ const CrashTest = () => {
               </div>
             ) : (
               /* Non-matching case: t48h or complex/ai */
-              <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-br from-[#111827] via-[#0d131f] to-[#151d2f] border border-cyan-500/30 shadow-[0_0_50px_rgba(0,229,255,0.1)] relative overflow-hidden space-y-6">
-                <div className="space-y-2 pb-4 border-b border-white/10">
+              <div className="p-6 sm:p-8 rounded-xl bg-[var(--surface)] border border-[var(--rule)] shadow-sm relative overflow-hidden space-y-6">
+                <div className="space-y-2 pb-4 border-b border-[var(--rule)]">
                   <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
-                    <span className="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
+                    <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase">
                       {isTr ? 'KAPASİTE & DEVİR DEĞERLENDİRMESİ' : 'CAPACITY & TIMELINE ASSESSMENT'} // {selectedScenario.code}
                     </span>
                   </div>
-                  <h2 className="text-2xl sm:text-3xl font-black text-white">
+                  <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ink)]">
                     {selectedScenario.title[isTr ? 'tr' : 'en']}
                   </h2>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-cyan-950/20 border border-cyan-500/30 space-y-5">
-                  <p className="text-slate-200 text-sm sm:text-base leading-relaxed">
+                <div className="p-6 rounded-lg bg-[var(--paper)] border border-[var(--rule)] space-y-5">
+                  <p className="text-[var(--ink)] text-sm sm:text-base leading-relaxed">
                     {isTr 
                       ? 'Bu bir arıza değil, kapasite ve zaman sorunu. Teşhis Kataloğu yayında olan 20 arızayı kapsıyor; sizinki onlardan biri değil. Bu durumda yapılacak şey teşhis değil, kapsamı konuşmak: ne kadar iş kaldığını ve ne kadar sürede kapatılabileceğini birlikte çıkarırız.'
                       : 'This is a capacity and timeline problem, not a fault. The Diagnostic Catalog covers 20 published failures and yours is not one of them. What you need here is not a diagnosis but a scoping conversation: we work out together how much work remains and how quickly it can be closed.'}
@@ -920,62 +916,62 @@ const CrashTest = () => {
             )}
 
             {/* 3-Phase Action Protocol */}
-            <div className="p-6 sm:p-8 rounded-3xl bg-[#111827] border border-white/10 shadow-xl space-y-6">
+            <div className="p-6 sm:p-8 rounded-xl bg-[var(--surface)] border border-[var(--rule)] shadow-sm space-y-6">
               <div>
-                <span className="text-xs sm:text-sm font-mono font-bold text-cyan-400 uppercase tracking-wider block">
+                <span className="text-xs sm:text-sm font-mono font-semibold text-[var(--accent)] uppercase tracking-wider block">
                   {isTr ? 'Müdahale Protokolü' : 'Action Protocol'}
                 </span>
-                <h3 className="text-xl sm:text-2xl font-bold text-white">
+                <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
                   {isTr ? 'Ajansınıza Özel 3 Aşamalı İlk Kurtarma Reçetesi' : 'Your Bespoke 3-Phase Recovery Blueprint'}
                 </h3>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
-                <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+                <div className="p-6 rounded-lg bg-[var(--paper)] border border-[var(--rule)] space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-cyan-500/10 text-cyan-400 border border-cyan-500/30">
+                    <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[var(--surface)] text-[var(--accent)] border border-[var(--rule)]">
                       {isTr ? 'AŞAMA 01' : 'PHASE 01'}
                     </span>
-                    <Clock className="w-4 h-4 text-cyan-400" />
+                    <Clock className="w-4 h-4 text-[var(--accent)]" />
                   </div>
-                  <h4 className="text-base sm:text-lg font-bold text-white">
+                  <h4 className="text-base sm:text-lg font-serif font-semibold text-[var(--ink)]">
                     {isTr ? 'Kod Dondurma & İzole Teşhis' : 'Code Freeze & Isolated Audit'}
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">
                     {isTr 
                       ? 'Mevcut repoyu klonlayıp güvenli izole ortama alıyoruz. Canlıdaki hasarın yayılmasını durdurup hata loglarını, API ve veritabanı kilitlerini ayrıştırıyoruz.' 
                       : 'We fork the codebase into an isolated staging sandbox, halt live data degradation, and isolate error logs, API breaks, and DB deadlocks.'}
                   </p>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+                <div className="p-6 rounded-lg bg-[var(--paper)] border border-[var(--rule)] space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-orange-500/10 text-orange-400 border border-orange-500/30">
+                    <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[var(--surface)] text-orange-600 border border-[var(--rule)]">
                       {isTr ? 'AŞAMA 02' : 'PHASE 02'}
                     </span>
-                    <Code2 className="w-4 h-4 text-orange-400" />
+                    <Code2 className="w-4 h-4 text-orange-600" />
                   </div>
-                  <h4 className="text-base sm:text-lg font-bold text-white">
+                  <h4 className="text-base sm:text-lg font-serif font-semibold text-[var(--ink)]">
                     {isTr ? 'White-Label Hotfix & Onarım' : 'White-Label Hotfix & Repair'}
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">
                     {isTr 
                       ? 'Eksik modüllerin tamamlanması, spagetti kodun temizlenmesi ve kritik API entegrasyonlarının doğrudan kıdemli mühendislik masamızca ayağa kaldırılması.' 
                       : 'Completing missing endpoints, refactoring messy logic, and rebuilding broken API integrations directly with our senior engineering desk.'}
                   </p>
                 </div>
 
-                <div className="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-3">
+                <div className="p-6 rounded-lg bg-[var(--paper)] border border-[var(--rule)] space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-0.5 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+                    <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[var(--surface)] text-emerald-600 border border-[var(--rule)]">
                       {isTr ? 'AŞAMA 03' : 'PHASE 03'}
                     </span>
-                    <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
                   </div>
-                  <h4 className="text-base sm:text-lg font-bold text-white">
+                  <h4 className="text-base sm:text-lg font-serif font-semibold text-[var(--ink)]">
                     {isTr ? 'Canlı Dağıtım & Temiz Devir' : 'Deployment & Clean Handover'}
                   </h4>
-                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">
                     {isTr 
                       ? 'Stres testleri ve güvenlik kontrolleri sonrası sistem canlıya alınır. Tüm dokümante edilmiş kaynak kod ajansınıza eksiksiz teslim edilir.' 
                       : 'Following automated stress and security audits, the system is deployed live. Documented clean source code is completely handed over to your agency.'}
@@ -984,16 +980,15 @@ const CrashTest = () => {
               </div>
             </div>
 
-
             {/* Unified 3-Tier Action Block */}
-            <div className="p-6 sm:p-10 rounded-3xl bg-gradient-to-r from-red-950/40 via-[#111827] to-cyan-950/40 border border-cyan-500/30 text-center space-y-6">
+            <div className="p-6 sm:p-10 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-center space-y-6">
               <div className="space-y-2">
-                <h3 className="text-2xl sm:text-3xl md:text-4xl font-black text-white">
+                <h3 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-[var(--ink)]">
                   {matchResult.matched
                     ? (isTr ? 'Bu Krizi Birlikte Çözelim' : 'Let’s Resolve This Together')
                     : (isTr ? 'Kapsamı ve Çözümü Birlikte Konuşalım' : 'Let’s Scope the Solution Together')}
                 </h3>
-                <p className="text-slate-300 text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                <p className="text-[var(--ink-muted)] text-sm sm:text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                   {matchResult.matched
                     ? (isTr 
                         ? 'Müşteriniz sizin müşteriniz olarak kalırken; arka planda ihtiyacınız olan teknik gücü ve kurtarma mühendisliğini doğrudan devreye alalım.' 
@@ -1005,8 +1000,8 @@ const CrashTest = () => {
               </div>
 
               {/* Night Status Line (directly above primary button) */}
-              <div className="flex items-center justify-center gap-2 text-xs sm:text-sm font-mono text-slate-300">
-                <span className={`w-2 h-2 rounded-full flex-shrink-0 ${isKrizHattiAcik ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'}`}></span>
+              <div className="flex items-center justify-center gap-2 text-xs sm:text-sm font-mono text-[var(--ink-muted)]">
+                <span className={`w-2 h-2 rounded-full flex-shrink-0 ${isKrizHattiAcik ? 'bg-emerald-600' : 'bg-amber-600'}`}></span>
                 <span>
                   {isTr 
                     ? (isKrizHattiAcik 
@@ -1024,7 +1019,7 @@ const CrashTest = () => {
                 {matchResult.matched ? (
                   <button
                     onClick={openWhatsAppDispatch}
-                    className="w-full py-4 sm:py-5 px-8 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-bg-dark font-black text-base sm:text-lg shadow-xl shadow-emerald-500/25 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-0.5 cursor-pointer min-h-[56px]"
+                    className="w-full py-4 sm:py-5 px-8 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-base sm:text-lg shadow-sm flex items-center justify-center gap-3 transition-colors cursor-pointer min-h-[56px]"
                   >
                     <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
                     <span>{isTr ? 'Kriz Masasını Devreye Sok (WhatsApp)' : 'Deploy Crisis Desk (WhatsApp)'}</span>
@@ -1035,7 +1030,7 @@ const CrashTest = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'crash_test_result', scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
-                    className="w-full py-4 sm:py-5 px-8 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-bg-dark font-black text-base sm:text-lg shadow-xl shadow-cyan-500/25 flex items-center justify-center gap-3 transition-all transform hover:-translate-y-0.5 min-h-[56px]"
+                    className="w-full py-4 sm:py-5 px-8 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-base sm:text-lg shadow-sm flex items-center justify-center gap-3 transition-colors min-h-[56px]"
                   >
                     <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
                     <span>{isTr ? 'Takvimden 30 Dakikalık Kapsam Görüşmesi Seç' : 'Book a 30-Minute Scoping Call'}</span>
@@ -1048,17 +1043,17 @@ const CrashTest = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
                   <Link
                     to={`/teshis/${matchResult.slug}/`}
-                    className="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
+                    className="px-4 py-3 rounded bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] text-xs sm:text-sm font-semibold text-[var(--ink)] flex items-center justify-center gap-2 transition-colors cursor-pointer text-center min-h-[44px]"
                   >
                     <span>{isTr ? 'Teşhisin tamamını okuyun' : 'Read complete diagnosis'}</span>
-                    <ArrowRight className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                    <ArrowRight className="w-4 h-4 text-[var(--accent)] flex-shrink-0" />
                   </Link>
 
                   <button
                     onClick={copyActionPlan}
-                    className="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
+                    className="px-4 py-3 rounded bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] text-xs sm:text-sm font-semibold text-[var(--ink)] flex items-center justify-center gap-2 transition-colors cursor-pointer text-center min-h-[44px]"
                   >
-                    {copied ? <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" /> : <Copy className="w-4 h-4 text-slate-400 flex-shrink-0" />}
+                    {copied ? <Check className="w-4 h-4 text-emerald-600 flex-shrink-0" /> : <Copy className="w-4 h-4 text-[var(--ink-muted)] flex-shrink-0" />}
                     <span>{copied ? (isTr ? 'Kopyalandı!' : 'Copied!') : (isTr ? 'Raporu Kopyala' : 'Copy Blueprint')}</span>
                   </button>
 
@@ -1067,9 +1062,9 @@ const CrashTest = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'crash_test_result', scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
-                    className="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
+                    className="px-4 py-3 rounded bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] text-xs sm:text-sm font-semibold text-[var(--ink)] flex items-center justify-center gap-2 transition-colors cursor-pointer text-center min-h-[44px]"
                   >
-                    <Calendar className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                    <Calendar className="w-4 h-4 text-[var(--accent)] flex-shrink-0" />
                     <span>{isTr ? 'Takvimden Randevu Seç' : 'Book Call from Calendar'}</span>
                   </a>
                 </div>
@@ -1077,42 +1072,42 @@ const CrashTest = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full">
                   <Link
                     to="/agency/"
-                    className="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
+                    className="px-4 py-3 rounded bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] text-xs sm:text-sm font-semibold text-[var(--ink)] flex items-center justify-center gap-2 transition-colors cursor-pointer text-center min-h-[44px]"
                   >
                     <span>{isTr ? 'Altyapı & Çekirdek Mühendislik Masası →' : 'Infrastructure & Kernel Engineering Desk →'}</span>
-                    <ArrowRight className="w-4 h-4 text-cyan-400 flex-shrink-0" />
+                    <ArrowRight className="w-4 h-4 text-[var(--accent)] flex-shrink-0" />
                   </Link>
 
                   <button
                     onClick={copyActionPlan}
-                    className="px-4 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs sm:text-sm font-semibold text-slate-300 hover:text-white flex items-center justify-center gap-2 transition-colors cursor-pointer text-center"
+                    className="px-4 py-3 rounded bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] text-xs sm:text-sm font-semibold text-[var(--ink)] flex items-center justify-center gap-2 transition-colors cursor-pointer text-center min-h-[44px]"
                   >
-                    {copied ? <Check className="w-4 h-4 text-emerald-400 flex-shrink-0" /> : <Copy className="w-4 h-4 text-slate-400 flex-shrink-0" />}
+                    {copied ? <Check className="w-4 h-4 text-emerald-600 flex-shrink-0" /> : <Copy className="w-4 h-4 text-[var(--ink-muted)] flex-shrink-0" />}
                     <span>{copied ? (isTr ? 'Kopyalandı!' : 'Copied!') : (isTr ? 'Raporu Kopyala' : 'Copy Blueprint')}</span>
                   </button>
                 </div>
               )}
 
               {/* Tier 3: Native <details> / <summary> Folded Group */}
-              <details className="group w-full rounded-2xl bg-white/[0.02] border border-white/10 p-4 sm:p-6 transition-all text-left">
-                <summary className="cursor-pointer text-xs sm:text-sm font-mono font-semibold text-slate-400 hover:text-cyan-400 transition-colors flex items-center justify-center gap-2 select-none py-1">
+              <details className="group w-full rounded-xl bg-[var(--paper)] border border-[var(--rule)] p-4 sm:p-6 transition-all text-left">
+                <summary className="cursor-pointer text-xs sm:text-sm font-mono font-semibold text-[var(--ink-muted)] hover:text-[var(--ink)] transition-colors flex items-center justify-center gap-2 select-none py-1">
                   <span>{isTr ? 'Diğer seçenekler' : 'Other options'}</span>
                   <span className="text-xs transition-transform duration-200 group-open:rotate-180">▼</span>
                 </summary>
 
-                <div className="mt-6 space-y-6 pt-6 border-t border-white/10">
+                <div className="mt-6 space-y-6 pt-6 border-t border-[var(--rule)]">
                   {/* Email Lead Capture */}
-                  <div className="p-6 sm:p-8 rounded-2xl bg-[#0e1626] border border-cyan-500/30 text-left space-y-5 shadow-xl">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-4">
+                  <div className="p-6 sm:p-8 rounded-lg bg-[var(--surface)] border border-[var(--rule)] text-left space-y-5 shadow-sm">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--rule)] pb-4">
                       <div className="flex items-center gap-3">
-                        <div className="w-10 h-10 rounded-xl bg-cyan-500/20 text-cyan-400 flex items-center justify-center flex-shrink-0">
+                        <div className="w-10 h-10 rounded bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)] flex items-center justify-center flex-shrink-0">
                           <Mail className="w-5 h-5" />
                         </div>
                         <div>
-                          <h4 className="text-base sm:text-lg font-bold text-white">
+                          <h4 className="text-base sm:text-lg font-serif font-semibold text-[var(--ink)]">
                             {isTr ? 'Bu Teşhis Raporunu & Reçeteyi E-Postama Gönder' : 'Send This Diagnostic Blueprint & Action Recipe to My Email'}
                           </h4>
-                          <p className="text-xs text-slate-400">
+                          <p className="text-xs text-[var(--ink-muted)]">
                             {isTr ? 'Ajans içi değerlendirme ve teknik ekibinizle paylaşım için hazır PDF/E-posta formatında iletilir.' : 'Sent in a ready-to-share technical blueprint format for your internal stakeholders.'}
                           </p>
                         </div>
@@ -1120,23 +1115,23 @@ const CrashTest = () => {
                     </div>
 
                     {leadSent === 'success' ? (
-                      <div className="p-5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center gap-3 text-emerald-300 text-sm font-bold">
-                        <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-400" />
+                      <div className="p-5 rounded bg-emerald-50 border border-emerald-200 flex items-center gap-3 text-emerald-800 text-sm font-semibold">
+                        <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-600" />
                         <span>{isTr ? 'Rapor talebiniz başarıyla kaydedildi! Kriz masamız analizi hazırlayıp iletecektir.' : 'Report request logged successfully! Our engineers will deliver your blueprint.'}</span>
                       </div>
                     ) : leadSent === 'error' ? (
-                      <div className="p-5 rounded-xl bg-amber-500/10 border border-amber-500/30 space-y-3">
-                        <div className="flex items-center gap-3 text-amber-300 text-sm font-bold">
-                          <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-400" />
+                      <div className="p-5 rounded bg-amber-50 border border-amber-200 space-y-3">
+                        <div className="flex items-center gap-3 text-amber-800 text-sm font-semibold">
+                          <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-600" />
                           <span>{isTr ? 'Ağ kesintisi nedeniyle otomatik iletilemedi.' : 'Network interruption during auto-dispatch.'}</span>
                         </div>
-                        <p className="text-xs text-slate-300">
+                        <p className="text-xs text-[var(--ink-muted)]">
                           {isTr ? 'Teşhis raporunuz hazır. Aşağıdaki butona tıklayarak WhatsApp üzerinden raporu hemen talep edebilirsiniz:' : 'Your diagnosis is ready. Request your blueprint directly via WhatsApp:'}
                         </p>
                         <button
                           type="button"
                           onClick={openWhatsAppDispatch}
-                          className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-bg-dark font-black text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-lg"
+                          className="w-full py-3 px-4 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-sm min-h-[44px]"
                         >
                           <PhoneCall className="w-4 h-4" />
                           <span>{isTr ? 'WhatsApp ile Raporu Talep Et →' : 'Request Blueprint via WhatsApp →'}</span>
@@ -1197,7 +1192,7 @@ const CrashTest = () => {
                           placeholder={isTr ? 'Adınız Soyadınız' : 'Your Full Name'}
                           value={leadName}
                           onChange={e => setLeadName(e.target.value)}
-                          className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                          className="px-4 py-3 rounded bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] placeholder:text-[var(--ink-muted)] text-sm focus:border-[var(--accent)] focus:outline-none min-h-[44px]"
                         />
                         <input
                           type="email"
@@ -1205,7 +1200,7 @@ const CrashTest = () => {
                           placeholder={isTr ? 'Kurumsal E-posta' : 'Corporate Email'}
                           value={leadEmail}
                           onChange={e => setLeadEmail(e.target.value)}
-                          className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                          className="px-4 py-3 rounded bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] placeholder:text-[var(--ink-muted)] text-sm focus:border-[var(--accent)] focus:outline-none min-h-[44px]"
                         />
                         <input
                           type="tel"
@@ -1213,12 +1208,12 @@ const CrashTest = () => {
                           placeholder={isTr ? 'Telefon / WhatsApp' : 'Phone / WhatsApp'}
                           value={leadPhone}
                           onChange={e => setLeadPhone(e.target.value)}
-                          className="px-4 py-3 rounded-xl bg-black/40 border border-white/15 text-white text-sm focus:border-cyan-400 focus:outline-none"
+                          className="px-4 py-3 rounded bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] placeholder:text-[var(--ink-muted)] text-sm focus:border-[var(--accent)] focus:outline-none min-h-[44px]"
                         />
                         <button
                           type="submit"
                           disabled={isSendingLead}
-                          className="sm:col-span-3 py-3.5 px-6 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-black text-sm flex items-center justify-center gap-2 transition-all cursor-pointer shadow-lg shadow-cyan-500/20 disabled:opacity-50"
+                          className="sm:col-span-3 py-3 px-6 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-sm disabled:opacity-50 min-h-[44px]"
                         >
                           <Send className="w-4 h-4" />
                           <span>{isSendingLead ? (isTr ? 'Gönderiliyor...' : 'Sending...') : (isTr ? 'Detaylı Eylem Raporumu Gönder' : 'Send My Custom Blueprint')}</span>
@@ -1233,9 +1228,9 @@ const CrashTest = () => {
                     {selectedScenario?.code === 'HANDOVER HELL' && (
                       <Link
                         to="/devir-kontrolu/"
-                        className="px-5 py-3 rounded-xl bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 font-bold text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer"
+                        className="px-5 py-3 rounded bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] font-semibold text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer min-h-[44px]"
                       >
-                        <ArrowRight className="w-4 h-4" />
+                        <ArrowRight className="w-4 h-4 text-[var(--accent)]" />
                         <span>{isTr ? '12 Kalemlik Devir Kontrolü →' : '12-Point Handover Audit →'}</span>
                       </Link>
                     )}
@@ -1244,9 +1239,9 @@ const CrashTest = () => {
                     {selectedScenario?.code === 'HTTP 500' && (
                       <Link
                         to="/kesinti-maliyeti/"
-                        className="px-5 py-3 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-300 font-bold text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer"
+                        className="px-5 py-3 rounded bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] font-semibold text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer min-h-[44px]"
                       >
-                        <ArrowRight className="w-4 h-4 text-red-400" />
+                        <ArrowRight className="w-4 h-4 text-[var(--accent)]" />
                         <span>{isTr ? 'Kesinti Maliyeti Hesaplayıcı →' : 'Downtime Loss Calculator →'}</span>
                       </Link>
                     )}
@@ -1255,9 +1250,9 @@ const CrashTest = () => {
                     <button
                       type="button"
                       onClick={() => setIsSOSOpen(true)}
-                      className="px-5 py-3 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-300 font-bold text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer"
+                      className="px-5 py-3 rounded bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--accent)] font-semibold text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer min-h-[44px]"
                     >
-                      <AlertTriangle className="w-4 h-4 text-red-400" />
+                      <AlertTriangle className="w-4 h-4 text-[var(--accent)]" />
                       <span>{isTr ? 'Acil SOS Formu Gönder' : 'Send Emergency SOS Ticket'}</span>
                     </button>
 
@@ -1268,7 +1263,7 @@ const CrashTest = () => {
                         setStep(1);
                         setAnswers({});
                       }}
-                      className="px-5 py-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-400 hover:text-white font-semibold text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer"
+                      className="px-5 py-3 rounded bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-muted)] hover:text-[var(--ink)] font-medium text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer min-h-[44px]"
                     >
                       <RotateCcw className="w-4 h-4" />
                       <span>{isTr ? 'Yeniden Test Et' : 'Restart Test'}</span>
@@ -1277,23 +1272,23 @@ const CrashTest = () => {
                 </div>
               </details>
 
-              <p className="text-xs sm:text-sm text-slate-400 font-mono">
+              <p className="text-xs sm:text-sm text-[var(--ink-muted)] font-mono">
                 {isTr 
                   ? 'Kriz masası tek kişilik değildir — başlayan iş, biri devre dışı kalsa da tamamlanır.' 
                   : 'The response desk is not a single person — work that starts gets finished, even if someone drops out.'}
               </p>
 
               {/* Direct Info */}
-              <div className="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-slate-400 border-t border-white/10">
+              <div className="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-[var(--ink-muted)] border-t border-[var(--rule)]">
                 <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-0.5">
-                  <span>📞 {isTr ? 'Kriz Hattı' : 'Response Desk'}: <a href="tel:+905343713573" className="text-white font-mono hover:text-cyan-400 font-bold">+90 534 371 35 73</a></span>
-                  <span className="text-[11px] text-slate-500 font-mono">
+                  <span>📞 {isTr ? 'Kriz Hattı' : 'Response Desk'}: <a href="tel:+905343713573" className="text-[var(--ink)] font-mono hover:text-[var(--accent)] font-semibold">+90 534 371 35 73</a></span>
+                  <span className="text-xs text-[var(--ink-muted)] font-mono">
                     {isTr 
                       ? 'her gün 09:00 – 24:00 · acil bildirimlere tipik ilk yanıt 15 dakika' 
                       : 'daily 09:00 – 24:00 · typical first reply to emergencies 15 minutes'}
                   </span>
                 </div>
-                <span>✉️ {isTr ? 'E-posta' : 'Email'}: <a href="mailto:info@trendmasterakademi.com" className="text-white font-mono hover:text-cyan-400 font-bold">info@trendmasterakademi.com</a></span>
+                <span>✉️ {isTr ? 'E-posta' : 'Email'}: <a href="mailto:info@trendmasterakademi.com" className="text-[var(--ink)] font-mono hover:text-[var(--accent)] font-semibold">info@trendmasterakademi.com</a></span>
                 <span>📍 Konak / İzmir & Global Remote</span>
               </div>
             </div>
@@ -1309,3 +1304,4 @@ const CrashTest = () => {
 };
 
 export default CrashTest;
+

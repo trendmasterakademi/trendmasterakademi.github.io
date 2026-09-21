@@ -71,7 +71,7 @@ export const radarData = {
       categories: [
         { label: "Veritabanı & Connection Deadlock", percentage: 38, count: 13, color: "bg-rose-500" },
         { label: "Ödeme Webhook & Çift Çekim / Race Condition", percentage: 26, count: 9, color: "bg-amber-500" },
-        { label: "Bellek Sızıntısı & OOMKilled Pod Döngüsü", percentage: 21, count: 7, color: "bg-cyan-500" },
+        { label: "Bellek Sızıntısı & OOMKilled Pod Döngüsü", percentage: 21, count: 7, color: "bg-blue-600" },
         { label: "Deploy Pipeline & Kayıp Konfigürasyon Kilidi", percentage: 15, count: 5, color: "bg-purple-500" }
       ]
     }
@@ -148,7 +148,7 @@ export const radarData = {
       categories: [
         { label: "Database & Connection Pool Deadlocks", percentage: 38, count: 13, color: "bg-rose-500" },
         { label: "Payment Webhooks & Race Conditions", percentage: 26, count: 9, color: "bg-amber-500" },
-        { label: "Memory Leaks & OOMKilled Pod Cascades", percentage: 21, count: 7, color: "bg-cyan-500" },
+        { label: "Memory Leaks & OOMKilled Pod Cascades", percentage: 21, count: 7, color: "bg-blue-600" },
         { label: "Deploy Pipeline & Missing Env Locks", percentage: 15, count: 5, color: "bg-purple-500" }
       ]
     }

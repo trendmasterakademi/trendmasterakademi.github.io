@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
-    <meta name="theme-color" content="#080b11" />
+    <meta name="theme-color" content="#F5F6F7" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     
@@ -57,10 +57,10 @@
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
 
-    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
     
     <!-- GitHub Pages SPA Redirect Handling -->
     <script type="text/javascript">
@@ -228,19 +228,19 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CscrmgB1.js"></script>
+    <script type="module" crossorigin src="/assets/index-BCXhSv6F.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BLOyUBBX.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BBSKylVN.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-OgwtdHg2.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-UyoIMVfH.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DgKzotWK.css">
   </head>
-  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
     <div id="root">
-    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
-      <header class="mb-8 border-b border-white/10 pb-6">
-        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">Public Incident Post-Mortems & RCA Library</h1>
-        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Public Incident Post-Mortems & RCA Library</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">Home</a>
           <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
           <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
@@ -263,59 +263,59 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Public Incident Post-Mortems & RCA Library</h2>
-        <p class="text-slate-300 text-lg leading-relaxed">Real-world production outages, incident chronology, root cause analyses, and permanent engineering mitigations.</p>
+        <h2 class="text-2xl font-bold text-[var(--ink)]">Public Incident Post-Mortems & RCA Library</h2>
+        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Real-world production outages, incident chronology, root cause analyses, and permanent engineering mitigations.</p>
         
-  <section class="space-y-6 mt-6 border-t border-white/10 pt-6">
-    <h2 class="text-xl font-bold text-white">Published Incident Post-Mortems</h2>
+  <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Published Incident Post-Mortems</h2>
     <ul class="space-y-4">
       
-        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/post-mortems/pm-01-postgresql-connection-pool-deadlock/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ PM-01 · Friday 18:40 — Payment Webhook Storm, Database Deadlock, and Connection Pool Starvation</a>
-            <span class="text-xs font-mono text-amber-400">SEV-1 CRITICAL · Database &amp; Concurrency</span>
+            <a href="/post-mortems/pm-01-postgresql-connection-pool-deadlock/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ PM-01 · Friday 18:40 — Payment Webhook Storm, Database Deadlock, and Connection Pool Starvation</a>
+            <span class="text-xs font-mono text-amber-700">SEV-1 CRITICAL · Database &amp; Concurrency</span>
           </div>
-          <p class="text-sm text-slate-300 leading-relaxed">During a high-traffic campaign, thousands of concurrent payment webhooks hit the backend simultaneously, opening unbuffered database transactions that deadlocked on unindexed foreign keys and exhausted PostgreSQL connection pools.</p>
-          <div class="text-xs font-mono text-slate-400">Duration: 42 minutes · Impact: 1,420 failed checkout transactions, 42 minutes of HTTP 500/504 errors, severe support escalation.</div>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">During a high-traffic campaign, thousands of concurrent payment webhooks hit the backend simultaneously, opening unbuffered database transactions that deadlocked on unindexed foreign keys and exhausted PostgreSQL connection pools.</p>
+          <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: 42 minutes · Impact: 1,420 failed checkout transactions, 42 minutes of HTTP 500/504 errors, severe support escalation.</div>
         </li>
       
       
-        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/post-mortems/pm-02-race-condition-double-charge/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ PM-02 · Flash Sale Double Charges and Concurrent Balance Race Conditions</a>
-            <span class="text-xs font-mono text-amber-400">SEV-1 CRITICAL · Payment &amp; Distributed Systems</span>
+            <a href="/post-mortems/pm-02-race-condition-double-charge/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ PM-02 · Flash Sale Double Charges and Concurrent Balance Race Conditions</a>
+            <span class="text-xs font-mono text-amber-700">SEV-1 CRITICAL · Payment &amp; Distributed Systems</span>
           </div>
-          <p class="text-sm text-slate-300 leading-relaxed">During a flash sale, impatient users multi-clicked the payment button. Due to lack of backend request deduplication and distributed locking, concurrent payment gateway charges were executed for identical cart states.</p>
-          <div class="text-xs font-mono text-slate-400">Duration: 14 minutes · Impact: $18,400 in 74 duplicate credit card charges within 14 minutes, chargeback warning from payment gateway.</div>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">During a flash sale, impatient users multi-clicked the payment button. Due to lack of backend request deduplication and distributed locking, concurrent payment gateway charges were executed for identical cart states.</p>
+          <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: 14 minutes · Impact: $18,400 in 74 duplicate credit card charges within 14 minutes, chargeback warning from payment gateway.</div>
         </li>
       
       
-        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/post-mortems/pm-03-memory-leak-unhandled-promise/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ PM-03 · Node.js API OOM Crash Every 6 Hours: The Undetected Event Listener Leak</a>
-            <span class="text-xs font-mono text-amber-400">SEV-2 MAJOR · Memory &amp; Performance</span>
+            <a href="/post-mortems/pm-03-memory-leak-unhandled-promise/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ PM-03 · Node.js API OOM Crash Every 6 Hours: The Undetected Event Listener Leak</a>
+            <span class="text-xs font-mono text-amber-700">SEV-2 MAJOR · Memory &amp; Performance</span>
           </div>
-          <p class="text-sm text-slate-300 leading-relaxed">A SaaS production backend suffered recurring Out-Of-Memory (OOM) crashes every 5.5 to 6 hours as RSS heap climbed past 1.4GB. The internal team had resorted to a cron job rebooting the server every 4 hours.</p>
-          <div class="text-xs font-mono text-slate-400">Duration: 3-week chronic bug → Solved in 4 hours · Impact: API crashing 4 times daily from Out-Of-Memory (OOM), dropped WebSocket sessions, mobile app disconnects.</div>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">A SaaS production backend suffered recurring Out-Of-Memory (OOM) crashes every 5.5 to 6 hours as RSS heap climbed past 1.4GB. The internal team had resorted to a cron job rebooting the server every 4 hours.</p>
+          <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: 3-week chronic bug → Solved in 4 hours · Impact: API crashing 4 times daily from Out-Of-Memory (OOM), dropped WebSocket sessions, mobile app disconnects.</div>
         </li>
       
       
-        <li class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-2">
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
-            <a href="/post-mortems/pm-04-ghost-developer-handover-block/" class="text-cyan-300 font-bold hover:underline font-mono text-base">→ PM-04 · Departed Developer Handover Block: Uncommitted .env, Lost AWS Root, and Frozen CI/CD</a>
-            <span class="text-xs font-mono text-amber-400">SEV-2 MAJOR · DevOps &amp; Security Handover</span>
+            <a href="/post-mortems/pm-04-ghost-developer-handover-block/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ PM-04 · Departed Developer Handover Block: Uncommitted .env, Lost AWS Root, and Frozen CI/CD</a>
+            <span class="text-xs font-mono text-amber-700">SEV-2 MAJOR · DevOps &amp; Security Handover</span>
           </div>
-          <p class="text-sm text-slate-300 leading-relaxed">The sole lead engineer departed abruptly. Production environment secrets were missing from Git, the primary AWS root was bound to the developer’s personal email, and the CI/CD pipeline depended on private uncommitted runner scripts.</p>
-          <div class="text-xs font-mono text-slate-400">Duration: 3-week freeze → 48h full recovery · Impact: Zero deployments possible for 3 weeks; production hotfixes stalled; critical security exposure from active ex-developer keys.</div>
+          <p class="text-sm text-[var(--ink-muted)] leading-relaxed">The sole lead engineer departed abruptly. Production environment secrets were missing from Git, the primary AWS root was bound to the developer’s personal email, and the CI/CD pipeline depended on private uncommitted runner scripts.</p>
+          <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: 3-week freeze → 48h full recovery · Impact: Zero deployments possible for 3 weeks; production hotfixes stalled; critical security exposure from active ex-developer keys.</div>
         </li>
       
     </ul>
   </section>
 
-        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
-          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
         </section>
       </main>
     </div>

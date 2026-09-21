@@ -41,24 +41,20 @@ const GlossaryIndex = () => {
   );
 
   return (
-    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[#080b11] text-slate-200 relative  font-sans">
-      {/* Background Ambience */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[500px] bg-gradient-to-b from-cyan-500/10 via-blue-500/5 to-transparent blur-[140px] pointer-events-none -z-10"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(#1f293d_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none -z-10"></div>
-
+    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[var(--paper)] text-[var(--ink)] relative font-sans selection:bg-[var(--accent)] selection:text-white">
       <div className="max-w-6xl mx-auto space-y-12">
         
         {/* Header Eyebrow */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-mono font-bold uppercase tracking-wider">
-            <BookOpen className="w-4 h-4" /> {isTr ? 'AJANS PATRONU REHBERİ' : 'AGENCY EXECUTIVE GUIDE'}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-wider">
+            <BookOpen className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'AJANS PATRONU REHBERİ' : 'AGENCY EXECUTIVE GUIDE'}
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
             {isTr ? 'Yazılımcı Dili → Ajans Dili Terim Sözlüğü' : 'Developer-to-Agency Technical Glossary'}
           </h1>
 
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
+          <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed">
             {isTr 
               ? 'Yazılımcınız teknik bir bahane sunduğunda veya acil bir kriz yaşandığında; ne olduğunu, ajansınıza maliyetini ve kimin çözeceğini 30 saniyede kavrayın.' 
               : 'Translate complex developer jargon into actionable business impact, operational urgency, and pragmatic resolution paths.'}
@@ -67,7 +63,7 @@ const GlossaryIndex = () => {
 
         {/* Search Input Bar */}
         <div className="max-w-2xl mx-auto relative">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[var(--ink-muted)]">
             <Search className="w-5 h-5" />
           </div>
           <input
@@ -75,7 +71,7 @@ const GlossaryIndex = () => {
             placeholder={isTr ? 'Terim veya kavram ara... (örn: deadlock, webhook, refactor)' : 'Search terms... (e.g. deadlock, webhook, refactor)'}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-12 pr-4 py-4 rounded-2xl bg-[#111827] border border-white/15 text-white placeholder-slate-500 text-sm sm:text-base focus:border-cyan-400 focus:outline-none focus:ring-1 focus:ring-cyan-400 shadow-xl transition-all"
+            className="w-full pl-12 pr-4 py-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] placeholder-[var(--ink-muted)] text-sm sm:text-base focus:border-[var(--accent)] focus:outline-none shadow-sm transition-all"
           />
         </div>
 
@@ -84,31 +80,31 @@ const GlossaryIndex = () => {
           {filteredTerms.map((term) => (
             <div
               key={term.slug}
-              className="p-6 sm:p-7 rounded-3xl bg-[#111827]/80 border border-white/10 hover:border-cyan-500/40 transition-all flex flex-col justify-between space-y-5 shadow-xl group"
+              className="p-6 sm:p-7 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-all flex flex-col justify-between space-y-5 shadow-sm group"
             >
               <div className="space-y-3">
                 <div className="flex items-center justify-between gap-2">
-                  <span className={`text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full border ${term.urgencyColor}`}>
+                  <span className={`text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full border ${term.urgencyColor}`}>
                     {term.urgencyLevel}
                   </span>
-                  <span className="text-xs font-mono text-slate-500">/sozluk/{term.slug}/</span>
+                  <span className="text-xs font-mono text-[var(--ink-muted)]">/sozluk/{term.slug}/</span>
                 </div>
 
-                <h2 className="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">
+                <h2 className="text-xl font-serif font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
                   <Link to={`/sozluk/${term.slug}/`} className="hover:underline">
                     {term.title}
                   </Link>
                 </h2>
 
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed line-clamp-3">
+                <p className="text-xs sm:text-sm text-[var(--ink-light)] leading-relaxed line-clamp-3">
                   {term.shortDef[isTr ? 'tr' : 'en']}
                 </p>
               </div>
 
-              <div className="pt-4 border-t border-white/10 flex items-center justify-between">
+              <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between">
                 <Link
                   to={`/sozluk/${term.slug}/`}
-                  className="text-xs font-bold font-mono text-cyan-400 hover:text-cyan-300 flex items-center gap-1.5 group-hover:translate-x-1 transition-transform"
+                  className="text-xs font-semibold font-mono text-[var(--accent)] hover:underline flex items-center gap-1.5 group-hover:translate-x-1 transition-transform min-h-[44px]"
                 >
                   <span>{isTr ? 'Ajans Etkisini & Çözümü Gör' : 'Read Agency Impact'}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -119,11 +115,11 @@ const GlossaryIndex = () => {
         </div>
 
         {/* Bottom Hub Callout */}
-        <div className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-[#111827] via-[#0e1626] to-[#151f33] border border-cyan-500/30 text-center space-y-4 max-w-3xl mx-auto shadow-2xl">
-          <h3 className="text-xl sm:text-2xl font-bold text-white">
+        <div className="p-8 sm:p-10 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] text-center space-y-4 max-w-3xl mx-auto shadow-sm">
+          <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
             {isTr ? 'Projenizde Bu Problemlerden Biri Canlıda mı Yaşanıyor?' : 'Facing One of These Technical Bottlenecks on Production?'}
           </h3>
-          <p className="text-xs sm:text-sm text-slate-300 max-w-xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-[var(--ink-light)] max-w-xl mx-auto leading-relaxed">
             {isTr 
               ? 'TMA SWAT masası; veritabanı kilitlenmelerini, webhook kopmalarını ve bellek sızıntılarını ajansınız adına sessizce çözer.' 
               : 'Our backline engineering desk diagnoses deadlocks, broken webhooks, and concurrency bugs under strict NDA.'}
@@ -131,13 +127,13 @@ const GlossaryIndex = () => {
           <div className="pt-2 flex flex-wrap justify-center gap-3">
             <Link
               to="/crash-test/"
-              className="px-6 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-bg-dark font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-cyan-500/20"
+              className="btn-primary min-h-[44px] text-xs sm:text-sm font-mono flex items-center gap-2"
             >
               <span>{isTr ? '60sn Crash Test Simülatörü →' : 'Launch 60s Crash Test →'}</span>
             </Link>
             <Link
               to="/agency/"
-              className="px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs sm:text-sm"
+              className="btn-secondary min-h-[44px] text-xs sm:text-sm font-mono flex items-center gap-2"
             >
               <span>{isTr ? 'Mühendislik Kapasitesi & Altyapı' : 'Engineering Capacity & Infrastructure'}</span>
             </Link>
@@ -150,7 +146,7 @@ const GlossaryIndex = () => {
               target="_blank"
               rel="noreferrer"
               onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'glossary_index' })}
-              className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-cyan-400 hover:text-cyan-300 transition-colors underline decoration-cyan-500/40 hover:decoration-cyan-400"
+              className="inline-flex items-center gap-2 text-xs sm:text-sm font-mono text-[var(--accent)] hover:underline min-h-[44px]"
             >
               <span>
                 {isTr 

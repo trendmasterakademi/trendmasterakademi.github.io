@@ -37,10 +37,10 @@ export default function CodeHealth({ lang = "tr" }) {
   }, [score, t.scoreLevels]);
 
   const tierColor = useMemo(() => {
-    if (score < 40) return { text: "text-rose-400", bg: "bg-rose-950/60", border: "border-rose-500", badge: "bg-rose-500 text-black" };
-    if (score < 70) return { text: "text-amber-400", bg: "bg-amber-950/60", border: "border-amber-500", badge: "bg-amber-500 text-black" };
-    if (score < 85) return { text: "text-blue-400", bg: "bg-blue-950/60", border: "border-blue-500", badge: "bg-blue-500 text-black" };
-    return { text: "text-emerald-400", bg: "bg-emerald-950/60", border: "border-emerald-500", badge: "bg-emerald-500 text-black" };
+    if (score < 40) return { text: "text-rose-700", bg: "bg-rose-50", border: "border-rose-200" };
+    if (score < 70) return { text: "text-amber-800", bg: "bg-amber-50", border: "border-amber-200" };
+    if (score < 85) return { text: "text-blue-800", bg: "bg-blue-50", border: "border-blue-200" };
+    return { text: "text-emerald-800", bg: "bg-emerald-50", border: "border-emerald-200" };
   }, [score]);
 
   // Top 3 Unchecked Risks
@@ -75,20 +75,20 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
   };
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100 py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-cyan-500/30">
+    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-white">
       {/* Header */}
       <div className="max-w-6xl mx-auto text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-950/60 border border-cyan-800/60 text-cyan-400 text-xs font-mono font-medium uppercase tracking-widest mb-4">
-          <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse"></span>
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
+          <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
           {t.hero.badge}
         </div>
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[var(--ink)] mb-4">
           {t.hero.title}
         </h1>
-        <p className="text-base sm:text-lg text-neutral-400 max-w-3xl mx-auto mb-4">
+        <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-3xl mx-auto mb-4">
           {t.hero.subtitle}
         </p>
-        <p className="text-xs text-neutral-500 font-mono">
+        <p className="text-xs text-[var(--ink-muted)] font-mono">
           🔒 {t.hero.notice}
         </p>
       </div>
@@ -97,20 +97,20 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Checklist Categories Column */}
         <div className="lg:col-span-8 space-y-8">
-          <div className="flex items-center justify-between border-b border-neutral-800/80 pb-3 text-xs font-mono">
-            <span className="text-neutral-400 uppercase tracking-wider">
+          <div className="flex items-center justify-between border-b border-[var(--rule)] pb-3 text-xs font-mono">
+            <span className="text-[var(--ink-muted)] uppercase tracking-wider">
               {lang === "en" ? "20 Verification Checkpoints" : "20 Kritik Doğrulama Maddesi"}
             </span>
             <div className="flex gap-4">
               <button
                 onClick={selectAll}
-                className="text-neutral-400 hover:text-cyan-400 transition"
+                className="text-[var(--ink-light)] hover:text-[var(--accent)] transition cursor-pointer min-h-[44px] flex items-center"
               >
                 {t.labels.selectAll}
               </button>
               <button
                 onClick={clearAll}
-                className="text-neutral-400 hover:text-rose-400 transition"
+                className="text-[var(--ink-light)] hover:text-[var(--accent)] transition cursor-pointer min-h-[44px] flex items-center"
               >
                 {t.labels.clearAll} ({checkedIds.length}/20)
               </button>
@@ -119,9 +119,9 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
 
           {t.categories.map((cat) => (
             <div key={cat.id} className="space-y-3">
-              <div className="border-b border-neutral-800 pb-2">
-                <h2 className="text-base font-bold text-white tracking-tight">{cat.title}</h2>
-                <p className="text-xs text-neutral-400 mt-0.5">{cat.desc}</p>
+              <div className="border-b border-[var(--rule)] pb-2">
+                <h2 className="text-base font-serif font-semibold text-[var(--ink)] tracking-tight">{cat.title}</h2>
+                <p className="text-xs text-[var(--ink-light)] mt-0.5">{cat.desc}</p>
               </div>
 
               <div className="space-y-2.5">
@@ -133,15 +133,15 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                       onClick={() => toggleItem(item.id)}
                       className={`cursor-pointer rounded-xl p-4 border transition-all flex items-start gap-3.5 ${
                         isChecked
-                          ? "bg-neutral-900/80 border-cyan-500/50 shadow-sm"
-                          : "bg-neutral-900/30 border-neutral-800/70 hover:border-neutral-700 hover:bg-neutral-900/50"
+                          ? "bg-[var(--surface)] border-[var(--accent)] shadow-sm"
+                          : "bg-[var(--surface)] border-[var(--rule)] hover:border-[var(--ink-muted)]"
                       }`}
                     >
                       <div
                         className={`w-5 h-5 mt-0.5 rounded flex items-center justify-center text-xs font-bold transition-all shrink-0 ${
                           isChecked
-                            ? "bg-cyan-500 text-neutral-950"
-                            : "border border-neutral-700 text-transparent"
+                            ? "bg-[var(--accent)] text-white"
+                            : "border border-[var(--rule)] text-transparent"
                         }`}
                       >
                         ✓
@@ -149,18 +149,18 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
 
                       <div className="space-y-1">
                         <div className="flex items-center justify-between gap-2">
-                          <h3 className="text-sm font-bold text-white tracking-tight">
+                          <h3 className="text-sm font-semibold text-[var(--ink)] tracking-tight">
                             {item.title}
                           </h3>
-                          <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-neutral-800 text-neutral-400">
+                          <span className="text-xs font-mono px-1.5 py-0.5 rounded bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-muted)]">
                             +{item.weight} pts
                           </span>
                         </div>
-                        <p className="text-xs text-neutral-400 leading-relaxed">
+                        <p className="text-xs text-[var(--ink-light)] leading-relaxed">
                           {item.desc}
                         </p>
                         {!isChecked && (
-                          <p className="text-[11px] font-mono text-rose-400/90 pt-1">
+                          <p className="text-xs font-mono text-[var(--sev-crit)] pt-1">
                             ⚠ Risk: {item.risk}
                           </p>
                         )}
@@ -177,27 +177,27 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
         <div className="lg:col-span-4">
           <div className="sticky top-8 space-y-5">
             {/* Score Card */}
-            <div className={`rounded-2xl p-6 border shadow-2xl backdrop-blur-md ${tierColor.bg} ${tierColor.border}`}>
-              <span className="text-xs font-mono uppercase tracking-wider text-neutral-400 block mb-1">
+            <div className={`rounded-2xl p-6 border shadow-sm ${tierColor.bg} ${tierColor.border}`}>
+              <span className="text-xs font-mono uppercase tracking-wider text-[var(--ink-muted)] block mb-1">
                 {t.labels.scoreTitle}
               </span>
               <div className="flex items-baseline gap-2 mb-2">
-                <span className="text-5xl font-extrabold font-mono tracking-tight text-white">
+                <span className="text-5xl font-bold font-mono tracking-tight text-[var(--ink)]">
                   {score}
                 </span>
-                <span className="text-lg font-mono text-neutral-400">/ 100</span>
+                <span className="text-lg font-mono text-[var(--ink-muted)]">/ 100</span>
               </div>
 
               {/* Tier Badge */}
-              <div className="mt-3 pt-3 border-t border-white/10 space-y-2">
-                <div className="inline-block px-2.5 py-1 rounded text-xs font-mono font-bold uppercase tracking-wider bg-white/10 text-white">
+              <div className="mt-3 pt-3 border-t border-[var(--rule)] space-y-2">
+                <div className="inline-block px-2.5 py-1 rounded text-xs font-mono font-semibold uppercase tracking-wider bg-[var(--surface)] text-[var(--ink)] border border-[var(--rule)]">
                   {scoreTier.title}
                 </div>
-                <p className="text-xs text-neutral-300 leading-relaxed">
+                <p className="text-xs text-[var(--ink-light)] leading-relaxed">
                   {scoreTier.desc}
                 </p>
-                <div className="p-3 rounded-lg bg-black/40 border border-white/10 text-xs font-mono text-neutral-300">
-                  <strong className="text-cyan-300 block mb-1">Önerilen Eylem:</strong>
+                <div className="p-3 rounded-lg bg-[var(--surface)] border border-[var(--rule)] text-xs font-mono text-[var(--ink)]">
+                  <strong className="text-[var(--accent)] block mb-1">Önerilen Eylem:</strong>
                   {scoreTier.action}
                 </div>
               </div>
@@ -205,15 +205,15 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
 
             {/* Top Unchecked Risks */}
             {topUncheckedRisks.length > 0 && (
-              <div className="bg-neutral-900/80 border border-neutral-800 rounded-2xl p-5 space-y-3">
-                <h3 className="text-xs font-mono text-rose-400 uppercase tracking-wider font-bold flex items-center gap-1.5">
+              <div className="bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-5 space-y-3">
+                <h3 className="text-xs font-mono text-[var(--sev-crit)] uppercase tracking-wider font-semibold flex items-center gap-1.5">
                   <span>🚨</span> {t.labels.topRisks}
                 </h3>
-                <ul className="space-y-2 text-xs font-mono text-neutral-300">
+                <ul className="space-y-2 text-xs font-mono text-[var(--ink)]">
                   {topUncheckedRisks.map((r, idx) => (
-                    <li key={r.id} className="p-2 rounded bg-neutral-950/70 border border-neutral-800/80">
-                      <span className="font-bold text-white block mb-0.5">{idx + 1}. {r.title}</span>
-                      <span className="text-neutral-400 text-[11px] leading-tight block">{r.risk}</span>
+                    <li key={r.id} className="p-2.5 rounded bg-[var(--paper)] border border-[var(--rule)]">
+                      <span className="font-semibold text-[var(--ink)] block mb-0.5">{idx + 1}. {r.title}</span>
+                      <span className="text-[var(--ink-light)] text-xs leading-tight block">{r.risk}</span>
                     </li>
                   ))}
                 </ul>
@@ -224,7 +224,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
             <div className="space-y-2">
               <button
                 onClick={copyReport}
-                className="w-full py-2.5 px-4 rounded-xl bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 text-xs font-mono font-medium text-white transition flex items-center justify-center gap-2"
+                className="btn-secondary w-full min-h-[44px] text-xs font-mono font-medium flex items-center justify-center gap-2 cursor-pointer"
               >
                 📋 {copied ? t.labels.copiedNotice : t.labels.copyReport}
               </button>
@@ -233,12 +233,12 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                 href={getCalendlyUrl(lang)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-xs font-mono font-bold text-white transition flex items-center justify-center gap-2 text-center shadow-lg shadow-cyan-950/50"
+                className="btn-primary w-full min-h-[44px] text-xs font-mono font-semibold flex items-center justify-center gap-2 text-center"
               >
                 ⚡ {t.labels.triageCta}
               </a>
 
-              <p className="text-[10px] text-neutral-500 font-mono text-center pt-1">
+              <p className="text-xs text-[var(--ink-muted)] font-mono text-center pt-1">
                 {lang === "en"
                   ? "Direct senior audit • NDA protected • Zero-risk sandbox"
                   : "Kıdemli mühendis denetimi • NDA korumalı • İzole sandbox"}

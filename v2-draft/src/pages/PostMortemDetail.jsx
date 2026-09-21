@@ -39,17 +39,17 @@ const PostMortemDetail = () => {
 
   if (!item) {
     return (
-      <div className="pt-40 pb-28 px-4 text-center max-w-2xl mx-auto space-y-4">
-        <h1 className="text-3xl font-black text-white">
+      <div className="min-h-screen pt-40 pb-28 px-4 text-center max-w-2xl mx-auto space-y-4 bg-[var(--paper)] text-[var(--ink)]">
+        <h1 className="text-3xl font-serif font-semibold text-[var(--ink)]">
           {isTr ? 'Post-Mortem Raporu Bulunamadı' : 'Post-Mortem Report Not Found'}
         </h1>
-        <p className="text-slate-400">
+        <p className="text-[var(--ink-light)]">
           {isTr ? 'Aradığınız vaka otopsisi mevcut değil veya taşınmış.' : 'The requested incident report does not exist or has been relocated.'}
         </p>
         <div className="pt-4">
           <Link
             to={isTr ? "/post-mortem/" : "/post-mortems/"}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-cyan-500 text-black font-bold text-sm"
+            className="btn-primary min-h-[44px] inline-flex items-center gap-2 text-sm"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>{isTr ? 'Arşive Dön' : 'Back to Archive'}</span>
@@ -62,13 +62,13 @@ const PostMortemDetail = () => {
   const isSev1 = item.severity.includes('SEV-1');
 
   return (
-    <article className="pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto text-slate-200">
+    <article className="min-h-screen pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-white">
       
       {/* Back to Archive Breadcrumb */}
       <nav className="mb-8">
         <Link
           to={isTr ? "/post-mortem/" : "/post-mortems/"}
-          className="inline-flex items-center gap-2 font-mono text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+          className="inline-flex items-center gap-2 font-mono text-xs font-semibold text-[var(--accent)] hover:underline transition-colors min-h-[44px]"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>{isTr ? '← Tüm Post-Mortem Raporlarına Dön' : '← Back to All Post-Mortem Reports'}</span>
@@ -76,35 +76,35 @@ const PostMortemDetail = () => {
       </nav>
 
       {/* Header */}
-      <header className="mb-12 space-y-6 border-b border-white/10 pb-8">
+      <header className="mb-12 space-y-6 border-b border-[var(--rule)] pb-8">
         <div className="flex flex-wrap items-center gap-3 font-mono text-xs">
-          <span className="text-slate-400 font-bold">
+          <span className="text-[var(--accent)] font-bold">
             #{item.no}
           </span>
           <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg font-bold uppercase ${
             isSev1 
-              ? 'bg-red-500/10 border border-red-500/30 text-red-400' 
-              : 'bg-amber-500/10 border border-amber-500/30 text-amber-400'
+              ? 'bg-rose-50 border border-rose-300 text-rose-800' 
+              : 'bg-amber-50 border border-amber-300 text-amber-800'
           }`}>
             <AlertTriangle className="w-3.5 h-3.5" />
             {item.severity}
           </span>
-          <span className="px-3 py-1 rounded-lg bg-white/5 border border-white/10 text-slate-300">
+          <span className="px-3 py-1 rounded-lg bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-light)]">
             {item.category[lang]}
           </span>
-          <span className="text-slate-400 flex items-center gap-1">
-            <Clock className="w-3.5 h-3.5 text-cyan-400" />
+          <span className="text-[var(--ink-muted)] flex items-center gap-1">
+            <Clock className="w-3.5 h-3.5 text-[var(--accent)]" />
             {item.duration[lang]}
           </span>
         </div>
 
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-black font-mono text-white leading-tight">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-[var(--ink)] leading-tight">
           {item.title[lang]}
         </h1>
 
         {/* Impact Box */}
-        <div className="p-5 rounded-2xl bg-red-500/10 border border-red-500/25 space-y-1 text-xs sm:text-sm text-red-200">
-          <strong className="text-red-400 uppercase tracking-wider font-mono block">
+        <div className="p-5 rounded-2xl bg-rose-50 border border-rose-200 space-y-1 text-xs sm:text-sm text-rose-950">
+          <strong className="text-rose-800 uppercase tracking-wider font-mono block font-semibold">
             {isTr ? 'OPERASYONEL & FİNANSAL ETKİ:' : 'OPERATIONAL & FINANCIAL IMPACT:'}
           </strong>
           <p className="leading-relaxed">
@@ -118,38 +118,38 @@ const PostMortemDetail = () => {
         
         {/* 1. Executive Summary */}
         <section className="space-y-3">
-          <h2 className="text-xl font-bold font-mono text-white flex items-center gap-2">
-            <span className="text-cyan-400">01.</span>
+          <h2 className="text-xl font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
+            <span className="text-[var(--accent)] font-mono">01.</span>
             <span>{isTr ? 'Olay Özeti (Executive Summary)' : 'Executive Summary'}</span>
           </h2>
-          <p className="text-slate-300 text-base leading-relaxed bg-[#0d121d] p-6 rounded-2xl border border-white/10">
+          <p className="text-[var(--ink-light)] text-base leading-relaxed bg-[var(--surface)] p-6 rounded-2xl border border-[var(--rule)]">
             {item.summary[lang]}
           </p>
         </section>
 
         {/* 2. Chronological Timeline */}
         <section className="space-y-4">
-          <h2 className="text-xl font-bold font-mono text-white flex items-center gap-2">
-            <span className="text-cyan-400">02.</span>
+          <h2 className="text-xl font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
+            <span className="text-[var(--accent)] font-mono">02.</span>
             <span>{isTr ? 'Saniye Saniye Olay Kronolojisi' : 'Incident Chronology (Timeline)'}</span>
           </h2>
 
-          <div className="relative border-l-2 border-cyan-500/30 ml-4 pl-6 space-y-6">
+          <div className="relative border-l-2 border-[var(--rule)] ml-4 pl-6 space-y-6">
             {item.timeline.map((step, sIdx) => (
               <div key={sIdx} className="relative group">
                 {/* Dot */}
-                <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-cyan-400 border-4 border-[#080b11] group-hover:scale-125 transition-transform"></div>
+                <div className="absolute -left-[31px] top-1.5 w-3.5 h-3.5 rounded-full bg-[var(--accent)] border-4 border-[var(--paper)] group-hover:scale-125 transition-transform"></div>
                 
                 <div className="space-y-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-xs font-mono font-bold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20">
+                    <span className="text-xs font-mono font-semibold text-[var(--accent)] bg-[var(--accent-subtle)] px-2 py-0.5 rounded border border-[var(--accent)]/20">
                       {step.time}
                     </span>
-                    <h3 className="text-base font-bold text-white">
+                    <h3 className="text-base font-semibold text-[var(--ink)]">
                       {step.title[lang]}
                     </h3>
                   </div>
-                  <p className="text-sm text-slate-300 leading-relaxed pt-1">
+                  <p className="text-sm text-[var(--ink-light)] leading-relaxed pt-1">
                     {step.desc[lang]}
                   </p>
                 </div>
@@ -160,33 +160,33 @@ const PostMortemDetail = () => {
 
         {/* 3. Root Cause Analysis */}
         <section className="space-y-3">
-          <h2 className="text-xl font-bold font-mono text-white flex items-center gap-2">
-            <span className="text-cyan-400">03.</span>
+          <h2 className="text-xl font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
+            <span className="text-[var(--accent)] font-mono">03.</span>
             <span>{isTr ? 'Kök Neden Analizi (Root Cause / 5 Whys)' : 'Root Cause Analysis (5 Whys)'}</span>
           </h2>
-          <div className="bg-[#0d121d] p-6 rounded-2xl border border-white/10 text-sm text-slate-300 leading-relaxed whitespace-pre-line space-y-2">
+          <div className="bg-[var(--surface)] p-6 rounded-2xl border border-[var(--rule)] text-sm text-[var(--ink-light)] leading-relaxed whitespace-pre-line space-y-2">
             {item.rootCause[lang]}
           </div>
         </section>
 
         {/* 4. TMA Hotfix & Intervention */}
         <section className="space-y-3">
-          <h2 className="text-xl font-bold font-mono text-white flex items-center gap-2">
-            <span className="text-emerald-400">04.</span>
+          <h2 className="text-xl font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
+            <span className="text-emerald-700 font-mono">04.</span>
             <span>{isTr ? 'TMA Cerrahi Hotfix & Müdahale Protokolü' : 'TMA Surgical Hotfix & Response Protocol'}</span>
           </h2>
-          <div className="bg-emerald-500/5 p-6 rounded-2xl border border-emerald-500/20 text-sm text-slate-200 leading-relaxed whitespace-pre-line space-y-2">
+          <div className="bg-emerald-50/60 p-6 rounded-2xl border border-emerald-200 text-sm text-emerald-950 leading-relaxed whitespace-pre-line space-y-2">
             {item.tmaHotfix[lang]}
           </div>
         </section>
 
         {/* 5. Permanent Mitigations */}
         <section className="space-y-3">
-          <h2 className="text-xl font-bold font-mono text-white flex items-center gap-2">
-            <span className="text-cyan-400">05.</span>
+          <h2 className="text-xl font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
+            <span className="text-[var(--accent)] font-mono">05.</span>
             <span>{isTr ? 'Alınan Kalıcı Önleyici Tedbirler (Hardening)' : 'Permanent Mitigations & Hardening'}</span>
           </h2>
-          <div className="bg-[#0d121d] p-6 rounded-2xl border border-white/10 text-sm text-slate-300 leading-relaxed whitespace-pre-line space-y-2">
+          <div className="bg-[var(--surface)] p-6 rounded-2xl border border-[var(--rule)] text-sm text-[var(--ink-light)] leading-relaxed whitespace-pre-line space-y-2">
             {item.permanentMitigation[lang]}
           </div>
         </section>
@@ -194,11 +194,11 @@ const PostMortemDetail = () => {
       </div>
 
       {/* Bottom CTA Box */}
-      <footer className="mt-16 p-8 rounded-3xl bg-gradient-to-r from-[#0d121d] to-[#111827] border border-cyan-500/30 text-center space-y-4 shadow-2xl">
-        <h3 className="text-xl sm:text-2xl font-black font-mono text-white">
+      <footer className="mt-16 p-8 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] text-center space-y-4 shadow-sm">
+        <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
           {isTr ? 'Benzer Bir Sistem Kilitlenmesiyle mi Karşı Karşıyasınız?' : 'Facing a Similar Systemic Outage?'}
         </h3>
-        <p className="text-slate-300 text-sm max-w-xl mx-auto leading-relaxed">
+        <p className="text-[var(--ink-light)] text-sm max-w-xl mx-auto leading-relaxed">
           {isTr
             ? 'TMA SWAT masası; yüksek eşzamanlılık, veritabanı kilitlenmeleri ve kopan ödeme pipeline’larında 0-2 saatte cerrahi müdahale uygular.'
             : 'The TMA SWAT desk applies rapid surgical containment within 0-2 hours for high-concurrency deadlocks and broken pipelines.'}
@@ -208,14 +208,14 @@ const PostMortemDetail = () => {
             href={getCalendlyUrl('post_mortem', { slug: item.slug })}
             target="_blank"
             rel="noreferrer"
-            className="px-6 py-3.5 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-black text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-cyan-500/20"
+            className="btn-primary min-h-[44px] text-xs sm:text-sm font-semibold flex items-center gap-2"
           >
             <Calendar className="w-4 h-4" />
             <span>{isTr ? '30 Dakikalık Teknik Triyaj Talep Edin' : 'Request a 30-Minute Technical Triage'}</span>
           </a>
           <Link
             to={isTr ? "/kurtarilabilirlik/" : "/salvageability/"}
-            className="px-6 py-3.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white font-bold text-xs sm:text-sm flex items-center gap-2"
+            className="btn-secondary min-h-[44px] text-xs sm:text-sm font-semibold flex items-center gap-2"
           >
             <span>{isTr ? 'Salvageability Index (60sn) →' : 'Salvageability Index (60s) →'}</span>
           </Link>

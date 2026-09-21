@@ -7,7 +7,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="shortcut icon" href="/favicon.ico" />
-    <meta name="theme-color" content="#080b11" />
+    <meta name="theme-color" content="#F5F6F7" />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     
@@ -57,10 +57,10 @@
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
 
-    <!-- Google Fonts: JetBrains Mono & Inter -->
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
     
     <!-- GitHub Pages SPA Redirect Handling -->
     <script type="text/javascript">
@@ -228,19 +228,19 @@
   ]
 }
     </script>
-    <script type="module" crossorigin src="/assets/index-CscrmgB1.js"></script>
+    <script type="module" crossorigin src="/assets/index-BCXhSv6F.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BLOyUBBX.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BBSKylVN.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-OgwtdHg2.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-UyoIMVfH.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DgKzotWK.css">
   </head>
-  <body class="bg-[#080b11] text-slate-200 antialiased selection:bg-cyan-500 selection:text-black">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
     <div id="root">
-    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-slate-200 font-sans">
-      <header class="mb-8 border-b border-white/10 pb-6">
-        <h1 class="text-3xl sm:text-4xl font-black text-white mb-3 tracking-tight">Developer Handover Readiness Audit</h1>
-        <nav class="flex flex-wrap gap-4 text-sm font-mono text-cyan-400">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Developer Handover Readiness Audit</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">Home</a>
           <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
           <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
@@ -263,91 +263,91 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-white">Developer Handover Readiness Audit // 12-Point Transition Checklist</h2>
-        <p class="text-slate-300 text-lg leading-relaxed">Audit Git repos, environment variables, DNS, and payment keys to ensure zero project blockage during engineer transitions.</p>
+        <h2 class="text-2xl font-bold text-[var(--ink)]">Developer Handover Readiness Audit // 12-Point Transition Checklist</h2>
+        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Audit Git repos, environment variables, DNS, and payment keys to ensure zero project blockage during engineer transitions.</p>
         
-  <section class="space-y-6 mt-8 border-t border-white/10 pt-6">
-    <h2 class="text-xl font-bold text-white">Kontrol edilen 12 kalem</h2>
+  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Kontrol edilen 12 kalem</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">1. Git Repo Erişim &amp; Sahiplik Devri</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Kaynak kodun barındığı GitHub/GitLab/Bitbucket organizasyonunda tam Admin/Owner yetkisi ajansınıza devredildi mi?</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: 15 puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">1. Git Repo Erişim &amp; Sahiplik Devri</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Kaynak kodun barındığı GitHub/GitLab/Bitbucket organizasyonunda tam Admin/Owner yetkisi ajansınıza devredildi mi?</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: 15 puan</p>
       </article>
       
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">2. Ortam Değişkenleri (.env) &amp; Bağlantı Sırları</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Canlı ve staging ortamlarındaki tüm API anahtarları, JWT secretları ve veritabanı şifreleri eksiksiz bir listede mevcut mu?</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: 10 puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">2. Ortam Değişkenleri (.env) &amp; Bağlantı Sırları</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Canlı ve staging ortamlarındaki tüm API anahtarları, JWT secretları ve veritabanı şifreleri eksiksiz bir listede mevcut mu?</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: 10 puan</p>
       </article>
       
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">3. Alan Adı (Domain) &amp; DNS Yönetim Paneli</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Cloudflare, GoDaddy, Namecheap vb. DNS ve domain sağlayıcı hesabının yönetici erişimi ajansınızın kontrolünde mi?</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: 12 puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">3. Alan Adı (Domain) &amp; DNS Yönetim Paneli</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Cloudflare, GoDaddy, Namecheap vb. DNS ve domain sağlayıcı hesabının yönetici erişimi ajansınızın kontrolünde mi?</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: 12 puan</p>
       </article>
       
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">4. SSL Sertifikası &amp; Yenileme Yöntemi</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">SSL sertifikasının (Let’s Encrypt / Certbot / Cloudflare Edge) nasıl yenilendiği ve süresi biliniyor mu?</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: 5 puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">4. SSL Sertifikası &amp; Yenileme Yöntemi</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">SSL sertifikasının (Let’s Encrypt / Certbot / Cloudflare Edge) nasıl yenilendiği ve süresi biliniyor mu?</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: 5 puan</p>
       </article>
       
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">5. Veritabanı Yedeği &amp; Güncel Dump Dosyası</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Son 24-48 saatlik güncel bir veritabanı dump/snapshot yedeği ve geri yükleme (restore) talimatı var mı?</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: 10 puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">5. Veritabanı Yedeği &amp; Güncel Dump Dosyası</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Son 24-48 saatlik güncel bir veritabanı dump/snapshot yedeği ve geri yükleme (restore) talimatı var mı?</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: 10 puan</p>
       </article>
       
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">6. Üçüncü Taraf API Hesapları &amp; Tokenlar</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Google Maps, SendGrid, AWS S3, Twilio, OpenAI vb. dış servislerin hesapları ajans/müşteri adına mı kayıtlı?</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: 8 puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">6. Üçüncü Taraf API Hesapları &amp; Tokenlar</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Google Maps, SendGrid, AWS S3, Twilio, OpenAI vb. dış servislerin hesapları ajans/müşteri adına mı kayıtlı?</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: 8 puan</p>
       </article>
       
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">7. Ödeme Sağlayıcı Paneli &amp; Webhook Gizli Anahtarları</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Stripe, iyzico, PayTR vb. ödeme paneli yönetimi ve webhook signing secret anahtarları elinizde mi?</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: 12 puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">7. Ödeme Sağlayıcı Paneli &amp; Webhook Gizli Anahtarları</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Stripe, iyzico, PayTR vb. ödeme paneli yönetimi ve webhook signing secret anahtarları elinizde mi?</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: 12 puan</p>
       </article>
       
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">8. Sunucu / Hosting / Bulut Hesap Yetkisi</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">AWS, Hetzner, DigitalOcean, Vercel vb. sunucu altyapısına SSH key ve Root/Admin düzeyinde erişiminiz var mı?</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: 12 puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">8. Sunucu / Hosting / Bulut Hesap Yetkisi</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">AWS, Hetzner, DigitalOcean, Vercel vb. sunucu altyapısına SSH key ve Root/Admin düzeyinde erişiminiz var mı?</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: 12 puan</p>
       </article>
       
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">9. CI/CD &amp; Otomatik Dağıtım İş Akışları</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">GitHub Actions, GitLab CI veya Dockerfile derleme ve otomatik canlıya alma adımları belgelenmiş mi?</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: 6 puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">9. CI/CD &amp; Otomatik Dağıtım İş Akışları</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">GitHub Actions, GitLab CI veya Dockerfile derleme ve otomatik canlıya alma adımları belgelenmiş mi?</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: 6 puan</p>
       </article>
       
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">10. Kurulum &amp; Mimari Dokümantasyonu (README)</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Yeni bir geliştiricinin projeyi localhost ortamında sıfırdan ayağa kaldırabilmesi için adım adım rehber var mı?</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: 5 puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">10. Kurulum &amp; Mimari Dokümantasyonu (README)</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Yeni bir geliştiricinin projeyi localhost ortamında sıfırdan ayağa kaldırabilmesi için adım adım rehber var mı?</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: 5 puan</p>
       </article>
       
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">11. Test Kapsamı &amp; Otomatik Kalite Kontrolü</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Kritik akışları (ödeme, kayıt, API) doğrulayan unit veya integration test suite mevcut mu?</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: 3 puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">11. Test Kapsamı &amp; Otomatik Kalite Kontrolü</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Kritik akışları (ödeme, kayıt, API) doğrulayan unit veya integration test suite mevcut mu?</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: 3 puan</p>
       </article>
       
-      <article class="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-2">
-        <h3 class="text-base font-bold text-cyan-300">12. Kütüphane Lisansları &amp; Mülkiyet Hakları</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">Kullanılan ücretli tema, plugin veya kütüphanelerin lisans anahtarları ve devir sözleşmesi mevcut mu?</p>
-        <p class="text-xs font-mono text-slate-400">Ağırlık: 2 puan</p>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h3 class="text-base font-bold text-[var(--accent)]">12. Kütüphane Lisansları &amp; Mülkiyet Hakları</h3>
+        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Kullanılan ücretli tema, plugin veya kütüphanelerin lisans anahtarları ve devir sözleşmesi mevcut mu?</p>
+        <p class="text-xs font-mono text-[var(--ink-muted)]">Ağırlık: 2 puan</p>
       </article>
     </div>
   </section>
 
-        <section class="p-6 rounded-2xl bg-white/5 border border-white/10 space-y-2 mt-6">
-          <h3 class="text-base font-bold text-cyan-300">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-slate-400">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-white">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-white">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-slate-400">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
         </section>
       </main>
     </div>
