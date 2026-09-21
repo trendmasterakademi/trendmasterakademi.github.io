@@ -207,18 +207,18 @@ const Agency = () => {
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/crash-test/"
-              className="btn-primary px-8 py-4 flex items-center gap-3 min-h-[48px]"
+              className="btn-primary px-8 py-4 flex items-center justify-center gap-3 min-h-[48px] whitespace-normal text-center"
             >
-              <Zap className="w-5 h-5" />
+              <Zap className="w-5 h-5 shrink-0" />
               <span>{isTr ? "Sistem Crash Test'ini Başlat (60 sn)" : "Run System Crash Test (60s)"}</span>
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 shrink-0" />
             </Link>
 
             <button
               onClick={() => setIsSOSOpen(true)}
-              className="btn-secondary px-8 py-4 text-[var(--accent)] flex items-center gap-2.5 cursor-pointer min-h-[48px]"
+              className="btn-secondary px-8 py-4 text-[var(--accent)] flex items-center justify-center gap-2.5 cursor-pointer min-h-[48px] whitespace-normal text-center"
             >
-              <AlertTriangle className="w-5 h-5 text-[var(--accent)]" />
+              <AlertTriangle className="w-5 h-5 text-[var(--accent)] shrink-0" />
               <span>{isTr ? 'Acil Kriz Masası (SOS)' : 'Emergency Crisis Desk (SOS)'}</span>
             </button>
           </div>

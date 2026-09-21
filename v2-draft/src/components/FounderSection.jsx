@@ -89,14 +89,14 @@ export const FounderSection = () => {
             <div className="pt-4 border-t border-[var(--rule)] flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
               <Link
                 to={isTr ? "/hikayemiz/" : "/story/"}
-                className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium flex items-center gap-1.5 transition-colors"
+                className="text-[var(--accent)] hover:text-[var(--accent-hover)] font-medium flex items-center gap-1.5 transition-colors min-h-[44px] py-2"
               >
                 <span>{isTr ? 'Kuruluş Hikâyemizi Okuyun' : 'Read Our Full Origin Story'}</span>
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/about/"
-                className="text-[var(--ink-3)] hover:text-[var(--ink)] transition-colors"
+                className="text-[var(--ink-3)] hover:text-[var(--ink)] transition-colors min-h-[44px] py-2 flex items-center"
               >
                 <span>{isTr ? 'Mühendislik Standartlarımız →' : 'Engineering Standards →'}</span>
               </Link>
@@ -149,7 +149,7 @@ export const FounderSection = () => {
               <div className="space-y-3">
                 <a
                   href="tel:+905343713573"
-                  className="flex items-center justify-between p-3 rounded-[var(--r-control)] bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-colors text-xs font-mono"
+                  className="flex items-center justify-between p-3 rounded-[var(--r-control)] bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-colors text-xs font-mono min-h-[44px]"
                 >
                   <span className="text-[var(--ink-3)]">{isTr ? 'Telefon & Kriz Hattı:' : 'Direct Phone Line:'}</span>
                   <strong className="text-[var(--ink)] font-semibold">+90 534 371 35 73</strong>
@@ -157,17 +157,17 @@ export const FounderSection = () => {
 
                 <a
                   href="mailto:info@trendmasterakademi.com"
-                  className="flex items-center justify-between p-3 rounded-[var(--r-control)] bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-colors text-xs font-mono"
+                  className="flex items-center justify-between p-3 rounded-[var(--r-control)] bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-colors text-xs font-mono min-h-[44px]"
                 >
                   <span className="text-[var(--ink-3)]">{isTr ? 'Doğrudan E-Posta:' : 'Desk Email:'}</span>
-                  <strong className="text-[var(--ink)] font-semibold">info@trendmasterakademi.com</strong>
+                  <strong className="text-[var(--ink)] font-semibold [overflow-wrap:anywhere]">info@trendmasterakademi.com</strong>
                 </a>
 
                 <a
                   href={getCalendlyUrl('founder_card')}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-[var(--r-control)] bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--accent)] transition-colors text-xs font-mono text-[var(--accent)] font-semibold"
+                  className="flex items-center justify-between p-3 rounded-[var(--r-control)] bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--accent)] transition-colors text-xs font-mono text-[var(--accent)] font-semibold min-h-[44px]"
                 >
                   <span className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />

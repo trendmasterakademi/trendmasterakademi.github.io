@@ -139,24 +139,14 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
           aria-modal="true"
           aria-labelledby="sos-modal-basligi"
           tabIndex={-1}
-          className="w-full max-w-xl max-h-[92vh] flex flex-col bg-[var(--surface)] border border-[var(--rule)] rounded-2xl shadow-2xl relative text-[var(--ink)] my-auto overflow-hidden outline-none"
+          className="w-full max-w-xl max-h-[92dvh] flex flex-col bg-[var(--surface)] border border-[var(--rule)] rounded-2xl shadow-2xl relative text-[var(--ink)] my-auto overflow-hidden outline-none"
         >
           {/* Top accent line */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-[var(--accent)] z-10"></div>
+          <div className="absolute top-0 left-0 right-0 h-1 bg-[var(--accent)] z-30"></div>
 
-          {/* Close button */}
-          <button
-            onClick={onClose}
-            className="absolute top-4 right-4 sm:top-5 sm:right-5 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink-secondary)] hover:text-[var(--ink)] transition-colors cursor-pointer z-20"
-            aria-label={isTr ? 'Kapat' : 'Close'}
-          >
-            <X className="w-5 h-5" />
-          </button>
-
-          {/* Scrollable Modal Body */}
-          <div className="overflow-y-auto p-5 sm:p-7 space-y-4">
-            {/* Header */}
-            <div className="flex items-center gap-3 pr-8 mb-2">
+          {/* Sticky Header */}
+          <div className="sticky top-0 bg-[var(--surface)] border-b border-[var(--rule)] px-5 py-4 sm:px-7 sm:py-5 flex items-center justify-between z-20 shrink-0">
+            <div className="flex items-center gap-3 pr-4">
               <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-[var(--accent-wash)] border border-[var(--accent)]/20 flex items-center justify-center text-[var(--accent)] flex-shrink-0">
                 <AlertTriangle className="w-5 h-5" />
               </div>
@@ -167,12 +157,24 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                     TMA Response Desk // {isTr ? 'Kriz Masası' : 'Crisis Desk'}
                   </span>
                 </div>
-                <h3 id="sos-modal-basligi" className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-tight">
+                <h3 id="sos-modal-basligi" className="text-base sm:text-lg font-serif font-semibold text-[var(--ink)] leading-tight">
                   {isTr ? 'Acil Teknik Müdahale & İmdat Butonu' : 'Emergency Technical Intervention & SOS'}
                 </h3>
               </div>
             </div>
 
+            {/* Close button */}
+            <button
+              onClick={onClose}
+              className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink-secondary)] hover:text-[var(--ink)] transition-colors cursor-pointer shrink-0"
+              aria-label={isTr ? 'Kapat' : 'Close'}
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {/* Scrollable Modal Body */}
+          <div className="overflow-y-auto p-5 sm:p-7 space-y-4 flex-1">
             <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed mb-3">
               {isTr 
                 ? 'Teslim tarihi sıkışan, geliştiricisi ayrılan veya canlıda kilitlenen projeler için doğrudan kıdemli mühendislik masamız devreye girer.' 
@@ -406,23 +408,26 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   : 'The response desk is not a single person; work under way is not left unfinished.'}
               </p>
 
-              <div className="pt-2 flex flex-col sm:flex-row gap-3">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="btn-primary flex-1 min-h-[44px] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>{isSubmitting ? (isTr ? 'Kaydediliyor...' : 'Saving...') : (isTr ? 'Kriz Masasına Anında Bildir (WhatsApp)' : 'Dispatch Crisis Desk (WhatsApp)')}</span>
-                </button>
-                <a
-                  href="tel:+905343713573"
-                  className="btn-secondary px-6 min-h-[44px] flex items-center justify-center gap-2"
-                  title="Doğrudan Telefonla Ara"
-                >
-                  <PhoneCall className="w-4 h-4 text-[var(--sev-ok)]" />
-                  <span>{isTr ? 'Ara' : 'Call'}</span>
-                </a>
+              {/* Sticky Bottom Action Bar */}
+              <div className="sticky bottom-0 -mx-5 -mb-5 sm:-mx-7 sm:-mb-7 bg-[var(--surface)] border-t border-[var(--rule)] p-3 sm:p-4 z-10">
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="btn-primary flex-1 min-h-[44px] flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 text-xs sm:text-sm font-semibold whitespace-normal text-center"
+                  >
+                    <Send className="w-4 h-4 shrink-0" />
+                    <span>{isSubmitting ? (isTr ? 'Kaydediliyor...' : 'Saving...') : (isTr ? 'Kriz Masasına Anında Bildir (WhatsApp)' : 'Dispatch Crisis Desk (WhatsApp)')}</span>
+                  </button>
+                  <a
+                    href="tel:+905343713573"
+                    className="btn-secondary px-6 min-h-[44px] flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold shrink-0"
+                    title="Doğrudan Telefonla Ara"
+                  >
+                    <PhoneCall className="w-4 h-4 text-[var(--sev-ok)] shrink-0" />
+                    <span>{isTr ? 'Ara' : 'Call'}</span>
+                  </a>
+                </div>
               </div>
             </form>
           )}

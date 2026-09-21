@@ -84,7 +84,7 @@ function KitBanner() {
         <div className="flex-1 overflow-hidden h-full flex items-center px-3">
           <Link 
             to="/kit/" 
-            className="flex items-center gap-2 text-xs text-[var(--ink-2)] hover:text-[var(--accent-ink)] transition-colors truncate min-h-[44px]" 
+            className="flex items-center gap-2 text-xs text-[var(--ink-2)] hover:text-[var(--accent-ink)] transition-colors truncate h-full" 
             title={isTr ? "Görsel Kılavuzu Aç" : "Open Visual Guide"}
           >
             <span className="px-1.5 py-0.5 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)]/20 text-[var(--accent-ink)] font-semibold text-xs uppercase tracking-wider flex-shrink-0">
@@ -93,7 +93,7 @@ function KitBanner() {
             <span className="truncate font-medium text-[var(--ink)]">
               {featuredItem.text}
             </span>
-            <span className="hidden md:inline text-[var(--ink-3)] text-xs">
+            <span className="hidden min-[1280px]:inline text-[var(--ink-3)] text-xs whitespace-nowrap">
               — {data.tickerItems[1]?.text || ''}
             </span>
           </Link>
@@ -103,7 +103,7 @@ function KitBanner() {
         <div className="flex items-center gap-1.5 px-2 bg-[var(--surface)] h-full z-20 flex-shrink-0 border-l border-[var(--rule)]">
           <Link
             to="/kit/"
-            className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded-[var(--r-control)] text-xs text-[var(--ink-2)] hover:text-[var(--accent-ink)] hover:bg-[var(--paper)] transition-colors whitespace-nowrap min-h-[44px]"
+            className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded-[var(--r-control)] text-xs text-[var(--ink-2)] hover:text-[var(--accent-ink)] hover:bg-[var(--paper)] transition-colors whitespace-nowrap h-5"
             title={isTr ? "TMA Agency Kit Görsel Sayfası" : "TMA Agency Kit Visual Page"}
           >
             <span>{isTr ? 'Görsel Galeri' : 'Gallery'}</span>
@@ -112,7 +112,7 @@ function KitBanner() {
 
           <button
             onClick={() => setIsModalOpen(true)}
-            className="px-2 py-0.5 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-[var(--on-accent)] font-medium text-xs flex items-center gap-1 transition-colors cursor-pointer min-h-[44px]"
+            className="px-2 py-0.5 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-[var(--on-accent)] font-medium text-xs flex items-center gap-1 transition-colors cursor-pointer h-5"
             aria-label="TMA Kiti İncele"
           >
             <BookOpen className="w-3 h-3 flex-shrink-0" />
@@ -121,7 +121,7 @@ function KitBanner() {
 
           <button
             onClick={handleDismiss}
-            className="p-1 rounded-[var(--r-control)] text-[var(--ink-3)] hover:text-[var(--ink)] hover:bg-[var(--paper)] transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+            className="p-0.5 rounded-[var(--r-control)] text-[var(--ink-3)] hover:text-[var(--ink)] hover:bg-[var(--paper)] transition-colors cursor-pointer h-5 w-5 flex items-center justify-center"
             aria-label="Kapat"
             title={isTr ? "Banner'ı gizle" : "Hide banner"}
           >

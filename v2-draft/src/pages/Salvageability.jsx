@@ -386,7 +386,7 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
         </div>
 
         {/* Live Score & Decision Matrix (5 Cols Sticky) */}
-        <div className="lg:col-span-5 lg:sticky lg:top-28 space-y-6">
+        <div className="lg:col-span-5 lg:sticky lg:top-[80px] max-h-[calc(100dvh-96px)] overflow-y-auto space-y-6">
           
           <div className="p-7 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-6 shadow-sm relative overflow-hidden">
             {/* Score Display */}
@@ -418,8 +418,30 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
               </div>
             </div>
 
+            {/* Actions (Primary CTA in first 480px) */}
+            <div className="space-y-2.5">
+              <a
+                href={getCalendlyUrl('salvageability', { score: totalScore, strategy: decision.code })}
+                target="_blank"
+                rel="noreferrer"
+                className="btn-primary min-h-[44px] w-full text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 text-center"
+              >
+                <Calendar className="w-4 h-4" />
+                <span>{isTr ? 'Bu Skoru Kıdemli Masayla Değerlendir' : 'Discuss Score with Senior Desk'}</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={copyReport}
+                className="btn-secondary min-h-[44px] w-full text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer"
+              >
+                {copied ? <Check className="w-4 h-4 text-emerald-700" /> : <Copy className="w-4 h-4 text-[var(--ink-muted)]" />}
+                <span>{copied ? (isTr ? 'Rapor Panoya Kopyalandı!' : 'Report Copied!') : (isTr ? 'Karar Raporunu Kopyala' : 'Copy Decision Report')}</span>
+              </button>
+            </div>
+
             {/* Decision & Action */}
-            <div className="space-y-4">
+            <div className="space-y-4 pt-2 border-t border-[var(--rule)]">
               <h4 className="text-lg font-serif font-semibold text-[var(--ink)] leading-snug">
                 {decision.title[lang]}
               </h4>
@@ -447,28 +469,6 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
                 <strong className="text-emerald-800 block mb-0.5 font-semibold">{isTr ? 'Finansal Etki:' : 'Financial Impact:'}</strong>
                 {decision.financialRoi[lang]}
               </div>
-            </div>
-
-            {/* Actions */}
-            <div className="space-y-2.5 pt-2 border-t border-[var(--rule)]">
-              <button
-                type="button"
-                onClick={copyReport}
-                className="btn-secondary min-h-[44px] w-full text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer"
-              >
-                {copied ? <Check className="w-4 h-4 text-emerald-700" /> : <Copy className="w-4 h-4 text-[var(--ink-muted)]" />}
-                <span>{copied ? (isTr ? 'Rapor Panoya Kopyalandı!' : 'Report Copied!') : (isTr ? 'Karar Raporunu Kopyala' : 'Copy Decision Report')}</span>
-              </button>
-
-              <a
-                href={getCalendlyUrl('salvageability', { score: totalScore, strategy: decision.code })}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-primary min-h-[44px] w-full text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 text-center"
-              >
-                <Calendar className="w-4 h-4" />
-                <span>{isTr ? 'Bu Skoru Kıdemli Masayla Değerlendir' : 'Discuss Score with Senior Desk'}</span>
-              </a>
             </div>
 
           </div>

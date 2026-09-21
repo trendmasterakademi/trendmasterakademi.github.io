@@ -125,7 +125,7 @@ const Services = () => {
 
                 <a 
                   href="#contact"
-                  className="btn-secondary w-full cursor-pointer mt-auto flex items-center justify-center gap-2"
+                  className="btn-secondary w-full cursor-pointer mt-auto flex items-center justify-center gap-2 min-h-[44px]"
                 >
                   <span>{t('card-btn-contact')}</span>
                   <ArrowRight className="w-4 h-4" />

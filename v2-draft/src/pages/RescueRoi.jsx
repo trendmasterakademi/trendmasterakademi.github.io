@@ -111,7 +111,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
           {t.hero.subtitle}
         </p>
         <p className="text-xs text-[var(--ink-muted)] font-mono">
-          💼 {t.hero.notice}
+          {t.hero.notice}
         </p>
       </div>
 
@@ -276,7 +276,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
             </div>
 
             <p className="text-xs text-[var(--ink-muted)] font-mono leading-relaxed mt-4 pt-3 border-t border-[var(--rule)]">
-              ℹ️ {t.labels.sourceNote}
+              {t.labels.sourceNote}
             </p>
 
             {/* Actions */}
@@ -285,7 +285,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                 onClick={copyBrief}
                 className="btn-secondary min-h-[44px] w-full text-xs font-mono font-medium flex items-center justify-center gap-2 cursor-pointer"
               >
-                📋 {copied ? t.labels.copiedNotice : t.labels.copyReport}
+                {copied ? t.labels.copiedNotice : t.labels.copyReport}
               </button>
 
               <a
@@ -294,7 +294,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                 rel="noopener noreferrer"
                 className="btn-primary min-h-[44px] w-full text-xs font-mono font-semibold flex items-center justify-center gap-2 text-center"
               >
-                ⚡ {t.labels.triageCta}
+                {t.labels.triageCta}
               </a>
             </div>
           </div>

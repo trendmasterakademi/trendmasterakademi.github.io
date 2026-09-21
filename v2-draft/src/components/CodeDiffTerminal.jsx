@@ -434,7 +434,7 @@ export const CodeDiffTerminal = () => {
             </div>
             <a
               href="#contact"
-              className="text-[var(--term-accent)] hover:underline font-medium flex items-center gap-1.5 transition-colors"
+              className="text-[var(--term-accent)] hover:underline font-medium flex items-center gap-1.5 transition-colors min-h-[44px]"
             >
               <span>{isTr ? 'Bu arızayı masanıza taşıyın →' : 'Bring this issue to our desk →'}</span>
             </a>

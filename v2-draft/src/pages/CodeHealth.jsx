@@ -94,7 +94,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
           {t.hero.subtitle}
         </p>
         <p className="text-xs text-[var(--ink-muted)] font-mono">
-          🔒 {t.hero.notice}
+          {t.hero.notice}
         </p>
       </div>
 
@@ -166,7 +166,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                         </p>
                         {!isChecked && (
                           <p className="text-xs font-mono text-[var(--sev-crit)] pt-1">
-                            ⚠ Risk: {item.risk}
+                            Risk: {item.risk}
                           </p>
                         )}
                       </div>
@@ -180,7 +180,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
 
         {/* Sticky Score Sidebar */}
         <div className="lg:col-span-4">
-          <div className="sticky top-8 space-y-5">
+          <div className="sticky top-[80px] max-h-[calc(100dvh-96px)] overflow-y-auto space-y-4 pr-1">
             {/* Score Card */}
             <div className={`rounded-2xl p-6 border shadow-sm ${tierColor.bg} ${tierColor.border}`}>
               <span className="text-xs font-mono uppercase tracking-wider text-[var(--ink-muted)] block mb-1">
@@ -208,11 +208,36 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
               </div>
             </div>
 
+            {/* Actions (In first 480px) */}
+            <div className="space-y-2">
+              <a
+                href={getCalendlyUrl(lang)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary w-full min-h-[44px] text-xs font-mono font-semibold flex items-center justify-center gap-2 text-center"
+              >
+                {t.labels.triageCta}
+              </a>
+
+              <button
+                onClick={copyReport}
+                className="btn-secondary w-full min-h-[44px] text-xs font-mono font-medium flex items-center justify-center gap-2 cursor-pointer"
+              >
+                {copied ? t.labels.copiedNotice : t.labels.copyReport}
+              </button>
+
+              <p className="text-xs text-[var(--ink-muted)] font-mono text-center pt-1">
+                {lang === "en"
+                  ? "Direct senior audit • NDA protected • Zero-risk sandbox"
+                  : "Kıdemli mühendis denetimi • NDA korumalı • İzole sandbox"}
+              </p>
+            </div>
+
             {/* Top Unchecked Risks */}
             {topUncheckedRisks.length > 0 && (
               <div className="bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-5 space-y-3">
-                <h3 className="text-xs font-mono text-[var(--sev-crit)] uppercase tracking-wider font-semibold flex items-center gap-1.5">
-                  <span>🚨</span> {t.labels.topRisks}
+                <h3 className="text-xs font-mono text-[var(--sev-crit)] uppercase tracking-wider font-semibold">
+                  {t.labels.topRisks}
                 </h3>
                 <ul className="space-y-2 text-xs font-mono text-[var(--ink)]">
                   {topUncheckedRisks.map((r, idx) => (
@@ -224,31 +249,6 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                 </ul>
               </div>
             )}
-
-            {/* Actions */}
-            <div className="space-y-2">
-              <button
-                onClick={copyReport}
-                className="btn-secondary w-full min-h-[44px] text-xs font-mono font-medium flex items-center justify-center gap-2 cursor-pointer"
-              >
-                📋 {copied ? t.labels.copiedNotice : t.labels.copyReport}
-              </button>
-
-              <a
-                href={getCalendlyUrl(lang)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary w-full min-h-[44px] text-xs font-mono font-semibold flex items-center justify-center gap-2 text-center"
-              >
-                ⚡ {t.labels.triageCta}
-              </a>
-
-              <p className="text-xs text-[var(--ink-muted)] font-mono text-center pt-1">
-                {lang === "en"
-                  ? "Direct senior audit • NDA protected • Zero-risk sandbox"
-                  : "Kıdemli mühendis denetimi • NDA korumalı • İzole sandbox"}
-              </p>
-            </div>
           </div>
         </div>
       </div>

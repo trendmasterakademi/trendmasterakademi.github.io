@@ -173,7 +173,7 @@ const FAQ = () => {
                           <div className="pt-1">
                             <Link 
                               to="/nda/" 
-                              className="inline-flex items-center gap-1 text-[var(--accent)] hover:text-[var(--accent-hover)] font-mono text-xs sm:text-sm font-semibold transition-colors"
+                              className="inline-flex items-center gap-1 text-[var(--accent)] hover:text-[var(--accent-hover)] font-mono text-xs sm:text-sm font-semibold transition-colors min-h-[44px] py-1"
                             >
                               {isTr ? 'Sözleşmeyi okuyun →' : 'Read the agreement →'}
                             </Link>
@@ -183,7 +183,7 @@ const FAQ = () => {
                           <div className="pt-1">
                             <Link 
                               to="/sla/" 
-                              className="inline-flex items-center gap-1 text-[var(--accent)] hover:text-[var(--accent-hover)] font-mono text-xs sm:text-sm font-semibold transition-colors"
+                              className="inline-flex items-center gap-1 text-[var(--accent)] hover:text-[var(--accent-hover)] font-mono text-xs sm:text-sm font-semibold transition-colors min-h-[44px] py-1"
                             >
                               {isTr ? 'SLA ve Yanıt Taahhütleri →' : 'SLA & Response Commitments →'}
                             </Link>
@@ -213,7 +213,7 @@ const FAQ = () => {
               target="_blank"
               rel="noreferrer"
               onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'faq_box' })}
-              className="btn-primary flex items-center gap-2"
+              className="btn-primary flex items-center gap-2 min-h-[44px]"
             >
               <Calendar className="w-4 h-4" />
               <span>{isTr ? '30 Dakikalık Randevu Seç →' : 'Schedule 30-Min Call →'}</span>
@@ -223,7 +223,7 @@ const FAQ = () => {
               target="_blank"
               rel="noreferrer"
               onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'faq_box' })}
-              className="btn-secondary flex items-center gap-2"
+              className="btn-secondary flex items-center gap-2 min-h-[44px]"
             >
               <span>{isTr ? 'WhatsApp’tan Sorun →' : 'Ask on WhatsApp →'}</span>
             </a>

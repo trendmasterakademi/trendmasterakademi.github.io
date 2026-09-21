@@ -129,13 +129,16 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
         {/* Tech Grid */}
         <div className="lg:col-span-8 space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {filteredItems.map((tech) => {
+            {filteredItems.map((tech, idx) => {
               const isSelected = selectedTechIds.includes(tech.id);
+              const isLastOdd = idx === filteredItems.length - 1 && filteredItems.length % 2 === 1;
               return (
                 <div
                   key={tech.id}
                   onClick={() => toggleTech(tech.id)}
                   className={`cursor-pointer rounded-xl p-5 border transition-all relative ${
+                    isLastOdd ? "md:col-span-2" : ""
+                  } ${
                     isSelected
                       ? "bg-[var(--surface)] border-[var(--accent)] shadow-sm"
                       : "bg-[var(--surface)] border-[var(--rule)] hover:border-[var(--ink-muted)]"
@@ -199,7 +202,7 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
 
         {/* Live Stack Evaluation Sidebar */}
         <div className="lg:col-span-4">
-          <div className="sticky top-8 bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-6 shadow-sm">
+          <div className="sticky top-[80px] max-h-[calc(100dvh-96px)] overflow-y-auto bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-6 shadow-sm">
             <h2 className="text-lg font-serif font-semibold text-[var(--ink)] mb-2 flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
               {t.summaryBox.title}
@@ -238,8 +241,33 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                   </div>
                 </div>
 
+                {/* Primary Action CTA (Placed in first 480px) */}
+                <div className="space-y-2 pt-1">
+                  <a
+                    href={getCalendlyUrl(lang)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary min-h-[44px] w-full text-xs font-mono font-semibold flex items-center justify-center gap-2 text-center"
+                  >
+                    {t.summaryBox.actionCta}
+                  </a>
+
+                  <button
+                    onClick={copyStackBrief}
+                    className="btn-secondary min-h-[44px] w-full text-xs font-mono font-medium flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    {copied ? t.summaryBox.copiedNotice : (lang === "en" ? "Copy Stack Briefing" : "Mimari Brifingini Kopyala")}
+                  </button>
+
+                  <p className="text-xs text-[var(--ink-muted)] font-mono text-center pt-1">
+                    {lang === "en"
+                      ? "Direct senior desk • NDA protected • No sales reps"
+                      : "Doğrudan kıdemli mühendis masası • NDA korumalı • Aracı yok"}
+                  </p>
+                </div>
+
                 {/* Selected Badges */}
-                <div>
+                <div className="border-t border-[var(--rule)] pt-4">
                   <span className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider block mb-2">
                     {lang === "en" ? "Selected Components:" : "Seçili Bileşenler:"} ({selectedItems.length})
                   </span>
@@ -264,7 +292,7 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                 {/* Combined Outage Risks */}
                 <div className="border-t border-[var(--rule)] pt-4">
                   <span className="text-xs font-mono text-amber-700 uppercase tracking-wider block mb-2">
-                    ⚠ {t.summaryBox.keyRisks}:
+                    {t.summaryBox.keyRisks}:
                   </span>
                   <ul className="text-xs text-[var(--ink-light)] space-y-2 list-disc list-inside bg-[var(--paper)] p-3 rounded-xl border border-[var(--rule)]">
                     {selectedItems
@@ -276,31 +304,6 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                         </li>
                       ))}
                   </ul>
-                </div>
-
-                {/* Actions: Copy Brief & Direct Triage */}
-                <div className="space-y-2 pt-2">
-                  <button
-                    onClick={copyStackBrief}
-                    className="btn-secondary min-h-[44px] w-full text-xs font-mono font-medium flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    📋 {copied ? t.summaryBox.copiedNotice : (lang === "en" ? "Copy Stack Briefing" : "Mimari Brifingini Kopyala")}
-                  </button>
-
-                  <a
-                    href={getCalendlyUrl(lang)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary min-h-[44px] w-full text-xs font-mono font-semibold flex items-center justify-center gap-2 text-center"
-                  >
-                    ⚡ {t.summaryBox.actionCta}
-                  </a>
-
-                  <p className="text-xs text-[var(--ink-muted)] font-mono text-center pt-1">
-                    {lang === "en"
-                      ? "Direct senior desk • NDA protected • No sales reps"
-                      : "Doğrudan kıdemli mühendis masası • NDA korumalı • Aracı yok"}
-                  </p>
                 </div>
               </div>
             )}

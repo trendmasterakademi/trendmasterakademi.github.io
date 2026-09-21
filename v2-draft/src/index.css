@@ -277,6 +277,13 @@
     max-width: 34rem;
   }
 
+  .text-center p:not(.text-left):not(.text-right):not([class*="text-left"]):not([class*="text-right"]),
+  p.text-center,
+  p[style*="text-align: center"],
+  p[style*="text-align:center"] {
+    margin-inline: auto;
+  }
+
   input, textarea, select {
     font-size: 1rem !important;
     border: 1px solid var(--rule-input) !important;
@@ -324,7 +331,6 @@
     cursor: pointer;
     text-decoration: none;
     line-height: 1.25;
-    white-space: nowrap;
   }
   .btn-primary:hover {
     background-color: var(--accent-ink);
@@ -348,7 +354,6 @@
     cursor: pointer;
     text-decoration: none;
     line-height: 1.25;
-    white-space: nowrap;
   }
   .btn-secondary:hover {
     background-color: var(--surface);

@@ -13,7 +13,7 @@ const Footer = () => {
   const krizHattiAcik = useKrizHattiAcik();
 
   return (
-    <footer className="border-t border-[var(--rule)] bg-[var(--surface)] pt-6 pb-6 px-4 sm:px-6 md:px-12 text-[var(--ink-2)] text-xs sm:text-sm">
+    <footer className="border-t border-[var(--rule)] bg-[var(--surface)] pt-6 pb-24 md:pb-6 px-4 sm:px-6 md:px-12 text-[var(--ink-2)] text-xs sm:text-sm">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 sm:gap-8 mb-4">
         
         {/* Brand Column */}

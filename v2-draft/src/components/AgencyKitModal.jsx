@@ -39,7 +39,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
       aria-label="TMA Agency Kit Viewer"
     >
       <div 
-        className="relative w-full max-w-5xl my-auto max-h-[calc(100vh-2rem)] sm:max-h-[calc(100vh-3rem)] flex flex-col min-h-0 bg-[var(--surface)] border border-[var(--rule)] rounded-2xl shadow-2xl overflow-hidden text-[var(--ink)] font-sans"
+        className="relative w-full max-w-5xl my-auto max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100dvh-3rem)] flex flex-col min-h-0 bg-[var(--surface)] border border-[var(--rule)] rounded-2xl shadow-2xl overflow-hidden text-[var(--ink)] font-sans"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Top Bar */}

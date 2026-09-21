@@ -108,36 +108,37 @@ const Contact = () => {
 
   return (
     <section id="contact" className="py-[136px] px-4 sm:px-6 md:px-12 relative overflow-hidden bg-[var(--paper)] border-t border-[var(--rule)]">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-        
-        {/* Left Column: Direct Channels & Trust */}
-        <div className="lg:col-span-5 space-y-8">
-          <div>
-            <h4 className="text-xs sm:text-sm font-mono font-medium text-[var(--ink-3)] uppercase tracking-wider mb-3">
-              {t('contact-subtitle')}
-            </h4>
-            <h2 className="font-serif text-xl sm:text-2xl font-semibold text-[var(--ink)] tracking-tight leading-tight mb-6">
-              {t('contact-title')}
-            </h2>
-            <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
-              {t('contact-desc')}
-            </p>
-          </div>
-          
-          <div className="space-y-4">
-            
-            {/* Direct WhatsApp Box */}
-            <a 
-              href="https://wa.me/905343713573?text=Merhaba%2C%20TMA%20ile%20proje%20ve%20teknik%20destek%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyoruz." 
-              target="_blank" 
-              rel="noreferrer" 
-              onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'contact_box' })}
-              className="flex items-center gap-4 p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all group shadow-sm"
-            >
-              <div className="w-12 h-12 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
-                <MessageSquare className="w-6 h-6" />
-              </div>
-              <div>
+      <div className="max-w-7xl mx-auto">
+        {/* Title Block - Full Width across both columns */}
+        <div className="mb-10 max-w-3xl">
+          <h4 className="text-xs sm:text-sm font-mono font-medium text-[var(--ink-3)] uppercase tracking-wider mb-3">
+            {t('contact-subtitle')}
+          </h4>
+          <h2 className="font-serif text-xl sm:text-2xl lg:text-3xl font-semibold text-[var(--ink)] tracking-tight leading-tight mb-4">
+            {t('contact-title')}
+          </h2>
+          <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
+            {t('contact-desc')}
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          {/* Left Column: Direct Channels & Trust */}
+          <div className="lg:col-span-5 space-y-8">
+            <div className="space-y-4">
+              
+              {/* Direct WhatsApp Box */}
+              <a 
+                href="https://wa.me/905343713573?text=Merhaba%2C%20TMA%20ile%20proje%20ve%20teknik%20destek%20hakk%C4%B1nda%20g%C3%B6r%C3%BC%C5%9Fmek%20istiyoruz." 
+                target="_blank" 
+                rel="noreferrer" 
+                onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'contact_box' })}
+                className="flex items-center gap-4 p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all group shadow-sm"
+              >
+                <div className="w-12 h-12 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <MessageSquare className="w-6 h-6" />
+                </div>
+                <div>
                 <div className="text-[var(--ink)] font-semibold text-base">
                   {isTr ? 'WhatsApp Kriz & Destek Masası' : 'WhatsApp Crisis & Support Desk'}
                 </div>
@@ -440,8 +441,8 @@ const Contact = () => {
                 />
                 <label htmlFor="kvkk" className="text-xs text-[var(--ink-3)] leading-relaxed cursor-pointer">
                   {isTr 
-                    ? <>İletişim bilgilerimin kriz masası değerlendirmesi ve geri dönüş amacıyla işlenmesini onaylıyorum (<Link to="/privacy/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)]">KVKK ve Gizlilik Politikası</Link> uyarınca bilgileriniz 3. taraflarla paylaşılmaz).</>
-                    : <>I consent to the processing of my contact details for triage and response under <Link to="/privacy/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)]">Privacy Policy</Link> standards.</>}
+                    ? <>İletişim bilgilerimin kriz masası değerlendirmesi ve geri dönüş amacıyla işlenmesini onaylıyorum (<Link to="/privacy/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)] inline-flex items-center min-h-[44px]">KVKK ve Gizlilik Politikası</Link> uyarınca bilgileriniz 3. taraflarla paylaşılmaz).</>
+                    : <>I consent to the processing of my contact details for triage and response under <Link to="/privacy/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)] inline-flex items-center min-h-[44px]">Privacy Policy</Link> standards.</>}
                 </label>
               </div>
               
@@ -457,6 +458,7 @@ const Contact = () => {
           )}
         </div>
         
+      </div>
       </div>
     </section>
   );

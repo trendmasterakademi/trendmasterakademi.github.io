@@ -122,7 +122,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
           {t.hero.subtitle}
         </p>
         <p className="text-xs text-[var(--ink-muted)] font-mono">
-          🚨 {t.hero.notice}
+          {t.hero.notice}
         </p>
       </div>
 
@@ -301,7 +301,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
 
             {/* Hidden Cost Alert */}
             <div className="p-3.5 rounded-xl bg-[var(--accent-subtle)] border border-[var(--accent)]/30 text-xs font-mono text-[var(--accent)]">
-              ⚠ <strong>{t.labels.hiddenCostWarning}</strong>{" "}
+              <strong>{t.labels.hiddenCostWarning}</strong>{" "}
               <span className="font-bold underline">{metrics.hiddenMultiplier}x</span>{" "}
               {lang === "en" ? "of direct sales losses." : "katına ulaşıyor!"}
             </div>
@@ -340,7 +340,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
                 onClick={copyBrief}
                 className="btn-secondary min-h-[44px] w-full text-xs font-mono font-medium flex items-center justify-center gap-2 cursor-pointer"
               >
-                📋 {copied ? t.labels.copied : t.labels.copyBrief}
+                {copied ? t.labels.copied : t.labels.copyBrief}
               </button>
 
               <a
@@ -349,7 +349,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
                 rel="noopener noreferrer"
                 className="btn-primary min-h-[44px] w-full text-xs font-mono font-semibold flex items-center justify-center gap-2 text-center"
               >
-                🚨 {t.labels.triageCta}
+                {t.labels.triageCta}
               </a>
             </div>
           </div>

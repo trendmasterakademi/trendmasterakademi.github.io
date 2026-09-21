@@ -121,8 +121,8 @@ const Navbar = () => {
         {/* TMA Agency Response Kit & Crash Test Scrolling Banner */}
         <KitBanner />
 
-        <div className="h-[31px] sm:h-[39px] px-3 sm:px-5 lg:px-8 max-w-full flex items-center">
-          <div className="w-full max-w-7xl 2xl:max-w-[1600px] mx-auto flex justify-between items-center gap-2 sm:gap-4">
+        <div className="h-[39px] px-4 sm:px-6 lg:px-8 max-w-full flex items-center">
+          <div className="w-full mx-auto flex justify-between items-center gap-2 sm:gap-4">
           
           {/* Brand Logo & Active Response Desk Badge */}
           <div className="flex items-center gap-2 sm:gap-3 2xl:gap-4 flex-shrink-0">
@@ -143,33 +143,27 @@ const Navbar = () => {
               />
             </Link>
 
-            {/* Response Desk Live Status Badge */}
+            {/* Response Desk Live Status Badge (SWAT rozeti yalnız ≥ 1440'ta header'da) */}
             <button
               type="button"
               onClick={() => setIsSOSOpen(true)}
-              className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--r-control)] text-xs font-mono transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)]"
+              className="hidden min-[1440px]:inline-flex items-center gap-1.5 px-2.5 py-1 rounded-[var(--r-control)] text-xs font-mono transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)]"
               title={isTr ? "Acil Incident & Kriz Müdahale Masası" : "Emergency Engineering & Crisis Desk"}
             >
               <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
                 krizHattiAcik ? 'bg-[var(--sev-ok-dot)]' : 'bg-[var(--sev-high)]'
               }`}></span>
-              <span className="hidden xl:inline">
+              <span>
                 {krizHattiAcik
                   ? (isTr ? "Canlı Kriz Masası" : "Live SWAT Desk")
                   : (isTr ? "Kriz Masası · 09:00" : "Crisis Desk · 09:00")
                 }
               </span>
-              <span className="xl:hidden">
-                {krizHattiAcik
-                  ? (isTr ? "Canlı SWAT" : "Live SWAT")
-                  : (isTr ? "SWAT · 09:00" : "SWAT · 09:00")
-                }
-              </span>
             </button>
           </div>
 
-          {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 2xl:gap-1.5 flex-shrink-0">
+          {/* Desktop Navigation Links (Yalnız ≥ 1440px'te) */}
+          <nav className="hidden min-[1440px]:flex items-center gap-1 2xl:gap-1.5 flex-shrink-0">
             <Link
               to="/agency/"
               className={`px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium transition-all whitespace-nowrap ${
@@ -281,7 +275,7 @@ const Navbar = () => {
           {/* Action CTAs: Emergency SOS Button & Language Switcher & Hamburger */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 flex-shrink-0">
             
-            {/* SOS Emergency Button */}
+            {/* SOS Emergency Button (Her zaman header'da) */}
             <button
               type="button"
               onClick={() => setIsSOSOpen(true)}
@@ -293,24 +287,24 @@ const Navbar = () => {
               <span className="sm:hidden font-mono font-bold">SOS</span>
             </button>
 
-            {/* Language Switcher */}
+            {/* Language Switcher (≥ 640px'te header'da) */}
             <button
               type="button"
               onClick={toggleLang}
-              className="px-2.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] text-xs font-mono font-medium flex items-center justify-center gap-1 transition-colors cursor-pointer flex-shrink-0 min-h-[44px] min-w-[44px]"
+              className="hidden sm:flex px-2.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] text-xs font-mono font-medium items-center justify-center gap-1 transition-colors cursor-pointer flex-shrink-0 min-h-[44px] min-w-[44px]"
               title={isTr ? 'Switch to English' : 'Türkçe Dil Seçeneği'}
             >
               <Globe className="w-3.5 h-3.5 text-[var(--ink-3)] flex-shrink-0" />
               <span>{isTr ? 'EN' : 'TR'}</span>
             </button>
 
-            {/* Theme Switcher */}
+            {/* Theme Switcher (≥ 640px'te header'da) */}
             <button
               type="button"
               onClick={toggleTheme}
               aria-label={theme === 'dark' ? (isTr ? 'Açık temaya geç' : 'Switch to light theme') : (isTr ? 'Koyu temaya geç' : 'Switch to dark theme')}
               aria-pressed={theme === 'dark'}
-              className="p-1.5 sm:p-2 rounded-[var(--r-control)] bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors cursor-pointer min-w-[44px] min-h-[44px] flex items-center justify-center flex-shrink-0"
+              className="hidden sm:flex p-1.5 sm:p-2 rounded-[var(--r-control)] bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors cursor-pointer min-w-[44px] min-h-[44px] items-center justify-center flex-shrink-0"
               title={theme === 'dark' ? (isTr ? 'Açık Tema' : 'Light Theme') : (isTr ? 'Koyu Tema' : 'Dark Theme')}
             >
               {theme === 'dark' ? (
@@ -320,11 +314,11 @@ const Navbar = () => {
               )}
             </button>
 
-            {/* Mobile / Tablet Hamburger Toggle */}
+            {/* Mobile / Tablet / Laptop Hamburger Toggle (< 1440px) */}
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-1.5 sm:p-2 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors cursor-pointer min-w-[44px] min-h-[44px] flex items-center justify-center flex-shrink-0"
+              className="min-[1440px]:hidden p-1.5 sm:p-2 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors cursor-pointer min-w-[44px] min-h-[44px] flex items-center justify-center flex-shrink-0"
               aria-label="Toggle menu"
             >
               {isOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
@@ -333,9 +327,48 @@ const Navbar = () => {
 
         </div>
 
-        {/* Mobile / Tablet Navigation Drawer */}
+        {/* Mobile / Tablet / Laptop Navigation Drawer (< 1440px) */}
         {isOpen && (
-          <div className="lg:hidden pt-3 pb-5 px-3 border-t border-[var(--rule)] mt-2.5 space-y-1.5 bg-[var(--surface)] rounded-[var(--r-panel)] shadow-navbar">
+          <div className="min-[1440px]:hidden pt-3 pb-5 px-3 border-t border-[var(--rule)] mt-2.5 space-y-1.5 bg-[var(--surface)] rounded-[var(--r-panel)] shadow-navbar max-h-[calc(100dvh-70px)] overflow-y-auto">
+            
+            {/* Top controls row for < 640px: TR/EN and Theme Switcher */}
+            <div className="sm:hidden flex items-center justify-between pb-2.5 mb-2 border-b border-[var(--rule)]">
+              <button
+                type="button"
+                onClick={toggleLang}
+                className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] text-xs font-mono font-medium flex items-center gap-1.5 min-h-[44px]"
+              >
+                <Globe className="w-3.5 h-3.5 text-[var(--ink-3)]" />
+                <span>{isTr ? 'English (EN)' : 'Türkçe (TR)'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={toggleTheme}
+                className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] text-xs font-medium flex items-center gap-1.5 min-h-[44px]"
+              >
+                {theme === 'dark' ? <Sun className="w-4 h-4 text-[var(--ink-2)]" /> : <Moon className="w-4 h-4 text-[var(--ink-2)]" />}
+                <span>{theme === 'dark' ? (isTr ? 'Açık Tema' : 'Light Theme') : (isTr ? 'Koyu Tema' : 'Dark Theme')}</span>
+              </button>
+            </div>
+
+            {/* SWAT Status Badge in drawer for < 1440px */}
+            <button
+              type="button"
+              onClick={() => { setIsOpen(false); setIsSOSOpen(true); }}
+              className="w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs font-mono flex items-center justify-between bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] mb-2 min-h-[44px]"
+            >
+              <span className="flex items-center gap-2">
+                <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                  krizHattiAcik ? 'bg-[var(--sev-ok-dot)]' : 'bg-[var(--sev-high)]'
+                }`}></span>
+                <span>{isTr ? "Kriz Müdahale Masası" : "Emergency Response Desk"}</span>
+              </span>
+              <span className="text-[var(--accent)] font-semibold">
+                {krizHattiAcik ? (isTr ? "Canlı 09:00–24:00" : "Live 09:00–24:00") : (isTr ? "09:00 Açılış" : "Opens 09:00")}
+              </span>
+            </button>
+
             <Link
               to="/kit/"
               onClick={() => setIsOpen(false)}

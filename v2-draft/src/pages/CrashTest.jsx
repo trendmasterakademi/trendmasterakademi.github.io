@@ -524,7 +524,7 @@ const CrashTest = () => {
           </div>
           <div className="flex items-center gap-2">
             <span className="px-3 py-1 rounded text-xs font-mono bg-[var(--surface)] text-[var(--ink)] border border-[var(--rule)]">
-              ⚡ {isTr ? '60 SANİYELİK SİMÜLASYON' : '60-SECOND SIMULATION'}
+              {isTr ? '60 SANİYELİK SİMÜLASYON' : '60-SECOND SIMULATION'}
             </span>
             <button
               onClick={() => setIsSOSOpen(true)}
@@ -1266,15 +1266,15 @@ const CrashTest = () => {
               {/* Direct Info */}
               <div className="pt-4 flex flex-wrap items-center justify-center gap-6 text-xs sm:text-sm text-[var(--ink-muted)] border-t border-[var(--rule)]">
                 <div className="flex flex-col items-center sm:items-start text-center sm:text-left gap-0.5">
-                  <span>📞 {isTr ? 'Kriz Hattı' : 'Response Desk'}: <a href="tel:+905343713573" className="text-[var(--ink)] font-mono hover:text-[var(--accent)] font-semibold">+90 534 371 35 73</a></span>
+                  <span>{isTr ? 'Kriz Hattı' : 'Response Desk'}: <a href="tel:+905343713573" className="text-[var(--ink)] font-mono hover:text-[var(--accent)] font-semibold">+90 534 371 35 73</a></span>
                   <span className="text-xs text-[var(--ink-muted)] font-mono">
                     {isTr 
                       ? 'her gün 09:00 – 24:00 · canlı kesintilerde ilk yanıt taahhüdü 15 dakika' 
                       : 'daily 09:00 – 24:00 · first-response commitment for live outages: 15 minutes'}
                   </span>
                 </div>
-                <span>✉️ {isTr ? 'E-posta' : 'Email'}: <a href="mailto:info@trendmasterakademi.com" className="text-[var(--ink)] font-mono hover:text-[var(--accent)] font-semibold">info@trendmasterakademi.com</a></span>
-                <span>📍 Konak / İzmir & Global Remote</span>
+                <span>{isTr ? 'E-posta' : 'Email'}: <a href="mailto:info@trendmasterakademi.com" className="text-[var(--ink)] font-mono hover:text-[var(--accent)] font-semibold">info@trendmasterakademi.com</a></span>
+                <span>Konak / İzmir & Global Remote</span>
               </div>
             </div>
           </div>

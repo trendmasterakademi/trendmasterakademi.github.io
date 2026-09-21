@@ -520,11 +520,11 @@ const Nda = () => {
         </div>
       </section>
 
-      {/* SECTION 5: ⚖ ÖNCELİK KAYDI (Precedence Clause - En altta, görsel olarak ayrılmış) */}
+      {/* SECTION 5: ÖNCELİK KAYDI (Precedence Clause - En altta, görsel olarak ayrılmış) */}
       <section className="p-6 sm:p-8 rounded bg-amber-50 border-2 border-amber-300 text-amber-950 text-xs sm:text-sm leading-relaxed space-y-3">
         <div className="flex items-center gap-2 text-amber-800 font-semibold text-sm sm:text-base">
           <Scale className="w-5 h-5 flex-shrink-0" />
-          <span>{isTr ? '⚖ ÖNCELİK KAYDI' : '⚖ NOTICE OF PRECEDENCE'}</span>
+          <span>{isTr ? 'ÖNCELİK KAYDI' : 'NOTICE OF PRECEDENCE'}</span>
         </div>
         {!isTr && (
           <p className="text-xs text-amber-800/80 italic">

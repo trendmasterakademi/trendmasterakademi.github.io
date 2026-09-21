@@ -127,18 +127,44 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
           {t.hero.subtitle}
         </p>
         <p className="text-xs text-[var(--ink-muted)] font-mono">
-          🔒 {t.hero.notice}
+          {t.hero.notice}
         </p>
       </div>
 
       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Form Inputs (No Print) */}
         <div className="lg:col-span-4 no-print space-y-5">
-          <div className="bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-6 shadow-sm sticky top-8">
+          <div className="bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-6 shadow-sm sticky top-[80px] max-h-[calc(100dvh-96px)] overflow-y-auto">
             <h2 className="text-base font-serif font-semibold text-[var(--ink)] mb-4 flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
               {lang === "en" ? "Agreement Parties & Scope" : "Sözleşme Tarafları ve Kapsam"}
             </h2>
+
+            {/* Main Action CTAs (In first 480px) */}
+            <div className="space-y-2 pb-4 mb-4 border-b border-[var(--rule)]">
+              <a
+                href={mailtoUrl}
+                className="btn-primary min-h-[44px] w-full text-xs font-mono font-semibold flex items-center justify-center gap-2 text-center cursor-pointer"
+              >
+                {t.formLabels.requestSignedCta}
+              </a>
+
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  onClick={handlePrint}
+                  className="btn-secondary min-h-[44px] w-full font-mono font-semibold text-xs flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  {t.formLabels.printCta}
+                </button>
+
+                <button
+                  onClick={handleCopyText}
+                  className="btn-secondary min-h-[44px] w-full text-[var(--ink)] font-mono text-xs flex items-center justify-center gap-1.5 cursor-pointer"
+                >
+                  {copied ? t.formLabels.copiedNotice : t.formLabels.copyCta}
+                </button>
+              </div>
+            </div>
 
             <div className="space-y-4 text-xs font-mono">
               <div>
@@ -227,30 +253,6 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                   className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
-            </div>
-
-            {/* Actions */}
-            <div className="space-y-2 pt-6 border-t border-[var(--rule)] mt-6">
-              <button
-                onClick={handlePrint}
-                className="btn-primary min-h-[44px] w-full font-mono font-semibold text-xs flex items-center justify-center gap-2 cursor-pointer"
-              >
-                🖨️ {t.formLabels.printCta}
-              </button>
-
-              <button
-                onClick={handleCopyText}
-                className="btn-secondary min-h-[44px] w-full text-[var(--ink)] font-mono text-xs flex items-center justify-center gap-2 cursor-pointer"
-              >
-                📋 {copied ? t.formLabels.copiedNotice : t.formLabels.copyCta}
-              </button>
-
-              <a
-                href={mailtoUrl}
-                className="btn-secondary min-h-[44px] w-full text-[var(--accent)] font-mono text-xs flex items-center justify-center gap-2 text-center cursor-pointer"
-              >
-                ✉️ {t.formLabels.requestSignedCta}
-              </a>
             </div>
           </div>
         </div>

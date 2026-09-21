@@ -72,82 +72,52 @@ Rapor Tarihi: ${new Date().toISOString()}`;
         </p>
       </div>
 
-      {/* Main Grid: Selector on Left, Action Protocol on Right */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Symptom Selector List */}
-        <div className="lg:col-span-5 space-y-3">
-          <h2 className="text-xs font-mono uppercase tracking-wider text-[var(--ink-muted)] font-semibold px-1">
-            {isTr ? 'Gözlemlenen Kriz Belirtisi (6 Senaryo)' : 'Observed Outage Symptoms (6 Scenarios)'}
-          </h2>
-          <div className="space-y-2">
-            {triageScenarios.map((sc) => {
-              const isSelected = sc.id === activeScenario.id;
-              return (
-                <button
-                  key={sc.id}
-                  onClick={() => setSelectedId(sc.id)}
-                  className={`w-full text-left p-4 rounded-xl border transition-all duration-150 flex flex-col gap-2 cursor-pointer ${
-                    isSelected
-                      ? 'bg-[var(--surface)] border-[var(--accent)] shadow-sm ring-1 ring-[var(--accent)]/30'
-                      : 'bg-[var(--surface)] border-[var(--rule)] hover:border-[var(--ink-muted)]'
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-xs font-mono font-semibold text-[var(--accent)]">
-                      {sc.category[lang]}
-                    </span>
-                    <span className={`text-xs font-mono px-2 py-0.5 rounded ${
-                      sc.severity.includes('SEV-0')
-                        ? 'bg-rose-50 text-rose-800 border border-rose-300 font-bold'
-                        : sc.severity.includes('SEV-1')
-                        ? 'bg-amber-50 text-amber-800 border border-amber-300 font-semibold'
-                        : 'bg-blue-50 text-blue-800 border border-blue-300 font-semibold'
-                    }`}>
-                      {sc.severity}
-                    </span>
-                  </div>
-                  <p className="text-sm text-[var(--ink)] line-clamp-2 leading-snug">
-                    {sc.symptom[lang]}
-                  </p>
-                </button>
-              );
-            })}
-          </div>
-
-          {/* Quick SOS Box */}
-          <div className="p-5 rounded-2xl bg-amber-50 border border-amber-300 space-y-3 mt-6">
-            <div className="flex items-center gap-2 text-amber-800 font-semibold text-sm font-mono">
-              <Flame className="w-4 h-4 text-amber-700" />
-              <span>{isTr ? 'Canlıda Aktif Ciro Kaybı mı Var?' : 'Active Revenue Loss in Progress?'}</span>
-            </div>
-            <p className="text-xs text-amber-950 leading-relaxed">
-              {isTr
-                ? 'İlk teşhis ve triyaj ücretsizdir. Masaya doğrudan kıdemli mühendis bağlanır.'
-                : 'Initial diagnosis and triage are complimentary. A senior engineer connects directly.'}
-            </p>
-            <div className="flex flex-wrap gap-2 pt-1">
-              <a
-                href="tel:+905343713573"
-                className="btn-primary min-h-[44px] inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold"
+      {/* Scenario Selector on Top (Full Width: >=1024 3x2, 768 2x3, Mobile 1 col) */}
+      <div className="space-y-3">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-[var(--ink-muted)] font-semibold px-1">
+          {isTr ? 'Gözlemlenen Kriz Belirtisi (6 Senaryo)' : 'Observed Outage Symptoms (6 Scenarios)'}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+          {triageScenarios.map((sc) => {
+            const isSelected = sc.id === activeScenario.id;
+            return (
+              <button
+                key={sc.id}
+                onClick={() => setSelectedId(sc.id)}
+                className={`w-full text-left p-4 rounded-xl border transition-all duration-150 flex flex-col gap-2 cursor-pointer ${
+                  isSelected
+                    ? 'bg-[var(--surface)] border-[var(--accent)] shadow-sm ring-1 ring-[var(--accent)]/30'
+                    : 'bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--ink-muted)]'
+                }`}
               >
-                <PhoneCall className="w-3.5 h-3.5" />
-                <span>+90 534 371 35 73</span>
-              </a>
-              <Link
-                to={isTr ? "/sos/" : "/sos/"}
-                className="btn-secondary min-h-[44px] inline-flex items-center gap-1 px-3 py-1.5 text-xs font-mono font-semibold"
-              >
-                <span>{isTr ? 'Kriz Hattı →' : 'Crisis Desk →'}</span>
-              </Link>
-            </div>
-          </div>
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-xs font-mono font-semibold text-[var(--accent)]">
+                    {sc.category[lang]}
+                  </span>
+                  <span className={`text-xs font-mono px-2 py-0.5 rounded ${
+                    sc.severity.includes('SEV-0')
+                      ? 'bg-rose-50 text-rose-800 border border-rose-300 font-bold'
+                      : sc.severity.includes('SEV-1')
+                      ? 'bg-amber-50 text-amber-800 border border-amber-300 font-semibold'
+                      : 'bg-blue-50 text-blue-800 border border-blue-300 font-semibold'
+                  }`}>
+                    {sc.severity}
+                  </span>
+                </div>
+                <p className="text-sm text-[var(--ink)] line-clamp-2 leading-snug">
+                  {sc.symptom[lang]}
+                </p>
+              </button>
+            );
+          })}
         </div>
+      </div>
 
-        {/* Right Column: Triage Protocol Sheet */}
-        <div className="lg:col-span-7 space-y-6">
-          <div className="p-6 sm:p-8 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-8 relative overflow-hidden shadow-sm">
-            
-            {/* Protocol Meta Header */}
+      {/* Triage Protocol Sheet (Full Width) */}
+      <div className="space-y-6">
+        <div className="p-6 sm:p-8 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-8 relative overflow-hidden shadow-sm">
+          
+          {/* Protocol Meta Header */}
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--rule)] pb-6">
               <div className="space-y-1">
                 <div className="flex items-center gap-2 font-mono text-xs text-[var(--ink-muted)]">
@@ -302,9 +272,38 @@ Rapor Tarihi: ${new Date().toISOString()}`;
               </div>
             </div>
           </div>
+
+          {/* Quick SOS Box */}
+          <div className="p-5 rounded-2xl bg-amber-50 border border-amber-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2 text-amber-800 font-semibold text-sm font-mono">
+                <Flame className="w-4 h-4 text-amber-700" />
+                <span>{isTr ? 'Canlıda Aktif Ciro Kaybı mı Var?' : 'Active Revenue Loss in Progress?'}</span>
+              </div>
+              <p className="text-xs text-amber-950 leading-relaxed">
+                {isTr
+                  ? 'İlk teşhis ve triyaj ücretsizdir. Masaya doğrudan kıdemli mühendis bağlanır.'
+                  : 'Initial diagnosis and triage are complimentary. A senior engineer connects directly.'}
+              </p>
+            </div>
+            <div className="flex flex-wrap items-center gap-2 shrink-0">
+              <a
+                href="tel:+905343713573"
+                className="btn-primary min-h-[44px] inline-flex items-center gap-1.5 px-4 py-2 text-xs font-semibold"
+              >
+                <PhoneCall className="w-3.5 h-3.5" />
+                <span>+90 534 371 35 73</span>
+              </a>
+              <Link
+                to="/sos/"
+                className="btn-secondary min-h-[44px] inline-flex items-center gap-1 px-4 py-2 text-xs font-mono font-semibold"
+              >
+                <span>{isTr ? 'Kriz Hattı →' : 'Crisis Desk →'}</span>
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 

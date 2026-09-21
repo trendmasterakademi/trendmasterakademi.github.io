@@ -67,11 +67,13 @@ export default function StatusRadar({ lang = "tr" }) {
             ? "Mühendislik Masaları & Altyapı · Nöbet saatlerinde erişilebilirlik (09:00–24:00)" 
             : "Service Desks & Infrastructure · Availability during duty hours (09:00–24:00)"}
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {t.components.map((comp) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4">
+          {t.components.map((comp, idx) => (
             <div
               key={comp.id}
-              className="bg-[var(--surface)] border border-[var(--rule)] rounded-xl p-5 space-y-3 hover:border-[var(--ink-muted)] transition shadow-sm"
+              className={`bg-[var(--surface)] border border-[var(--rule)] rounded-xl p-5 space-y-3 hover:border-[var(--ink-muted)] transition shadow-sm lg:col-span-2 ${
+                idx === 3 ? "lg:col-start-2" : ""
+              } ${idx === 4 ? "md:col-span-2 lg:col-span-2" : ""}`}
             >
               <div className="flex items-center justify-between">
                 <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
@@ -163,18 +165,18 @@ export default function StatusRadar({ lang = "tr" }) {
         <div className="inline-flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="tel:+905343713573"
-            className="btn-secondary min-h-[44px] w-full sm:w-auto px-6 py-3 font-mono font-semibold text-xs flex items-center justify-center gap-2"
+            className="btn-secondary min-h-[44px] w-full sm:w-auto px-6 py-3 font-mono font-semibold text-xs flex items-center justify-center gap-2 whitespace-normal"
           >
-            📞 {isTr ? "Doğrudan Kriz Hattı: +90 534 371 35 73" : "Emergency Hotline: +90 534 371 35 73"}
+            {isTr ? "Doğrudan Kriz Hattı: +90 534 371 35 73" : "Emergency Hotline: +90 534 371 35 73"}
           </a>
 
           <a
             href={getCalendlyUrl(lang)}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary min-h-[44px] w-full sm:w-auto px-6 py-3 font-mono font-semibold text-xs flex items-center justify-center gap-2 text-center"
+            className="btn-primary min-h-[44px] w-full sm:w-auto px-6 py-3 font-mono font-semibold text-xs flex items-center justify-center gap-2 text-center whitespace-normal"
           >
-            ⚡ {isTr ? "Kıdemli Triyaj Masasına Bağlan" : "Schedule Direct Triage Desk"}
+            {isTr ? "Kıdemli Triyaj Masasına Bağlan" : "Schedule Direct Triage Desk"}
           </a>
         </div>
         <p className="text-xs text-[var(--ink-muted)] font-mono mt-3">
