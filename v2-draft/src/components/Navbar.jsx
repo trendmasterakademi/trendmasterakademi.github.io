@@ -88,7 +88,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className={`fixed w-full max-w-[100vw] top-0 left-0 z-50 transition-all duration-300 ${
+      <header className={`fixed w-full max-w-[100vw] overflow-x-clip top-0 left-0 z-50 transition-all duration-300 ${
         scrolled 
           ? 'bg-[#080b11]/95 backdrop-blur-xl border-b border-cyan-500/20 shadow-[0_4px_30px_rgba(0,0,0,0.5)]' 
           : 'bg-[#080b11]/80 backdrop-blur-md border-b border-white/10'
@@ -96,16 +96,16 @@ const Navbar = () => {
         {/* TMA Agency Response Kit & Crash Test Scrolling Banner */}
         <KitBanner />
 
-        <div className="py-2 sm:py-3 px-2.5 sm:px-6 md:px-12">
+        <div className="py-2 sm:py-3 px-3 sm:px-4 lg:px-6 2xl:px-8 max-w-full overflow-x-clip">
           <div className="max-w-7xl mx-auto flex justify-between items-center w-full gap-2 sm:gap-4">
           
           {/* Brand Logo & Active Response Desk Badge */}
-          <div className="flex items-center gap-2 sm:gap-4 flex-shrink-0 min-w-0">
+          <div className="flex items-center gap-2 sm:gap-3 2xl:gap-4 flex-shrink-0 min-w-0">
             <Link to="/" className="flex items-center group flex-shrink-0" aria-label="Trend Master Akademi Ana Sayfa">
               <img 
                 src="/logo-dark.png" 
                 alt="Trend Master Akademi" 
-                className="h-7 sm:h-9 md:h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+                className="h-7 sm:h-8 xl:h-9 2xl:h-10 w-auto object-contain transition-transform duration-200 group-hover:scale-[1.02]"
                 width="200"
                 height="38"
               />
@@ -115,99 +115,110 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsSOSOpen(true)}
-              className={`hidden md:inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer whitespace-nowrap ${
+              className={`hidden md:inline-flex items-center gap-1.5 2xl:gap-2 px-2.5 2xl:px-3 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer whitespace-nowrap flex-shrink-0 ${
                 krizHattiAcik
                   ? 'bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/20 shadow-sm shadow-emerald-500/10'
                   : 'bg-amber-500/10 border border-amber-500/30 text-amber-400 hover:bg-amber-500/20 shadow-sm shadow-amber-500/10'
               }`}
               title={isTr ? "Acil Incident & Kriz Müdahale Masası" : "Emergency Engineering & Crisis Desk"}
             >
-              <span className={`w-2 h-2 rounded-full ${
+              <span className={`w-2 h-2 rounded-full flex-shrink-0 ${
                 krizHattiAcik ? 'bg-emerald-400 animate-pulse' : 'bg-amber-400'
               }`}></span>
-              <span>
+              <span className="hidden 2xl:inline">
                 {krizHattiAcik
                   ? (isTr ? "Canlı Kriz Masası" : "Live SWAT Desk")
                   : (isTr ? "Kriz Masası · 09:00'da" : "Crisis Desk · from 09:00")
+                }
+              </span>
+              <span className="2xl:hidden">
+                {krizHattiAcik
+                  ? (isTr ? "Canlı SWAT" : "Live SWAT")
+                  : (isTr ? "SWAT · 09:00" : "SWAT · 09:00")
                 }
               </span>
             </button>
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+          <nav className="hidden xl:flex items-center gap-0.5 2xl:gap-1.5 min-w-0 flex-shrink">
             <Link
               to="/agency/"
-              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1.5 ${
+              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap ${
                 path.startsWith('/agency')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
-              <ShieldCheck className="w-4 h-4 text-cyan-400" />
-              <span>{t('nav-agency')}</span>
+              <ShieldCheck className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 text-cyan-400 hidden 2xl:inline-flex flex-shrink-0" />
+              <span className="hidden 2xl:inline">{t('nav-agency')}</span>
+              <span className="2xl:hidden">{isTr ? 'Kapasite' : 'Agency'}</span>
             </Link>
 
             <Link
               to="/kit/"
-              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1.5 ${
+              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap ${
                 path.startsWith('/kit') || path.startsWith('/agency-kit')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
-              <BookOpen className="w-4 h-4 text-cyan-400" />
-              <span>{isTr ? 'Agency Kit' : 'Agency Kit'}</span>
+              <BookOpen className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 text-cyan-400 hidden 2xl:inline-flex flex-shrink-0" />
+              <span>Agency Kit</span>
             </Link>
 
             <Link
               to="/crash-test/"
-              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all flex items-center gap-1.5 ${
+              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all flex items-center gap-1.5 whitespace-nowrap ${
                 path.startsWith('/crash-test')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
-              <Zap className="w-4 h-4 text-cyan-400" />
-              <span>{t('nav-crashtest')}</span>
+              <Zap className="w-3.5 h-3.5 2xl:w-4 2xl:h-4 text-cyan-400 hidden 2xl:inline-flex flex-shrink-0" />
+              <span className="hidden 2xl:inline">{t('nav-crashtest')}</span>
+              <span className="2xl:hidden">Crash Test</span>
             </Link>
 
             <Link
               to={isTr ? "/devir-kontrolu/" : "/handover-audit/"}
-              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
+              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                 path.startsWith('/devir-kontrolu') || path.startsWith('/handover-audit')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
-              {isTr ? 'Devir Kontrolü' : 'Handover Audit'}
+              <span className="hidden 2xl:inline">{isTr ? 'Devir Kontrolü' : 'Handover Audit'}</span>
+              <span className="2xl:hidden">{isTr ? 'Devir' : 'Handover'}</span>
             </Link>
 
             <Link
               to={isTr ? "/teshis/" : "/diagnostic/"}
-              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
+              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                 path.startsWith('/teshis') || path.startsWith('/diagnostic')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
-              {isTr ? 'Teşhis Kataloğu' : 'Diagnostic Catalog'}
+              <span className="hidden 2xl:inline">{isTr ? 'Teşhis Kataloğu' : 'Diagnostic Catalog'}</span>
+              <span className="2xl:hidden">{isTr ? 'Teşhis' : 'Diagnostic'}</span>
             </Link>
 
             <Link
               to={isTr ? "/kesinti-maliyeti/" : "/downtime-calc/"}
-              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
+              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                 path.startsWith('/kesinti-maliyeti') || path.startsWith('/downtime-calc') || path.startsWith('/downtime-cost')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
               }`}
             >
-              {isTr ? 'Kesinti Maliyeti' : 'Downtime Calc'}
+              <span className="hidden 2xl:inline">{isTr ? 'Kesinti Maliyeti' : 'Downtime Calc'}</span>
+              <span className="2xl:hidden">{isTr ? 'Maliyet' : 'Downtime'}</span>
             </Link>
 
             <Link
               to="/about/"
-              className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
+              className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                 path.startsWith('/about')
                   ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                   : 'text-slate-300 hover:text-white hover:bg-white/5'
@@ -220,7 +231,7 @@ const Navbar = () => {
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, 'contact')}
-                className={`px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold transition-all ${
+                className={`px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold transition-all whitespace-nowrap ${
                   activeSection === 'contact'
                     ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30'
                     : 'text-slate-300 hover:text-white hover:bg-white/5'
@@ -231,7 +242,7 @@ const Navbar = () => {
             ) : (
               <Link
                 to="/#contact"
-                className="px-3 py-2 rounded-xl text-xs xl:text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-all"
+                className="px-2 2xl:px-3 py-1.5 2xl:py-2 rounded-lg 2xl:rounded-xl text-xs 2xl:text-sm font-semibold text-slate-300 hover:text-white hover:bg-white/5 transition-all whitespace-nowrap"
               >
                 {t('nav-contact')}
               </Link>
@@ -245,7 +256,7 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setIsSOSOpen(true)}
-              className="px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/40 text-red-400 hover:text-red-300 text-[11px] sm:text-sm font-bold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer whitespace-nowrap shadow-sm shadow-red-500/20"
+              className="px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-red-500/15 hover:bg-red-500/25 border border-red-500/40 text-red-400 hover:text-red-300 text-[11px] sm:text-sm font-bold flex items-center gap-1 sm:gap-1.5 transition-all cursor-pointer whitespace-nowrap shadow-sm shadow-red-500/20 flex-shrink-0"
               title={isTr ? 'Acil Kriz ve Incident Müdahalesi (SOS)' : 'Emergency Technical Incident (SOS)'}
             >
               <AlertTriangle className="w-3.5 h-3.5 text-red-400 animate-bounce flex-shrink-0" />
@@ -257,18 +268,18 @@ const Navbar = () => {
             <button
               type="button"
               onClick={toggleLang}
-              className="px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1 transition-colors cursor-pointer"
+              className="px-2 sm:px-2.5 py-1.5 sm:py-2 rounded-lg sm:rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white text-[11px] sm:text-xs font-mono font-bold flex items-center gap-1 transition-colors cursor-pointer flex-shrink-0"
               title={isTr ? 'Switch to English' : 'Türkçe Dil Seçeneği'}
             >
               <Globe className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-400 flex-shrink-0" />
               <span>{isTr ? 'EN' : 'TR'}</span>
             </button>
 
-            {/* Mobile Hamburger Toggle */}
+            {/* Mobile / Tablet Hamburger Toggle */}
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white transition-colors cursor-pointer min-w-[34px] min-h-[34px] flex items-center justify-center"
+              className="xl:hidden p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white transition-colors cursor-pointer min-w-[34px] min-h-[34px] flex items-center justify-center flex-shrink-0"
               aria-label="Toggle menu"
             >
               {isOpen ? <X className="w-4 h-4 sm:w-5 sm:h-5" /> : <Menu className="w-4 h-4 sm:w-5 sm:h-5" />}
@@ -277,9 +288,9 @@ const Navbar = () => {
 
         </div>
 
-        {/* Mobile Navigation Drawer */}
+        {/* Mobile / Tablet Navigation Drawer */}
         {isOpen && (
-          <div className="lg:hidden pt-3 pb-5 px-3 border-t border-white/10 mt-2.5 space-y-1.5 bg-[#080b11]/98 backdrop-blur-2xl rounded-2xl animate-in fade-in slide-in-from-top-2 duration-200 shadow-2xl">
+          <div className="xl:hidden pt-3 pb-5 px-3 border-t border-white/10 mt-2.5 space-y-1.5 bg-[#080b11]/98 backdrop-blur-2xl rounded-2xl animate-in fade-in slide-in-from-top-2 duration-200 shadow-2xl">
             <Link
               to="/kit/"
               onClick={() => setIsOpen(false)}

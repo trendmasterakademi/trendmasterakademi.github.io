@@ -6,7 +6,7 @@ import { agencyKitData } from '../data/agencyKitData';
 import { isTurkish } from '../i18n';
 import AgencyKitModal from './AgencyKitModal';
 
-export default function KitBanner() {
+function KitBanner() {
   const { i18n } = useTranslation();
   const isTr = isTurkish(i18n);
   const data = isTr ? agencyKitData.tr.banner : agencyKitData.en.banner;
@@ -143,3 +143,5 @@ export default function KitBanner() {
     </>
   );
 }
+
+export default React.memo(KitBanner);

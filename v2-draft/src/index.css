@@ -180,21 +180,23 @@
   background: var(--color-primary);
 }
 
-/* Infinite Marquee Ticker */
+/* Infinite Marquee Ticker (GPU-Accelerated, Calibrated Speed) */
 @keyframes marquee {
   0% {
-    transform: translateX(0%);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
 .animate-marquee {
   display: flex;
   width: max-content;
-  animation: marquee 38s linear infinite;
+  animation: marquee 65s linear infinite;
   will-change: transform;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 .animate-marquee:hover {
