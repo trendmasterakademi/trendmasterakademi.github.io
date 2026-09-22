@@ -142,7 +142,7 @@ export const ndaFullAgreementData = {
       paragraphs: [
         "1.1. İşbu sözleşme aşağıdaki taraflar arasında akdedilmiştir:",
         "HİZMET SAĞLAYICI: Trend Master Akademi markası altında faaliyet gösteren Mehmet Şahin (Şahıs İşletmesi) — Konak Vergi Dairesi · VKN: 7930336132 — Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir — E-posta: info@trendmasterakademi.com (Bundan sonra \"TMA\" olarak anılacaktır.)",
-        "HİZMET ALAN: İş Emri'nde unvanı, vergi dairesi ve yetkilisi belirtilen dijital ajans veya yazılım evi (Bundan sonra \"AJANS\" olarak anılacaktır.)",
+        "HİZMET ALAN: Unvan: ……… Vergi Dairesi / VKN: ……… Adres: ……… Yetkili & E-posta: ……… (Bundan sonra \"AJANS\" olarak anılacaktır.)",
         "1.2. TMA ve AJANS birlikte \"Taraflar\", ayrı ayrı \"Taraf\" olarak anılır."
       ]
     },

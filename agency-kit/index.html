@@ -244,7 +244,7 @@
       "founder": {
         "@type": "Person",
         "name": "Mehmet Şahin",
-        "jobTitle": "Founder & Lead Engineer",
+        "jobTitle": "Kurucu & Baş Yazılım Mimarı (Lead Architect)",
         "url": "https://trendmasterakademi.com/about/"
       },
       "telephone": "+905343713573",
@@ -352,12 +352,12 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-CAm8Se35.js"></script>
+    <script type="module" crossorigin src="/assets/index-5cNoGnaw.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-CKRJKXMI.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-CRLOQbJD.css">
   </head>
   <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
     <div id="root">
@@ -397,28 +397,132 @@
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-8">
     <div class="space-y-4 max-w-3xl">
       <p class="text-base text-[var(--ink)] leading-relaxed">
-        The TMA Agency Kit is an executive engineering guide designed for digital agencies facing critical production outages, unforeseen data loss, or complex codebase handovers.
+        The invisible senior engineering desk for digital agencies: standards for outage response, code takeover, and capacity extension.
       </p>
       <p class="text-base text-[var(--ink)] leading-relaxed">
-        The 8-slide visual response deck and the 60-Second Crash Test 500 poster empower your team to diagnose systemic vulnerabilities and technical debt in minutes.
+        Pick a scenario. Answer three questions. Instantly view your triage plan and technical readiness score.
       </p>
-      <p class="text-base text-[var(--ink)] leading-relaxed">
-        All assets are readily downloadable, distributable across your engineering leadership, and serve as an immediate protocol in emergency scenarios.
+      <p class="text-xs font-mono text-[var(--ink-muted)] bg-[var(--surface)] border border-[var(--rule)] py-1.5 px-3 rounded inline-block">
+        The slides and the poster are currently available in Turkish.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-      <a href="/agency-kit/tma-agency-response-kit.pdf" download="tma-agency-response-kit.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
-        <strong class="text-sm font-semibold text-[var(--ink)] block">TMA Agency Kit (PDF)</strong>
+    <!-- 3 Crisis Scenarios & Readiness -->
+    <div class="space-y-4">
+      <h2 class="text-xl font-bold text-[var(--ink)] font-serif">Crisis Scenarios & Readiness Audit</h2>
+      <p class="text-xs sm:text-sm text-[var(--ink-muted)]">
+        Measure your agency's incident triage reflexes before outage strikes. Answer 3 questions to calculate your readiness score and surgical action plan instantly.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[var(--accent)] font-semibold text-xs">01</span>
+              <span class="font-mono text-xs text-[var(--accent)] bg-[var(--accent-subtle)] px-2 py-0.5 rounded border border-[var(--accent)]/20">HTTP 500</span>
+            </div>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Client website crashed</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">Database deadlocks or server returns 502/500 errors during peak traffic.</p>
+          </div>
+        
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[var(--accent)] font-semibold text-xs">02</span>
+              <span class="font-mono text-xs text-[var(--accent)] bg-[var(--accent-subtle)] px-2 py-0.5 rounded border border-[var(--accent)]/20">HANDOVER</span>
+            </div>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Developer walked away</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">Original engineer gone, zero documentation, code fails to compile or missing keys.</p>
+          </div>
+        
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[var(--accent)] font-semibold text-xs">03</span>
+              <span class="font-mono text-xs text-[var(--accent)] bg-[var(--accent-subtle)] px-2 py-0.5 rounded border border-[var(--accent)]/20">T-48H</span>
+            </div>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">48 hours to deadline</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">Core features broken right before launch, sprint backlog completely blocked.</p>
+          </div>
+        
+      </div>
+    </div>
+
+    <!-- 8-Slide Guide -->
+    <div class="space-y-4 pt-4 border-t border-[var(--rule)]">
+      <h2 class="text-xl font-bold text-[var(--ink)] font-serif">TMA Agency Response &amp; Engagement Guide (8 Slides)</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-muted)] block">SLIDE 01 // WHITE-LABEL ENGINEERING</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">You manage the client. We solve the technical burden.</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">We operate as an invisible senior engineering desk behind your agency's brand identity.</p>
+          </div>
+        
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-muted)] block">SLIDE 02 // THE AGENCY'S INVISIBLE TECH SQUAD</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">When projects stall, don't waste weeks recruiting.</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">We inject senior software firepower directly into your agency for unfinished backlogs and live outages.</p>
+          </div>
+        
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-muted)] block">SLIDE 03 // WHITE-LABEL MODEL</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Your brand. Our engineering.</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">Your agency reputation and client relationship are shielded by 4 foundational rules:</p>
+          </div>
+        
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-muted)] block">SLIDE 04 // ONE PARTNER, SIX CAPABILITY DOMAINS</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">From code to live production.</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">Full surgical mastery across the 6 most common agency technical bottlenecks:</p>
+          </div>
+        
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-muted)] block">SLIDE 05 // INCIDENT RESPONSE WORKFLOW</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">3 steps to technical kickoff.</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">Zero bureaucracy protocol to get senior engineers on table immediately:</p>
+          </div>
+        
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-muted)] block">SLIDE 06 // ENGAGEMENT MODELS</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Senior technical firepower calibrated to need.</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">Flexible, predictable models tailored to project urgency:</p>
+          </div>
+        
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-muted)] block">SLIDE 07 // SECURE AND CLEAN HANDOVER</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Not just working code, maintainable code.</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">Every line delivered protects your agency's reputation and client's future:</p>
+          </div>
+        
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-muted)] block">SLIDE 08 // WHITE-LABEL AGENCY ENGINEERING</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Remember us at your next technical impasse.</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">Our response desk and senior engineers are on duty daily from 09:00 to 24:00.</p>
+          </div>
+        
+      </div>
+    </div>
+
+    <!-- Download Links (No contract PDF!) -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[var(--rule)]">
+      <a href="/agency-kit/tma-agency-response-kit.pdf" download="TMA-Agency-Response-Kit.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2 min-h-[44px]">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">TMA Agency Response Kit (PDF)</strong>
         <span class="text-xs text-[var(--accent)] font-mono">Download (PDF) →</span>
       </a>
-      <a href="/agency-kit/tma-agency-crash-test-500.pdf" download="tma-agency-crash-test-500.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
+      <a href="/agency-kit/tma-agency-crash-test-500.pdf" download="TMA-Agency-Crash-Test-500.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2 min-h-[44px]">
         <strong class="text-sm font-semibold text-[var(--ink)] block">Crash Test 500 (PDF)</strong>
         <span class="text-xs text-[var(--accent)] font-mono">Download (PDF) →</span>
       </a>
-      <a href="/sozlesme/tma-gizlilik-ve-calisma-sozlesmesi.pdf" download="tma-gizlilik-ve-calisma-sozlesmesi.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
-        <strong class="text-sm font-semibold text-[var(--ink)] block">Mutual Agreement (PDF)</strong>
-        <span class="text-xs text-[var(--accent)] font-mono">Download (PDF) →</span>
+      <a href="/agency-kit/crash-test-500-poster.png" download="TMA-Crash-Test-500-Poster.png" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2 min-h-[44px]">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">Crash Test 500 Poster (PNG)</strong>
+        <span class="text-xs text-[var(--accent)] font-mono">Download (PNG) →</span>
       </a>
     </div>
   </section>

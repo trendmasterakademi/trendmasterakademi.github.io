@@ -23,7 +23,7 @@ const About = () => {
         <div className="flex items-center justify-start">
           <Link 
             to="/" 
-            className="inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--ink-secondary)] hover:text-[var(--accent)] font-mono transition-colors"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--ink-secondary)] hover:text-[var(--accent)] font-mono transition-colors min-h-[44px] py-[13px] -my-[13px]"
           >
             <ArrowLeft className="w-4 h-4" /> {isTr ? '← Ana Sayfaya Dön' : '← Back to Home'}
           </Link>
@@ -61,7 +61,7 @@ const About = () => {
                 Yirmi yıldır finansal piyasaların içerisindeydim. Yazılım hep işimin ayrılmaz bir parçasıydı ama uzun süre yalnızca kendim için: kendi sistemlerimi yazdım, kendi fikirlerimi koda döktüm, kendi hatalarımı kendim ayıkladım.{' '}
                 <Link
                   to="/hikayemiz/"
-                  className="text-[var(--accent)] hover:underline font-semibold transition-colors inline-block"
+                  className="text-[var(--accent)] hover:underline font-semibold transition-colors inline-block py-2 -my-2 px-1 -mx-1"
                 >
                   Devamı...
                 </Link>
@@ -76,7 +76,7 @@ const About = () => {
                 I spent twenty years inside financial markets. Software was always inseparable from that work — but for a long time only for myself: I wrote my own systems, turned my own ideas into code, debugged my own mistakes.{' '}
                 <Link
                   to="/story/"
-                  className="text-[var(--accent)] hover:underline font-semibold transition-colors inline-block"
+                  className="text-[var(--accent)] hover:underline font-semibold transition-colors inline-block py-2 -my-2 px-1 -mx-1"
                 >
                   Read more...
                 </Link>

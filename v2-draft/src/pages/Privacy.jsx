@@ -129,8 +129,8 @@ const Privacy = () => {
               : 'To exercise your data privacy rights, contact us at:'}
           </p>
           <div className="pt-2 text-sm font-mono space-y-1.5 text-[var(--ink-light)]">
-            <div>E-posta: <a href="mailto:info@trendmasterakademi.com" className="hover:underline text-[var(--accent)]">info@trendmasterakademi.com</a></div>
-            <div>Telefon: <a href="tel:+905343713573" className="hover:underline text-[var(--accent)]">+90 534 371 35 73</a></div>
+            <div>E-posta: <a href="mailto:info@trendmasterakademi.com" className="hover:underline text-[var(--accent)] inline-block py-[13px] -my-[13px]">info@trendmasterakademi.com</a></div>
+            <div>Telefon: <a href="tel:+905343713573" className="hover:underline text-[var(--accent)] inline-block py-[13px] -my-[13px]">+90 534 371 35 73</a></div>
             <div>Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</div>
           </div>
         </section>

@@ -351,7 +351,7 @@ const Hero = () => {
               <div className="pt-3 mt-4 border-t border-[var(--term-dim)]/30 flex items-center justify-between text-xs font-sans text-[var(--term-dim)]">
                 <Link
                   to="/teshis/"
-                  className="text-[var(--term-accent)] hover:underline font-medium flex items-center gap-1.5"
+                  className="text-[var(--term-accent)] hover:underline font-medium inline-flex items-center gap-1.5 min-h-[44px] py-[13px] -my-[13px]"
                 >
                   <span>{isTr ? 'Tüm Teşhis Kataloğunu İncele (20 Belirti)' : 'Explore All Diagnostics (20 Symptoms)'}</span>
                   <span>→</span>

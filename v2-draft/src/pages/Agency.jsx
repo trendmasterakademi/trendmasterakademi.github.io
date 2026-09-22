@@ -697,7 +697,7 @@ const Agency = () => {
                     <button
                       type="button"
                       onClick={() => window.dispatchEvent(new CustomEvent('open-sos-modal'))}
-                      className="text-emerald-700 font-mono font-semibold text-xs sm:text-sm hover:underline focus:outline-none focus:ring-1 focus:ring-emerald-700 rounded cursor-pointer transition-colors text-left"
+                      className="text-emerald-700 font-mono font-semibold text-xs sm:text-sm hover:underline focus:outline-none focus:ring-1 focus:ring-emerald-700 rounded cursor-pointer transition-colors text-left min-h-[44px] inline-flex items-center"
                     >
                       {isTr ? 'Bütçenizi iletin →' : 'Send us your budget →'}
                     </button>
@@ -752,8 +752,8 @@ const Agency = () => {
                     : 'No active project required; just getting acquainted so you know who to call when a critical crunch occurs.'}
                 </p>
                 <div className="pt-2 flex flex-wrap gap-4 text-xs sm:text-sm font-mono text-[var(--ink-secondary)]">
-                  <span><a href="tel:+905343713573" className="hover:text-[var(--accent)] font-semibold">+90 534 371 35 73</a></span>
-                  <span><a href="mailto:info@trendmasterakademi.com" className="hover:text-[var(--accent)] font-semibold">info@trendmasterakademi.com</a></span>
+                  <span><a href="tel:+905343713573" className="hover:text-[var(--accent)] font-semibold inline-block py-[13px] -my-[13px]">+90 534 371 35 73</a></span>
+                  <span><a href="mailto:info@trendmasterakademi.com" className="hover:text-[var(--accent)] font-semibold inline-block py-[13px] -my-[13px]">info@trendmasterakademi.com</a></span>
                 </div>
               </div>
 

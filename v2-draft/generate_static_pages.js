@@ -15,6 +15,7 @@ import { outageSimulatorData } from './src/data/outageSimulatorData.js';
 import { radarData } from './src/data/radarData.js';
 import { codeHealthData } from './src/data/codeHealthData.js';
 import { rescueRoiData } from './src/data/rescueRoiData.js';
+import { agencyKitData } from './src/data/agencyKitData.js';
 import { seoData } from './src/data/seoData.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -171,7 +172,7 @@ const professionalServiceNode = {
   "founder": {
     "@type": "Person",
     "name": "Mehmet Şahin",
-    "jobTitle": "Founder & Lead Engineer",
+    "jobTitle": "Kurucu & Baş Yazılım Mimarı (Lead Architect)",
     "url": "https://trendmasterakademi.com/about/"
   },
   "telephone": "+905343713573",
@@ -589,7 +590,7 @@ const ndaExtraContent = `
         <h2 class="text-xl font-bold text-[var(--ink)] font-serif">Gizlilik ve Çalışma Sözleşmesi (16 Madde)</h2>
         <p class="text-xs text-[var(--ink-muted)] font-mono mt-1">Resmi B2B Karşılıklı Gizlilik ve Çalışma Sözleşmesi Tam Metni</p>
       </div>
-      <a href="/sozlesme/tma-gizlilik-ve-calisma-sozlesmesi.pdf" download="tma-gizlilik-ve-calisma-sozlesmesi.pdf" class="inline-flex items-center justify-center px-4 py-2.5 rounded bg-[var(--accent)] text-white font-semibold text-xs hover:opacity-90 transition-opacity">
+      <a href="/sozlesme/tma-gizlilik-ve-calisma-sozlesmesi.pdf" download="tma-gizlilik-ve-calisma-sozlesmesi.pdf" class="inline-flex items-center justify-center px-4 py-2.5 rounded bg-[var(--accent)] text-white font-semibold text-xs hover:opacity-90 transition-opacity min-h-[44px]">
         Sözleşmeyi PDF Olarak İndir
       </a>
     </div>
@@ -597,7 +598,7 @@ const ndaExtraContent = `
     <!-- Bölüm 1: Size ne sağlıyor -->
     <section class="space-y-6">
       <h2 class="text-2xl font-serif font-semibold text-[var(--ink)] border-b border-[var(--rule)] pb-4">
-        Size Ne Sağlıyor?
+        Size ne sağlıyor
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         ${ndaFullAgreementData.whatItGivesYou.map(item => `
@@ -605,14 +606,14 @@ const ndaExtraContent = `
             <h3 class="text-base font-semibold font-serif text-[var(--ink)]">${escapeHtml(item.title.tr)}</h3>
             <p class="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.desc.tr)}</p>
           </div>
-        `).join('')}
+        `).join('\n        ')}
       </div>
     </section>
 
-    <!-- Bölüm 2: Bizi ne koruyor -->
+    <!-- Bölüm 2: Dürüst olalım: sözleşme bizi de koruyor -->
     <section class="space-y-6">
       <h2 class="text-2xl font-serif font-semibold text-[var(--ink)] border-b border-[var(--rule)] pb-4">
-        Bizi Ne Koruyor?
+        Dürüst olalım: sözleşme bizi de koruyor
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         ${ndaFullAgreementData.protectsUsToo.map(item => `
@@ -620,59 +621,146 @@ const ndaExtraContent = `
             <h3 class="text-base font-semibold font-serif text-[var(--ink)]">${escapeHtml(item.title.tr)}</h3>
             <p class="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.desc.tr)}</p>
           </div>
-        `).join('')}
+        `).join('\n        ')}
       </div>
     </section>
 
     <!-- Bölüm 3: 16 Maddelik Sözleşme Metni -->
     <section class="space-y-6">
       <h2 class="text-2xl font-serif font-semibold text-[var(--ink)] border-b border-[var(--rule)] pb-4">
-        Sözleşme Maddeleri (16 Madde)
+        Sözleşmenin tam metni
       </h2>
       <div class="space-y-6 text-sm text-[var(--ink-muted)] leading-relaxed">
         ${ndaFullAgreementData.clauses.map(clause => `
-          <article class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+          <article class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-3" data-clause="${clause.num}">
             <h3 class="text-base font-bold text-[var(--ink)] font-serif">${escapeHtml(clause.title)}</h3>
-            ${clause.paragraphs.map(p => `<p class="leading-relaxed">${escapeHtml(p)}</p>`).join('')}
+            ${clause.paragraphs.map(p => `<p class="leading-relaxed">${escapeHtml(p)}</p>`).join('\n            ')}
           </article>
-        `).join('')}
+        `).join('\n        ')}
       </div>
     </section>
 
+    <!-- İMZA BLOĞU -->
+    <div class="pt-6 border-t border-[var(--rule)] space-y-4">
+      <h3 class="font-semibold font-serif text-[var(--ink)] text-sm sm:text-base">İMZA</h3>
+      <p class="text-xs sm:text-sm text-[var(--ink-muted)]">Taraflar, işbu sözleşmeyi okuyup anlayarak, 16 maddeden ibaret hâliyle iki nüsha olarak imza altına almıştır.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 font-mono text-xs text-[var(--ink)]">
+        <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <p class="font-bold">TMA</p>
+          <p>Trend Master Akademi</p>
+          <p>Mehmet Şahin — Şahıs İşletmesi</p>
+          <p>VKN: 7930336132</p>
+          <p>Tarih: ................................</p>
+          <p>İmza: ................................</p>
+        </div>
+        <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <p class="font-bold">AJANS</p>
+          <p>Unvan: ................................</p>
+          <p>VKN: ................................</p>
+          <p>Yetkili: ................................</p>
+          <p>Tarih: ................................</p>
+          <p>İmza: ................................</p>
+        </div>
+      </div>
+    </div>
+
     <!-- Öncelik Kaydı -->
-    <div class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 text-xs font-mono text-[var(--ink-muted)] leading-relaxed">
-      <strong class="text-[var(--ink)] block uppercase">${escapeHtml(ndaFullAgreementData.precedenceNotice.title.tr)}</strong>
+    <div class="p-6 rounded-xl bg-amber-50 border-2 border-amber-300 text-amber-950 text-xs sm:text-sm leading-relaxed space-y-2">
+      <strong class="text-amber-800 font-semibold block uppercase">${escapeHtml(ndaFullAgreementData.precedenceNotice.title.tr)}</strong>
       <p>${escapeHtml(ndaFullAgreementData.precedenceNotice.text)}</p>
     </div>
   </section>
 `;
 
+// 3.6 — Build Guard: /nda/ Ön-render ve ndaFullAgreementData Eşitlik Koruması
+function normalizeWhitespace(text) {
+  return (text || '').replace(/\s+/g, ' ').trim();
+}
+
+console.log('[BUILD GUARD] /nda/ ön-render tek kaynak doğrulaması yapılıyor...');
+
+if (!Array.isArray(ndaFullAgreementData.clauses) || ndaFullAgreementData.clauses.length !== 16) {
+  console.error(`[BUILD GUARD HATA] ndaFullAgreementData.clauses 16 madde olmalı, bulunan: ${ndaFullAgreementData.clauses?.length}`);
+  process.exit(1);
+}
+
+const normalizedNdaExtra = normalizeWhitespace(ndaExtraContent);
+
+for (const clause of ndaFullAgreementData.clauses) {
+  const normTitle = normalizeWhitespace(clause.title);
+  if (!normalizedNdaExtra.includes(normTitle)) {
+    console.error(`[BUILD GUARD HATA] Madde ${clause.num} başlığı ön-render çıktısında eşleşmedi: "${normTitle}"`);
+    process.exit(1);
+  }
+  for (let pIdx = 0; pIdx < clause.paragraphs.length; pIdx++) {
+    const p = clause.paragraphs[pIdx];
+    const normP = normalizeWhitespace(escapeHtml(p));
+    if (!normalizedNdaExtra.includes(normP)) {
+      console.error(`[BUILD GUARD HATA] Madde ${clause.num} paragraf ${pIdx + 1} ön-render çıktısında eşleşmedi:\nBeklenen: "${normP}"`);
+      process.exit(1);
+    }
+  }
+}
+console.log('[BUILD GUARD BAŞARILI] /nda/ 16 maddesi ve tüm paragrafları tam doğrulandı.');
+
 const kitExtraContentTr = `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-8">
     <div class="space-y-4 max-w-3xl">
       <p class="text-base text-[var(--ink)] leading-relaxed">
-        TMA Ajans Kiti, dijital ajansların ve yazılım evlerinin kritik üretim kesintilerinde, beklenmedik veri kaybı veya devir krizlerinde başvurabileceği kıdemli mühendislik masası kılavuzudur.
+        ${escapeHtml(agencyKitData.tr.responseKit.subtitle)}
       </p>
       <p class="text-base text-[var(--ink)] leading-relaxed">
-        8 slaytlık görsel sunum seti ile 60 saniyelik Crash Test 500 posteri, teknik borç ve sistem risklerinizi dakikalar içinde tespit etmenizi sağlar.
-      </p>
-      <p class="text-base text-[var(--ink)] leading-relaxed">
-        Tüm materyaller doğrudan indirilebilir, ekibinizle paylaşılabilir ve acil durumlarda başvuru kaynağı olarak kullanılabilir.
+        ${escapeHtml(agencyKitData.tr.crashTest.description)}
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-      <a href="/agency-kit/tma-agency-response-kit.pdf" download="tma-agency-response-kit.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
-        <strong class="text-sm font-semibold text-[var(--ink)] block">TMA Ajans Kiti (PDF)</strong>
+    <!-- 3 Kriz Senaryosu & Sorular -->
+    <div class="space-y-4">
+      <h2 class="text-xl font-bold text-[var(--ink)] font-serif">Kriz Senaryoları & Hazırlık Denetimi</h2>
+      <p class="text-xs sm:text-sm text-[var(--ink-muted)]">
+        Kriz kapıyı çalmadan önce ajansınızın ilk müdahale refleksini ölçün. 3 soruya yanıt vererek teknik hazırlık puanınızı ve cerrahi eylem planınızı anında alın.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        ${agencyKitData.tr.crashTest.scenarios.map(sc => `
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[var(--accent)] font-semibold text-xs">${escapeHtml(sc.no)}</span>
+              <span class="font-mono text-xs text-[var(--accent)] bg-[var(--accent-subtle)] px-2 py-0.5 rounded border border-[var(--accent)]/20">${escapeHtml(sc.tag)}</span>
+            </div>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">${escapeHtml(sc.title)}</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">${escapeHtml(sc.desc)}</p>
+          </div>
+        `).join('\n        ')}
+      </div>
+    </div>
+
+    <!-- 8 Slaytlık Kılavuz -->
+    <div class="space-y-4 pt-4 border-t border-[var(--rule)]">
+      <h2 class="text-xl font-bold text-[var(--ink)] font-serif">${escapeHtml(agencyKitData.tr.responseKit.title)} (8 Slayt)</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        ${agencyKitData.tr.responseKit.slides.map(slide => `
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-muted)] block">SLIDE ${escapeHtml(slide.slideNo)} // ${escapeHtml(slide.tag)}</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">${escapeHtml(slide.title)}</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">${escapeHtml(slide.desc)}</p>
+          </div>
+        `).join('\n        ')}
+      </div>
+    </div>
+
+    <!-- İndirme Linkleri (Sözleşme PDF yok!) -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[var(--rule)]">
+      <a href="/agency-kit/tma-agency-response-kit.pdf" download="TMA-Agency-Response-Kit.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2 min-h-[44px]">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">TMA Agency Response Kit (PDF)</strong>
         <span class="text-xs text-[var(--accent)] font-mono">İndir (PDF) →</span>
       </a>
-      <a href="/agency-kit/tma-agency-crash-test-500.pdf" download="tma-agency-crash-test-500.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
+      <a href="/agency-kit/tma-agency-crash-test-500.pdf" download="TMA-Agency-Crash-Test-500.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2 min-h-[44px]">
         <strong class="text-sm font-semibold text-[var(--ink)] block">Crash Test 500 (PDF)</strong>
         <span class="text-xs text-[var(--accent)] font-mono">İndir (PDF) →</span>
       </a>
-      <a href="/sozlesme/tma-gizlilik-ve-calisma-sozlesmesi.pdf" download="tma-gizlilik-ve-calisma-sozlesmesi.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
-        <strong class="text-sm font-semibold text-[var(--ink)] block">Gizlilik Sözleşmesi (PDF)</strong>
-        <span class="text-xs text-[var(--accent)] font-mono">İndir (PDF) →</span>
+      <a href="/agency-kit/crash-test-500-poster.png" download="TMA-Crash-Test-500-Poster.png" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2 min-h-[44px]">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">Crash Test 500 Posteri (PNG)</strong>
+        <span class="text-xs text-[var(--accent)] font-mono">İndir (PNG) →</span>
       </a>
     </div>
   </section>
@@ -682,28 +770,63 @@ const kitExtraContentEn = `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-8">
     <div class="space-y-4 max-w-3xl">
       <p class="text-base text-[var(--ink)] leading-relaxed">
-        The TMA Agency Kit is an executive engineering guide designed for digital agencies facing critical production outages, unforeseen data loss, or complex codebase handovers.
+        ${escapeHtml(agencyKitData.en.responseKit.subtitle)}
       </p>
       <p class="text-base text-[var(--ink)] leading-relaxed">
-        The 8-slide visual response deck and the 60-Second Crash Test 500 poster empower your team to diagnose systemic vulnerabilities and technical debt in minutes.
+        ${escapeHtml(agencyKitData.en.crashTest.description)}
       </p>
-      <p class="text-base text-[var(--ink)] leading-relaxed">
-        All assets are readily downloadable, distributable across your engineering leadership, and serve as an immediate protocol in emergency scenarios.
+      <p class="text-xs font-mono text-[var(--ink-muted)] bg-[var(--surface)] border border-[var(--rule)] py-1.5 px-3 rounded inline-block">
+        The slides and the poster are currently available in Turkish.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-      <a href="/agency-kit/tma-agency-response-kit.pdf" download="tma-agency-response-kit.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
-        <strong class="text-sm font-semibold text-[var(--ink)] block">TMA Agency Kit (PDF)</strong>
+    <!-- 3 Crisis Scenarios & Readiness -->
+    <div class="space-y-4">
+      <h2 class="text-xl font-bold text-[var(--ink)] font-serif">Crisis Scenarios & Readiness Audit</h2>
+      <p class="text-xs sm:text-sm text-[var(--ink-muted)]">
+        Measure your agency's incident triage reflexes before outage strikes. Answer 3 questions to calculate your readiness score and surgical action plan instantly.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        ${agencyKitData.en.crashTest.scenarios.map(sc => `
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[var(--accent)] font-semibold text-xs">${escapeHtml(sc.no)}</span>
+              <span class="font-mono text-xs text-[var(--accent)] bg-[var(--accent-subtle)] px-2 py-0.5 rounded border border-[var(--accent)]/20">${escapeHtml(sc.tag)}</span>
+            </div>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">${escapeHtml(sc.title)}</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">${escapeHtml(sc.desc)}</p>
+          </div>
+        `).join('\n        ')}
+      </div>
+    </div>
+
+    <!-- 8-Slide Guide -->
+    <div class="space-y-4 pt-4 border-t border-[var(--rule)]">
+      <h2 class="text-xl font-bold text-[var(--ink)] font-serif">${escapeHtml(agencyKitData.en.responseKit.title)} (8 Slides)</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        ${agencyKitData.en.responseKit.slides.map(slide => `
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-muted)] block">SLIDE ${escapeHtml(slide.slideNo)} // ${escapeHtml(slide.tag)}</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">${escapeHtml(slide.title)}</h3>
+            <p class="text-xs text-[var(--ink-muted)] leading-relaxed">${escapeHtml(slide.desc)}</p>
+          </div>
+        `).join('\n        ')}
+      </div>
+    </div>
+
+    <!-- Download Links (No contract PDF!) -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[var(--rule)]">
+      <a href="/agency-kit/tma-agency-response-kit.pdf" download="TMA-Agency-Response-Kit.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2 min-h-[44px]">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">TMA Agency Response Kit (PDF)</strong>
         <span class="text-xs text-[var(--accent)] font-mono">Download (PDF) →</span>
       </a>
-      <a href="/agency-kit/tma-agency-crash-test-500.pdf" download="tma-agency-crash-test-500.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
+      <a href="/agency-kit/tma-agency-crash-test-500.pdf" download="TMA-Agency-Crash-Test-500.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2 min-h-[44px]">
         <strong class="text-sm font-semibold text-[var(--ink)] block">Crash Test 500 (PDF)</strong>
         <span class="text-xs text-[var(--accent)] font-mono">Download (PDF) →</span>
       </a>
-      <a href="/sozlesme/tma-gizlilik-ve-calisma-sozlesmesi.pdf" download="tma-gizlilik-ve-calisma-sozlesmesi.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2">
-        <strong class="text-sm font-semibold text-[var(--ink)] block">Mutual Agreement (PDF)</strong>
-        <span class="text-xs text-[var(--accent)] font-mono">Download (PDF) →</span>
+      <a href="/agency-kit/crash-test-500-poster.png" download="TMA-Crash-Test-500-Poster.png" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2 min-h-[44px]">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">Crash Test 500 Poster (PNG)</strong>
+        <span class="text-xs text-[var(--accent)] font-mono">Download (PNG) →</span>
       </a>
     </div>
   </section>

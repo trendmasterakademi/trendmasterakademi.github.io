@@ -22,7 +22,7 @@ const Sos = () => {
   };
 
   return (
-    <div className="pt-32 pb-36 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto text-[var(--ink)] font-sans">
+    <div className="pt-32 pb-44 sm:pb-36 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto text-[var(--ink)] font-sans">
       
       {/* Breadcrumb Navigation */}
       <div className="mb-8">

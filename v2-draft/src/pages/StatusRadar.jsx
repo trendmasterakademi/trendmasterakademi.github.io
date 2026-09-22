@@ -153,7 +153,7 @@ export default function StatusRadar({ lang = "tr" }) {
           <span>{t.telemetry90Days.sourceNote}</span>
           <Link
             to="/sla/"
-            className="text-[var(--accent)] font-semibold hover:underline font-mono inline-flex items-center gap-1 shrink-0"
+            className="text-[var(--accent)] font-semibold hover:underline font-mono inline-flex items-center gap-1 shrink-0 min-h-[44px] py-[13px] -my-[13px]"
           >
             {t.telemetry90Days.slaLinkText}
           </Link>

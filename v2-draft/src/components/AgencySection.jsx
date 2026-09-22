@@ -31,7 +31,7 @@ const AgencySection = () => {
             </p>
             <Link
               to="/agency/"
-              className="text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center gap-1.5 group transition-colors"
+              className="text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center gap-1.5 group transition-colors min-h-[44px]"
             >
               <span>{t('agency-sec-link')}</span>
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -62,7 +62,7 @@ const AgencySection = () => {
             </div>
             <Link
               to="/crash-test/?senaryo=http500"
-              className="mt-6 pt-4 border-t border-[var(--rule)] text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center justify-between transition-colors"
+              className="mt-6 pt-4 border-t border-[var(--rule)] text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center justify-between transition-colors min-h-[44px]"
             >
               <span>{t('crisis-card1-action')}</span>
             </Link>
@@ -88,7 +88,7 @@ const AgencySection = () => {
             </div>
             <Link
               to="/crash-test/?senaryo=handover"
-              className="mt-6 pt-4 border-t border-[var(--rule)] text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center justify-between transition-colors"
+              className="mt-6 pt-4 border-t border-[var(--rule)] text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center justify-between transition-colors min-h-[44px]"
             >
               <span>{t('crisis-card2-action')}</span>
             </Link>
@@ -114,7 +114,7 @@ const AgencySection = () => {
             </div>
             <Link
               to="/crash-test/?senaryo=t48h"
-              className="mt-6 pt-4 border-t border-[var(--rule)] text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center justify-between transition-colors"
+              className="mt-6 pt-4 border-t border-[var(--rule)] text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center justify-between transition-colors min-h-[44px]"
             >
               <span>{t('crisis-card3-action')}</span>
             </Link>
@@ -140,7 +140,7 @@ const AgencySection = () => {
             </div>
             <Link
               to="/crash-test/?senaryo=overflow"
-              className="mt-6 pt-4 border-t border-[var(--rule)] text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center justify-between transition-colors"
+              className="mt-6 pt-4 border-t border-[var(--rule)] text-sm font-medium text-[var(--accent)] hover:text-[var(--accent-hover)] flex items-center justify-between transition-colors min-h-[44px]"
             >
               <span>{t('crisis-card4-action')}</span>
             </Link>

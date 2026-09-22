@@ -334,7 +334,7 @@ export const CodeDiffTerminal = () => {
                   setActiveIncident(idx);
                   setViewMode('after');
                 }}
-                className={`px-4 py-2 rounded-[var(--r-control)] font-mono text-xs sm:text-sm font-medium transition-all cursor-pointer flex items-center gap-2 border ${
+                className={`px-4 py-2 rounded-[var(--r-control)] font-mono text-xs sm:text-sm font-medium transition-all cursor-pointer flex items-center gap-2 border min-h-[44px] ${
                   isActive
                     ? 'bg-[var(--surface)] text-[var(--ink)] border-[var(--accent)] shadow-sm ring-1 ring-[var(--accent)]'
                     : 'bg-[var(--surface)] text-[var(--ink-2)] border-[var(--rule)] hover:border-[var(--rule-strong)] hover:text-[var(--ink)]'

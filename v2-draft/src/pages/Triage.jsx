@@ -184,7 +184,7 @@ Rapor Tarihi: ${new Date().toISOString()}`;
                       <span>{diag.desc[lang]}</span>
                       <button
                         onClick={() => copyCommand(diag.cmd, idx)}
-                        className="inline-flex items-center gap-1 text-emerald-400 hover:text-white transition-colors cursor-pointer min-h-[36px]"
+                        className="inline-flex items-center gap-1 text-emerald-400 hover:text-white transition-colors cursor-pointer min-h-[44px] px-2 py-1"
                       >
                         {copiedCmd === idx ? (
                           <>

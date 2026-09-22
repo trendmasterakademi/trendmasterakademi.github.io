@@ -210,7 +210,7 @@ export const Sla = () => {
                 <div className="pt-2">
                   <Link
                     to={isTr ? "/nda/" : "/nda/"}
-                    className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--accent)] hover:underline font-mono"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-[var(--accent)] hover:underline font-mono min-h-[44px] py-[13px] -my-[13px]"
                   >
                     <span>{isTr ? 'Sözleşmeyi okuyun →' : 'Read the agreement →'}</span>
                   </Link>

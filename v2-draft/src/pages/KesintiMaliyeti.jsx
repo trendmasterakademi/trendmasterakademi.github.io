@@ -152,7 +152,7 @@ const KesintiMaliyeti = () => {
                   <button
                     type="button"
                     onClick={() => { setInputMode('tier'); setDailyOrders(''); }}
-                    className={`px-3 py-1.5 min-h-[36px] rounded-lg transition-colors cursor-pointer ${
+                    className={`px-3 py-1.5 min-h-[44px] rounded-lg transition-colors cursor-pointer ${
                       inputMode !== 'orders' ? 'bg-[var(--accent)] text-white font-semibold' : 'text-[var(--ink-light)] hover:text-[var(--ink)]'
                     }`}
                   >
@@ -161,7 +161,7 @@ const KesintiMaliyeti = () => {
                   <button
                     type="button"
                     onClick={() => { setInputMode('orders'); setCustomRevenue(''); }}
-                    className={`px-3 py-1.5 min-h-[36px] rounded-lg transition-colors cursor-pointer ${
+                    className={`px-3 py-1.5 min-h-[44px] rounded-lg transition-colors cursor-pointer ${
                       inputMode === 'orders' ? 'bg-[var(--accent)] text-[var(--on-accent)] font-semibold' : 'text-[var(--ink-light)] hover:text-[var(--ink)]'
                     }`}
                   >

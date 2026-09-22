@@ -217,9 +217,9 @@ const Contact = () => {
             <ShieldCheck className="w-5 h-5 flex-shrink-0 text-[var(--accent)]" />
             <span>
               {isTr ? (
-                <>Tüm başvurular ve görüşmeler <Link to="/nda/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)] transition-colors">gizlilik sözleşmesi (NDA)</Link> kapsamındadır.</>
+                <>Tüm başvurular ve görüşmeler <Link to="/nda/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)] transition-colors py-1.5 -my-1.5 inline-block">gizlilik sözleşmesi (NDA)</Link> kapsamındadır.</>
               ) : (
-                <>All inquiries and consultations are protected under <Link to="/nda/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)] transition-colors">mutual non-disclosure agreement (NDA)</Link>.</>
+                <>All inquiries and consultations are protected under <Link to="/nda/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)] transition-colors py-1.5 -my-1.5 inline-block">mutual non-disclosure agreement (NDA)</Link>.</>
               )}
             </span>
           </div>
