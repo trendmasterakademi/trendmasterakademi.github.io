@@ -752,8 +752,8 @@ const Agency = () => {
                     : 'No active project required; just getting acquainted so you know who to call when a critical crunch occurs.'}
                 </p>
                 <div className="pt-2 flex flex-wrap gap-4 text-xs sm:text-sm font-mono text-[var(--ink-secondary)]">
-                  <span><a href="tel:+905343713573" className="hover:text-[var(--accent)] font-semibold inline-block py-[13px] -my-[13px]">+90 534 371 35 73</a></span>
-                  <span><a href="mailto:info@trendmasterakademi.com" className="hover:text-[var(--accent)] font-semibold inline-block py-[13px] -my-[13px]">info@trendmasterakademi.com</a></span>
+                  <span><a href="tel:+905343713573" className="hover:text-[var(--accent)] font-semibold min-h-[44px] inline-flex items-center">+90 534 371 35 73</a></span>
+                  <span><a href="mailto:info@trendmasterakademi.com" className="hover:text-[var(--accent)] font-semibold min-h-[44px] inline-flex items-center">info@trendmasterakademi.com</a></span>
                 </div>
               </div>
 
