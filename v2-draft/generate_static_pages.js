@@ -173,6 +173,7 @@ const professionalServiceNode = {
     "@type": "Person",
     "name": "Mehmet Şahin",
     "jobTitle": "Kurucu & Baş Yazılım Mimarı (Lead Architect)",
+    "image": "https://trendmasterakademi.com/images/mehmet-sahin-480.jpg",
     "url": "https://trendmasterakademi.com/about/"
   },
   "telephone": "+905343713573",
@@ -345,6 +346,19 @@ const homeFaqHtml = `
   </section>
 `;
 
+const homeFounderHtml = `
+  <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 mt-8">
+    <h3 class="text-xl font-bold text-[var(--ink)]">Mehmet Şahin</h3>
+    <p class="text-xs font-mono text-[var(--accent)] font-medium">Kurucu & Baş Yazılım Mimarı (Lead Architect)</p>
+    <picture class="flex-shrink-0 block">
+      <source type="image/avif" srcset="/images/mehmet-sahin-320.avif 1x, /images/mehmet-sahin-480.avif 2x" />
+      <source type="image/webp" srcset="/images/mehmet-sahin-320.webp 1x, /images/mehmet-sahin-480.webp 2x" />
+      <img src="/images/mehmet-sahin-320.jpg" srcset="/images/mehmet-sahin-480.jpg 2x" alt="Mehmet Şahin — Kurucu & Baş Yazılım Mimarı" width="260" height="260" loading="lazy" decoding="async" class="w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[260px] lg:h-[260px] rounded-[var(--r-panel)] border border-[var(--rule)] object-cover shadow-sm" />
+    </picture>
+    <p class="text-[var(--ink-muted)] leading-relaxed text-sm sm:text-base">Yirmi yılı aşkın süredir finansal sistemlerin, algoritmik yazılımların ve yüksek erişilebilirlikli sunucu altyapılarının içindeyim. Yıllarca yalnızca kendi sistemlerimi yazdım, kendi mimarimi koda döktüm ve kendi hatalarımı ayıkladım.</p>
+  </section>
+`;
+
 const homePageExtraContent = `
   <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
     <h2 class="text-xl font-bold text-[var(--ink)]">Sisteminizde bu satırları görüyorsanız</h2>
@@ -364,6 +378,7 @@ const homePageExtraContent = `
       <a href="/teshis/" class="text-[var(--accent)] hover:underline font-bold">Tüm teşhis kataloğunu inceleyin (20 belirti) →</a>
     </p>
   </section>
+  ${homeFounderHtml}
   ${homeFaqHtml}
 `;
 
