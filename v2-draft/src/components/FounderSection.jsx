@@ -39,11 +39,33 @@ export const FounderSection = () => {
           {/* Left: Founder Letter & Ethos (7 Cols) */}
           <div className="lg:col-span-7 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] p-7 sm:p-9 flex flex-col justify-between space-y-6 shadow-sm relative overflow-hidden">
             <div className="space-y-4 text-[var(--ink-2)] text-sm sm:text-base leading-relaxed">
-              <div className="border-b border-[var(--rule)] pb-4 mb-4">
-                <h3 className="text-lg font-semibold text-[var(--ink)]">Mehmet Şahin</h3>
-                <p className="text-xs font-mono text-[var(--accent)] font-medium">
-                  {isTr ? 'Kurucu & Baş Yazılım Mimarı (Lead Architect)' : 'Founder & Lead Software Architect'}
-                </p>
+              <div className="border-b border-[var(--rule)] pb-4 mb-4 flex items-center gap-4">
+                <picture className="flex-shrink-0">
+                  <source
+                    type="image/avif"
+                    srcSet="/images/mehmet-sahin-160.avif 1x, /images/mehmet-sahin-320.avif 2x, /images/mehmet-sahin-480.avif 3x"
+                  />
+                  <source
+                    type="image/webp"
+                    srcSet="/images/mehmet-sahin-160.webp 1x, /images/mehmet-sahin-320.webp 2x, /images/mehmet-sahin-480.webp 3x"
+                  />
+                  <img
+                    src="/images/mehmet-sahin-160.jpg"
+                    srcSet="/images/mehmet-sahin-320.jpg 2x, /images/mehmet-sahin-480.jpg 3x"
+                    alt="Mehmet Şahin — Kurucu & Baş Yazılım Mimarı"
+                    width="64"
+                    height="64"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[var(--rule)] object-cover shadow-sm"
+                  />
+                </picture>
+                <div>
+                  <h3 className="text-lg font-semibold text-[var(--ink)]">Mehmet Şahin</h3>
+                  <p className="text-xs font-mono text-[var(--accent)] font-medium">
+                    {isTr ? 'Kurucu & Baş Yazılım Mimarı (Lead Architect)' : 'Founder & Lead Software Architect'}
+                  </p>
+                </div>
               </div>
 
               {isTr ? (

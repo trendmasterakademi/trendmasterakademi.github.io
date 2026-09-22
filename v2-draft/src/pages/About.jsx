@@ -48,9 +48,36 @@ const About = () => {
 
         {/* Brand Story Teaser Block */}
         <div className="p-6 sm:p-8 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 max-w-4xl mx-auto shadow-sm">
-          <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)] tracking-tight">
-            {isTr ? 'Trend Master Akademi Adı Nereden Geliyor?' : 'Where Does the Name "Akademi" Come From?'}
-          </h3>
+          <div className="flex items-center gap-4 border-b border-[var(--rule)] pb-4">
+            <picture className="flex-shrink-0">
+              <source
+                type="image/avif"
+                srcSet="/images/mehmet-sahin-160.avif 1x, /images/mehmet-sahin-320.avif 2x, /images/mehmet-sahin-480.avif 3x"
+              />
+              <source
+                type="image/webp"
+                srcSet="/images/mehmet-sahin-160.webp 1x, /images/mehmet-sahin-320.webp 2x, /images/mehmet-sahin-480.webp 3x"
+              />
+              <img
+                src="/images/mehmet-sahin-160.jpg"
+                srcSet="/images/mehmet-sahin-320.jpg 2x, /images/mehmet-sahin-480.jpg 3x"
+                alt="Mehmet Şahin — Kurucu & Baş Yazılım Mimarı"
+                width="64"
+                height="64"
+                loading="lazy"
+                decoding="async"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[var(--rule)] object-cover shadow-sm"
+              />
+            </picture>
+            <div>
+              <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)] tracking-tight">
+                {isTr ? 'Trend Master Akademi Adı Nereden Geliyor?' : 'Where Does the Name "Akademi" Come From?'}
+              </h3>
+              <p className="text-xs font-mono text-[var(--accent)] font-medium">
+                {isTr ? 'Mehmet Şahin — Kurucu & Baş Yazılım Mimarı' : 'Mehmet Şahin — Founder & Lead Software Architect'}
+              </p>
+            </div>
+          </div>
           
           {isTr ? (
             <div className="space-y-3 text-[var(--ink-secondary)] text-base sm:text-lg leading-relaxed">

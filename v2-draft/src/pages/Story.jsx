@@ -46,6 +46,35 @@ const Story = () => {
             {isTr ? "Trend Master Akademi'nin hikâyesi" : "The Trend Master Akademi story"}
           </h1>
 
+          <div className="flex items-center gap-4 py-2 border-b border-[var(--rule)]">
+            <picture className="flex-shrink-0">
+              <source
+                type="image/avif"
+                srcSet="/images/mehmet-sahin-160.avif 1x, /images/mehmet-sahin-320.avif 2x, /images/mehmet-sahin-480.avif 3x"
+              />
+              <source
+                type="image/webp"
+                srcSet="/images/mehmet-sahin-160.webp 1x, /images/mehmet-sahin-320.webp 2x, /images/mehmet-sahin-480.webp 3x"
+              />
+              <img
+                src="/images/mehmet-sahin-160.jpg"
+                srcSet="/images/mehmet-sahin-320.jpg 2x, /images/mehmet-sahin-480.jpg 3x"
+                alt="Mehmet Şahin — Kurucu & Baş Yazılım Mimarı"
+                width="64"
+                height="64"
+                loading="lazy"
+                decoding="async"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-[var(--rule)] object-cover shadow-sm"
+              />
+            </picture>
+            <div>
+              <div className="text-base sm:text-lg font-semibold text-[var(--ink)]">Mehmet Şahin</div>
+              <div className="text-xs font-mono text-[var(--accent)] font-medium">
+                {isTr ? 'Kurucu & Baş Yazılım Mimarı' : 'Founder & Lead Software Architect'}
+              </div>
+            </div>
+          </div>
+
           {isTr ? (
             <div className="space-y-6 pt-2">
               <p>
