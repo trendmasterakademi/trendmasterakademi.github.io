@@ -454,6 +454,11 @@ const Agency = () => {
                 ? 'Bu sayfada hiçbir müşterinin adı yazmıyor — sizinki de yazmayacak. Anlatılan senaryolar yürüttüğümüz gerçek projelerden alınmıştır; kimliğe dair her ayrıntı çıkarılmıştır.' 
                 : 'No client is named on this page — and yours never will be. These scenarios are drawn from real engagements; every identifying detail has been removed.'}
             </p>
+            <p className="text-sm sm:text-base text-[var(--ink-2)] mt-2 leading-relaxed max-w-[34rem] mx-auto">
+              {isTr 
+                ? 'Vakalardaki rakamların dayanağını isterseniz, vaka kayıtlarını firma adlarını gizleyerek NDA kapsamında paylaşırız.' 
+                : 'If you want the basis for any figure in these cases, we share the case records under NDA with company names removed.'}
+            </p>
             <div className="mt-3.5">
               <Link
                 to="/about/"
