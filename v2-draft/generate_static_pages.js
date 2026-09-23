@@ -602,16 +602,6 @@ const DOT_LINE_64 = '.'.repeat(64);
 
 const ndaExtraContent = `
   <section class="space-y-12 mt-8 border-t border-[var(--rule)] pt-8">
-    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)]">
-      <div>
-        <h2 class="text-xl font-bold text-[var(--ink)] font-serif">${escapeHtml(ndaFullAgreementData.fullAgreementHeader.documentTitle)} (16 Madde)</h2>
-        <p class="text-xs text-[var(--ink-muted)] font-mono mt-1">${escapeHtml(ndaFullAgreementData.fullAgreementHeader.documentSubtitle)}</p>
-      </div>
-      <a href="${escapeHtml(ndaFullAgreementData.fullAgreementHeader.pdfHref)}" download="${escapeHtml(ndaFullAgreementData.fullAgreementHeader.pdfDownloadName)}" class="inline-flex items-center justify-center px-4 py-2.5 rounded bg-[var(--accent)] text-white font-semibold text-xs hover:opacity-90 transition-opacity min-h-[44px]">
-        ${escapeHtml(ndaFullAgreementData.fullAgreementHeader.pdfButton.tr)}
-      </a>
-    </div>
-
     <!-- Section 1 -->
     <section class="space-y-6">
       <h2 class="text-2xl font-serif font-semibold text-[var(--ink)] border-b border-[var(--rule)] pb-4">
@@ -676,8 +666,16 @@ const ndaExtraContent = `
         </a>
       </div>
 
-      <div class="space-y-6 text-sm text-[var(--ink-muted)] leading-relaxed">
-        ${ndaFullAgreementData.clauses.map(clause => {
+      <div class="p-6 sm:p-10 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] space-y-8 text-xs sm:text-sm leading-relaxed font-sans shadow-sm">
+        <div class="text-center pb-6 border-b border-[var(--rule)] space-y-2">
+          <div class="text-base sm:text-lg font-bold font-serif text-[var(--ink)] tracking-wide">
+            ${escapeHtml(ndaFullAgreementData.fullAgreementHeader.documentTitle)}
+          </div>
+          <p class="text-[var(--ink-muted)] text-xs font-mono">${escapeHtml(ndaFullAgreementData.fullAgreementHeader.documentSubtitle)}</p>
+        </div>
+
+        <div class="space-y-6 text-sm text-[var(--ink-muted)] leading-relaxed">
+          ${ndaFullAgreementData.clauses.map(clause => {
           if (clause.num === 1) {
             return `
           <article class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-3" data-clause="${clause.num}">
@@ -741,31 +739,31 @@ const ndaExtraContent = `
             <h3 class="text-base font-bold text-[var(--ink)] font-serif">${escapeHtml(clause.title)}</h3>
             ${clause.paragraphs.map(p => `<p class="leading-relaxed">${escapeHtml(p)}</p>`).join('\n            ')}
           </article>`;
-        }).join('\n        ')}
+        }).join('\n        ')}        </div>
+
+        <!-- Section: İMZA -->
+        <div class="pt-6 border-t border-[var(--rule)] space-y-4">
+          <h3 class="font-semibold font-serif text-[var(--ink)] text-sm sm:text-base">${escapeHtml(ndaFullAgreementData.signatures.title)}</h3>
+          <p class="text-xs sm:text-sm text-[var(--ink-muted)]">${escapeHtml(ndaFullAgreementData.signatures.intro)}</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 font-mono text-xs text-[var(--ink)]">
+            <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 overflow-hidden">
+              <p class="font-bold">${escapeHtml(ndaFullAgreementData.signatures.tma.title)}</p>
+              ${ndaFullAgreementData.signatures.tma.lines.map(line => `<p>${escapeHtml(line)}</p>`).join('\n          ')}
+              <div class="pt-2 space-y-1.5">
+                ${ndaFullAgreementData.signatures.tma.fields.map(field => `<p class="flex items-baseline gap-1 overflow-hidden"><span class="shrink-0">${escapeHtml(field.label)}</span><span class="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">${DOT_LINE_64}</span></p>`).join('\n            ')}
+              </div>
+            </div>
+            <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 overflow-hidden">
+              <p class="font-bold">${escapeHtml(ndaFullAgreementData.signatures.ajans.title)}</p>
+              ${ndaFullAgreementData.signatures.ajans.fields.slice(0, 3).map(field => `<p class="flex items-baseline gap-1 overflow-hidden"><span class="shrink-0">${escapeHtml(field.label)}</span><span class="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">${DOT_LINE_64}</span></p>`).join('\n            ')}
+              <div class="pt-2 space-y-1.5">
+                ${ndaFullAgreementData.signatures.ajans.fields.slice(3).map(field => `<p class="flex items-baseline gap-1 overflow-hidden"><span class="shrink-0">${escapeHtml(field.label)}</span><span class="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">${DOT_LINE_64}</span></p>`).join('\n            ')}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-
-    <!-- Section: İMZA -->
-    <div class="pt-6 border-t border-[var(--rule)] space-y-4">
-      <h3 class="font-semibold font-serif text-[var(--ink)] text-sm sm:text-base">${escapeHtml(ndaFullAgreementData.signatures.title)}</h3>
-      <p class="text-xs sm:text-sm text-[var(--ink-muted)]">${escapeHtml(ndaFullAgreementData.signatures.intro)}</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 font-mono text-xs text-[var(--ink)]">
-        <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 overflow-hidden">
-          <p class="font-bold">${escapeHtml(ndaFullAgreementData.signatures.tma.title)}</p>
-          ${ndaFullAgreementData.signatures.tma.lines.map(line => `<p>${escapeHtml(line)}</p>`).join('\n          ')}
-          <div class="pt-2 space-y-1.5">
-            ${ndaFullAgreementData.signatures.tma.fields.map(field => `<p class="flex items-baseline gap-1 overflow-hidden"><span class="shrink-0">${escapeHtml(field.label)}</span><span class="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">${DOT_LINE_64}</span></p>`).join('\n            ')}
-          </div>
-        </div>
-        <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 overflow-hidden">
-          <p class="font-bold">${escapeHtml(ndaFullAgreementData.signatures.ajans.title)}</p>
-          ${ndaFullAgreementData.signatures.ajans.fields.slice(0, 3).map(field => `<p class="flex items-baseline gap-1 overflow-hidden"><span class="shrink-0">${escapeHtml(field.label)}</span><span class="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">${DOT_LINE_64}</span></p>`).join('\n            ')}
-          <div class="pt-2 space-y-1.5">
-            ${ndaFullAgreementData.signatures.ajans.fields.slice(3).map(field => `<p class="flex items-baseline gap-1 overflow-hidden"><span class="shrink-0">${escapeHtml(field.label)}</span><span class="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">${DOT_LINE_64}</span></p>`).join('\n            ')}
-          </div>
-        </div>
-      </div>
-    </div>
 
     <!-- Section: Öncelik Kaydı -->
     <div class="p-6 rounded-xl bg-amber-50 border-2 border-amber-300 text-amber-950 text-xs sm:text-sm leading-relaxed space-y-2">
@@ -3466,7 +3464,17 @@ pages.forEach(page => {
           <a href="/privacy/" class="hover:underline">${page.lang === 'en' ? 'Privacy Policy' : 'KVKK & Gizlilik'}</a>
         </nav>
       </header>
-      <main class="space-y-6">
+      <main class="space-y-6">${page.dir === 'nda' ? `
+        <div class="mb-6 flex flex-col items-start gap-4">
+          <div>
+            <a href="/" class="inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--accent)] hover:underline font-mono transition-colors min-h-[44px]">
+              &larr; ${escapeHtml(ndaFullAgreementData.pageHeader.backLink.tr)}
+            </a>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-mono font-semibold uppercase tracking-wider">
+            ${escapeHtml(ndaFullAgreementData.pageHeader.badge.tr)}
+          </div>
+        </div>` : ''}
         ${page.heading ? `<h2 class="text-2xl font-bold text-[var(--ink)]">${page.heading}</h2>` : ''}
         <p class="text-[var(--ink-muted)] text-lg leading-relaxed">${page.subheading}</p>
         ${page.extraContent || ''}
@@ -3808,6 +3816,10 @@ function verifyNdaIntegrity() {
 
   // Özet, maddeler, liste öğeleri, İMZA ve öncelik kaydı
   const targetSections = {
+    pageHeader: {
+      backLink: ndaFullAgreementData.pageHeader.backLink,
+      badge: ndaFullAgreementData.pageHeader.badge
+    },
     whatItGivesYou: ndaFullAgreementData.whatItGivesYou,
     protectsUsToo: ndaFullAgreementData.protectsUsToo,
     canItBeChanged: ndaFullAgreementData.canItBeChanged,

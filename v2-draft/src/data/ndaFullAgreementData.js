@@ -1,8 +1,8 @@
 export const ndaFullAgreementData = {
   pageHeader: {
     backLink: {
-      tr: "← Ana Sayfaya Dön",
-      en: "← Back to Home"
+      tr: "Ana Sayfaya Dön",
+      en: "Back to Home"
     },
     badge: {
       tr: "RESMİ NDA & ÇALIŞMA SÖZLEŞMESİ",

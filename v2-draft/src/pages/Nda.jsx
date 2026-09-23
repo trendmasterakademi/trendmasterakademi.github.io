@@ -23,19 +23,21 @@ const Nda = () => {
     <div className="pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto text-[var(--ink)] font-sans">
       
       {/* Header & Back Link */}
-      <div className="mb-12">
-        <Link 
-          to="/" 
-          className="inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--accent)] hover:underline font-mono transition-colors mb-6 min-h-[44px]"
-        >
-          <ArrowLeft className="w-4 h-4" /> {pageHeader.backLink[lang]}
-        </Link>
+      <div className="mb-12 flex flex-col items-start gap-4">
+        <div>
+          <Link 
+            to="/" 
+            className="inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--accent)] hover:underline font-mono transition-colors min-h-[44px]"
+          >
+            <ArrowLeft className="w-4 h-4" /> {pageHeader.backLink[lang]}
+          </Link>
+        </div>
         
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-mono font-semibold uppercase tracking-wider mb-4">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-mono font-semibold uppercase tracking-wider">
           <ShieldCheck className="w-4 h-4" /> {pageHeader.badge[lang]}
         </div>
         
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold font-serif text-[var(--ink)] tracking-tight mb-6">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold font-serif text-[var(--ink)] tracking-tight mb-2">
           {pageHeader.h1[lang]}
         </h1>
         
