@@ -232,12 +232,12 @@
   "@graph": [
     {
       "@type": "TechArticle",
-      "headline": "İşlemler kilitlendi, sayfa dönüp duruyor",
-      "description": "Belirli bir işlem — sipariş onayı, stok güncelleme, toplu güncelleme — sonsuza kadar dönüyor ve sonunda zaman aşımı veriyor. Sistem çökmedi; birbirini bekleyen iki işlem var.",
-      "url": "https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/",
-      "mainEntityOfPage": "https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/",
-      "inLanguage": "tr-TR",
-      "about": "Performans",
+      "headline": "Transactions Deadlocked, Pages Spinning",
+      "description": "Specific operations — checkout completion, stock updates, or batch imports — hang indefinitely until timeout. The server has not crashed; concurrent transactions are locked waiting for each other.",
+      "url": "https://trendmasterakademi.com/diagnostic/islemler-kilitlendi-sayfa-donuyor/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/diagnostic/islemler-kilitlendi-sayfa-donuyor/",
+      "inLanguage": "en-US",
+      "about": "Performance",
       "publisher": {
         "@type": "Organization",
         "name": "Trend Master Akademi",
@@ -333,7 +333,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DpIKkBBr.js"></script>
+    <script type="module" crossorigin src="/assets/index-_410D3sa.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -383,6 +383,7 @@
         <p class="text-[var(--ink-3)] leading-relaxed">When users submit forms or proceed to checkout, the browser tab spinner spins indefinitely. The page hangs white without showing errors; simultaneously, incoming visitors cannot even connect to the homepage.</p>
       </section>
     
+
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
         
@@ -430,6 +431,7 @@
         
       </section>
 
+
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Senior backend engineer. Database engine outputs the conflicting queries in crash logs; resolution requires re-ordering table mutations and scoping transaction lifecycles.</p>
@@ -449,6 +451,7 @@
         <li><a href="/glossary/n-plus-1-sorgu/" class="hover:underline">→ N+1 Query Problem</a></li>
       </ul>
     
+        
         <p class="pt-2"><a href="/crash-test/" class="text-[var(--accent)] hover:underline font-bold">→ Emergency Incident Triage &amp; Crash Test</a></p>
       </section>
     </section>

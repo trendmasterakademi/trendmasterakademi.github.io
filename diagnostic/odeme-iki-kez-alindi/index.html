@@ -232,19 +232,19 @@
   "@graph": [
     {
       "@type": "TechArticle",
-      "headline": "Ödeme iki kez alındı",
-      "description": "Müşteriden aynı tutar iki kez tahsil edildi. İade yapmak zorundasınız ama önce hangi katmanda çiftlendiğini bulmalısınız — yanlış katmanı düzeltmek sorunu geri getirir.",
-      "url": "https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/",
-      "mainEntityOfPage": "https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/",
-      "inLanguage": "tr-TR",
-      "about": "Sipariş & Ödeme",
+      "headline": "Payment Charged Twice for Single Order",
+      "description": "The client was billed twice for the same cart. A refund is mandatory, but isolating which tier duplicated the transaction is critical — patching the wrong layer allows duplicates to persist.",
+      "url": "https://trendmasterakademi.com/diagnostic/odeme-iki-kez-alindi/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/diagnostic/odeme-iki-kez-alindi/",
+      "inLanguage": "en-US",
+      "about": "Orders & Payments",
       "publisher": {
         "@type": "Organization",
         "name": "Trend Master Akademi",
         "url": "https://trendmasterakademi.com"
       },
       "datePublished": "2026-08-29T17:06:29+03:00",
-      "dateModified": "2026-09-06T13:00:03+03:00"
+      "dateModified": "2026-09-23T22:57:29+03:00"
     },
     {
       "@type": "FAQPage",
@@ -309,7 +309,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DpIKkBBr.js"></script>
+    <script type="module" crossorigin src="/assets/index-_410D3sa.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -359,6 +359,7 @@
         <p class="text-[var(--ink-3)] leading-relaxed">Moments after clicking purchase, the customer receives two consecutive bank deduction alerts. Only one order number appears in the dashboard; the customer reports double billing and files a chargeback with their bank.</p>
       </section>
     
+
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
         
@@ -406,6 +407,7 @@
         
       </section>
 
+
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Backend engineer · 2–4 hours. The root solution for all three is strict idempotency: ensuring identical payment attempts return identical cached results without multiple charges.</p>
@@ -424,6 +426,14 @@
         <li><a href="/glossary/webhook/" class="hover:underline">→ Webhook</a></li>
         <li><a href="/glossary/race-condition/" class="hover:underline">→ Race Condition</a></li>
       </ul>
+    
+        
+      <div class="pt-2">
+        <h3 class="text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)] mb-2">Related diagnostics</h3>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="/diagnostic/paytr-token-ve-bildirim-hatasi/" class="hover:underline">→ PayTR Token Error and 'In Progress'</a></li>
+        </ul>
+      </div>
     
         <p class="pt-2"><a href="/crash-test/" class="text-[var(--accent)] hover:underline font-bold">→ Emergency Incident Triage &amp; Crash Test</a></p>
       </section>

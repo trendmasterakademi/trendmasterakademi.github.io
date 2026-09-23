@@ -902,6 +902,60 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/" />
   </url>
   <url>
+    <loc>https://trendmasterakademi.com/teshis/paytr-token-ve-bildirim-hatasi/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/paytr-token-ve-bildirim-hatasi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/paytr-token-ve-bildirim-hatasi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/paytr-token-ve-bildirim-hatasi/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/paytr-token-ve-bildirim-hatasi/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/paytr-token-ve-bildirim-hatasi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/paytr-token-ve-bildirim-hatasi/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/paytr-token-ve-bildirim-hatasi/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/teshis/woocommerce-odendi-siparis-bekliyor/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/woocommerce-odendi-siparis-bekliyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/woocommerce-odendi-siparis-bekliyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/woocommerce-odendi-siparis-bekliyor/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/diagnostic/woocommerce-odendi-siparis-bekliyor/</loc>
+    <lastmod>2026-09-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/woocommerce-odendi-siparis-bekliyor/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/woocommerce-odendi-siparis-bekliyor/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/woocommerce-odendi-siparis-bekliyor/" />
+  </url>
+  <url>
     <loc>https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/</loc>
     <lastmod>2026-09-23</lastmod>
     <changefreq>weekly</changefreq>

@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>iyzico 3D Secure Return Error | Trend Master Akademi</title>
+    <meta name="description" content="A generic error after returning from bank verification. mdStatus, the 3DS completion request and a lost session: the test that tells them apart, and the fix." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/" />
+    <meta property="og:title" content="iyzico 3D Secure Return Error | Trend Master Akademi" />
+    <meta property="og:description" content="A generic error after returning from bank verification. mdStatus, the 3DS completion request and a lost session: the test that tells them apart, and the fix." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT &amp; White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/" />
+    <meta name="twitter:title" content="iyzico 3D Secure Return Error | Trend Master Akademi" />
+    <meta name="twitter:description" content="A generic error after returning from bank verification. mdStatus, the 3DS completion request and a lost session: the test that tells them apart, and the fix." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "iyzico 3D Secure Return Error",
+      "description": "The customer entered the code on the bank's verification screen and, back on the site, hit a generic message such as 'system error' or 'an unexpected error occurred', sometimes with an emptied cart. The real reason behind the generic message is in the values iyzico sends back on return and in the response to the payment completion request.",
+      "url": "https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/",
+      "inLanguage": "en-US",
+      "about": "Orders & Payments",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      },
+      "datePublished": "2026-09-23T22:57:29+03:00",
+      "dateModified": "2026-09-23T22:57:29+03:00",
+      "citation": [
+        "https://docs.iyzico.com/ek-bilgiler/hata-kodlari",
+        "https://docs.iyzico.com/en/payment-methods/api/3ds/3ds-implementation",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Dönüşte mdStatus 1'den farklı mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Banka doğrulaması geçmedi — Dönüşte mdStatus 1 değilse kart sahibi ya da banka doğrulamayı tamamlamamıştır. iyzico dokümanı her değerin anlamını verir; örneğin 0 geçersiz doğrulama, 5 doğrulama yapılamıyor, 7 sistem hatası demektir. Bu, sitenin kodunda bir hata değildir; müşteriye doğru mesajı göstermek gerekir. Kanıt: mdStatus 1 değil → A Çözüm: Anlamlı mesaj göster"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "mdStatus 1 ama tamamlama isteği yok ya da hatalı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ödeme tamamlanmadı — Doğrulama başarılı döndü ama site 3DS Tamamlama isteğini göndermedi ya da eksik gönderdi. iyzico dokümanına göre ödeme bu istekle kesinleşir; dönüşte conversationData geldiyse bu isteğe eklenmelidir. Tamamlama yanıtındaki errorCode ve errorMessage hangi adımın düştüğünü söyler. Kanıt: Dönüş var, tamamlama yok ya da hatalı → B Çözüm: Tamamlama isteğini conversationData ile gönder"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dönüşte sepet boş, oturum yok mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dönüşte oturum kayboldu — Banka ekranından siteye dönüş, başka bir siteden gelen bir form gönderimidir (POST). Tarayıcılar SameSite=Lax olarak işaretlenmiş çerezleri bu tür isteklerle göndermez. Oturum çerezi bu ayardaysa site dönüşte kullanıcıyı ve sepeti tanımaz, sipariş eşlenemez. Kanıt: Dönüşte oturum yok, sepet boş → C Çözüm: Siparişi oturumla değil, kimlikle eşle"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Dönüş isteği (callbackUrl): status=failure, mdStatus 1 değil» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Banka doğrulaması geçmedi — Dönüşte mdStatus 1 değilse kart sahibi ya da banka doğrulamayı tamamlamamıştır. iyzico dokümanı her değerin anlamını verir; örneğin 0 geçersiz doğrulama, 5 doğrulama yapılamıyor, 7 sistem hatası demektir. Bu, sitenin kodunda bir hata değildir; müşteriye doğru mesajı göstermek gerekir. Çözüm: Anlamlı mesaj göster"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Dönüş geldi ama 3DS Tamamlama isteği hiç gönderilmemiş» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Ödeme tamamlanmadı — Doğrulama başarılı döndü ama site 3DS Tamamlama isteğini göndermedi ya da eksik gönderdi. iyzico dokümanına göre ödeme bu istekle kesinleşir; dönüşte conversationData geldiyse bu isteğe eklenmelidir. Tamamlama yanıtındaki errorCode ve errorMessage hangi adımın düştüğünü söyler. Çözüm: Tamamlama isteğini conversationData ile gönder"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«3DS Tamamlama yanıtı: errorCode ve errorMessage dolu» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Ödeme tamamlanmadı — Doğrulama başarılı döndü ama site 3DS Tamamlama isteğini göndermedi ya da eksik gönderdi. iyzico dokümanına göre ödeme bu istekle kesinleşir; dönüşte conversationData geldiyse bu isteğe eklenmelidir. Tamamlama yanıtındaki errorCode ve errorMessage hangi adımın düştüğünü söyler. Çözüm: Tamamlama isteğini conversationData ile gönder"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Dönüşte oturum yok: sepet boş, kullanıcı çıkış yapmış görünüyor» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C · Dönüşte oturum kayboldu — Banka ekranından siteye dönüş, başka bir siteden gelen bir form gönderimidir (POST). Tarayıcılar SameSite=Lax olarak işaretlenmiş çerezleri bu tür isteklerle göndermez. Oturum çerezi bu ayardaysa site dönüşte kullanıcıyı ve sepeti tanımaz, sipariş eşlenemez. Çözüm: Siparişi oturumla değil, kimlikle eşle"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teşhis Kataloğu",
+          "item": "https://trendmasterakademi.com/teshis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "iyzico 3D Secure dönüşünde hata",
+          "item": "https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-_410D3sa.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">iyzico 3D Secure Return Error</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Confidentiality and Engagement Agreement</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">The customer entered the code on the bank's verification screen and, back on the site, hit a generic message such as 'system error' or 'an unexpected error occurred', sometimes with an emptied cart. The real reason behind the generic message is in the values iyzico sends back on return and in the response to the payment completion request.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      <p class="text-sm font-mono text-[var(--accent)]">Urgency: Critical · checkout halted · Category: Orders &amp; Payments</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">The error appears the moment the customer returns from the bank screen to the site. They do not know whether the payment went through and try again; support gets the question 'was I charged?'. The on-screen message is the same in every case, so it says nothing about the cause.</p>
+      </section>
+    
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">What you see on screen</h2>
+        <div class="space-y-2">
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>errorCode 1 / 2: system error</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">iyzico error codes 1 and 2 — official error code list</p>
+            </div>
+          
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>CALLBACK_3DS / INIT_3DS: error during 3D Secure verification</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">iyzico error codes CALLBACK_3DS and INIT_3DS</p>
+            </div>
+          
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>errorCode 5014: conversation data could not be decrypted during 3D Secure</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">iyzico error code 5014</p>
+            </div>
+          
+        </div>
+      </section>
+    
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
+        <li><code>Return request (callbackUrl): status=failure, mdStatus is not 1</code> <span>→ A · Bank verification failed</span></li>
+        <li><code>Return arrived but the 3DS completion request was never sent</code> <span>→ B · Payment not completed</span></li>
+        <li><code>3DS completion response: errorCode and errorMessage are filled</code> <span>→ B · Payment not completed</span></li>
+        <li><code>No session on return: cart is empty, the user appears logged out</code> <span>→ C · Session lost on return</span></li>
+      </ul>
+    
+        <p class="text-[var(--ink-3)] text-sm">On return, iyzico posts status, paymentId, conversationId, conversationData and mdStatus. Logging these five values at the return URL shows at a glance which step sits behind the generic error message.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Three Potential Root Causes & Differential Tests</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">A · Bank verification failed</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">If mdStatus is not 1 on return, the cardholder or the bank did not complete verification. iyzico's documentation lists what each value means: for example 0 is an invalid verification, 5 means verification could not be performed, 7 is a system error. This is not a bug in the site's code; the customer needs to see the right message.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is mdStatus anything other than 1?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> mdStatus is not 1 → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Show a clear message</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> The payment code gets changed when the error shows up; but the problem is with the card or the bank, the change breaks a working flow, and the customer still sees a generic message.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">B · Payment not completed</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">Verification came back successful, but the site did not send the 3DS completion request, or sent it incomplete. According to iyzico's documentation the payment is finalised by this request, and if conversationData came back on return it must be included. The errorCode and errorMessage in the completion response tell you which step failed.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> mdStatus is 1 but completion call missing or failed?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Return present, completion missing or failed → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Send completion with conversationData</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> The order is confirmed as soon as verification succeeds on return; with the completion request skipped, the payment is never finalised and the order is fulfilled without being paid.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">C · Session lost on return</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">The return from the bank screen to the site is a form submission (POST) coming from another site. Browsers do not send cookies marked SameSite=Lax with such requests. If the session cookie uses this setting, the site does not recognise the user or the cart on return, and the order cannot be matched.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Cart empty and session gone on return?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> No session and empty cart on return → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Match the order by ID, not by session</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> When no session is found, the customer is redirected to the login page; the payment data posted on return is lost in that redirect and the order is never matched.</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Check it yourself in the first 10 minutes</h2>
+        <ol class="list-decimal list-inside space-y-2 text-[var(--ink-3)] text-sm">
+          <li>Find the status and mdStatus values posted to the return URL in your logs. If mdStatus is not 1, the problem is with the card or the bank, not the code.</li>
+          <li>If mdStatus is 1, check whether the 3DS completion request was sent, and read the errorCode and errorMessage in its response.</li>
+          <li>Look the errorCode up in iyzico's official error code list; rely on that code, not on the generic on-screen message.</li>
+          <li>If the cart empties on return, check the SameSite setting of the session cookie in the browser's developer tools.</li>
+          <li>Check the iyzico panel for a payment record belonging to the same order. If there is one, do not ask the customer to pay again before the order is matched to it.</li>
+        </ol>
+      </section>
+    
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">When to hand it over</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Hand it over if the 3DS completion request or the return URL code has to change, if a cookie setting will affect live sessions, or if there are customers with a payment record but no order.</p>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">A backend engineer who knows payment integrations. The return URL has to log the incoming values, show a meaningful message based on mdStatus, send the 3DS completion request in full, and match the order by ID rather than by session.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Customers retry or give up without knowing whether they were charged. Because the generic message hides where the problem is, the same loss repeats every day and is noticed only when complaints arrive.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Official documentation</h2>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="https://docs.iyzico.com/ek-bilgiler/hata-kodlari" target="_blank" rel="noopener noreferrer" class="hover:underline">→ iyzico error codes (in Turkish)</a></li>
+          <li><a href="https://docs.iyzico.com/en/payment-methods/api/3ds/3ds-implementation" target="_blank" rel="noopener noreferrer" class="hover:underline">→ iyzico 3DS Implementation (return values and mdStatus)</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie" target="_blank" rel="noopener noreferrer" class="hover:underline">→ MDN — Set-Cookie and SameSite</a></li>
+        </ul>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts & Services</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
+        <li><a href="/glossary/webhook/" class="hover:underline">→ Webhook</a></li>
+        <li><a href="/glossary/idempotency/" class="hover:underline">→ Idempotency</a></li>
+      </ul>
+    
+        
+      <div class="pt-2">
+        <h3 class="text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)] mb-2">Related diagnostics</h3>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="/diagnostic/odeme-alindi-siparis-olusmadi/" class="hover:underline">→ Payment Charged but Order Not Created</a></li>
+          <li><a href="/diagnostic/woocommerce-odendi-siparis-bekliyor/" class="hover:underline">→ WooCommerce: Paid but Order Pending</a></li>
+        </ul>
+      </div>
+    
+        <p class="pt-2"><a href="/crash-test/" class="text-[var(--accent)] hover:underline font-bold">→ Emergency Incident Triage &amp; Crash Test</a></p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

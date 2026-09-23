@@ -232,12 +232,12 @@
   "@graph": [
     {
       "@type": "TechArticle",
-      "headline": "Site yavaşladı ama sunucu boş",
-      "description": "Sayfalar geç açılıyor ama sunucu kaynakları rahat görünüyor. 'Sunucu yetersiz' denip plan yükseltilir, hiçbir şey değişmez. Boş bir sunucuda yavaşlık kaynak sorunu değil, bekleme sorunudur.",
-      "url": "https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/",
-      "mainEntityOfPage": "https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/",
-      "inLanguage": "tr-TR",
-      "about": "Performans",
+      "headline": "Site Stalled Despite Idle Server Resources",
+      "description": "Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation.",
+      "url": "https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/",
+      "inLanguage": "en-US",
+      "about": "Performance",
       "publisher": {
         "@type": "Organization",
         "name": "Trend Master Akademi",
@@ -309,7 +309,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DpIKkBBr.js"></script>
+    <script type="module" crossorigin src="/assets/index-_410D3sa.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -359,6 +359,7 @@
         <p class="text-[var(--ink-3)] leading-relaxed">Visitors complain that pages take fifteen seconds to load or time out completely. Looking at htop or top shows CPU and RAM below five percent, practically idling; the origin of the freeze remains baffling.</p>
       </section>
     
+
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
         
@@ -406,6 +407,7 @@
         
       </section>
 
+
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Senior backend engineer. A and B are resolved in hours with instant speedup. For C, the solution is asynchronous decoupling so pages never block on third parties.</p>
@@ -425,6 +427,7 @@
         <li><a href="/glossary/rate-limit/" class="hover:underline">→ Rate Limiting</a></li>
       </ul>
     
+        
         <p class="pt-2"><a href="/kesinti-maliyeti/" class="text-[var(--accent)] hover:underline font-bold">→ Downtime Loss Calculator</a></p>
       </section>
     </section>

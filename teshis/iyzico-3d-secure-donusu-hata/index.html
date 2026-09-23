@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>iyzico 3D Secure dönüşünde hata | Trend Master Akademi</title>
+    <meta name="description" content="Bankadan dönüşte «Sistem hatası oluştu» ya da genel bir hata mesajı. mdStatus, 3DS Tamamlama isteği ve kaybolan oturum: ayırt edici test ve çözüm." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/" />
+    <meta property="og:title" content="iyzico 3D Secure dönüşünde hata | Trend Master Akademi" />
+    <meta property="og:description" content="Bankadan dönüşte «Sistem hatası oluştu» ya da genel bir hata mesajı. mdStatus, 3DS Tamamlama isteği ve kaybolan oturum: ayırt edici test ve çözüm." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi — Ajanslar için white-label mühendislik ve acil kod kurtarma masası" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/" />
+    <meta name="twitter:title" content="iyzico 3D Secure dönüşünde hata | Trend Master Akademi" />
+    <meta name="twitter:description" content="Bankadan dönüşte «Sistem hatası oluştu» ya da genel bir hata mesajı. mdStatus, 3DS Tamamlama isteği ve kaybolan oturum: ayırt edici test ve çözüm." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "iyzico 3D Secure dönüşünde hata",
+      "description": "Müşteri bankanın doğrulama ekranında kodu girdi, siteye döndüğünde «Sistem hatası oluştu» ya da «beklenmedik bir hata oluştu» gibi genel bir mesajla karşılaştı; bazen sepet de boşaldı. Genel mesajın arkasındaki gerçek sebep, iyzico'nun dönüşte gönderdiği değerlerde ve ödeme tamamlama isteğinin yanıtındadır.",
+      "url": "https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/",
+      "inLanguage": "tr-TR",
+      "about": "Sipariş & Ödeme",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      },
+      "datePublished": "2026-09-23T22:57:29+03:00",
+      "dateModified": "2026-09-23T22:57:29+03:00",
+      "citation": [
+        "https://docs.iyzico.com/ek-bilgiler/hata-kodlari",
+        "https://docs.iyzico.com/odeme-metotlari/api/3ds/3ds-entegrasyonu",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Dönüşte mdStatus 1'den farklı mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Banka doğrulaması geçmedi — Dönüşte mdStatus 1 değilse kart sahibi ya da banka doğrulamayı tamamlamamıştır. iyzico dokümanı her değerin anlamını verir; örneğin 0 geçersiz doğrulama, 5 doğrulama yapılamıyor, 7 sistem hatası demektir. Bu, sitenin kodunda bir hata değildir; müşteriye doğru mesajı göstermek gerekir. Kanıt: mdStatus 1 değil → A Çözüm: Anlamlı mesaj göster"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "mdStatus 1 ama tamamlama isteği yok ya da hatalı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ödeme tamamlanmadı — Doğrulama başarılı döndü ama site 3DS Tamamlama isteğini göndermedi ya da eksik gönderdi. iyzico dokümanına göre ödeme bu istekle kesinleşir; dönüşte conversationData geldiyse bu isteğe eklenmelidir. Tamamlama yanıtındaki errorCode ve errorMessage hangi adımın düştüğünü söyler. Kanıt: Dönüş var, tamamlama yok ya da hatalı → B Çözüm: Tamamlama isteğini conversationData ile gönder"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Dönüşte sepet boş, oturum yok mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dönüşte oturum kayboldu — Banka ekranından siteye dönüş, başka bir siteden gelen bir form gönderimidir (POST). Tarayıcılar SameSite=Lax olarak işaretlenmiş çerezleri bu tür isteklerle göndermez. Oturum çerezi bu ayardaysa site dönüşte kullanıcıyı ve sepeti tanımaz, sipariş eşlenemez. Kanıt: Dönüşte oturum yok, sepet boş → C Çözüm: Siparişi oturumla değil, kimlikle eşle"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Dönüş isteği (callbackUrl): status=failure, mdStatus 1 değil» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Banka doğrulaması geçmedi — Dönüşte mdStatus 1 değilse kart sahibi ya da banka doğrulamayı tamamlamamıştır. iyzico dokümanı her değerin anlamını verir; örneğin 0 geçersiz doğrulama, 5 doğrulama yapılamıyor, 7 sistem hatası demektir. Bu, sitenin kodunda bir hata değildir; müşteriye doğru mesajı göstermek gerekir. Çözüm: Anlamlı mesaj göster"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Dönüş geldi ama 3DS Tamamlama isteği hiç gönderilmemiş» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Ödeme tamamlanmadı — Doğrulama başarılı döndü ama site 3DS Tamamlama isteğini göndermedi ya da eksik gönderdi. iyzico dokümanına göre ödeme bu istekle kesinleşir; dönüşte conversationData geldiyse bu isteğe eklenmelidir. Tamamlama yanıtındaki errorCode ve errorMessage hangi adımın düştüğünü söyler. Çözüm: Tamamlama isteğini conversationData ile gönder"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«3DS Tamamlama yanıtı: errorCode ve errorMessage dolu» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Ödeme tamamlanmadı — Doğrulama başarılı döndü ama site 3DS Tamamlama isteğini göndermedi ya da eksik gönderdi. iyzico dokümanına göre ödeme bu istekle kesinleşir; dönüşte conversationData geldiyse bu isteğe eklenmelidir. Tamamlama yanıtındaki errorCode ve errorMessage hangi adımın düştüğünü söyler. Çözüm: Tamamlama isteğini conversationData ile gönder"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Dönüşte oturum yok: sepet boş, kullanıcı çıkış yapmış görünüyor» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C · Dönüşte oturum kayboldu — Banka ekranından siteye dönüş, başka bir siteden gelen bir form gönderimidir (POST). Tarayıcılar SameSite=Lax olarak işaretlenmiş çerezleri bu tür isteklerle göndermez. Oturum çerezi bu ayardaysa site dönüşte kullanıcıyı ve sepeti tanımaz, sipariş eşlenemez. Çözüm: Siparişi oturumla değil, kimlikle eşle"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teşhis Kataloğu",
+          "item": "https://trendmasterakademi.com/teshis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "iyzico 3D Secure dönüşünde hata",
+          "item": "https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-_410D3sa.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">iyzico 3D Secure dönüşünde hata</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
+          <a href="/kit/" class="hover:underline">Ajans Kiti</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
+          <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
+          <a href="/kurtarilabilirlik/" class="hover:underline">Kurtarılabilirlik İndeksi</a>
+          <a href="/post-mortem/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triyaj/" class="hover:underline">Triyaj Simülatörü</a>
+          <a href="/sla/" class="hover:underline">SLA & Taahhütler</a>
+          <a href="/teknoloji-uyumluluk/" class="hover:underline">Teknoloji Matrisi</a>
+          <a href="/gizlilik-sozlesmesi/" class="hover:underline">Gizlilik Sözleşmesi</a>
+          <a href="/nda/" class="hover:underline">Gizlilik ve Çalışma Sözleşmesi</a>
+          <a href="/hasar-tespiti/" class="hover:underline">Hasar Simülatörü</a>
+          <a href="/radar/" class="hover:underline">SWAT Radarı</a>
+          <a href="/kod-sagligi/" class="hover:underline">Kod Sağlığı</a>
+          <a href="/kurtarma-maliyeti/" class="hover:underline">Kurtarma ROI</a>
+          <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
+          <a href="/sozluk/" class="hover:underline">Teknik Sözlük</a>
+          <a href="/hikayemiz/" class="hover:underline">Hikayemiz</a>
+          <a href="/sos/" class="hover:underline">Acil Teknik Destek</a>
+          <a href="/about/" class="hover:underline">Hakkımızda</a>
+          <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Müşteri bankanın doğrulama ekranında kodu girdi, siteye döndüğünde «Sistem hatası oluştu» ya da «beklenmedik bir hata oluştu» gibi genel bir mesajla karşılaştı; bazen sepet de boşaldı. Genel mesajın arkasındaki gerçek sebep, iyzico'nun dönüşte gönderdiği değerlerde ve ödeme tamamlama isteğinin yanıtındadır.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      <p class="text-sm font-mono text-[var(--accent)]">Aciliyet: Kritik · ödeme durdu · Kategori: Sipariş &amp; Ödeme</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Sahada nasıl görünür</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Hata, banka ekranından siteye dönüş anında çıkar. Müşteri ödemenin gerçekleşip gerçekleşmediğini bilmez ve yeniden dener; destek hattına «param çekildi mi?» sorusu gelir. Ekrandaki mesaj her durumda aynı olduğu için sebep oradan anlaşılmaz.</p>
+      </section>
+    
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Ekranda gördüğünüz metin</h2>
+        <div class="space-y-2">
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>Sistem hatası oluştu</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">iyzico hata kodu 1 ve 2 — resmî hata kodları listesi</p>
+            </div>
+          
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>3D Secure doğrulaması aşamasında hata oluştu</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">iyzico hata kodları CALLBACK_3DS ve INIT_3DS</p>
+            </div>
+          
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>3dsecure esnasında conversation data decrypt edilemedi</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">iyzico hata kodu 5014</p>
+            </div>
+          
+        </div>
+      </section>
+    
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
+        <li><code>Dönüş isteği (callbackUrl): status=failure, mdStatus 1 değil</code> <span>→ A · Banka doğrulaması geçmedi</span></li>
+        <li><code>Dönüş geldi ama 3DS Tamamlama isteği hiç gönderilmemiş</code> <span>→ B · Ödeme tamamlanmadı</span></li>
+        <li><code>3DS Tamamlama yanıtı: errorCode ve errorMessage dolu</code> <span>→ B · Ödeme tamamlanmadı</span></li>
+        <li><code>Dönüşte oturum yok: sepet boş, kullanıcı çıkış yapmış görünüyor</code> <span>→ C · Dönüşte oturum kayboldu</span></li>
+      </ul>
+    
+        <p class="text-[var(--ink-3)] text-sm">iyzico dönüşte status, paymentId, conversationId, conversationData ve mdStatus değerlerini gönderir. Bu beş değeri dönüş adresinde kayda yazmak, genel hata mesajının arkasındaki adımı ilk bakışta gösterir.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">A · Banka doğrulaması geçmedi</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">Dönüşte mdStatus 1 değilse kart sahibi ya da banka doğrulamayı tamamlamamıştır. iyzico dokümanı her değerin anlamını verir; örneğin 0 geçersiz doğrulama, 5 doğrulama yapılamıyor, 7 sistem hatası demektir. Bu, sitenin kodunda bir hata değildir; müşteriye doğru mesajı göstermek gerekir.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Dönüşte mdStatus 1'den farklı mı?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> mdStatus 1 değil → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Anlamlı mesaj göster</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Hata görülünce ödeme kodu değiştirilir; oysa sorun kartta ya da bankadadır, kod değişikliği çalışan akışı bozar ve müşteri yine genel bir mesaj görür.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">B · Ödeme tamamlanmadı</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">Doğrulama başarılı döndü ama site 3DS Tamamlama isteğini göndermedi ya da eksik gönderdi. iyzico dokümanına göre ödeme bu istekle kesinleşir; dönüşte conversationData geldiyse bu isteğe eklenmelidir. Tamamlama yanıtındaki errorCode ve errorMessage hangi adımın düştüğünü söyler.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> mdStatus 1 ama tamamlama isteği yok ya da hatalı?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Dönüş var, tamamlama yok ya da hatalı → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Tamamlama isteğini conversationData ile gönder</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Dönüşte doğrulama başarılıysa sipariş doğrudan onaylanır; tamamlama isteği atlandığı için ödeme kesinleşmemiş olur ve sipariş parası alınmadan hazırlanır.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">C · Dönüşte oturum kayboldu</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">Banka ekranından siteye dönüş, başka bir siteden gelen bir form gönderimidir (POST). Tarayıcılar SameSite=Lax olarak işaretlenmiş çerezleri bu tür isteklerle göndermez. Oturum çerezi bu ayardaysa site dönüşte kullanıcıyı ve sepeti tanımaz, sipariş eşlenemez.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Dönüşte sepet boş, oturum yok mu?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Dönüşte oturum yok, sepet boş → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Siparişi oturumla değil, kimlikle eşle</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Oturum bulunamayınca müşteri giriş sayfasına yönlendirilir; dönüşte gelen ödeme bilgisi bu yönlendirmede kaybolur ve sipariş hiç eşlenmez.</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">İlk 10 dakikada kendiniz kontrol edin</h2>
+        <ol class="list-decimal list-inside space-y-2 text-[var(--ink-3)] text-sm">
+          <li>Dönüş adresine gelen status ve mdStatus değerlerini kayıtta bulun. mdStatus 1 değilse sorun kartta ya da bankadadır, kodda değil.</li>
+          <li>mdStatus 1 ise 3DS Tamamlama isteğinin gönderilip gönderilmediğine ve yanıtındaki errorCode ile errorMessage'a bakın.</li>
+          <li>errorCode'u iyzico'nun resmî hata kodları listesinde arayın; ekrandaki genel mesaj yerine bu kodu esas alın.</li>
+          <li>Dönüşte sepet boşalıyorsa tarayıcının geliştirici araçlarında oturum çerezinin SameSite ayarına bakın.</li>
+          <li>iyzico panelinde aynı siparişe ait ödeme kaydı olup olmadığına bakın. Varsa sipariş bu kayıtla eşlenmeden müşteriden yeniden ödeme istemeyin.</li>
+        </ol>
+      </section>
+    
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Ne zaman devretmeli?</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">3DS Tamamlama isteği ya da dönüş adresinin kodu değiştirilecekse, çerez ayarı canlıdaki oturumları etkileyecekse ya da ödeme kaydı olup siparişi olmayan müşteriler varsa devredin.</p>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer, ne kadar sürer</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Ödeme entegrasyonunu bilen backend mühendisi. Dönüş adresinin gelen değerleri kaydetmesi, mdStatus'a göre anlamlı mesaj göstermesi, 3DS Tamamlama isteğini eksiksiz göndermesi ve siparişi oturumla değil kimlikle eşlemesi gerekir.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Çözülmezse ne olur</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Müşteri ödemenin geçip geçmediğini bilmeden yeniden dener ya da vazgeçer. Genel hata mesajı sorunun yerini gizlediği için aynı kayıp her gün tekrarlanır ve yalnız şikâyet gelince fark edilir.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resmî dokümanlar</h2>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="https://docs.iyzico.com/ek-bilgiler/hata-kodlari" target="_blank" rel="noopener noreferrer" class="hover:underline">→ iyzico — Hata Kodları</a></li>
+          <li><a href="https://docs.iyzico.com/odeme-metotlari/api/3ds/3ds-entegrasyonu" target="_blank" rel="noopener noreferrer" class="hover:underline">→ iyzico — 3DS Entegrasyonu (dönüş değerleri ve mdStatus)</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie" target="_blank" rel="noopener noreferrer" class="hover:underline">→ MDN — Set-Cookie ve SameSite (İngilizce)</a></li>
+        </ul>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
+        <li><a href="/sozluk/webhook/" class="hover:underline">→ Webhook (Sistemler Arası Anlık Bildirim)</a></li>
+        <li><a href="/sozluk/idempotency/" class="hover:underline">→ Idempotency (Çift İşlem Koruması)</a></li>
+      </ul>
+    
+        
+      <div class="pt-2">
+        <h3 class="text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)] mb-2">İlgili teşhisler</h3>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="/teshis/odeme-alindi-siparis-olusmadi/" class="hover:underline">→ Ödeme alındı, sipariş oluşmadı</a></li>
+          <li><a href="/teshis/woocommerce-odendi-siparis-bekliyor/" class="hover:underline">→ WooCommerce: ödendi, sipariş bekliyor</a></li>
+        </ul>
+      </div>
+    
+        <p class="pt-2"><a href="/crash-test/" class="text-[var(--accent)] hover:underline font-bold">→ Acil Kriz Müdahalesi &amp; Crash Test</a></p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>PayTR Token Error and 'In Progress' | Trend Master Akademi</title>
+    <meta name="description" content="PayTR payment frame won't open, or the payment stays 'In Progress'. Token signature, the 'OK' reply, duplicate notifications: the tests and the fixes." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/paytr-token-ve-bildirim-hatasi/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/paytr-token-ve-bildirim-hatasi/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/paytr-token-ve-bildirim-hatasi/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/paytr-token-ve-bildirim-hatasi/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/paytr-token-ve-bildirim-hatasi/" />
+    <meta property="og:title" content="PayTR Token Error and 'In Progress' | Trend Master Akademi" />
+    <meta property="og:description" content="PayTR payment frame won't open, or the payment stays 'In Progress'. Token signature, the 'OK' reply, duplicate notifications: the tests and the fixes." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT &amp; White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/paytr-token-ve-bildirim-hatasi/" />
+    <meta name="twitter:title" content="PayTR Token Error and 'In Progress' | Trend Master Akademi" />
+    <meta name="twitter:description" content="PayTR payment frame won't open, or the payment stays 'In Progress'. Token signature, the 'OK' reply, duplicate notifications: the tests and the fixes." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "PayTR Token Error and 'In Progress'",
+      "description": "The PayTR payment frame will not open, or the customer pays but the transaction stays 'In Progress' in the PayTR panel. There are two separate breaks: in the token request before payment, or at the notification URL after payment. PayTR's own response tells you which.",
+      "url": "https://trendmasterakademi.com/diagnostic/paytr-token-ve-bildirim-hatasi/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/diagnostic/paytr-token-ve-bildirim-hatasi/",
+      "inLanguage": "en-US",
+      "about": "Orders & Payments",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      },
+      "datePublished": "2026-09-23T22:57:29+03:00",
+      "dateModified": "2026-09-23T22:57:29+03:00",
+      "citation": [
+        "https://dev.paytr.com/en/iframe-api/iframe-api-1-adim",
+        "https://dev.paytr.com/en/iframe-api/iframe-api-2-adim"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "get-token yanıtında reason dolu mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Token isteği reddedildi — Ödeme başlamadan önceki get-token isteği başarısız oluyor. En sık sebep paytr_token imzasının dokümandaki sırayla hesaplanmaması: alanların sırası, tutarın 100 ile çarpılmaması, sepetin base64 kodlanmaması ya da test_mode değerinin imzaya katılmaması. Kanıt: Yanıtta reason alanı dolu → A Çözüm: İmza sırasını ve tutarı düzelt"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Aynı ödeme için bildirim dakikada bir mi geliyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bildirime «OK» dönülmüyor — Ödeme alındı ve PayTR sonucu Bildirim URL'ine gönderdi, ama yanıt düz metin «OK» değil. PayTR dokümanına göre bu durumda bildirim başarısız sayılır, bir dakika sonra yeniden denenir ve işlem panelde «Devam Ediyor» kalır. Yanıt bir HTML sayfası, hata sayfası ya da yönlendirme olduğunda da PayTR «OK» almamış olur. Kanıt: Aynı bildirim dakikada bir geliyor → B Çözüm: Yalnız düz metin «OK» dön"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Aynı merchant_oid iki kez mi işlenmiş?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bildirim iki kez işlendi — PayTR aynı ödeme için birden fazla bildirim gönderebilir. Doküman yalnız ilk bildirimin dikkate alınmasını, tekrarlara yalnızca «OK» dönülmesini söyler. Bu kontrol yoksa aynı sipariş iki kez onaylanır: stok iki kez düşer, müşteriye iki e-posta gider. Kanıt: Aynı merchant_oid iki kez işlenmiş → C Çözüm: İlkini işle, tekrara «OK» dön"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«get-token yanıtı: status success değil, reason alanı dolu» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Token isteği reddedildi — Ödeme başlamadan önceki get-token isteği başarısız oluyor. En sık sebep paytr_token imzasının dokümandaki sırayla hesaplanmaması: alanların sırası, tutarın 100 ile çarpılmaması, sepetin base64 kodlanmaması ya da test_mode değerinin imzaya katılmaması. Çözüm: İmza sırasını ve tutarı düzelt"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«İşlemler sayfası: ödeme alındı, durum «Devam Ediyor»» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Bildirime «OK» dönülmüyor — Ödeme alındı ve PayTR sonucu Bildirim URL'ine gönderdi, ama yanıt düz metin «OK» değil. PayTR dokümanına göre bu durumda bildirim başarısız sayılır, bir dakika sonra yeniden denenir ve işlem panelde «Devam Ediyor» kalır. Yanıt bir HTML sayfası, hata sayfası ya da yönlendirme olduğunda da PayTR «OK» almamış olur. Çözüm: Yalnız düz metin «OK» dön"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Bildirim URL erişim kaydı: aynı merchant_oid dakikada bir geliyor» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Bildirime «OK» dönülmüyor — Ödeme alındı ve PayTR sonucu Bildirim URL'ine gönderdi, ama yanıt düz metin «OK» değil. PayTR dokümanına göre bu durumda bildirim başarısız sayılır, bir dakika sonra yeniden denenir ve işlem panelde «Devam Ediyor» kalır. Yanıt bir HTML sayfası, hata sayfası ya da yönlendirme olduğunda da PayTR «OK» almamış olur. Çözüm: Yalnız düz metin «OK» dön"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Aynı merchant_oid için iki kez stok düşümü ve iki onay e-postası» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C · Bildirim iki kez işlendi — PayTR aynı ödeme için birden fazla bildirim gönderebilir. Doküman yalnız ilk bildirimin dikkate alınmasını, tekrarlara yalnızca «OK» dönülmesini söyler. Bu kontrol yoksa aynı sipariş iki kez onaylanır: stok iki kez düşer, müşteriye iki e-posta gider. Çözüm: İlkini işle, tekrara «OK» dön"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teşhis Kataloğu",
+          "item": "https://trendmasterakademi.com/teshis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "PayTR token hatası ve «Devam Ediyor»",
+          "item": "https://trendmasterakademi.com/teshis/paytr-token-ve-bildirim-hatasi/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-_410D3sa.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">PayTR Token Error and 'In Progress'</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Confidentiality and Engagement Agreement</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">The PayTR payment frame will not open, or the customer pays but the transaction stays 'In Progress' in the PayTR panel. There are two separate breaks: in the token request before payment, or at the notification URL after payment. PayTR's own response tells you which.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      <p class="text-sm font-mono text-[var(--accent)]">Urgency: Critical · checkout halted · Category: Orders &amp; Payments</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Instead of the payment frame, the checkout page shows an empty area or an error message. Or the payment goes through and the customer receives the bank's confirmation, but the order is never confirmed on the site. On the Transactions page of the PayTR merchant panel, the same payment waits as 'In Progress'.</p>
+      </section>
+    
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">What you see on screen</h2>
+        <div class="space-y-2">
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>Transactions › In Progress</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">PayTR merchant panel — payment taken, no 'OK' reply to the notification</p>
+            </div>
+          
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>get-token response: status ≠ success · reason: …</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">Token request response — the payment frame never opens</p>
+            </div>
+          
+        </div>
+      </section>
+    
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
+        <li><code>get-token response: status is not success, reason field is filled</code> <span>→ A · Token request rejected</span></li>
+        <li><code>Transactions page: payment taken, status 'In Progress'</code> <span>→ B · No 'OK' to the notification</span></li>
+        <li><code>Notification URL access log: the same merchant_oid arrives every minute</code> <span>→ B · No 'OK' to the notification</span></li>
+        <li><code>Stock reduced twice and two confirmation emails for one merchant_oid</code> <span>→ C · Notification processed twice</span></li>
+      </ul>
+    
+        <p class="text-[var(--ink-3)] text-sm">With debug_on=1 added to the token request during integration, PayTR spells out the cause of the error. Either way, the cause is in the reason field of the response; look there first.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Three Potential Root Causes & Differential Tests</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">A · Token request rejected</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">The get-token request made before payment fails. The most common cause is a paytr_token signature not built in the documented order: field order, the amount not multiplied by 100, the basket not base64-encoded, or test_mode left out of the signature.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does get-token return a filled reason field?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> reason field filled in the response → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Fix signature order and amount</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> debug_on is switched off so the error disappears from view; the payment frame still does not open, but now the cause is hidden too.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">B · No 'OK' to the notification</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">The payment was taken and PayTR sent the result to the notification URL, but the reply is not the plain text 'OK'. According to PayTR's documentation the notification then counts as failed, is retried a minute later, and the transaction stays 'In Progress' in the panel. An HTML page, an error page or a redirect also means PayTR did not get 'OK'.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is the same notification sent every minute?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Same notification arrives every minute → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Reply with plain text 'OK' only</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Orders are confirmed by hand from the PayTR panel; since the notification URL is never fixed, the same chore repeats with every payment and missed orders are never fulfilled.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">C · Notification processed twice</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">PayTR may send more than one notification for the same payment. The documentation says only the first should be acted on and repeats should simply get 'OK'. Without this check the same order is confirmed twice: stock drops twice and the customer gets two emails.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Was the same merchant_oid processed twice?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Same merchant_oid processed twice → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Act on the first, 'OK' the repeats</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> To block repeats, the notification URL returns an error to the second notification; PayTR counts that as a failed notification and keeps retrying.</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Check it yourself in the first 10 minutes</h2>
+        <ol class="list-decimal list-inside space-y-2 text-[var(--ink-3)] text-sm">
+          <li>In the PayTR merchant panel, check the status of the affected payment on the Transactions page. 'In Progress' means the payment was taken and the notification was never completed.</li>
+          <li>If the payment frame does not open, repeat the token request in your integration environment with debug_on=1 and read the reason field of the response.</li>
+          <li>Check that the notification URL points to the right address and does not redirect.</li>
+          <li>In the server access logs, look at requests to the notification URL and the replies sent. If the same merchant_oid arrives every minute, the reply is not 'OK'.</li>
+          <li>Check orders for two records, two stock reductions or two confirmation emails with the same merchant_oid.</li>
+        </ol>
+      </section>
+    
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">When to hand it over</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Hand it over if the signature calculation or the notification reply has to change in code, or if 'In Progress' payments must be matched to orders in bulk. Trial and error in live payment code creates new duplicate transactions.</p>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">A backend engineer who knows payment integrations. The lasting fix has three parts: building the signature in the documented order, a notification URL that verifies the incoming hash and replies with plain 'OK' only, and never processing the same merchant_oid twice.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Every 'In Progress' transaction is a customer who has paid but whose order was never confirmed. If the break is on the token side, payment never starts; the cart is abandoned and the loss shows up in no panel at all.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Official documentation</h2>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="https://dev.paytr.com/en/iframe-api/iframe-api-1-adim" target="_blank" rel="noopener noreferrer" class="hover:underline">→ PayTR iFrame API Step 1 — token request</a></li>
+          <li><a href="https://dev.paytr.com/en/iframe-api/iframe-api-2-adim" target="_blank" rel="noopener noreferrer" class="hover:underline">→ PayTR iFrame API Step 2 — notification URL</a></li>
+        </ul>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts & Services</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
+        <li><a href="/glossary/webhook/" class="hover:underline">→ Webhook</a></li>
+        <li><a href="/glossary/idempotency/" class="hover:underline">→ Idempotency</a></li>
+      </ul>
+    
+        
+      <div class="pt-2">
+        <h3 class="text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)] mb-2">Related diagnostics</h3>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="/diagnostic/odeme-alindi-siparis-olusmadi/" class="hover:underline">→ Payment Charged but Order Not Created</a></li>
+          <li><a href="/diagnostic/odeme-iki-kez-alindi/" class="hover:underline">→ Payment Charged Twice for Single Order</a></li>
+          <li><a href="/diagnostic/woocommerce-odendi-siparis-bekliyor/" class="hover:underline">→ WooCommerce: Paid but Order Pending</a></li>
+        </ul>
+      </div>
+    
+        <p class="pt-2"><a href="/crash-test/" class="text-[var(--accent)] hover:underline font-bold">→ Emergency Incident Triage &amp; Crash Test</a></p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

@@ -232,19 +232,19 @@
   "@graph": [
     {
       "@type": "TechArticle",
-      "headline": "Ödeme alındı, sipariş oluşmadı",
-      "description": "Müşterinin kartından para çekildi ama sistemde sipariş yok. Müşteri arıyor, elinizde kayıt yok. Para bankada, sipariş ortada yok — ikisinin arasında kopmuş bir bildirim var.",
-      "url": "https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/",
-      "mainEntityOfPage": "https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/",
-      "inLanguage": "tr-TR",
-      "about": "Sipariş & Ödeme",
+      "headline": "Payment Charged but Order Not Created",
+      "description": "Customer was charged successfully but no order appears in the system. The client contacts support with no reference on file. Funds are in the bank, order is missing — caused by a severed webhook callback between the two.",
+      "url": "https://trendmasterakademi.com/diagnostic/odeme-alindi-siparis-olusmadi/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/diagnostic/odeme-alindi-siparis-olusmadi/",
+      "inLanguage": "en-US",
+      "about": "Orders & Payments",
       "publisher": {
         "@type": "Organization",
         "name": "Trend Master Akademi",
         "url": "https://trendmasterakademi.com"
       },
       "datePublished": "2026-08-29T17:06:29+03:00",
-      "dateModified": "2026-09-06T13:00:03+03:00"
+      "dateModified": "2026-09-23T22:57:29+03:00"
     },
     {
       "@type": "FAQPage",
@@ -325,7 +325,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-DpIKkBBr.js"></script>
+    <script type="module" crossorigin src="/assets/index-_410D3sa.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -375,6 +375,7 @@
         <p class="text-[var(--ink-3)] leading-relaxed">The customer sees the charge on their card statement and receives the bank confirmation SMS. However, their cart remains full, no order confirmation displays, and no record appears in admin. The crisis starts when they call support.</p>
       </section>
     
+
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
         
@@ -422,6 +423,7 @@
         
       </section>
 
+
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Senior backend engineer. Permanent resilience requires decoupling ingestion from execution via message queues: ingest webhook payload to broker first, then process asynchronously.</p>
@@ -440,6 +442,16 @@
         <li><a href="/glossary/idempotency/" class="hover:underline">→ Idempotency</a></li>
         <li><a href="/glossary/rate-limit/" class="hover:underline">→ Rate Limiting</a></li>
       </ul>
+    
+        
+      <div class="pt-2">
+        <h3 class="text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)] mb-2">Related diagnostics</h3>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="/diagnostic/paytr-token-ve-bildirim-hatasi/" class="hover:underline">→ PayTR Token Error and 'In Progress'</a></li>
+          <li><a href="/diagnostic/iyzico-3d-secure-donusu-hata/" class="hover:underline">→ iyzico 3D Secure Return Error</a></li>
+          <li><a href="/diagnostic/woocommerce-odendi-siparis-bekliyor/" class="hover:underline">→ WooCommerce: Paid but Order Pending</a></li>
+        </ul>
+      </div>
     
         <p class="pt-2"><a href="/crash-test/" class="text-[var(--accent)] hover:underline font-bold">→ Emergency Incident Triage &amp; Crash Test</a></p>
       </section>
