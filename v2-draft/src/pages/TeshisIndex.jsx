@@ -38,7 +38,7 @@ const TeshisIndex = () => {
 
         {/* Feature Badges */}
         <div className="flex flex-wrap gap-2.5 pt-2 font-mono text-xs">
-          <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-emerald-800 font-semibold">
+          <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--tint-ok-ink)] font-semibold">
             {isTr ? '20 belirti' : '20 symptoms'}
           </span>
           <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] font-semibold">
@@ -74,8 +74,8 @@ const TeshisIndex = () => {
                   </span>
                   <span className={`inline-flex items-center gap-1.5 px-3 py-0.5 rounded-lg font-mono text-xs font-semibold uppercase ${
                     isKritik 
-                      ? 'bg-rose-50 border border-rose-300 text-rose-800' 
-                      : 'bg-amber-50 border border-amber-300 text-amber-800'
+                      ? 'bg-[var(--tint-danger-bg)] border border-[var(--tint-danger-rule)] text-[var(--tint-danger-ink)]' 
+                      : 'bg-[var(--tint-warn-bg)] border border-[var(--tint-warn-rule)] text-[var(--tint-warn-ink)]'
                   }`}>
                     <AlertTriangle className="w-3 h-3" />
                     {aciliyetText}

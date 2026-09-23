@@ -33,7 +33,7 @@ const Nda = () => {
           </Link>
         </div>
         
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-emerald-50 border border-emerald-300 text-emerald-800 text-xs font-mono font-semibold uppercase tracking-wider">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-[var(--tint-ok-bg)] border border-[var(--tint-ok-rule)] text-[var(--tint-ok-ink)] text-xs font-mono font-semibold uppercase tracking-wider">
           <ShieldCheck className="w-4 h-4" /> {pageHeader.badge[lang]}
         </div>
         
@@ -295,17 +295,17 @@ const Nda = () => {
       </section>
 
       {/* SECTION 5: ÖNCELİK KAYDI */}
-      <section className="p-6 sm:p-8 rounded bg-amber-50 border-2 border-amber-300 text-amber-950 text-xs sm:text-sm leading-relaxed space-y-3">
-        <div className="flex items-center gap-2 text-amber-800 font-semibold text-sm sm:text-base">
+      <section className="p-6 sm:p-8 rounded bg-[var(--tint-warn-bg)] border-2 border-[var(--tint-warn-rule)] text-[var(--ink)] text-xs sm:text-sm leading-relaxed space-y-3">
+        <div className="flex items-center gap-2 text-[var(--tint-warn-ink)] font-semibold text-sm sm:text-base">
           <Scale className="w-5 h-5 flex-shrink-0" />
           <span>{precedenceNotice.title[lang]}</span>
         </div>
         {!isTr && (
-          <p className="text-xs text-amber-800/80 italic">
+          <p className="text-xs text-[var(--tint-warn-ink)] italic">
             {precedenceNotice.enNotice}
           </p>
         )}
-        <p className="text-amber-950 leading-relaxed font-sans">
+        <p className="text-[var(--ink)] leading-relaxed font-sans">
           {precedenceNotice.text}
         </p>
       </section>

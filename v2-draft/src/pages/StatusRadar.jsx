@@ -33,11 +33,11 @@ export default function StatusRadar({ lang = "tr" }) {
 
       {/* Main Status Beacon Card */}
       <div className="max-w-5xl mx-auto mb-10">
-        <div className="bg-[var(--surface)] border border-emerald-300 rounded-2xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
+        <div className="bg-[var(--surface)] border border-[var(--tint-ok-rule)] rounded-2xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
             <div className="flex items-center gap-4">
               <div>
-                <span className="text-xs font-mono text-emerald-800 uppercase tracking-widest block font-bold">
+                <span className="text-xs font-mono text-[var(--tint-ok-ink)] uppercase tracking-widest block font-bold">
                   {t.systemStatus.label}
                 </span>
                 <span className="text-sm text-[var(--ink-light)] font-mono">
@@ -49,7 +49,7 @@ export default function StatusRadar({ lang = "tr" }) {
             <div className="flex items-center gap-6 border-t sm:border-t-0 sm:border-l border-[var(--rule)] pt-4 sm:pt-0 sm:pl-6 text-xs font-mono">
               <div>
                 <span className="text-[var(--ink-muted)] block uppercase">{isTr ? "Ortalama MTTA (90 Gün)" : "Average MTTA (90 Days)"}</span>
-                <span className="text-lg font-bold text-emerald-700">{t.systemStatus.currentMtta}</span>
+                <span className="text-lg font-bold text-[var(--tint-ok-ink)]">{t.systemStatus.currentMtta}</span>
               </div>
               <div>
                 <span className="text-[var(--ink-muted)] block uppercase">{isTr ? "Taahhüt Edilen (SEV-0)" : "Commitment (SEV-0)"}</span>
@@ -76,7 +76,7 @@ export default function StatusRadar({ lang = "tr" }) {
               } ${idx === 4 ? "md:col-span-2 lg:col-span-2" : ""}`}
             >
               <div className="flex items-center justify-between">
-                <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+                <span className="w-2 h-2 rounded-full bg-[var(--sev-ok)]"></span>
                 {comp.metric && (
                   comp.metricLink ? (
                     <Link to={comp.metricLink} className="text-xs font-mono text-[var(--ink-2)] hover:underline inline-flex items-center min-h-[44px] py-[13.5px] -my-[13.5px]">
@@ -123,7 +123,7 @@ export default function StatusRadar({ lang = "tr" }) {
                 <span className="text-2xl font-bold font-mono text-[var(--ink)] block">
                   {m.value}
                 </span>
-                <span className="text-xs font-mono text-emerald-700 block">
+                <span className="text-xs font-mono text-[var(--tint-ok-ink)] block">
                   {m.sub}
                 </span>
               </div>

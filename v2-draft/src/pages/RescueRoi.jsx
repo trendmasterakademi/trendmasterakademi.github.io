@@ -266,12 +266,12 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
             <div className="space-y-3 border-t border-[var(--rule)] pt-5 text-xs font-mono">
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
                 <span className="text-[var(--ink-light)]">{t.labels.rebuildSummaryTitle} ({metrics.totalRebuildMonths} {lang === "en" ? "Mo" : "Ay"}):</span>
-                <span className="font-bold text-rose-700">{formatCurrency(metrics.totalRebuildCost)}</span>
+                <span className="font-bold text-[var(--tint-danger-ink)]">{formatCurrency(metrics.totalRebuildCost)}</span>
               </div>
 
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
                 <span className="text-[var(--ink-light)]">{t.labels.rescueSummaryTitle} {lang === "en" ? "(~3 Weeks):" : "(~3 Hafta):"}</span>
-                <span className="font-bold text-emerald-700">{formatCurrency(metrics.tmaRescueCost)}</span>
+                <span className="font-bold text-[var(--tint-ok-ink)]">{formatCurrency(metrics.tmaRescueCost)}</span>
               </div>
             </div>
 
@@ -304,7 +304,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
       {/* Comparison Grid: Rebuild Liabilities vs Rescue Advantages */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-3">
-          <h2 className="text-sm font-mono font-semibold text-rose-700 uppercase tracking-wider">
+          <h2 className="text-sm font-mono font-semibold text-[var(--tint-danger-ink)] uppercase tracking-wider">
             {t.labels.rebuildBreakdown}
           </h2>
           <ul className="text-xs text-[var(--ink-light)] space-y-2 list-disc list-inside font-sans">
@@ -315,7 +315,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
         </div>
 
         <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-3">
-          <h2 className="text-sm font-mono font-semibold text-emerald-700 uppercase tracking-wider">
+          <h2 className="text-sm font-mono font-semibold text-[var(--tint-ok-ink)] uppercase tracking-wider">
             {t.labels.rescueBreakdown}
           </h2>
           <ul className="text-xs text-[var(--ink-light)] space-y-2 list-disc list-inside font-sans">

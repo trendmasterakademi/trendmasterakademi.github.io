@@ -217,7 +217,7 @@ const Salvageability = () => {
       tr: 'Cerrahi SWAT Müdahalesi Uygulanabilir (%70+ Kurtarılabilir)', 
       en: 'Surgical SWAT Rescue Viable (70%+ Salvageable)' 
     },
-    badgeColor: 'text-emerald-800 bg-emerald-50 border-emerald-300',
+    badgeColor: 'text-[var(--tint-ok-ink)] bg-[var(--tint-ok-bg)] border-[var(--tint-ok-rule)]',
     tag: { tr: 'REFACTOR & STABILIZE', en: 'REFACTOR & STABILIZE' },
     summary: {
       tr: 'Kod tabanının çekirdeği ve veri omurgası kurtarılmaya değer. Sıfırdan yazım hem maliyet hem de zaman açısından gereksiz bir risk yaratır. Cerrahi bir SWAT müdahalesiyle 48-72 saatte kilit noktalar izole edilip sistem stabilize edilebilir.',
@@ -241,7 +241,7 @@ const Salvageability = () => {
         tr: 'Temiz Sayfa Tavsiyesi (Baştan Yazım Daha Ekonomik)', 
         en: 'Clean Slate Recommendation (Rebuild Is More Economical)' 
       },
-      badgeColor: 'text-rose-800 bg-rose-50 border-rose-300',
+      badgeColor: 'text-[var(--tint-danger-ink)] bg-[var(--tint-danger-bg)] border-[var(--tint-danger-rule)]',
       tag: { tr: 'SCRAP & REBUILD', en: 'SCRAP & REBUILD' },
       summary: {
         tr: 'Mevcut kod tabanındaki teknik borç faizi, sıfırdan modern stack ile yazmaktan daha maliyetlidir. Bu koda harcanacak her geliştirici saati, yeni hatalar üretecek bir kara deliktir. Veritabanı şemasını dışa aktarıp temiz bir mimariyle baştan yazılması tavsiye edilir.',
@@ -375,7 +375,7 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
                       <div className={`w-4 h-4 rounded-full border mt-0.5 flex-shrink-0 flex items-center justify-center ${
                         isSelected ? 'border-[var(--accent)] bg-[var(--accent)]' : 'border-[var(--rule)]'
                       }`}>
-                        {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-white"></div>}
+                        {isSelected && <div className="w-1.5 h-1.5 rounded-full bg-[var(--surface)]"></div>}
                       </div>
                       <span className="leading-relaxed">{opt.label[lang]}</span>
                     </button>
@@ -412,7 +412,7 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
               <div className="w-full h-2 rounded-full bg-[var(--paper)] border border-[var(--rule)] overflow-hidden mt-3">
                 <div 
                   className={`h-full transition-all duration-500 rounded-full ${
-                    totalScore >= 70 ? 'bg-emerald-600' : totalScore >= 40 ? 'bg-[var(--accent)]' : 'bg-rose-600'
+                    totalScore >= 70 ? 'bg-[var(--sev-ok)]' : totalScore >= 40 ? 'bg-[var(--accent)]' : 'bg-[var(--sev-crit)]'
                   }`}
                   style={{ width: `${totalScore}%` }}
                 ></div>
@@ -436,7 +436,7 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
                 onClick={copyReport}
                 className="btn-secondary min-h-[44px] w-full text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer"
               >
-                {copied ? <Check className="w-4 h-4 text-emerald-700" /> : <Copy className="w-4 h-4 text-[var(--ink-muted)]" />}
+                {copied ? <Check className="w-4 h-4 text-[var(--tint-ok-ink)]" /> : <Copy className="w-4 h-4 text-[var(--ink-muted)]" />}
                 <span>{copied ? (isTr ? 'Rapor Panoya Kopyalandı!' : 'Report Copied!') : (isTr ? 'Karar Raporunu Kopyala' : 'Copy Decision Report')}</span>
               </button>
             </div>
@@ -467,7 +467,7 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
 
               {/* Financial ROI Note */}
               <div className="p-3.5 rounded-xl bg-[var(--paper)] border border-[var(--rule)] text-xs font-mono text-[var(--ink-light)]">
-                <strong className="text-emerald-800 block mb-0.5 font-semibold">{isTr ? 'Finansal Etki:' : 'Financial Impact:'}</strong>
+                <strong className="text-[var(--tint-ok-ink)] block mb-0.5 font-semibold">{isTr ? 'Finansal Etki:' : 'Financial Impact:'}</strong>
                 {decision.financialRoi[lang]}
               </div>
             </div>

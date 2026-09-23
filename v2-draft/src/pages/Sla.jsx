@@ -70,10 +70,10 @@ export const Sla = () => {
               >
                 <div className="flex items-center justify-between mb-2">
                   <span className={`text-xs font-mono font-semibold px-2 py-0.5 rounded ${
-                    t.level === 'SEV-0' ? 'bg-red-50 text-red-800 border border-red-300' :
-                    t.level === 'SEV-1' ? 'bg-amber-50 text-amber-800 border border-amber-300' :
-                    t.level === 'SEV-2' ? 'bg-blue-50 text-blue-800 border border-blue-300' :
-                    'bg-purple-50 text-purple-800 border border-purple-300'
+                    t.level === 'SEV-0' ? 'bg-[var(--tint-danger-bg)] text-[var(--tint-danger-ink)] border border-[var(--tint-danger-rule)]' :
+                    t.level === 'SEV-1' ? 'bg-[var(--tint-warn-bg)] text-[var(--tint-warn-ink)] border border-[var(--tint-warn-rule)]' :
+                    t.level === 'SEV-2' ? 'bg-[var(--tint-info-bg)] text-[var(--tint-info-ink)] border border-[var(--tint-info-rule)]' :
+                    'bg-[var(--tint-info-bg)] text-[var(--tint-info-ink)] border border-[var(--tint-info-rule)]'
                   }`}>
                     {t.level}
                   </span>
@@ -109,7 +109,7 @@ export const Sla = () => {
               <span className="text-xs text-[var(--ink-muted)] uppercase tracking-wider block font-semibold">
                 {isTr ? 'MASAYA OTURMA & TRİYAJ' : 'TIME TO ENGAGE (TABLE)'}
               </span>
-              <strong className="text-xl sm:text-2xl font-bold text-emerald-700">
+              <strong className="text-xl sm:text-2xl font-bold text-[var(--tint-ok-ink)]">
                 {selectedTier.timeToTable[lang]}
               </strong>
               <p className="text-xs text-[var(--ink-muted)]">

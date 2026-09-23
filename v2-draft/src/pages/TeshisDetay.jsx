@@ -33,10 +33,10 @@ const teshisLoaders = {
 };
 
 const HARF_BG_COLORS = {
-  A: 'bg-red-700 text-white',
-  B: 'bg-amber-700 text-white',
-  C: 'bg-purple-700 text-white',
-  D: 'bg-blue-700 text-white'
+  A: 'bg-[var(--tint-danger-bg)] text-[var(--tint-danger-ink)] border border-[var(--tint-danger-rule)]',
+  B: 'bg-[var(--tint-warn-bg)] text-[var(--tint-warn-ink)] border border-[var(--tint-warn-rule)]',
+  C: 'bg-[var(--tint-info-bg)] text-[var(--tint-info-ink)] border border-[var(--tint-info-rule)]',
+  D: 'bg-[var(--tint-info-bg)] text-[var(--tint-info-ink)] border border-[var(--tint-info-rule)]'
 };
 
 const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
@@ -225,12 +225,12 @@ const TeshisDetay = () => {
 
           {/* Section 1: Sisteminizde bunu arayın (Log Satırları - Terminal Theme) */}
           <section className="border border-[var(--rule)] rounded-2xl bg-[var(--term-bg)] overflow-hidden">
-            <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-white/10 bg-white/5">
-              <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-2">
+            <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-[var(--term-rule)] bg-[var(--term-card)]">
+              <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--term-ink)] flex items-center gap-2">
                 <Terminal className="w-4 h-4" />
                 {isTr ? 'Sisteminizde bunu arayın' : 'Look for this in your system'}
               </h2>
-              <span className="text-xs font-mono text-slate-400 italic">
+              <span className="text-xs font-mono text-[var(--term-dim)] italic">
                 {isTr ? 'log / hata kaydı' : 'error log'}
               </span>
             </div>
@@ -243,11 +243,11 @@ const TeshisDetay = () => {
                 const nedenAd = neden ? (isTr ? (neden.ad?.tr || '') : (neden.ad?.en || neden.ad?.tr || '')) : '';
                 return (
                   <div key={`log-${idx}`} className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-                    <code className="block text-emerald-300 whitespace-pre">
+                    <code className="block text-[var(--term-ink)] whitespace-pre">
                       {displayLog}
                     </code>
                     {neden && (
-                      <span className="text-emerald-400 text-xs font-mono shrink-0">
+                      <span className="text-[var(--term-dim)] text-xs font-mono shrink-0">
                         {`→ ${eslesme.harf} · ${nedenAd}`}
                       </span>
                     )}
@@ -256,7 +256,7 @@ const TeshisDetay = () => {
               })}
             </div>
 
-            <div className="px-5 pb-4 pt-1 text-xs sm:text-sm text-slate-400">
+            <div className="px-5 pb-4 pt-1 text-xs sm:text-sm text-[var(--term-dim)]">
               <p>{logNotuText}</p>
             </div>
           </section>
@@ -284,7 +284,7 @@ const TeshisDetay = () => {
                 const causeName = cause.ad[lang] || cause.ad.tr;
                 const causeDesc = cause.aciklama[lang] || cause.aciklama.tr;
                 const causeKanit = cause.kanit[lang] || cause.kanit.tr;
-                const bgClass = HARF_BG_COLORS[cause.harf] || 'bg-[var(--accent)] text-white';
+                const bgClass = HARF_BG_COLORS[cause.harf] || 'bg-[var(--accent)] text-[var(--on-accent)]';
 
                 return (
                   <div 

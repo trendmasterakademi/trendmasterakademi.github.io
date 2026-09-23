@@ -34,12 +34,12 @@ const TeshisDiyagram = ({ baslik, diyagramBaslik, nedenler }) => {
     : `Diagnostic flowchart from symptom to ${N} root causes, differential tests, and solutions`;
 
   return (
-    <div className="diyagram-kutu border border-white/10 rounded-2xl bg-white/[0.02] p-2 sm:p-3 overflow-x-auto">
+    <div className="diyagram-kutu border border-[var(--rule)]/20 rounded-2xl bg-[var(--surface)] p-2 sm:p-3 overflow-x-auto">
       <svg
         viewBox={`0 0 ${totalWidth} ${totalHeight}`}
         role="img"
         aria-label={ariaLabel}
-        className="block w-full min-w-[820px] h-auto font-mono text-slate-300 select-none"
+        className="block w-full min-w-[820px] h-auto font-mono text-[var(--ink-2)] select-none"
       >
         <defs>
           <marker

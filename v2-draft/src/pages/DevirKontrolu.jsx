@@ -268,8 +268,8 @@ const DevirKontrolu = () => {
     if (score >= 65) {
       return {
         level: isTr ? 'KRİTİK RİSK (SEVİYE 1)' : 'CRITICAL RISK (LEVEL 1)',
-        color: 'text-red-400',
-        bgColor: 'bg-red-500/10 border-red-500/30',
+        color: 'text-[var(--tint-danger-ink)]',
+        bgColor: 'bg-[var(--tint-danger-bg)] border-[var(--tint-danger-rule)]',
         summary: isTr
           ? 'Proje devralınamaz aşamada. Temel erişimler veya sırlar kayıp; ayrılan geliştiriciye %100 bağımlılık sürüyor. 24-48 saat içinde acil envanter dondurması gereklidir.'
           : 'Codebase is at high takeover risk. Core infrastructure credentials or secrets are missing. Immediate credential freeze required.',
@@ -278,8 +278,8 @@ const DevirKontrolu = () => {
     } else if (score >= 35) {
       return {
         level: isTr ? 'YÜKSEK RİSK (SEVİYE 2)' : 'ELEVATED RISK (LEVEL 2)',
-        color: 'text-amber-400',
-        bgColor: 'bg-amber-500/10 border-amber-500/30',
+        color: 'text-[var(--tint-warn-ink)]',
+        bgColor: 'bg-[var(--tint-warn-bg)] border-[var(--tint-warn-rule)]',
         summary: isTr
           ? 'Temel kod elinizde olsa da kritik yapılandırmalarda veya ortam değişkenlerinde açıklar var. Devir sürecinin uzman denetiminde toparlanması gerekir.'
           : 'Core repository is accessible, but missing environment configurations or deployment assets pose operational risk.',
@@ -288,8 +288,8 @@ const DevirKontrolu = () => {
     } else {
       return {
         level: isTr ? 'KONTROLLÜ DEVİR (SEVİYE 3)' : 'CONTROLLED HANDOVER (LEVEL 3)',
-        color: 'text-emerald-400',
-        bgColor: 'bg-emerald-500/10 border-emerald-500/30',
+        color: 'text-[var(--tint-ok-ink)]',
+        bgColor: 'bg-[var(--tint-ok-bg)] border-[var(--tint-ok-rule)]',
         summary: isTr
           ? 'Kritik erişimler ajansınızın kontrolünde. Eksik dokümantasyon ve test süreçleri kısa bir sprint ile tamamlanabilir.'
           : 'Primary administrative credentials are secured. Missing docs or test coverage can be finalized in a brief sprint.',
@@ -415,7 +415,7 @@ const DevirKontrolu = () => {
         {step === 1 && (
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-[var(--rule)]">
             <div className="flex items-center gap-3">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-600"></span>
+              <span className="w-2.5 h-2.5 rounded-full bg-[var(--sev-ok)]"></span>
               <span lang="en" className="text-xs sm:text-sm font-mono tracking-widest text-[var(--ink-muted)] uppercase">
                 TMA Diagnostic Tool // Handover Readiness v1.0
               </span>
@@ -475,7 +475,7 @@ const DevirKontrolu = () => {
                   <span className="text-xs text-[var(--ink-muted)]">{isTr ? 'Tamamlama' : 'Completion'}</span>
                 </div>
                 <div className="p-3 rounded bg-[var(--paper)] border border-[var(--rule)]">
-                  <strong className="block text-emerald-700 font-mono text-base sm:text-lg">%100</strong>
+                  <strong className="block text-[var(--tint-ok-ink)] font-mono text-base sm:text-lg">%100</strong>
                   <span className="text-xs text-[var(--ink-muted)]">
                     {isTr ? 'Ücretsiz Teşhis' : 'Free Diagnosis'}
                   </span>
@@ -505,7 +505,7 @@ const DevirKontrolu = () => {
               {/* Eyebrow & Status Bar */}
               <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-[var(--rule)] text-xs font-mono">
                 <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+                  <span className="w-2 h-2 rounded-full bg-[var(--sev-ok)]"></span>
                   <span className="text-xs text-[var(--ink-muted)] uppercase tracking-wider">
                     TMA Diagnostic Tool // Handover Readiness v1.0
                   </span>
@@ -527,7 +527,7 @@ const DevirKontrolu = () => {
                   <span className="text-xs font-mono text-[var(--ink-muted)] block mt-0.5 font-semibold">
                     <span className="text-[var(--accent)] font-bold">{answeredCount}</span> / {handoverItems.length} {isTr ? 'Kalem Yanıtlandı' : 'Answered'}
                     {answeredCount === handoverItems.length && (
-                      <span className="text-emerald-700 ml-2 font-semibold">{isTr ? '✓ Analiz Hazır' : '✓ Ready'}</span>
+                      <span className="text-[var(--tint-ok-ink)] ml-2 font-semibold">{isTr ? '✓ Analiz Hazır' : '✓ Ready'}</span>
                     )}
                   </span>
                 </div>
@@ -577,11 +577,11 @@ const DevirKontrolu = () => {
                         onClick={() => handleSelectAnswer(item.id, 'yes')}
                         className={`py-3 px-3 rounded border text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all min-h-[44px] ${
                           currentAnswer === 'yes'
-                            ? 'bg-emerald-50 border-emerald-400 text-emerald-900 shadow-sm'
+                            ? 'bg-[var(--tint-ok-bg)] border-[var(--tint-ok-rule)] text-[var(--tint-ok-ink)] shadow-sm'
                             : 'bg-[var(--paper)] border-[var(--rule)] text-[var(--ink)] hover:border-[var(--ink-muted)]'
                         }`}
                       >
-                        <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+                        <CheckCircle2 className="w-4 h-4 text-[var(--tint-ok-ink)]" />
                         <span>{isTr ? 'Evet, Var' : 'Yes, Secured'}</span>
                       </button>
 
@@ -590,11 +590,11 @@ const DevirKontrolu = () => {
                         onClick={() => handleSelectAnswer(item.id, 'unsure')}
                         className={`py-3 px-3 rounded border text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all min-h-[44px] ${
                           currentAnswer === 'unsure'
-                            ? 'bg-amber-50 border-amber-400 text-amber-900 shadow-sm'
+                            ? 'bg-[var(--tint-warn-bg)] border-[var(--tint-warn-rule)] text-[var(--tint-warn-ink)] shadow-sm'
                             : 'bg-[var(--paper)] border-[var(--rule)] text-[var(--ink)] hover:border-[var(--ink-muted)]'
                         }`}
                       >
-                        <HelpCircle className="w-4 h-4 text-amber-700" />
+                        <HelpCircle className="w-4 h-4 text-[var(--tint-warn-ink)]" />
                         <span>{isTr ? 'Emin Değilim' : 'Unsure'}</span>
                       </button>
 
@@ -603,11 +603,11 @@ const DevirKontrolu = () => {
                         onClick={() => handleSelectAnswer(item.id, 'no')}
                         className={`py-3 px-3 rounded border text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 cursor-pointer transition-all min-h-[44px] ${
                           currentAnswer === 'no'
-                            ? 'bg-red-50 border-red-400 text-red-900 shadow-sm'
+                            ? 'bg-[var(--tint-danger-bg)] border-[var(--tint-danger-rule)] text-[var(--tint-danger-ink)] shadow-sm'
                             : 'bg-[var(--paper)] border-[var(--rule)] text-[var(--ink)] hover:border-[var(--ink-muted)]'
                         }`}
                       >
-                        <AlertTriangle className="w-4 h-4 text-red-700" />
+                        <AlertTriangle className="w-4 h-4 text-[var(--tint-danger-ink)]" />
                         <span>{isTr ? 'Hayır, Yok' : 'No / Missing'}</span>
                       </button>
                     </div>
@@ -683,12 +683,12 @@ const DevirKontrolu = () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-6">
                 <div className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)]">
                   <span className="text-xs sm:text-sm text-[var(--ink-muted)] block mb-1">{isTr ? 'Eksik / Belirsiz Kalem' : 'Missing Checkpoints'}</span>
-                  <strong className="text-base sm:text-lg font-semibold text-amber-700">{missingItems.length} / 12 {isTr ? 'Kalem' : 'Items'}</strong>
+                  <strong className="text-base sm:text-lg font-semibold text-[var(--tint-warn-ink)]">{missingItems.length} / 12 {isTr ? 'Kalem' : 'Items'}</strong>
                   <span className="text-xs text-[var(--ink-muted)] block mt-1">{criticalMissing.length} {isTr ? 'kritik erişim kalemi' : 'critical items'}</span>
                 </div>
                 <div className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)]">
                   <span className="text-xs sm:text-sm text-[var(--ink)] font-semibold block mb-1">{isTr ? 'İlk Teşhis & Triyaj' : 'Initial Triage'}</span>
-                  <strong className="text-base sm:text-lg font-semibold text-emerald-700 font-mono">{isTr ? 'Ücretsiz' : 'Free'}</strong>
+                  <strong className="text-base sm:text-lg font-semibold text-[var(--tint-ok-ink)] font-mono">{isTr ? 'Ücretsiz' : 'Free'}</strong>
                   <span className="text-xs text-[var(--ink-muted)] block mt-1">{isTr ? 'Sonraki adımlar kapsama göre belirlenir' : 'Next steps scoped per project'}</span>
                 </div>
                 <div className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)]">
@@ -698,7 +698,7 @@ const DevirKontrolu = () => {
                 </div>
                 <div className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)]">
                   <span className="text-xs sm:text-sm text-[var(--ink-muted)] block mb-1">{isTr ? 'Çalışma Güvencesi' : 'TMA Guarantee'}</span>
-                  <strong className="text-base sm:text-lg font-semibold text-emerald-700">%100 White-Label</strong>
+                  <strong className="text-base sm:text-lg font-semibold text-[var(--tint-ok-ink)]">%100 White-Label</strong>
                   <span className="text-xs text-[var(--ink-muted)] block mt-1">{isTr ? 'Resmi NDA güvencesiyle' : 'Under mutual NDA'}</span>
                 </div>
               </div>
@@ -721,7 +721,7 @@ const DevirKontrolu = () => {
                     onClick={copyReport}
                     className="px-4 py-2.5 rounded bg-[var(--paper)] hover:bg-[var(--surface)] border border-[var(--rule)] text-xs sm:text-sm font-semibold text-[var(--ink)] flex items-center gap-2 transition-colors cursor-pointer min-h-[44px]"
                   >
-                    {copied ? <Check className="w-4 h-4 text-emerald-700" /> : <Copy className="w-4 h-4 text-[var(--ink-muted)]" />}
+                    {copied ? <Check className="w-4 h-4 text-[var(--tint-ok-ink)]" /> : <Copy className="w-4 h-4 text-[var(--ink-muted)]" />}
                     <span>{copied ? (isTr ? 'Kopyalandı!' : 'Copied!') : (isTr ? 'Raporu Kopyala' : 'Copy Blueprint')}</span>
                   </button>
                 </div>
@@ -732,7 +732,7 @@ const DevirKontrolu = () => {
                       <div className="flex items-center justify-between">
                         <strong className="text-[var(--ink)] text-sm sm:text-base font-semibold font-serif">{item.title[isTr ? 'tr' : 'en']}</strong>
                         <span className={`text-xs font-mono font-semibold px-2 py-0.5 rounded ${
-                          answers[item.id] === 'no' ? 'bg-red-50 text-red-800 border border-red-200' : 'bg-amber-50 text-amber-800 border border-amber-200'
+                          answers[item.id] === 'no' ? 'bg-[var(--tint-danger-bg)] text-[var(--tint-danger-ink)] border border-[var(--tint-danger-rule)]' : 'bg-[var(--tint-warn-bg)] text-[var(--tint-warn-ink)] border border-[var(--tint-warn-rule)]'
                         }`}>
                           {answers[item.id] === 'no' ? (isTr ? 'YOK' : 'MISSING') : (isTr ? 'EMİN DEĞİL' : 'UNSURE')}
                         </span>
@@ -817,14 +817,14 @@ const DevirKontrolu = () => {
               </div>
 
               {leadSent === 'success' ? (
-                <div className="p-5 rounded bg-emerald-50 border border-emerald-300 flex items-center gap-3 text-emerald-900 text-sm font-semibold">
-                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-emerald-700" />
+                <div className="p-5 rounded bg-[var(--tint-ok-bg)] border border-[var(--tint-ok-rule)] flex items-center gap-3 text-[var(--tint-ok-ink)] text-sm font-semibold">
+                  <CheckCircle2 className="w-5 h-5 flex-shrink-0 text-[var(--tint-ok-ink)]" />
                   <span>{isTr ? 'Devir raporu talebiniz başarıyla kaydedildi! Ekibimiz analizi hazırlayıp iletecektir.' : 'Handover report request logged successfully! Our SWAT engineers will deliver your audit.'}</span>
                 </div>
               ) : leadSent === 'error' ? (
-                <div className="p-5 rounded bg-amber-50 border border-amber-300 space-y-3">
-                  <div className="flex items-center gap-3 text-amber-900 text-sm font-semibold">
-                    <AlertTriangle className="w-5 h-5 flex-shrink-0 text-amber-700" />
+                <div className="p-5 rounded bg-[var(--tint-warn-bg)] border border-[var(--tint-warn-rule)] space-y-3">
+                  <div className="flex items-center gap-3 text-[var(--tint-warn-ink)] text-sm font-semibold">
+                    <AlertTriangle className="w-5 h-5 flex-shrink-0 text-[var(--tint-warn-ink)]" />
                     <span>{isTr ? 'Ağ kesintisi nedeniyle otomatik iletilemedi.' : 'Network interruption during auto-dispatch.'}</span>
                   </div>
                   <p className="text-xs text-[var(--ink-muted)]">

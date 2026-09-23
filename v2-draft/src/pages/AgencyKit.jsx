@@ -368,8 +368,8 @@ export default function AgencyKit({ lang }) {
             SECTION 4: EMERGENCY RESPONSE DESK CALLOUT
         ======================================================== */}
         <section className="p-8 sm:p-12 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] text-center max-w-3xl mx-auto space-y-6 shadow-sm">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-300 text-emerald-800 font-mono text-xs font-semibold">
-            <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--tint-ok-bg)] border border-[var(--tint-ok-rule)] text-[var(--tint-ok-ink)] font-mono text-xs font-semibold">
+            <span className="w-2 h-2 rounded-full bg-[var(--sev-ok)]"></span>
             <span>{isTr ? 'CANLI KRİZ MASASI · 09:00 – 24:00' : 'LIVE RESPONSE DESK · 09:00 – 24:00'}</span>
           </div>
 
@@ -415,12 +415,12 @@ export default function AgencyKit({ lang }) {
           onClick={() => setActiveSlideIndex(null)}
         >
           {/* Lightbox Top Controls */}
-          <div className="flex items-center justify-between px-2 sm:px-4 py-2 text-xs font-mono text-slate-300 z-10" onClick={(e) => e.stopPropagation()}>
+          <div className="flex items-center justify-between px-2 sm:px-4 py-2 text-xs font-mono text-[var(--term-dim)] z-10" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center gap-3">
               <span className="px-2.5 py-1 rounded bg-[var(--surface)] text-[var(--ink)] font-semibold border border-[var(--rule)]">
                 SLIDE 0{activeSlideIndex + 1} / 08
               </span>
-              <span className="hidden sm:inline font-semibold text-white">
+              <span className="hidden sm:inline font-semibold text-[var(--term-ink)]">
                 {data.responseKit.slides[activeSlideIndex].title}
               </span>
             </div>
@@ -429,7 +429,7 @@ export default function AgencyKit({ lang }) {
               <a
                 href={`/agency-kit/response-kit-slide-${activeSlideIndex + 1}.png`}
                 download={`TMA-Agency-Response-Kit-Slide-${activeSlideIndex + 1}.png`}
-                className="px-3 py-1.5 min-h-[44px] rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                className="px-3 py-1.5 min-h-[44px] rounded-lg bg-[var(--term-dim)]/20 hover:bg-[var(--term-dim)]/40 text-[var(--term-ink)] flex items-center gap-1.5 transition-colors cursor-pointer"
                 title={isTr ? "Bu Görseli İndir" : "Download This Slide"}
               >
                 <Download className="w-3.5 h-3.5 text-[var(--accent)]" />
@@ -438,7 +438,7 @@ export default function AgencyKit({ lang }) {
 
               <button
                 onClick={() => setActiveSlideIndex(null)}
-                className="p-2 min-h-[44px] min-w-[44px] rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer flex items-center justify-center"
+                className="p-2 min-h-[44px] min-w-[44px] rounded-lg bg-[var(--term-dim)]/20 hover:bg-[var(--term-dim)]/40 text-[var(--term-ink)] transition-colors cursor-pointer flex items-center justify-center"
                 aria-label={isTr ? "Kapat" : "Close"}
               >
                 <X className="w-6 h-6" />
@@ -510,7 +510,7 @@ export default function AgencyKit({ lang }) {
           onClick={() => setIsPosterLightboxOpen(false)}
         >
           {/* Top Bar */}
-          <div className="flex items-center justify-between px-2 sm:px-4 py-2 text-xs font-mono text-slate-300 z-10" onClick={(e) => e.stopPropagation()}>
+          <div className="flex items-center justify-between px-2 sm:px-4 py-2 text-xs font-mono text-[var(--term-dim)] z-10" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-1 rounded bg-[var(--surface)] text-[var(--ink)] font-semibold border border-[var(--rule)]">
                 POSTER // CRASH TEST 500
@@ -521,7 +521,7 @@ export default function AgencyKit({ lang }) {
               <a
                 href="/agency-kit/tma-agency-crash-test-500.pdf"
                 download="TMA-Agency-Crash-Test-500.pdf"
-                className="px-3 py-1.5 min-h-[44px] rounded-lg bg-white/10 hover:bg-white/20 text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+                className="px-3 py-1.5 min-h-[44px] rounded-lg bg-[var(--term-dim)]/20 hover:bg-[var(--term-dim)]/40 text-[var(--term-ink)] flex items-center gap-1.5 transition-colors cursor-pointer"
               >
                 <Download className="w-3.5 h-3.5 text-[var(--accent)]" />
                 <span className="hidden sm:inline">{isTr ? 'PDF İndir' : 'Download PDF'}</span>
@@ -529,7 +529,7 @@ export default function AgencyKit({ lang }) {
 
               <button
                 onClick={() => setIsPosterLightboxOpen(false)}
-                className="p-2 min-h-[44px] min-w-[44px] rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors cursor-pointer flex items-center justify-center"
+                className="p-2 min-h-[44px] min-w-[44px] rounded-lg bg-[var(--term-dim)]/20 hover:bg-[var(--term-dim)]/40 text-[var(--term-ink)] transition-colors cursor-pointer flex items-center justify-center"
                 aria-label={isTr ? "Kapat" : "Close"}
               >
                 <X className="w-6 h-6" />

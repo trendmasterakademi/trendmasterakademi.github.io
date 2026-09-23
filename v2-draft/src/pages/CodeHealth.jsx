@@ -42,10 +42,10 @@ export default function CodeHealth({ lang = "tr" }) {
   }, [score, t.scoreLevels]);
 
   const tierColor = useMemo(() => {
-    if (score < 40) return { text: "text-rose-700", bg: "bg-rose-50", border: "border-rose-200" };
-    if (score < 70) return { text: "text-amber-800", bg: "bg-amber-50", border: "border-amber-200" };
-    if (score < 85) return { text: "text-blue-800", bg: "bg-blue-50", border: "border-blue-200" };
-    return { text: "text-emerald-800", bg: "bg-emerald-50", border: "border-emerald-200" };
+    if (score < 40) return { text: "text-[var(--tint-danger-ink)]", bg: "bg-[var(--tint-danger-bg)]", border: "border-[var(--tint-danger-rule)]" };
+    if (score < 70) return { text: "text-[var(--tint-warn-ink)]", bg: "bg-[var(--tint-warn-bg)]", border: "border-[var(--tint-warn-rule)]" };
+    if (score < 85) return { text: "text-[var(--tint-info-ink)]", bg: "bg-[var(--tint-info-bg)]", border: "border-[var(--tint-info-rule)]" };
+    return { text: "text-[var(--tint-ok-ink)]", bg: "bg-[var(--tint-ok-bg)]", border: "border-[var(--tint-ok-rule)]" };
   }, [score]);
 
   // Top 3 Unchecked Risks

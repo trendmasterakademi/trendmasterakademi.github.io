@@ -96,10 +96,10 @@ Rapor Tarihi: ${new Date().toISOString()}`;
                   </span>
                   <span className={`text-xs font-mono px-2 py-0.5 rounded ${
                     sc.severity.includes('SEV-0')
-                      ? 'bg-rose-50 text-rose-800 border border-rose-300 font-bold'
+                      ? 'bg-[var(--tint-danger-bg)] text-[var(--tint-danger-ink)] border border-[var(--tint-danger-rule)] font-bold'
                       : sc.severity.includes('SEV-1')
-                      ? 'bg-amber-50 text-amber-800 border border-amber-300 font-semibold'
-                      : 'bg-blue-50 text-blue-800 border border-blue-300 font-semibold'
+                      ? 'bg-[var(--tint-warn-bg)] text-[var(--tint-warn-ink)] border border-[var(--tint-warn-rule)] font-semibold'
+                      : 'bg-[var(--tint-info-bg)] text-[var(--tint-info-ink)] border border-[var(--tint-info-rule)] font-semibold'
                   }`}>
                     {sc.severity}
                   </span>
@@ -131,14 +131,14 @@ Rapor Tarihi: ${new Date().toISOString()}`;
               <div className="flex items-center gap-3">
                 <div className="text-right font-mono">
                   <span className="text-xs text-[var(--ink-muted)] block">{isTr ? 'İLK YANIT' : 'RESPONSE'}</span>
-                  <span className="text-sm font-bold text-emerald-700">{activeScenario.firstResponseTime[lang]}</span>
+                  <span className="text-sm font-bold text-[var(--tint-ok-ink)]">{activeScenario.firstResponseTime[lang]}</span>
                 </div>
                 <span className={`text-xs font-mono px-3 py-1.5 rounded-lg font-semibold ${
                   activeScenario.severity.includes('SEV-0')
-                    ? 'bg-rose-50 text-rose-800 border border-rose-300'
+                    ? 'bg-[var(--tint-danger-bg)] text-[var(--tint-danger-ink)] border border-[var(--tint-danger-rule)]'
                     : activeScenario.severity.includes('SEV-1')
-                    ? 'bg-amber-50 text-amber-800 border border-amber-300'
-                    : 'bg-blue-50 text-blue-800 border border-blue-300'
+                    ? 'bg-[var(--tint-warn-bg)] text-[var(--tint-warn-ink)] border border-[var(--tint-warn-rule)]'
+                    : 'bg-[var(--tint-info-bg)] text-[var(--tint-info-ink)] border border-[var(--tint-info-rule)]'
                 }`}>
                   {activeScenario.severity}
                 </span>
@@ -155,15 +155,15 @@ Rapor Tarihi: ${new Date().toISOString()}`;
 
             {/* 1. WHAT NOT TO DO (CRITICAL) */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-rose-800 font-mono text-xs font-semibold tracking-wide">
-                <AlertOctagon className="w-4 h-4 text-rose-700" />
+              <div className="flex items-center gap-2 text-[var(--tint-danger-ink)] font-mono text-xs font-semibold tracking-wide">
+                <AlertOctagon className="w-4 h-4 text-[var(--tint-danger-ink)]" />
                 <span>{isTr ? '1. İLK 15 DAKİKADA KESİNLİKLE YAPILMAMASI GEREKENLER' : '1. ABSOLUTE "DO NOTs" IN FIRST 15 MINUTES'}</span>
               </div>
               <div className="space-y-2">
                 {activeScenario.doNot.map((item, idx) => (
-                  <div key={idx} className="p-4 rounded-xl bg-rose-50 border border-rose-200 flex items-start gap-3">
-                    <XCircle className="w-5 h-5 text-rose-700 shrink-0 mt-0.5" />
-                    <p className="text-sm text-rose-950 leading-relaxed font-sans">
+                  <div key={idx} className="p-4 rounded-xl bg-[var(--tint-danger-bg)] border border-[var(--tint-danger-rule)] flex items-start gap-3">
+                    <XCircle className="w-5 h-5 text-[var(--tint-danger-ink)] shrink-0 mt-0.5" />
+                    <p className="text-sm text-[var(--tint-danger-ink)] leading-relaxed font-sans">
                       {item[lang]}
                     </p>
                   </div>
@@ -180,16 +180,16 @@ Rapor Tarihi: ${new Date().toISOString()}`;
               <div className="space-y-3">
                 {activeScenario.diagnosticCommands.map((diag, idx) => (
                   <div key={idx} className="rounded-xl bg-[var(--term-bg)] border border-[var(--rule)] overflow-hidden">
-                    <div className="flex items-center justify-between px-4 py-2 bg-white/5 border-b border-white/10 text-xs font-mono text-slate-400">
+                    <div className="flex items-center justify-between px-4 py-2 bg-[var(--term-card)] border-b border-[var(--term-rule)] text-xs font-mono text-[var(--term-dim)]">
                       <span>{diag.desc[lang]}</span>
                       <button
                         onClick={() => copyCommand(diag.cmd, idx)}
-                        className="inline-flex items-center gap-1 text-emerald-400 hover:text-white transition-colors cursor-pointer min-h-[44px] px-2 py-1"
+                        className="inline-flex items-center gap-1 text-[var(--term-ink)] hover:text-white transition-colors cursor-pointer min-h-[44px] px-2 py-1"
                       >
                         {copiedCmd === idx ? (
                           <>
-                            <Check className="w-3.5 h-3.5 text-emerald-400" />
-                            <span className="text-emerald-400">{isTr ? 'Kopyalandı' : 'Copied'}</span>
+                            <Check className="w-3.5 h-3.5 text-[var(--term-ink)]" />
+                            <span className="text-[var(--term-ink)]">{isTr ? 'Kopyalandı' : 'Copied'}</span>
                           </>
                         ) : (
                           <>
@@ -199,7 +199,7 @@ Rapor Tarihi: ${new Date().toISOString()}`;
                         )}
                       </button>
                     </div>
-                    <pre className="p-4 text-xs font-mono text-[var(--term-text)] overflow-x-auto whitespace-pre-wrap leading-relaxed">
+                    <pre className="p-4 text-xs font-mono text-[var(--term-ink)] overflow-x-auto whitespace-pre-wrap leading-relaxed">
                       <code>{diag.cmd}</code>
                     </pre>
                   </div>
@@ -209,8 +209,8 @@ Rapor Tarihi: ${new Date().toISOString()}`;
 
             {/* 3. IMMEDIATE ACTION PROTOCOL */}
             <div className="space-y-3">
-              <div className="flex items-center gap-2 text-emerald-800 font-mono text-xs font-semibold tracking-wide">
-                <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+              <div className="flex items-center gap-2 text-[var(--tint-ok-ink)] font-mono text-xs font-semibold tracking-wide">
+                <CheckCircle2 className="w-4 h-4 text-[var(--tint-ok-ink)]" />
                 <span>{isTr ? '3. SOĞUKKANLI ANLIK MÜDAHALE ADIMLARI' : '3. IMMEDIATE INCIDENT CONTAINMENT STEPS'}</span>
               </div>
               <div className="p-5 rounded-2xl bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] text-sm leading-relaxed whitespace-pre-line font-sans">
@@ -247,8 +247,8 @@ Rapor Tarihi: ${new Date().toISOString()}`;
               >
                 {copiedReport ? (
                   <>
-                    <Check className="w-4 h-4 text-emerald-700" />
-                    <span className="text-emerald-700">{isTr ? 'Triyaj Raporu Kopyalandı!' : 'Triage Report Copied!'}</span>
+                    <Check className="w-4 h-4 text-[var(--tint-ok-ink)]" />
+                    <span className="text-[var(--tint-ok-ink)]">{isTr ? 'Triyaj Raporu Kopyalandı!' : 'Triage Report Copied!'}</span>
                   </>
                 ) : (
                   <>
@@ -274,13 +274,13 @@ Rapor Tarihi: ${new Date().toISOString()}`;
           </div>
 
           {/* Quick SOS Box */}
-          <div className="p-5 rounded-2xl bg-amber-50 border border-amber-300 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="p-5 rounded-2xl bg-[var(--tint-warn-bg)] border border-[var(--tint-warn-rule)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
             <div className="space-y-1">
-              <div className="flex items-center gap-2 text-amber-800 font-semibold text-sm font-mono">
-                <Flame className="w-4 h-4 text-amber-700" />
+              <div className="flex items-center gap-2 text-[var(--tint-warn-ink)] font-semibold text-sm font-mono">
+                <Flame className="w-4 h-4 text-[var(--tint-warn-ink)]" />
                 <span>{isTr ? 'Canlıda Aktif Ciro Kaybı mı Var?' : 'Active Revenue Loss in Progress?'}</span>
               </div>
-              <p className="text-xs text-amber-950 leading-relaxed">
+              <p className="text-xs text-[var(--tint-warn-ink)] leading-relaxed">
                 {isTr
                   ? 'İlk teşhis ve triyaj ücretsizdir. Masaya doğrudan kıdemli mühendis bağlanır.'
                   : 'Initial diagnosis and triage are complimentary. A senior engineer connects directly.'}

@@ -97,12 +97,12 @@ const GlossaryTerm = () => {
         {/* Section 1: Agency Impact */}
         <div className="p-7 sm:p-8 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] shadow-sm space-y-3">
           <div className="flex items-center gap-2">
-            <AlertTriangle className="w-5 h-5 text-amber-600" />
+            <AlertTriangle className="w-5 h-5 text-[var(--tint-warn-ink)]" />
             <h2 className="text-xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Ajans İçin Ne Anlama Gelir? (İş Etkisi)' : 'What It Means for Your Agency (Business Impact)'}
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-[var(--ink-light)] leading-relaxed pl-7 border-l-2 border-amber-500">
+          <p className="text-sm sm:text-base text-[var(--ink-light)] leading-relaxed pl-7 border-l-2 border-[var(--tint-warn-rule)]">
             {term.agencyImpact[isTr ? 'tr' : 'en']}
           </p>
         </div>
@@ -122,7 +122,7 @@ const GlossaryTerm = () => {
 
           <div className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-3">
             <h3 className="text-base font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" /> {isTr ? 'Kim Çözer?' : 'Who Resolves It?'}
+              <ShieldCheck className="w-4 h-4 text-[var(--tint-ok-ink)]" /> {isTr ? 'Kim Çözer?' : 'Who Resolves It?'}
             </h3>
             <p className="text-xs sm:text-sm text-[var(--ink-light)] leading-relaxed">
               {term.whoSolves[isTr ? 'tr' : 'en']}
@@ -190,7 +190,7 @@ const GlossaryTerm = () => {
             <button
               type="button"
               onClick={openWhatsApp}
-              className="btn-secondary min-h-[44px] text-xs sm:text-sm flex items-center gap-2 text-emerald-700 cursor-pointer"
+              className="btn-secondary min-h-[44px] text-xs sm:text-sm flex items-center gap-2 text-[var(--tint-ok-ink)] cursor-pointer"
             >
               <PhoneCall className="w-4 h-4" />
               <span>{isTr ? 'Acil SWAT' : 'Emergency SWAT'}</span>

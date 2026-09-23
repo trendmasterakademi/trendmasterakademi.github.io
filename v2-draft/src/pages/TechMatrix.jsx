@@ -117,7 +117,7 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
           <span className="text-[var(--rule)]">|</span>
           <button
             onClick={clearAll}
-            className="text-[var(--ink-light)] hover:text-rose-700 transition cursor-pointer min-h-[44px] flex items-center"
+            className="text-[var(--ink-light)] hover:text-[var(--tint-danger-ink)] transition cursor-pointer min-h-[44px] flex items-center"
           >
             {lang === "en" ? "Clear" : "Temizle"} ({selectedTechIds.length})
           </button>
@@ -167,7 +167,7 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
 
                   {/* Readiness & Support Level */}
                   <div className="flex flex-wrap gap-2 mb-3">
-                    <span className="px-2 py-0.5 rounded text-xs font-mono bg-emerald-50 text-emerald-800 border border-emerald-200">
+                    <span className="px-2 py-0.5 rounded text-xs font-mono bg-[var(--tint-ok-bg)] text-[var(--tint-ok-ink)] border border-[var(--tint-ok-rule)]">
                       {tech.readiness}
                     </span>
                     <span className="px-2 py-0.5 rounded text-xs font-mono bg-[var(--paper)] text-[var(--ink)] border border-[var(--rule)]">
@@ -280,7 +280,7 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                         {item.name.split(" ")[0]}
                         <button
                           onClick={() => toggleTech(item.id)}
-                          className="text-[var(--ink-muted)] hover:text-rose-700 ml-1 cursor-pointer relative after:absolute after:inset-[-14px_-18px] after:content-['']"
+                          className="text-[var(--ink-muted)] hover:text-[var(--tint-danger-ink)] ml-1 cursor-pointer relative after:absolute after:inset-[-14px_-18px] after:content-['']"
                           aria-label={lang === "en" ? `Remove ${item.name}` : `${item.name} seçimini kaldır`}
                         >
                           ×
@@ -292,7 +292,7 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
 
                 {/* Combined Outage Risks */}
                 <div className="border-t border-[var(--rule)] pt-4">
-                  <span className="text-xs font-mono text-amber-700 uppercase tracking-wider block mb-2">
+                  <span className="text-xs font-mono text-[var(--tint-warn-ink)] uppercase tracking-wider block mb-2">
                     {t.summaryBox.keyRisks}:
                   </span>
                   <ul className="text-xs text-[var(--ink-light)] space-y-2 list-disc list-inside bg-[var(--paper)] p-3 rounded-xl border border-[var(--rule)]">

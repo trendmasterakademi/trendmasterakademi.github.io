@@ -315,22 +315,22 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
 
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
                 <span className="text-[var(--ink-light)]">2. {t.dimensions[1].title}</span>
-                <span className="font-bold text-amber-700">{formatCurrency(metrics.wastedAdSpend)}</span>
+                <span className="font-bold text-[var(--tint-warn-ink)]">{formatCurrency(metrics.wastedAdSpend)}</span>
               </div>
 
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
                 <span className="text-[var(--ink-light)]">3. {t.dimensions[2].title}</span>
-                <span className="font-bold text-rose-700">{formatCurrency(metrics.slaPenalty)}</span>
+                <span className="font-bold text-[var(--tint-danger-ink)]">{formatCurrency(metrics.slaPenalty)}</span>
               </div>
 
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
                 <span className="text-[var(--ink-light)]">4. {t.dimensions[3].title}</span>
-                <span className="font-bold text-purple-700">{formatCurrency(metrics.churnLoss)}</span>
+                <span className="font-bold text-[var(--tint-info-ink)]">{formatCurrency(metrics.churnLoss)}</span>
               </div>
 
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
                 <span className="text-[var(--ink-light)]">5. {t.dimensions[4].title}</span>
-                <span className="font-bold text-blue-700">{formatCurrency(metrics.engDrag)}</span>
+                <span className="font-bold text-[var(--tint-info-ink)]">{formatCurrency(metrics.engDrag)}</span>
               </div>
             </div>
 

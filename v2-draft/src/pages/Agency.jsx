@@ -184,7 +184,7 @@ const Agency = () => {
         <section className="text-center max-w-4xl mx-auto pt-6 pb-20">
           
           {/* Status Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-[var(--r-control)] bg-red-50 border border-red-200 text-[var(--accent)] text-xs sm:text-sm font-mono font-semibold tracking-widest uppercase mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-[var(--r-control)] bg-[var(--tint-danger-bg)] border border-[var(--tint-danger-rule)] text-[var(--tint-danger-ink)] text-xs sm:text-sm font-mono font-semibold tracking-widest uppercase mb-6">
             <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
             {isTr ? 'TMA RESPONSE DESK // B2B AJANS ÇÖZÜM ORTAKLIĞI' : 'TMA RESPONSE DESK // B2B AGENCY PARTNERSHIP'}
           </div>
@@ -237,7 +237,7 @@ const Agency = () => {
             </div>
 
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5 shadow-sm">
-              <div className="flex items-center gap-2 text-emerald-700">
+              <div className="flex items-center gap-2 text-[var(--tint-ok-ink)]">
                 <Lock className="w-5 h-5" />
                 <span className="font-semibold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Resmi NDA / Gizlilik' : 'Mutual Legal NDA'}</span>
               </div>
@@ -247,7 +247,7 @@ const Agency = () => {
             </div>
 
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5 shadow-sm">
-              <div className="flex items-center gap-2 text-amber-700">
+              <div className="flex items-center gap-2 text-[var(--tint-warn-ink)]">
                 <Clock className="w-5 h-5" />
                 <span className="font-semibold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Hızlı SWAT Triyajı' : 'Rapid SWAT Triage'}</span>
               </div>
@@ -257,7 +257,7 @@ const Agency = () => {
             </div>
 
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5 shadow-sm">
-              <div className="flex items-center gap-2 text-purple-700">
+              <div className="flex items-center gap-2 text-[var(--tint-info-ink)]">
                 <FileCode className="w-5 h-5" />
                 <span className="font-semibold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Temiz Kod Devri' : 'Clean Code Handover'}</span>
               </div>
@@ -303,7 +303,7 @@ const Agency = () => {
         {/* SITUATION QUOTES */}
         <section className="py-16">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest text-amber-700 uppercase block mb-3">
+            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest text-[var(--tint-warn-ink)] uppercase block mb-3">
               {isTr ? 'Kriz & İhtiyaç Senaryoları' : 'Real-World Crisis Scenarios'}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)]">
@@ -398,7 +398,7 @@ const Agency = () => {
         {/* 4-STEP TIMELINE */}
         <section className="py-16 border-t border-[var(--rule)]">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest text-emerald-700 uppercase block mb-3">
+            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest text-[var(--tint-ok-ink)] uppercase block mb-3">
               {isTr ? 'Süreç Nasıl İlerliyor?' : 'How It Works'}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)]">
@@ -470,7 +470,7 @@ const Agency = () => {
             <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between space-y-6 shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-red-50 text-[var(--accent)] border border-red-200">
+                  <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--tint-danger-bg)] text-[var(--tint-danger-ink)] border border-[var(--tint-danger-rule)]">
                     {isTr ? 'Lansman T-24H Kriz SWAT' : 'Launch T-24H SWAT Hotfix'}
                   </span>
                   <span className="text-xs font-mono text-[var(--ink-muted)]">2.5 {isTr ? 'Saat' : 'Hours'}</span>
@@ -482,13 +482,13 @@ const Agency = () => {
                   Next.js · Node.js · PostgreSQL · Redis · Stripe / iyzico
                 </div>
                 <div className="space-y-2 text-xs sm:text-sm text-[var(--ink-secondary)]">
-                  <p className="border-l-2 border-red-500 pl-3">
+                  <p className="border-l-2 border-[var(--tint-danger-rule)] pl-3">
                     <strong className="text-[var(--ink)] block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
                     {isTr 
                       ? 'Lansman arifesinde 800+ eşzamanlı sepette veritabanı kilitlenmesi ve ödeme callback kayıpları yaşandı.' 
                       : 'Severe DB row deadlocks and lost payment webhook callbacks occurred on eve of launch with 800+ concurrent checkouts.'}
                   </p>
-                  <p className="border-l-2 border-emerald-600 pl-3">
+                  <p className="border-l-2 border-[var(--tint-ok-rule)] pl-3">
                     <strong className="text-[var(--ink)] block">{isTr ? 'TMA Müdahalesi:' : 'TMA Intervention:'}</strong>
                     {isTr 
                       ? 'Sandbox staging fork oluşturuldu, row lock yapısı asenkron Redis kuyruğuna taşındı, webhook idempotent yapıldı.' 
@@ -497,7 +497,7 @@ const Agency = () => {
                 </div>
               </div>
               <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs font-mono">
-                <span className="text-[var(--ink-secondary)]">{isTr ? 'Kayıp Oranı:' : 'Loss Rate:'} <strong className="text-emerald-700">%0</strong></span>
+                <span className="text-[var(--ink-secondary)]">{isTr ? 'Kayıp Oranı:' : 'Loss Rate:'} <strong className="text-[var(--tint-ok-ink)]">%0</strong></span>
                 <span className="text-[var(--ink-secondary)]">{isTr ? 'Mülkiyet:' : 'Ownership:'} <strong className="text-[var(--ink)] font-semibold">%100 Ajans</strong></span>
               </div>
             </div>
@@ -506,7 +506,7 @@ const Agency = () => {
             <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between space-y-6 shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+                  <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--tint-warn-bg)] text-[var(--tint-warn-ink)] border border-[var(--tint-warn-rule)]">
                     {isTr ? 'Yarım Kalan Repo Devralma' : 'Abandoned Codebase Takeover'}
                   </span>
                   <span className="text-xs font-mono text-[var(--ink-muted)]">6 {isTr ? 'Gün Sprint' : 'Days Sprint'}</span>
@@ -518,13 +518,13 @@ const Agency = () => {
                   React · Python / FastAPI · PostgreSQL · Docker · AWS
                 </div>
                 <div className="space-y-2 text-xs sm:text-sm text-[var(--ink-secondary)]">
-                  <p className="border-l-2 border-amber-500 pl-3">
+                  <p className="border-l-2 border-[var(--tint-warn-rule)] pl-3">
                     <strong className="text-[var(--ink)] block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
                     {isTr 
                       ? 'Önceki ekibin dokümantasyonsuz ayrıldığı, 42 backend uç noktasının yarım kaldığı ve yetkilendirme mimarisinin çöktüğü sistem.' 
                       : 'Previous dev departed abruptly leaving 42 broken endpoints, missing docs, and failing JWT authorization.'}
                   </p>
-                  <p className="border-l-2 border-emerald-600 pl-3">
+                  <p className="border-l-2 border-[var(--tint-ok-rule)] pl-3">
                     <strong className="text-[var(--ink)] block">{isTr ? 'TMA Müdahalesi:' : 'TMA Intervention:'}</strong>
                     {isTr 
                       ? 'Mimari haritalandırıldı, eksik REST uçları tamamlandı, OpenAPI şeması üretildi ve tüm spagetti kod refactor edildi.' 
@@ -533,7 +533,7 @@ const Agency = () => {
                 </div>
               </div>
               <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs font-mono">
-                <span className="text-[var(--ink-secondary)]">{isTr ? 'Teslimat:' : 'Delivery:'} <strong className="text-emerald-700">Zamanında</strong></span>
+                <span className="text-[var(--ink-secondary)]">{isTr ? 'Teslimat:' : 'Delivery:'} <strong className="text-[var(--tint-ok-ink)]">Zamanında</strong></span>
                 <span className="text-[var(--ink-secondary)]">{isTr ? 'Dokümantasyon:' : 'Docs:'} <strong className="text-[var(--ink)] font-semibold">Swagger UI</strong></span>
               </div>
             </div>
@@ -542,7 +542,7 @@ const Agency = () => {
             <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between space-y-6 shadow-sm">
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
-                  <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-blue-50 text-blue-800 border border-blue-200">
+                  <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--tint-info-bg)] text-[var(--tint-info-ink)] border border-[var(--tint-info-rule)]">
                     {isTr ? 'Trafik & API Ölçekleme' : 'Traffic & Scale Triaging'}
                   </span>
                   <span className="text-xs font-mono text-[var(--ink-muted)]">14 {isTr ? 'Saat' : 'Hours'}</span>
@@ -554,13 +554,13 @@ const Agency = () => {
                   Flutter · Node.js · MongoDB · Socket.io · AWS Lambda
                 </div>
                 <div className="space-y-2 text-xs sm:text-sm text-[var(--ink-secondary)]">
-                  <p className="border-l-2 border-blue-500 pl-3">
+                  <p className="border-l-2 border-[var(--tint-info-rule)] pl-3">
                     <strong className="text-[var(--ink)] block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
                     {isTr 
                       ? 'Mobil biletleme kampanyasında HTTP 504 Gateway Timeout ve socket connection kilitlenmeleri yaşandı.' 
                       : 'Severe HTTP 504 timeouts and websocket connection saturation during sudden live ticketing surges.'}
                   </p>
-                  <p className="border-l-2 border-emerald-600 pl-3">
+                  <p className="border-l-2 border-[var(--tint-ok-rule)] pl-3">
                     <strong className="text-[var(--ink)] block">{isTr ? 'TMA Müdahalesi:' : 'TMA Intervention:'}</strong>
                     {isTr 
                       ? 'Redis cache katmanı, query indexing ve socket connection throttling devreye alındı; mikroservis yükü dengelendi.' 
@@ -569,7 +569,7 @@ const Agency = () => {
                 </div>
               </div>
               <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs font-mono">
-                <span className="text-[var(--ink-secondary)]">{isTr ? 'Yanıt Süresi:' : 'Latency:'} <strong className="text-emerald-700">4.2s → 120ms</strong></span>
+                <span className="text-[var(--ink-secondary)]">{isTr ? 'Yanıt Süresi:' : 'Latency:'} <strong className="text-[var(--tint-ok-ink)]">4.2s → 120ms</strong></span>
                 <span className="text-[var(--ink-secondary)]">{isTr ? 'Uptime:' : 'Uptime:'} <strong className="text-[var(--ink)] font-semibold">%99.98</strong></span>
               </div>
             </div>
@@ -579,7 +579,7 @@ const Agency = () => {
         {/* TRANSPARENT PRICING SECTION / ÜCRETLENDİRME MODELİ */}
         <section className="py-16 border-t border-[var(--rule)]">
           <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest text-emerald-700 uppercase block mb-3">
+            <span className="text-xs sm:text-sm font-mono font-semibold tracking-widest text-[var(--tint-ok-ink)] uppercase block mb-3">
               {isTr ? 'ŞEFFAF ÜCRETLENDİRME' : 'TRANSPARENT PRICING'}
             </span>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)]">
@@ -592,13 +592,13 @@ const Agency = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               
               {/* Katman 01 */}
-              <div className="p-7 rounded-xl bg-[var(--surface)] border-2 border-emerald-500/50 relative flex flex-col justify-between space-y-6 shadow-sm">
+              <div className="p-7 rounded-xl bg-[var(--surface)] border-2 border-[var(--tint-ok-rule)] relative flex flex-col justify-between space-y-6 shadow-sm">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                    <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--tint-ok-bg)] text-[var(--tint-ok-ink)] border border-[var(--tint-ok-rule)]">
                       {isTr ? 'HER İŞTE' : 'EVERY ENGAGEMENT'}
                     </span>
-                    <span className="text-xs font-mono font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200">
+                    <span className="text-xs font-mono font-semibold text-[var(--tint-ok-ink)] bg-[var(--tint-ok-bg)] px-2.5 py-1 rounded-lg border border-[var(--tint-ok-rule)]">
                       {isTr ? 'Ücretsiz · taahhüt yok' : 'Free · no commitment'}
                     </span>
                   </div>
@@ -620,7 +620,7 @@ const Agency = () => {
                     <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--paper)] text-[var(--ink-secondary)] border border-[var(--rule)]">
                       {isTr ? 'PLANLI İŞLER' : 'PLANNED WORK'}
                     </span>
-                    <span className="text-xs font-mono font-semibold text-[var(--accent)] bg-red-50 px-2.5 py-1 rounded-lg border border-red-200">
+                    <span className="text-xs font-mono font-semibold text-[var(--tint-danger-ink)] bg-[var(--tint-danger-bg)] px-2.5 py-1 rounded-lg border border-[var(--tint-danger-rule)]">
                       {isTr ? 'Sabit teklif · kapsam netleşince' : 'Fixed quote · once scope is defined'}
                     </span>
                   </div>
@@ -639,10 +639,10 @@ const Agency = () => {
               <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] relative flex flex-col justify-between space-y-6 shadow-sm">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-red-50 text-[var(--accent)] border border-red-200">
+                    <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--tint-danger-bg)] text-[var(--tint-danger-ink)] border border-[var(--tint-danger-rule)]">
                       {isTr ? 'ACİL MÜDAHALE' : 'EMERGENCY RESPONSE'}
                     </span>
-                    <span className="text-xs font-mono font-semibold text-[var(--accent)] bg-red-50 px-2.5 py-1 rounded-lg border border-red-200">
+                    <span className="text-xs font-mono font-semibold text-[var(--tint-danger-ink)] bg-[var(--tint-danger-bg)] px-2.5 py-1 rounded-lg border border-[var(--tint-danger-rule)]">
                       {isTr ? 'Sabit bedel · işin kapsamına göre' : 'Fixed fee · depending on scope'}
                     </span>
                   </div>
@@ -698,7 +698,7 @@ const Agency = () => {
                     <button
                       type="button"
                       onClick={() => window.dispatchEvent(new CustomEvent('open-sos-modal'))}
-                      className="text-emerald-700 font-mono font-semibold text-xs sm:text-sm hover:underline focus:outline-none focus:ring-1 focus:ring-emerald-700 rounded cursor-pointer transition-colors text-left min-h-[44px] inline-flex items-center"
+                      className="text-[var(--tint-ok-ink)] font-mono font-semibold text-xs sm:text-sm hover:underline focus:outline-none focus:ring-1 focus:ring-[var(--tint-ok-ink)] rounded cursor-pointer transition-colors text-left min-h-[44px] inline-flex items-center"
                     >
                       {isTr ? 'Bütçenizi iletin →' : 'Send us your budget →'}
                     </button>
@@ -729,7 +729,7 @@ const Agency = () => {
           <div className="p-8 sm:p-14 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-center relative overflow-hidden shadow-sm">
             
             <div className="max-w-3xl mx-auto space-y-6">
-              <span className="px-4 py-1.5 rounded-[var(--r-control)] text-xs sm:text-sm font-mono font-semibold bg-red-50 text-[var(--accent)] border border-red-200 uppercase inline-block">
+              <span className="px-4 py-1.5 rounded-[var(--r-control)] text-xs sm:text-sm font-mono font-semibold bg-[var(--tint-danger-bg)] text-[var(--tint-danger-ink)] border border-[var(--tint-danger-rule)] uppercase inline-block">
                 {isTr ? 'İş Ortaklığı Daveti' : 'Partnership Invitation'}
               </span>
 
@@ -777,7 +777,7 @@ const Agency = () => {
                   onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'agency_intro_call' })}
                   className="btn-secondary px-6 py-4 flex items-center gap-2.5 min-h-[48px]"
                 >
-                  <MessageSquare className="w-5 h-5 text-emerald-600" />
+                  <MessageSquare className="w-5 h-5 text-[var(--tint-ok-ink)]" />
                   <span>{isTr ? 'Tanışma Randevusu Al (WhatsApp)' : 'Book Intro Call (WhatsApp)'}</span>
                 </a>
 

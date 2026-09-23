@@ -70,8 +70,8 @@ const PostMortemDetail = () => {
           </span>
           <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg font-bold uppercase ${
             isSev1 
-              ? 'bg-rose-50 border border-rose-300 text-rose-800' 
-              : 'bg-amber-50 border border-amber-300 text-amber-800'
+              ? 'bg-[var(--tint-danger-bg)] border border-[var(--tint-danger-rule)] text-[var(--tint-danger-ink)]' 
+              : 'bg-[var(--tint-warn-bg)] border border-[var(--tint-warn-rule)] text-[var(--tint-warn-ink)]'
           }`}>
             <AlertTriangle className="w-3.5 h-3.5" />
             {item.severity}
@@ -94,8 +94,8 @@ const PostMortemDetail = () => {
         </h1>
 
         {/* Impact Box */}
-        <div className="p-5 rounded-2xl bg-rose-50 border border-rose-200 space-y-1 text-xs sm:text-sm text-rose-950">
-          <strong className="text-rose-800 uppercase tracking-wider font-mono block font-semibold">
+        <div className="p-5 rounded-2xl bg-[var(--tint-danger-bg)] border border-[var(--tint-danger-rule)] space-y-1 text-xs sm:text-sm text-[var(--tint-danger-ink)]">
+          <strong className="text-[var(--tint-danger-ink)] uppercase tracking-wider font-mono block font-semibold">
             {isTr ? 'OPERASYONEL & FİNANSAL ETKİ:' : 'OPERATIONAL & FINANCIAL IMPACT:'}
           </strong>
           <p className="leading-relaxed">
@@ -170,10 +170,10 @@ const PostMortemDetail = () => {
         {/* 4. TMA Hotfix & Intervention */}
         <section className="space-y-3">
           <h2 className="text-xl font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
-            <span className="text-emerald-700 font-mono">04.</span>
+            <span className="text-[var(--tint-ok-ink)] font-mono">04.</span>
             <span>{isTr ? 'TMA Cerrahi Hotfix & Müdahale Protokolü' : 'TMA Surgical Hotfix & Response Protocol'}</span>
           </h2>
-          <div className="bg-emerald-50/60 p-6 rounded-2xl border border-emerald-200 text-sm text-emerald-950 leading-relaxed whitespace-pre-line space-y-2">
+          <div className="bg-[var(--tint-ok-bg)] p-6 rounded-2xl border border-[var(--tint-ok-rule)] text-sm text-[var(--tint-ok-ink)] leading-relaxed whitespace-pre-line space-y-2">
             {item.tmaHotfix[lang]}
           </div>
         </section>

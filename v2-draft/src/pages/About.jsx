@@ -32,7 +32,7 @@ const About = () => {
 
         {/* Header section */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-red-50 border border-red-200 text-[var(--accent)] text-xs font-mono font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--tint-danger-bg)] border border-[var(--tint-danger-rule)] text-[var(--tint-danger-ink)] text-xs font-mono font-semibold uppercase tracking-wider">
             <Cpu className="w-4 h-4" /> {isTr ? 'MÜHENDİSLİK STANDARTLARIMIZ' : 'ENGINEERING STANDARDS'}
           </div>
           
@@ -191,7 +191,7 @@ const About = () => {
         {/* Legal Information Section / Yasal Bilgiler */}
         <div className="p-8 sm:p-10 rounded-xl border border-[var(--rule)] bg-[var(--surface)] space-y-6 shadow-sm">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-lg bg-red-50 text-[var(--accent)] flex items-center justify-center border border-red-200">
+            <div className="w-10 h-10 rounded-lg bg-[var(--tint-danger-bg)] text-[var(--tint-danger-ink)] flex items-center justify-center border border-[var(--tint-danger-rule)]">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>

@@ -59,11 +59,11 @@ const Sos = () => {
       {/* Kriz Hattı Durum Şeridi */}
       <div className={`p-4 rounded border text-xs sm:text-sm leading-relaxed flex items-center gap-3 mb-8 ${
         krizHattiAcik 
-          ? 'bg-emerald-50 border-emerald-300 text-emerald-900' 
-          : 'bg-amber-50 border-amber-300 text-amber-900'
+          ? 'bg-[var(--tint-ok-bg)] border-[var(--tint-ok-rule)] text-[var(--tint-ok-ink)]' 
+          : 'bg-[var(--tint-warn-bg)] border-[var(--tint-warn-rule)] text-[var(--tint-warn-ink)]'
       }`}>
         <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${
-          krizHattiAcik ? 'bg-emerald-600' : 'bg-amber-600'
+          krizHattiAcik ? 'bg-[var(--sev-ok)]' : 'bg-[var(--sev-high)]'
         }`}></span>
         <span>
           {krizHattiAcik
@@ -92,7 +92,7 @@ const Sos = () => {
           href="https://wa.me/905343713573"
           target="_blank"
           rel="noopener noreferrer"
-          className="p-4 rounded bg-[var(--sev-ok)] hover:bg-[var(--sev-ok-hover)] text-white font-semibold text-sm sm:text-base shadow-sm flex items-center justify-center gap-2.5 transition-colors min-h-[44px]"
+          className="p-4 rounded bg-[var(--sev-ok)] hover:bg-[var(--sev-ok-hover)] text-[var(--on-sev-ok)] font-semibold text-sm sm:text-base shadow-sm flex items-center justify-center gap-2.5 transition-colors min-h-[44px]"
         >
           <MessageSquare className="w-4 h-4" />
           <span>{isTr ? "WhatsApp'tan yaz" : 'Message on WhatsApp'}</span>
@@ -102,7 +102,7 @@ const Sos = () => {
           href="tel:+905343713573"
           className="p-4 rounded bg-[var(--surface)] hover:bg-[var(--paper)] text-[var(--ink)] font-semibold text-sm sm:text-base border border-[var(--rule)] flex items-center justify-center gap-2.5 transition-colors min-h-[44px]"
         >
-          <PhoneCall className="w-4 h-4 text-emerald-700" />
+          <PhoneCall className="w-4 h-4 text-[var(--tint-ok-ink)]" />
           <span>+90 534 371 35 73</span>
         </a>
       </div>
@@ -131,7 +131,7 @@ const Sos = () => {
           </li>
         </ol>
         <div className="pt-4 border-t border-[var(--rule)] flex items-center gap-2 text-xs sm:text-sm text-[var(--ink-muted)] italic">
-          <ShieldCheck className="w-4 h-4 text-emerald-700 flex-shrink-0" />
+          <ShieldCheck className="w-4 h-4 text-[var(--tint-ok-ink)] flex-shrink-0" />
           <span>{isTr ? 'İlk teşhis için şifre ya da repo erişimi istemiyoruz.' : 'We do not require passwords or repository access for the initial diagnosis.'}</span>
         </div>
       </section>

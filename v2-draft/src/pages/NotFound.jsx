@@ -34,7 +34,7 @@ const NotFound = () => {
 
       {/* Header & h1 */}
       <header className="space-y-4 mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] text-xs font-mono bg-amber-50 border border-amber-300 text-amber-800">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] text-xs font-mono bg-[var(--tint-warn-bg)] border border-[var(--tint-warn-rule)] text-[var(--tint-warn-ink)]">
           <AlertCircle className="w-3.5 h-3.5" />
           <span>HTTP 404 // NOT FOUND</span>
         </div>
@@ -51,11 +51,11 @@ const NotFound = () => {
       {/* Kriz Hattı Durum Şeridi */}
       <div className={`p-4 rounded-2xl border text-xs sm:text-sm leading-relaxed flex items-center gap-3 mb-8 ${
         krizHattiAcik 
-          ? 'bg-emerald-50 border-emerald-300 text-emerald-800' 
-          : 'bg-amber-50 border-amber-300 text-amber-800'
+          ? 'bg-[var(--tint-ok-bg)] border-[var(--tint-ok-rule)] text-[var(--tint-ok-ink)]' 
+          : 'bg-[var(--tint-warn-bg)] border-[var(--tint-warn-rule)] text-[var(--tint-warn-ink)]'
       }`}>
         <span className={`w-2.5 h-2.5 rounded-full flex-shrink-0 ${
-          krizHattiAcik ? 'bg-emerald-600 animate-pulse' : 'bg-amber-600'
+          krizHattiAcik ? 'bg-[var(--sev-ok)] animate-pulse' : 'bg-[var(--tint-warn-ink)]'
         }`}></span>
         <span>
           {krizHattiAcik
@@ -85,7 +85,7 @@ const NotFound = () => {
           href="tel:+905343713573"
           className="btn-secondary min-h-[52px] p-4 text-sm sm:text-base font-semibold flex items-center justify-center gap-2.5"
         >
-          <PhoneCall className="w-4 h-4 text-emerald-600" />
+          <PhoneCall className="w-4 h-4 text-[var(--tint-ok-ink)]" />
           <span>+90 534 371 35 73</span>
         </a>
       </div>
