@@ -3671,7 +3671,7 @@ function verifySeoAndHtmlIntegrity() {
       const rootMatch = rawHtml.match(/<div id="root">([\s\S]*?)<\/div>\s*<\/body>/i);
       if (rootMatch) {
         let contentToCheck = rootMatch[1];
-        // Strip company name, founder name, address
+        // Strip company name, founder name, address, and Turkish platform proper nouns
         contentToCheck = contentToCheck
           .replace(/Trend Master Akademi/g, '')
           .replace(/Mehmet Şahin/g, '')
@@ -3679,7 +3679,9 @@ function verifySeoAndHtmlIntegrity() {
           .replace(/Akdeniz Mah\..*?Izmir/g, '')
           .replace(/Şehit Fethibey/g, '')
           .replace(/İç Kapı/g, '')
-          .replace(/İzmir/g, '');
+          .replace(/İzmir/g, '')
+          .replace(/e-Arşiv/g, '')
+          .replace(/GİB/g, '');
 
         // Also exclude HTML tags
         contentToCheck = contentToCheck.replace(/<[^>]+>/g, ' ');

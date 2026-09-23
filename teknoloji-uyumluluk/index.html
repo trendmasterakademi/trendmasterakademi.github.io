@@ -353,7 +353,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-0zTIY_7S.js"></script>
+    <script type="module" crossorigin src="/assets/index-D6TMRsxO.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -397,14 +397,212 @@
         
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
     <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
-      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">4 Kategori</strong> Backend, Frontend, DB, Infra</div>
-      <div><strong class="text-[var(--ink)] block text-sm">15+ Bileşen</strong> Node, Go, Python, Postgres, K8s</div>
-      <div><strong class="text-[var(--accent)] block text-sm">≤ 15 Dk</strong> SEV-0 Anında SWAT Triyajı</div>
+      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">6 Kategori</strong> Backend, Frontend, DB, Infra</div>
+      <div><strong class="text-[var(--ink)] block text-sm">26 Bileşen</strong> E-ticaret Platformları · Ödeme, Pazaryeri &amp; e-Belge · Backend &amp; Mikroservisler · Frontend &amp; Mobil · Veritabanı &amp; Cache · Bulut, DevOps &amp; Kernel</div>
+      <div><strong class="text-[var(--accent)] block text-sm">≤ 15 Dakika</strong> SEV-0 Anında SWAT Triyajı</div>
       <div><strong class="text-[var(--tint-warn-ink)] block text-sm">%100</strong> Müdahale Öncesi Snapshot Kuralı</div>
     </div>
 
     <h2 class="text-xl font-bold text-[var(--ink)]">Desteklenen Teknolojiler & Cerrahi Müdahale Derinliği</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">WordPress &amp; WooCommerce</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Hazırbulunuşluk: Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Eklenti ya da tema güncellemesinden sonra beyaz ekran (PHP fatal error)</li>
+            <li>Ödeme alındı ama sipariş 'Ödeme bekleniyor' durumunda kaldı</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> debug.log ve PHP-FPM kayıtlarıyla hata kaynağının bulunması, eklenti çakışmasının kopya ortamda ikiye bölme yöntemiyle ayrılması, sipariş ve ödeme kayıtlarının mutabakatı, WP-Cron'un sunucu cron'una taşınması.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Müdahale sınırı:</strong> Sunucudaki kodun tamamına müdahale edilir: tema, eklentiler, WooCommerce kancaları ve veritabanı. Ücretli eklentilerin kaynak kodu satıcısına aittir; hata eklentinin içindeyse kanıtıyla satıcıya bildirilir, geçici çözüm sizin kodunuzda uygulanır.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Shopify</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Hazırbulunuşluk: Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Tema düzenlemesinden sonra bozulan ürün ya da sepet sayfası (Liquid)</li>
+            <li>Webhook teslim hataları ve aynı siparişin iki kez işlenmesi</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Tema sürümlerinin karşılaştırılıp çalışan sürüme dönülmesi, webhook imza doğrulaması ve aynı olayın tek kez işlenmesi, API çağrılarının hız sınırına uygun kuyruğa alınması, stok mutabakat betiği.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Müdahale sınırı:</strong> Shopify'ın altyapısı ve ödeme sayfası (checkout) Shopify'a aittir, içine müdahale edilmez. Müdahale alanı: tema kodu, özel uygulama, webhook'lar, API entegrasyonları ve ajansın yazdığı kod. Platform genelindeki kesintiler Shopify'ın durum sayfasından izlenir.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">ikas</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Hazırbulunuşluk: Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Ödeme ya da fatura entegrasyonu kurulumunda eksik eşleme nedeniyle siparişe yansımayan kayıtlar</li>
+            <li>Tema özelleştirmesinden sonra bozulan sayfa bileşenleri</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Hatanın platform, entegrasyon ya da özel kod kaynaklı olduğunun kayıtlarla ayrılması; tema değişikliklerinin karşılaştırılıp çalışan sürüme dönülmesi; API üzerinden sipariş, stok ve ürün mutabakatı; düzeltme platformda gerekiyorsa destek ekibine kanıt dosyası.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Müdahale sınırı:</strong> Platformun çekirdek kodu ve altyapısı ikas'a aittir, içine müdahale edilmez. Müdahale alanı: tema ve şablon özelleştirmeleri, platformun sunduğu API ve entegrasyon servisleri üzerinden yazılmış bağlantılar, ajansın kendi kodu ve verinin tutarlılığı. Platform tarafındaki arızalar kanıtıyla birlikte ikas destek ekibine iletilir.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Ticimax</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Hazırbulunuşluk: Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Özel tasarım ya da şablon değişikliğinden sonra hata veren sayfalar</li>
+            <li>Kargo entegrasyonunda eşleşmeyen kargo firması ya da desi kuralı</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Hatanın platform, entegrasyon ya da özel kod kaynaklı olduğunun kayıtlarla ayrılması; şablon değişikliklerinin karşılaştırılıp çalışan sürüme dönülmesi; servisler üzerinden sipariş, stok ve ürün mutabakatı; düzeltme platformda gerekiyorsa destek ekibine kanıt dosyası.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Müdahale sınırı:</strong> Platformun çekirdek kodu ve altyapısı Ticimax'a aittir, içine müdahale edilmez. Müdahale alanı: tema ve şablon özelleştirmeleri, platformun sunduğu API ve entegrasyon servisleri üzerinden yazılmış bağlantılar, ajansın kendi kodu ve verinin tutarlılığı. Platform tarafındaki arızalar kanıtıyla birlikte Ticimax destek ekibine iletilir.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">IdeaSoft</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Hazırbulunuşluk: Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Şablon düzenlemesinden sonra bozulan vitrin sayfası</li>
+            <li>API ile ürün ve stok aktarımında eşleşmeyen varyantlar</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Hatanın platform, entegrasyon ya da özel kod kaynaklı olduğunun kayıtlarla ayrılması; şablon değişikliklerinin karşılaştırılıp çalışan sürüme dönülmesi; API üzerinden sipariş, stok ve ürün mutabakatı; düzeltme platformda gerekiyorsa destek ekibine kanıt dosyası.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Müdahale sınırı:</strong> Platformun çekirdek kodu ve altyapısı IdeaSoft'a aittir, içine müdahale edilmez. Müdahale alanı: tema ve şablon özelleştirmeleri, platformun sunduğu API ve entegrasyon servisleri üzerinden yazılmış bağlantılar, ajansın kendi kodu ve verinin tutarlılığı. Platform tarafındaki arızalar kanıtıyla birlikte IdeaSoft destek ekibine iletilir.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">T-Soft</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Hazırbulunuşluk: Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Platform güncellemesinden sonra uyumsuz kalan özel kod</li>
+            <li>URL değişikliğinden sonra oluşan 404'ler ve kayıp yönlendirmeler</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Hatanın platform, entegrasyon ya da özel kod kaynaklı olduğunun kayıtlarla ayrılması; eski ve yeni URL'lerin eşlenip yönlendirmelerin kurulması; API üzerinden sipariş, stok ve ürün mutabakatı; düzeltme platformda gerekiyorsa destek ekibine kanıt dosyası.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Müdahale sınırı:</strong> Platformun çekirdek kodu ve altyapısı T-Soft'a aittir, içine müdahale edilmez. Müdahale alanı: tema ve şablon özelleştirmeleri, platformun sunduğu API ve entegrasyon servisleri üzerinden yazılmış bağlantılar, ajansın kendi kodu ve verinin tutarlılığı. Platform tarafındaki arızalar kanıtıyla birlikte T-Soft destek ekibine iletilir.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">iyzico</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Hazırbulunuşluk: Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Ödeme başarılı ama geri dönüş (callback) işlenmediği için sipariş oluşmuyor</li>
+            <li>3D Secure dönüşünde oturum çerezi kaybolduğu için boşalan sepet</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Ödeme kayıtlarıyla sipariş kayıtlarının karşılaştırılması, geri dönüş adresinin ve çerez ayarlarının (SameSite) düzeltilmesi, bildirim işleyicisinin her ödemeyi tek kez işleyecek hale getirilmesi, eksik siparişlerin ödeme kayıtlarından yeniden oluşturulması.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Müdahale sınırı:</strong> Ödeme altyapısı, 3D Secure sayfası ve iyzico hesabı iyzico'ya aittir. Müdahale alanı sizin taraftaki kod: ödemenin başlatılması, geri dönüşün ve bildirimin işlenmesi, siparişin güncellenmesi, iade akışı. Hesap, limit ve komisyon konuları iyzico ile hesap sahibi arasında kalır.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">PayTR</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Hazırbulunuşluk: Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>iFrame token üretiminde imza (hash) uyuşmazlığı</li>
+            <li>Bildirim (callback) isteğine beklenen yanıtın dönülmemesi ve tekrarlanan bildirimler</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Token isteğindeki alanların ve imza hesabının adım adım doğrulanması, bildirim işleyicisinin beklenen yanıtı dönecek ve her ödemeyi tek kez işleyecek hale getirilmesi, ödeme ve sipariş kayıtlarının mutabakatı.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Müdahale sınırı:</strong> Ödeme altyapısı, ödeme sayfası ve PayTR hesabı PayTR'ye aittir. Müdahale alanı sizin taraftaki kod: token isteği, bildirimin işlenmesi, siparişin güncellenmesi. Hesap, limit ve komisyon konuları PayTR ile hesap sahibi arasında kalır.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Trendyol API</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Hazırbulunuşluk: Anında SWAT Triyajı — İlk yanıt SEV-1 ≤ 30 dk · SEV-2 ≤ 2 saat</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Hız sınırına takılıp yarıda kalan stok ve fiyat güncellemeleri</li>
+            <li>Toplu işlem sonucu kontrol edilmediği için gönderildi sanılan ama reddedilen ürünler</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> İsteklerin hız sınırına uygun kuyruğa alınması ve artan aralıklarla yeniden denenmesi, toplu işlem sonuçlarının takip edilmesi, sipariş çekiminin kaldığı yerden devam edecek hale getirilmesi, stok mutabakat raporu ve entegrasyon durduğunda uyarı.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Müdahale sınırı:</strong> Pazaryeri, kuralları ve satıcı paneli Trendyol'a aittir. Müdahale alanı mağazanın entegrasyon kodu: kimlik doğrulama, hız sınırına uyum, stok, fiyat ve sipariş eşlemesi, yeniden deneme ve mutabakat. Hazır bir entegratör kullanılıyorsa entegratörün kendi yazılımına müdahale edilmez. Satıcı hesabı işlemleri ve pazaryeri destek talepleri mağaza sahibinde kalır.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Hepsiburada API</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Hazırbulunuşluk: Anında SWAT Triyajı — İlk yanıt SEV-1 ≤ 30 dk · SEV-2 ≤ 2 saat</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Servis anahtarı ya da kullanıcı bilgisi hatası nedeniyle reddedilen istekler</li>
+            <li>Hız sınırına takılıp yarıda kalan stok ve fiyat güncellemeleri</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Kimlik bilgilerinin ve istek biçiminin doğrulanması, isteklerin hız sınırına uygun kuyruğa alınması, ürün eşleşmelerinin listelenip düzeltilmesi, sipariş çekiminin kaldığı yerden devam edecek hale getirilmesi, entegrasyon durduğunda uyarı.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Müdahale sınırı:</strong> Pazaryeri, kuralları ve satıcı paneli Hepsiburada'ya aittir. Müdahale alanı mağazanın entegrasyon kodu: kimlik doğrulama, hız sınırına uyum, stok, fiyat ve sipariş eşlemesi, yeniden deneme ve mutabakat. Hazır bir entegratör kullanılıyorsa entegratörün kendi yazılımına müdahale edilmez. Satıcı hesabı işlemleri ve pazaryeri destek talepleri mağaza sahibinde kalır.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">e-Fatura &amp; e-Arşiv Entegratörleri</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Hazırbulunuşluk: Anında SWAT Triyajı — İlk yanıt SEV-1 ≤ 30 dk · SEV-2 ≤ 2 saat</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Kritik Arıza Noktaları:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Sipariş tamamlandı ama fatura oluşmadı</li>
+            <li>Aynı sipariş için iki fatura</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Sipariş ve fatura kayıtlarının eşlenmesi, fatura isteğinin her sipariş için tek kez gönderilmesi, entegratörün ret yanıtlarının kaydedilip düzeltilmesi, eksik faturaların listelenip yeniden gönderilmesi.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Müdahale sınırı:</strong> Faturayı düzenleyen ve Gelir İdaresi Başkanlığı'na (GİB) ileten, mükellefin anlaştığı özel entegratördür. Müdahale alanı entegratöre giden bağlantı: sipariş–fatura eşlemesi, istek, hata yakalama ve yeniden gönderim. Vergi, mevzuat ve muhasebe görüşü verilmez; bu konular mali müşavirde kalır.</p>
+      </article>
+      
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
@@ -420,6 +618,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> V8 Heap snapshot analizi, Chrome DevTools CPU profiler, Clinic.js alev grafikleri (flamegraphs), libuv thread pool optimizasyonu ve kümeleme (clustering) cerrahisi.</p>
+        
       </article>
       
       
@@ -437,6 +636,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Py-Spy / cProfile ile canlı süreç profillemesi, async/await darboğaz eliminasyonu, Celery prefetch ve concurrency tuning, ORM sorgu optimizasyonu.</p>
+        
       </article>
       
       
@@ -454,6 +654,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> pprof heap/goroutine/mutex dump analizi, Go race detector ile yarış koşulu tespiti, kanal mimarisi refactor'ı ve sync.Pool ile sıfır-tahsis bellek optimizasyonu.</p>
+        
       </article>
       
       
@@ -471,6 +672,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> PHP-FPM pm.max_children ve request_slowlog incelemesi, Laravel Octane (Swoole/RoadRunner) migrasyonu, query indexing ve cache katmanlaması.</p>
+        
       </article>
       
       
@@ -488,6 +690,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> JProfiler / VisualVM heap dump &amp; thread dump analizi, G1GC / ZGC tuning, HikariCP havuz optimizasyonu ve native sorgu izolasyonu.</p>
+        
       </article>
       
       
@@ -505,6 +708,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> SSR/SSG/ISR hibrit mimari dönüşümü, Webpack/Turbopack chunk splitting, dynamic import optimizasyonu ve state re-render izolasyonu.</p>
+        
       </article>
       
       
@@ -522,6 +726,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Nitro sunucu motoru bellek optimizasyonu, SSR data-fetching stratejileri ve composables refactor'ı.</p>
+        
       </article>
       
       
@@ -539,6 +744,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Hermes engine bellek profillemesi, Native module köprü optimizasyonu ve offline-first SQLite senkronizasyonu.</p>
+        
       </article>
       
       
@@ -556,6 +762,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> PgBouncer havuzlama kurulumu, pg_stat_activity ve pg_stat_statements teşhisi, EXPLAIN ANALYZE ile sorgu cerrahisi ve sıfır kesinti indeksleme (CREATE INDEX CONCURRENTLY).</p>
+        
       </article>
       
       
@@ -573,6 +780,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> SHOW ENGINE INNODB STATUS analizi, slow query log cerrahisi, innodb_buffer_pool_size tuning ve read-replica yük dağıtımı.</p>
+        
       </article>
       
       
@@ -590,6 +798,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Slowlog analizi, SCAN migrasyonu, memory policy (volatile-lru) optimizasyonu ve Sentinel/Cluster failover denetimi.</p>
+        
       </article>
       
       
@@ -607,6 +816,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> CurrentOp incelemesi, compound index mimarisi, aggregation memory optimizasyonu ve replica set arbitrajı.</p>
+        
       </article>
       
       
@@ -624,6 +834,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Kubectl event &amp; describe analizi, cgroup limits/requests dengelenmesi, ingress routing onarımı ve zero-downtime rolling update kurtarması.</p>
+        
       </article>
       
       
@@ -641,6 +852,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> CloudWatch metrik/alarm analizi, RDS Performance Insights cerrahisi, ALB routing düzeltmesi ve IAM yetki kilidi açma.</p>
+        
       </article>
       
       
@@ -658,6 +870,7 @@
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> sysctl.conf kernel socket tuning (somaxconn, tcp_tw_reuse), nofile ulimit artırımı, Nginx reverse proxy buffer yapılandırması.</p>
+        
       </article>
       
     </div>
