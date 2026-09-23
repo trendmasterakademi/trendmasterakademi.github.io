@@ -41,7 +41,7 @@ const NotFound = () => {
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
           {isTr ? 'Bu sayfa yok — ama hat açık' : 'This page does not exist — but the desk is open'}
         </h1>
-        <p className="text-sm sm:text-base text-[var(--ink-light)] leading-relaxed max-w-[34rem]">
+        <p className="text-sm sm:text-base text-[var(--ink-2)] leading-relaxed max-w-[34rem]">
           {isTr 
             ? 'Aradığınız adres taşınmış ya da hiç var olmamış olabilir. Acil bir durumdaysanız kriz hattı aşağıda.'
             : 'The address you are looking for may have moved or never existed. If you are facing an emergency, the crisis desk is below.'}
@@ -105,7 +105,7 @@ const NotFound = () => {
               <div className="text-sm font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
                 {isTr ? 'Ana sayfa' : 'Home'}
               </div>
-              <div className="text-xs text-[var(--ink-muted)] mt-0.5">
+              <div className="text-xs text-[var(--ink-3)] mt-0.5">
                 {isTr ? 'B2B Mühendislik Masası & Tanıtım' : 'B2B Engineering Desk & Overview'}
               </div>
             </div>
@@ -120,7 +120,7 @@ const NotFound = () => {
               <div className="text-sm font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
                 {isTr ? 'Teşhis kataloğu — 20 belgelenmiş arıza' : 'Diagnosis catalog — 20 failure patterns'}
               </div>
-              <div className="text-xs text-[var(--ink-muted)] mt-0.5">
+              <div className="text-xs text-[var(--ink-3)] mt-0.5">
                 {isTr ? 'Hata belirtileri ve çözüm adımları' : 'Error symptoms and resolution steps'}
               </div>
             </div>
@@ -135,7 +135,7 @@ const NotFound = () => {
               <div className="text-sm font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
                 {isTr ? 'Sistem Crash Test — 60 saniyede teşhis' : 'System Crash Test — 60s self-check'}
               </div>
-              <div className="text-xs text-[var(--ink-muted)] mt-0.5">
+              <div className="text-xs text-[var(--ink-3)] mt-0.5">
                 {isTr ? 'Altyapı kriz dayanıklılık skoru' : 'Infrastructure crisis resilience score'}
               </div>
             </div>
@@ -144,13 +144,13 @@ const NotFound = () => {
 
           <Link
             to="/sos/"
-            className="p-4 rounded-xl bg-[var(--accent-subtle)] border border-[var(--accent)]/30 hover:border-[var(--accent)] transition-all flex items-center justify-between gap-3 group min-h-[44px]"
+            className="p-4 rounded-xl bg-[var(--accent-wash)] border border-[var(--accent)]/30 hover:border-[var(--accent)] transition-all flex items-center justify-between gap-3 group min-h-[44px]"
           >
             <div>
               <div className="text-sm font-semibold text-[var(--accent)] transition-colors">
                 {isTr ? 'Acil teknik destek' : 'Emergency technical support'}
               </div>
-              <div className="text-xs text-[var(--ink-muted)] mt-0.5">
+              <div className="text-xs text-[var(--ink-3)] mt-0.5">
                 {isTr ? 'Kriz masası ve doğrudan bildirim' : 'Direct response desk dispatch'}
               </div>
             </div>

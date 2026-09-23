@@ -16,17 +16,17 @@ export default function StatusRadar({ lang = "tr" }) {
     <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
       {/* Header */}
       <div className="max-w-5xl mx-auto text-center mb-12">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-3)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
           <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
           {t.hero.badge}
         </div>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[var(--ink)] mb-4">
           {t.hero.title}
         </h1>
-        <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-[34rem] mx-auto mb-4">
+        <p className="text-base sm:text-lg text-[var(--ink-2)] max-w-[34rem] mx-auto mb-4">
           {t.hero.subtitle}
         </p>
-        <p className="text-xs text-[var(--ink-muted)] font-mono">
+        <p className="text-xs text-[var(--ink-3)] font-mono">
           {t.hero.notice}
         </p>
       </div>
@@ -40,7 +40,7 @@ export default function StatusRadar({ lang = "tr" }) {
                 <span className="text-xs font-mono text-[var(--tint-ok-ink)] uppercase tracking-widest block font-bold">
                   {t.systemStatus.label}
                 </span>
-                <span className="text-sm text-[var(--ink-light)] font-mono">
+                <span className="text-sm text-[var(--ink-2)] font-mono">
                   {t.systemStatus.onDutyArchitect} • {t.systemStatus.dutyHours}
                 </span>
               </div>
@@ -48,11 +48,11 @@ export default function StatusRadar({ lang = "tr" }) {
 
             <div className="flex items-center gap-6 border-t sm:border-t-0 sm:border-l border-[var(--rule)] pt-4 sm:pt-0 sm:pl-6 text-xs font-mono">
               <div>
-                <span className="text-[var(--ink-muted)] block uppercase">{isTr ? "Ortalama MTTA (90 Gün)" : "Average MTTA (90 Days)"}</span>
+                <span className="text-[var(--ink-3)] block uppercase">{isTr ? "Ortalama MTTA (90 Gün)" : "Average MTTA (90 Days)"}</span>
                 <span className="text-lg font-bold text-[var(--tint-ok-ink)]">{t.systemStatus.currentMtta}</span>
               </div>
               <div>
-                <span className="text-[var(--ink-muted)] block uppercase">{isTr ? "Taahhüt Edilen (SEV-0)" : "Commitment (SEV-0)"}</span>
+                <span className="text-[var(--ink-3)] block uppercase">{isTr ? "Taahhüt Edilen (SEV-0)" : "Commitment (SEV-0)"}</span>
                 <span className="text-lg font-bold text-[var(--ink)]">{t.systemStatus.targetMtta}</span>
               </div>
             </div>
@@ -62,7 +62,7 @@ export default function StatusRadar({ lang = "tr" }) {
 
       {/* Service Components Health Grid */}
       <div className="max-w-5xl mx-auto mb-12 space-y-4">
-        <h2 className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider">
+        <h2 className="text-xs font-mono text-[var(--ink-3)] uppercase tracking-wider">
           {isTr 
             ? "Mühendislik Masaları & Altyapı · Nöbet saatlerinde erişilebilirlik (09:00–24:00)" 
             : "Service Desks & Infrastructure · Availability during duty hours (09:00–24:00)"}
@@ -71,7 +71,7 @@ export default function StatusRadar({ lang = "tr" }) {
           {t.components.map((comp, idx) => (
             <div
               key={comp.id}
-              className={`bg-[var(--surface)] border border-[var(--rule)] rounded-xl p-5 space-y-3 hover:border-[var(--ink-muted)] transition shadow-sm lg:col-span-2 ${
+              className={`bg-[var(--surface)] border border-[var(--rule)] rounded-xl p-5 space-y-3 hover:border-[var(--ink-3)] transition shadow-sm lg:col-span-2 ${
                 idx === 3 ? "lg:col-start-2" : ""
               } ${idx === 4 ? "md:col-span-2 lg:col-span-2" : ""}`}
             >
@@ -91,9 +91,9 @@ export default function StatusRadar({ lang = "tr" }) {
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-[var(--ink)] tracking-tight">{comp.name}</h3>
-                <p className="text-xs text-[var(--ink-light)] mt-1 leading-relaxed">{comp.desc}</p>
+                <p className="text-xs text-[var(--ink-2)] mt-1 leading-relaxed">{comp.desc}</p>
               </div>
-              <div className="border-t border-[var(--rule)] pt-2 flex justify-between text-xs font-mono text-[var(--ink-muted)]">
+              <div className="border-t border-[var(--rule)] pt-2 flex justify-between text-xs font-mono text-[var(--ink-3)]">
                 <span>{comp.latencyLabel || (isTr ? "Yanıt" : "Response")}:</span>
                 <span className="text-[var(--ink)] font-semibold">{comp.latency}</span>
               </div>
@@ -106,7 +106,7 @@ export default function StatusRadar({ lang = "tr" }) {
       <div className="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 mb-6">
         {/* Telemetry Metrics */}
         <div className="lg:col-span-6 space-y-4">
-          <h2 className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider">
+          <h2 className="text-xs font-mono text-[var(--ink-3)] uppercase tracking-wider">
             {t.telemetry90Days.title}
           </h2>
           <div className="grid grid-cols-2 gap-3">
@@ -117,7 +117,7 @@ export default function StatusRadar({ lang = "tr" }) {
                   idx === 0 ? "col-span-2" : "col-span-1"
                 }`}
               >
-                <span className="text-xs font-mono text-[var(--ink-muted)] block uppercase">
+                <span className="text-xs font-mono text-[var(--ink-3)] block uppercase">
                   {m.label}
                 </span>
                 <span className="text-2xl font-bold font-mono text-[var(--ink)] block">
@@ -133,7 +133,7 @@ export default function StatusRadar({ lang = "tr" }) {
 
         {/* Incident Distribution Radar */}
         <div className="lg:col-span-6 space-y-4">
-          <h2 className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider">
+          <h2 className="text-xs font-mono text-[var(--ink-3)] uppercase tracking-wider">
             {t.incidentDistribution.title}
           </h2>
           <div className="bg-[var(--surface)] border border-[var(--rule)] rounded-xl p-5 space-y-4 shadow-sm">
@@ -157,7 +157,7 @@ export default function StatusRadar({ lang = "tr" }) {
 
       {/* Source Note with SLA link */}
       <div className="max-w-5xl mx-auto mb-12">
-        <div className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+        <div className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
           <span>{t.telemetry90Days.sourceNote}</span>
           <Link
             to="/sla/"
@@ -187,7 +187,7 @@ export default function StatusRadar({ lang = "tr" }) {
             {isTr ? "Kıdemli Triyaj Masasına Bağlan" : "Schedule Direct Triage Desk"}
           </a>
         </div>
-        <p className="text-xs text-[var(--ink-muted)] font-mono mt-3">
+        <p className="text-xs text-[var(--ink-3)] font-mono mt-3">
           {isTr
             ? "SEV-0/1 krizlerinde satış temsilcisi olmadan doğrudan sistem mimarı masaya bağlanır"
             : "SEV-0/1 incidents are escalated instantly • Zero sales middleman"}

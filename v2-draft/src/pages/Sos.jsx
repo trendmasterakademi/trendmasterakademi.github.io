@@ -33,7 +33,7 @@ const Sos = () => {
         >
           <ArrowLeft className="w-4 h-4" /> {isTr ? '← Ana Sayfaya Dön' : '← Back to Home'}
         </Link>
-        <div className="flex items-center gap-2 text-xs font-mono text-[var(--ink-muted)] mb-3">
+        <div className="flex items-center gap-2 text-xs font-mono text-[var(--ink-3)] mb-3">
           <Link to="/" className="hover:text-[var(--ink)] transition-colors min-h-[44px] inline-flex items-center">{isTr ? 'Ana Sayfa' : 'Home'}</Link>
           <span>/</span>
           <span className="text-[var(--accent)] font-semibold">{isTr ? 'Acil Teknik Destek' : 'Emergency Technical Support'}</span>
@@ -42,14 +42,14 @@ const Sos = () => {
 
       {/* Header & h1 */}
       <header className="space-y-4 mb-8">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded text-xs font-mono bg-[var(--accent-soft)] border border-[var(--accent)] text-[var(--accent)] font-semibold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded text-xs font-mono bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-semibold">
           <AlertTriangle className="w-3.5 h-3.5" />
           <span>{isTr ? 'KRİZ MASASI // EMERGENCY DISPATCH' : 'CRISIS DESK // EMERGENCY DISPATCH'}</span>
         </div>
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold font-serif text-[var(--ink)] tracking-tight leading-tight">
           {sosH1[isTr ? 'tr' : 'en']}
         </h1>
-        <p className="text-sm sm:text-base text-[var(--ink-muted)] leading-relaxed max-w-[34rem]">
+        <p className="text-sm sm:text-base text-[var(--ink-3)] leading-relaxed max-w-[34rem]">
           {isTr 
             ? 'Burası ajansların imdat butonu. Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa doğrudan buraya yazın. İlk teşhis ücretsizdir.'
             : 'If your agency’s live system is down, deadline is burning, or inherited codebase won’t start, reach out directly. Initial diagnosis is free.'}
@@ -114,23 +114,23 @@ const Sos = () => {
         </h2>
         <ol className="space-y-3.5 text-sm sm:text-base text-[var(--ink)]">
           <li className="flex items-start gap-3">
-            <span className="w-6 h-6 rounded bg-[var(--accent-soft)] text-[var(--accent)] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-semibold">1</span>
+            <span className="w-6 h-6 rounded bg-[var(--accent-wash)] text-[var(--accent)] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-semibold">1</span>
             <span>{isTr ? 'Ajans adı ve size ulaşılacak numara' : 'Agency name and your direct contact number'}</span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-6 h-6 rounded bg-[var(--accent-soft)] text-[var(--accent)] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-semibold">2</span>
+            <span className="w-6 h-6 rounded bg-[var(--accent-wash)] text-[var(--accent)] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-semibold">2</span>
             <span>{isTr ? 'Ne oldu: hata ekranı, hata satırı ya da sistemin davranışı' : 'What happened: error screen, error line, or unexpected system behavior'}</span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-6 h-6 rounded bg-[var(--accent-soft)] text-[var(--accent)] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-semibold">3</span>
+            <span className="w-6 h-6 rounded bg-[var(--accent-wash)] text-[var(--accent)] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-semibold">3</span>
             <span>{isTr ? 'Ne zaman başladı ve o sırada ne değişti (yayın, güncelleme, ödeme sağlayıcı)' : 'When it started and what changed at that time (deploy, update, payment gateway)'}</span>
           </li>
           <li className="flex items-start gap-3">
-            <span className="w-6 h-6 rounded bg-[var(--accent-soft)] text-[var(--accent)] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-semibold">4</span>
+            <span className="w-6 h-6 rounded bg-[var(--accent-wash)] text-[var(--accent)] font-mono text-xs flex items-center justify-center flex-shrink-0 mt-0.5 font-semibold">4</span>
             <span>{isTr ? 'Erişim var mı: sunucu, repo, panel — yoksa da yazın, teşhis için şart değil' : 'Access status: server, repo, dashboard — reach out even if unavailable, not required for initial diagnosis'}</span>
           </li>
         </ol>
-        <div className="pt-4 border-t border-[var(--rule)] flex items-center gap-2 text-xs sm:text-sm text-[var(--ink-muted)] italic">
+        <div className="pt-4 border-t border-[var(--rule)] flex items-center gap-2 text-xs sm:text-sm text-[var(--ink-3)] italic">
           <ShieldCheck className="w-4 h-4 text-[var(--tint-ok-ink)] flex-shrink-0" />
           <span>{isTr ? 'İlk teşhis için şifre ya da repo erişimi istemiyoruz.' : 'We do not require passwords or repository access for the initial diagnosis.'}</span>
         </div>

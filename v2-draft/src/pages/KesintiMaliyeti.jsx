@@ -130,7 +130,7 @@ const KesintiMaliyeti = () => {
             {downtimeCostH1[isTr ? 'tr' : 'en']}
           </h1>
 
-          <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed">
+          <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
             {isTr 
               ? 'Sistem çöktüğünde veya sipariş akışı tıkandığında geçen sürenin doğrudan ciro kaybını şeffaf matematikle hesaplayın.' 
               : 'Estimate direct revenue loss during live production outages with transparent, verifiable arithmetic.'}
@@ -146,7 +146,7 @@ const KesintiMaliyeti = () => {
             {/* Input 1: Monthly Revenue or Daily Orders */}
             <div className="p-6 sm:p-7 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 shadow-sm">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <label className="text-sm font-mono uppercase text-[var(--ink-muted)] font-semibold block">
+                <label className="text-sm font-mono uppercase text-[var(--ink-3)] font-semibold block">
                   1. {isTr ? 'Aylık Ciro veya Sipariş Hacmi' : 'Monthly Revenue or Order Volume'}
                 </label>
                 <div className="flex items-center gap-1.5 bg-[var(--paper)] p-1 rounded-xl border border-[var(--rule)] text-xs font-mono">
@@ -154,7 +154,7 @@ const KesintiMaliyeti = () => {
                     type="button"
                     onClick={() => { setInputMode('tier'); setDailyOrders(''); }}
                     className={`px-3 py-1.5 min-h-[44px] rounded-lg transition-colors cursor-pointer ${
-                      inputMode !== 'orders' ? 'bg-[var(--accent)] text-[var(--on-accent)] font-semibold' : 'text-[var(--ink-light)] hover:text-[var(--ink)]'
+                      inputMode !== 'orders' ? 'bg-[var(--accent)] text-[var(--on-accent)] font-semibold' : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
                     }`}
                   >
                     {isTr ? 'Aylık Ciro' : 'Monthly Revenue'}
@@ -163,7 +163,7 @@ const KesintiMaliyeti = () => {
                     type="button"
                     onClick={() => { setInputMode('orders'); setCustomRevenue(''); }}
                     className={`px-3 py-1.5 min-h-[44px] rounded-lg transition-colors cursor-pointer ${
-                      inputMode === 'orders' ? 'bg-[var(--accent)] text-[var(--on-accent)] font-semibold' : 'text-[var(--ink-light)] hover:text-[var(--ink)]'
+                      inputMode === 'orders' ? 'bg-[var(--accent)] text-[var(--on-accent)] font-semibold' : 'text-[var(--ink-2)] hover:text-[var(--ink)]'
                     }`}
                   >
                     {isTr ? 'Günlük Sipariş' : 'Daily Orders'}
@@ -175,7 +175,7 @@ const KesintiMaliyeti = () => {
                 /* Daily Orders Mode */
                 <div className="space-y-3 pt-1">
                   <div>
-                    <label className="text-xs text-[var(--ink-light)] mb-1.5 block">
+                    <label className="text-xs text-[var(--ink-2)] mb-1.5 block">
                       {isTr ? 'Tahmini Günlük Sipariş Adedi:' : 'Estimated Daily Orders:'}
                     </label>
                     <input
@@ -186,18 +186,18 @@ const KesintiMaliyeti = () => {
                       className="w-full px-4 py-3 rounded-xl bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] text-sm focus:border-[var(--accent)] focus:outline-none font-mono"
                     />
                   </div>
-                  <div className="p-3.5 rounded-xl bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-light)] leading-relaxed font-mono">
+                  <div className="p-3.5 rounded-xl bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-2)] leading-relaxed font-mono">
                     {isTr ? (
                       <>
                         Hesaplanan Aylık Ciro: <strong className="text-[var(--ink)]">{formatCurrency(monthlyRev)}</strong>
-                        <span className="block text-xs text-[var(--ink-muted)] mt-1 font-sans">
+                        <span className="block text-xs text-[var(--ink-3)] mt-1 font-sans">
                           * Ortalama sepet ₺1.268 — T.C. Ticaret Bakanlığı ETBİS 2025 verisinden: ₺2,46 trilyon perakende e-ticaret hacmi ÷ 1,94 milyar işlem.
                         </span>
                       </>
                     ) : (
                       <>
                         Calculated Monthly Revenue: <strong className="text-[var(--ink)]">{formatCurrency(monthlyRev)}</strong>
-                        <span className="block text-xs text-[var(--ink-muted)] mt-1 font-sans">
+                        <span className="block text-xs text-[var(--ink-3)] mt-1 font-sans">
                           * Average basket ₺1,268 — from Ministry of Commerce ETBİS 2025 data: ₺2.46 trillion retail e-commerce volume ÷ 1.94 billion transactions.
                         </span>
                       </>
@@ -215,8 +215,8 @@ const KesintiMaliyeti = () => {
                         onClick={() => { setSelectedTier(t.id); setCustomRevenue(''); setInputMode('tier'); }}
                         className={`py-3 px-4 rounded-xl border text-xs sm:text-sm font-semibold text-left transition-all cursor-pointer min-h-[48px] ${
                           selectedTier === t.id && !customRevenue && inputMode === 'tier'
-                            ? 'bg-[var(--accent-subtle)] border-[var(--accent)] text-[var(--accent)]'
-                            : 'bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-light)] hover:bg-[var(--surface)] hover:text-[var(--ink)]'
+                            ? 'bg-[var(--accent-wash)] border-[var(--accent)] text-[var(--accent)]'
+                            : 'bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] hover:bg-[var(--surface)] hover:text-[var(--ink)]'
                         }`}
                       >
                         {t.label}
@@ -239,7 +239,7 @@ const KesintiMaliyeti = () => {
             {/* Input 2: Duration Slider */}
             <div className="p-6 sm:p-7 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 shadow-sm">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-mono uppercase text-[var(--ink-muted)] font-semibold">
+                <label className="text-sm font-mono uppercase text-[var(--ink-3)] font-semibold">
                   2. {isTr ? 'Tahmini Kesinti Süresi' : 'Estimated Outage Duration'}
                 </label>
                 <span className="text-lg font-bold font-mono text-[var(--accent)]">
@@ -255,7 +255,7 @@ const KesintiMaliyeti = () => {
                 onChange={e => setDurationHours(parseInt(e.target.value))}
                 className="w-full h-2 bg-[var(--rule)] rounded-lg appearance-none cursor-pointer accent-[var(--accent)]"
               />
-              <div className="flex justify-between text-xs font-mono text-[var(--ink-muted)]">
+              <div className="flex justify-between text-xs font-mono text-[var(--ink-3)]">
                 <span>1 Saat</span>
                 <span>12 Saat</span>
                 <span>24 Saat</span>
@@ -266,11 +266,11 @@ const KesintiMaliyeti = () => {
             {/* Input 3: Peak Factor (Visible and Adjustable) */}
             <div className="p-6 sm:p-7 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 shadow-sm">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <label className="text-sm font-mono uppercase text-[var(--ink-muted)] font-semibold">
+                <label className="text-sm font-mono uppercase text-[var(--ink-3)] font-semibold">
                   3. {isTr ? 'Zirve Katsayısı (Trafik Yoğunluğu)' : 'Peak Factor (Traffic Intensity)'}
                 </label>
                 <div className="flex items-center gap-2">
-                  <span className="text-xs text-[var(--ink-muted)] font-mono">{isTr ? 'Katsayı:' : 'Multiplier:'}</span>
+                  <span className="text-xs text-[var(--ink-3)] font-mono">{isTr ? 'Katsayı:' : 'Multiplier:'}</span>
                   <input
                     type="number"
                     step="0.1"
@@ -293,8 +293,8 @@ const KesintiMaliyeti = () => {
                       onClick={() => setPeakFactor(preset.factor)}
                       className={`py-2 px-3 rounded-xl border text-xs font-semibold text-center transition-all cursor-pointer min-h-[48px] flex flex-col justify-center items-center gap-0.5 ${
                         isSelected
-                          ? 'bg-[var(--accent-subtle)] border-[var(--accent)] text-[var(--accent)]'
-                          : 'bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-light)] hover:bg-[var(--surface)] hover:text-[var(--ink)]'
+                          ? 'bg-[var(--accent-wash)] border-[var(--accent)] text-[var(--accent)]'
+                          : 'bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] hover:bg-[var(--surface)] hover:text-[var(--ink)]'
                       }`}
                     >
                       <span>{preset.label[isTr ? 'tr' : 'en']}</span>
@@ -304,7 +304,7 @@ const KesintiMaliyeti = () => {
                 })}
               </div>
 
-              <p className="text-xs text-[var(--ink-muted)] leading-relaxed italic">
+              <p className="text-xs text-[var(--ink-3)] leading-relaxed italic">
                 {isTr 
                   ? 'Bu bir varsayımdır. Kendi trafik dağılımınızı biliyorsanız değiştirin.' 
                   : 'This is an assumption. Adjust if you know your specific traffic distribution.'}
@@ -322,20 +322,20 @@ const KesintiMaliyeti = () => {
                   <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
                   {isTr ? 'TAHMİNİ KAYIP ANALİZİ' : 'ESTIMATED LOSS BLUEPRINT'}
                 </span>
-                <span className="text-xs font-mono px-2 py-0.5 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--ink-muted)] border border-[var(--rule)]">
+                <span className="text-xs font-mono px-2 py-0.5 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--ink-3)] border border-[var(--rule)]">
                   {durationHours} {isTr ? 'Saatlik Simülasyon' : 'Hour Simulation'}
                 </span>
               </div>
 
               {/* Total Estimated Loss Hero */}
               <div className="space-y-1 text-center sm:text-left">
-                <span className="text-xs font-mono uppercase text-[var(--ink-muted)] block">
+                <span className="text-xs font-mono uppercase text-[var(--ink-3)] block">
                   {isTr ? 'Tahmini Doğrudan Ciro Kaybı' : 'Estimated Direct Revenue Loss'}
                 </span>
                 <strong className="text-3xl sm:text-4xl font-bold font-mono text-[var(--accent)] block tracking-tight">
                   {formatCurrency(directLoss)}
                 </strong>
-                <span className="text-xs text-[var(--ink-muted)] font-mono block pt-0.5">
+                <span className="text-xs text-[var(--ink-3)] font-mono block pt-0.5">
                   {isTr 
                     ? `(${durationHours} saat × ${formatCurrency(hourlyRev)} / saat × ${peakFactor.toFixed(1).replace('.', ',')}x)`
                     : `(${durationHours} hrs × ${formatCurrency(hourlyRev)} / hr × ${peakFactor.toFixed(1)}x)`}
@@ -344,19 +344,19 @@ const KesintiMaliyeti = () => {
 
               {/* Step-by-Step Arithmetic Table */}
               <div className="space-y-3 pt-3 text-xs sm:text-sm font-mono border-t border-[var(--rule)]">
-                <div className="flex justify-between items-center text-[var(--ink-light)]">
+                <div className="flex justify-between items-center text-[var(--ink-2)]">
                   <span>{isTr ? 'Aylık ciro' : 'Monthly revenue'}</span>
                   <span className="font-semibold text-[var(--ink)]">{formatCurrency(monthlyRev)}</span>
                 </div>
-                <div className="flex justify-between items-center text-[var(--ink-light)]">
+                <div className="flex justify-between items-center text-[var(--ink-2)]">
                   <span>{isTr ? 'Saat başına  (÷ 730 saat)' : 'Per hour  (÷ 730 hours)'}</span>
                   <span className="font-semibold text-[var(--ink)]">{formatCurrency(hourlyRev)}</span>
                 </div>
-                <div className="flex justify-between items-center text-[var(--ink-light)]">
+                <div className="flex justify-between items-center text-[var(--ink-2)]">
                   <span>{isTr ? 'Kesinti süresi' : 'Outage duration'}</span>
                   <span className="font-semibold text-[var(--ink)]">{durationHours} {isTr ? 'saat' : 'hours'}</span>
                 </div>
-                <div className="flex justify-between items-center text-[var(--ink-light)]">
+                <div className="flex justify-between items-center text-[var(--ink-2)]">
                   <span className="text-xs">
                     {isTr ? 'Zirve katsayısı  (varsayım · değiştirilebilir)' : 'Peak factor  (assumption · adjustable)'}
                   </span>
@@ -403,7 +403,7 @@ const KesintiMaliyeti = () => {
         </div>
 
         {/* Section 3: Transparent Formula & Calculation Methodology */}
-        <div className="p-6 sm:p-8 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 text-xs sm:text-sm text-[var(--ink-light)]">
+        <div className="p-6 sm:p-8 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 text-xs sm:text-sm text-[var(--ink-2)]">
           <div className="flex items-center gap-2 text-[var(--ink)] font-semibold">
             <Info className="w-4 h-4 text-[var(--accent)]" />
             <h3 className="text-base font-serif font-semibold text-[var(--ink)]">
@@ -419,7 +419,7 @@ const KesintiMaliyeti = () => {
             </code>
           </div>
 
-          <div className="space-y-3 leading-relaxed text-[var(--ink-light)] text-xs sm:text-sm">
+          <div className="space-y-3 leading-relaxed text-[var(--ink-2)] text-xs sm:text-sm">
             <p>
               {isTr 
                 ? 'Bu hesap tek bir formülden ibarettir: aylık cironuz 730 saate bölünür, kesinti süresiyle ve seçtiğiniz zirve katsayısıyla çarpılır. Gizli çarpan yoktur; yukarıdaki her adım ekranda görünür ve katsayıyı siz değiştirirsiniz.'

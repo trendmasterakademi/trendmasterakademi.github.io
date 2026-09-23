@@ -198,7 +198,7 @@ const Agency = () => {
             </span>
           </h1>
 
-          <p className="text-base sm:text-lg md:text-xl text-[var(--ink-secondary)] leading-relaxed mb-10 max-w-[34rem] mx-auto font-normal">
+          <p className="text-base sm:text-lg md:text-xl text-[var(--ink-2)] leading-relaxed mb-10 max-w-[34rem] mx-auto font-normal">
             {isTr 
               ? 'Bir projede teknik olarak tıkandığınızda, ekibinizin kapasitesi dolduğunda, teslim tarihi yaklaştığında veya müşterinizin talebi mevcut uzmanlık alanınızın dışına çıktığında güvenilir teknik çözüm ortağınız ve kriz kurtarma ekibiniziz.' 
               : 'When you are technically blocked, when your team is over capacity, when deadlines loom, or when client requirements exceed your internal stack — we are your reliable technical partner and crisis SWAT force.'}
@@ -231,7 +231,7 @@ const Agency = () => {
                 <ShieldCheck className="w-5 h-5" />
                 <span className="font-semibold text-xs sm:text-sm uppercase font-mono">%100 White-Label</span>
               </div>
-              <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'Sizin müşteriniz, sizin logonuz; arka plandaki görünmez güç biziz.' : 'Your client, your brand; we operate purely as your invisible engineering backline.'}
               </p>
             </div>
@@ -241,7 +241,7 @@ const Agency = () => {
                 <Lock className="w-5 h-5" />
                 <span className="font-semibold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Resmi NDA / Gizlilik' : 'Mutual Legal NDA'}</span>
               </div>
-              <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'Tüm kaynak kod, veri ve müşteri ilişkileri yasal sözleşme korumasında.' : 'All source code, data, and client relations are protected under strict NDA.'}
               </p>
             </div>
@@ -251,7 +251,7 @@ const Agency = () => {
                 <Clock className="w-5 h-5" />
                 <span className="font-semibold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Hızlı SWAT Triyajı' : 'Rapid SWAT Triage'}</span>
               </div>
-              <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'Kriz hattı her gün 09:00 – 24:00 açık; canlı kesintilerde ilk yanıt taahhüdü 15 dakika.' : 'Response desk open daily 09:00 – 24:00; first-response commitment for live outages 15 minutes.'}
               </p>
             </div>
@@ -261,7 +261,7 @@ const Agency = () => {
                 <FileCode className="w-5 h-5" />
                 <span className="font-semibold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Temiz Kod Devri' : 'Clean Code Handover'}</span>
               </div>
-              <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'Dokümante edilmiş, bağımsız, sürdürülebilir tam mülkiyet teslimi.' : 'Documented, modular, tested code with 100% intellectual property transfer.'}
               </p>
             </div>
@@ -280,7 +280,7 @@ const Agency = () => {
                 ? 'Müşterinizle aranıza girmek için değil; arkanızdaki teknik gücü büyütmek için buradayız.' 
                 : 'Not to step between you and your client; but to multiply your technical power from behind.'}
             </h2>
-            <div className="space-y-4 text-[var(--ink-secondary)] text-base sm:text-lg leading-relaxed">
+            <div className="space-y-4 text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
               <p>
                 {isTr 
                   ? 'Ajansların zaman zaman karşılaştığı çok tanıdık bir problemi biliyoruz: Müşteri vardır, proje alınmıştır, tasarım hazırlanmıştır; ancak bir noktada özel bir backend geliştirmesi, karmaşık bir API entegrasyonu, performans problemi, yarım bırakılmış bir kod tabanı, ödeme altyapısı veya ekibin kapasitesini aşan teknik bir ihtiyaç ortaya çıkar.' 
@@ -291,7 +291,7 @@ const Agency = () => {
                   ? 'Ajans tarafında teknik bir iş outsource edildiğinde en büyük problemin yalnızca kod yazılması olmadığını biliyoruz. İletişim kopukluğu, teslim tarihlerinin sürekli ötelenmesi, dokümantasyonsuz kod veya teslimden sonra ulaşılamayan kişiler ajansın itibarını riske atar.' 
                   : 'We understand that outsourcing technical work involves more than code. Poor communication, missed deadlines, spaghetti code, and unresponsive developers risk your agency’s hard-earned client reputation.'}
               </p>
-              <p className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed">
+              <p className="text-[var(--ink-2)] text-sm sm:text-base leading-relaxed">
                 {isTr 
                   ? 'Bu nedenle çalışma modelimizi %100 şeffaf tutuyor; doğrudan kıdemli mühendislik masamız üzerinden hızlı, güvenilir ve sürdürülebilir çözümler üretiyoruz.' 
                   : 'That’s why our model is 100% transparent, executing directly via our senior engineering desk with speed and dependable code.'}
@@ -328,7 +328,7 @@ const Agency = () => {
                       {sq.quote[isTr ? 'tr' : 'en']}
                     </p>
                   </div>
-                  <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs sm:text-sm text-[var(--ink-secondary)]">
+                  <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs sm:text-sm text-[var(--ink-2)]">
                     <span>{isTr ? 'TMA Çözüm Modeli' : 'TMA Solution'}</span>
                     <span className="text-[var(--accent)] font-mono font-semibold">{arrowText}</span>
                   </div>
@@ -367,7 +367,7 @@ const Agency = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Ajansınıza güç katabileceğimiz başlıca alanlar' : 'Where we empower your agency'}
             </h2>
-            <p className="text-[var(--ink-secondary)] text-base sm:text-lg mt-3 leading-relaxed">
+            <p className="text-[var(--ink-2)] text-base sm:text-lg mt-3 leading-relaxed">
               {isTr 
                 ? 'Modern frontend mimarilerinden karmaşık backend, AI otomasyonları ve kriz hotfix müdahalelerine kadar tam kapsamlı mühendislik.' 
                 : 'Comprehensive full-stack engineering from modern frontend stacks to complex backends, AI automations, and crisis hotfixes.'}
@@ -382,13 +382,13 @@ const Agency = () => {
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span lang="en" className="text-xs font-mono uppercase px-2.5 py-1 rounded bg-[var(--paper)] text-[var(--ink-secondary)] font-semibold border border-[var(--rule)]">
+                    <span lang="en" className="text-xs font-mono uppercase px-2.5 py-1 rounded bg-[var(--paper)] text-[var(--ink-2)] font-semibold border border-[var(--rule)]">
                       {cap.cat}
                     </span>
                     <span className="text-xs font-mono text-[var(--accent)] font-semibold">#{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
                   </div>
                   <h3 className="text-base font-serif font-semibold text-[var(--ink)] mb-2 leading-snug">{cap.title[isTr ? 'tr' : 'en']}</h3>
-                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">{cap.desc[isTr ? 'tr' : 'en']}</p>
+                  <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">{cap.desc[isTr ? 'tr' : 'en']}</p>
                 </div>
               </div>
             ))}
@@ -434,7 +434,7 @@ const Agency = () => {
                   {p.step}
                 </span>
                 <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)]">{p.title[isTr ? 'tr' : 'en']}</h3>
-                <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">{p.desc[isTr ? 'tr' : 'en']}</p>
+                <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">{p.desc[isTr ? 'tr' : 'en']}</p>
               </div>
             ))}
           </div>
@@ -449,7 +449,7 @@ const Agency = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Ajanslar Adına Kurtarılan & Teslim Edilen Projeler' : 'Rescued & Delivered on Behalf of Partner Agencies'}
             </h2>
-            <p className="text-sm sm:text-base text-[var(--ink-secondary)] mt-4 leading-relaxed max-w-[34rem] mx-auto">
+            <p className="text-sm sm:text-base text-[var(--ink-2)] mt-4 leading-relaxed max-w-[34rem] mx-auto">
               {isTr 
                 ? 'Bu sayfada hiçbir müşterinin adı yazmıyor — sizinki de yazmayacak. Anlatılan senaryolar yürüttüğümüz gerçek projelerden alınmıştır; kimliğe dair her ayrıntı çıkarılmıştır.' 
                 : 'No client is named on this page — and yours never will be. These scenarios are drawn from real engagements; every identifying detail has been removed.'}
@@ -473,7 +473,7 @@ const Agency = () => {
                   <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--tint-danger-bg)] text-[var(--tint-danger-ink)] border border-[var(--tint-danger-rule)]">
                     {isTr ? 'Lansman T-24H Kriz SWAT' : 'Launch T-24H SWAT Hotfix'}
                   </span>
-                  <span className="text-xs font-mono text-[var(--ink-muted)]">2.5 {isTr ? 'Saat' : 'Hours'}</span>
+                  <span className="text-xs font-mono text-[var(--ink-3)]">2.5 {isTr ? 'Saat' : 'Hours'}</span>
                 </div>
                 <h3 className="text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                   {isTr ? 'PostgreSQL Deadlock & Ödeme Webhook Kopması' : 'PostgreSQL Deadlock & Payment Webhook Break'}
@@ -481,7 +481,7 @@ const Agency = () => {
                 <div className="text-xs font-mono text-[var(--accent)]">
                   Next.js · Node.js · PostgreSQL · Redis · Stripe / iyzico
                 </div>
-                <div className="space-y-2 text-xs sm:text-sm text-[var(--ink-secondary)]">
+                <div className="space-y-2 text-xs sm:text-sm text-[var(--ink-2)]">
                   <p className="border-l-2 border-[var(--tint-danger-rule)] pl-3">
                     <strong className="text-[var(--ink)] block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
                     {isTr 
@@ -497,8 +497,8 @@ const Agency = () => {
                 </div>
               </div>
               <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs font-mono">
-                <span className="text-[var(--ink-secondary)]">{isTr ? 'Kayıp Oranı:' : 'Loss Rate:'} <strong className="text-[var(--tint-ok-ink)]">%0</strong></span>
-                <span className="text-[var(--ink-secondary)]">{isTr ? 'Mülkiyet:' : 'Ownership:'} <strong className="text-[var(--ink)] font-semibold">%100 Ajans</strong></span>
+                <span className="text-[var(--ink-2)]">{isTr ? 'Kayıp Oranı:' : 'Loss Rate:'} <strong className="text-[var(--tint-ok-ink)]">%0</strong></span>
+                <span className="text-[var(--ink-2)]">{isTr ? 'Mülkiyet:' : 'Ownership:'} <strong className="text-[var(--ink)] font-semibold">%100 Ajans</strong></span>
               </div>
             </div>
 
@@ -509,7 +509,7 @@ const Agency = () => {
                   <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--tint-warn-bg)] text-[var(--tint-warn-ink)] border border-[var(--tint-warn-rule)]">
                     {isTr ? 'Yarım Kalan Repo Devralma' : 'Abandoned Codebase Takeover'}
                   </span>
-                  <span className="text-xs font-mono text-[var(--ink-muted)]">6 {isTr ? 'Gün Sprint' : 'Days Sprint'}</span>
+                  <span className="text-xs font-mono text-[var(--ink-3)]">6 {isTr ? 'Gün Sprint' : 'Days Sprint'}</span>
                 </div>
                 <h3 className="text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                   {isTr ? 'Geliştirici Ayrılığı Sonrası B2B SaaS Mimarisi' : 'B2B SaaS Platform Takeover Post-Dev Departure'}
@@ -517,7 +517,7 @@ const Agency = () => {
                 <div className="text-xs font-mono text-[var(--accent)]">
                   React · Python / FastAPI · PostgreSQL · Docker · AWS
                 </div>
-                <div className="space-y-2 text-xs sm:text-sm text-[var(--ink-secondary)]">
+                <div className="space-y-2 text-xs sm:text-sm text-[var(--ink-2)]">
                   <p className="border-l-2 border-[var(--tint-warn-rule)] pl-3">
                     <strong className="text-[var(--ink)] block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
                     {isTr 
@@ -533,8 +533,8 @@ const Agency = () => {
                 </div>
               </div>
               <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs font-mono">
-                <span className="text-[var(--ink-secondary)]">{isTr ? 'Teslimat:' : 'Delivery:'} <strong className="text-[var(--tint-ok-ink)]">Zamanında</strong></span>
-                <span className="text-[var(--ink-secondary)]">{isTr ? 'Dokümantasyon:' : 'Docs:'} <strong className="text-[var(--ink)] font-semibold">Swagger UI</strong></span>
+                <span className="text-[var(--ink-2)]">{isTr ? 'Teslimat:' : 'Delivery:'} <strong className="text-[var(--tint-ok-ink)]">Zamanında</strong></span>
+                <span className="text-[var(--ink-2)]">{isTr ? 'Dokümantasyon:' : 'Docs:'} <strong className="text-[var(--ink)] font-semibold">Swagger UI</strong></span>
               </div>
             </div>
 
@@ -545,7 +545,7 @@ const Agency = () => {
                   <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--tint-info-bg)] text-[var(--tint-info-ink)] border border-[var(--tint-info-rule)]">
                     {isTr ? 'Trafik & API Ölçekleme' : 'Traffic & Scale Triaging'}
                   </span>
-                  <span className="text-xs font-mono text-[var(--ink-muted)]">14 {isTr ? 'Saat' : 'Hours'}</span>
+                  <span className="text-xs font-mono text-[var(--ink-3)]">14 {isTr ? 'Saat' : 'Hours'}</span>
                 </div>
                 <h3 className="text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                   {isTr ? '150K+ Anlık Trafikte Gateway 504 Darboğazı' : '150K+ Concurrent Traffic Gateway 504 Bottleneck'}
@@ -553,7 +553,7 @@ const Agency = () => {
                 <div className="text-xs font-mono text-[var(--accent)]">
                   Flutter · Node.js · MongoDB · Socket.io · AWS Lambda
                 </div>
-                <div className="space-y-2 text-xs sm:text-sm text-[var(--ink-secondary)]">
+                <div className="space-y-2 text-xs sm:text-sm text-[var(--ink-2)]">
                   <p className="border-l-2 border-[var(--tint-info-rule)] pl-3">
                     <strong className="text-[var(--ink)] block">{isTr ? 'Kriz:' : 'Crisis:'}</strong>
                     {isTr 
@@ -569,8 +569,8 @@ const Agency = () => {
                 </div>
               </div>
               <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs font-mono">
-                <span className="text-[var(--ink-secondary)]">{isTr ? 'Yanıt Süresi:' : 'Latency:'} <strong className="text-[var(--tint-ok-ink)]">4.2s → 120ms</strong></span>
-                <span className="text-[var(--ink-secondary)]">{isTr ? 'Uptime:' : 'Uptime:'} <strong className="text-[var(--ink)] font-semibold">%99.98</strong></span>
+                <span className="text-[var(--ink-2)]">{isTr ? 'Yanıt Süresi:' : 'Latency:'} <strong className="text-[var(--tint-ok-ink)]">4.2s → 120ms</strong></span>
+                <span className="text-[var(--ink-2)]">{isTr ? 'Uptime:' : 'Uptime:'} <strong className="text-[var(--ink)] font-semibold">%99.98</strong></span>
               </div>
             </div>
           </div>
@@ -605,7 +605,7 @@ const Agency = () => {
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {isTr ? 'İlk teşhis ücretsizdir — ve yüzeysel değildir.' : "The initial diagnosis is free — and it isn't superficial."}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                     {isTr 
                       ? 'Kod tabanını, altyapıyı ve devir durumunu inceler; sorunun gerçekte nerede olduğunu, ne gerektirdiğini ve ne kadar süreceğini yazılı olarak iletiriz. Bu aşamada ücret talep edilmez, taahhüt istenmez.' 
                       : 'We review the codebase, the infrastructure and the handover state, then set out in writing where the fault actually is, what it takes to fix, and how long it will take. No fee, no commitment at this stage.'}
@@ -617,7 +617,7 @@ const Agency = () => {
               <div className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] relative flex flex-col justify-between space-y-6 shadow-sm">
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--paper)] text-[var(--ink-secondary)] border border-[var(--rule)]">
+                    <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--paper)] text-[var(--ink-2)] border border-[var(--rule)]">
                       {isTr ? 'PLANLI İŞLER' : 'PLANNED WORK'}
                     </span>
                     <span className="text-xs font-mono font-semibold text-[var(--tint-danger-ink)] bg-[var(--tint-danger-bg)] px-2.5 py-1 rounded-lg border border-[var(--tint-danger-rule)]">
@@ -627,7 +627,7 @@ const Agency = () => {
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {isTr ? 'Bedel teşhisten sonra belirlenir.' : 'The fee follows the diagnosis.'}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                     {isTr 
                       ? <>Devralma, kapasite takviyesi ve mimari işlerde kapsam netleştikten sonra sabit teklif iletilir; çalışma başlamadan önce bedel yazılı olarak nettir. <strong className="text-[var(--ink)]">Saatlik ve ucu açık çalışmıyoruz.</strong></>
                       : <>For takeovers, capacity support and architecture work, a fixed quote follows once scope is defined; the fee is confirmed in writing before work starts. <strong className="text-[var(--ink)]">We don't bill hourly or open-ended.</strong></>}
@@ -649,7 +649,7 @@ const Agency = () => {
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {isTr ? 'Teşhis ve bedel aynı anda verilir.' : 'Diagnosis and price arrive together.'}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                     {isTr 
                       ? 'Saatler içinde çözülmesi gereken durumlarda teşhisi beklemek anlamsızdır; teşhis ve sabit bedel birlikte iletilir.' 
                       : 'When something has to be resolved within hours, waiting for a diagnosis makes no sense: we deliver the diagnosis and a fixed fee at the same time.'}
@@ -668,7 +668,7 @@ const Agency = () => {
                 <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
                   {isTr ? 'Teklif iki taraftan da gelebilir.' : 'A quote can come from either side.'}
                 </h3>
-                <p className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed max-w-[34rem]">
+                <p className="text-[var(--ink-2)] text-sm sm:text-base leading-relaxed max-w-[34rem]">
                   {isTr 
                     ? <>Tanımadığınız birine kriz anında rakam taahhüt etmek zorunda değilsiniz. Kapsamı görüp bedeli biz veririz; <strong className="text-[var(--ink)]">siz de kendi bütçenizi iletebilirsiniz.</strong> İki durumda da net cevap alırsınız: yapılır ya da yapılmaz.</>
                     : <>You shouldn't have to commit to a figure with someone you don't know, mid-crisis. We can review the scope and quote it; <strong className="text-[var(--ink)]">or you can tell us your budget.</strong> Either way you get a straight answer: we can do it, or we can't.</>}
@@ -680,7 +680,7 @@ const Agency = () => {
                   <div className="text-[var(--ink)] font-semibold text-sm sm:text-base">
                     {isTr ? 'Biz teklif veririz' : 'We quote'}
                   </div>
-                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)]">
+                  <p className="text-xs sm:text-sm text-[var(--ink-2)]">
                     {isTr ? 'Teşhisi yapar, sabit bedeli iletiriz.' : 'We run the diagnosis and give you a fixed fee.'}
                   </p>
                 </div>
@@ -690,7 +690,7 @@ const Agency = () => {
                     <div className="text-[var(--ink)] font-semibold text-sm sm:text-base">
                       {isTr ? 'Siz teklif verirsiniz' : 'You quote'}
                     </div>
-                    <p className="text-xs sm:text-sm text-[var(--ink-secondary)]">
+                    <p className="text-xs sm:text-sm text-[var(--ink-2)]">
                       {isTr ? 'Bütçenizi söylersiniz, kapsamı ona göre konuşuruz.' : 'You name your budget, we shape the scope around it.'}
                     </p>
                   </div>
@@ -709,7 +709,7 @@ const Agency = () => {
 
             {/* Alt not */}
             <div className="text-center pt-2">
-              <p className="text-xs sm:text-sm text-[var(--ink-muted)] font-mono">
+              <p className="text-xs sm:text-sm text-[var(--ink-3)] font-mono">
                 <Link to="/nda/" className="btn-link underline underline-offset-4">
                   {isTr 
                     ? 'Tüm çalışmalar resmi NDA kapsamındadır; kaynak kod ve fikri mülkiyet %100 ajansınıza aittir.' 
@@ -737,7 +737,7 @@ const Agency = () => {
                 {isTr ? 'Her projede birlikte çalışmak zorunda değiliz.' : 'We don’t need to work on every project.'}
               </h2>
 
-              <p className="text-[var(--ink-secondary)] text-base sm:text-lg leading-relaxed">
+              <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
                 {isTr 
                   ? 'Belki aylar boyunca birbirimize hiç ihtiyaç duymayacaksınız. Ama günün birinde teknik olarak zor bir iş masanıza geldiğinde veya güvenilir bir geliştiriciye “Şuna bir bakabilir misiniz?” demek istediğinizde bizi hatırlamanız bizim için yeterli.' 
                   : 'You might not need us for months. But when a high-stakes bottleneck arrives or when you need a trusted developer to ask “Can you take a look at this?”, knowing we are ready is all that matters.'}
@@ -747,12 +747,12 @@ const Agency = () => {
                 <h4 className="text-base font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
                   <Calendar className="w-5 h-5 text-[var(--accent)]" /> {isTr ? '30 Dakikalık Online Tanışma Görüşmesi' : '30-Minute Online Introductory Call'}
                 </h4>
-                <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                   {isTr 
                     ? 'Ortada aktif bir proje olması gerekmiyor; birbirimizi tanımamız ve ihtiyaç oluştuğunda kiminle iletişime geçeceğinizi bilmeniz yeterli.' 
                     : 'No active project required; just getting acquainted so you know who to call when a critical crunch occurs.'}
                 </p>
-                <div className="pt-2 flex flex-wrap gap-4 text-xs sm:text-sm font-mono text-[var(--ink-secondary)]">
+                <div className="pt-2 flex flex-wrap gap-4 text-xs sm:text-sm font-mono text-[var(--ink-2)]">
                   <span><a href="tel:+905343713573" className="hover:text-[var(--accent)] font-semibold min-h-[44px] inline-flex items-center">+90 534 371 35 73</a></span>
                   <span><a href="mailto:info@trendmasterakademi.com" className="hover:text-[var(--accent)] font-semibold min-h-[44px] inline-flex items-center">info@trendmasterakademi.com</a></span>
                 </div>

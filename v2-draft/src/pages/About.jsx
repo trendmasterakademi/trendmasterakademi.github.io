@@ -24,7 +24,7 @@ const About = () => {
         <div className="flex items-center justify-start">
           <Link 
             to="/" 
-            className="inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--ink-secondary)] hover:text-[var(--accent)] font-mono transition-colors min-h-[44px] py-[13px] -my-[13px]"
+            className="inline-flex items-center gap-2 text-xs sm:text-sm text-[var(--ink-2)] hover:text-[var(--accent)] font-mono transition-colors min-h-[44px] py-[13px] -my-[13px]"
           >
             <ArrowLeft className="w-4 h-4" /> {isTr ? '← Ana Sayfaya Dön' : '← Back to Home'}
           </Link>
@@ -40,7 +40,7 @@ const About = () => {
             {aboutH1[isTr ? 'tr' : 'en']}
           </h1>
 
-          <p className="text-[var(--ink-secondary)] text-base sm:text-lg leading-relaxed">
+          <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
             {isTr 
               ? 'Biz bir son kullanıcı ajansı değiliz. Dijital ajansların, yazılım evlerinin ve girişimlerin arka planında; krizleri çözen, karmaşık mimarileri kuran ve %100 White-Label çalışan kıdemli bir mühendislik stüdyosuyuz.' 
               : 'We do not compete with agencies. We operate purely behind the scenes as your dedicated senior engineering studio under complete NDA and White-Label governance.'}
@@ -81,7 +81,7 @@ const About = () => {
           </div>
           
           {isTr ? (
-            <div className="space-y-3 text-[var(--ink-secondary)] text-base sm:text-lg leading-relaxed">
+            <div className="space-y-3 text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
               <p>
                 Aslında bu iş fikri bir online derste doğdu.
               </p>
@@ -96,7 +96,7 @@ const About = () => {
               </p>
             </div>
           ) : (
-            <div className="space-y-3 text-[var(--ink-secondary)] text-base sm:text-lg leading-relaxed">
+            <div className="space-y-3 text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
               <p>
                 This business actually started in an online class.
               </p>
@@ -119,7 +119,7 @@ const About = () => {
             <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ink)] tracking-tight">
               {isTr ? 'Altı Temel Taahhüdümüz' : 'Our Six Core Commitments'}
             </h2>
-            <p className="text-[var(--ink-secondary)] text-sm sm:text-base">
+            <p className="text-[var(--ink-2)] text-sm sm:text-base">
               {isTr 
                 ? 'Ajanslarla çalışırken taviz vermediğimiz altı kural:' 
                 : 'Six non-negotiable rules when collaborating with agencies:'}
@@ -136,7 +136,7 @@ const About = () => {
                   <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
                     {c.title[isTr ? 'tr' : 'en']}
                   </h3>
-                  <p className="text-[var(--ink-secondary)] text-sm sm:text-base leading-relaxed">
+                  <p className="text-[var(--ink-2)] text-sm sm:text-base leading-relaxed">
                     {c.desc[isTr ? 'tr' : 'en']}
                   </p>
                 </div>
@@ -161,7 +161,7 @@ const About = () => {
             <h3 className="text-2xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Ajansınız İçin Mühendislik Masası Oluşturun' : 'Establish Your Engineering Backline Today'}
             </h3>
-            <p className="text-[var(--ink-secondary)] text-sm max-w-[34rem]">
+            <p className="text-[var(--ink-2)] text-sm max-w-[34rem]">
               {isTr 
                 ? 'Kriz yaşayan projeleriniz, tıkanan API entegrasyonlarınız veya ekibinizin kapasitesini aşan teknik işler için resmi NDA ile çalışmaya başlayın.' 
                 : 'Deploy reliable senior engineering power for your agency projects under mutual NDA.'}
@@ -208,7 +208,7 @@ const About = () => {
             <table className="w-full text-left text-xs sm:text-sm font-mono border-collapse">
               <tbody className="divide-y divide-[var(--rule)]">
                 <tr className="border-b border-[var(--rule)]">
-                  <td className="py-3.5 px-2 sm:px-4 text-[var(--ink-secondary)] font-semibold w-1/3">
+                  <td className="py-3.5 px-2 sm:px-4 text-[var(--ink-2)] font-semibold w-1/3">
                     {isTr ? 'Mükellef / İşletme Türü' : 'Entity / Structure'}
                   </td>
                   <td className="py-3.5 px-2 sm:px-4 text-[var(--ink)] font-bold">
@@ -216,7 +216,7 @@ const About = () => {
                   </td>
                 </tr>
                 <tr className="border-b border-[var(--rule)]">
-                  <td className="py-3.5 px-2 sm:px-4 text-[var(--ink-secondary)] font-semibold">
+                  <td className="py-3.5 px-2 sm:px-4 text-[var(--ink-2)] font-semibold">
                     {isTr ? 'Vergi Dairesi' : 'Tax Office'}
                   </td>
                   <td className="py-3.5 px-2 sm:px-4 text-[var(--ink)]">
@@ -224,7 +224,7 @@ const About = () => {
                   </td>
                 </tr>
                 <tr className="border-b border-[var(--rule)]">
-                  <td className="py-3.5 px-2 sm:px-4 text-[var(--ink-secondary)] font-semibold">
+                  <td className="py-3.5 px-2 sm:px-4 text-[var(--ink-2)] font-semibold">
                     {isTr ? 'Vergi Kimlik No (VKN)' : 'Tax ID (VKN)'}
                   </td>
                   <td className="py-3.5 px-2 sm:px-4 text-[var(--accent)] font-bold tracking-wider">
@@ -232,7 +232,7 @@ const About = () => {
                   </td>
                 </tr>
                 <tr className="border-b border-[var(--rule)]">
-                  <td className="py-3.5 px-2 sm:px-4 text-[var(--ink-secondary)] font-semibold">
+                  <td className="py-3.5 px-2 sm:px-4 text-[var(--ink-2)] font-semibold">
                     {isTr ? 'Ana Faaliyet Kodu' : 'Activity Code'}
                   </td>
                   <td className="py-3.5 px-2 sm:px-4 text-[var(--ink)]">
@@ -240,7 +240,7 @@ const About = () => {
                   </td>
                 </tr>
                 <tr className="border-b border-[var(--rule)]">
-                  <td className="py-3.5 px-2 sm:px-4 text-[var(--ink-secondary)] font-semibold">
+                  <td className="py-3.5 px-2 sm:px-4 text-[var(--ink-2)] font-semibold">
                     {isTr ? 'Yasal İş Yeri Adresi' : 'Official Registered Address'}
                   </td>
                   <td className="py-3.5 px-2 sm:px-4 text-[var(--ink)] leading-relaxed">
@@ -248,7 +248,7 @@ const About = () => {
                   </td>
                 </tr>
                 <tr>
-                  <td className="py-3.5 px-2 sm:px-4 text-[var(--ink-secondary)] font-semibold">
+                  <td className="py-3.5 px-2 sm:px-4 text-[var(--ink-2)] font-semibold">
                     {isTr ? 'Resmi İletişim' : 'Official Contact'}
                   </td>
                   <td className="py-3.5 px-2 sm:px-4 text-[var(--ink)]">
@@ -259,7 +259,7 @@ const About = () => {
             </table>
           </div>
 
-          <div className="p-4 rounded-lg bg-[var(--paper)] border border-[var(--rule)] text-xs sm:text-sm text-[var(--ink-secondary)] font-mono">
+          <div className="p-4 rounded-lg bg-[var(--paper)] border border-[var(--rule)] text-xs sm:text-sm text-[var(--ink-2)] font-mono">
             {isTr 
               ? 'Faaliyet belgesi ve vergi levhası, sözleşme öncesi talep üzerine ibraz edilir.' 
               : 'Certificate of activity and tax registration plate are presented upon request prior to agreement.'}

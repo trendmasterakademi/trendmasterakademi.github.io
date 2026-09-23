@@ -40,7 +40,7 @@ const GlossaryTerm = () => {
     return (
       <div className="min-h-screen pt-36 pb-28 px-4 text-center space-y-6 bg-[var(--paper)] text-[var(--ink)]">
         <h1 className="text-3xl font-serif font-semibold text-[var(--ink)]">{isTr ? 'Terim Bulunamadı' : 'Term Not Found'}</h1>
-        <p className="text-[var(--ink-light)]">Aradığınız terim sözlüğümüzde yer almıyor olabilir.</p>
+        <p className="text-[var(--ink-2)]">Aradığınız terim sözlüğümüzde yer almıyor olabilir.</p>
         <Link to="/sozluk/" className="btn-primary min-h-[44px] inline-flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" /> Terim Sözlüğüne Dön
         </Link>
@@ -83,7 +83,7 @@ const GlossaryTerm = () => {
 
         {/* Core Article Header */}
         <div className="space-y-4">
-          <span className="text-xs font-mono tracking-widest text-[var(--ink-muted)] uppercase block">
+          <span className="text-xs font-mono tracking-widest text-[var(--ink-3)] uppercase block">
             {isTr ? 'TEKNİK TERİM REHBERİ' : 'TECHNICAL GLOSSARY ITEM'} // {term.slug.toUpperCase()}
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
@@ -102,7 +102,7 @@ const GlossaryTerm = () => {
               {isTr ? 'Ajans İçin Ne Anlama Gelir? (İş Etkisi)' : 'What It Means for Your Agency (Business Impact)'}
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-[var(--ink-light)] leading-relaxed pl-7 border-l-2 border-[var(--tint-warn-rule)]">
+          <p className="text-sm sm:text-base text-[var(--ink-2)] leading-relaxed pl-7 border-l-2 border-[var(--tint-warn-rule)]">
             {term.agencyImpact[isTr ? 'tr' : 'en']}
           </p>
         </div>
@@ -113,7 +113,7 @@ const GlossaryTerm = () => {
             <h3 className="text-base font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
               <Zap className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'Ne Zaman Acildir?' : 'When Is It Critical?'}
             </h3>
-            <p className="text-xs sm:text-sm text-[var(--ink-light)] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
               {term.urgencyLevel === 'Kritik (P0)'
                 ? (isTr ? 'Canlı yayında ciro veya veri kaybı yaşanıyorsa hemen müdahale edilmelidir. Gecikme doğrudan müşteri kaybına yol açar.' : 'Production outage causing active revenue or data loss requires sub-2h remediation.')
                 : (isTr ? 'Yayın öncesi veya bir sonraki sprint başında planlı olarak temizlenmelidir.' : 'Should be scheduled during upcoming sprint to prevent compounding technical debt.')}
@@ -124,7 +124,7 @@ const GlossaryTerm = () => {
             <h3 className="text-base font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-[var(--tint-ok-ink)]" /> {isTr ? 'Kim Çözer?' : 'Who Resolves It?'}
             </h3>
-            <p className="text-xs sm:text-sm text-[var(--ink-light)] leading-relaxed">
+            <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
               {term.whoSolves[isTr ? 'tr' : 'en']}
             </p>
           </div>
@@ -143,11 +143,11 @@ const GlossaryTerm = () => {
                   <Link
                     key={diag.slug}
                     to={isTr ? `/teshis/${diag.slug}/` : `/diagnostic/${diag.slug}/`}
-                    className="group flex items-center gap-2 text-sm sm:text-base text-[var(--ink-light)] hover:text-[var(--accent)] transition-colors min-h-[44px]"
+                    className="group flex items-center gap-2 text-sm sm:text-base text-[var(--ink-2)] hover:text-[var(--accent)] transition-colors min-h-[44px]"
                   >
                     <span className="text-[var(--accent)] font-mono font-semibold">→</span>
                     <span className="font-mono text-[var(--accent)] font-semibold">{diag.no}</span>
-                    <span className="text-[var(--ink-muted)] font-mono">·</span>
+                    <span className="text-[var(--ink-3)] font-mono">·</span>
                     <span className="group-hover:underline underline-offset-4">{titleText}</span>
                   </Link>
                 );
@@ -175,7 +175,7 @@ const GlossaryTerm = () => {
             <h3 className="text-lg font-serif font-semibold text-[var(--ink)]">
               {typeof term.relatedService.title === 'object' ? term.relatedService.title[isTr ? 'tr' : 'en'] : term.relatedService.title}
             </h3>
-            <p className="text-xs sm:text-sm text-[var(--ink-light)]">
+            <p className="text-xs sm:text-sm text-[var(--ink-2)]">
               {isTr ? 'Ajansınız adına %100 White-Label ve resmi NDA altında mühendislik desteği.' : '100% White-Label engineering support under mutual NDA.'}
             </p>
           </div>

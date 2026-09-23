@@ -30,7 +30,7 @@ const PostMortemDetail = () => {
         <h1 className="text-3xl font-serif font-semibold text-[var(--ink)]">
           {isTr ? 'Post-Mortem Raporu Bulunamadı' : 'Post-Mortem Report Not Found'}
         </h1>
-        <p className="text-[var(--ink-light)]">
+        <p className="text-[var(--ink-2)]">
           {isTr ? 'Aradığınız vaka otopsisi mevcut değil veya taşınmış.' : 'The requested incident report does not exist or has been relocated.'}
         </p>
         <div className="pt-4">
@@ -76,14 +76,14 @@ const PostMortemDetail = () => {
             <AlertTriangle className="w-3.5 h-3.5" />
             {item.severity}
           </span>
-          <span className="px-3 py-1 rounded-lg bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-light)]">
+          <span className="px-3 py-1 rounded-lg bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)]">
             {item.category[lang]}
           </span>
-          <span className="text-[var(--ink-muted)] flex items-center gap-1">
+          <span className="text-[var(--ink-3)] flex items-center gap-1">
             <Calendar className="w-3.5 h-3.5 text-[var(--accent)]" />
             {item.date[lang]}
           </span>
-          <span className="text-[var(--ink-muted)] flex items-center gap-1">
+          <span className="text-[var(--ink-3)] flex items-center gap-1">
             <Clock className="w-3.5 h-3.5 text-[var(--accent)]" />
             {item.duration[lang]}
           </span>
@@ -104,7 +104,7 @@ const PostMortemDetail = () => {
         </div>
 
         {/* Disclosure / Künye Box */}
-        <div className="p-4 rounded-xl bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed font-mono">
+        <div className="p-4 rounded-xl bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-3)] leading-relaxed font-mono">
           <p>
             {postMortemDisclosure.detail[lang]}
           </p>
@@ -120,7 +120,7 @@ const PostMortemDetail = () => {
             <span className="text-[var(--accent)] font-mono">01.</span>
             <span>{isTr ? 'Olay Özeti (Executive Summary)' : 'Executive Summary'}</span>
           </h2>
-          <p className="text-[var(--ink-light)] text-base leading-relaxed bg-[var(--surface)] p-6 rounded-2xl border border-[var(--rule)]">
+          <p className="text-[var(--ink-2)] text-base leading-relaxed bg-[var(--surface)] p-6 rounded-2xl border border-[var(--rule)]">
             {item.summary[lang]}
           </p>
         </section>
@@ -140,14 +140,14 @@ const PostMortemDetail = () => {
                 
                 <div className="space-y-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-xs font-mono font-semibold text-[var(--accent)] bg-[var(--accent-subtle)] px-2 py-0.5 rounded border border-[var(--accent)]/20">
+                    <span className="text-xs font-mono font-semibold text-[var(--accent)] bg-[var(--accent-wash)] px-2 py-0.5 rounded border border-[var(--accent)]/20">
                       {step.time}
                     </span>
                     <h3 className="text-base font-semibold text-[var(--ink)]">
                       {step.title[lang]}
                     </h3>
                   </div>
-                  <p className="text-sm text-[var(--ink-light)] leading-relaxed pt-1">
+                  <p className="text-sm text-[var(--ink-2)] leading-relaxed pt-1">
                     {step.desc[lang]}
                   </p>
                 </div>
@@ -162,7 +162,7 @@ const PostMortemDetail = () => {
             <span className="text-[var(--accent)] font-mono">03.</span>
             <span>{isTr ? 'Kök Neden Analizi (Root Cause / 5 Whys)' : 'Root Cause Analysis (5 Whys)'}</span>
           </h2>
-          <div className="bg-[var(--surface)] p-6 rounded-2xl border border-[var(--rule)] text-sm text-[var(--ink-light)] leading-relaxed whitespace-pre-line space-y-2">
+          <div className="bg-[var(--surface)] p-6 rounded-2xl border border-[var(--rule)] text-sm text-[var(--ink-2)] leading-relaxed whitespace-pre-line space-y-2">
             {item.rootCause[lang]}
           </div>
         </section>
@@ -184,7 +184,7 @@ const PostMortemDetail = () => {
             <span className="text-[var(--accent)] font-mono">05.</span>
             <span>{isTr ? 'Alınan Kalıcı Önleyici Tedbirler (Hardening)' : 'Permanent Mitigations & Hardening'}</span>
           </h2>
-          <div className="bg-[var(--surface)] p-6 rounded-2xl border border-[var(--rule)] text-sm text-[var(--ink-light)] leading-relaxed whitespace-pre-line space-y-2">
+          <div className="bg-[var(--surface)] p-6 rounded-2xl border border-[var(--rule)] text-sm text-[var(--ink-2)] leading-relaxed whitespace-pre-line space-y-2">
             {item.permanentMitigation[lang]}
           </div>
         </section>
@@ -196,7 +196,7 @@ const PostMortemDetail = () => {
         <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
           {isTr ? 'Benzer Bir Sistem Kilitlenmesiyle mi Karşı Karşıyasınız?' : 'Facing a Similar Systemic Outage?'}
         </h3>
-        <p className="text-[var(--ink-light)] text-sm max-w-xl mx-auto leading-relaxed">
+        <p className="text-[var(--ink-2)] text-sm max-w-xl mx-auto leading-relaxed">
           {isTr
             ? 'TMA SWAT masası; yüksek eşzamanlılık, veritabanı kilitlenmeleri ve kopan ödeme pipeline’larında 0-2 saatte cerrahi müdahale uygular.'
             : 'The TMA SWAT desk applies rapid surgical containment within 0-2 hours for high-concurrency deadlocks and broken pipelines.'}
@@ -218,7 +218,7 @@ const PostMortemDetail = () => {
             <span>{isTr ? 'Salvageability Index (60sn) →' : 'Salvageability Index (60s) →'}</span>
           </Link>
         </div>
-        <p className="text-xs text-[var(--ink-muted)] pt-2">
+        <p className="text-xs text-[var(--ink-3)] pt-2">
           {isTr ? (
             <>Tüm teknik incelemeler ve müdahaleler <Link to="/nda/" className="text-[var(--accent)] underline hover:text-[var(--accent-hover)] transition-colors">Gizlilik ve Çalışma Sözleşmesi (NDA)</Link> kapsamındadır.</>
           ) : (

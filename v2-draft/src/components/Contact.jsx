@@ -229,7 +229,7 @@ const Contact = () => {
         <div className="lg:col-span-7 p-7 sm:p-10 rounded-[var(--r-panel)] border border-[var(--rule)] bg-[var(--surface)] shadow-sm">
           {submitStatus === 'success' ? (
             <div className="flex flex-col items-center justify-center text-center py-8 space-y-6">
-              <div className="w-16 h-16 rounded-full bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-4)]">
+              <div className="w-16 h-16 rounded-full bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-ok)]">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
               
@@ -273,7 +273,7 @@ const Contact = () => {
             </div>
           ) : submitStatus === 'error' ? (
             <div className="flex flex-col items-center justify-center text-center py-8 space-y-6">
-              <div className="w-16 h-16 rounded-full bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-1)]">
+              <div className="w-16 h-16 rounded-full bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-critical)]">
                 <AlertTriangle className="w-8 h-8" />
               </div>
               

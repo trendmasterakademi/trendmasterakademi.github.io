@@ -29,7 +29,7 @@ const Story = () => {
           </Link>
           <Link 
             to="/about/" 
-            className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--ink-muted)] hover:text-[var(--ink)] transition-colors min-h-[44px]"
+            className="inline-flex items-center gap-1.5 text-xs font-mono text-[var(--ink-3)] hover:text-[var(--ink)] transition-colors min-h-[44px]"
           >
             <span>{isTr ? 'Mühendislik Standartlarımız' : 'Engineering Standards'}</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -39,7 +39,7 @@ const Story = () => {
         {/* Brand Story Section */}
         <section className="space-y-6 text-[var(--ink)] text-base sm:text-lg leading-relaxed">
           
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-[var(--accent-soft)] border border-[var(--accent)] text-[var(--accent)] text-xs font-mono font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] text-xs font-mono font-semibold uppercase tracking-wider">
             <BookOpen className="w-4 h-4" /> {isTr ? 'MARKA HİKÂYEMİZ' : 'OUR STORY'}
           </div>
 
@@ -158,7 +158,7 @@ const Story = () => {
               <h3 className="text-lg font-semibold font-serif text-[var(--ink)]">
                 {isTr ? 'Mühendislik Standartlarımızı İnceleyin' : 'Explore Our Engineering Standards'}
               </h3>
-              <p className="text-xs sm:text-sm text-[var(--ink-muted)]">
+              <p className="text-xs sm:text-sm text-[var(--ink-3)]">
                 {isTr ? '%100 White-Label, Resmi NDA, Şeffaf Ücretlendirme ve Doğrudan Mühendislik Masası prensiplerimiz.' : '100% White-Label, Binding NDA, Transparent Pricing and Direct Engineering Desk.'}
               </p>
             </div>
@@ -176,7 +176,7 @@ const Story = () => {
               <h3 className="text-lg font-semibold font-serif text-[var(--ink)]">
                 {isTr ? 'Birlikte Çalışmayı Konuşalım' : "Let's Discuss Working Together"}
               </h3>
-              <p className="text-xs sm:text-sm text-[var(--ink-muted)]">
+              <p className="text-xs sm:text-sm text-[var(--ink-3)]">
                 {isTr ? 'Ekibiniz veya projeniz için uygun zamanı belirleyin, doğrudan teknik masa ile görüşün.' : 'Select a time for your agency or project to consult directly with senior engineering.'}
               </p>
             </div>

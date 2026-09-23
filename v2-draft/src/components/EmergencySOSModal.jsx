@@ -166,7 +166,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
             {/* Close button */}
             <button
               onClick={onClose}
-              className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink-secondary)] hover:text-[var(--ink)] transition-colors cursor-pointer shrink-0"
+              className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg bg-[var(--paper)] hover:bg-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] transition-colors cursor-pointer shrink-0"
               aria-label={isTr ? 'Kapat' : 'Close'}
             >
               <X className="w-5 h-5" />
@@ -175,7 +175,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 
           {/* Scrollable Modal Body */}
           <div className="overflow-y-auto p-5 sm:p-7 space-y-4 flex-1">
-            <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed mb-3">
+            <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed mb-3">
               {isTr 
                 ? 'Teslim tarihi sıkışan, geliştiricisi ayrılan veya canlıda kilitlenen projeler için doğrudan kıdemli mühendislik masamız devreye girer.' 
                 : 'Direct senior engineering dispatch for locked codebases, abandoned repos, or mission-critical launch deadlines.'}
@@ -210,7 +210,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               <h4 className="text-xl font-serif font-semibold text-[var(--ink)]">
                 {isTr ? 'Kriz Bildirimi Kaydedildi & İletildi!' : 'Crisis Ticket Saved & Dispatched!'}
               </h4>
-              <p className="text-sm text-[var(--ink-secondary)] max-w-md">
+              <p className="text-sm text-[var(--ink-2)] max-w-md">
                 {isTr ? 'Bildiriminiz kriz masamıza kaydedildi ve WhatsApp üzerinden kıdemli mühendislik masamıza aktarıldı.' : 'Your ticket is logged and forwarded directly to our senior engineering desk.'}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
@@ -350,11 +350,11 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                       className={`p-3 rounded-lg text-left border text-xs sm:text-sm transition-all flex flex-col justify-between cursor-pointer min-h-[44px] ${
                         urgency === item.id
                           ? 'border-[var(--accent)] bg-[var(--accent-wash)] text-[var(--accent-ink)] font-semibold'
-                          : 'border-[var(--rule)] bg-[var(--surface)] text-[var(--ink-secondary)] hover:border-[var(--rule-strong)]'
+                          : 'border-[var(--rule)] bg-[var(--surface)] text-[var(--ink-2)] hover:border-[var(--rule-strong)]'
                       }`}
                     >
                       <span>{item.label}</span>
-                      <span className="text-xs text-[var(--ink-muted)] mt-1">{item.sub}</span>
+                      <span className="text-xs text-[var(--ink-3)] mt-1">{item.sub}</span>
                     </button>
                   ))}
                 </div>
@@ -392,7 +392,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               </div>
 
               {/* Trust Badges */}
-              <div className="flex flex-wrap items-center justify-between text-xs text-[var(--ink-muted)] pt-2 border-t border-[var(--rule)] gap-2">
+              <div className="flex flex-wrap items-center justify-between text-xs text-[var(--ink-3)] pt-2 border-t border-[var(--rule)] gap-2">
                 <span className="flex items-center gap-1.5">
                   <ShieldCheck className="w-4 h-4 text-[var(--sev-ok)] shrink-0" /> %100 White-Label & <a href="/nda/" target="_blank" rel="noopener" className="underline hover:text-[var(--ink)] transition-colors min-h-[44px] min-w-[44px] inline-flex items-center justify-center -my-2.5">NDA</a>
                 </span>
@@ -402,7 +402,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
               </div>
 
               {/* Süreklilik Satırı */}
-              <p className="text-xs text-[var(--ink-muted)] text-center">
+              <p className="text-xs text-[var(--ink-3)] text-center">
                 {isTr 
                   ? 'Kriz masası tek kişilik değildir; başlayan iş yarıda kalmaz.' 
                   : 'The response desk is not a single person; work under way is not left unfinished.'}

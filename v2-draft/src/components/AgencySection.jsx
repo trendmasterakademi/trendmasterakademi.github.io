@@ -46,10 +46,10 @@ const AgencySection = () => {
           <div className="p-6 sm:p-7 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between group shadow-sm">
             <div>
               <div className="flex items-center justify-between mb-5">
-                <div className="w-10 h-10 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-1)]">
+                <div className="w-10 h-10 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-critical)]">
                   <Flame className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-mono font-medium text-[var(--sev-1)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
+                <span className="text-xs font-mono font-medium text-[var(--sev-critical)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
                   {t('crisis-card1-tag')}
                 </span>
               </div>
@@ -72,10 +72,10 @@ const AgencySection = () => {
           <div className="p-6 sm:p-7 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between group shadow-sm">
             <div>
               <div className="flex items-center justify-between mb-5">
-                <div className="w-10 h-10 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-2)]">
+                <div className="w-10 h-10 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-high)]">
                   <Users className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-mono font-medium text-[var(--sev-2)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
+                <span className="text-xs font-mono font-medium text-[var(--sev-high)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
                   {t('crisis-card2-tag')}
                 </span>
               </div>
@@ -98,10 +98,10 @@ const AgencySection = () => {
           <div className="p-6 sm:p-7 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between group shadow-sm">
             <div>
               <div className="flex items-center justify-between mb-5">
-                <div className="w-10 h-10 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-3)]">
+                <div className="w-10 h-10 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-normal)]">
                   <Clock className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-mono font-medium text-[var(--sev-3)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
+                <span className="text-xs font-mono font-medium text-[var(--sev-normal)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
                   {t('crisis-card3-tag')}
                 </span>
               </div>
@@ -124,10 +124,10 @@ const AgencySection = () => {
           <div className="p-6 sm:p-7 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all flex flex-col justify-between group shadow-sm">
             <div>
               <div className="flex items-center justify-between mb-5">
-                <div className="w-10 h-10 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-4)]">
+                <div className="w-10 h-10 rounded-[var(--r-control)] bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-center text-[var(--sev-ok)]">
                   <Layers className="w-5 h-5" />
                 </div>
-                <span className="text-xs font-mono font-medium text-[var(--sev-4)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
+                <span className="text-xs font-mono font-medium text-[var(--sev-ok)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
                   {t('crisis-card4-tag')}
                 </span>
               </div>

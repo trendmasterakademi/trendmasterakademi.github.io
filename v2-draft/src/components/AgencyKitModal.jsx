@@ -51,8 +51,8 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                 TMA AGENCY KIT // 2026
               </span>
             </div>
-            <span className="hidden sm:inline text-xs text-[var(--ink-muted)] font-mono">|</span>
-            <span className="hidden sm:inline text-xs text-[var(--ink-secondary)] font-mono">
+            <span className="hidden sm:inline text-xs text-[var(--ink-3)] font-mono">|</span>
+            <span className="hidden sm:inline text-xs text-[var(--ink-2)] font-mono">
               {isTr ? 'Resmi Ajans Müdahale & Hazırlık Rehberi' : 'Official Agency Incident & Readiness Guide'}
             </span>
           </div>
@@ -69,7 +69,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg text-[var(--ink-secondary)] hover:text-[var(--ink)] hover:bg-[var(--rule)] transition-colors cursor-pointer"
+              className="p-1.5 rounded-lg text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--rule)] transition-colors cursor-pointer"
               aria-label="Kapat"
             >
               <X className="w-5 h-5" />
@@ -85,7 +85,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
             className={`py-3 px-4 text-xs sm:text-sm font-mono font-semibold transition-all border-b-2 cursor-pointer flex items-center gap-2 ${
               activeTab === 'response-kit'
                 ? 'border-[var(--accent)] text-[var(--accent)] bg-[var(--surface)]'
-                : 'border-transparent text-[var(--ink-secondary)] hover:text-[var(--ink)]'
+                : 'border-transparent text-[var(--ink-2)] hover:text-[var(--ink)]'
             }`}
           >
             <ShieldCheck className="w-4 h-4 text-[var(--accent)]" />
@@ -97,7 +97,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
             className={`py-3 px-4 text-xs sm:text-sm font-mono font-semibold transition-all border-b-2 cursor-pointer flex items-center gap-2 ${
               activeTab === 'crash-test'
                 ? 'border-[var(--accent)] text-[var(--accent)] bg-[var(--surface)]'
-                : 'border-transparent text-[var(--ink-secondary)] hover:text-[var(--ink)]'
+                : 'border-transparent text-[var(--ink-2)] hover:text-[var(--ink)]'
             }`}
           >
             <Zap className="w-4 h-4 text-[var(--accent)]" />
@@ -118,7 +118,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                 <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ink)] tracking-tight">
                   {data.responseKit.title}
                 </h2>
-                <p className="text-xs sm:text-sm text-[var(--ink-secondary)]">
+                <p className="text-xs sm:text-sm text-[var(--ink-2)]">
                   {data.responseKit.subtitle}
                 </p>
               </div>
@@ -140,10 +140,10 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[0].title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                     {data.responseKit.slides[0].desc}
                   </p>
-                  <ul className="space-y-2 text-xs text-[var(--ink-secondary)] pt-1 font-mono">
+                  <ul className="space-y-2 text-xs text-[var(--ink-2)] pt-1 font-mono">
                     {data.responseKit.slides[0].points.map((pt, i) => (
                       <li key={i} className="flex items-start gap-2">
                         <CheckCircle2 className="w-3.5 h-3.5 text-[var(--sev-ok)] flex-shrink-0 mt-0.5" />
@@ -160,12 +160,12 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">02 // {data.responseKit.slides[1].tag}</span>
-                    <span className="text-[var(--ink-muted)]">CAPACITY</span>
+                    <span className="text-[var(--ink-3)]">CAPACITY</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[1].title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)]">
+                  <p className="text-xs sm:text-sm text-[var(--ink-2)]">
                     {data.responseKit.slides[1].desc}
                   </p>
                   <div className="space-y-2 pt-1">
@@ -175,7 +175,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                           <span className="font-mono text-[var(--accent)] font-semibold">{it.no}</span>
                           <span className="font-semibold text-[var(--ink)]">{it.title || it['CANLI SİSTEM HATASI']}</span>
                         </div>
-                        <span className="text-xs text-[var(--ink-muted)] font-mono text-right">{it.desc}</span>
+                        <span className="text-xs text-[var(--ink-3)] font-mono text-right">{it.desc}</span>
                       </div>
                     ))}
                   </div>
@@ -188,12 +188,12 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">03 // {data.responseKit.slides[2].tag}</span>
-                    <span className="text-[var(--ink-muted)]">POLICY</span>
+                    <span className="text-[var(--ink-3)]">POLICY</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[2].title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)]">
+                  <p className="text-xs sm:text-sm text-[var(--ink-2)]">
                     {data.responseKit.slides[2].desc}
                   </p>
                   <div className="grid grid-cols-2 gap-2 pt-1">
@@ -203,7 +203,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                           <span>{c.no}</span>
                           <span>{c.title}</span>
                         </div>
-                        <p className="text-xs text-[var(--ink-secondary)] leading-tight">{c.desc}</p>
+                        <p className="text-xs text-[var(--ink-2)] leading-tight">{c.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -216,12 +216,12 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">04 // {data.responseKit.slides[3].tag}</span>
-                    <span className="text-[var(--ink-muted)]">SOLUTIONS</span>
+                    <span className="text-[var(--ink-3)]">SOLUTIONS</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[3].title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)]">
+                  <p className="text-xs sm:text-sm text-[var(--ink-2)]">
                     {data.responseKit.slides[3].desc}
                   </p>
                   <div className="grid grid-cols-2 gap-2 pt-1">
@@ -231,7 +231,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                           <span className="text-[var(--accent)] text-xs">{s.no}</span>
                           <span className="text-xs">{s.title}</span>
                         </div>
-                        <p className="text-xs text-[var(--ink-secondary)] leading-tight">{s.desc}</p>
+                        <p className="text-xs text-[var(--ink-2)] leading-tight">{s.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -257,7 +257,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                         </span>
                         <div className="space-y-0.5">
                           <h4 className="text-xs font-semibold text-[var(--ink)] font-mono">{st.title}</h4>
-                          <p className="text-xs text-[var(--ink-secondary)] leading-snug">{st.desc}</p>
+                          <p className="text-xs text-[var(--ink-2)] leading-snug">{st.desc}</p>
                         </div>
                       </div>
                     ))}
@@ -274,7 +274,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">06 // {data.responseKit.slides[5].tag}</span>
-                    <span className="text-[var(--ink-muted)]">ENGAGEMENT</span>
+                    <span className="text-[var(--ink-3)]">ENGAGEMENT</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[5].title}
@@ -283,7 +283,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                     {data.responseKit.slides[5].models.map((m, i) => (
                       <div key={i} className="p-3 rounded-lg bg-[var(--paper)] border border-[var(--rule)] space-y-1">
                         <span className="text-xs font-mono font-semibold text-[var(--accent)] block">{m.name}</span>
-                        <p className="text-xs text-[var(--ink-secondary)] leading-tight">{m.desc}</p>
+                        <p className="text-xs text-[var(--ink-2)] leading-tight">{m.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -305,11 +305,11 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                     {data.responseKit.slides[6].stats.map((st, i) => (
                       <div key={i} className="p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
                         <span className="text-base sm:text-lg font-mono font-bold text-[var(--accent)] block">{st.value}</span>
-                        <span className="text-xs font-mono text-[var(--ink-secondary)] block font-semibold">{st.label}</span>
+                        <span className="text-xs font-mono text-[var(--ink-2)] block font-semibold">{st.label}</span>
                       </div>
                     ))}
                   </div>
-                  <p className="text-xs font-mono text-[var(--ink-secondary)] bg-[var(--paper)] p-2 rounded-lg border border-[var(--rule)] text-center">
+                  <p className="text-xs font-mono text-[var(--ink-2)] bg-[var(--paper)] p-2 rounded-lg border border-[var(--rule)] text-center">
                     {data.responseKit.slides[6].techStack}
                   </p>
                 </div>
@@ -327,15 +327,15 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                     <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug mb-2">
                       {data.responseKit.slides[7].title}
                     </h3>
-                    <p className="text-xs text-[var(--ink-secondary)] mb-4">
+                    <p className="text-xs text-[var(--ink-2)] mb-4">
                       {data.responseKit.slides[7].desc}
                     </p>
-                    <div className="space-y-2 text-xs font-mono text-[var(--ink-secondary)]">
+                    <div className="space-y-2 text-xs font-mono text-[var(--ink-2)]">
                       <div className="flex items-center gap-2">
                         <PhoneCall className="w-4 h-4 text-[var(--sev-ok)]" />
                         <a href="tel:+905343713573" className="hover:text-[var(--accent)] font-semibold text-[var(--ink)] text-sm">{data.responseKit.slides[7].phone}</a>
                       </div>
-                      <div className="text-xs text-[var(--ink-muted)]">
+                      <div className="text-xs text-[var(--ink-3)]">
                         info@trendmasterakademi.com · 09:00 – 24:00
                       </div>
                     </div>
@@ -391,7 +391,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   <p className="text-lg sm:text-xl font-semibold text-[var(--accent)]">
                     {data.crashTest.subtitle}
                   </p>
-                  <p className="text-xs sm:text-sm text-[var(--ink-secondary)] max-w-lg mx-auto">
+                  <p className="text-xs sm:text-sm text-[var(--ink-2)] max-w-lg mx-auto">
                     {data.crashTest.description}
                   </p>
                 </div>
@@ -404,7 +404,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                         <span className="font-mono text-[var(--accent)] font-semibold text-sm">{sc.no}</span>
                         <div>
                           <h4 className="text-xs sm:text-sm font-semibold text-[var(--ink)] font-mono">{sc.title}</h4>
-                          <p className="text-xs text-[var(--ink-secondary)] leading-snug">{sc.desc}</p>
+                          <p className="text-xs text-[var(--ink-2)] leading-snug">{sc.desc}</p>
                         </div>
                       </div>
                       <span className="font-mono text-xs font-semibold text-[var(--accent-ink)] bg-[var(--accent-wash)] px-2 py-0.5 rounded border border-[var(--accent)]/20 flex-shrink-0">
@@ -420,7 +420,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                     <span className="text-xs font-mono font-semibold text-[var(--ink)] block uppercase tracking-wider">
                       {data.crashTest.notice.title}
                     </span>
-                    <p className="text-xs text-[var(--ink-secondary)] max-w-md mx-auto">
+                    <p className="text-xs text-[var(--ink-2)] max-w-md mx-auto">
                       {data.crashTest.notice.security}
                     </p>
                   </div>
@@ -442,7 +442,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
         </div>
 
         {/* Modal Bottom Bar */}
-        <div className="flex flex-wrap items-center justify-between px-4 sm:px-6 py-3 border-t border-[var(--rule)] bg-[var(--paper)] text-xs font-mono text-[var(--ink-secondary)] gap-3 flex-shrink-0">
+        <div className="flex flex-wrap items-center justify-between px-4 sm:px-6 py-3 border-t border-[var(--rule)] bg-[var(--paper)] text-xs font-mono text-[var(--ink-2)] gap-3 flex-shrink-0">
           <div className="flex items-center gap-2">
             <span>Trend Master Akademi Studio & Labs</span>
             <span>•</span>

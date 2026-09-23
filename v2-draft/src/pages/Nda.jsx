@@ -41,7 +41,7 @@ const Nda = () => {
           {pageHeader.h1[lang]}
         </h1>
         
-        <p className="text-[var(--ink-muted)] text-base sm:text-lg leading-relaxed">
+        <p className="text-[var(--ink-3)] text-base sm:text-lg leading-relaxed">
           {pageHeader.lead[lang]}
         </p>
       </div>
@@ -60,7 +60,7 @@ const Nda = () => {
               <h3 className="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">
                 {item.title[lang]}
               </h3>
-              <p className="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--ink-3)] leading-relaxed">
                 {item.desc[lang]}
               </p>
             </div>
@@ -74,7 +74,7 @@ const Nda = () => {
           <h2 className="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)]">
             {protectsUsToo.title[lang]}
           </h2>
-          <p className="text-[var(--ink-muted)] text-xs sm:text-sm mt-2 leading-relaxed">
+          <p className="text-[var(--ink-3)] text-xs sm:text-sm mt-2 leading-relaxed">
             {protectsUsToo.lead[lang]}
           </p>
         </div>
@@ -85,7 +85,7 @@ const Nda = () => {
               <h3 className="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">
                 {item.title[lang]}
               </h3>
-              <p className="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">
+              <p className="text-xs sm:text-sm text-[var(--ink-3)] leading-relaxed">
                 {item.highlight ? (
                   (() => {
                     const text = item.desc[lang];
@@ -115,7 +115,7 @@ const Nda = () => {
         </h2>
         <div className="space-y-2 text-sm sm:text-base text-[var(--ink)] leading-relaxed">
           <p>{canItBeChanged.paragraphs[0][lang]}</p>
-          <p className="text-xs sm:text-sm text-[var(--ink-muted)] font-mono">
+          <p className="text-xs sm:text-sm text-[var(--ink-3)] font-mono">
             {canItBeChanged.paragraphs[1][lang]}
           </p>
         </div>
@@ -128,7 +128,7 @@ const Nda = () => {
             <h2 className="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)]">
               {fullAgreementHeader.title[lang]}
             </h2>
-            <p className="text-xs sm:text-sm text-[var(--ink-muted)] mt-1 font-mono">
+            <p className="text-xs sm:text-sm text-[var(--ink-3)] mt-1 font-mono">
               {fullAgreementHeader.subtitle[lang]}
             </p>
           </div>
@@ -150,7 +150,7 @@ const Nda = () => {
             <div className="text-base sm:text-lg font-bold font-serif text-[var(--ink)] tracking-wide">
               {fullAgreementHeader.documentTitle}
             </div>
-            <p className="text-[var(--ink-muted)] text-xs font-mono">{fullAgreementHeader.documentSubtitle}</p>
+            <p className="text-[var(--ink-3)] text-xs font-mono">{fullAgreementHeader.documentSubtitle}</p>
           </div>
 
           {/* 16 Clauses */}
@@ -165,17 +165,17 @@ const Nda = () => {
                     {clause.serviceProvider.lines.map((line, lIdx) => (
                       <p key={lIdx}>{line}</p>
                     ))}
-                    <p className="text-[var(--ink-muted)] italic">{clause.serviceProvider.suffix}</p>
+                    <p className="text-[var(--ink-3)] italic">{clause.serviceProvider.suffix}</p>
                   </div>
                   <div className="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-1.5 font-mono text-xs overflow-hidden">
                     <p className="text-[var(--ink)] font-bold">{clause.client.title}</p>
                     {clause.client.fields.map((field, fIdx) => (
                       <p key={fIdx} className="flex items-baseline gap-1 overflow-hidden">
                         <span className="shrink-0">{field.label}</span>
-                        <span className="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">{DOT_LINE}</span>
+                        <span className="overflow-hidden whitespace-nowrap text-[var(--ink-3)] select-none">{DOT_LINE}</span>
                       </p>
                     ))}
-                    <p className="text-[var(--ink-muted)] italic pt-0.5">{clause.client.suffix}</p>
+                    <p className="text-[var(--ink-3)] italic pt-0.5">{clause.client.suffix}</p>
                   </div>
                   <p>{clause.outro}</p>
                 </div>
@@ -265,7 +265,7 @@ const Nda = () => {
                   {signatures.tma.fields.map((field, fIdx) => (
                     <p key={fIdx} className="flex items-baseline gap-1 overflow-hidden">
                       <span className="shrink-0">{field.label}</span>
-                      <span className="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">{DOT_LINE}</span>
+                      <span className="overflow-hidden whitespace-nowrap text-[var(--ink-3)] select-none">{DOT_LINE}</span>
                     </p>
                   ))}
                 </div>
@@ -276,14 +276,14 @@ const Nda = () => {
                 {signatures.ajans.fields.slice(0, 3).map((field, fIdx) => (
                   <p key={fIdx} className="flex items-baseline gap-1 overflow-hidden">
                     <span className="shrink-0">{field.label}</span>
-                    <span className="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">{DOT_LINE}</span>
+                    <span className="overflow-hidden whitespace-nowrap text-[var(--ink-3)] select-none">{DOT_LINE}</span>
                   </p>
                 ))}
                 <div className="pt-2 space-y-1.5">
                   {signatures.ajans.fields.slice(3).map((field, fIdx) => (
                     <p key={fIdx} className="flex items-baseline gap-1 overflow-hidden">
                       <span className="shrink-0">{field.label}</span>
-                      <span className="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">{DOT_LINE}</span>
+                      <span className="overflow-hidden whitespace-nowrap text-[var(--ink-3)] select-none">{DOT_LINE}</span>
                     </p>
                   ))}
                 </div>

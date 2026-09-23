@@ -41,7 +41,7 @@ const PostMortemIndex = () => {
           {postMortemHubH1[isTr ? 'tr' : 'en']}
         </h1>
 
-        <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-[34rem]">
+        <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed max-w-[34rem]">
           {isTr 
             ? 'Pazarlama laflarıyla değil, mühendislik ciddiyetiyle: Çözdüğümüz kritik altyapı krizlerinin müşteri gizliliği korunarak hazırlanmış saniye saniye zaman çizelgesi, kök neden analizi (5 Whys) ve kalıcı önlem raporları.'
             : 'Engineering rigor over marketing claims: Anonymized post-mortems detailing second-by-second incident chronologies, root-cause analyses, and surgical TMA hotfix protocols.'}
@@ -58,7 +58,7 @@ const PostMortemIndex = () => {
         </div>
 
         {/* Disclosure Notice */}
-        <div className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed font-mono">
+        <div className="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] leading-relaxed font-mono">
           {postMortemDisclosure.index[lang]}
         </div>
       </header>
@@ -105,12 +105,12 @@ const PostMortemIndex = () => {
                     <AlertTriangle className="w-3 h-3" />
                     {item.severity}
                   </span>
-                  <span className="font-mono text-xs text-[var(--ink-muted)]">
+                  <span className="font-mono text-xs text-[var(--ink-3)]">
                     {item.category[lang]}
                   </span>
                 </div>
 
-                <div className="font-mono text-xs text-[var(--ink-muted)] flex items-center gap-3">
+                <div className="font-mono text-xs text-[var(--ink-3)] flex items-center gap-3">
                   <span className="flex items-center gap-1">
                     <Calendar className="w-3.5 h-3.5 text-[var(--accent)]" />
                     {item.date[lang]}
@@ -126,12 +126,12 @@ const PostMortemIndex = () => {
                 {item.title[lang]}
               </h2>
 
-              <p className="text-[var(--ink-light)] text-sm sm:text-base leading-relaxed">
+              <p className="text-[var(--ink-2)] text-sm sm:text-base leading-relaxed">
                 {item.summary[lang]}
               </p>
 
               <div className="pt-2 flex items-center justify-between border-t border-[var(--rule)] text-xs font-mono">
-                <span className="text-[var(--ink-light)]">
+                <span className="text-[var(--ink-2)]">
                   <strong className="text-[var(--ink)]">{isTr ? 'Etki: ' : 'Impact: '}</strong>
                   {item.impact[lang]}
                 </span>

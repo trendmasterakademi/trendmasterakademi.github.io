@@ -116,17 +116,17 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
 
       {/* Screen Header (No Print) */}
       <div className="max-w-5xl mx-auto text-center mb-12 no-print">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-3)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
           <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
           {t.hero.badge}
         </div>
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[var(--ink)] mb-4">
           {t.hero.title}
         </h1>
-        <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-[34rem] mx-auto mb-4">
+        <p className="text-base sm:text-lg text-[var(--ink-2)] max-w-[34rem] mx-auto mb-4">
           {t.hero.subtitle}
         </p>
-        <p className="text-xs text-[var(--ink-muted)] font-mono">
+        <p className="text-xs text-[var(--ink-3)] font-mono">
           {t.hero.notice}
         </p>
       </div>
@@ -168,7 +168,7 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
 
             <div className="space-y-4 text-xs font-mono">
               <div>
-                <label className="block text-[var(--ink-light)] mb-1 font-medium">
+                <label className="block text-[var(--ink-2)] mb-1 font-medium">
                   {t.formLabels.companyName} *
                 </label>
                 <input
@@ -177,12 +177,12 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                   value={formData.companyName}
                   onChange={handleChange}
                   placeholder={t.formLabels.companyNamePlaceholder}
-                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] placeholder-[var(--ink-muted)] focus:outline-none focus:border-[var(--accent)]"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] placeholder-[var(--ink-3)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               <div>
-                <label className="block text-[var(--ink-light)] mb-1 font-medium">
+                <label className="block text-[var(--ink-2)] mb-1 font-medium">
                   {t.formLabels.signatory} *
                 </label>
                 <input
@@ -191,12 +191,12 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                   value={formData.signatory}
                   onChange={handleChange}
                   placeholder={t.formLabels.signatoryPlaceholder}
-                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] placeholder-[var(--ink-muted)] focus:outline-none focus:border-[var(--accent)]"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] placeholder-[var(--ink-3)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               <div>
-                <label className="block text-[var(--ink-light)] mb-1 font-medium">
+                <label className="block text-[var(--ink-2)] mb-1 font-medium">
                   {t.formLabels.signatoryTitle}
                 </label>
                 <input
@@ -205,12 +205,12 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                   value={formData.signatoryTitle}
                   onChange={handleChange}
                   placeholder={t.formLabels.signatoryTitlePlaceholder}
-                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] placeholder-[var(--ink-muted)] focus:outline-none focus:border-[var(--accent)]"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] placeholder-[var(--ink-3)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               <div>
-                <label className="block text-[var(--ink-light)] mb-1 font-medium">
+                <label className="block text-[var(--ink-2)] mb-1 font-medium">
                   {t.formLabels.email} *
                 </label>
                 <input
@@ -219,12 +219,12 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                   value={formData.email}
                   onChange={handleChange}
                   placeholder={t.formLabels.emailPlaceholder}
-                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] placeholder-[var(--ink-muted)] focus:outline-none focus:border-[var(--accent)]"
+                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] placeholder-[var(--ink-3)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
 
               <div>
-                <label className="block text-[var(--ink-light)] mb-1 font-medium">
+                <label className="block text-[var(--ink-2)] mb-1 font-medium">
                   {t.formLabels.scope}
                 </label>
                 <select
@@ -242,7 +242,7 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
               </div>
 
               <div>
-                <label className="block text-[var(--ink-light)] mb-1 font-medium">
+                <label className="block text-[var(--ink-2)] mb-1 font-medium">
                   {t.formLabels.effectiveDate}
                 </label>
                 <input
@@ -271,7 +271,7 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
               <h2 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)] tracking-tight mb-2 uppercase">
                 {t.hero.title}
               </h2>
-              <span className="text-xs font-mono text-[var(--ink-muted)]">
+              <span className="text-xs font-mono text-[var(--ink-3)]">
                 Ref: TMA-NDA-{formData.effectiveDate.replace(/-/g, "")}-{formData.scope.toUpperCase()}
               </span>
             </div>
@@ -283,10 +283,10 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                   1. {lang === "en" ? "Client / Disclosing Party:" : "Müşteri / Danışan Taraf:"}
                 </h3>
                 <p className="font-bold text-[var(--ink)] text-sm mb-1">{clientCompanyDisplay}</p>
-                <p className="text-[var(--ink-light)] mb-1">
+                <p className="text-[var(--ink-2)] mb-1">
                   {clientSignatoryDisplay} {formData.signatoryTitle ? `(${clientTitleDisplay})` : ""}
                 </p>
-                <p className="text-[var(--ink-light)] mb-1">{clientEmailDisplay}</p>
+                <p className="text-[var(--ink-2)] mb-1">{clientEmailDisplay}</p>
               </div>
 
               <div>
@@ -294,22 +294,22 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                   2. {lang === "en" ? "Engineering Studio / Receiving Party:" : "Yüklenici / Mühendislik Masası:"}
                 </h3>
                 <p className="font-bold text-[var(--ink)] text-sm mb-1">{t.tmaParty.companyName}</p>
-                <p className="text-[var(--ink-light)] mb-1">
+                <p className="text-[var(--ink-2)] mb-1">
                   {t.tmaParty.signatory} ({t.tmaParty.title})
                 </p>
-                <p className="text-[var(--ink-light)] mb-1">{t.tmaParty.address}</p>
-                <p className="text-[var(--ink-light)]">{t.tmaParty.email} • {t.tmaParty.phone}</p>
+                <p className="text-[var(--ink-2)] mb-1">{t.tmaParty.address}</p>
+                <p className="text-[var(--ink-2)]">{t.tmaParty.email} • {t.tmaParty.phone}</p>
               </div>
             </div>
 
             {/* Scope & Date Banner */}
             <div className="bg-[var(--paper)] p-4 rounded-lg border border-[var(--rule)] mb-8 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
               <div>
-                <span className="text-[var(--ink-light)]">{lang === "en" ? "Scope: " : "Kapsam: "}</span>
+                <span className="text-[var(--ink-2)]">{lang === "en" ? "Scope: " : "Kapsam: "}</span>
                 <span className="text-[var(--ink)] font-bold">{selectedScopeObj.label}</span>
               </div>
               <div>
-                <span className="text-[var(--ink-light)]">{lang === "en" ? "Effective Date: " : "Yürürlük Tarihi: "}</span>
+                <span className="text-[var(--ink-2)]">{lang === "en" ? "Effective Date: " : "Yürürlük Tarihi: "}</span>
                 <span className="text-[var(--accent)] font-bold">{formData.effectiveDate}</span>
               </div>
             </div>
@@ -322,7 +322,7 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                     <span className="text-[var(--accent)] font-mono">MADDE {clause.num}.</span>
                     {clause.title}
                   </h3>
-                  <p className="text-[var(--ink-light)] text-xs sm:text-sm leading-relaxed text-justify">
+                  <p className="text-[var(--ink-2)] text-xs sm:text-sm leading-relaxed text-justify">
                     {clause.content}
                   </p>
                 </div>
@@ -337,8 +337,8 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                 </p>
                 <div className="border-b border-[var(--rule)] w-3/4 mb-2"></div>
                 <p className="font-medium text-[var(--ink)]">{clientSignatoryDisplay}</p>
-                <p className="text-[var(--ink-light)]">{clientTitleDisplay}</p>
-                <p className="text-[var(--ink-muted)] font-mono mt-1">{formData.effectiveDate}</p>
+                <p className="text-[var(--ink-2)]">{clientTitleDisplay}</p>
+                <p className="text-[var(--ink-3)] font-mono mt-1">{formData.effectiveDate}</p>
               </div>
 
               <div>
@@ -347,8 +347,8 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
                 </p>
                 <div className="border-b border-[var(--rule)] w-3/4 mb-2"></div>
                 <p className="font-medium text-[var(--ink)]">{t.tmaParty.signatory}</p>
-                <p className="text-[var(--ink-light)]">{t.tmaParty.title}</p>
-                <p className="text-[var(--ink-muted)] font-mono mt-1">{formData.effectiveDate}</p>
+                <p className="text-[var(--ink-2)]">{t.tmaParty.title}</p>
+                <p className="text-[var(--ink-3)] font-mono mt-1">{formData.effectiveDate}</p>
               </div>
             </div>
           </div>

@@ -65,7 +65,7 @@ Rapor Tarihi: ${new Date().toISOString()}`;
         <h1 className="text-3xl sm:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight">
           {triageH1[isTr ? 'tr' : 'en']}
         </h1>
-        <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed">
+        <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
           {isTr
             ? 'Canlı sisteminiz çöktüğünde veya kilitlendiğinde ilk panikle yapılan hamleler (rastgele restart, kontrolsüz migration rollback) kesinti süresini saatlerce uzatır. Belirtinizi seçin, kanıt toplayın ve soğukkanlı eylem planını uygulayın.'
             : 'When production fails, panicked initial responses (random server reboots, blind migration reverts) multiply downtime tenfold. Select your symptom, gather hard evidence, and execute disciplined incident protocols.'}
@@ -74,7 +74,7 @@ Rapor Tarihi: ${new Date().toISOString()}`;
 
       {/* Scenario Selector on Top (Full Width: >=1024 3x2, 768 2x3, Mobile 1 col) */}
       <div className="space-y-3">
-        <h2 className="text-xs font-mono uppercase tracking-wider text-[var(--ink-muted)] font-semibold px-1">
+        <h2 className="text-xs font-mono uppercase tracking-wider text-[var(--ink-3)] font-semibold px-1">
           {isTr ? 'Gözlemlenen Kriz Belirtisi (6 Senaryo)' : 'Observed Outage Symptoms (6 Scenarios)'}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -87,7 +87,7 @@ Rapor Tarihi: ${new Date().toISOString()}`;
                 className={`w-full text-left p-4 rounded-xl border transition-all duration-150 flex flex-col gap-2 cursor-pointer ${
                   isSelected
                     ? 'bg-[var(--surface)] border-[var(--accent)] shadow-sm ring-1 ring-[var(--accent)]/30'
-                    : 'bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--ink-muted)]'
+                    : 'bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--ink-3)]'
                 }`}
               >
                 <div className="flex items-center justify-between gap-2">
@@ -120,7 +120,7 @@ Rapor Tarihi: ${new Date().toISOString()}`;
           {/* Protocol Meta Header */}
             <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[var(--rule)] pb-6">
               <div className="space-y-1">
-                <div className="flex items-center gap-2 font-mono text-xs text-[var(--ink-muted)]">
+                <div className="flex items-center gap-2 font-mono text-xs text-[var(--ink-3)]">
                   <Terminal className="w-4 h-4 text-[var(--accent)]" />
                   <span>PROTOKOL: {activeScenario.id.toUpperCase()}</span>
                 </div>
@@ -130,7 +130,7 @@ Rapor Tarihi: ${new Date().toISOString()}`;
               </div>
               <div className="flex items-center gap-3">
                 <div className="text-right font-mono">
-                  <span className="text-xs text-[var(--ink-muted)] block">{isTr ? 'İLK YANIT' : 'RESPONSE'}</span>
+                  <span className="text-xs text-[var(--ink-3)] block">{isTr ? 'İLK YANIT' : 'RESPONSE'}</span>
                   <span className="text-sm font-bold text-[var(--tint-ok-ink)]">{activeScenario.firstResponseTime[lang]}</span>
                 </div>
                 <span className={`text-xs font-mono px-3 py-1.5 rounded-lg font-semibold ${
@@ -219,7 +219,7 @@ Rapor Tarihi: ${new Date().toISOString()}`;
             </div>
 
             {/* 4. TMA SWAT RESOLUTION */}
-            <div className="p-5 rounded-2xl bg-[var(--accent-subtle)] border border-[var(--accent)]/30 space-y-2">
+            <div className="p-5 rounded-2xl bg-[var(--accent-wash)] border border-[var(--accent)]/30 space-y-2">
               <span className="text-xs font-mono font-semibold text-[var(--accent)] uppercase tracking-wide block">
                 {isTr ? '▸ TMA SWAT MASASI MÜDAHALE PROTOKOLÜ' : '▸ TMA SWAT RESOLUTION PROTOCOL'}
               </span>

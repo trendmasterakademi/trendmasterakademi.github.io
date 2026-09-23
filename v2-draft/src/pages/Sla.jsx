@@ -28,14 +28,14 @@ export const Sla = () => {
     <div className="pt-28 pb-20 px-4 sm:px-6 max-w-6xl mx-auto space-y-16 text-[var(--ink)] font-sans">
       {/* Header */}
       <div className="space-y-4 max-w-3xl">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[var(--accent-soft)] border border-[var(--accent)] text-[var(--accent)] font-mono text-xs font-semibold">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono text-xs font-semibold">
           <ShieldCheck className="w-3.5 h-3.5" />
           <span>{isTr ? 'B2B HİZMET SEVİYESİ TAAHHÜTLERİ (SLA)' : 'B2B SERVICE LEVEL AGREEMENTS (SLA)'}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-semibold font-serif text-[var(--ink)] tracking-tight">
           {slaH1[isTr ? 'tr' : 'en']}
         </h1>
-        <p className="text-[var(--ink-muted)] text-base sm:text-lg leading-relaxed">
+        <p className="text-[var(--ink-3)] text-base sm:text-lg leading-relaxed">
           {isTr
             ? 'Ajanslar ve kurumsal şirketler için muğlak "en kısa sürede inceleriz" sözleri yerine; dakikalarla tanımlanmış, bağlayıcı mühendislik masası taahhütleri.'
             : 'Instead of vague "we will look into it ASAP" promises; strictly defined, minute-by-minute senior engineering desk commitments.'}
@@ -49,7 +49,7 @@ export const Sla = () => {
             <Zap className="w-4 h-4 text-[var(--accent)]" />
             <span>{isTr ? 'Olay Ciddiyet Seviyeleri (Severity Tiers)' : 'Incident Severity Tiers'}</span>
           </h2>
-          <span className="text-xs font-mono text-[var(--ink-muted)]">
+          <span className="text-xs font-mono text-[var(--ink-3)]">
             {isTr ? 'Ortalama SLA Uyum Oranı: %99.3' : 'Overall SLA Compliance Rate: 99.3%'}
           </span>
         </div>
@@ -65,7 +65,7 @@ export const Sla = () => {
                 className={`p-4 rounded border text-left transition-all duration-150 relative min-h-[44px] cursor-pointer ${
                   isActive
                     ? 'bg-[var(--surface)] border-[var(--accent)] shadow-sm ring-1 ring-[var(--accent)]'
-                    : 'bg-[var(--surface)] border-[var(--rule)] hover:border-[var(--ink-muted)]'
+                    : 'bg-[var(--surface)] border-[var(--rule)] hover:border-[var(--ink-3)]'
                 }`}
               >
                 <div className="flex items-center justify-between mb-2">
@@ -77,7 +77,7 @@ export const Sla = () => {
                   }`}>
                     {t.level}
                   </span>
-                  <span className="text-xs font-mono text-[var(--ink-muted)]">{t.slaComplianceRate}</span>
+                  <span className="text-xs font-mono text-[var(--ink-3)]">{t.slaComplianceRate}</span>
                 </div>
                 <div className="text-sm font-semibold font-serif text-[var(--ink)] line-clamp-1">
                   {t.title[lang]}
@@ -94,37 +94,37 @@ export const Sla = () => {
         <div className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-8 shadow-sm relative overflow-hidden">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 border-b border-[var(--rule)] pb-6 font-mono">
             <div className="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-1">
-              <span className="text-xs text-[var(--ink-muted)] uppercase tracking-wider block font-semibold">
+              <span className="text-xs text-[var(--ink-3)] uppercase tracking-wider block font-semibold">
                 {isTr ? 'İLK YANIT (MTTA)' : 'FIRST RESPONSE (MTTA)'}
               </span>
               <strong className="text-xl sm:text-2xl font-bold text-[var(--accent)]">
                 {selectedTier.mtta[lang]}
               </strong>
-              <p className="text-xs text-[var(--ink-muted)]">
+              <p className="text-xs text-[var(--ink-3)]">
                 {isTr ? 'Acil çağrı sonrası mühendisin ilk teyidi' : 'Initial acknowledgment by senior engineer'}
               </p>
             </div>
 
             <div className="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-1">
-              <span className="text-xs text-[var(--ink-muted)] uppercase tracking-wider block font-semibold">
+              <span className="text-xs text-[var(--ink-3)] uppercase tracking-wider block font-semibold">
                 {isTr ? 'MASAYA OTURMA & TRİYAJ' : 'TIME TO ENGAGE (TABLE)'}
               </span>
               <strong className="text-xl sm:text-2xl font-bold text-[var(--tint-ok-ink)]">
                 {selectedTier.timeToTable[lang]}
               </strong>
-              <p className="text-xs text-[var(--ink-muted)]">
+              <p className="text-xs text-[var(--ink-3)]">
                 {isTr ? 'Canlı sisteme SSH/Repo erişimiyle müdahale' : 'Active production triage and containment'}
               </p>
             </div>
 
             <div className="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-1">
-              <span className="text-xs text-[var(--ink-muted)] uppercase tracking-wider block font-semibold">
+              <span className="text-xs text-[var(--ink-3)] uppercase tracking-wider block font-semibold">
                 {isTr ? 'DURUM GÜNCELLEME SIKLIĞI' : 'STATUS CADENCE'}
               </span>
               <strong className="text-base sm:text-lg font-semibold text-[var(--ink)] block mt-1">
                 {selectedTier.updateCadence[lang]}
               </strong>
-              <p className="text-xs text-[var(--ink-muted)]">
+              <p className="text-xs text-[var(--ink-3)]">
                 {isTr ? 'Yazılı durum ve kriz brifingi' : 'Written brief and incident milestones'}
               </p>
             </div>
@@ -132,7 +132,7 @@ export const Sla = () => {
 
           {/* Definition */}
           <div className="space-y-2">
-            <h3 className="text-xs font-mono font-semibold text-[var(--ink-muted)] uppercase tracking-wider">
+            <h3 className="text-xs font-mono font-semibold text-[var(--ink-3)] uppercase tracking-wider">
               {isTr ? 'KAPSAM & TANIM' : 'SCOPE & DEFINITION'}
             </h3>
             <p className="text-[var(--ink)] text-base leading-relaxed">
@@ -142,7 +142,7 @@ export const Sla = () => {
 
           {/* Typical Incidents */}
           <div className="space-y-3">
-            <h3 className="text-xs font-mono font-semibold text-[var(--ink-muted)] uppercase tracking-wider">
+            <h3 className="text-xs font-mono font-semibold text-[var(--ink-3)] uppercase tracking-wider">
               {isTr ? 'BU SEVİYEYE GİREN TİPİK VAKALAR' : 'TYPICAL INCIDENT PATTERNS'}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -157,7 +157,7 @@ export const Sla = () => {
 
           {/* Quick CTA inside tier */}
           <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-[var(--rule)]">
-            <div className="text-xs text-[var(--ink-muted)] font-mono">
+            <div className="text-xs text-[var(--ink-3)] font-mono">
               {isTr ? 'Bu seviyede aktif bir kriziniz mi var?' : 'Experiencing an incident at this severity?'}
             </div>
             <div className="flex items-center gap-3">
@@ -179,7 +179,7 @@ export const Sla = () => {
         </div>
 
         {/* Coverage Note */}
-        <div className="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] leading-relaxed">
+        <div className="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] text-xs text-[var(--ink-3)] leading-relaxed">
           <p>
             {slaScope[lang]}
           </p>
@@ -194,7 +194,7 @@ export const Sla = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {coreCommitments.map((c) => (
-            <article key={c.no} className="p-6 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-3 shadow-sm hover:border-[var(--ink-muted)] transition-colors flex flex-col justify-between">
+            <article key={c.no} className="p-6 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-3 shadow-sm hover:border-[var(--ink-3)] transition-colors flex flex-col justify-between">
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xl font-bold font-mono text-[var(--accent)]">{c.no}</span>
@@ -202,7 +202,7 @@ export const Sla = () => {
                 <h3 className="text-lg font-semibold font-serif text-[var(--ink)]">
                   {c.title[lang]}
                 </h3>
-                <p className="text-[var(--ink-muted)] text-sm leading-relaxed">
+                <p className="text-[var(--ink-3)] text-sm leading-relaxed">
                   {c.desc[lang]}
                 </p>
               </div>
@@ -226,7 +226,7 @@ export const Sla = () => {
         <h3 className="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)]">
           {isTr ? 'Kriz Kapınızı Çalmadan Tanışalım' : 'Meet Before Critical Outages Strike'}
         </h3>
-        <p className="text-[var(--ink-muted)] text-sm sm:text-base leading-relaxed">
+        <p className="text-[var(--ink-3)] text-sm sm:text-base leading-relaxed">
           {isTr
             ? 'Birçok ajansla ilk temasımız canlı sistem durduğunda gerçekleşir. Dilerseniz önceden 15 dakikalık bir triyaj tanışması yaparak acil durum protokolünüzü netleştirelim.'
             : 'Most agencies reach out when production is already on fire. Schedule a 15-minute intro triage to define your standby emergency protocol beforehand.'}

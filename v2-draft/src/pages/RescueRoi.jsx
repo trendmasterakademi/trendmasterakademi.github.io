@@ -107,17 +107,17 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[var(--ink)] mb-4">
           {t.hero.title}
         </h1>
-        <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-[34rem] mx-auto mb-4">
+        <p className="text-base sm:text-lg text-[var(--ink-2)] max-w-[34rem] mx-auto mb-4">
           {t.hero.subtitle}
         </p>
-        <p className="text-xs text-[var(--ink-muted)] font-mono">
+        <p className="text-xs text-[var(--ink-3)] font-mono">
           {t.hero.notice}
         </p>
       </div>
 
       {/* Preset Selector */}
       <div className="max-w-6xl mx-auto mb-10">
-        <span className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider block mb-3 text-center">
+        <span className="text-xs font-mono text-[var(--ink-3)] uppercase tracking-wider block mb-3 text-center">
           {t.labels.presetTitle}
         </span>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
@@ -127,12 +127,12 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
               onClick={() => applyPreset(preset.id)}
               className={`p-4 rounded-xl text-left border transition-all cursor-pointer min-h-[48px] ${
                 selectedPreset === preset.id
-                  ? "bg-[var(--accent-subtle)] border-[var(--accent)] text-[var(--ink)] shadow-sm"
-                  : "bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-light)] hover:border-[var(--ink-muted)] hover:text-[var(--ink)]"
+                  ? "bg-[var(--accent-wash)] border-[var(--accent)] text-[var(--ink)] shadow-sm"
+                  : "bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] hover:border-[var(--ink-3)] hover:text-[var(--ink)]"
               }`}
             >
               <h3 className="text-sm font-bold font-mono tracking-tight">{preset.name}</h3>
-              <p className="text-xs text-[var(--ink-muted)] mt-1 font-mono">
+              <p className="text-xs text-[var(--ink-3)] mt-1 font-mono">
                 {preset.teamSize} Devs • {preset.rebuildMonths} Mo Rebuild
               </p>
             </button>
@@ -191,7 +191,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
             {/* Numerical Inputs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
               <div>
-                <label htmlFor="monthly-rate-input" className="block text-[var(--ink-light)] mb-1">{t.labels.monthlyRate}</label>
+                <label htmlFor="monthly-rate-input" className="block text-[var(--ink-2)] mb-1">{t.labels.monthlyRate}</label>
                 <input
                   id="monthly-rate-input"
                   type="number"
@@ -203,7 +203,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
               </div>
 
               <div>
-                <label htmlFor="recruiting-months-input" className="block text-[var(--ink-light)] mb-1">{t.labels.recruitingMonths}</label>
+                <label htmlFor="recruiting-months-input" className="block text-[var(--ink-2)] mb-1">{t.labels.recruitingMonths}</label>
                 <input
                   id="recruiting-months-input"
                   type="number"
@@ -218,7 +218,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
             </div>
 
             <div className="text-xs font-mono">
-              <label htmlFor="monthly-rev-risk-input" className="block text-[var(--ink-light)] mb-1">{t.labels.monthlyRevenue}</label>
+              <label htmlFor="monthly-rev-risk-input" className="block text-[var(--ink-2)] mb-1">{t.labels.monthlyRevenue}</label>
               <input
                 id="monthly-rev-risk-input"
                 type="number"
@@ -244,7 +244,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
             {/* Key Value Cards */}
             <div className="grid grid-cols-2 gap-3 mb-6 font-mono">
               <div className="p-3.5 rounded-xl bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-xs text-[var(--ink-muted)] uppercase block mb-1">
+                <span className="text-xs text-[var(--ink-3)] uppercase block mb-1">
                   {t.labels.timeSaved}
                 </span>
                 <span className="text-2xl font-bold text-[var(--ink)]">
@@ -253,7 +253,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
               </div>
 
               <div className="p-3.5 rounded-xl bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-xs text-[var(--ink-muted)] uppercase block mb-1">
+                <span className="text-xs text-[var(--ink-3)] uppercase block mb-1">
                   {t.labels.roiMultiplier}
                 </span>
                 <span className="text-2xl font-bold text-[var(--accent)]">
@@ -265,17 +265,17 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
             {/* Comparison Details */}
             <div className="space-y-3 border-t border-[var(--rule)] pt-5 text-xs font-mono">
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-light)]">{t.labels.rebuildSummaryTitle} ({metrics.totalRebuildMonths} {lang === "en" ? "Mo" : "Ay"}):</span>
+                <span className="text-[var(--ink-2)]">{t.labels.rebuildSummaryTitle} ({metrics.totalRebuildMonths} {lang === "en" ? "Mo" : "Ay"}):</span>
                 <span className="font-bold text-[var(--tint-danger-ink)]">{formatCurrency(metrics.totalRebuildCost)}</span>
               </div>
 
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-light)]">{t.labels.rescueSummaryTitle} {lang === "en" ? "(~3 Weeks):" : "(~3 Hafta):"}</span>
+                <span className="text-[var(--ink-2)]">{t.labels.rescueSummaryTitle} {lang === "en" ? "(~3 Weeks):" : "(~3 Hafta):"}</span>
                 <span className="font-bold text-[var(--tint-ok-ink)]">{formatCurrency(metrics.tmaRescueCost)}</span>
               </div>
             </div>
 
-            <p className="text-xs text-[var(--ink-muted)] font-mono leading-relaxed mt-4 pt-3 border-t border-[var(--rule)]">
+            <p className="text-xs text-[var(--ink-3)] font-mono leading-relaxed mt-4 pt-3 border-t border-[var(--rule)]">
               {t.labels.sourceNote}
             </p>
 
@@ -307,7 +307,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
           <h2 className="text-sm font-mono font-semibold text-[var(--tint-danger-ink)] uppercase tracking-wider">
             {t.labels.rebuildBreakdown}
           </h2>
-          <ul className="text-xs text-[var(--ink-light)] space-y-2 list-disc list-inside font-sans">
+          <ul className="text-xs text-[var(--ink-2)] space-y-2 list-disc list-inside font-sans">
             {t.rebuildItems.map((item, idx) => (
               <li key={idx} className="leading-relaxed">{item}</li>
             ))}
@@ -318,7 +318,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
           <h2 className="text-sm font-mono font-semibold text-[var(--tint-ok-ink)] uppercase tracking-wider">
             {t.labels.rescueBreakdown}
           </h2>
-          <ul className="text-xs text-[var(--ink-light)] space-y-2 list-disc list-inside font-sans">
+          <ul className="text-xs text-[var(--ink-2)] space-y-2 list-disc list-inside font-sans">
             {t.rescueItems.map((item, idx) => (
               <li key={idx} className="leading-relaxed">{item}</li>
             ))}

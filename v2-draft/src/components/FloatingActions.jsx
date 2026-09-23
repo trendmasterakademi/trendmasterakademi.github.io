@@ -64,7 +64,7 @@ const FloatingActions = () => {
           {isHoveredWA && (
             <div className="hidden sm:block absolute right-full mr-3.5 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] text-xs font-mono font-medium whitespace-nowrap shadow-md animate-in fade-in slide-in-from-right-2">
               <span className="flex items-center gap-1.5">
-                <span className="w-2 h-2 rounded-full bg-[var(--sev-4)]"></span>
+                <span className="w-2 h-2 rounded-full bg-[var(--sev-ok-dot)]"></span>
                 {isTr ? 'Doğrudan Kriz Masası (WhatsApp)' : 'Emergency Hotline (WhatsApp)'}
               </span>
             </div>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 /**
  * Standard Button component supporting 3 brand styles:
  * - 'primary': Solid --accent, white text, hover:brightness-90, min-h-[44px]
- * - 'secondary': Transparent bg, 1px --rule border, --ink text, hover:bg-[var(--surface-muted)], min-h-[44px]
+ * - 'secondary': Transparent bg, 1px --rule border, --ink text, hover:bg-[var(--paper)], min-h-[44px]
  * - 'link': Underlined --accent-ink, min-h-[44px] touch target
  */
 export default function Button({

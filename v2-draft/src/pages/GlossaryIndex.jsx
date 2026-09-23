@@ -31,7 +31,7 @@ const GlossaryIndex = () => {
         
         {/* Header Eyebrow */}
         <div className="text-center max-w-3xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-3)] text-xs font-mono font-medium uppercase tracking-wider">
             <BookOpen className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'AJANS PATRONU REHBERİ' : 'AGENCY EXECUTIVE GUIDE'}
           </div>
 
@@ -39,7 +39,7 @@ const GlossaryIndex = () => {
             {glossaryHubH1[isTr ? 'tr' : 'en']}
           </h1>
 
-          <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed">
+          <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
             {isTr 
               ? 'Yazılımcınız teknik bir bahane sunduğunda veya acil bir kriz yaşandığında; ne olduğunu, ajansınıza maliyetini ve kimin çözeceğini 30 saniyede kavrayın.' 
               : 'Translate complex developer jargon into actionable business impact, operational urgency, and pragmatic resolution paths.'}
@@ -48,7 +48,7 @@ const GlossaryIndex = () => {
 
         {/* Search Input Bar */}
         <div className="max-w-2xl mx-auto relative">
-          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[var(--ink-muted)]">
+          <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-[var(--ink-3)]">
             <Search className="w-5 h-5" />
           </div>
           <input
@@ -56,7 +56,7 @@ const GlossaryIndex = () => {
             placeholder={isTr ? 'Terim veya kavram ara... (örn: deadlock, webhook, refactor)' : 'Search terms... (e.g. deadlock, webhook, refactor)'}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-12 pr-4 py-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] placeholder-[var(--ink-muted)] text-sm sm:text-base focus:border-[var(--accent)] focus:outline-none shadow-sm transition-all"
+            className="w-full pl-12 pr-4 py-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] placeholder-[var(--ink-3)] text-sm sm:text-base focus:border-[var(--accent)] focus:outline-none shadow-sm transition-all"
           />
         </div>
 
@@ -72,7 +72,7 @@ const GlossaryIndex = () => {
                   <span className={`text-xs font-mono font-semibold px-2.5 py-0.5 rounded-full border ${term.urgencyColor}`}>
                     {isTr ? term.urgencyLevel : term.urgencyLevelEn}
                   </span>
-                  <span className="text-xs font-mono text-[var(--ink-muted)]">/{isTr ? 'sozluk' : 'glossary'}/{term.slug}/</span>
+                  <span className="text-xs font-mono text-[var(--ink-3)]">/{isTr ? 'sozluk' : 'glossary'}/{term.slug}/</span>
                 </div>
 
                 <h2 className="text-xl font-serif font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
@@ -81,7 +81,7 @@ const GlossaryIndex = () => {
                   </Link>
                 </h2>
 
-                <p className="text-xs sm:text-sm text-[var(--ink-light)] leading-relaxed line-clamp-3">
+                <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed line-clamp-3">
                   {term.shortDef[isTr ? 'tr' : 'en']}
                 </p>
               </div>
@@ -104,7 +104,7 @@ const GlossaryIndex = () => {
           <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">
             {isTr ? 'Projenizde Bu Problemlerden Biri Canlıda mı Yaşanıyor?' : 'Facing One of These Technical Bottlenecks on Production?'}
           </h3>
-          <p className="text-xs sm:text-sm text-[var(--ink-light)] max-w-xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm text-[var(--ink-2)] max-w-xl mx-auto leading-relaxed">
             {isTr 
               ? 'TMA SWAT masası; veritabanı kilitlenmelerini, webhook kopmalarını ve bellek sızıntılarını ajansınız adına sessizce çözer.' 
               : 'Our backline engineering desk diagnoses deadlocks, broken webhooks, and concurrency bugs under strict NDA.'}

@@ -30,7 +30,7 @@ const TeshisIndex = () => {
           {teshisCatalogH1[isTr ? 'tr' : 'en']}
         </h1>
 
-        <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-[34rem]">
+        <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed max-w-[34rem]">
           {isTr 
             ? 'Belirtiyi görüyorsunuz ama nedenini bilmiyorsunuz. Buradaki her teşhis bir belirtiyle başlar, aynı belirtiyi üretebilecek nedenleri ayırır ve hangisiyle karşı karşıya olduğunuzu nasıl anlayacağınızı gösterir.'
             : 'You can see the symptom but not the cause. Each entry starts from a symptom, separates the causes that could produce it, and shows you how to tell which one you are facing.'}
@@ -80,7 +80,7 @@ const TeshisIndex = () => {
                     <AlertTriangle className="w-3 h-3" />
                     {aciliyetText}
                   </span>
-                  <span className="font-mono text-xs text-[var(--ink-muted)]">
+                  <span className="font-mono text-xs text-[var(--ink-3)]">
                     {kirintiText}
                   </span>
                 </div>
@@ -94,19 +94,19 @@ const TeshisIndex = () => {
                 <h2 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
                   {baslikText}
                 </h2>
-                <p className="text-[var(--ink-light)] text-xs sm:text-sm mt-2 leading-relaxed line-clamp-2">
+                <p className="text-[var(--ink-2)] text-xs sm:text-sm mt-2 leading-relaxed line-clamp-2">
                   {ozetText}
                 </p>
               </div>
 
               <div className="pt-2 flex flex-wrap items-center gap-2 border-t border-[var(--rule)]">
-                <span className="text-xs font-mono text-[var(--ink-muted)]">
+                <span className="text-xs font-mono text-[var(--ink-3)]">
                   {isTr ? 'Olası Nedenler:' : 'Root Causes:'}
                 </span>
                 {item.nedenler.map((cause) => (
                   <span 
                     key={cause.harf}
-                    className="px-2 py-0.5 rounded bg-[var(--paper)] font-mono text-xs text-[var(--ink-light)] border border-[var(--rule)]"
+                    className="px-2 py-0.5 rounded bg-[var(--paper)] font-mono text-xs text-[var(--ink-2)] border border-[var(--rule)]"
                   >
                     {cause.harf}: {cause.ad[lang] || cause.ad.tr}
                   </span>

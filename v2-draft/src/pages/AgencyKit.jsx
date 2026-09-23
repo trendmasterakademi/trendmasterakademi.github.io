@@ -59,7 +59,7 @@ export default function AgencyKit({ lang }) {
             HERO SECTION: TMA AGENCY KIT // VISUAL RELEASE
         ======================================================== */}
         <section className="text-center max-w-4xl mx-auto space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] font-mono text-xs tracking-wider uppercase">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-3)] font-mono text-xs tracking-wider uppercase">
             <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
             <span>TMA AGENCY KIT // 2026 OFFICIAL RELEASE</span>
           </div>
@@ -70,7 +70,7 @@ export default function AgencyKit({ lang }) {
             {agencyKitH1[isTr ? 'tr' : 'en'].suffix}
           </h1>
 
-          <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-[34rem] mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg text-[var(--ink-2)] max-w-[34rem] mx-auto leading-relaxed">
             {isTr 
               ? "Dijital ajansların görünmeyen kıdemli teknik masası. 8 Slaytlık Response Kit ve 60 Saniyelik Crash Test 500 posteri ile teknik kriz protokollerinizi şimdi güvenceye alın."
               : "The invisible senior engineering desk for digital agencies. Fortify your technical crisis protocols with the 8-Slide Response Kit and 60-Second Crash Test 500 poster."
@@ -78,7 +78,7 @@ export default function AgencyKit({ lang }) {
           </p>
 
           {!isTr && (
-            <p className="text-xs font-mono text-[var(--ink-muted)] bg-[var(--surface)] border border-[var(--rule)] py-1.5 px-3 rounded-[var(--r-control)] inline-block">
+            <p className="text-xs font-mono text-[var(--ink-3)] bg-[var(--surface)] border border-[var(--rule)] py-1.5 px-3 rounded-[var(--r-control)] inline-block">
               The slides and the poster are currently available in Turkish.
             </p>
           )}
@@ -125,7 +125,7 @@ export default function AgencyKit({ lang }) {
               <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ink)]">
                 {data.responseKit.title}
               </h2>
-              <p className="text-xs sm:text-sm text-[var(--ink-light)] max-w-xl">
+              <p className="text-xs sm:text-sm text-[var(--ink-2)] max-w-xl">
                 {data.responseKit.subtitle}
               </p>
             </div>
@@ -180,7 +180,7 @@ export default function AgencyKit({ lang }) {
                   {/* Card Description */}
                   <div className="p-4 flex-1 flex flex-col justify-between space-y-2 bg-[var(--surface)]">
                     <div>
-                      <span className="text-xs font-mono font-medium text-[var(--ink-muted)] uppercase tracking-wider block">
+                      <span className="text-xs font-mono font-medium text-[var(--ink-3)] uppercase tracking-wider block">
                         {slideInfo.tag}
                       </span>
                       <h3 className="text-sm font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors line-clamp-2">
@@ -211,7 +211,7 @@ export default function AgencyKit({ lang }) {
               <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ink)]">
                 {data.crashTest.title} (HTTP 500 Poster)
               </h2>
-              <p className="text-xs sm:text-sm text-[var(--ink-light)] max-w-xl">
+              <p className="text-xs sm:text-sm text-[var(--ink-2)] max-w-xl">
                 {data.crashTest.description}
               </p>
             </div>
@@ -260,13 +260,13 @@ export default function AgencyKit({ lang }) {
             {/* Poster Details & Scenarios */}
             <div className="lg:col-span-7 space-y-6 relative z-10">
               <div className="space-y-2">
-                <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase bg-[var(--accent-subtle)] px-3 py-1 rounded-[var(--r-control)] border border-[var(--accent)]/20">
+                <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase bg-[var(--accent-wash)] px-3 py-1 rounded-[var(--r-control)] border border-[var(--accent)]/20">
                   {data.crashTest.badge}
                 </span>
                 <h3 className="text-2xl sm:text-4xl font-serif font-semibold text-[var(--ink)]">
                   {data.crashTest.subtitle}
                 </h3>
-                <p className="text-xs sm:text-sm text-[var(--ink-light)] leading-relaxed">
+                <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                   {isTr
                     ? "Kriz kapıyı çalmadan önce ajansınızın ilk müdahale refleksini ölçün. 3 soruya yanıt vererek teknik hazırlık puanınızı ve cerrahi eylem planınızı anında alın."
                     : "Measure your agency's incident triage reflexes before outage strikes. Answer 3 questions to calculate your readiness score and surgical action plan instantly."
@@ -282,10 +282,10 @@ export default function AgencyKit({ lang }) {
                       <span className="font-mono text-[var(--accent)] font-semibold text-sm">{sc.no}</span>
                       <div>
                         <h4 className="text-xs sm:text-sm font-semibold text-[var(--ink)] font-mono">{sc.title}</h4>
-                        <p className="text-xs text-[var(--ink-light)] leading-snug">{sc.desc}</p>
+                        <p className="text-xs text-[var(--ink-2)] leading-snug">{sc.desc}</p>
                       </div>
                     </div>
-                    <span className="font-mono text-xs font-semibold text-[var(--accent)] bg-[var(--accent-subtle)] px-2 py-0.5 rounded border border-[var(--accent)]/20 flex-shrink-0">
+                    <span className="font-mono text-xs font-semibold text-[var(--accent)] bg-[var(--accent-wash)] px-2 py-0.5 rounded border border-[var(--accent)]/20 flex-shrink-0">
                       {sc.tag}
                     </span>
                   </div>
@@ -333,7 +333,7 @@ export default function AgencyKit({ lang }) {
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
               <span className="font-mono text-[var(--accent)] text-xs font-semibold block">01 // CLIENT OWNERSHIP</span>
               <h3 className="text-base font-serif font-semibold text-[var(--ink)]">{isTr ? 'Müşteri Sizde Kalır' : 'You Own the Client'}</h3>
-              <p className="text-xs text-[var(--ink-light)] leading-relaxed">
+              <p className="text-xs text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'Tüm müşteri iletişimi ajansınız üzerinden yürütülür. TMA asla görünmez veya temas kurmaz.' : 'All client communication stays strictly inside your agency. TMA remains completely invisible.'}
               </p>
             </div>
@@ -341,7 +341,7 @@ export default function AgencyKit({ lang }) {
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
               <span className="font-mono text-[var(--accent)] text-xs font-semibold block">02 // ZERO BYPASS</span>
               <h3 className="text-base font-serif font-semibold text-[var(--ink)]">{isTr ? 'Sıfır Bypass İlkesi' : 'Zero Client Bypass'}</h3>
-              <p className="text-xs text-[var(--ink-light)] leading-relaxed">
+              <p className="text-xs text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'İzinsiz temas, arkadan dolanma veya doğrudan teklif verme kesinlikle yasaktır ve NDA ile korunur.' : 'Zero unauthorized contact or direct solicitation, legally secured under bilateral NDA.'}
               </p>
             </div>
@@ -349,7 +349,7 @@ export default function AgencyKit({ lang }) {
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
               <span className="font-mono text-[var(--accent)] text-xs font-semibold block">03 // BINDING NDA</span>
               <h3 className="text-base font-serif font-semibold text-[var(--ink)]">{isTr ? 'Resmi Karşılıklı NDA' : 'Mutual Binding NDA'}</h3>
-              <p className="text-xs text-[var(--ink-light)] leading-relaxed">
+              <p className="text-xs text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'Projeye başlamadan önce iki taraflı bağlayıcı gizlilik sözleşmesi imzalayarak hukuki güvence sağlarız.' : 'We execute a binding bilateral non-disclosure agreement before any code review or deployment.'}
               </p>
             </div>
@@ -357,7 +357,7 @@ export default function AgencyKit({ lang }) {
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
               <span className="font-mono text-[var(--accent)] text-xs font-semibold block">04 // 100% IP</span>
               <h3 className="text-base font-serif font-semibold text-[var(--ink)]">{isTr ? 'Eksiksiz Kaynak Kod Mülkiyeti' : '100% IP & Source Code'}</h3>
-              <p className="text-xs text-[var(--ink-light)] leading-relaxed">
+              <p className="text-xs text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'Tüm kaynak kodlar, dokümantasyon ve sunucu yetkileri projenin sonunda eksiksiz ajansınıza devredilir.' : 'All source code, technical notes, and deployment access are handed over cleanly with zero lock-in.'}
               </p>
             </div>
@@ -377,7 +377,7 @@ export default function AgencyKit({ lang }) {
             {isTr ? 'Bir Sonraki Teknik Çıkmazda Bizi Hatırlayın' : 'Remember Us at Your Next Technical Outage'}
           </h2>
 
-          <p className="text-xs sm:text-sm text-[var(--ink-light)] max-w-lg mx-auto">
+          <p className="text-xs sm:text-sm text-[var(--ink-2)] max-w-lg mx-auto">
             {isTr
               ? "Canlı sistem çöküşü, yetişmeyen sprint veya yarım kalan kodlar için doğrudan kıdemli mühendislik masamıza bağlanın."
               : "Connect directly to our senior engineering desk for live outages, stalled sprints, or undocumented takeovers."

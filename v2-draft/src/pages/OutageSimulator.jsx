@@ -118,17 +118,17 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
         <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold tracking-tight text-[var(--ink)] mb-4">
           {t.hero.title}
         </h1>
-        <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-[34rem] mx-auto mb-4">
+        <p className="text-base sm:text-lg text-[var(--ink-2)] max-w-[34rem] mx-auto mb-4">
           {t.hero.subtitle}
         </p>
-        <p className="text-xs text-[var(--ink-muted)] font-mono">
+        <p className="text-xs text-[var(--ink-3)] font-mono">
           {t.hero.notice}
         </p>
       </div>
 
       {/* Preset Selector */}
       <div className="max-w-6xl mx-auto mb-10">
-        <span className="text-xs font-mono text-[var(--ink-muted)] uppercase tracking-wider block mb-3 text-center">
+        <span className="text-xs font-mono text-[var(--ink-3)] uppercase tracking-wider block mb-3 text-center">
           {t.labels.selectPreset}
         </span>
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -138,12 +138,12 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
               onClick={() => applyPreset(preset.id)}
               className={`p-3.5 rounded-xl text-left border transition-all cursor-pointer min-h-[48px] ${
                 selectedPreset === preset.id
-                  ? "bg-[var(--accent-subtle)] border-[var(--accent)] text-[var(--ink)] shadow-sm"
-                  : "bg-[var(--surface)] border-[var(--rule)] text-[var(--ink-light)] hover:border-[var(--ink-muted)] hover:text-[var(--ink)]"
+                  ? "bg-[var(--accent-wash)] border-[var(--accent)] text-[var(--ink)] shadow-sm"
+                  : "bg-[var(--surface)] border-[var(--rule)] text-[var(--ink-2)] hover:border-[var(--ink-3)] hover:text-[var(--ink)]"
               }`}
             >
               <h3 className="text-xs font-bold font-mono tracking-tight">{preset.name}</h3>
-              <p className="text-xs text-[var(--ink-muted)] mt-1 font-mono">
+              <p className="text-xs text-[var(--ink-3)] mt-1 font-mono">
                 {formatCurrency(preset.monthlyRevenue)} / {lang === "en" ? "mo" : "ay"}
               </p>
             </button>
@@ -201,7 +201,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
             {/* Revenue & Ad Spend Inputs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
               <div>
-                <label htmlFor="monthly-rev-input" className="block text-[var(--ink-light)] mb-1">{t.labels.monthlyRevenue}</label>
+                <label htmlFor="monthly-rev-input" className="block text-[var(--ink-2)] mb-1">{t.labels.monthlyRevenue}</label>
                 <input
                   id="monthly-rev-input"
                   type="number"
@@ -213,7 +213,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
               </div>
 
               <div>
-                <label htmlFor="daily-ad-input" className="block text-[var(--ink-light)] mb-1">{t.labels.dailyAdSpend}</label>
+                <label htmlFor="daily-ad-input" className="block text-[var(--ink-2)] mb-1">{t.labels.dailyAdSpend}</label>
                 <input
                   id="daily-ad-input"
                   type="number"
@@ -228,7 +228,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
             {/* SLA Penalty & Churn */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
               <div>
-                <label htmlFor="sla-penalty-input" className="block text-[var(--ink-light)] mb-1">{t.labels.slaPenaltyRate}</label>
+                <label htmlFor="sla-penalty-input" className="block text-[var(--ink-2)] mb-1">{t.labels.slaPenaltyRate}</label>
                 <input
                   id="sla-penalty-input"
                   type="number"
@@ -242,7 +242,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
               </div>
 
               <div>
-                <label htmlFor="churn-risk-input" className="block text-[var(--ink-light)] mb-1">{t.labels.churnRiskRate}</label>
+                <label htmlFor="churn-risk-input" className="block text-[var(--ink-2)] mb-1">{t.labels.churnRiskRate}</label>
                 <input
                   id="churn-risk-input"
                   type="number"
@@ -260,7 +260,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
             {/* Engineering Team Drag */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
               <div>
-                <label htmlFor="eng-team-input" className="block text-[var(--ink-light)] mb-1">{t.labels.engTeamSize}</label>
+                <label htmlFor="eng-team-input" className="block text-[var(--ink-2)] mb-1">{t.labels.engTeamSize}</label>
                 <input
                   id="eng-team-input"
                   type="number"
@@ -274,7 +274,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
               </div>
 
               <div>
-                <label htmlFor="eng-rate-input" className="block text-[var(--ink-light)] mb-1">{t.labels.engHourlyRate}</label>
+                <label htmlFor="eng-rate-input" className="block text-[var(--ink-2)] mb-1">{t.labels.engHourlyRate}</label>
                 <input
                   id="eng-rate-input"
                   type="number"
@@ -300,7 +300,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
             </div>
 
             {/* Hidden Cost Alert */}
-            <div className="p-3.5 rounded-xl bg-[var(--accent-subtle)] border border-[var(--accent)]/30 text-xs font-mono text-[var(--accent)]">
+            <div className="p-3.5 rounded-xl bg-[var(--accent-wash)] border border-[var(--accent)]/30 text-xs font-mono text-[var(--accent)]">
               <strong>{t.labels.hiddenCostWarning}</strong>{" "}
               <span className="font-bold underline">{metrics.hiddenMultiplier}x</span>{" "}
               {lang === "en" ? "of direct sales losses." : "katına ulaşıyor!"}
@@ -309,27 +309,27 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
             {/* Breakdown Cards */}
             <div className="mt-6 space-y-2.5 border-t border-[var(--rule)] pt-6 text-xs font-mono">
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-light)]">1. {t.dimensions[0].title}</span>
+                <span className="text-[var(--ink-2)]">1. {t.dimensions[0].title}</span>
                 <span className="font-bold text-[var(--ink)]">{formatCurrency(metrics.directRevenueLoss)}</span>
               </div>
 
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-light)]">2. {t.dimensions[1].title}</span>
+                <span className="text-[var(--ink-2)]">2. {t.dimensions[1].title}</span>
                 <span className="font-bold text-[var(--tint-warn-ink)]">{formatCurrency(metrics.wastedAdSpend)}</span>
               </div>
 
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-light)]">3. {t.dimensions[2].title}</span>
+                <span className="text-[var(--ink-2)]">3. {t.dimensions[2].title}</span>
                 <span className="font-bold text-[var(--tint-danger-ink)]">{formatCurrency(metrics.slaPenalty)}</span>
               </div>
 
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-light)]">4. {t.dimensions[3].title}</span>
+                <span className="text-[var(--ink-2)]">4. {t.dimensions[3].title}</span>
                 <span className="font-bold text-[var(--tint-info-ink)]">{formatCurrency(metrics.churnLoss)}</span>
               </div>
 
               <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-light)]">5. {t.dimensions[4].title}</span>
+                <span className="text-[var(--ink-2)]">5. {t.dimensions[4].title}</span>
                 <span className="font-bold text-[var(--tint-info-ink)]">{formatCurrency(metrics.engDrag)}</span>
               </div>
             </div>
