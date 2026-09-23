@@ -325,14 +325,14 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Bmh8Oe_Q.js"></script>
+    <script type="module" crossorigin src="/assets/index-0zTIY_7S.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Bue3rPIG.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
   </head>
-  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
@@ -365,14 +365,14 @@
       </header>
       <main class="space-y-6">
         
-        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Son kalan ürün iki ayrı siparişte çıktı, stok eksiye düştü. Birine iade yapmak zorundasınız. Bu belirtinin üç farklı nedeni var ve üçünün çözümü birbirinden tamamen ayrı — yanlış olanı düzeltmek sorunu geri getirir.</p>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Son kalan ürün iki ayrı siparişte çıktı, stok eksiye düştü. Birine iade yapmak zorundasınız. Bu belirtinin üç farklı nedeni var ve üçünün çözümü birbirinden tamamen ayrı — yanlış olanı düzeltmek sorunu geri getirir.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Aciliyet: Kritik · ticari kayıp · Kategori: Sipariş &amp; Ödeme</p>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Sahada nasıl görünür</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Genellikle flaş indirimde veya e-posta bülteni gönderildiği anda ortaya çıkar. Son kalan tek ürün için aynı saniyede iki ayrı sipariş onaylanır. Stok panelde eksi bire düşer; durumu ilk fark eden, siparişi iptal edilen öfkeli müşteri olur.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Genellikle flaş indirimde veya e-posta bülteni gönderildiği anda ortaya çıkar. Son kalan tek ürün için aynı saniyede iki ayrı sipariş onaylanır. Stok panelde eksi bire düşer; durumu ilk fark eden, siparişi iptal edilen öfkeli müşteri olur.</p>
       </section>
     
       <section class="space-y-3">
@@ -384,7 +384,7 @@
         <li><code>UPDATE products SET stock = stock - 1  ← kontrol ve yazma ayrı</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">Bu satırlardan hangisinin göründüğü, hangi nedenle karşı karşıya olduğunuzu daha ilk bakışta daraltır.</p>
+        <p class="text-[var(--ink-3)] text-sm">Bu satırlardan hangisinin göründüğü, hangi nedenle karşı karşıya olduğunuzu daha ilk bakışta daraltır.</p>
       </section>
 
       <section class="space-y-3">
@@ -392,43 +392,43 @@
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">A · Race condition</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Aynı anda gelen iki istek stoğu eşzamanlı düşürdü. Kontrol ile yazma arasında boşluk var.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> İki siparişin created_at farkı &lt; 1 sn mi?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> created_at farkı &lt; 1sn → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Atomik UPDATE + etkilenen satır kontrolü</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Kod tarafına if (stok &gt; 0) kontrolü eklenir; oysa paralel iki istek kontrolü aynı milisaniyede geçtiği için stok yine eksiye düşer.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Aynı anda gelen iki istek stoğu eşzamanlı düşürdü. Kontrol ile yazma arasında boşluk var.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> İki siparişin created_at farkı &lt; 1 sn mi?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> created_at farkı &lt; 1sn → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Atomik UPDATE + etkilenen satır kontrolü</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Kod tarafına if (stok &gt; 0) kontrolü eklenir; oysa paralel iki istek kontrolü aynı milisaniyede geçtiği için stok yine eksiye düşer.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">B · Idempotency yok</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Tek bir ödeme iki kez işlendi; müşteri iki kez tıkladı ya da webhook tekrar geldi. Eşzamanlılık yok, tekrar var.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> payment_reference değerleri aynı mı?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> payment_reference aynı → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> unique index + idempotency anahtarı</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Webhook isteğine hemen yanıt verilmez; ödeme ağ geçidi isteği zaman aşımı sanıp tekrar gönderdiğinde sipariş kaydı mükerrer işlenir.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Tek bir ödeme iki kez işlendi; müşteri iki kez tıkladı ya da webhook tekrar geldi. Eşzamanlılık yok, tekrar var.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> payment_reference değerleri aynı mı?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> payment_reference aynı → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> unique index + idempotency anahtarı</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Webhook isteğine hemen yanıt verilmez; ödeme ağ geçidi isteği zaman aşımı sanıp tekrar gönderdiğinde sipariş kaydı mükerrer işlenir.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">C · Stok senkronu</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Stoğun kaynağı ERP veya pazaryeri. Yarış sitede değil, iki sistem arasındaki gecikmede.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Son ERP senkronu satıştan önce mi?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Senkron satıştan eski → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Rezervasyon mantığı + senkron sıklığı</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Entegrasyon cron sıklığı beş dakikadan bir dakikaya indirilir; fakat API yanıt süresi uzadığında kuyruk birikir ve çakışma engellenemez.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Stoğun kaynağı ERP veya pazaryeri. Yarış sitede değil, iki sistem arasındaki gecikmede.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Son ERP senkronu satıştan önce mi?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Senkron satıştan eski → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Rezervasyon mantığı + senkron sıklığı</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Entegrasyon cron sıklığı beş dakikadan bir dakikaya indirilir; fakat API yanıt süresi uzadığında kuyruk birikir ve çakışma engellenemez.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer, ne kadar sürer</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Kıdemli backend mühendisi · 2–4 saat. Doğru neden belirlendikten sonra üçü de kalıcı olarak kapanır. Teşhis olmadan yapılan düzeltme belirtiyi bastırır, kaynağı bırakır.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Kıdemli backend mühendisi · 2–4 saat. Doğru neden belirlendikten sonra üçü de kalıcı olarak kapanır. Teşhis olmadan yapılan düzeltme belirtiyi bastırır, kaynağı bırakır.</p>
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Çözülmezse ne olur</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Her çift satış bir iade, bir kargo maliyeti ve bir olumsuz yorum riski. Kampanya günlerinde eşzamanlı trafik arttığı için sıklık katlanarak büyür.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Her çift satış bir iade, bir kargo maliyeti ve bir olumsuz yorum riski. Kampanya günlerinde eşzamanlı trafik arttığı için sıklık katlanarak büyür.</p>
       </section>
 
       <section class="space-y-2">
@@ -446,8 +446,8 @@
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
         </section>
       </main>
     </div>

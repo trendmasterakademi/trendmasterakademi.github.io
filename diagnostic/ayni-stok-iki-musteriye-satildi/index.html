@@ -325,14 +325,14 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Bmh8Oe_Q.js"></script>
+    <script type="module" crossorigin src="/assets/index-0zTIY_7S.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Bue3rPIG.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
   </head>
-  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
@@ -365,14 +365,14 @@
       </header>
       <main class="space-y-6">
         
-        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">The last item in stock was checked out across two different orders, sending inventory negative. One customer requires a refund. This symptom stems from three distinct root causes, each demanding a completely different fix — addressing the wrong one will cause the defect to recur.</p>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">The last item in stock was checked out across two different orders, sending inventory negative. One customer requires a refund. This symptom stems from three distinct root causes, each demanding a completely different fix — addressing the wrong one will cause the defect to recur.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Urgency: Critical · revenue loss · Category: Orders &amp; Payments</p>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Usually appears during flash sales or immediately after an email campaign drops. Two separate orders for the final single unit are confirmed in the exact same second. Inventory drops to negative one; the first to notice is the customer whose order gets canceled.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Usually appears during flash sales or immediately after an email campaign drops. Two separate orders for the final single unit are confirmed in the exact same second. Inventory drops to negative one; the first to notice is the customer whose order gets canceled.</p>
       </section>
     
       <section class="space-y-3">
@@ -384,7 +384,7 @@
         <li><code>UPDATE products SET stock = stock - 1  &lt;- check and write separated</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">Which of these lines appears in your error logs narrows down the exact root cause at first glance.</p>
+        <p class="text-[var(--ink-3)] text-sm">Which of these lines appears in your error logs narrows down the exact root cause at first glance.</p>
       </section>
 
       <section class="space-y-3">
@@ -392,43 +392,43 @@
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">A · Race condition</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Two simultaneous requests decremented stock concurrently. There is an unisolated gap between check and write.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are order created_at diffs &lt; 1 second?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> created_at diff &lt; 1s → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Atomic UPDATE + affected rows validation</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Adding an if (stock &gt; 0) check in application code fails because concurrent requests pass the check in the same millisecond.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Two simultaneous requests decremented stock concurrently. There is an unisolated gap between check and write.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are order created_at diffs &lt; 1 second?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> created_at diff &lt; 1s → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Atomic UPDATE + affected rows validation</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Adding an if (stock &gt; 0) check in application code fails because concurrent requests pass the check in the same millisecond.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">B · Missing idempotency</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">A single payment was processed twice; either the customer double-clicked or a webhook redelivered. No concurrency, just duplication.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are payment reference IDs identical?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> payment_reference same → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> unique index + idempotency key lock</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Failing to acknowledge the webhook promptly causes the payment gateway to retry after timing out, triggering duplicate order processing.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">A single payment was processed twice; either the customer double-clicked or a webhook redelivered. No concurrency, just duplication.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are payment reference IDs identical?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> payment_reference same → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> unique index + idempotency key lock</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Failing to acknowledge the webhook promptly causes the payment gateway to retry after timing out, triggering duplicate order processing.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">C · Inventory sync lag</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Inventory master resides in an ERP or marketplace. The race is not on-site, but within sync lag intervals.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Was last ERP sync before order timestamp?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Sync older than sale → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Reservation lock + higher sync frequency</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Reducing cron intervals from five minutes to one minute fails because slow API responses cause queue congestion and unhandled conflicts.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Inventory master resides in an ERP or marketplace. The race is not on-site, but within sync lag intervals.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Was last ERP sync before order timestamp?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Sync older than sale → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Reservation lock + higher sync frequency</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Reducing cron intervals from five minutes to one minute fails because slow API responses cause queue congestion and unhandled conflicts.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Senior backend engineer · 2–4 hours. Once the exact cause is isolated, all three are permanently resolved. Fixes applied without proper diagnosis merely mask symptoms while leaving the root cause intact.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Senior backend engineer · 2–4 hours. Once the exact cause is isolated, all three are permanently resolved. Fixes applied without proper diagnosis merely mask symptoms while leaving the root cause intact.</p>
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Every oversold item triggers refund overhead, double logistics costs, and negative client feedback. Under high-traffic sales campaigns, frequency compounds exponentially.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Every oversold item triggers refund overhead, double logistics costs, and negative client feedback. Under high-traffic sales campaigns, frequency compounds exponentially.</p>
       </section>
 
       <section class="space-y-2">
@@ -446,8 +446,8 @@
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

@@ -309,14 +309,14 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Bmh8Oe_Q.js"></script>
+    <script type="module" crossorigin src="/assets/index-0zTIY_7S.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Bue3rPIG.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
   </head>
-  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
@@ -349,14 +349,14 @@
       </header>
       <main class="space-y-6">
         
-        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt.</p>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Fixing one module breaks another unrelated area. The development team repeatedly patches the same recurring bugs. This is not developer negligence, but architectural fragility from accumulated technical debt.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Urgency: High · technical debt · Category: Code Health</p>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Implementing a requested payment method breaks automated invoicing; fixing invoicing disables discount coupons. The team spends days patching yesterday's side effects while introducing fresh defects, bringing feature delivery to a standstill.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Implementing a requested payment method breaks automated invoicing; fixing invoicing disables discount coupons. The team spends days patching yesterday's side effects while introducing fresh defects, bringing feature delivery to a standstill.</p>
       </section>
     
       <section class="space-y-3">
@@ -369,7 +369,7 @@
         <li><code>Duplicate logic copy-pasted across multiple modules</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">The only objective metric is bug regression frequency. 'Code feels bad' is subjective sentiment; 'the same checkout defect reopened four times in 90 days' is actionable data.</p>
+        <p class="text-[var(--ink-3)] text-sm">The only objective metric is bug regression frequency. 'Code feels bad' is subjective sentiment; 'the same checkout defect reopened four times in 90 days' is actionable data.</p>
       </section>
 
       <section class="space-y-3">
@@ -377,43 +377,43 @@
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">A · Duplicated business logic</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Identical calculation logic copy-pasted across multiple controllers. Fixing one leaves the others broken.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is business logic duplicated in multiple controllers?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Duplicated algorithms in codebase → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Consolidate to single service class · incremental</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Nesting additional if-else branches into bloated functions magnifies cyclomatic complexity, guaranteeing future regressions across adjacent business logic.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Identical calculation logic copy-pasted across multiple controllers. Fixing one leaves the others broken.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is business logic duplicated in multiple controllers?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Duplicated algorithms in codebase → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Consolidate to single service class · incremental</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Nesting additional if-else branches into bloated functions magnifies cyclomatic complexity, guaranteeing future regressions across adjacent business logic.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">B · Missing regression test suite</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Zero automated unit/integration tests exist; side effects are discovered only after real customers encounter crashes.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Do automated tests cover critical checkout paths?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Zero test coverage in CI pipeline → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Write regression tests on critical flows FIRST</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Relying entirely on manual smoke testing fails because human fatigue inevitably misses edge cases across unverified adjacent modules.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Zero automated unit/integration tests exist; side effects are discovered only after real customers encounter crashes.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Do automated tests cover critical checkout paths?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Zero test coverage in CI pipeline → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Write regression tests on critical flows FIRST</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Relying entirely on manual smoke testing fails because human fatigue inevitably misses edge cases across unverified adjacent modules.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">C · High module coupling</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Tightly coupled components mutate shared global state; altering one class triggers unpredictable cascade breaks.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does localized edit break unrelated views?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Minor patch creates wide blast radius → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Decouple boundaries via interfaces · step by step</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Renaming conflicting global variables merely shifts unintended state mutation to other templates without isolating runtime scopes.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Tightly coupled components mutate shared global state; altering one class triggers unpredictable cascade breaks.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does localized edit break unrelated views?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Minor patch creates wide blast radius → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Decouple boundaries via interfaces · step by step</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Renaming conflicting global variables merely shifts unintended state mutation to other templates without isolating runtime scopes.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Senior software architect. Sequence is mandatory: write regression tests FIRST, then refactor. Refactoring without test safety nets introduces secondary defects. Total rewrites from scratch are almost never the correct strategy.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Senior software architect. Sequence is mandatory: write regression tests FIRST, then refactor. Refactoring without test safety nets introduces secondary defects. Total rewrites from scratch are almost never the correct strategy.</p>
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Development velocity stalls exponentially. Simple features take weeks, engineering morale plummets, and external stakeholders perceive the engineering team as ineffective.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Development velocity stalls exponentially. Simple features take weeks, engineering morale plummets, and external stakeholders perceive the engineering team as ineffective.</p>
       </section>
 
       <section class="space-y-2">
@@ -431,8 +431,8 @@
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

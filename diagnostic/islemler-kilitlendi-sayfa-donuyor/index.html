@@ -333,14 +333,14 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Bmh8Oe_Q.js"></script>
+    <script type="module" crossorigin src="/assets/index-0zTIY_7S.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Bue3rPIG.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
   </head>
-  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
@@ -373,14 +373,14 @@
       </header>
       <main class="space-y-6">
         
-        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Specific operations — checkout completion, stock updates, or batch imports — hang indefinitely until timeout. The server has not crashed; concurrent transactions are locked waiting for each other.</p>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Specific operations — checkout completion, stock updates, or batch imports — hang indefinitely until timeout. The server has not crashed; concurrent transactions are locked waiting for each other.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Urgency: Critical · transaction halt · Category: Performance</p>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">When users submit forms or proceed to checkout, the browser tab spinner spins indefinitely. The page hangs white without showing errors; simultaneously, incoming visitors cannot even connect to the homepage.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">When users submit forms or proceed to checkout, the browser tab spinner spins indefinitely. The page hangs white without showing errors; simultaneously, incoming visitors cannot even connect to the homepage.</p>
       </section>
     
       <section class="space-y-3">
@@ -393,7 +393,7 @@
         <li><code>App logs: two concurrent batch updates in same second</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">'try restarting transaction' is the database engine's explicit diagnosis. When logged, root cause is verified deadlock.</p>
+        <p class="text-[var(--ink-3)] text-sm">'try restarting transaction' is the database engine's explicit diagnosis. When logged, root cause is verified deadlock.</p>
       </section>
 
       <section class="space-y-3">
@@ -401,43 +401,43 @@
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">A · Cross-ordered row locks</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Two transactions update tables in reverse order; each blocks waiting for the other's release.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are deadlock / lock wait errors present in logs?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Deadlock found in database log → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Enforce global consistent lock acquisition order</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Restarting the database service resets locks, but identical SQL transaction sequencing promptly deadlocks the tables under the next traffic burst.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Two transactions update tables in reverse order; each blocks waiting for the other's release.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are deadlock / lock wait errors present in logs?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Deadlock found in database log → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Enforce global consistent lock acquisition order</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Restarting the database service resets locks, but identical SQL transaction sequencing promptly deadlocks the tables under the next traffic burst.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">B · Long-running transaction</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Transaction wraps external API calls or PDF generation, holding database row locks for minutes.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Do open DB locks persist for multiple minutes?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Idle in transaction &gt; 60s → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Move external I/O outside of SQL transactions</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Moving reporting queries to midnight fails over time as growing data sets spill into morning hours, freezing live transactional operations.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Transaction wraps external API calls or PDF generation, holding database row locks for minutes.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Do open DB locks persist for multiple minutes?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Idle in transaction &gt; 60s → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Move external I/O outside of SQL transactions</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Moving reporting queries to midnight fails over time as growing data sets spill into morning hours, freezing live transactional operations.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">C · Broad table lock (Batch)</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Nightly batch import locks wide index ranges, starving real-time checkout threads.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Do lock spikes overlap with cron batch execution?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Deadlock coincides with cron batch → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Chunk batch updates + off-peak queue scheduling</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Doubling worker pool limits fails because unaddressed database bottlenecks cause all newly spawned processes to lock and saturate within seconds.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Nightly batch import locks wide index ranges, starving real-time checkout threads.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Do lock spikes overlap with cron batch execution?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Deadlock coincides with cron batch → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Chunk batch updates + off-peak queue scheduling</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Doubling worker pool limits fails because unaddressed database bottlenecks cause all newly spawned processes to lock and saturate within seconds.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Senior backend engineer. Database engine outputs the conflicting queries in crash logs; resolution requires re-ordering table mutations and scoping transaction lifecycles.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Senior backend engineer. Database engine outputs the conflicting queries in crash logs; resolution requires re-ordering table mutations and scoping transaction lifecycles.</p>
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Deadlocks compound during peak traffic campaigns. Their insidious nature is selective failure: catalogs browse fine while core checkout operations grind to a halt.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Deadlocks compound during peak traffic campaigns. Their insidious nature is selective failure: catalogs browse fine while core checkout operations grind to a halt.</p>
       </section>
 
       <section class="space-y-2">
@@ -455,8 +455,8 @@
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

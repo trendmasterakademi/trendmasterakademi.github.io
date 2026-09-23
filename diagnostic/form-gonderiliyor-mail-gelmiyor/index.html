@@ -333,14 +333,14 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Bmh8Oe_Q.js"></script>
+    <script type="module" crossorigin src="/assets/index-0zTIY_7S.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Bue3rPIG.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
   </head>
-  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
@@ -373,14 +373,14 @@
       </header>
       <main class="space-y-6">
         
-        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Lead or quote forms display 'Submitted successfully' but notifications never arrive in the team inbox. The most insidious defect: silence leaves lost deals completely untracked.</p>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Lead or quote forms display 'Submitted successfully' but notifications never arrive in the team inbox. The most insidious defect: silence leaves lost deals completely untracked.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Urgency: High · lost leads · Category: Contact &amp; Integrations</p>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Visitors submit quote forms and receive a cheerful 'Message sent successfully' banner. Yet nothing arrives in corporate inboxes. The failure operates in total silence; how many high-value leads were lost only becomes apparent weeks later.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Visitors submit quote forms and receive a cheerful 'Message sent successfully' banner. Yet nothing arrives in corporate inboxes. The failure operates in total silence; how many high-value leads were lost only becomes apparent weeks later.</p>
       </section>
     
       <section class="space-y-3">
@@ -393,7 +393,7 @@
         <li><code>App logs: 'mail sent'    &lt;- but never delivered by MTA</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">'Message sent' in UI only reflects dispatch, not inbox delivery. Truth resides in server mail queues (Postfix/Exim) or transactional ESP dashboards (SendGrid/Postmark).</p>
+        <p class="text-[var(--ink-3)] text-sm">'Message sent' in UI only reflects dispatch, not inbox delivery. Truth resides in server mail queues (Postfix/Exim) or transactional ESP dashboards (SendGrid/Postmark).</p>
       </section>
 
       <section class="space-y-3">
@@ -401,43 +401,43 @@
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">A · SMTP auth failure</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Mailbox password expired or ESP enforced App Passwords/OAuth. Dispatch fails at origin.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is there an SMTP 535 auth error in system logs?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> SMTP 535 Authentication failed in log → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> App Password + config update in .env</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Reverting to native PHP mail() dispatches unauthenticated envelopes that destination mail exchangers quietly quarantine or drop entirely.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Mailbox password expired or ESP enforced App Passwords/OAuth. Dispatch fails at origin.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is there an SMTP 535 auth error in system logs?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> SMTP 535 Authentication failed in log → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> App Password + config update in .env</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Reverting to native PHP mail() dispatches unauthenticated envelopes that destination mail exchangers quietly quarantine or drop entirely.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">B · Missing SPF / DKIM</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Mail leaves server but destination MX rejects or junk-folders it due to missing SPF/DKIM/DMARC TXT records.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are SPF and DKIM TXT records active in DNS?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> 550 5.7.1 SPF/DKIM rejected → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Add DNS records · deliverability restored</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Injecting the submitter's email into the RFC-5322 From header triggers DMARC alignment failures, causing destination servers to reject delivery.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Mail leaves server but destination MX rejects or junk-folders it due to missing SPF/DKIM/DMARC TXT records.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are SPF and DKIM TXT records active in DNS?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> 550 5.7.1 SPF/DKIM rejected → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Add DNS records · deliverability restored</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Injecting the submitter's email into the RFC-5322 From header triggers DMARC alignment failures, causing destination servers to reject delivery.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">C · False positive frontend</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">AJAX endpoint returns 4xx/5xx but frontend ignores HTTP status and shows optimistic success alert.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does network tab show HTTP 200 on POST request?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Network tab shows 4xx/5xx → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Handle status · render error UI on failure</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Masking frontend errors without checking server logs maintains a false sense of success while API endpoints continue throwing 500 exceptions.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">AJAX endpoint returns 4xx/5xx but frontend ignores HTTP status and shows optimistic success alert.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does network tab show HTTP 200 on POST request?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Network tab shows 4xx/5xx → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Handle status · render error UI on failure</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Masking frontend errors without checking server logs maintains a false sense of success while API endpoints continue throwing 500 exceptions.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">A and B are DNS/Sysadmin issues. C is frontend defect that must be solved first: false-positive success toasts hide lead bleed for months.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">A and B are DNS/Sysadmin issues. C is frontend defect that must be solved first: false-positive success toasts hide lead bleed for months.</p>
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Every lost form is a lost deal that nobody knows was missed. This defect never announces itself; it bleeds revenue in silence.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Every lost form is a lost deal that nobody knows was missed. This defect never announces itself; it bleeds revenue in silence.</p>
       </section>
 
       <section class="space-y-2">
@@ -455,8 +455,8 @@
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

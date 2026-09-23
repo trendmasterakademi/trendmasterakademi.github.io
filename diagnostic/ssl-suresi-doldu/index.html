@@ -341,14 +341,14 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Bmh8Oe_Q.js"></script>
+    <script type="module" crossorigin src="/assets/index-0zTIY_7S.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Bue3rPIG.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
   </head>
-  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
@@ -381,14 +381,14 @@
       </header>
       <main class="space-y-6">
         
-        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Users are blocked by 'Your connection is not private' browser interstitials. The application is running fine, but the TLS handshake fails. Clients perceive a breach; technically it is usually a stalled renewal script.</p>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Users are blocked by 'Your connection is not private' browser interstitials. The application is running fine, but the TLS handshake fails. Clients perceive a breach; technically it is usually a stalled renewal script.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Urgency: Critical · trust loss · Category: Infrastructure &amp; Access</p>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">In the morning hours, visitors entering the site encounter red 'Your connection is not private' browser interstitials. Seeing the security warning, customers abandon carts immediately rather than submitting payment details; support desks are flooded with complaints asking if the site was compromised.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">In the morning hours, visitors entering the site encounter red 'Your connection is not private' browser interstitials. Seeing the security warning, customers abandon carts immediately rather than submitting payment details; support desks are flooded with complaints asking if the site was compromised.</p>
       </section>
     
       <section class="space-y-3">
@@ -401,7 +401,7 @@
         <li><code>certbot renew — hook command failed</code> <span>→ A · Auto-renewal stopped</span></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">Browser error codes state the exact root cause directly. The 'Advanced' button reveals whether expiration, domain mismatch, or broken CA chain is at play.</p>
+        <p class="text-[var(--ink-3)] text-sm">Browser error codes state the exact root cause directly. The 'Advanced' button reveals whether expiration, domain mismatch, or broken CA chain is at play.</p>
       </section>
 
       <section class="space-y-3">
@@ -409,43 +409,43 @@
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">A · Auto-renewal stopped</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Automated 90-day certificates require active cron hooks; the renewal task failed silently without triggering alerts.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is certbot / ACME cron executing cleanly?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Certbot renewal error in log → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Certbot repair + expiry monitoring webhook</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Installing new certificates without reloading the web server daemon leaves active listener processes serving the expired certificate.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Automated 90-day certificates require active cron hooks; the renewal task failed silently without triggering alerts.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is certbot / ACME cron executing cleanly?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Certbot renewal error in log → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Certbot repair + expiry monitoring webhook</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Installing new certificates without reloading the web server daemon leaves active listener processes serving the expired certificate.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">B · Missing SAN / subdomains</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Certificate covers apex domain but lacks SAN coverage for `www` or target subdomains.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is error code COMMON_NAME mismatch?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> COMMON_NAME_INVALID error → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Re-issue with all SAN / www subdomains</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Running certbot manually renews the certificate once but fails to fix cron triggers or webroot permissions, ensuring recurrence ninety days later.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Certificate covers apex domain but lacks SAN coverage for `www` or target subdomains.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is error code COMMON_NAME mismatch?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> COMMON_NAME_INVALID error → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Re-issue with all SAN / www subdomains</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Running certbot manually renews the certificate once but fails to fix cron triggers or webroot permissions, ensuring recurrence ninety days later.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">C · Incomplete CA chain</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Leaf certificate is valid but intermediate CA bundle is missing. Works on modern desktops, fails on mobile — the most deceptive failure.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does it fail only on specific mobile clients?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> unable to get local issuer error → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Install fullchain bundle to web server config</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Re-pointing DNS records directly to origin servers leaves CDN proxy layers serving cached expired edge certificates to incoming clients.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Leaf certificate is valid but intermediate CA bundle is missing. Works on modern desktops, fails on mobile — the most deceptive failure.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does it fail only on specific mobile clients?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> unable to get local issuer error → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Install fullchain bundle to web server config</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Re-pointing DNS records directly to origin servers leaves CDN proxy layers serving cached expired edge certificates to incoming clients.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">DevOps / Sysadmin · resolved in under one hour. The true goal is preventing recurrence: without automated cert expiration monitoring, the issue repeats every 90 days.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">DevOps / Sysadmin · resolved in under one hour. The true goal is preventing recurrence: without automated cert expiration monitoring, the issue repeats every 90 days.</p>
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Over 90% of visitors bounce immediately upon seeing security interstitials. On e-commerce checkout flows, it halts revenue instantly.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Over 90% of visitors bounce immediately upon seeing security interstitials. On e-commerce checkout flows, it halts revenue instantly.</p>
       </section>
 
       <section class="space-y-2">
@@ -462,8 +462,8 @@
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

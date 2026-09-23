@@ -309,14 +309,14 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Bmh8Oe_Q.js"></script>
+    <script type="module" crossorigin src="/assets/index-0zTIY_7S.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Bue3rPIG.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
   </head>
-  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
@@ -349,14 +349,14 @@
       </header>
       <main class="space-y-6">
         
-        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429. The remote host is throttling your traffic due to volumetric burst limits.</p>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429. The remote host is throttling your traffic due to volumetric burst limits.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Urgency: High · data sync halted · Category: Contact &amp; Integrations</p>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">E-commerce modules communicating with marketplaces, couriers, or SMS providers halt abruptly. Orders fail to sync, admin dashboards warn 'Service unreachable', and the integration partner claims minute request quotas were exceeded.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">E-commerce modules communicating with marketplaces, couriers, or SMS providers halt abruptly. Orders fail to sync, admin dashboards warn 'Service unreachable', and the integration partner claims minute request quotas were exceeded.</p>
       </section>
     
       <section class="space-y-3">
@@ -369,7 +369,7 @@
         <li><code>Provider dashboard: quota exceeded for this period</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">The Retry-After header indicates the mandatory cooldown interval. Retrying blindly without parsing backoff headers prolongs IP ban windows.</p>
+        <p class="text-[var(--ink-3)] text-sm">The Retry-After header indicates the mandatory cooldown interval. Retrying blindly without parsing backoff headers prolongs IP ban windows.</p>
       </section>
 
       <section class="space-y-3">
@@ -377,43 +377,43 @@
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">A · Natural volume growth</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Order volume scaled naturally, exceeding baseline API tier quota without notice.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Has API traffic grown steadily in recent months?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Request rate climbed over time → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Batch payloads + upgrade API tier</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Adding naive sleep() calls between requests fails because accumulated queue backlogs inevitably blow through rate limits on subsequent cron runs.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Order volume scaled naturally, exceeding baseline API tier quota without notice.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Has API traffic grown steadily in recent months?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Request rate climbed over time → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Batch payloads + upgrade API tier</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Adding naive sleep() calls between requests fails because accumulated queue backlogs inevitably blow through rate limits on subsequent cron runs.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">B · Retry storm (No backoff)</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Worker catches transient error and immediately hammers API in tight loop, exhausting rate limits.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are retry requests fired without backoff delays?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Rapid repeated requests in log → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Exponential backoff + jitter retry logic</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Reducing cron frequency to ten minutes delays tracking numbers for hours while still exhausting API quotas during bulk sync spikes.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Worker catches transient error and immediately hammers API in tight loop, exhausting rate limits.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are retry requests fired without backoff delays?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Rapid repeated requests in log → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Exponential backoff + jitter retry logic</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Reducing cron frequency to ten minutes delays tracking numbers for hours while still exhausting API quotas during bulk sync spikes.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">C · Provider quota downgrade</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Upstream provider tightened throttle policy or subscription plan lapsed to free tier.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Did rate limit header cap drop unexpectedly?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> X-RateLimit cap dropped in headers → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Negotiate higher tier with vendor</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Copying production API credentials to staging backfires when automated QA scripts exhaust the organization's hourly quota within minutes.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Upstream provider tightened throttle policy or subscription plan lapsed to free tier.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Did rate limit header cap drop unexpectedly?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> X-RateLimit cap dropped in headers → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Negotiate higher tier with vendor</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Copying production API credentials to staging backfires when automated QA scripts exhaust the organization's hourly quota within minutes.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Backend engineer. Permanent resilience combines payload batching with exponential backoff and jitter algorithms. This enables integrations to scale gracefully with traffic spikes.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Backend engineer. Permanent resilience combines payload batching with exponential backoff and jitter algorithms. This enables integrations to scale gracefully with traffic spikes.</p>
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Throttled requests mean desynchronized operations: tracking numbers unsent, inventory un-updated, customer transactional emails lost in queue.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Throttled requests mean desynchronized operations: tracking numbers unsent, inventory un-updated, customer transactional emails lost in queue.</p>
       </section>
 
       <section class="space-y-2">
@@ -431,8 +431,8 @@
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

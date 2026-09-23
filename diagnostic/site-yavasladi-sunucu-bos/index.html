@@ -309,14 +309,14 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Bmh8Oe_Q.js"></script>
+    <script type="module" crossorigin src="/assets/index-0zTIY_7S.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Bue3rPIG.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
   </head>
-  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
@@ -349,14 +349,14 @@
       </header>
       <main class="space-y-6">
         
-        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation.</p>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Page latency surges while server CPU and RAM remain idle. Upgrading infrastructure tiers changes nothing. Sluggish performance on idle servers is a blocking I/O bottleneck, not a compute limitation.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Urgency: High · conversion loss · Category: Performance</p>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Visitors complain that pages take fifteen seconds to load or time out completely. Looking at htop or top shows CPU and RAM below five percent, practically idling; the origin of the freeze remains baffling.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Visitors complain that pages take fifteen seconds to load or time out completely. Looking at htop or top shows CPU and RAM below five percent, practically idling; the origin of the freeze remains baffling.</p>
       </section>
     
       <section class="space-y-3">
@@ -369,7 +369,7 @@
         <li><code>Time to First Byte (TTFB) high, download payload fast</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">Latency with low CPU indicates blocking wait states. The metric to investigate is not CPU utilization, but where the thread is blocking.</p>
+        <p class="text-[var(--ink-3)] text-sm">Latency with low CPU indicates blocking wait states. The metric to investigate is not CPU utilization, but where the thread is blocking.</p>
       </section>
 
       <section class="space-y-3">
@@ -377,43 +377,43 @@
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">A · N+1 query explosion</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Loop triggers separate SQL queries for each item. Unnoticeable with 10 items, catastrophic with 500.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does same query execute hundreds of times per hit?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Same query loops hundreds of times → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Eager loading + batch SQL joins · resolved today</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Upgrading server CPU and RAM fails because an unindexed SELECT query locks the entire table regardless of hardware capacity.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Loop triggers separate SQL queries for each item. Unnoticeable with 10 items, catastrophic with 500.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does same query execute hundreds of times per hit?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Same query loops hundreds of times → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Eager loading + batch SQL joins · resolved today</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Upgrading server CPU and RAM fails because an unindexed SELECT query locks the entire table regardless of hardware capacity.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">B · Missing database index</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Query syntax is clean but triggers full table scans (Seq Scan). Duration grows linearly with table size.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does EXPLAIN show full table scan on large tables?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Full table scan in EXPLAIN log → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Add composite index · instant speedup</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Increasing max_execution_time backfires by allowing unresponsive third-party shipping or SMS APIs to exhaust the entire PHP-FPM process pool.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Query syntax is clean but triggers full table scans (Seq Scan). Duration grows linearly with table size.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does EXPLAIN show full table scan on large tables?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Full table scan in EXPLAIN log → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Add composite index · instant speedup</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Increasing max_execution_time backfires by allowing unresponsive third-party shipping or SMS APIs to exhaust the entire PHP-FPM process pool.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">C · Synchronous third-party I/O</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Outbound carrier, payment, or ERP API is slow and web process blocks execution.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is TTFB spent on outbound 3rd-party HTTP requests?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Latency concentrated in external cURL → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Redis cache + strict timeouts + async background</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Raising max_connections indefinitely forces MySQL into swap under memory pressure, locking the server down at the OS level.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Outbound carrier, payment, or ERP API is slow and web process blocks execution.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is TTFB spent on outbound 3rd-party HTTP requests?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Latency concentrated in external cURL → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Redis cache + strict timeouts + async background</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Raising max_connections indefinitely forces MySQL into swap under memory pressure, locking the server down at the OS level.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Senior backend engineer. A and B are resolved in hours with instant speedup. For C, the solution is asynchronous decoupling so pages never block on third parties.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Senior backend engineer. A and B are resolved in hours with instant speedup. For C, the solution is asynchronous decoupling so pages never block on third parties.</p>
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">High latency degrades checkout conversion and organic Core Web Vitals. Server upgrades mask symptoms temporarily while increasing cloud spend without fixing root flaws.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">High latency degrades checkout conversion and organic Core Web Vitals. Server upgrades mask symptoms temporarily while increasing cloud spend without fixing root flaws.</p>
       </section>
 
       <section class="space-y-2">
@@ -431,8 +431,8 @@
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>

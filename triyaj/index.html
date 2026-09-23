@@ -353,14 +353,14 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Bmh8Oe_Q.js"></script>
+    <script type="module" crossorigin src="/assets/index-0zTIY_7S.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Bue3rPIG.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
   </head>
-  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
@@ -393,10 +393,10 @@
       </header>
       <main class="space-y-6">
         <h2 class="text-2xl font-bold text-[var(--ink)]">Canlı Kriz & Triyaj Simülatörü // İlk 15 Dakika Protokolü</h2>
-        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Canlı sisteminiz çöktüğünde veya kilitlendiğinde ilk panikle yapılan hamleler kesinti süresini saatlerce uzatır. Belirtinizi seçin, kanıt toplayın ve soğukkanlı eylem planını uygulayın.</p>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Canlı sisteminiz çöktüğünde veya kilitlendiğinde ilk panikle yapılan hamleler kesinti süresini saatlerce uzatır. Belirtinizi seçin, kanıt toplayın ve soğukkanlı eylem planını uygulayın.</p>
         
   <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
       <div><strong class="text-[var(--ink)] block text-sm">6 Kriz Tipi</strong> Veritabanı, Ödeme, Bellek, Deploy, 429, Devir</div>
       <div><strong class="text-[var(--tint-ok-ink)] block text-sm">İlk 15 Dk</strong> Kritik "Ne Yapma!" kuralları ve CLI komutları</div>
       <div><strong class="text-[var(--accent)] block text-sm">Ücretsiz Triyaj</strong> Masaya doğrudan kıdemli mühendis bağlanır</div>
@@ -410,7 +410,7 @@
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">Veritabanı &amp; Eşzamanlılık</h3>
           <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-0 CRITICAL · İlk Yanıt: 15 Dakika</span>
         </div>
-        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Veritabanı bağlantıları doldu (max_connections), API istekleri donuyor veya 504 Gateway Timeout veriyor.</p>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Veritabanı bağlantıları doldu (max_connections), API istekleri donuyor veya 504 Gateway Timeout veriyor.</p>
         <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
           <strong>Önemli:</strong> Sunucuyu körlemesine yeniden başlatmayın (Restart etmeyin). Askıda kalan transactionlar veritabanı recovery sürecine girerek kesinti süresini 10 katına çıkarabilir.
         </div>
@@ -422,7 +422,7 @@
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">Ödeme &amp; Çift Çekim</h3>
           <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-0 CRITICAL · İlk Yanıt: 15 Dakika</span>
         </div>
-        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Müşterilerden çift ödeme çekildi veya ödeme alındı ancak sipariş sistemde &quot;Ödenmedi&quot; görünüyor.</p>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Müşterilerden çift ödeme çekildi veya ödeme alındı ancak sipariş sistemde &quot;Ödenmedi&quot; görünüyor.</p>
         <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
           <strong>Önemli:</strong> Ödeme gateway panelinden panikle toplu otomatik iade (bulk refund) tetiklemeyin. Veritabanındaki gerçek durum doğrulanmadan yapılan iadeler çift zarar doğurur.
         </div>
@@ -434,7 +434,7 @@
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">Bellek &amp; Konteyner</h3>
           <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-1 HIGH · İlk Yanıt: 30 Dakika</span>
         </div>
-        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Node.js/Python sunucusu her birkaç saatte bir OOM (Out of Memory) ile çöküyor; RAM tüketimi sürekli yükseliyor.</p>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Node.js/Python sunucusu her birkaç saatte bir OOM (Out of Memory) ile çöküyor; RAM tüketimi sürekli yükseliyor.</p>
         <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
           <strong>Önemli:</strong> Sunucu RAM limitini rastgele 2 katına çıkarıp sorunu çözdüm sanmayın. Bellek sızıntısı olan sistem 8 GB RAM'i de aynı hızla tüketir, sadece çöküş süresini öteler.
         </div>
@@ -446,7 +446,7 @@
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">Deploy &amp; CI/CD</h3>
           <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-0 CRITICAL · İlk Yanıt: 15 Dakika</span>
         </div>
-        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Yeni sürüm canlıya alındı (deploy edildi) ve site anında HTTP 500 verdi veya sayfa boş beyaz ekran (White Screen of Death) gösteriyor.</p>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Yeni sürüm canlıya alındı (deploy edildi) ve site anında HTTP 500 verdi veya sayfa boş beyaz ekran (White Screen of Death) gösteriyor.</p>
         <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
           <strong>Önemli:</strong> Aceleyle canlı sunucu üzerinde doğrudan kod dosyalarını (FTP/SSH ile) elle düzenlemeye çalışmayın. Git geçmişiyle senkronizasyon koparsa geri dönüş imkansızlaşır.
         </div>
@@ -458,7 +458,7 @@
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">Entegrasyon &amp; 429</h3>
           <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-1 HIGH · İlk Yanıt: 30 Dakika</span>
         </div>
-        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Dış API (Kargo, SMS, Pazaryeri, ERP) HTTP 429 Too Many Requests dönüyor; gelen tüm siparişler kuyrukta birikerek sistemi tıkıyor.</p>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Dış API (Kargo, SMS, Pazaryeri, ERP) HTTP 429 Too Many Requests dönüyor; gelen tüm siparişler kuyrukta birikerek sistemi tıkıyor.</p>
         <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
           <strong>Önemli:</strong> Hata alan istekleri anında sıfır bekleme süresiyle (zero-delay retry) tekrar tekrar göndermeyin. Bu durum IP adresinizin kalıcı olarak engellenmesine yol açar.
         </div>
@@ -470,7 +470,7 @@
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">Devir &amp; Kayıp Erişim</h3>
           <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-2 MAJOR · İlk Yanıt: 2 Saat</span>
         </div>
-        <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Yazılımcı aniden ayrıldı; sunucu şifreleri, DNS paneli veya repo erişimleri kayıp, projede değişiklik yapılamıyor.</p>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Yazılımcı aniden ayrıldı; sunucu şifreleri, DNS paneli veya repo erişimleri kayıp, projede değişiklik yapılamıyor.</p>
         <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
           <strong>Önemli:</strong> Ayrılan yazılımcının yetkilerini kaba kuvvetle silmeye çalışırken aktif çalışan üretim servislerinin kimlik doğrulama anahtarlarını (Service Accounts) silmeyin.
         </div>
@@ -481,8 +481,8 @@
 
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
         </section>
       </main>
     </div>

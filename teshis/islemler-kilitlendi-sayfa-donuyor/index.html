@@ -333,14 +333,14 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Bmh8Oe_Q.js"></script>
+    <script type="module" crossorigin src="/assets/index-0zTIY_7S.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Bue3rPIG.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
   </head>
-  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
@@ -373,14 +373,14 @@
       </header>
       <main class="space-y-6">
         
-        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">Belirli bir işlem — sipariş onayı, stok güncelleme, toplu güncelleme — sonsuza kadar dönüyor ve sonunda zaman aşımı veriyor. Sistem çökmedi; birbirini bekleyen iki işlem var.</p>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Belirli bir işlem — sipariş onayı, stok güncelleme, toplu güncelleme — sonsuza kadar dönüyor ve sonunda zaman aşımı veriyor. Sistem çökmedi; birbirini bekleyen iki işlem var.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Aciliyet: Kritik · işlem durdu · Kategori: Performans</p>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Sahada nasıl görünür</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Kullanıcılar formu gönderdiklerinde veya sepet adımına geçtiklerinde tarayıcı sekmesindeki yükleniyor ikonu dakikalarca döner. Sayfa hiçbir hata mesajı vermeden beyaz kalır; aynı anda yeni gelen ziyaretçiler de ana sayfaya dahi bağlanamaz hale gelir.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Kullanıcılar formu gönderdiklerinde veya sepet adımına geçtiklerinde tarayıcı sekmesindeki yükleniyor ikonu dakikalarca döner. Sayfa hiçbir hata mesajı vermeden beyaz kalır; aynı anda yeni gelen ziyaretçiler de ana sayfaya dahi bağlanamaz hale gelir.</p>
       </section>
     
       <section class="space-y-3">
@@ -393,7 +393,7 @@
         <li><code>Uygulama log'u: aynı saniyede iki toplu güncelleme</code></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">'try restarting transaction' ifadesi veritabanının kendi teşhisidir. Bu satır göründüğünde neden tahmin edilmez, bilinir.</p>
+        <p class="text-[var(--ink-3)] text-sm">'try restarting transaction' ifadesi veritabanının kendi teşhisidir. Bu satır göründüğünde neden tahmin edilmez, bilinir.</p>
       </section>
 
       <section class="space-y-3">
@@ -401,43 +401,43 @@
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">A · Ters sıralı kilit</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">İki işlem aynı iki tabloya farklı sırayla dokunuyor; her biri diğerinin bıraktığını bekliyor.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Log'da deadlock kaydı var mı?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Log'da deadlock kaydı var → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Tabloları sabit sırayla kilitle</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Veritabanı servisi yeniden başlatılarak kilitler sıfırlanır; fakat aynı SQL transaction sırası ilk yoğun istek grubunda tabloları karşılıklı tekrar kilitler.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">İki işlem aynı iki tabloya farklı sırayla dokunuyor; her biri diğerinin bıraktığını bekliyor.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Log'da deadlock kaydı var mı?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Log'da deadlock kaydı var → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Tabloları sabit sırayla kilitle</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Veritabanı servisi yeniden başlatılarak kilitler sıfırlanır; fakat aynı SQL transaction sırası ilk yoğun istek grubunda tabloları karşılıklı tekrar kilitler.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">B · Uzun işlem</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Bir işlem içinde rapor üretimi veya harici çağrı yapılıyor; kilit gereğinden uzun tutuluyor.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Açık işlem süresi dakikalarca mı?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Açık işlem dakikalarca sürüyor → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Harici işi işlem dışına çıkar</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Raporlama sorgusu gece yarısına ertelenir; ancak veri tablosu büyüdükçe işlem sabah saatlerine sarkar ve canlı sipariş girişlerini tamamen dondurur.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Bir işlem içinde rapor üretimi veya harici çağrı yapılıyor; kilit gereğinden uzun tutuluyor.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Açık işlem süresi dakikalarca mı?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Açık işlem dakikalarca sürüyor → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Harici işi işlem dışına çıkar</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Raporlama sorgusu gece yarısına ertelenir; ancak veri tablosu büyüdükçe işlem sabah saatlerine sarkar ve canlı sipariş girişlerini tamamen dondurur.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">C · Toplu güncelleme</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Arka plan görevi geniş bir aralığı kilitliyor, canlı trafik onun bitmesini bekliyor.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Kilitlenme arka plan göreviyle çakışıyor mu?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Kilitlenme toplu görevle çakışıyor → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Parçalara böl + yoğun saat dışına al</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Worker sayısı iki katına çıkarılır; fakat arka uçtaki veritabanı darboğazı çözülmediğinden yeni açılan tüm süreçler saniyeler içinde kilitlenerek tükenir.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Arka plan görevi geniş bir aralığı kilitliyor, canlı trafik onun bitmesini bekliyor.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Kilitlenme arka plan göreviyle çakışıyor mu?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Kilitlenme toplu görevle çakışıyor → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Parçalara böl + yoğun saat dışına al</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Worker sayısı iki katına çıkarılır; fakat arka uçtaki veritabanı darboğazı çözülmediğinden yeni açılan tüm süreçler saniyeler içinde kilitlenerek tükenir.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer, ne kadar sürer</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Kıdemli backend mühendisi. Veritabanı hangi işlemlerin çakıştığını log'da söylediği için teşhis hızlıdır; asıl iş kilit sırasını ve işlem sürelerini yeniden düzenlemektir.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Kıdemli backend mühendisi. Veritabanı hangi işlemlerin çakıştığını log'da söylediği için teşhis hızlıdır; asıl iş kilit sırasını ve işlem sürelerini yeniden düzenlemektir.</p>
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Çözülmezse ne olur</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Kilitlenme yoğun saatlerde sıklaşır. En kötü tarafı seçiciliğidir: sistem genelinde çalışıyor görünür, yalnız para kazandıran işlem durur.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Kilitlenme yoğun saatlerde sıklaşır. En kötü tarafı seçiciliğidir: sistem genelinde çalışıyor görünür, yalnız para kazandıran işlem durur.</p>
       </section>
 
       <section class="space-y-2">
@@ -455,8 +455,8 @@
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
         </section>
       </main>
     </div>

@@ -325,14 +325,14 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Bmh8Oe_Q.js"></script>
+    <script type="module" crossorigin src="/assets/index-0zTIY_7S.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Bue3rPIG.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
   </head>
-  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
@@ -365,14 +365,14 @@
       </header>
       <main class="space-y-6">
         
-        <p class="text-[var(--ink-muted)] text-lg leading-relaxed">The developer says 'it works on my machine' and they are correct. In production, identical code behaves differently. This is environment drift, not a developer competency flaw.</p>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">The developer says 'it works on my machine' and they are correct. In production, identical code behaves differently. This is environment drift, not a developer competency flaw.</p>
         
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Urgency: High · release blocker · Category: Handover &amp; Continuity</p>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Developers provide screen recordings demonstrating flawless functionality on local and staging servers. Yet the moment code hits production, blank screens, 500 errors, or missing data appear, triggering finger-pointing between teams.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Developers provide screen recordings demonstrating flawless functionality on local and staging servers. Yet the moment code hits production, blank screens, 500 errors, or missing data appear, triggering finger-pointing between teams.</p>
       </section>
     
       <section class="space-y-3">
@@ -385,7 +385,7 @@
         <li><code>Permission denied - file permissions or path mismatch</code> <span>→ C · Permissions / path discrepancy</span></li>
       </ul>
     
-        <p class="text-[var(--ink-muted)] text-sm">Environment drift always lives in one of three places: configuration, dependency versions, or file permissions. Searching elsewhere wastes critical incident time.</p>
+        <p class="text-[var(--ink-3)] text-sm">Environment drift always lives in one of three places: configuration, dependency versions, or file permissions. Searching elsewhere wastes critical incident time.</p>
       </section>
 
       <section class="space-y-3">
@@ -393,43 +393,43 @@
         
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">A · Configuration drift</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Production environment variable missing or set to invalid endpoint. Same code, differing inputs.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is an environment variable missing in production?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Missing .env in production → A</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Sync .env schema + track .env.example in git</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Manually copying script files to staging overlooks discrepancies in PHP extensions or MySQL strict mode flags between the two server runtimes.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Production environment variable missing or set to invalid endpoint. Same code, differing inputs.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is an environment variable missing in production?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Missing .env in production → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Sync .env schema + track .env.example in git</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Manually copying script files to staging overlooks discrepancies in PHP extensions or MySQL strict mode flags between the two server runtimes.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">B · Dependency / runtime mismatch</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Language or package minor versions differ between environments. Unlocked package versions drifted.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are lockfile package versions identical across tiers?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Version mismatch in lockfile → B</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Commit strict package-lock / composer.lock</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Hardcoding missing environment variables directly into application logic fails when credentials rotate or repositories are deployed to new infrastructure.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Language or package minor versions differ between environments. Unlocked package versions drifted.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Are lockfile package versions identical across tiers?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Version mismatch in lockfile → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Commit strict package-lock / composer.lock</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Hardcoding missing environment variables directly into application logic fails when credentials rotate or repositories are deployed to new infrastructure.</p>
           </div>
         
 
           <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
             <h3 class="text-lg font-bold text-[var(--accent)]">C · Permissions / path discrepancy</h3>
-            <p class="text-[var(--ink-muted)] leading-relaxed">Target directory lacks write permissions on production web server, or hardcoded absolute path fails.</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does log show EACCES / permission denied errors?</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Permission denied in production log → C</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Fix chmod permissions + load dynamic paths</p>
-            <p class="text-[var(--ink-muted)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Validating queries on ten mock records fails to reveal that production tables with hundreds of thousands of rows exhaust PHP memory.</p>
+            <p class="text-[var(--ink-3)] leading-relaxed">Target directory lacks write permissions on production web server, or hardcoded absolute path fails.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does log show EACCES / permission denied errors?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Permission denied in production log → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Fix chmod permissions + load dynamic paths</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Validating queries on ten mock records fails to reveal that production tables with hundreds of thousands of rows exhaust PHP memory.</p>
           </div>
         
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Backend / DevOps. Permanent stability comes from Infrastructure as Code and immutable container recipes; patching discrepancies ad-hoc leaves every future release vulnerable.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Backend / DevOps. Permanent stability comes from Infrastructure as Code and immutable container recipes; patching discrepancies ad-hoc leaves every future release vulnerable.</p>
       </section>
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
-        <p class="text-[var(--ink-muted)] leading-relaxed">Every deployment becomes a high-stakes gamble. Teams dread pushing to prod, backlogs swell, and large batch deploys magnify catastrophic blast radiuses.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">Every deployment becomes a high-stakes gamble. Teams dread pushing to prod, backlogs swell, and large batch deploys magnify catastrophic blast radiuses.</p>
       </section>
 
       <section class="space-y-2">
@@ -447,8 +447,8 @@
   
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
-          <p class="text-sm text-[var(--ink-muted)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
-          <p class="text-xs text-[var(--ink-muted)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
         </section>
       </main>
     </div>
