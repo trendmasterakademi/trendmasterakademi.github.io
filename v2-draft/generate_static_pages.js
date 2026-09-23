@@ -1314,7 +1314,7 @@ const radarExtraContentTr = `
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between">
           <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(comp.name)}</h3>
-          ${comp.metric ? (comp.metricLink ? `<a href="${comp.metricLink}" class="text-xs font-mono text-[var(--ink-2)] hover:underline">${escapeHtml(comp.metric)}</a>` : `<span class="text-xs font-mono text-[var(--ink-2)]">${escapeHtml(comp.metric)}</span>`) : ''}
+          ${comp.metric ? (comp.metricLink ? `<a href="${comp.metricLink}" class="text-xs font-mono text-[var(--ink-2)] hover:underline inline-flex items-center min-h-[44px] py-[13.5px] -my-[13.5px]">${escapeHtml(comp.metric)}</a>` : `<span class="text-xs font-mono text-[var(--ink-2)]">${escapeHtml(comp.metric)}</span>`) : ''}
         </div>
         <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(comp.desc)}</p>
         <p class="text-xs font-mono text-[var(--accent)] pt-1">${escapeHtml(comp.latencyLabel)}: ${escapeHtml(comp.latency)}</p>
@@ -1342,7 +1342,7 @@ const radarExtraContentEn = `
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between">
           <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(comp.name)}</h3>
-          ${comp.metric ? (comp.metricLink ? `<a href="${comp.metricLink}" class="text-xs font-mono text-[var(--ink-2)] hover:underline">${escapeHtml(comp.metric)}</a>` : `<span class="text-xs font-mono text-[var(--ink-2)]">${escapeHtml(comp.metric)}</span>`) : ''}
+          ${comp.metric ? (comp.metricLink ? `<a href="${comp.metricLink}" class="text-xs font-mono text-[var(--ink-2)] hover:underline inline-flex items-center min-h-[44px] py-[13.5px] -my-[13.5px]">${escapeHtml(comp.metric)}</a>` : `<span class="text-xs font-mono text-[var(--ink-2)]">${escapeHtml(comp.metric)}</span>`) : ''}
         </div>
         <p class="text-[var(--ink-muted)] text-xs leading-relaxed">${escapeHtml(comp.desc)}</p>
         <p class="text-xs font-mono text-[var(--accent)] pt-1">${escapeHtml(comp.latencyLabel)}: ${escapeHtml(comp.latency)}</p>

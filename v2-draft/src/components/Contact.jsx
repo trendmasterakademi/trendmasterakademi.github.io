@@ -168,14 +168,14 @@ const Contact = () => {
             {/* Email Box */}
             <a 
               href="mailto:info@trendmasterakademi.com" 
-              className="flex items-center gap-4 p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all group shadow-sm"
+              className="flex items-center gap-4 p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-all group shadow-sm min-w-0"
             >
               <div className="w-12 h-12 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--ink)] border border-[var(--rule)] flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                 <Mail className="w-6 h-6" />
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <div className="text-[var(--ink)] font-semibold text-base">{t('contact-direct-email')}</div>
-                <div className="text-[var(--ink-2)] text-sm font-mono">info@trendmasterakademi.com</div>
+                <div className="text-[var(--ink-2)] text-sm font-mono [overflow-wrap:anywhere] break-all">info@trendmasterakademi.com</div>
               </div>
             </a>
 

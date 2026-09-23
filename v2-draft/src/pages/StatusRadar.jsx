@@ -79,7 +79,7 @@ export default function StatusRadar({ lang = "tr" }) {
                 <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
                 {comp.metric && (
                   comp.metricLink ? (
-                    <Link to={comp.metricLink} className="text-xs font-mono text-[var(--ink-2)] hover:underline">
+                    <Link to={comp.metricLink} className="text-xs font-mono text-[var(--ink-2)] hover:underline inline-flex items-center min-h-[44px] py-[13.5px] -my-[13.5px]">
                       {comp.metric}
                     </Link>
                   ) : (
