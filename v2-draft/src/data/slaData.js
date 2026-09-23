@@ -19,8 +19,7 @@ export const slaTiers = [
       { tr: 'PostgreSQL max_connections & Deadlock', en: 'PostgreSQL max_connections & Deadlocks' },
       { tr: 'Ödeme Webhook Çöküşü & Veritabanı Kilitlenmesi', en: 'Payment Webhook Storm & DB Lock' },
       { tr: 'Tüm Servislerin Çökmesi (502 Bad Gateway)', en: 'Full Cluster Failure (502 Bad Gateway)' }
-    ],
-    slaComplianceRate: '99.4%'
+    ]
   },
   {
     level: 'SEV-1',
@@ -37,8 +36,7 @@ export const slaTiers = [
       { tr: 'Mükerrer Kart Çekimi (Race Condition)', en: 'Duplicate Charges (Race Condition)' },
       { tr: 'Dış API 429 Rate Limit Tıkanıklığı', en: 'Third-party API 429 Rate Limit Choke' },
       { tr: 'Periyodik OOM / Memory Leak Çöküşleri', en: 'Periodic Node/Python OOM Memory Leaks' }
-    ],
-    slaComplianceRate: '99.1%'
+    ]
   },
   {
     level: 'SEV-2',
@@ -55,8 +53,7 @@ export const slaTiers = [
       { tr: 'Ayrılan Geliştirici & Kayıp .env Anahtarları', en: 'Departed Engineer & Missing .env Secrets' },
       { tr: 'Başarısız DB Migrasyonu & Şema Uyumsuzluğu', en: 'Failed Schema Migration & Data Conflict' },
       { tr: 'CI/CD Docker Build Pipeline Kilitlenmesi', en: 'CI/CD Docker Build Pipeline Freeze' }
-    ],
-    slaComplianceRate: '98.8%'
+    ]
   },
   {
     level: 'SEV-3',
@@ -73,8 +70,7 @@ export const slaTiers = [
       { tr: 'Salvageability Index (Refactor vs Rebuild)', en: 'Salvageability Audit (Refactor vs Rebuild)' },
       { tr: 'SQL Sorgu Optimizasyonu & İndeks Mimarisi', en: 'SQL Query Optimization & Index Architecture' },
       { tr: 'B2B White-Label Sprint Takviyesi', en: 'B2B White-Label Engineering Sprint' }
-    ],
-    slaComplianceRate: '100%'
+    ]
   }
 ];
 
@@ -132,11 +128,6 @@ export const coreCommitments = [
 export const slaScope = {
   tr: "Kapsam: Bu süreler, kriz hattının açık olduğu her gün 09:00 – 24:00 arasında (resmî tatiller ve bayramlar dâhil) gelen bildirimler için geçerlidir. Bu saatler dışında gelen bildirimler ertesi sabah 09:00'da SEV sırasına göre ele alınır ve süre o andan başlar.",
   en: "Coverage: These times apply to incidents reported while the crisis line is open, every day 09:00 – 24:00 (Istanbul time), public and religious holidays included. Incidents reported outside these hours are picked up at 09:00 the next morning in SEV order, and the clock starts then."
-};
-
-export const slaMetaDesc = {
-  tr: "Muğlak vaatler yerine dakikalarla tanımlı mühendislik taahhütleri: SEV-0 için 15 dk yanıt, %100 White-Label garantisi, resmi NDA ve müdahale öncesi snapshot kuralı.",
-  en: "Strict engineering commitments defined in minutes: 15-min MTTA for SEV-0, 100% White-Label guarantee, enforceable NDA, and pre-intervention snapshot rule."
 };
 
 export const slaH1 = {

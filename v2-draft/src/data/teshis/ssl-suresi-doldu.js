@@ -201,7 +201,7 @@ export default {
   },
   "cozulmezse": {
     "tr": "Tarayıcı uyarısı gören ziyaretçilerin büyük kısmı geri döner. Ödeme sayfasında bu uyarı, o günkü satışların durması demektir.",
-    "en": "Over 90% of visitors bounce immediately upon seeing security interstitials. On e-commerce checkout flows, it halts revenue instantly."
+    "en": "Most visitors turn back when they see a browser security warning. On a checkout page, that warning means the day's sales stop."
   },
   "ilgiliTerimler": [
     "ci-cd",

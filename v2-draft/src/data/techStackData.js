@@ -441,8 +441,8 @@ export const techStackData = {
     summaryBox: {
       title: "Seçilen Teknoloji Yığını Değerlendirmesi",
       emptyNotice: "Lütfen yukarıdaki listeden projenizde kullanılan teknolojileri seçin. TMA'nın bu kombinasyondaki kurtarma derinliği, potansiyel arıza riskleri ve müdahale süresi anında hesaplanacaktır.",
-      rescueScore: "Kurtarma & SWAT Hazırlık Skoru",
-      estimatedTtr: "Tahmini Masaya Oturma Süresi",
+      rescueScore: "İlk Yanıt (MTTA)",
+      estimatedTtr: "Masaya Oturma & Triyaj",
       keyRisks: "Kombinasyona Özel Kritik Riskler",
       actionCta: "Bu Stack İçin Triyaj Brifingi Al",
       copiedNotice: "Stack brifingi panoya kopyalandı! Kriz masasına veya e-postaya yapıştırabilirsiniz."
@@ -890,8 +890,8 @@ export const techStackData = {
     summaryBox: {
       title: "Selected Tech Stack Assessment",
       emptyNotice: "Please select the technologies used in your project from the list above. TMA's rescue depth, potential architectural risks, and response time for this combination will be calculated instantly.",
-      rescueScore: "Rescue & SWAT Readiness Score",
-      estimatedTtr: "Estimated Time to Table",
+      rescueScore: "First Response (MTTA)",
+      estimatedTtr: "Time to Engage",
       keyRisks: "Critical Risks Specific to Combination",
       actionCta: "Get Triage Brief for This Stack",
       copiedNotice: "Stack brief copied to clipboard! Ready to paste into your crisis channel or email."

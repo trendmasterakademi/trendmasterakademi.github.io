@@ -276,8 +276,8 @@ const Salvageability = () => {
         { tr: 'Veritabanı kilitlerini gölge trafik (shadow traffic) ile temizle', en: 'Decouple database contention with shadow traffic validation' }
       ],
       financialRoi: {
-        tr: 'Sıfır kesinti (Zero-Downtime) ile kademeli modernizasyon, bütçe riskini %50 düşürür.',
-        en: 'Zero-downtime modernization with staged releases cuts financial risk by 50%.'
+        tr: 'Sıfır kesinti (Zero-Downtime) ile kademeli modernizasyon, bütçe riskini tek seferlik büyük bir yeniden yazım yerine küçük ve geri alınabilir adımlara böler.',
+        en: 'Zero-downtime modernization with staged releases splits budget risk into small, reversible steps instead of one large rewrite.'
       }
     };
   }

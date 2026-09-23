@@ -6,7 +6,7 @@ import {
   AlertTriangle, PhoneCall, ExternalLink, ArrowRight, 
   Check, Lock, Activity, Users, HelpCircle
 } from 'lucide-react';
-import { slaTiers, coreCommitments, slaScope, slaMetaDesc, slaH1 } from '../data/slaData';
+import { slaTiers, coreCommitments, slaScope, slaH1 } from '../data/slaData';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
@@ -49,9 +49,6 @@ export const Sla = () => {
             <Zap className="w-4 h-4 text-[var(--accent)]" />
             <span>{isTr ? 'Olay Ciddiyet Seviyeleri (Severity Tiers)' : 'Incident Severity Tiers'}</span>
           </h2>
-          <span className="text-xs font-mono text-[var(--ink-3)]">
-            {isTr ? 'Ortalama SLA Uyum Oranı: %99.3' : 'Overall SLA Compliance Rate: 99.3%'}
-          </span>
         </div>
 
         {/* Tier Buttons */}
@@ -77,7 +74,6 @@ export const Sla = () => {
                   }`}>
                     {t.level}
                   </span>
-                  <span className="text-xs font-mono text-[var(--ink-3)]">{t.slaComplianceRate}</span>
                 </div>
                 <div className="text-sm font-semibold font-serif text-[var(--ink)] line-clamp-1">
                   {t.title[lang]}

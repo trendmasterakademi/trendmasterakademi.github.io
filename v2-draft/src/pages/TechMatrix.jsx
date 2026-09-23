@@ -1,5 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { techStackData } from "../data/techStackData";
+import { slaTiers } from "../data/slaData";
+import { radarData } from "../data/radarData";
 import { getCalendlyUrl } from "../utils/calendly";
 import { ShieldCheck } from "lucide-react";
 import { setPageSeo } from "../utils/pageTitle";
@@ -25,6 +27,12 @@ export default function TechMatrix({ lang = "tr" }) {
     return t.items.filter((item) => selectedTechIds.includes(item.id));
   }, [t.items, selectedTechIds]);
 
+  const activeTier = useMemo(() => {
+    return selectedItems.some((i) => i.supportLevel.includes("SEV-0"))
+      ? slaTiers.find((tier) => tier.level === "SEV-0")
+      : slaTiers.find((tier) => tier.level === "SEV-1");
+  }, [selectedItems]);
+
   const toggleTech = (id) => {
     setSelectedTechIds((prev) =>
       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
@@ -43,9 +51,9 @@ export default function TechMatrix({ lang = "tr" }) {
   const copyStackBrief = () => {
     if (selectedItems.length === 0) return;
     const names = selectedItems.map((i) => i.name).join(", ");
-    const readiness = selectedItems.some((i) => i.supportLevel.includes("SEV-0"))
-      ? "SEV-0 (≤ 15 Dk / Mins)"
-      : "SEV-1 (≤ 30 Dk / Mins)";
+    const readiness = activeTier
+      ? `${activeTier.level} (MTTA: ${activeTier.mtta[lang] || activeTier.mtta.tr} · ${activeTier.timeToTable[lang] || activeTier.timeToTable.tr})`
+      : (lang === "en" ? "SEV-1 (≤ 30 Minutes)" : "SEV-1 (≤ 30 Dakika)");
 
     const interventionLines = selectedItems
       .filter((i) => i.interventionLimit)
@@ -64,7 +72,6 @@ export default function TechMatrix({ lang = "tr" }) {
 --------------------------------------------------
 Seçilen Teknolojiler: ${names}
 Müdahale Hazırbulunuşluğu: ${readiness}${interventionLines.length > 0 ? "\n" + interventionLines.join("\n") : ""}
-Kurtarma & SWAT Kapsamı: %98+ Tam Cerrahi
 
 Tespit Edilen Olası Mimari Risk Noktaları:
 ${combinedRisks}
@@ -240,10 +247,10 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                       {t.summaryBox.rescueScore}
                     </span>
                     <span className="text-xl font-bold text-[var(--accent)] font-mono">
-                      %99.2
+                      {activeTier?.mtta[lang] || activeTier?.mtta.tr}
                     </span>
                     <span className="text-xs text-[var(--ink-3)] block font-mono">
-                      {lang === "en" ? "Full Surgical SWAT" : "Tam Cerrahi Kapsam"}
+                      {`${activeTier?.level} · ${activeTier?.title[lang] || activeTier?.title.tr}`}
                     </span>
                   </div>
 
@@ -252,10 +259,10 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                       {t.summaryBox.estimatedTtr}
                     </span>
                     <span className="text-xl font-bold text-[var(--ink)] font-mono">
-                      ≤ 15 Dk
+                      {activeTier?.timeToTable[lang] || activeTier?.timeToTable.tr}
                     </span>
                     <span className="text-xs text-[var(--ink-3)] block font-mono">
-                      {lang === "en" ? "SEV-0/1 Hot Desk" : "Kriz Masası Masada"}
+                      {radarData[lang]?.systemStatus?.dutyHours || radarData.tr.systemStatus.dutyHours}
                     </span>
                   </div>
                 </div>

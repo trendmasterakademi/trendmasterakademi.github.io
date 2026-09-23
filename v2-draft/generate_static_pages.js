@@ -7,7 +7,7 @@ import { glossaryTerms, getGlossaryH1, glossaryHubH1 } from './src/data/glossary
 import { teshisData } from './src/data/teshisData.js';
 import { postMortems, postMortemDisclosure, getPostMortemH1, postMortemHubH1 } from './src/data/postMortemData.js';
 import { triageScenarios, triageH1 } from './src/data/triageData.js';
-import { slaTiers, coreCommitments, slaScope, slaMetaDesc, slaH1 } from './src/data/slaData.js';
+import { slaTiers, coreCommitments, slaScope, slaH1 } from './src/data/slaData.js';
 import { techStackData, techStackH1 } from './src/data/techStackData.js';
 import { ndaData, mutualNdaH1 } from './src/data/ndaData.js';
 import { ndaFullAgreementData } from './src/data/ndaFullAgreementData.js';
@@ -2268,7 +2268,7 @@ const basePages = [
     dir: 'sla',
     title: 'Şeffaf Mühendislik SLA & Yanıt Taahhütleri | Trend Master Akademi',
     h1: slaH1.tr,
-    description: slaMetaDesc.tr,
+    description: seoData['/sla/'].tr.desc,
     canonical: 'https://trendmasterakademi.com/sla/',
     ogUrl: 'https://trendmasterakademi.com/sla/',
     heading: 'Şeffaf Mühendislik SLA & Yanıt Süresi Matrisi',

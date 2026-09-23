@@ -570,7 +570,6 @@ const Agency = () => {
               </div>
               <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs font-mono">
                 <span className="text-[var(--ink-2)]">{isTr ? 'Yanıt Süresi:' : 'Latency:'} <strong className="text-[var(--tint-ok-ink)]">4.2s → 120ms</strong></span>
-                <span className="text-[var(--ink-2)]">{isTr ? 'Uptime:' : 'Uptime:'} <strong className="text-[var(--ink)] font-semibold">%99.98</strong></span>
               </div>
             </div>
           </div>
