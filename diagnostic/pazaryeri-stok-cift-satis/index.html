@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Same Item Sold on Two Marketplaces | Trend Master Akademi</title>
+    <meta name="description" content="The last unit sold on both Trendyol and Hepsiburada. A rejected stock update, a late sync or an unmatched order: the test that tells them apart, and the fix." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/pazaryeri-stok-cift-satis/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/pazaryeri-stok-cift-satis/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/pazaryeri-stok-cift-satis/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/pazaryeri-stok-cift-satis/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/pazaryeri-stok-cift-satis/" />
+    <meta property="og:title" content="Same Item Sold on Two Marketplaces | Trend Master Akademi" />
+    <meta property="og:description" content="The last unit sold on both Trendyol and Hepsiburada. A rejected stock update, a late sync or an unmatched order: the test that tells them apart, and the fix." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT &amp; White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/pazaryeri-stok-cift-satis/" />
+    <meta name="twitter:title" content="Same Item Sold on Two Marketplaces | Trend Master Akademi" />
+    <meta name="twitter:description" content="The last unit sold on both Trendyol and Hepsiburada. A rejected stock update, a late sync or an unmatched order: the test that tells them apart, and the fix." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Same Item Sold on Two Marketplaces",
+      "description": "The last unit was sold on the same day on both Trendyol and Hepsiburada, or on both a marketplace and the site. One of the orders has to be cancelled. Stock dropped in one channel but never reached the other channel, or reached it late.",
+      "url": "https://trendmasterakademi.com/diagnostic/pazaryeri-stok-cift-satis/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/diagnostic/pazaryeri-stok-cift-satis/",
+      "inLanguage": "en-US",
+      "about": "Orders & Payments",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      },
+      "citation": [
+        "https://developers.trendyol.com/reference/updatepriceandinventory",
+        "https://developers.trendyol.com/reference/getbatchrequestresult",
+        "https://developers.hepsiburada.com/tr/companies/hepsiburada?category=listeleme&product=listeleme&version=v1&guide=listing-bilgilerini-guncelleme-1&view=guide"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Toplu işlem sonucunda FAILED satır var mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Gönderildi sanıldı, reddedildi — Trendyol stok ve fiyat isteği kabul edildiğinde yalnız bir batchRequestId döndürür; ürün bazındaki sonuç toplu işlem kontrolü servisinden okunur ve tek tek ürünler başarısız olabilir. Hepsiburada da bir işlem numarası (Inventory Upload Id) döndürür; satır bazındaki hatalar ayrı bir kontrol servisinde görünür. Sonuç sorgulanmazsa reddedilen güncelleme fark edilmez. Kanıt: Toplu işlem sonucunda FAILED satır → A Çözüm: Sonucu sorgula, hatayı düzelt"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Sipariş ile stok düşümü arasında dakikalar mı var?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Güncelleme geç ulaştı — Stok senkronu belirli aralıklarla ya da bir kuyruktan çalışır. Hız sınırı dolduğunda ya da Hepsiburada'da aynı anda en fazla beş bekleyen işlem sınırına takıldığında kuyruk birikir. Siparişle diğer kanalın stoğunun düşmesi arasındaki sürede son ürün iki kanalda birden satılabilir. Kanıt: Sipariş ile stok düşümü arasında dakikalar → B Çözüm: Siparişte stoğu hemen düş, sonra kanallara yay"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Sipariş pazaryerinde var, merkezde yok mu?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sipariş ya da ürün eşleşmedi — Pazaryerindeki sipariş merkezi sisteme hiç çekilmemiş ya da ürün yanlış kayıtla eşleşmiş. Sipariş çekme sınırları, sayfalama ya da sorgu aralığı yüzünden atlanan bir sipariş stoğu düşürmez. Hepsiburada'da HBSku ile MerchantSku yanlış eşleştiğinde güncelleme MismatchingSkusSpecified hatasıyla reddedilir. Kanıt: Sipariş pazaryerinde var, merkezde yok → C Çözüm: Sipariş çekmeyi ve ürün eşlemesini düzelt"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Toplu işlem sonucu: ürün satırında status FAILED» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Gönderildi sanıldı, reddedildi — Trendyol stok ve fiyat isteği kabul edildiğinde yalnız bir batchRequestId döndürür; ürün bazındaki sonuç toplu işlem kontrolü servisinden okunur ve tek tek ürünler başarısız olabilir. Hepsiburada da bir işlem numarası (Inventory Upload Id) döndürür; satır bazındaki hatalar ayrı bir kontrol servisinde görünür. Sonuç sorgulanmazsa reddedilen güncelleme fark edilmez. Çözüm: Sonucu sorgula, hatayı düzelt"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Stok güncellemesi yanıtı yalnız işlem numarası, sonuç hiç sorgulanmamış» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Gönderildi sanıldı, reddedildi — Trendyol stok ve fiyat isteği kabul edildiğinde yalnız bir batchRequestId döndürür; ürün bazındaki sonuç toplu işlem kontrolü servisinden okunur ve tek tek ürünler başarısız olabilir. Hepsiburada da bir işlem numarası (Inventory Upload Id) döndürür; satır bazındaki hatalar ayrı bir kontrol servisinde görünür. Sonuç sorgulanmazsa reddedilen güncelleme fark edilmez. Çözüm: Sonucu sorgula, hatayı düzelt"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Diğer kanalın stoğu siparişten dakikalar sonra düşmüş» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Güncelleme geç ulaştı — Stok senkronu belirli aralıklarla ya da bir kuyruktan çalışır. Hız sınırı dolduğunda ya da Hepsiburada'da aynı anda en fazla beş bekleyen işlem sınırına takıldığında kuyruk birikir. Siparişle diğer kanalın stoğunun düşmesi arasındaki sürede son ürün iki kanalda birden satılabilir. Çözüm: Siparişte stoğu hemen düş, sonra kanallara yay"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Pazaryerindeki sipariş merkezi stok sisteminde yok» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C · Sipariş ya da ürün eşleşmedi — Pazaryerindeki sipariş merkezi sisteme hiç çekilmemiş ya da ürün yanlış kayıtla eşleşmiş. Sipariş çekme sınırları, sayfalama ya da sorgu aralığı yüzünden atlanan bir sipariş stoğu düşürmez. Hepsiburada'da HBSku ile MerchantSku yanlış eşleştiğinde güncelleme MismatchingSkusSpecified hatasıyla reddedilir. Çözüm: Sipariş çekmeyi ve ürün eşlemesini düzelt"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teşhis Kataloğu",
+          "item": "https://trendmasterakademi.com/teshis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Aynı ürün iki pazaryerinde satıldı",
+          "item": "https://trendmasterakademi.com/teshis/pazaryeri-stok-cift-satis/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-dCAGCnuG.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Same Item Sold on Two Marketplaces</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Confidentiality and Engagement Agreement</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">The last unit was sold on the same day on both Trendyol and Hepsiburada, or on both a marketplace and the site. One of the orders has to be cancelled. Stock dropped in one channel but never reached the other channel, or reached it late.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      <p class="text-sm font-mono text-[var(--accent)]">Urgency: Critical · revenue loss · Category: Orders &amp; Payments</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Orders for the same item arrive from two channels, and there is one unit in the warehouse. The central stock system shows zero, but the marketplace panel still shows the item in stock. It usually appears on campaign days and right after a bulk stock update.</p>
+      </section>
+    
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">What you see on screen</h2>
+        <div class="space-y-2">
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>status: FAILED · failureReasons: […]</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">Trendyol batch result check — the request was accepted but the item was not updated</p>
+            </div>
+          
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>ListingFrozen</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">Hepsiburada — a locked listing cannot be updated</p>
+            </div>
+          
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>MismatchingSkusSpecified</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">Hepsiburada — HBSku and MerchantSku are mismatched</p>
+            </div>
+          
+        </div>
+      </section>
+    
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
+        <li><code>Batch result: status FAILED on the item row</code> <span>→ A · Assumed sent, actually rejected</span></li>
+        <li><code>Stock update response is only an operation ID, the result was never queried</code> <span>→ A · Assumed sent, actually rejected</span></li>
+        <li><code>Stock on the other channel dropped minutes after the order</code> <span>→ B · Update arrived late</span></li>
+        <li><code>The marketplace order is not in the central stock system</code> <span>→ C · Order or item not matched</span></li>
+      </ul>
+    
+        <p class="text-[var(--ink-3)] text-sm">Marketplaces process stock updates in a queue, not immediately; when the request is accepted, only an operation ID comes back. The real result is in the status check queried with that ID.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Three Potential Root Causes & Differential Tests</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">A · Assumed sent, actually rejected</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">When a Trendyol stock and price request is accepted, only a batchRequestId comes back; the per-item result is read from the batch result service, and individual items can fail. Hepsiburada also returns an operation ID (Inventory Upload Id); row-level errors appear in a separate status service. If the result is never queried, the rejected update goes unnoticed.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Any FAILED rows in the batch result?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> FAILED rows in the batch result → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Check results, fix the rejects</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> The same stock request is resent immediately; according to Trendyol's documentation the same request cannot be sent repeatedly for 15 minutes, so the retry is rejected too.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">B · Update arrived late</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">Stock sync runs at intervals or from a queue. When the rate limit fills up, or when Hepsiburada's limit of at most five pending operations at a time is reached, the queue backs up. In the time between the order and the stock drop on the other channel, the last unit can be sold on both channels.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Minutes between order and stock drop?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Minutes between order and stock drop → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Reserve at order, then push to channels</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> The sync frequency is increased; the request count fills the rate limit faster, and the delay grows instead of shrinking.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">C · Order or item not matched</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">The marketplace order was never pulled into the central system, or the item is matched to the wrong record. An order skipped because of order pull limits, pagination or the query window does not reduce stock. On Hepsiburada, when HBSku and MerchantSku are mismatched, the update is rejected with MismatchingSkusSpecified.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Order on the marketplace but not in center?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Order on the marketplace, not in the center → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Fix order pulls and item mapping</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> The missing order is entered by hand, but the order pull logic is not fixed; on the next busy day, skipped orders pile up again.</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Check it yourself in the first 10 minutes</h2>
+        <ol class="list-decimal list-inside space-y-2 text-[var(--ink-3)] text-sm">
+          <li>For the double-sold item, compare the times of the two orders with the moment stock dropped in the central system.</li>
+          <li>Query the results of the stock updates made around those times: the batch result check on Trendyol, the listing update status check on Hepsiburada.</li>
+          <li>If the result has FAILED or error rows, note the reason (failureReasons, error name).</li>
+          <li>Count the marketplace orders of the last few days and check that all of them reached the central system.</li>
+          <li>Check whether the item's marketplace identifiers (barcode, HBSku, MerchantSku) match the record in the central system.</li>
+        </ol>
+      </section>
+    
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">When to hand it over</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Hand it over if the stock reduction logic or the sync queue has to change, if past double sales and stock gaps must be fixed in bulk, or if item mapping must be rebuilt in bulk.</p>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">A backend engineer who knows marketplace integrations. Stock must be reduced in one central place at order time and pushed to the channels from there; the result of every update must be checked, and order pulls must resume from where they stopped.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Every double sale means an order to cancel and a disappointed customer. On campaign days, as the order rate goes up, so does the number of double sales of the same item.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Official documentation</h2>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="https://developers.trendyol.com/reference/updatepriceandinventory" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Trendyol — Stock and price update (updatePriceAndInventory; in Turkish)</a></li>
+          <li><a href="https://developers.trendyol.com/reference/getbatchrequestresult" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Trendyol — Batch result check (getBatchRequestResult; in Turkish)</a></li>
+          <li><a href="https://developers.hepsiburada.com/tr/companies/hepsiburada?category=listeleme&amp;product=listeleme&amp;version=v1&amp;guide=listing-bilgilerini-guncelleme-1&amp;view=guide" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Hepsiburada — Listing integration key information (in Turkish)</a></li>
+        </ul>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts & Services</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
+        <li><a href="/glossary/race-condition/" class="hover:underline">→ Race Condition</a></li>
+        <li><a href="/glossary/idempotency/" class="hover:underline">→ Idempotency</a></li>
+        <li><a href="/glossary/rate-limit/" class="hover:underline">→ Rate Limiting</a></li>
+      </ul>
+    
+        
+      <div class="pt-2">
+        <h3 class="text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)] mb-2">Related diagnostics</h3>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="/diagnostic/ayni-stok-iki-musteriye-satildi/" class="hover:underline">→ Same Inventory Sold to Multiple Customers</a></li>
+          <li><a href="/diagnostic/pazaryeri-api-429-401-hatasi/" class="hover:underline">→ Trendyol &amp; Hepsiburada API: 429, 401</a></li>
+        </ul>
+      </div>
+    
+        <p class="pt-2"><a href="/crash-test/" class="text-[var(--accent)] hover:underline font-bold">→ Emergency Incident Triage &amp; Crash Test</a></p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

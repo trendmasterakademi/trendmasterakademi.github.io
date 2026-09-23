@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>e-Arşiv fatura siteden kesilmiyor | Trend Master Akademi</title>
+    <meta name="description" content="Sipariş tamamlandı ama e-Arşiv fatura oluşmadı ya da entegratör reddetti. Kopan bağlantı, eksik alıcı bilgisi ve yanlış fatura türü: test ve çözüm." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/e-arsiv-fatura-kesilmiyor/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/" />
+    <meta property="og:title" content="e-Arşiv fatura siteden kesilmiyor | Trend Master Akademi" />
+    <meta property="og:description" content="Sipariş tamamlandı ama e-Arşiv fatura oluşmadı ya da entegratör reddetti. Kopan bağlantı, eksik alıcı bilgisi ve yanlış fatura türü: test ve çözüm." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi — Ajanslar için white-label mühendislik ve acil kod kurtarma masası" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/" />
+    <meta name="twitter:title" content="e-Arşiv fatura siteden kesilmiyor | Trend Master Akademi" />
+    <meta name="twitter:description" content="Sipariş tamamlandı ama e-Arşiv fatura oluşmadı ya da entegratör reddetti. Kopan bağlantı, eksik alıcı bilgisi ve yanlış fatura türü: test ve çözüm." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "e-Arşiv fatura siteden kesilmiyor",
+      "description": "Siparişler tamamlanıyor ama e-Arşiv faturaları oluşmuyor, eksik oluşuyor ya da entegratör tarafından reddediliyor. Fatura, siparişten entegratöre giden bağlantının bir halkasında düşüyor; hangi halkada düştüğünü entegratörün yanıtı ve sipariş kaydı birlikte söyler.",
+      "url": "https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/",
+      "inLanguage": "tr-TR",
+      "about": "Sipariş & Ödeme",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      },
+      "citation": [
+        "https://ebelge.gib.gov.tr/earsivhakkinda.html",
+        "https://ebelge.gib.gov.tr/efaturakayitlikullanicilar.html",
+        "https://ebelge.gib.gov.tr/earsivozelentegratorlistesi.html"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Entegratörde siparişe ait kayıt var mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bağlantı koptu — Siteden entegratöre giden istek hiç gitmiyor ya da yolda düşüyor: kimlik bilgisi değişmiş, erişim anahtarının süresi dolmuş, entegratörün adresi değişmiş ya da istek zaman aşımına uğruyor. Entegratör panelinde o siparişe ait hiçbir kayıt yoktur. Kanıt: Entegratörde kayıt yok, uygulamada 401 → A Çözüm: Kimlik ve adresi düzelt, kuyruğa al"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Entegratör yanıtında ret var mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Entegratör reddetti — İstek entegratöre ulaşıyor ama fatura verisi eksik ya da hatalı olduğu için reddediliyor: alıcının VKN ya da TCKN'si, adresi, vergi oranı ya da tutar alanları. Ret yanıtı kaydedilmiyorsa site faturanın kesildiğini sanar. Kanıt: Entegratör yanıtında ret ve hata kodu → B Çözüm: Veriyi düzelt, bir kez gönder"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Alıcı e-Fatura sistemine kayıtlı mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yanlış fatura türü — Gelir İdaresi Başkanlığı'na göre e-Arşiv fatura, e-Fatura sistemine kayıtlı olmayan mükelleflere ve mükellef olmayanlara yapılan satışlarda düzenlenir. Alıcı e-Fatura sistemine kayıtlıysa fatura e-Fatura olarak düzenlenmelidir. Site kurumsal alıcının kayıtlı olup olmadığını kontrol etmeden e-Arşiv gönderirse fatura yanlış türde düzenlenir ya da entegratör tarafından reddedilir. Kanıt: Alıcı e-Fatura kayıtlı, e-Arşiv gitmiş → C Çözüm: Alıcıya göre türü seç"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Entegratör paneli: sipariş numarasına ait fatura kaydı yok» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Bağlantı koptu — Siteden entegratöre giden istek hiç gitmiyor ya da yolda düşüyor: kimlik bilgisi değişmiş, erişim anahtarının süresi dolmuş, entegratörün adresi değişmiş ya da istek zaman aşımına uğruyor. Entegratör panelinde o siparişe ait hiçbir kayıt yoktur. Çözüm: Kimlik ve adresi düzelt, kuyruğa al"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Uygulama kaydı: entegratör isteği 401 ya da zaman aşımı» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Bağlantı koptu — Siteden entegratöre giden istek hiç gitmiyor ya da yolda düşüyor: kimlik bilgisi değişmiş, erişim anahtarının süresi dolmuş, entegratörün adresi değişmiş ya da istek zaman aşımına uğruyor. Entegratör panelinde o siparişe ait hiçbir kayıt yoktur. Çözüm: Kimlik ve adresi düzelt, kuyruğa al"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Entegratör yanıtı: ret · alıcı VKN/TCKN ya da adres hatalı» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Entegratör reddetti — İstek entegratöre ulaşıyor ama fatura verisi eksik ya da hatalı olduğu için reddediliyor: alıcının VKN ya da TCKN'si, adresi, vergi oranı ya da tutar alanları. Ret yanıtı kaydedilmiyorsa site faturanın kesildiğini sanar. Çözüm: Veriyi düzelt, bir kez gönder"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Alıcı VKN'si e-Fatura kayıtlı kullanıcı, fatura e-Arşiv gönderilmiş» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C · Yanlış fatura türü — Gelir İdaresi Başkanlığı'na göre e-Arşiv fatura, e-Fatura sistemine kayıtlı olmayan mükelleflere ve mükellef olmayanlara yapılan satışlarda düzenlenir. Alıcı e-Fatura sistemine kayıtlıysa fatura e-Fatura olarak düzenlenmelidir. Site kurumsal alıcının kayıtlı olup olmadığını kontrol etmeden e-Arşiv gönderirse fatura yanlış türde düzenlenir ya da entegratör tarafından reddedilir. Çözüm: Alıcıya göre türü seç"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teşhis Kataloğu",
+          "item": "https://trendmasterakademi.com/teshis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "e-Arşiv fatura siteden kesilmiyor",
+          "item": "https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-dCAGCnuG.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">e-Arşiv fatura siteden kesilmiyor</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
+          <a href="/kit/" class="hover:underline">Ajans Kiti</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
+          <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
+          <a href="/kurtarilabilirlik/" class="hover:underline">Kurtarılabilirlik İndeksi</a>
+          <a href="/post-mortem/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triyaj/" class="hover:underline">Triyaj Simülatörü</a>
+          <a href="/sla/" class="hover:underline">SLA & Taahhütler</a>
+          <a href="/teknoloji-uyumluluk/" class="hover:underline">Teknoloji Matrisi</a>
+          <a href="/gizlilik-sozlesmesi/" class="hover:underline">Gizlilik Sözleşmesi</a>
+          <a href="/nda/" class="hover:underline">Gizlilik ve Çalışma Sözleşmesi</a>
+          <a href="/hasar-tespiti/" class="hover:underline">Hasar Simülatörü</a>
+          <a href="/radar/" class="hover:underline">SWAT Radarı</a>
+          <a href="/kod-sagligi/" class="hover:underline">Kod Sağlığı</a>
+          <a href="/kurtarma-maliyeti/" class="hover:underline">Kurtarma ROI</a>
+          <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
+          <a href="/sozluk/" class="hover:underline">Teknik Sözlük</a>
+          <a href="/hikayemiz/" class="hover:underline">Hikayemiz</a>
+          <a href="/sos/" class="hover:underline">Acil Teknik Destek</a>
+          <a href="/about/" class="hover:underline">Hakkımızda</a>
+          <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Siparişler tamamlanıyor ama e-Arşiv faturaları oluşmuyor, eksik oluşuyor ya da entegratör tarafından reddediliyor. Fatura, siparişten entegratöre giden bağlantının bir halkasında düşüyor; hangi halkada düştüğünü entegratörün yanıtı ve sipariş kaydı birlikte söyler.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      <p class="text-sm font-mono text-[var(--accent)]">Aciliyet: Yüksek · yasal yükümlülük · Kategori: Sipariş &amp; Ödeme</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Sahada nasıl görünür</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Müşteri faturasının e-postaya gelmediğini söyler ya da mali müşavir ay sonunda siparişlerle faturaların tutmadığını fark eder. Sitede sipariş «tamamlandı» görünür, entegratör panelinde ise o siparişe ait fatura yoktur ya da «reddedildi» durumundadır.</p>
+      </section>
+    
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Ekranda gördüğünüz metin</h2>
+        <div class="space-y-2">
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>Entegratör paneli: fatura yok · ya da «reddedildi»</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">Özel entegratörün paneli — hata kodları ve metinleri entegratöre göre değişir</p>
+            </div>
+          
+        </div>
+      </section>
+    
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Sisteminizde bu satırları görüyorsanız</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
+        <li><code>Entegratör paneli: sipariş numarasına ait fatura kaydı yok</code> <span>→ A · Bağlantı koptu</span></li>
+        <li><code>Uygulama kaydı: entegratör isteği 401 ya da zaman aşımı</code> <span>→ A · Bağlantı koptu</span></li>
+        <li><code>Entegratör yanıtı: ret · alıcı VKN/TCKN ya da adres hatalı</code> <span>→ B · Entegratör reddetti</span></li>
+        <li><code>Alıcı VKN'si e-Fatura kayıtlı kullanıcı, fatura e-Arşiv gönderilmiş</code> <span>→ C · Yanlış fatura türü</span></li>
+      </ul>
+    
+        <p class="text-[var(--ink-3)] text-sm">Faturayı entegratör düzenler ve Gelir İdaresi Başkanlığı'na iletir; sitenin görevi doğru veriyi bir kez göndermek ve yanıtı kaydetmektir. Entegratörün ret yanıtı kaydedilmiyorsa sorun görünmez kalır.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Üç olası neden ve ayırt edici testleri</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">A · Bağlantı koptu</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">Siteden entegratöre giden istek hiç gitmiyor ya da yolda düşüyor: kimlik bilgisi değişmiş, erişim anahtarının süresi dolmuş, entegratörün adresi değişmiş ya da istek zaman aşımına uğruyor. Entegratör panelinde o siparişe ait hiçbir kayıt yoktur.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Entegratörde siparişe ait kayıt var mı?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Entegratörde kayıt yok, uygulamada 401 → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Kimlik ve adresi düzelt, kuyruğa al</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Faturasız siparişler entegratör panelinden tek tek elle faturalanır ama bağlantı düzeltilmez; ertesi gün aynı liste yeniden oluşur.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">B · Entegratör reddetti</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">İstek entegratöre ulaşıyor ama fatura verisi eksik ya da hatalı olduğu için reddediliyor: alıcının VKN ya da TCKN'si, adresi, vergi oranı ya da tutar alanları. Ret yanıtı kaydedilmiyorsa site faturanın kesildiğini sanar.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Entegratör yanıtında ret var mı?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Entegratör yanıtında ret ve hata kodu → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Veriyi düzelt, bir kez gönder</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Reddedilen fatura aynı veriyle yeniden gönderilir; veri düzelmediği için yine reddedilir, ya da düzeltme sırasında aynı sipariş için iki fatura oluşur.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">C · Yanlış fatura türü</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">Gelir İdaresi Başkanlığı'na göre e-Arşiv fatura, e-Fatura sistemine kayıtlı olmayan mükelleflere ve mükellef olmayanlara yapılan satışlarda düzenlenir. Alıcı e-Fatura sistemine kayıtlıysa fatura e-Fatura olarak düzenlenmelidir. Site kurumsal alıcının kayıtlı olup olmadığını kontrol etmeden e-Arşiv gönderirse fatura yanlış türde düzenlenir ya da entegratör tarafından reddedilir.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Ayırt edici test:</strong> Alıcı e-Fatura sistemine kayıtlı mı?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Kanıt:</strong> Alıcı e-Fatura kayıtlı, e-Arşiv gitmiş → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Çözüm:</strong> Alıcıya göre türü seç</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Sık yapılan yanlış düzeltme:</strong> Fatura türü kodda sabit bırakılıp yalnız reddedilen siparişler elle düzeltilir; kurumsal alıcıdan gelen her yeni siparişte aynı durum tekrarlanır.</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">İlk 10 dakikada kendiniz kontrol edin</h2>
+        <ol class="list-decimal list-inside space-y-2 text-[var(--ink-3)] text-sm">
+          <li>Entegratör panelinde son faturaları listeleyin, siparişlerle karşılaştırıp hangi siparişlerin faturasız kaldığını bulun.</li>
+          <li>Faturasız siparişler için uygulama kayıtlarında entegratöre giden isteği ve dönen yanıtı arayın: hiç istek yoksa sorun bağlantıda, ret varsa veride.</li>
+          <li>Ret yanıtlarındaki hata kodunu entegratörün kendi dokümanında arayın.</li>
+          <li>Kurumsal (VKN'li) alıcılarda, alıcının Gelir İdaresi Başkanlığı'nın e-Fatura kayıtlı kullanıcılar listesinde olup olmadığını kontrol edin.</li>
+          <li>Entegratör kullanıcı bilgisi ya da erişim anahtarı son günlerde değişti mi, sözleşme ya da kullanım hakkı bitti mi kontrol edin.</li>
+        </ol>
+      </section>
+    
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Ne zaman devretmeli?</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Faturayı oluşturan kod değiştirilecekse, faturasız kalmış siparişler toplu faturalandırılacaksa ya da fatura türü ve vergi alanlarıyla ilgili bir karar gerekiyorsa devredin. Vergi ve mevzuat kararı mali müşavirindir; teknik ekip yalnız bağlantıyı onarır.</p>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer, ne kadar sürer</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Entegrasyonu bilen backend mühendisi ile mali müşavir birlikte. Mühendis bağlantıyı, ret yanıtlarının kaydedilmesini ve eksik faturaların bir kez yeniden gönderilmesini onarır; fatura türü ve vergi alanlarıyla ilgili kararlar mali müşavirindir.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Çözülmezse ne olur</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Satılan malın faturası zamanında düzenlenmezse sorun teknik olmaktan çıkar, yasal bir yükümlülük olur. Faturasız siparişler biriktikçe hem müşteriye hem mali müşavire açıklama yükü büyür.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resmî dokümanlar</h2>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="https://ebelge.gib.gov.tr/earsivhakkinda.html" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Gelir İdaresi Başkanlığı — e-Arşiv Hakkında</a></li>
+          <li><a href="https://ebelge.gib.gov.tr/efaturakayitlikullanicilar.html" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Gelir İdaresi Başkanlığı — e-Fatura Kayıtlı Kullanıcılar</a></li>
+          <li><a href="https://ebelge.gib.gov.tr/earsivozelentegratorlistesi.html" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Gelir İdaresi Başkanlığı — e-Arşiv Özel Entegratörler Listesi</a></li>
+        </ul>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">İlgili terimler ve hizmet</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
+        <li><a href="/sozluk/idempotency/" class="hover:underline">→ Idempotency (Çift İşlem Koruması)</a></li>
+      </ul>
+    
+        
+      <div class="pt-2">
+        <h3 class="text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)] mb-2">İlgili teşhisler</h3>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="/teshis/pazaryeri-api-429-401-hatasi/" class="hover:underline">→ Trendyol &amp; Hepsiburada API: 429, 401</a></li>
+        </ul>
+      </div>
+    
+        <p class="pt-2"><a href="/agency/" class="text-[var(--accent)] hover:underline font-bold">→ B2B White-Label Mühendislik Masası</a></p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

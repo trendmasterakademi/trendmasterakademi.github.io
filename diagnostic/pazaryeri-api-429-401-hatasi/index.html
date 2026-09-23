@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Trendyol &amp; Hepsiburada API: 429, 401 | Trend Master Akademi</title>
+    <meta name="description" content="Trendyol or Hepsiburada integration returning 429, 401 or 403. Rate limit, a changed service key or a missing User-Agent: the tests that tell them apart." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/pazaryeri-api-429-401-hatasi/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/pazaryeri-api-429-401-hatasi/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/pazaryeri-api-429-401-hatasi/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/pazaryeri-api-429-401-hatasi/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/pazaryeri-api-429-401-hatasi/" />
+    <meta property="og:title" content="Trendyol &amp; Hepsiburada API: 429, 401 | Trend Master Akademi" />
+    <meta property="og:description" content="Trendyol or Hepsiburada integration returning 429, 401 or 403. Rate limit, a changed service key or a missing User-Agent: the tests that tell them apart." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT &amp; White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/pazaryeri-api-429-401-hatasi/" />
+    <meta name="twitter:title" content="Trendyol &amp; Hepsiburada API: 429, 401 | Trend Master Akademi" />
+    <meta name="twitter:description" content="Trendyol or Hepsiburada integration returning 429, 401 or 403. Rate limit, a changed service key or a missing User-Agent: the tests that tell them apart." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "Trendyol & Hepsiburada API: 429, 401",
+      "description": "The Trendyol or Hepsiburada integration suddenly starts returning 429, 401 or 403; stock, price and order sync stop. The three codes have three separate causes: the rate limit, the credentials and the request header. Each marketplace's own documentation defines them.",
+      "url": "https://trendmasterakademi.com/diagnostic/pazaryeri-api-429-401-hatasi/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/diagnostic/pazaryeri-api-429-401-hatasi/",
+      "inLanguage": "en-US",
+      "about": "Contact & Integrations",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      },
+      "citation": [
+        "https://developers.trendyol.com/docs/2-authorization",
+        "https://developers.trendyol.com/docs/1-servis-limitleri",
+        "https://developers.hepsiburada.com/tr/companies/hepsiburada?category=baslangic&product=api-authentication&version=v1.0&guide=entegratore-servis-anahtari-eklemegoruntuleme&view=guide",
+        "https://developers.hepsiburada.com/tr/companies/hepsiburada?category=listeleme&product=listeleme&version=v1&guide=listing-bilgilerini-guncelleme-1&view=guide",
+        "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Yanıtlar toplu işlerde mi 429'a dönüyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Hız sınırı aşıldı — Pazaryerleri dakikalık istek sınırı uygular. Hepsiburada dokümanına göre bir satıcı için dakikada ortalama 240 istek atılabilir, aşılırsa 429 döner. Trendyol sınırları servis grubu bazında tanımlar; sınır dolunca aynı dakika içinde o gruba yeni istek gönderilemez. Toplu stok ve fiyat işleri aynı anda başlatılınca sınır dakikalar içinde dolar. Kanıt: Yoğun işlerde 429 → A Çözüm: İstekleri sınıra göre kuyruğa al"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "401, bir anahtar değişikliğinden sonra mı başladı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Kimlik bilgisi değişti — Trendyol, hatalı yetkilendirmede 401 ve ClientApiAuthenticationException döndürür; bilgiler satıcı panelindeki Entegrasyon Bilgileri sayfasından alınır. Hepsiburada'da satıcı panelinden yeni servis anahtarı oluşturulduğunda, dokümana göre yeni anahtarın entegratör ekranlarında da güncellenmesi gerekir. Hepsiburada ayrıca servislerinin kimlik doğrulama yapısını değiştirdiğini duyurmuştur. Kanıt: Anahtar değişikliğinden sonra 401 → B Çözüm: Yeni anahtarı entegrasyona gir"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "İstek başlığında User-Agent var mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "User-Agent eksik — Trendyol her istekte User-Agent başlığı ister: kendi yazdığınız entegrasyonda «Satıcı Id - SelfIntegration», bir entegratör kullanıyorsanız «Satıcı Id - Entegrasyon Firması İsmi». Dokümana göre User-Agent bilgisi olmayan istekler 403 hatasıyla engellenir. Sunucu, kütüphane ya da vekil sunucu değişikliği bu başlığı sessizce düşürebilir. Kanıt: Başlıkta User-Agent yok, yanıt 403 → C Çözüm: Başlığı doğru biçimde gönder"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Toplu stok işi başladıktan sonra yanıtlar 429'a dönüyor» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Hız sınırı aşıldı — Pazaryerleri dakikalık istek sınırı uygular. Hepsiburada dokümanına göre bir satıcı için dakikada ortalama 240 istek atılabilir, aşılırsa 429 döner. Trendyol sınırları servis grubu bazında tanımlar; sınır dolunca aynı dakika içinde o gruba yeni istek gönderilemez. Toplu stok ve fiyat işleri aynı anda başlatılınca sınır dakikalar içinde dolar. Çözüm: İstekleri sınıra göre kuyruğa al"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Servis anahtarı yenilendi, aynı gün 401 başladı» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Kimlik bilgisi değişti — Trendyol, hatalı yetkilendirmede 401 ve ClientApiAuthenticationException döndürür; bilgiler satıcı panelindeki Entegrasyon Bilgileri sayfasından alınır. Hepsiburada'da satıcı panelinden yeni servis anahtarı oluşturulduğunda, dokümana göre yeni anahtarın entegratör ekranlarında da güncellenmesi gerekir. Hepsiburada ayrıca servislerinin kimlik doğrulama yapısını değiştirdiğini duyurmuştur. Çözüm: Yeni anahtarı entegrasyona gir"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Trendyol yanıtı: 401 ClientApiAuthenticationException» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Kimlik bilgisi değişti — Trendyol, hatalı yetkilendirmede 401 ve ClientApiAuthenticationException döndürür; bilgiler satıcı panelindeki Entegrasyon Bilgileri sayfasından alınır. Hepsiburada'da satıcı panelinden yeni servis anahtarı oluşturulduğunda, dokümana göre yeni anahtarın entegratör ekranlarında da güncellenmesi gerekir. Hepsiburada ayrıca servislerinin kimlik doğrulama yapısını değiştirdiğini duyurmuştur. Çözüm: Yeni anahtarı entegrasyona gir"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«İstek başlıklarında User-Agent yok, yanıt 403» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C · User-Agent eksik — Trendyol her istekte User-Agent başlığı ister: kendi yazdığınız entegrasyonda «Satıcı Id - SelfIntegration», bir entegratör kullanıyorsanız «Satıcı Id - Entegrasyon Firması İsmi». Dokümana göre User-Agent bilgisi olmayan istekler 403 hatasıyla engellenir. Sunucu, kütüphane ya da vekil sunucu değişikliği bu başlığı sessizce düşürebilir. Çözüm: Başlığı doğru biçimde gönder"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teşhis Kataloğu",
+          "item": "https://trendmasterakademi.com/teshis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Trendyol & Hepsiburada API: 429, 401",
+          "item": "https://trendmasterakademi.com/teshis/pazaryeri-api-429-401-hatasi/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-dCAGCnuG.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Trendyol & Hepsiburada API: 429, 401</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Confidentiality and Engagement Agreement</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">The Trendyol or Hepsiburada integration suddenly starts returning 429, 401 or 403; stock, price and order sync stop. The three codes have three separate causes: the rate limit, the credentials and the request header. Each marketplace's own documentation defines them.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      <p class="text-sm font-mono text-[var(--accent)]">Urgency: High · data sync halted · Category: Contact &amp; Integrations</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Stock and prices stop updating in the store panel, and new orders do not reach the central system. The integration's own screen either just says 'failed' or shows no warning at all; the real information is in the HTTP code the marketplace returns.</p>
+      </section>
+    
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">What you see on screen</h2>
+        <div class="space-y-2">
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>HTTP 429 Too Many Requests</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">Rate limit exceeded — Hepsiburada: about 240 requests per minute; Trendyol: per-minute limits by service group</p>
+            </div>
+          
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>401 · ClientApiAuthenticationException</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">Trendyol — failed authorization</p>
+            </div>
+          
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>401 Unauthorized: password entered incorrectly</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">Hepsiburada — wrong credentials</p>
+            </div>
+          
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>403</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">Trendyol — requests without a User-Agent header are blocked</p>
+            </div>
+          
+        </div>
+      </section>
+    
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
+        <li><code>After the bulk stock job starts, responses turn to 429</code> <span>→ A · Rate limit exceeded</span></li>
+        <li><code>The service key was renewed and 401 began the same day</code> <span>→ B · Credentials changed</span></li>
+        <li><code>Trendyol response: 401 ClientApiAuthenticationException</code> <span>→ B · Credentials changed</span></li>
+        <li><code>No User-Agent in the request headers, response 403</code> <span>→ C · User-Agent missing</span></li>
+      </ul>
+    
+        <p class="text-[var(--ink-3)] text-sm">429, 401 and 403 all show up as 'failed' on the same screen, but they say three different things. Keeping the HTTP code and time of every request in the integration's logs separates the cause at a glance.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Three Potential Root Causes & Differential Tests</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">A · Rate limit exceeded</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">Marketplaces apply per-minute request limits. According to Hepsiburada's documentation, a seller can send about 240 requests per minute, and exceeding that returns 429. Trendyol defines limits by service group; once a group's limit is reached, no new request to that group can be sent within the same minute. When bulk stock and price jobs start at the same time, the limit fills up within minutes.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Do responses turn to 429 during bulk jobs?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> 429 during bulk jobs → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Queue requests within the limit</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Requests are resent immediately after a 429 without waiting; the retries fill the limit further and the queue never drains.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">B · Credentials changed</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">Trendyol returns 401 with ClientApiAuthenticationException on failed authorization; the credentials come from the Integration Information page in the seller panel. On Hepsiburada, when a new service key is created in the seller panel, the documentation says it must also be updated in the integrator's screens. Hepsiburada has also announced a change to the authentication structure of its services.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Did 401 start after a key change?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> 401 after a key change → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Enter the new key in the integration</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> After a 401, yet another new key is generated in the seller panel but never entered into the integration; the problem is not the key but that it was not updated in the integration, so the error continues.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">C · User-Agent missing</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">Trendyol requires a User-Agent header on every request: 'Seller Id - SelfIntegration' for an integration you built yourself, or 'Seller Id - Integrator Company Name' if you use an integrator. According to the documentation, requests without a User-Agent are blocked with a 403 error. A server, library or proxy change can silently drop this header.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is there a User-Agent header?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> No User-Agent header, response 403 → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Send the header in the right format</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> The 403 is taken for a permissions error and the API credentials are changed; what is actually missing is the request header, so the 403 continues with the new credentials too.</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Check it yourself in the first 10 minutes</h2>
+        <ol class="list-decimal list-inside space-y-2 text-[var(--ink-3)] text-sm">
+          <li>Count the HTTP codes of the requests in the integration's logs for the last few hours: is it 429, 401 or 403?</li>
+          <li>If there are 429s, check which job (bulk stock, price, order pull) they started with and at what time.</li>
+          <li>If there are 401s, check in the seller panel (Trendyol: Integration Information; Hepsiburada: the Integration page) whether the credentials or the service key changed recently.</li>
+          <li>If there are 403s, check that requests to Trendyol carry a User-Agent header in the 'Seller Id - ...' format.</li>
+          <li>If you use a ready-made integrator, ask them whether the problem affects all of their stores or only yours.</li>
+        </ol>
+      </section>
+    
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">When to hand it over</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Hand it over if the request queue or retry logic has to change in code, if the stock, price and order gaps built up while the integration was down must be fixed in bulk, or if the integration must be moved to Hepsiburada's new authentication structure.</p>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">A backend engineer who knows marketplace integrations. Requests must be queued within the limit, credential changes must reach the integration, the User-Agent header must be sent in the right format, and the HTTP code of every request must be logged.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">As long as stock and price are not updated, the marketplace keeps selling on stale data: out-of-stock items are sold, or items are sold at the wrong price. Since orders are not pulled, dispatch deadlines are missed.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Official documentation</h2>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="https://developers.trendyol.com/docs/2-authorization" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Trendyol — 2. Authorization (API key, User-Agent; in Turkish)</a></li>
+          <li><a href="https://developers.trendyol.com/docs/1-servis-limitleri" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Trendyol — 1. Service limits (in Turkish)</a></li>
+          <li><a href="https://developers.hepsiburada.com/tr/companies/hepsiburada?category=baslangic&amp;product=api-authentication&amp;version=v1.0&amp;guide=entegratore-servis-anahtari-eklemegoruntuleme&amp;view=guide" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Hepsiburada — Adding and viewing the integrator service key (in Turkish)</a></li>
+          <li><a href="https://developers.hepsiburada.com/tr/companies/hepsiburada?category=listeleme&amp;product=listeleme&amp;version=v1&amp;guide=listing-bilgilerini-guncelleme-1&amp;view=guide" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Hepsiburada — Listing integration key information (request limit; in Turkish)</a></li>
+          <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Status/429" target="_blank" rel="noopener noreferrer" class="hover:underline">→ MDN — 429 Too Many Requests</a></li>
+        </ul>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts & Services</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
+        <li><a href="/glossary/rate-limit/" class="hover:underline">→ Rate Limiting</a></li>
+        <li><a href="/glossary/idempotency/" class="hover:underline">→ Idempotency</a></li>
+      </ul>
+    
+        
+      <div class="pt-2">
+        <h3 class="text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)] mb-2">Related diagnostics</h3>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="/diagnostic/entegrasyon-429-veriyor/" class="hover:underline">→ Third-Party Integration Returning HTTP 429</a></li>
+          <li><a href="/diagnostic/pazaryeri-stok-cift-satis/" class="hover:underline">→ Same Item Sold on Two Marketplaces</a></li>
+          <li><a href="/diagnostic/e-arsiv-fatura-kesilmiyor/" class="hover:underline">→ e-Archive Invoice Not Being Issued</a></li>
+        </ul>
+      </div>
+    
+        <p class="pt-2"><a href="/agency/" class="text-[var(--accent)] hover:underline font-bold">→ B2B White-Label Engineering Desk</a></p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

@@ -3681,10 +3681,11 @@ function verifySeoAndHtmlIntegrity() {
       if (title.length > 60) {
         errors.push(`Page ${page.canonical} title exceeds 60 chars (${title.length}): "${title}"`);
       }
-      if (seenTitles.has(title)) {
-        errors.push(`Duplicate title "${title}" found in ${page.canonical} and ${seenTitles.get(title)}`);
+      const titleKey = `${page.lang || 'tr'}:${title}`;
+      if (seenTitles.has(titleKey)) {
+        errors.push(`Duplicate title "${title}" found in ${page.canonical} and ${seenTitles.get(titleKey)}`);
       } else {
-        seenTitles.set(title, page.canonical);
+        seenTitles.set(titleKey, page.canonical);
       }
       if (title.includes('Trend Master Academy')) {
         errors.push(`Page ${page.canonical} title contains "Trend Master Academy"`);

@@ -203,6 +203,7 @@ export default {
     "idempotency",
     "deadlock"
   ],
+  "ilgiliTeshisler": ["pazaryeri-stok-cift-satis"],
   "ilgiliHizmet": {
     "baslik": {
       "tr": "Acil Kriz Müdahalesi & Crash Test",

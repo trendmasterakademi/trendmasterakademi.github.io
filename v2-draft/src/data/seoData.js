@@ -501,6 +501,24 @@ export const seoData = {
   "/diagnostic/woocommerce-odendi-siparis-bekliyor/": { "en": {
     "title": "WooCommerce: Paid but Order Pending | Trend Master Akademi",
     "desc": "Paid at the provider, but the WooCommerce order stays 'Pending payment' or 'On hold'. Blocked notification, plugin error or approval step: tests and fixes." } },
+  "/teshis/pazaryeri-api-429-401-hatasi/": { "tr": {
+    "title": "Trendyol & Hepsiburada API: 429, 401 | Trend Master Akademi",
+    "desc": "Trendyol ya da Hepsiburada entegrasyonu 429, 401 ya da 403 veriyor. Hız sınırı, değişen servis anahtarı ve eksik User-Agent: ayırt edici test ve çözüm." } },
+  "/diagnostic/pazaryeri-api-429-401-hatasi/": { "en": {
+    "title": "Trendyol & Hepsiburada API: 429, 401 | Trend Master Akademi",
+    "desc": "Trendyol or Hepsiburada integration returning 429, 401 or 403. Rate limit, a changed service key or a missing User-Agent: the tests that tell them apart." } },
+  "/teshis/pazaryeri-stok-cift-satis/": { "tr": {
+    "title": "Aynı ürün iki pazaryerinde satıldı | Trend Master Akademi",
+    "desc": "Son ürün hem Trendyol'da hem Hepsiburada'da satıldı. Reddedilen stok güncellemesi, geciken senkron ve eşleşmeyen sipariş: ayırt edici test ve çözüm yolu." } },
+  "/diagnostic/pazaryeri-stok-cift-satis/": { "en": {
+    "title": "Same Item Sold on Two Marketplaces | Trend Master Akademi",
+    "desc": "The last unit sold on both Trendyol and Hepsiburada. A rejected stock update, a late sync or an unmatched order: the test that tells them apart, and the fix." } },
+  "/teshis/e-arsiv-fatura-kesilmiyor/": { "tr": {
+    "title": "e-Arşiv fatura siteden kesilmiyor | Trend Master Akademi",
+    "desc": "Sipariş tamamlandı ama e-Arşiv fatura oluşmadı ya da entegratör reddetti. Kopan bağlantı, eksik alıcı bilgisi ve yanlış fatura türü: test ve çözüm." } },
+  "/diagnostic/e-arsiv-fatura-kesilmiyor/": { "en": {
+    "title": "e-Archive Invoice Not Being Issued | Trend Master Akademi",
+    "desc": "Order completed but no e-Archive invoice, or the integrator rejected it. A broken connection, missing buyer data or the wrong invoice type: tests and fixes." } },
   "/sozluk/": {
     "tr": {
       "title": "Teknik Terimler Sözlüğü | Trend Master Akademi",

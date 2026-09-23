@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>e-Archive Invoice Not Being Issued | Trend Master Akademi</title>
+    <meta name="description" content="Order completed but no e-Archive invoice, or the integrator rejected it. A broken connection, missing buyer data or the wrong invoice type: tests and fixes." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/e-arsiv-fatura-kesilmiyor/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/e-arsiv-fatura-kesilmiyor/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/e-arsiv-fatura-kesilmiyor/" />
+    <meta property="og:title" content="e-Archive Invoice Not Being Issued | Trend Master Akademi" />
+    <meta property="og:description" content="Order completed but no e-Archive invoice, or the integrator rejected it. A broken connection, missing buyer data or the wrong invoice type: tests and fixes." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT &amp; White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/e-arsiv-fatura-kesilmiyor/" />
+    <meta name="twitter:title" content="e-Archive Invoice Not Being Issued | Trend Master Akademi" />
+    <meta name="twitter:description" content="Order completed but no e-Archive invoice, or the integrator rejected it. A broken connection, missing buyer data or the wrong invoice type: tests and fixes." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "headline": "e-Archive Invoice Not Being Issued",
+      "description": "Orders complete, but e-Archive invoices are not created, are created incomplete, or are rejected by the integrator. The invoice drops at one link of the chain from the order to the integrator; the integrator's response and the order record together tell you which link.",
+      "url": "https://trendmasterakademi.com/diagnostic/e-arsiv-fatura-kesilmiyor/",
+      "mainEntityOfPage": "https://trendmasterakademi.com/diagnostic/e-arsiv-fatura-kesilmiyor/",
+      "inLanguage": "en-US",
+      "about": "Orders & Payments",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Trend Master Akademi",
+        "url": "https://trendmasterakademi.com"
+      },
+      "citation": [
+        "https://ebelge.gib.gov.tr/earsivhakkinda.html",
+        "https://ebelge.gib.gov.tr/efaturakayitlikullanicilar.html",
+        "https://ebelge.gib.gov.tr/earsivozelentegratorlistesi.html"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Entegratörde siparişe ait kayıt var mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Bağlantı koptu — Siteden entegratöre giden istek hiç gitmiyor ya da yolda düşüyor: kimlik bilgisi değişmiş, erişim anahtarının süresi dolmuş, entegratörün adresi değişmiş ya da istek zaman aşımına uğruyor. Entegratör panelinde o siparişe ait hiçbir kayıt yoktur. Kanıt: Entegratörde kayıt yok, uygulamada 401 → A Çözüm: Kimlik ve adresi düzelt, kuyruğa al"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Entegratör yanıtında ret var mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Entegratör reddetti — İstek entegratöre ulaşıyor ama fatura verisi eksik ya da hatalı olduğu için reddediliyor: alıcının VKN ya da TCKN'si, adresi, vergi oranı ya da tutar alanları. Ret yanıtı kaydedilmiyorsa site faturanın kesildiğini sanar. Kanıt: Entegratör yanıtında ret ve hata kodu → B Çözüm: Veriyi düzelt, bir kez gönder"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Alıcı e-Fatura sistemine kayıtlı mı?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yanlış fatura türü — Gelir İdaresi Başkanlığı'na göre e-Arşiv fatura, e-Fatura sistemine kayıtlı olmayan mükelleflere ve mükellef olmayanlara yapılan satışlarda düzenlenir. Alıcı e-Fatura sistemine kayıtlıysa fatura e-Fatura olarak düzenlenmelidir. Site kurumsal alıcının kayıtlı olup olmadığını kontrol etmeden e-Arşiv gönderirse fatura yanlış türde düzenlenir ya da entegratör tarafından reddedilir. Kanıt: Alıcı e-Fatura kayıtlı, e-Arşiv gitmiş → C Çözüm: Alıcıya göre türü seç"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Entegratör paneli: sipariş numarasına ait fatura kaydı yok» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Bağlantı koptu — Siteden entegratöre giden istek hiç gitmiyor ya da yolda düşüyor: kimlik bilgisi değişmiş, erişim anahtarının süresi dolmuş, entegratörün adresi değişmiş ya da istek zaman aşımına uğruyor. Entegratör panelinde o siparişe ait hiçbir kayıt yoktur. Çözüm: Kimlik ve adresi düzelt, kuyruğa al"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Uygulama kaydı: entegratör isteği 401 ya da zaman aşımı» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A · Bağlantı koptu — Siteden entegratöre giden istek hiç gitmiyor ya da yolda düşüyor: kimlik bilgisi değişmiş, erişim anahtarının süresi dolmuş, entegratörün adresi değişmiş ya da istek zaman aşımına uğruyor. Entegratör panelinde o siparişe ait hiçbir kayıt yoktur. Çözüm: Kimlik ve adresi düzelt, kuyruğa al"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Entegratör yanıtı: ret · alıcı VKN/TCKN ya da adres hatalı» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "B · Entegratör reddetti — İstek entegratöre ulaşıyor ama fatura verisi eksik ya da hatalı olduğu için reddediliyor: alıcının VKN ya da TCKN'si, adresi, vergi oranı ya da tutar alanları. Ret yanıtı kaydedilmiyorsa site faturanın kesildiğini sanar. Çözüm: Veriyi düzelt, bir kez gönder"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "«Alıcı VKN'si e-Fatura kayıtlı kullanıcı, fatura e-Arşiv gönderilmiş» görüyorsam nedeni ne?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C · Yanlış fatura türü — Gelir İdaresi Başkanlığı'na göre e-Arşiv fatura, e-Fatura sistemine kayıtlı olmayan mükelleflere ve mükellef olmayanlara yapılan satışlarda düzenlenir. Alıcı e-Fatura sistemine kayıtlıysa fatura e-Fatura olarak düzenlenmelidir. Site kurumsal alıcının kayıtlı olup olmadığını kontrol etmeden e-Arşiv gönderirse fatura yanlış türde düzenlenir ya da entegratör tarafından reddedilir. Çözüm: Alıcıya göre türü seç"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teşhis Kataloğu",
+          "item": "https://trendmasterakademi.com/teshis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "e-Arşiv fatura siteden kesilmiyor",
+          "item": "https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-dCAGCnuG.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DA__zb33.css">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">e-Archive Invoice Not Being Issued</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Confidentiality and Engagement Agreement</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue ROI</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Orders complete, but e-Archive invoices are not created, are created incomplete, or are rejected by the integrator. The invoice drops at one link of the chain from the order to the integrator; the integrator's response and the order record together tell you which link.</p>
+        
+    <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+      <p class="text-sm font-mono text-[var(--accent)]">Urgency: High · legal obligation · Category: Orders &amp; Payments</p>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Field Observations</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">The customer says the invoice never arrived by email, or the accountant notices at month end that orders and invoices do not match. The order looks 'completed' on the site, while the integrator's panel has no invoice for it or shows it as 'rejected'.</p>
+      </section>
+    
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">What you see on screen</h2>
+        <div class="space-y-2">
+          
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>Integrator panel: no invoice · or 'rejected'</code>
+              </div>
+              <p class="text-xs text-[var(--ink-3)]">The private integrator's panel — error codes and messages differ by integrator</p>
+            </div>
+          
+        </div>
+      </section>
+    
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
+        
+      <ul class="space-y-2 font-mono text-sm bg-[var(--surface)] p-4 rounded-xl border border-[var(--rule)] my-3">
+        <li><code>Integrator panel: no invoice record for the order number</code> <span>→ A · Connection broken</span></li>
+        <li><code>Application log: integrator request 401 or timeout</code> <span>→ A · Connection broken</span></li>
+        <li><code>Integrator response: rejected · buyer tax ID / national ID or address invalid</code> <span>→ B · Integrator rejected it</span></li>
+        <li><code>Buyer's tax ID is a registered e-Invoice user, invoice sent as e-Archive</code> <span>→ C · Wrong invoice type</span></li>
+      </ul>
+    
+        <p class="text-[var(--ink-3)] text-sm">The integrator issues the invoice and transmits it to the Turkish Revenue Administration; the site's job is to send the right data once and log the response. If the integrator's rejection is not logged, the problem stays invisible.</p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Three Potential Root Causes & Differential Tests</h2>
+        
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">A · Connection broken</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">The request from the site to the integrator never leaves or drops on the way: credentials changed, the access token expired, the integrator's address changed, or the request times out. The integrator's panel has no record at all for that order.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does the integrator have a record for the order?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> No record at the integrator, 401 in the app → A</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Fix credentials, queue the requests</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Orders without invoices are invoiced one by one by hand in the integrator's panel, but the connection is not fixed; the next day the same list forms again.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">B · Integrator rejected it</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">The request reaches the integrator but is rejected because the invoice data is missing or wrong: the buyer's tax ID or national ID number, address, tax rate or amount fields. If the rejection is not logged, the site assumes the invoice was issued.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is there a rejection in the response?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Rejection and error code in the response → B</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Fix the data, send it once</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> The rejected invoice is resent with the same data; since the data is not fixed it is rejected again, or two invoices get created for the same order during the fix.</p>
+          </div>
+        
+
+          <div class="space-y-2 p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] my-4">
+            <h3 class="text-lg font-bold text-[var(--accent)]">C · Wrong invoice type</h3>
+            <p class="text-[var(--ink-3)] leading-relaxed">According to the Turkish Revenue Administration, the e-Archive invoice is issued for sales to taxpayers not registered in the e-Invoice system and to non-taxpayers. If the buyer is registered in the e-Invoice system, the invoice must be issued as an e-Invoice. If the site sends an e-Archive invoice without checking whether a business buyer is registered, the invoice is issued as the wrong type or rejected by the integrator.</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Is the buyer registered for e-Invoice?</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Buyer registered for e-Invoice, e-Archive sent → C</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Choose the type per buyer</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> The invoice type is left hard-coded and only the rejected orders are fixed by hand; every new order from a business buyer repeats the same case.</p>
+          </div>
+        
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Check it yourself in the first 10 minutes</h2>
+        <ol class="list-decimal list-inside space-y-2 text-[var(--ink-3)] text-sm">
+          <li>List the latest invoices in the integrator's panel and compare them with orders to find which orders have no invoice.</li>
+          <li>For orders without invoices, look for the request sent to the integrator and the response in the application logs: no request means the connection, a rejection means the data.</li>
+          <li>Look the error code in rejections up in the integrator's own documentation.</li>
+          <li>For business buyers with a tax ID, check whether the buyer is on the Turkish Revenue Administration's list of registered e-Invoice users.</li>
+          <li>Check whether the integrator user credentials or access key changed recently, or whether the contract or usage allowance ran out.</li>
+        </ol>
+      </section>
+    
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">When to hand it over</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">Hand it over if the code that creates invoices has to change, if orders left without invoices must be invoiced in bulk, or if a decision about invoice type and tax fields is needed. Tax and regulatory decisions belong to the accountant; the technical team only fixes the connection.</p>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">A backend engineer who knows the integration, together with the accountant. The engineer fixes the connection, the logging of rejections and the one-time resubmission of missing invoices; decisions about invoice type and tax fields belong to the accountant.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">When invoices for goods sold are not issued on time, the problem stops being technical and becomes a legal obligation. As orders without invoices pile up, so does the explaining owed to customers and to the accountant.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Official documentation</h2>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="https://ebelge.gib.gov.tr/earsivhakkinda.html" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Turkish Revenue Administration — About e-Archive (in Turkish)</a></li>
+          <li><a href="https://ebelge.gib.gov.tr/efaturakayitlikullanicilar.html" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Turkish Revenue Administration — Registered e-Invoice users (in Turkish)</a></li>
+          <li><a href="https://ebelge.gib.gov.tr/earsivozelentegratorlistesi.html" target="_blank" rel="noopener noreferrer" class="hover:underline">→ Turkish Revenue Administration — e-Archive private integrators list (in Turkish)</a></li>
+        </ul>
+      </section>
+    
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts & Services</h2>
+        
+      <ul class="space-y-1 font-mono text-sm text-[var(--accent)] my-3">
+        <li><a href="/glossary/idempotency/" class="hover:underline">→ Idempotency</a></li>
+      </ul>
+    
+        
+      <div class="pt-2">
+        <h3 class="text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)] mb-2">Related diagnostics</h3>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          <li><a href="/diagnostic/pazaryeri-api-429-401-hatasi/" class="hover:underline">→ Trendyol &amp; Hepsiburada API: 429, 401</a></li>
+        </ul>
+      </div>
+    
+        <p class="pt-2"><a href="/agency/" class="text-[var(--accent)] hover:underline font-bold">→ B2B White-Label Engineering Desk</a></p>
+      </section>
+    </section>
+  
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

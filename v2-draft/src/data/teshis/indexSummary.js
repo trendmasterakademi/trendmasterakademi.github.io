@@ -1258,5 +1258,167 @@ export const teshisSummaries = [
         }
       }
     ]
+  },
+  {
+    "slug": "pazaryeri-api-429-401-hatasi",
+    "no": "24",
+    "baslik": {
+      "tr": "Trendyol & Hepsiburada API: 429, 401",
+      "en": "Trendyol & Hepsiburada API: 429, 401"
+    },
+    "diyagramBaslik": {
+      "tr": "Pazaryeri API reddi",
+      "en": "Marketplace API rejects"
+    },
+    "kirinti": {
+      "tr": "İletişim & Entegrasyon",
+      "en": "Contact & Integrations"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · veri akışı durdu",
+        "en": "High · data sync halted"
+      }
+    },
+    "ozet": {
+      "tr": "Trendyol ya da Hepsiburada entegrasyonu çalışırken birden 429, 401 ya da 403 dönmeye başlıyor; stok, fiyat ve sipariş akışı duruyor. Üç kodun üç ayrı sebebi var: hız sınırı, kimlik bilgisi ve istek başlığı. Pazaryerinin kendi dokümanı her birini tanımlıyor.",
+      "en": "The Trendyol or Hepsiburada integration suddenly starts returning 429, 401 or 403; stock, price and order sync stop. The three codes have three separate causes: the rate limit, the credentials and the request header. Each marketplace's own documentation defines them."
+    },
+    "ilgiliTerimler": [
+      "rate-limit",
+      "idempotency"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Hız sınırı aşıldı",
+          "en": "Rate limit exceeded"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Kimlik bilgisi değişti",
+          "en": "Credentials changed"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "User-Agent eksik",
+          "en": "User-Agent missing"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "pazaryeri-stok-cift-satis",
+    "no": "25",
+    "baslik": {
+      "tr": "Aynı ürün iki pazaryerinde satıldı",
+      "en": "Same Item Sold on Two Marketplaces"
+    },
+    "diyagramBaslik": {
+      "tr": "Kanallar arası stok",
+      "en": "Cross-channel stock"
+    },
+    "kirinti": {
+      "tr": "Sipariş & Ödeme",
+      "en": "Orders & Payments"
+    },
+    "aciliyet": {
+      "seviye": "kritik",
+      "etiket": {
+        "tr": "Kritik · ticari kayıp",
+        "en": "Critical · revenue loss"
+      }
+    },
+    "ozet": {
+      "tr": "Son kalan ürün aynı gün hem Trendyol'da hem Hepsiburada'da, ya da hem pazaryerinde hem sitede satıldı. Siparişlerden birini iptal etmek zorundasınız. Stok bir kanalda düşmüş ama öbür kanala hiç ulaşmamış ya da geç ulaşmış.",
+      "en": "The last unit was sold on the same day on both Trendyol and Hepsiburada, or on both a marketplace and the site. One of the orders has to be cancelled. Stock dropped in one channel but never reached the other channel, or reached it late."
+    },
+    "ilgiliTerimler": [
+      "race-condition",
+      "idempotency",
+      "rate-limit"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Gönderildi sanıldı, reddedildi",
+          "en": "Assumed sent, actually rejected"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Güncelleme geç ulaştı",
+          "en": "Update arrived late"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Sipariş ya da ürün eşleşmedi",
+          "en": "Order or item not matched"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "e-arsiv-fatura-kesilmiyor",
+    "no": "26",
+    "baslik": {
+      "tr": "e-Arşiv fatura siteden kesilmiyor",
+      "en": "e-Archive Invoice Not Being Issued"
+    },
+    "diyagramBaslik": {
+      "tr": "Sipariş var, fatura yok",
+      "en": "Order without invoice"
+    },
+    "kirinti": {
+      "tr": "Sipariş & Ödeme",
+      "en": "Orders & Payments"
+    },
+    "aciliyet": {
+      "seviye": "yuksek",
+      "etiket": {
+        "tr": "Yüksek · yasal yükümlülük",
+        "en": "High · legal obligation"
+      }
+    },
+    "ozet": {
+      "tr": "Siparişler tamamlanıyor ama e-Arşiv faturaları oluşmuyor, eksik oluşuyor ya da entegratör tarafından reddediliyor. Fatura, siparişten entegratöre giden bağlantının bir halkasında düşüyor; hangi halkada düştüğünü entegratörün yanıtı ve sipariş kaydı birlikte söyler.",
+      "en": "Orders complete, but e-Archive invoices are not created, are created incomplete, or are rejected by the integrator. The invoice drops at one link of the chain from the order to the integrator; the integrator's response and the order record together tell you which link."
+    },
+    "ilgiliTerimler": [
+      "idempotency"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Bağlantı koptu",
+          "en": "Connection broken"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Entegratör reddetti",
+          "en": "Integrator rejected it"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Yanlış fatura türü",
+          "en": "Wrong invoice type"
+        }
+      }
+    ]
   }
 ];

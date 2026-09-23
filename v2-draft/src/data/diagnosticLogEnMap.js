@@ -113,5 +113,23 @@ export const diagnosticLogEnMap = {
   "Sağlayıcı paneli: ödeme başarılı · WooCommerce: «Ödeme bekliyor»": "Provider panel: payment successful · WooCommerce: 'Pending payment'",
   "Erişim kaydı: ?wc-api= ile biten bildirim adresine 403 / 503": "Access log: 403 / 503 on the notification URL ending in ?wc-api=",
   "fatal-errors kaydında ödeme eklentisi hatası": "Payment plugin error in the fatal-errors log",
-  "Sipariş notu: durum eklenti tarafından «Beklemede» yapıldı": "Order note: status set to 'On hold' by the plugin"
+  "Sipariş notu: durum eklenti tarafından «Beklemede» yapıldı": "Order note: status set to 'On hold' by the plugin",
+
+  // pazaryeri-api-429-401-hatasi
+  "Toplu stok işi başladıktan sonra yanıtlar 429'a dönüyor": "After the bulk stock job starts, responses turn to 429",
+  "Servis anahtarı yenilendi, aynı gün 401 başladı": "The service key was renewed and 401 began the same day",
+  "Trendyol yanıtı: 401 ClientApiAuthenticationException": "Trendyol response: 401 ClientApiAuthenticationException",
+  "İstek başlıklarında User-Agent yok, yanıt 403": "No User-Agent in the request headers, response 403",
+
+  // pazaryeri-stok-cift-satis
+  "Toplu işlem sonucu: ürün satırında status FAILED": "Batch result: status FAILED on the item row",
+  "Stok güncellemesi yanıtı yalnız işlem numarası, sonuç hiç sorgulanmamış": "Stock update response is only an operation ID, the result was never queried",
+  "Diğer kanalın stoğu siparişten dakikalar sonra düşmüş": "Stock on the other channel dropped minutes after the order",
+  "Pazaryerindeki sipariş merkezi stok sisteminde yok": "The marketplace order is not in the central stock system",
+
+  // e-arsiv-fatura-kesilmiyor
+  "Entegratör paneli: sipariş numarasına ait fatura kaydı yok": "Integrator panel: no invoice record for the order number",
+  "Uygulama kaydı: entegratör isteği 401 ya da zaman aşımı": "Application log: integrator request 401 or timeout",
+  "Entegratör yanıtı: ret · alıcı VKN/TCKN ya da adres hatalı": "Integrator response: rejected · buyer tax ID / national ID or address invalid",
+  "Alıcı VKN'si e-Fatura kayıtlı kullanıcı, fatura e-Arşiv gönderilmiş": "Buyer's tax ID is a registered e-Invoice user, invoice sent as e-Archive"
 };

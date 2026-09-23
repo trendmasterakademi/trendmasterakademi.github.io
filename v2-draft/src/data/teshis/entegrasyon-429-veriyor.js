@@ -187,6 +187,7 @@ export default {
     "webhook",
     "idempotency"
   ],
+  "ilgiliTeshisler": ["pazaryeri-api-429-401-hatasi"],
   "ilgiliHizmet": {
     "baslik": {
       "tr": "B2B White-Label Mühendislik Masası",

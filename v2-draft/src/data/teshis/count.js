@@ -1,1 +1,1 @@
-export const teshisSayisi = 23;
+export const teshisSayisi = 26;
