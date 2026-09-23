@@ -1504,11 +1504,14 @@ const rescueRoiExtraContentEn = `
   </section>
 `;
 
+const trLocale = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'src/locales/tr.json'), 'utf8'));
+const homeH1 = `${trLocale['hero-title-line1']} ${trLocale['hero-title-line2']} ${trLocale['hero-title-highlight']}`;
+
 const basePages = [
   {
     dir: '',
     title: 'Trend Master Akademi | Ajansların İmdat Butonu',
-    h1: 'Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio',
+    h1: homeH1,
     description: 'Dijital ajansların imdat butonu: B2B White-Label mühendislik masası, acil kod kurtarma (SWAT), SaaS mimarisi ve kriz çözüm stüdyosu.',
     canonical: 'https://trendmasterakademi.com/',
     ogUrl: 'https://trendmasterakademi.com/',
