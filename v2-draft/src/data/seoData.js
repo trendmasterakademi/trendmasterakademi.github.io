@@ -22,13 +22,13 @@ export const seoData = {
   "/hikayemiz/": {
     "tr": {
       "title": "Hikâyemiz | Trend Master Akademi",
-      "desc": "Trend Master Akademi'nin kuruluş hikâyesi: 20 yıllık finansal piyasa yazılımı geçmişi, online derslerden doğan isim ve ajanslar için mühendislik masası."
+      "desc": "Trend Master Akademi'nin kuruluş hikâyesi: 20 yıllık finansal piyasa geçmişi, online derslerden doğan isim ve ajanslar için mühendislik masası."
     }
   },
   "/story/": {
     "en": {
       "title": "Our Story | Trend Master Akademi",
-      "desc": "How Trend Master Akademi began: 20 years of financial-markets software, a name born in online classes, and an engineering desk built for agencies."
+      "desc": "How Trend Master Akademi began: 20 years in financial markets, a name born in online classes, and an engineering desk built for agencies."
     }
   },
   "/sla/": {

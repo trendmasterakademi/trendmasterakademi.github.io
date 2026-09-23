@@ -28,8 +28,8 @@ export const FounderSection = () => {
           </h2>
           <p className="text-[var(--ink-2)] text-base sm:text-lg mt-4 leading-relaxed">
             {isTr 
-              ? 'Aracılar, şişirilmiş pazarlama vaatleri veya yapay zeka şablonlarıyla değil; 20 yıllık sistem mimarisi deneyimi, resmi vergi kaydı ve İzmir Heris Tower ofisimizle doğrudan kıdemli mühendislik sunuyoruz.' 
-              : 'Not through intermediaries, marketing fluff, or AI templates; direct senior engineering backed by 20+ years of systems architecture, formal corporate standing, and physical presence at Heris Tower, Izmir.'}
+              ? 'Aracılar, şişirilmiş pazarlama vaatleri veya yapay zeka şablonlarıyla değil; 10+ yıllık yazılım ve sistem mimarisi deneyimi, resmi vergi kaydı ve İzmir Heris Tower ofisimizle doğrudan kıdemli mühendislik sunuyoruz.' 
+              : 'Not through intermediaries, marketing fluff, or AI templates; direct senior engineering backed by 10+ years of software and systems architecture, formal corporate standing, and physical presence at Heris Tower, Izmir.'}
           </p>
         </div>
 
@@ -56,7 +56,7 @@ export const FounderSection = () => {
                   {isTr ? (
                     <>
                       <p>
-                        Yirmi yılı aşkın süredir finansal sistemlerin, algoritmik yazılımların ve yüksek erişilebilirlikli sunucu altyapılarının içindeyim. Yıllarca yalnızca kendi sistemlerimi yazdım, kendi mimarimi koda döktüm ve kendi hatalarımı ayıkladım.
+                        Yirmi yılı aşkın süredir finansal piyasaların, on yılı aşkın süredir de algoritmik yazılımların ve yüksek erişilebilirlikli sunucu altyapılarının içindeyim. Yıllarca yalnızca kendi sistemlerimi yazdım, kendi mimarimi koda döktüm ve kendi hatalarımı ayıkladım.
                       </p>
                       <p>
                         <strong className="text-[var(--ink)]">Trend Master Akademi</strong> adı, COVID döneminde bildiklerimi sistemleştirip anlattığım online sınıflarda doğdu. O dönemde gördüğümüz en somut gerçek şuydu: Yüksek işlem hacimli projelerde, karmaşık veri akışlarında veya kritik teslimat eşiklerinde; altyapıyı eksiksiz ayağa kaldıracak, kilitlenen deadlock'ları çözecek derin mühendislik birikimi çok nadir bulunuyordu.
@@ -68,7 +68,7 @@ export const FounderSection = () => {
                   ) : (
                     <>
                       <p>
-                        I have spent over twenty years inside financial systems, algorithmic engineering, and high-availability server infrastructures. For years, I engineered my own platforms, converted my own models into code, and resolved my own deadlocks.
+                        I have spent over twenty years in financial markets, and more than ten in algorithmic engineering and high-availability server infrastructure. For years, I engineered my own platforms, converted my own models into code, and resolved my own deadlocks.
                       </p>
                       <p>
                         The name <strong className="text-[var(--ink)]">Trend Master Akademi</strong> was born in online technical cohorts where I taught systems architecture during the pandemic. The clearest reality on the ground was that in high-throughput applications and critical delivery crunches, deep engineering expertise capable of untangling database deadlocks and stabilizing fragile pipelines was exceptionally rare.

@@ -227,7 +227,7 @@ const Hero = () => {
           <div className="grid grid-cols-3 gap-4 pt-5 border-t border-[var(--rule)] max-w-xl text-left">
             <div>
               <strong className="block text-xl font-serif font-semibold text-[var(--ink)] tabular">
-                {isTr ? '14+ Yıl' : '14+ Years'}
+                {isTr ? '10+ Yıl' : '10+ Years'}
               </strong>
               <span className="text-xs text-[var(--ink-3)]">
                 {isTr ? 'Yazılım & Mimari Deneyimi' : 'Engineering Experience'}

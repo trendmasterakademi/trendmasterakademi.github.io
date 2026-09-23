@@ -356,7 +356,7 @@ const homeFounderHtml = `
       <source type="image/webp" srcset="/images/mehmet-sahin-320.webp 1x, /images/mehmet-sahin-480.webp 2x" />
       <img src="/images/mehmet-sahin-320.jpg" srcset="/images/mehmet-sahin-480.jpg 2x" alt="Mehmet Şahin — Kurucu & Baş Yazılım Mimarı" width="260" height="260" loading="lazy" decoding="async" class="w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[260px] lg:h-[260px] rounded-[var(--r-panel)] border border-[var(--rule)] object-cover shadow-sm" />
     </picture>
-    <p class="text-[var(--ink-3)] leading-relaxed text-sm sm:text-base">Yirmi yılı aşkın süredir finansal sistemlerin, algoritmik yazılımların ve yüksek erişilebilirlikli sunucu altyapılarının içindeyim. Yıllarca yalnızca kendi sistemlerimi yazdım, kendi mimarimi koda döktüm ve kendi hatalarımı ayıkladım.</p>
+    <p class="text-[var(--ink-3)] leading-relaxed text-sm sm:text-base">Yirmi yılı aşkın süredir finansal piyasaların, on yılı aşkın süredir de algoritmik yazılımların ve yüksek erişilebilirlikli sunucu altyapılarının içindeyim. Yıllarca yalnızca kendi sistemlerimi yazdım, kendi mimarimi koda döktüm ve kendi hatalarımı ayıkladım.</p>
   </section>
 `;
 
@@ -1871,7 +1871,7 @@ const basePages = [
     dir: 'hikayemiz',
     title: 'Hikâyemiz & Kuruluş Anlatısı | Trend Master Akademi',
     h1: storyH1.tr,
-    description: '20 yıllık finansal yazılım tecrübesi, online eğitimden doğan isim ve B2B mühendislik masası vizyonumuz.',
+    description: seoData['/hikayemiz/'].tr.desc,
     canonical: 'https://trendmasterakademi.com/hikayemiz/',
     ogUrl: 'https://trendmasterakademi.com/hikayemiz/',
     hreflangTr: 'https://trendmasterakademi.com/hikayemiz/',
@@ -1898,7 +1898,7 @@ const basePages = [
     lang: 'en',
     title: 'Our Story & Founding Origins | Trend Master Akademi',
     h1: storyH1.en,
-    description: '20 years of financial software expertise, a name born in online education, and our B2B engineering desk vision.',
+    description: seoData['/story/'].en.desc,
     canonical: 'https://trendmasterakademi.com/story/',
     ogUrl: 'https://trendmasterakademi.com/story/',
     hreflangTr: 'https://trendmasterakademi.com/hikayemiz/',
