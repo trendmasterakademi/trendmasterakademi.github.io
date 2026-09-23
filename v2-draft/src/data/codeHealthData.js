@@ -186,3 +186,8 @@ export const codeHealthData = {
     }
   }
 };
+
+export const codeHealthH1 = {
+  tr: codeHealthData.tr.hero.title,
+  en: codeHealthData.en.hero.title
+};

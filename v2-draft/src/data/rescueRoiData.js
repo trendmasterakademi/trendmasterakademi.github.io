@@ -136,3 +136,8 @@ export const rescueRoiData = {
     ]
   }
 };
+
+export const rescueRoiH1 = {
+  tr: rescueRoiData.tr.hero.title,
+  en: rescueRoiData.en.hero.title
+};

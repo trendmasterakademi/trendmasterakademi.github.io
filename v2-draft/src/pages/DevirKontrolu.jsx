@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
+import { handoverAuditH1 } from '../data/pageH1Data';
 
 /**
  * 12 Kalemlik Devir Hazırlık Kontrolü (Handover Readiness Checklist)
@@ -436,7 +437,7 @@ const DevirKontrolu = () => {
               </div>
 
               <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold font-serif text-[var(--ink)] tracking-tight leading-tight">
-                {isTr ? 'Yazılımcınız Ayrılıyor mu? Elinizde Gerçekten Ne Var?' : 'Is Your Developer Leaving? What Do You Truly Own?'}
+                {handoverAuditH1[isTr ? 'tr' : 'en']}
               </h1>
 
               <p className="text-[var(--ink-muted)] text-base sm:text-lg leading-relaxed">

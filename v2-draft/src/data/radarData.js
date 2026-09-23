@@ -198,3 +198,8 @@ export const radarData = {
     incidentDistribution: enIncidentDistribution
   }
 };
+
+export const radarH1 = {
+  tr: radarData.tr.hero.title,
+  en: radarData.en.hero.title
+};

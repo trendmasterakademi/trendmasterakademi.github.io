@@ -306,3 +306,8 @@ export function getGlossaryH1(term, lang = 'tr') {
   if (!term) return '';
   return lang === 'tr' ? term.title : (term.titleEn || term.title.split(' (')[0]);
 }
+
+export const glossaryHubH1 = {
+  tr: "Yazılımcı Dili → Ajans Dili Terim Sözlüğü",
+  en: "Developer-to-Agency Technical Glossary"
+};

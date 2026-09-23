@@ -198,3 +198,8 @@ export const outageSimulatorData = {
     }
   }
 };
+
+export const outageSimulatorH1 = {
+  tr: outageSimulatorData.tr.hero.title,
+  en: outageSimulatorData.en.hero.title
+};

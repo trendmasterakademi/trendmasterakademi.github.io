@@ -154,3 +154,8 @@ export const ndaData = {
     ]
   }
 };
+
+export const mutualNdaH1 = {
+  tr: ndaData.tr.hero.title,
+  en: ndaData.en.hero.title
+};

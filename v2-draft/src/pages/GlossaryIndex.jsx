@@ -5,7 +5,7 @@ import {
   BookOpen, Search, ArrowRight, ShieldCheck, AlertTriangle, 
   Terminal, Sparkles, HelpCircle, Calendar 
 } from 'lucide-react';
-import { glossaryTerms } from '../data/glossaryData';
+import { glossaryTerms, glossaryHubH1 } from '../data/glossaryData';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
@@ -36,7 +36,7 @@ const GlossaryIndex = () => {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
-            {isTr ? 'Yazılımcı Dili → Ajans Dili Terim Sözlüğü' : 'Developer-to-Agency Technical Glossary'}
+            {glossaryHubH1[isTr ? 'tr' : 'en']}
           </h1>
 
           <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed">

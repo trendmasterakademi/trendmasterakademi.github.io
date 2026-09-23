@@ -3,20 +3,21 @@ import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
-import { glossaryTerms, getGlossaryH1 } from './src/data/glossaryData.js';
+import { glossaryTerms, getGlossaryH1, glossaryHubH1 } from './src/data/glossaryData.js';
 import { teshisData } from './src/data/teshisData.js';
-import { postMortems, postMortemDisclosure, getPostMortemH1 } from './src/data/postMortemData.js';
-import { triageScenarios } from './src/data/triageData.js';
-import { slaTiers, coreCommitments, slaScope, slaMetaDesc } from './src/data/slaData.js';
-import { techStackData } from './src/data/techStackData.js';
-import { ndaData } from './src/data/ndaData.js';
+import { postMortems, postMortemDisclosure, getPostMortemH1, postMortemHubH1 } from './src/data/postMortemData.js';
+import { triageScenarios, triageH1 } from './src/data/triageData.js';
+import { slaTiers, coreCommitments, slaScope, slaMetaDesc, slaH1 } from './src/data/slaData.js';
+import { techStackData, techStackH1 } from './src/data/techStackData.js';
+import { ndaData, mutualNdaH1 } from './src/data/ndaData.js';
 import { ndaFullAgreementData } from './src/data/ndaFullAgreementData.js';
-import { outageSimulatorData } from './src/data/outageSimulatorData.js';
-import { radarData } from './src/data/radarData.js';
-import { codeHealthData } from './src/data/codeHealthData.js';
-import { rescueRoiData } from './src/data/rescueRoiData.js';
-import { agencyKitData } from './src/data/agencyKitData.js';
+import { outageSimulatorData, outageSimulatorH1 } from './src/data/outageSimulatorData.js';
+import { radarData, radarH1 } from './src/data/radarData.js';
+import { codeHealthData, codeHealthH1 } from './src/data/codeHealthData.js';
+import { rescueRoiData, rescueRoiH1 } from './src/data/rescueRoiData.js';
+import { agencyKitData, agencyKitH1, crashTestH1 } from './src/data/agencyKitData.js';
 import { seoData } from './src/data/seoData.js';
+import { agencyH1, handoverAuditH1, downtimeCostH1, aboutH1, storyH1, salvageabilityH1, teshisCatalogH1, sosH1, privacyH1 } from './src/data/pageH1Data.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -1539,7 +1540,7 @@ const basePages = [
   {
     dir: 'agency',
     title: 'Ajanslar İçin White-Label Mühendislik | Trend Master Akademi',
-    h1: 'Ajans Çözümleri & B2B Mühendislik Masası',
+    h1: agencyH1.tr.full,
     description: 'Dijital ajansların görünmez teknik gücü: %100 White-Label, resmi NDA güvencesi, 20+ teknik yetkinlik, acil kriz masası ve kıdemli mühendislik takviyesi.',
     canonical: 'https://trendmasterakademi.com/agency/',
     ogUrl: 'https://trendmasterakademi.com/agency/',
@@ -1564,7 +1565,7 @@ const basePages = [
   {
     dir: 'kit',
     title: 'TMA Agency Response Kit & Crash Test 500 | Trend Master Akademi',
-    h1: 'TMA Agency Response & Readiness Kit',
+    h1: agencyKitH1.tr.full,
     description: 'Dijital ajansların görünmeyen kıdemli teknik masası: 8 Slaytlık Response Kit ve 60 Saniyelik Crash Test 500 posteri ile teknik kriz protokollerinizi şimdi güvenceye alın.',
     canonical: 'https://trendmasterakademi.com/kit/',
     ogUrl: 'https://trendmasterakademi.com/kit/',
@@ -1592,7 +1593,7 @@ const basePages = [
     dir: 'agency-kit',
     lang: 'en',
     title: 'TMA Agency Response Kit & Crash Test 500 | Trend Master Akademi',
-    h1: 'TMA Agency Response & Readiness Kit',
+    h1: agencyKitH1.en.full,
     description: 'The invisible senior engineering desk for digital agencies: 8-Slide Response Kit and 60-Second Crash Test 500 poster to fortify your technical crisis protocols.',
     canonical: 'https://trendmasterakademi.com/agency-kit/',
     ogUrl: 'https://trendmasterakademi.com/agency-kit/',
@@ -1619,7 +1620,7 @@ const basePages = [
   {
     dir: 'crash-test',
     title: 'Agency Crash Test (60 sn) | Trend Master Akademi',
-    h1: 'Agency Crash Test (60sn)',
+    h1: crashTestH1.tr.full,
     description: 'Ajansınız teknik bir krize hazır mı? HTTP 500, yazılımcı ayrılığı veya lansman darboğazı için 60 saniyede kriz risk skorunuzu ve eylem planınızı görün.',
     canonical: 'https://trendmasterakademi.com/crash-test/',
     ogUrl: 'https://trendmasterakademi.com/crash-test/',
@@ -1644,7 +1645,7 @@ const basePages = [
   {
     dir: 'devir-kontrolu',
     title: 'Devir Hazırlık Kontrolü (12 Kalem) | Trend Master Akademi',
-    h1: 'Devir Hazırlık Kontrolü',
+    h1: handoverAuditH1.tr,
     description: 'Yazılımcınız ayrılıyor veya ayrıldı mı? 12 kritik kalemi kontrol edin, devir risk skorunuzu ve eksik envanterinizi 60 saniyede ücretsiz analiz edin.',
     canonical: 'https://trendmasterakademi.com/devir-kontrolu/',
     ogUrl: 'https://trendmasterakademi.com/devir-kontrolu/',
@@ -1672,7 +1673,7 @@ const basePages = [
     dir: 'handover-audit',
     lang: 'en',
     title: 'Developer Handover Readiness Audit (12 Checkpoints) | Trend Master Akademi',
-    h1: 'Developer Handover Readiness Audit',
+    h1: handoverAuditH1.en,
     description: 'Is your developer leaving or already left? Check 12 mission-critical items, get your handover risk score and missing inventory in 60 seconds.',
     canonical: 'https://trendmasterakademi.com/handover-audit/',
     ogUrl: 'https://trendmasterakademi.com/handover-audit/',
@@ -1699,7 +1700,7 @@ const basePages = [
   {
     dir: 'sozluk',
     title: 'Teknik Terim Sözlüğü | Trend Master Akademi',
-    h1: 'Teknik Terim Sözlüğü',
+    h1: glossaryHubH1.tr,
     description: 'Yazılımcınız teknik bir bahane sunduğunda ne anlama geldiğini öğrenin. Deadlock, N+1, Race Condition, Webhook ve 12 temel terimin iş etkisi ve çözümü.',
     canonical: 'https://trendmasterakademi.com/sozluk/',
     ogUrl: 'https://trendmasterakademi.com/sozluk/',
@@ -1741,7 +1742,7 @@ const basePages = [
     dir: 'glossary',
     lang: 'en',
     title: 'Developer-to-Agency Tech Glossary | Trend Master Akademi',
-    h1: 'Developer-to-Agency Tech Glossary',
+    h1: glossaryHubH1.en,
     description: 'Understand technical explanations from developers. Deadlock, N+1, Race Condition, Webhook, and 12 core concepts translated into business impact.',
     canonical: 'https://trendmasterakademi.com/glossary/',
     ogUrl: 'https://trendmasterakademi.com/glossary/',
@@ -1782,7 +1783,7 @@ const basePages = [
   {
     dir: 'kesinti-maliyeti',
     title: 'Kesinti Maliyeti Hesaplayıcı | Trend Master Akademi',
-    h1: 'Kesinti Maliyeti Hesaplayıcı',
+    h1: downtimeCostH1.tr,
     description: 'Sunucu çökmesi veya HTTP 500 kesintisinde saatlik ve toplam tahmini ciro kaybınızı hesaplayın. Şeffaf matematik ve kurtarma ROI analizi.',
     canonical: 'https://trendmasterakademi.com/kesinti-maliyeti/',
     ogUrl: 'https://trendmasterakademi.com/kesinti-maliyeti/',
@@ -1810,7 +1811,7 @@ const basePages = [
     dir: 'downtime-calc',
     lang: 'en',
     title: 'Downtime Loss Calculator | Trend Master Akademi',
-    h1: 'Downtime Loss Calculator',
+    h1: downtimeCostH1.en,
     description: 'Calculate hourly and total estimated revenue loss during server crashes or HTTP 500 outages. Transparent math and recovery ROI analysis.',
     canonical: 'https://trendmasterakademi.com/downtime-calc/',
     ogUrl: 'https://trendmasterakademi.com/downtime-calc/',
@@ -1837,7 +1838,7 @@ const basePages = [
   {
     dir: 'about',
     title: 'Mühendislik Standartlarımız | Trend Master Akademi',
-    h1: 'Mühendislik Standartlarımız & Hakkımızda',
+    h1: aboutH1.tr,
     description: 'Trend Master Akademi mühendislik standartları, 4 temel prensip ve B2B SWAT vizyonu.',
     canonical: 'https://trendmasterakademi.com/about/',
     ogUrl: 'https://trendmasterakademi.com/about/',
@@ -1862,7 +1863,7 @@ const basePages = [
   {
     dir: 'hikayemiz',
     title: 'Hikâyemiz & Kuruluş Anlatısı | Trend Master Akademi',
-    h1: "Trend Master Akademi'nin hikâyesi",
+    h1: storyH1.tr,
     description: '20 yıllık finansal yazılım tecrübesi, online eğitimden doğan isim ve B2B mühendislik masası vizyonumuz.',
     canonical: 'https://trendmasterakademi.com/hikayemiz/',
     ogUrl: 'https://trendmasterakademi.com/hikayemiz/',
@@ -1889,7 +1890,7 @@ const basePages = [
     dir: 'story',
     lang: 'en',
     title: 'Our Story & Founding Origins | Trend Master Akademi',
-    h1: "The Story of Trend Master Akademi",
+    h1: storyH1.en,
     description: '20 years of financial software expertise, a name born in online education, and our B2B engineering desk vision.',
     canonical: 'https://trendmasterakademi.com/story/',
     ogUrl: 'https://trendmasterakademi.com/story/',
@@ -1915,7 +1916,7 @@ const basePages = [
   {
     dir: 'privacy',
     title: 'KVKK & Gizlilik Politikası | Trend Master Akademi',
-    h1: 'KVKK Aydınlatma Metni & Gizlilik Politikası',
+    h1: privacyH1.tr,
     description: 'Trend Master Akademi KVKK aydınlatma metni, veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik standartları.',
     canonical: 'https://trendmasterakademi.com/privacy/',
     ogUrl: 'https://trendmasterakademi.com/privacy/',
@@ -1939,7 +1940,7 @@ const basePages = [
   {
     dir: 'gizlilik',
     title: 'KVKK & Gizlilik Politikası | Trend Master Akademi',
-    h1: 'KVKK Aydınlatma Metni & Gizlilik Politikası',
+    h1: privacyH1.tr,
     description: 'Trend Master Akademi KVKK aydınlatma metni, veri sorumlusu taahhüdü, resmi NDA ve %100 White-Label gizlilik standartları.',
     canonical: 'https://trendmasterakademi.com/privacy/',
     ogUrl: 'https://trendmasterakademi.com/privacy/',
@@ -1987,7 +1988,7 @@ const basePages = [
   {
     dir: 'teshis',
     title: 'Teşhis Kataloğu | Trend Master Akademi',
-    h1: 'Teşhis Kataloğu',
+    h1: teshisCatalogH1.tr,
     description: 'Belirtiden nedene: yazılım arızalarının ajans diliyle teşhis rehberi.',
     canonical: 'https://trendmasterakademi.com/teshis/',
     ogUrl: 'https://trendmasterakademi.com/teshis/',
@@ -2029,7 +2030,7 @@ const basePages = [
     dir: 'diagnostic',
     lang: 'en',
     title: 'Diagnostic Catalog // 20 Documented Outage Symptoms | Trend Master Akademi',
-    h1: 'Diagnostic Catalog',
+    h1: teshisCatalogH1.en,
     description: 'From symptom to root cause: technical diagnosis guide for agency leaders and engineering managers.',
     canonical: 'https://trendmasterakademi.com/diagnostic/',
     ogUrl: 'https://trendmasterakademi.com/diagnostic/',
@@ -2070,7 +2071,7 @@ const basePages = [
   {
     dir: 'sos',
     title: 'Acil Teknik Destek (SOS) | Trend Master Akademi',
-    h1: 'Acil Teknik Destek — Kriz Hattı',
+    h1: sosH1.tr,
     description: 'Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa kriz hattı: her gün 09:00 – 24:00, ilk teşhis ücretsiz.',
     canonical: 'https://trendmasterakademi.com/sos/',
     ogUrl: 'https://trendmasterakademi.com/sos/',
@@ -2094,7 +2095,7 @@ const basePages = [
   {
     dir: 'kurtarilabilirlik',
     title: 'Kurtarılabilirlik İndeksi (Refactor vs Rebuild) | Trend Master Akademi',
-    h1: 'Kurtarılabilirlik İndeksi — Refactor vs Rebuild Karar Matrisi',
+    h1: salvageabilityH1.tr,
     description: 'Mevcut spagetti veya dokümantasyonsuz kodu kurtarmalı mı, boğmalı mı, yoksa sıfırdan mı yazmalı? 5 boyutlu objektif CTO karar matrisi.',
     canonical: 'https://trendmasterakademi.com/kurtarilabilirlik/',
     ogUrl: 'https://trendmasterakademi.com/kurtarilabilirlik/',
@@ -2122,7 +2123,7 @@ const basePages = [
     dir: 'salvageability',
     lang: 'en',
     title: 'Salvageability Index (Refactor vs Rebuild Matrix) | Trend Master Akademi',
-    h1: 'Salvageability Index — Refactor vs Rebuild Decision Matrix',
+    h1: salvageabilityH1.en,
     description: 'Should you rescue, strangle, or scrap legacy code? 5-dimensional objective risk analysis and actionable CTO decision matrix.',
     canonical: 'https://trendmasterakademi.com/salvageability/',
     ogUrl: 'https://trendmasterakademi.com/salvageability/',
@@ -2149,7 +2150,7 @@ const basePages = [
   {
     dir: 'post-mortem',
     title: 'Incident Post-Mortem & Kök Neden (RCA) Kütüphanesi | Trend Master Akademi',
-    h1: 'Incident Post-Mortem & RCA Kütüphanesi',
+    h1: postMortemHubH1.tr,
     description: 'Gerçek üretim kesintileri, PostgreSQL deadlock, ödeme race condition vakaları ve uygulanan kalıcı mühendislik çözümleri.',
     canonical: 'https://trendmasterakademi.com/post-mortem/',
     ogUrl: 'https://trendmasterakademi.com/post-mortem/',
@@ -2177,7 +2178,7 @@ const basePages = [
     dir: 'post-mortems',
     lang: 'en',
     title: 'Public Incident Post-Mortems & RCA Library | Trend Master Akademi',
-    h1: 'Public Incident Post-Mortems & RCA Library',
+    h1: postMortemHubH1.en,
     description: 'Real-world production outages, PostgreSQL deadlocks, payment race conditions, and permanent engineering mitigations.',
     canonical: 'https://trendmasterakademi.com/post-mortems/',
     ogUrl: 'https://trendmasterakademi.com/post-mortems/',
@@ -2204,7 +2205,7 @@ const basePages = [
   {
     dir: 'triyaj',
     title: 'Canlı Kriz & Triyaj Simülatörü // İlk 15 Dakika Protokolü | Trend Master Akademi',
-    h1: 'Canlı Kriz & Triyaj Simülatörü',
+    h1: triageH1.tr,
     description: 'Canlı sisteminiz krizde mi? Belirtiyi seçin, ilk 15 dakikada ne yapmamanız gerektiğini, çekilecek log komutlarını ve acil müdahale adımlarını anında görün.',
     canonical: 'https://trendmasterakademi.com/triyaj/',
     ogUrl: 'https://trendmasterakademi.com/triyaj/',
@@ -2232,7 +2233,7 @@ const basePages = [
     dir: 'triage',
     lang: 'en',
     title: 'Emergency Triage & Incident Simulator // First 15-Min Protocol | Trend Master Akademi',
-    h1: 'Emergency Triage & Incident Simulator',
+    h1: triageH1.en,
     description: 'Is your production system down? Select your symptom, discover what NOT to do in the first 15 minutes, extract critical logs, and get immediate triage steps.',
     canonical: 'https://trendmasterakademi.com/triage/',
     ogUrl: 'https://trendmasterakademi.com/triage/',
@@ -2259,7 +2260,7 @@ const basePages = [
   {
     dir: 'sla',
     title: 'Şeffaf Mühendislik SLA & Yanıt Taahhütleri | Trend Master Akademi',
-    h1: 'Şeffaf Mühendislik SLA & Yanıt Süresi Matrisi',
+    h1: slaH1.tr,
     description: slaMetaDesc.tr,
     canonical: 'https://trendmasterakademi.com/sla/',
     ogUrl: 'https://trendmasterakademi.com/sla/',
@@ -2284,7 +2285,7 @@ const basePages = [
   {
     dir: 'teknoloji-uyumluluk',
     title: 'Teknoloji Yığını & Kurtarma Matrisi | Trend Master Akademi',
-    h1: 'Teknoloji Yığını & Kurtarma Matrisi',
+    h1: techStackH1.tr,
     description: 'Sisteminizin dilleri, veritabanları ve bulut altyapısı ne olursa olsun: TMA cerrahi müdahale derinliği, bilinen darboğazlar ve SWAT hazırbulunuşluk süreleri.',
     canonical: 'https://trendmasterakademi.com/teknoloji-uyumluluk/',
     ogUrl: 'https://trendmasterakademi.com/teknoloji-uyumluluk/',
@@ -2312,7 +2313,7 @@ const basePages = [
     dir: 'tech-matrix',
     lang: 'en',
     title: 'Tech Stack Compatibility & Rescue Matrix | Trend Master Akademi',
-    h1: 'Tech Stack Compatibility & Rescue Matrix',
+    h1: techStackH1.en,
     description: 'Inspect TMA surgical rescue depth, known mission-critical bottlenecks, and operational readiness times across your languages, databases, and cloud infrastructure.',
     canonical: 'https://trendmasterakademi.com/tech-matrix/',
     ogUrl: 'https://trendmasterakademi.com/tech-matrix/',
@@ -2339,7 +2340,7 @@ const basePages = [
   {
     dir: 'gizlilik-sozlesmesi',
     title: 'İki Taraflı Gizlilik ve Fikri Mülkiyet Sözleşmesi (Mutual NDA) | Trend Master Akademi',
-    h1: 'İki Taraflı Gizlilik ve Fikri Mülkiyet Sözleşmesi (Mutual NDA)',
+    h1: mutualNdaH1.tr,
     description: 'Tek bir satır koda dokunmadan önce karşılıklı bağlayıcı gizlilik ve %100 fikri mülkiyet koruma taahhütnamenizi 30 saniyede oluşturun, yazdırın veya indirin.',
     canonical: 'https://trendmasterakademi.com/gizlilik-sozlesmesi/',
     ogUrl: 'https://trendmasterakademi.com/gizlilik-sozlesmesi/',
@@ -2367,7 +2368,7 @@ const basePages = [
     dir: 'mutual-nda',
     lang: 'en',
     title: 'Mutual Non-Disclosure & IP Protection Agreement (NDA) | Trend Master Akademi',
-    h1: 'Mutual Non-Disclosure & IP Protection Agreement (NDA)',
+    h1: mutualNdaH1.en,
     description: 'Generate, print, or download your binding bilateral confidentiality and 100% intellectual property protection agreement in 30 seconds before sharing code.',
     canonical: 'https://trendmasterakademi.com/mutual-nda/',
     ogUrl: 'https://trendmasterakademi.com/mutual-nda/',
@@ -2394,7 +2395,7 @@ const basePages = [
   {
     dir: 'hasar-tespiti',
     title: 'Gelişmiş Kesinti & İtibar Zararı Simülatörü | Trend Master Akademi',
-    h1: 'Gelişmiş Kesinti & İtibar Zararı Simülatörü (TCOD)',
+    h1: outageSimulatorH1.tr,
     description: 'Buzdağının görünmeyen yüzü: doğrudan sepet kaybı, yanan reklam bütçesi, sözleşmesel SLA cezaları, churn ve mühendislik maliyeti hesaplayıcı.',
     canonical: 'https://trendmasterakademi.com/hasar-tespiti/',
     ogUrl: 'https://trendmasterakademi.com/hasar-tespiti/',
@@ -2422,7 +2423,7 @@ const basePages = [
     dir: 'outage-simulator',
     lang: 'en',
     title: 'Outage & Reputational Damage Simulator (TCOD) | Trend Master Akademi',
-    h1: 'Outage & Reputational Damage Simulator (TCOD)',
+    h1: outageSimulatorH1.en,
     description: 'Calculate the true total cost of downtime: direct revenue loss, burned advertising budgets, contractual SLA penalties, churn, and developer drag.',
     canonical: 'https://trendmasterakademi.com/outage-simulator/',
     ogUrl: 'https://trendmasterakademi.com/outage-simulator/',
@@ -2449,7 +2450,7 @@ const basePages = [
   {
     dir: 'radar',
     title: 'SWAT Hazırbulunuşluk & Olay Radarı | Trend Master Akademi',
-    h1: 'SWAT Hazırbulunuşluk & Olay Radarı',
+    h1: radarH1.tr,
     description: 'TMA mühendislik masası hazırbulunuşluğu, nöbet saatleri, 90 günlük SLA telemetrisi ve vaka dağılım özeti.',
     canonical: 'https://trendmasterakademi.com/radar/',
     ogUrl: 'https://trendmasterakademi.com/radar/',
@@ -2474,7 +2475,7 @@ const basePages = [
   {
     dir: 'kod-sagligi',
     title: 'Kod Sağlığı & Teknik Borç Denetim Listesi | Trend Master Akademi',
-    h1: 'Kod Sağlığı & Teknik Borç Denetim Listesi',
+    h1: codeHealthH1.tr,
     description: '20 kritik kontrol noktasıyla kod tabanınızın yangın riskini ölçün: mimari, veritabanı kilitleri, güvenlik açıkları ve teknik borç puanı.',
     canonical: 'https://trendmasterakademi.com/kod-sagligi/',
     ogUrl: 'https://trendmasterakademi.com/kod-sagligi/',
@@ -2502,7 +2503,7 @@ const basePages = [
     dir: 'codebase-health',
     lang: 'en',
     title: 'Codebase Health & Technical Debt Audit Checklist | Trend Master Akademi',
-    h1: 'Codebase Health & Technical Debt Audit Checklist',
+    h1: codeHealthH1.en,
     description: 'Score your codebase across 20 weighted checkpoints: architectural debt, database lock risks, security vulnerabilities, and get an instant audit report.',
     canonical: 'https://trendmasterakademi.com/codebase-health/',
     ogUrl: 'https://trendmasterakademi.com/codebase-health/',
@@ -2529,7 +2530,7 @@ const basePages = [
   {
     dir: 'kurtarma-maliyeti',
     title: 'Kurtarma vs Yeniden Yazım Finansal ROI Hesaplayıcı | Trend Master Akademi',
-    h1: 'Kurtarma vs Yeniden Yazım Finansal ROI Hesaplayıcı',
+    h1: rescueRoiH1.tr,
     description: 'Spagetti kod tabanını sıfırdan yazmak mı, TMA SWAT cerrahi müdahalesiyle kurtarmak mı? Korunan sermaye, kazanılan aylar ve net ROI hesaplayıcı.',
     canonical: 'https://trendmasterakademi.com/kurtarma-maliyeti/',
     ogUrl: 'https://trendmasterakademi.com/kurtarma-maliyeti/',
@@ -2557,7 +2558,7 @@ const basePages = [
     dir: 'rescue-roi',
     lang: 'en',
     title: 'SWAT Rescue vs Rebuild Financial ROI Calculator | Trend Master Akademi',
-    h1: 'SWAT Rescue vs Rebuild Financial ROI Calculator',
+    h1: rescueRoiH1.en,
     description: 'Ground-up rewrite vs surgical rescue: calculate preserved capital, months saved to market, developer drag, and clear financial ROI multiplier.',
     canonical: 'https://trendmasterakademi.com/rescue-roi/',
     ogUrl: 'https://trendmasterakademi.com/rescue-roi/',

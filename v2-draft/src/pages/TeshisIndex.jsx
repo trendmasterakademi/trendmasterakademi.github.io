@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { AlertTriangle, ArrowRight, Stethoscope } from 'lucide-react';
 import { teshisSummaries } from '../data/teshis/indexSummary';
+import { teshisCatalogH1 } from '../data/pageH1Data';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
@@ -26,7 +27,7 @@ const TeshisIndex = () => {
         </div>
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight">
-          {isTr ? 'Teşhis Kataloğu' : 'Diagnostic Catalog'}
+          {teshisCatalogH1[isTr ? 'tr' : 'en']}
         </h1>
 
         <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-[34rem]">

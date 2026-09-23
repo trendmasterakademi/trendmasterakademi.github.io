@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
+import { salvageabilityH1 } from '../data/pageH1Data';
 
 /**
  * Salvageability Index // Kurtarılabilirlik Karar Matrisi
@@ -316,7 +317,7 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
         </div>
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight">
-          {isTr ? 'Salvageability Index' : 'Salvageability Index'}
+          {salvageabilityH1[isTr ? 'tr' : 'en']}
         </h1>
 
         <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed max-w-[34rem]">

@@ -4,6 +4,7 @@ import { ShieldCheck, Lock, ArrowLeft, Mail, PhoneCall, MapPin, CheckCircle2 } f
 import { Link } from 'react-router-dom';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
+import { privacyH1 } from '../data/pageH1Data';
 
 const Privacy = () => {
   const { i18n } = useTranslation();
@@ -29,7 +30,7 @@ const Privacy = () => {
         </div>
         
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight mb-6">
-          {isTr ? 'KVKK Aydınlatma Metni & Gizlilik Politikası' : 'Privacy Policy & NDA Standard'}
+          {privacyH1[isTr ? 'tr' : 'en']}
         </h1>
         
         <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed">

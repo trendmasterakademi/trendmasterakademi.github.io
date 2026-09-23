@@ -7,6 +7,7 @@ import {
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
+import { downtimeCostH1 } from '../data/pageH1Data';
 
 const revenueTiers = [
   { id: 't1', label: '₺250.000 - ₺500.000 / ay', monthlyAvg: 375000 },
@@ -126,7 +127,7 @@ const KesintiMaliyeti = () => {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
-            {isTr ? 'Web Sitesi & API Kesinti Maliyeti Hesaplayıcı' : 'Website & System Downtime Cost Calculator'}
+            {downtimeCostH1[isTr ? 'tr' : 'en']}
           </h1>
 
           <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed">

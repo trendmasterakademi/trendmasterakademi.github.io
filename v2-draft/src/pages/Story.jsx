@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
+import { storyH1 } from '../data/pageH1Data';
 
 const Story = () => {
   const { i18n } = useTranslation();
@@ -43,7 +44,7 @@ const Story = () => {
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold font-serif text-[var(--ink)] tracking-tight leading-tight border-b border-[var(--rule)] pb-6">
-            {isTr ? "Trend Master Akademi'nin hikâyesi" : "The Trend Master Akademi story"}
+            {storyH1[isTr ? 'tr' : 'en']}
           </h1>
 
           <div className="flex items-center gap-4 py-2 border-b border-[var(--rule)]">

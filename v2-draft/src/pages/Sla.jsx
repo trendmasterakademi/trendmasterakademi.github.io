@@ -6,7 +6,7 @@ import {
   AlertTriangle, PhoneCall, ExternalLink, ArrowRight, 
   Check, Lock, Activity, Users, HelpCircle
 } from 'lucide-react';
-import { slaTiers, coreCommitments, slaScope, slaMetaDesc } from '../data/slaData';
+import { slaTiers, coreCommitments, slaScope, slaMetaDesc, slaH1 } from '../data/slaData';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
@@ -33,7 +33,7 @@ export const Sla = () => {
           <span>{isTr ? 'B2B HİZMET SEVİYESİ TAAHHÜTLERİ (SLA)' : 'B2B SERVICE LEVEL AGREEMENTS (SLA)'}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-semibold font-serif text-[var(--ink)] tracking-tight">
-          {isTr ? 'Şeffaf Mühendislik SLA & Yanıt Süresi Matrisi' : 'Transparent Engineering SLA & Response Matrix'}
+          {slaH1[isTr ? 'tr' : 'en']}
         </h1>
         <p className="text-[var(--ink-muted)] text-base sm:text-lg leading-relaxed">
           {isTr

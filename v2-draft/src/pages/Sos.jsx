@@ -5,6 +5,7 @@ import { PhoneCall, MessageSquare, AlertTriangle, ShieldCheck, ArrowRight, Arrow
 import { setPageSeo } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
+import { sosH1 } from '../data/pageH1Data';
 
 const Sos = () => {
   const { i18n } = useTranslation();
@@ -46,7 +47,7 @@ const Sos = () => {
           <span>{isTr ? 'KRİZ MASASI // EMERGENCY DISPATCH' : 'CRISIS DESK // EMERGENCY DISPATCH'}</span>
         </div>
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold font-serif text-[var(--ink)] tracking-tight leading-tight">
-          {isTr ? 'Acil Teknik Destek — Kriz Hattı' : 'Emergency Technical Support — Response Desk'}
+          {sosH1[isTr ? 'tr' : 'en']}
         </h1>
         <p className="text-sm sm:text-base text-[var(--ink-muted)] leading-relaxed max-w-[34rem]">
           {isTr 

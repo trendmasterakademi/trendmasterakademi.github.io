@@ -11,6 +11,7 @@ import FAQ from '../components/FAQ';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
+import { agencyH1 } from '../data/pageH1Data';
 
 const capabilities = [
   { 
@@ -190,10 +191,10 @@ const Agency = () => {
 
           <h1 className="text-3xl sm:text-5xl md:text-6xl font-serif font-semibold tracking-tight text-[var(--ink)] leading-[1.18] mb-6">
             <span className="block">
-              {isTr ? 'Ajansınızın yerine değil,' : 'Not to replace your agency,'}
+              {agencyH1[isTr ? 'tr' : 'en'].line1}
             </span>
             <span className="block text-[var(--accent)]">
-              {isTr ? 'ajansınızın yanında.' : 'to stand right beside it.'}
+              {agencyH1[isTr ? 'tr' : 'en'].accent}
             </span>
           </h1>
 

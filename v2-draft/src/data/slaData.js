@@ -138,3 +138,8 @@ export const slaMetaDesc = {
   tr: "Muğlak vaatler yerine dakikalarla tanımlı mühendislik taahhütleri: SEV-0 için 15 dk yanıt, %100 White-Label garantisi, resmi NDA ve müdahale öncesi snapshot kuralı.",
   en: "Strict engineering commitments defined in minutes: 15-min MTTA for SEV-0, 100% White-Label guarantee, enforceable NDA, and pre-intervention snapshot rule."
 };
+
+export const slaH1 = {
+  tr: "Şeffaf Mühendislik SLA & Yanıt Süresi Matrisi",
+  en: "Transparent Engineering SLA & Response Matrix"
+};

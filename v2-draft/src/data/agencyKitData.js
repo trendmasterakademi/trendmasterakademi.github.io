@@ -326,3 +326,31 @@ export const agencyKitData = {
     }
   }
 };
+
+export const agencyKitH1 = {
+  tr: {
+    prefix: "Ajanslar İçin ",
+    accent: "Müdahale & Hazırlık",
+    suffix: " Kiti",
+    full: "Ajanslar İçin Müdahale & Hazırlık Kiti"
+  },
+  en: {
+    prefix: "Official ",
+    accent: "Agency Incident",
+    suffix: " & Readiness Kit",
+    full: "Official Agency Incident & Readiness Kit"
+  }
+};
+
+export const crashTestH1 = {
+  tr: {
+    line1: "Ajansınız teknik bir krize ",
+    accent: "gerçekten hazır mı?",
+    full: "Ajansınız teknik bir krize gerçekten hazır mı?"
+  },
+  en: {
+    line1: "Is your agency ",
+    accent: "truly ready for a technical crisis?",
+    full: "Is your agency truly ready for a technical crisis?"
+  }
+};

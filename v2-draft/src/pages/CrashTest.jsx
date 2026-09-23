@@ -12,6 +12,7 @@ import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
+import { crashTestH1 } from '../data/agencyKitData';
 
 // Dynamic code-split loaders: Each diagnostic chunk is loaded strictly on demand!
 const teshisLoaders = {
@@ -543,10 +544,10 @@ const CrashTest = () => {
             </div>
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold tracking-tight text-[var(--ink)] mb-5 leading-tight">
               <span className="block">
-                {isTr ? 'Ajansınız teknik bir krize ' : 'Is your agency '}
+                {crashTestH1[isTr ? 'tr' : 'en'].line1}
               </span>
               <span className="block text-[var(--accent)]">
-                {isTr ? 'gerçekten hazır mı?' : 'truly ready for a technical crisis?'}
+                {crashTestH1[isTr ? 'tr' : 'en'].accent}
               </span>
             </h1>
             <p className="text-[var(--ink-muted)] text-base sm:text-lg leading-relaxed">

@@ -6,7 +6,7 @@ import {
   X, ZoomIn, CheckCircle2, FileText, ChevronLeft, ChevronRight,
   ExternalLink, Lock, AlertTriangle, Sparkles
 } from 'lucide-react';
-import { agencyKitData } from '../data/agencyKitData';
+import { agencyKitData, agencyKitH1 } from '../data/agencyKitData';
 import { isTurkish } from '../i18n';
 import { setPageSeo } from '../utils/pageTitle';
 
@@ -65,15 +65,9 @@ export default function AgencyKit({ lang }) {
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
-            {isTr ? (
-              <>
-                Ajanslar İçin <span className="text-[var(--accent)]">Müdahale & Hazırlık</span> Kiti
-              </>
-            ) : (
-              <>
-                Official <span className="text-[var(--accent)]">Agency Incident</span> & Readiness Kit
-              </>
-            )}
+            {agencyKitH1[isTr ? 'tr' : 'en'].prefix}
+            <span className="text-[var(--accent)]">{agencyKitH1[isTr ? 'tr' : 'en'].accent}</span>
+            {agencyKitH1[isTr ? 'tr' : 'en'].suffix}
           </h1>
 
           <p className="text-base sm:text-lg text-[var(--ink-light)] max-w-[34rem] mx-auto leading-relaxed">

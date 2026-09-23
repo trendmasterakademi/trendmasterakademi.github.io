@@ -6,7 +6,7 @@ import {
   ArrowRight, PhoneCall, ExternalLink, Activity, Flame, 
   CheckCircle2, XCircle, AlertOctagon, CornerDownRight, Clock
 } from 'lucide-react';
-import { triageScenarios } from '../data/triageData';
+import { triageScenarios, triageH1 } from '../data/triageData';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
@@ -63,7 +63,7 @@ Rapor Tarihi: ${new Date().toISOString()}`;
           <span>{isTr ? 'CANLI KRİZ & ACİL TRİYAJ MASASI' : 'EMERGENCY TRIAGE & CRISIS DESK'}</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight">
-          {isTr ? 'İlk 15 Dakika Protokolü: Sistem Çöktüğünde Ne Yapma!' : 'First 15-Minute Protocol: What NOT To Do During Outages'}
+          {triageH1[isTr ? 'tr' : 'en']}
         </h1>
         <p className="text-[var(--ink-light)] text-base sm:text-lg leading-relaxed">
           {isTr

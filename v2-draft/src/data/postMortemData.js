@@ -325,3 +325,8 @@ export function getPostMortemH1(item, lang = 'tr') {
   if (!item || !item.title) return '';
   return item.title[lang] || item.title.tr || item.title.en || '';
 }
+
+export const postMortemHubH1 = {
+  tr: "Incident Post-Mortem & RCA",
+  en: "Incident Post-Mortems & RCA"
+};

@@ -520,3 +520,8 @@ export const techStackData = {
     }
   }
 };
+
+export const techStackH1 = {
+  tr: techStackData.tr.hero.title,
+  en: techStackData.en.hero.title
+};

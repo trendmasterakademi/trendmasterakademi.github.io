@@ -275,3 +275,8 @@ export const triageScenarios = [
     linkedTeshisSlug: 'yazilimci-gitti-koda-girilemiyor'
   }
 ];
+
+export const triageH1 = {
+  tr: "İlk 15 Dakika Protokolü: Sistem Çöktüğünde Ne Yapılmamalı?",
+  en: "First 15-Minute Protocol: What NOT To Do During Outages"
+};

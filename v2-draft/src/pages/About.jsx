@@ -6,6 +6,7 @@ import { coreCommitments } from '../data/slaData';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
+import { aboutH1 } from '../data/pageH1Data';
 
 const About = () => {
   const { i18n } = useTranslation();
@@ -36,7 +37,7 @@ const About = () => {
           </div>
           
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
-            {isTr ? 'Ajansların Güvendiği Görünmez Mühendislik Masası.' : 'The Invisible Engineering Backline for Digital Agencies.'}
+            {aboutH1[isTr ? 'tr' : 'en']}
           </h1>
 
           <p className="text-[var(--ink-secondary)] text-base sm:text-lg leading-relaxed">
