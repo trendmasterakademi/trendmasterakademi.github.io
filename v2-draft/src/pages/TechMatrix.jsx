@@ -11,7 +11,9 @@ export default function TechMatrix({ lang = "tr" }) {
     setPageSeo(lang === 'tr' ? '/teknoloji-uyumluluk/' : '/tech-matrix/', lang);
   }, [lang]);
   const [selectedCategory, setSelectedCategory] = useState("all");
-  const [selectedTechIds, setSelectedTechIds] = useState(["nodejs", "postgresql", "docker_k8s"]);
+  const [selectedTechIds, setSelectedTechIds] = useState(
+    lang === "tr" ? ["woocommerce", "iyzico", "mysql"] : ["nodejs", "postgresql", "docker_k8s"]
+  );
   const [copied, setCopied] = useState(false);
 
   const filteredItems = useMemo(() => {
@@ -44,6 +46,13 @@ export default function TechMatrix({ lang = "tr" }) {
     const readiness = selectedItems.some((i) => i.supportLevel.includes("SEV-0"))
       ? "SEV-0 (≤ 15 Dk / Mins)"
       : "SEV-1 (≤ 30 Dk / Mins)";
+
+    const interventionLines = selectedItems
+      .filter((i) => i.interventionLimit)
+      .map((i) => lang === "en"
+        ? `Scope of intervention (${i.name}): ${i.interventionLimit}`
+        : `Müdahale sınırı (${i.name}): ${i.interventionLimit}`
+      );
     
     const combinedRisks = selectedItems
       .flatMap((i) => i.commonIncidents)
@@ -54,7 +63,7 @@ export default function TechMatrix({ lang = "tr" }) {
     const brief = `[TMA MÜHENDİSLİK STACK BRİFİNGİ / ARCHITECTURE BRIEF]
 --------------------------------------------------
 Seçilen Teknolojiler: ${names}
-Müdahale Hazırbulunuşluğu: ${readiness}
+Müdahale Hazırbulunuşluğu: ${readiness}${interventionLines.length > 0 ? "\n" + interventionLines.join("\n") : ""}
 Kurtarma & SWAT Kapsamı: %98+ Tam Cerrahi
 
 Tespit Edilen Olası Mimari Risk Noktaları:
@@ -194,6 +203,16 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                     <span className="text-[var(--accent)] font-mono font-semibold">TMA SWAT: </span>
                     <span className="line-clamp-2">{tech.rescueCapability}</span>
                   </div>
+
+                  {/* Scope of Intervention */}
+                  {tech.interventionLimit && (
+                    <div className="border-t border-[var(--rule)] pt-2 text-xs text-[var(--ink-2)]">
+                      <span className="text-[var(--accent)] font-mono font-semibold">
+                        {lang === "en" ? "Scope of intervention: " : "Müdahale sınırı: "}
+                      </span>
+                      <span>{tech.interventionLimit}</span>
+                    </div>
+                  )}
                 </div>
               );
             })}

@@ -1153,12 +1153,17 @@ const slaExtraContentEn = `
   </section>
 `;
 
+const techCategoriesTr = techStackData.tr.categories.filter(c => c.id !== 'all');
+const techCategoriesEn = techStackData.en.categories.filter(c => c.id !== 'all');
+const sev0MttaTr = slaTiers.find(s => s.level === 'SEV-0')?.mtta.tr || '≤ 15 Dakika';
+const sev0MttaEn = slaTiers.find(s => s.level === 'SEV-0')?.mtta.en || '≤ 15 Minutes';
+
 const techMatrixExtraContentTr = `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
     <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
-      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">4 Kategori</strong> Backend, Frontend, DB, Infra</div>
-      <div><strong class="text-[var(--ink)] block text-sm">15+ Bileşen</strong> Node, Go, Python, Postgres, K8s</div>
-      <div><strong class="text-[var(--accent)] block text-sm">≤ 15 Dk</strong> SEV-0 Anında SWAT Triyajı</div>
+      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">${techCategoriesTr.length} Kategori</strong> Backend, Frontend, DB, Infra</div>
+      <div><strong class="text-[var(--ink)] block text-sm">${techStackData.tr.items.length} Bileşen</strong> ${techCategoriesTr.map(c => escapeHtml(c.label)).join(' · ')}</div>
+      <div><strong class="text-[var(--accent)] block text-sm">${escapeHtml(sev0MttaTr)}</strong> SEV-0 Anında SWAT Triyajı</div>
       <div><strong class="text-[var(--tint-warn-ink)] block text-sm">%100</strong> Müdahale Öncesi Snapshot Kuralı</div>
     </div>
 
@@ -1178,6 +1183,7 @@ const techMatrixExtraContentTr = `
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> ${escapeHtml(tech.rescueCapability)}</p>
+        ${tech.interventionLimit ? `<p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Müdahale sınırı:</strong> ${escapeHtml(tech.interventionLimit)}</p>` : ''}
       </article>
       `).join('\n      ')}
     </div>
@@ -1187,9 +1193,9 @@ const techMatrixExtraContentTr = `
 const techMatrixExtraContentEn = `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
     <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
-      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">4 Categories</strong> Backend, Frontend, DB, Infra</div>
-      <div><strong class="text-[var(--ink)] block text-sm">15+ Stacks</strong> Node, Go, Python, Postgres, K8s</div>
-      <div><strong class="text-[var(--accent)] block text-sm">≤ 15 Mins</strong> SEV-0 Immediate SWAT Triage</div>
+      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">${techCategoriesEn.length} Categories</strong> Backend, Frontend, DB, Infra</div>
+      <div><strong class="text-[var(--ink)] block text-sm">${techStackData.en.items.length} Stacks</strong> ${techCategoriesEn.map(c => escapeHtml(c.label)).join(' · ')}</div>
+      <div><strong class="text-[var(--accent)] block text-sm">${escapeHtml(sev0MttaEn)}</strong> SEV-0 Immediate SWAT Triage</div>
       <div><strong class="text-[var(--tint-warn-ink)] block text-sm">100%</strong> Pre-Intervention Snapshot Rule</div>
     </div>
 
@@ -1209,6 +1215,7 @@ const techMatrixExtraContentEn = `
           </ul>
         </div>
         <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> ${escapeHtml(tech.rescueCapability)}</p>
+        ${tech.interventionLimit ? `<p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Scope of intervention:</strong> ${escapeHtml(tech.interventionLimit)}</p>` : ''}
       </article>
       `).join('\n      ')}
     </div>

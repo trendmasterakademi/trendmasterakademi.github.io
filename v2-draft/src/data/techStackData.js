@@ -3,17 +3,206 @@ export const techStackData = {
     hero: {
       badge: "MÜHENDİSLİK KAPASİTE MATRİSİ",
       title: "Teknoloji Yığını & Kurtarma Matrisi",
-      subtitle: "Sisteminizin dilleri, veritabanları ve bulut altyapısı ne olursa olsun; TMA'nın cerrahi müdahale derinliğini, bilinen kritik darboğazları ve hazırbulunuşluk sürelerini inceleyin.",
+      subtitle: "Sisteminizin dili, veritabanı, bulut altyapısı, e-ticaret platformu ya da ödeme entegrasyonu ne olursa olsun; TMA'nın müdahale derinliğini, bilinen kritik darboğazları, hazırbulunuşluk sürelerini ve müdahalenin nerede bittiğini inceleyin.",
       notice: "Tüm müdahaleler müdahale öncesi snapshot ve rollback noktası kuralıyla yürütülür."
     },
     categories: [
       { id: "all", label: "Tüm Teknolojiler" },
+      { id: "commerce", label: "E-ticaret Platformları" },
+      { id: "integration", label: "Ödeme, Pazaryeri & e-Belge" },
       { id: "backend", label: "Backend & Mikroservisler" },
       { id: "frontend", label: "Frontend & Mobil" },
       { id: "database", label: "Veritabanı & Cache" },
       { id: "infra", label: "Bulut, DevOps & Kernel" }
     ],
     items: [
+      {
+        id: "woocommerce",
+        name: "WordPress & WooCommerce",
+        category: "commerce",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "WordPress 6.x · WooCommerce (HPOS dahil)",
+        commonIncidents: [
+          "Eklenti ya da tema güncellemesinden sonra beyaz ekran (PHP fatal error)",
+          "Ödeme alındı ama sipariş 'Ödeme bekleniyor' durumunda kaldı",
+          "wp_options tablosunda autoload şişmesi ve yavaşlayan yönetim paneli",
+          "WP-Cron'a bağlı zamanlanmış işlerin (stok, e-posta, abonelik) çalışmaması"
+        ],
+        rescueCapability: "debug.log ve PHP-FPM kayıtlarıyla hata kaynağının bulunması, eklenti çakışmasının kopya ortamda ikiye bölme yöntemiyle ayrılması, sipariş ve ödeme kayıtlarının mutabakatı, WP-Cron'un sunucu cron'una taşınması.",
+        riskLevel: "Eklenti Güncellemelerinde Kritik",
+        interventionLimit: "Sunucudaki kodun tamamına müdahale edilir: tema, eklentiler, WooCommerce kancaları ve veritabanı. Ücretli eklentilerin kaynak kodu satıcısına aittir; hata eklentinin içindeyse kanıtıyla satıcıya bildirilir, geçici çözüm sizin kodunuzda uygulanır."
+      },
+      {
+        id: "shopify",
+        name: "Shopify",
+        category: "commerce",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "SaaS — sürümü Shopify yönetir",
+        commonIncidents: [
+          "Tema düzenlemesinden sonra bozulan ürün ya da sepet sayfası (Liquid)",
+          "Webhook teslim hataları ve aynı siparişin iki kez işlenmesi",
+          "API hız sınırına takılıp yarıda kalan toplu ürün ve stok güncellemeleri",
+          "Harici stok ya da ERP senkronunda sapma"
+        ],
+        rescueCapability: "Tema sürümlerinin karşılaştırılıp çalışan sürüme dönülmesi, webhook imza doğrulaması ve aynı olayın tek kez işlenmesi, API çağrılarının hız sınırına uygun kuyruğa alınması, stok mutabakat betiği.",
+        riskLevel: "Tema ve Entegrasyon Katmanında Yüksek",
+        interventionLimit: "Shopify'ın altyapısı ve ödeme sayfası (checkout) Shopify'a aittir, içine müdahale edilmez. Müdahale alanı: tema kodu, özel uygulama, webhook'lar, API entegrasyonları ve ajansın yazdığı kod. Platform genelindeki kesintiler Shopify'ın durum sayfasından izlenir."
+      },
+      {
+        id: "ikas",
+        name: "ikas",
+        category: "commerce",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "SaaS — sürümü ikas yönetir",
+        commonIncidents: [
+          "Ödeme ya da fatura entegrasyonu kurulumunda eksik eşleme nedeniyle siparişe yansımayan kayıtlar",
+          "Tema özelleştirmesinden sonra bozulan sayfa bileşenleri",
+          "Pazaryeri ve stok entegrasyonunda sapan stok adetleri",
+          "API bilgileri değişince duran özel entegrasyon"
+        ],
+        rescueCapability: "Hatanın platform, entegrasyon ya da özel kod kaynaklı olduğunun kayıtlarla ayrılması; tema değişikliklerinin karşılaştırılıp çalışan sürüme dönülmesi; API üzerinden sipariş, stok ve ürün mutabakatı; düzeltme platformda gerekiyorsa destek ekibine kanıt dosyası.",
+        riskLevel: "Entegrasyon ve Tema Katmanında Yüksek",
+        interventionLimit: "Platformun çekirdek kodu ve altyapısı ikas'a aittir, içine müdahale edilmez. Müdahale alanı: tema ve şablon özelleştirmeleri, platformun sunduğu API ve entegrasyon servisleri üzerinden yazılmış bağlantılar, ajansın kendi kodu ve verinin tutarlılığı. Platform tarafındaki arızalar kanıtıyla birlikte ikas destek ekibine iletilir."
+      },
+      {
+        id: "ticimax",
+        name: "Ticimax",
+        category: "commerce",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "SaaS — sürümü Ticimax yönetir",
+        commonIncidents: [
+          "Özel tasarım ya da şablon değişikliğinden sonra hata veren sayfalar",
+          "Kargo entegrasyonunda eşleşmeyen kargo firması ya da desi kuralı",
+          "XML ya da servis üzerinden ürün aktarımında eksik veya tekrarlanan ürünler",
+          "Pazaryeri stok senkronunda sapma"
+        ],
+        rescueCapability: "Hatanın platform, entegrasyon ya da özel kod kaynaklı olduğunun kayıtlarla ayrılması; şablon değişikliklerinin karşılaştırılıp çalışan sürüme dönülmesi; servisler üzerinden sipariş, stok ve ürün mutabakatı; düzeltme platformda gerekiyorsa destek ekibine kanıt dosyası.",
+        riskLevel: "Entegrasyon ve Tema Katmanında Yüksek",
+        interventionLimit: "Platformun çekirdek kodu ve altyapısı Ticimax'a aittir, içine müdahale edilmez. Müdahale alanı: tema ve şablon özelleştirmeleri, platformun sunduğu API ve entegrasyon servisleri üzerinden yazılmış bağlantılar, ajansın kendi kodu ve verinin tutarlılığı. Platform tarafındaki arızalar kanıtıyla birlikte Ticimax destek ekibine iletilir."
+      },
+      {
+        id: "ideasoft",
+        name: "IdeaSoft",
+        category: "commerce",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "SaaS — sürümü IdeaSoft yönetir",
+        commonIncidents: [
+          "Şablon düzenlemesinden sonra bozulan vitrin sayfası",
+          "API ile ürün ve stok aktarımında eşleşmeyen varyantlar",
+          "Ödeme ya da kargo entegrasyonunda siparişe yansımayan durum değişiklikleri",
+          "Pazaryeri entegrasyonunda sapan stok"
+        ],
+        rescueCapability: "Hatanın platform, entegrasyon ya da özel kod kaynaklı olduğunun kayıtlarla ayrılması; şablon değişikliklerinin karşılaştırılıp çalışan sürüme dönülmesi; API üzerinden sipariş, stok ve ürün mutabakatı; düzeltme platformda gerekiyorsa destek ekibine kanıt dosyası.",
+        riskLevel: "Entegrasyon ve Tema Katmanında Yüksek",
+        interventionLimit: "Platformun çekirdek kodu ve altyapısı IdeaSoft'a aittir, içine müdahale edilmez. Müdahale alanı: tema ve şablon özelleştirmeleri, platformun sunduğu API ve entegrasyon servisleri üzerinden yazılmış bağlantılar, ajansın kendi kodu ve verinin tutarlılığı. Platform tarafındaki arızalar kanıtıyla birlikte IdeaSoft destek ekibine iletilir."
+      },
+      {
+        id: "tsoft",
+        name: "T-Soft",
+        category: "commerce",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "SaaS — sürümü T-Soft yönetir",
+        commonIncidents: [
+          "Platform güncellemesinden sonra uyumsuz kalan özel kod",
+          "URL değişikliğinden sonra oluşan 404'ler ve kayıp yönlendirmeler",
+          "API ile ürün ve stok aktarımında eksik kayıtlar",
+          "Ödeme ya da kargo entegrasyonunda siparişe yansımayan durumlar"
+        ],
+        rescueCapability: "Hatanın platform, entegrasyon ya da özel kod kaynaklı olduğunun kayıtlarla ayrılması; eski ve yeni URL'lerin eşlenip yönlendirmelerin kurulması; API üzerinden sipariş, stok ve ürün mutabakatı; düzeltme platformda gerekiyorsa destek ekibine kanıt dosyası.",
+        riskLevel: "Entegrasyon ve Tema Katmanında Yüksek",
+        interventionLimit: "Platformun çekirdek kodu ve altyapısı T-Soft'a aittir, içine müdahale edilmez. Müdahale alanı: tema ve şablon özelleştirmeleri, platformun sunduğu API ve entegrasyon servisleri üzerinden yazılmış bağlantılar, ajansın kendi kodu ve verinin tutarlılığı. Platform tarafındaki arızalar kanıtıyla birlikte T-Soft destek ekibine iletilir."
+      },
+      {
+        id: "iyzico",
+        name: "iyzico",
+        category: "integration",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "iyzico API · WooCommerce ve platform eklentileri",
+        commonIncidents: [
+          "Ödeme başarılı ama geri dönüş (callback) işlenmediği için sipariş oluşmuyor",
+          "3D Secure dönüşünde oturum çerezi kaybolduğu için boşalan sepet",
+          "Aynı ödeme için ikinci sipariş (bildirimin tekrar işlenmesi)",
+          "Eklenti güncellemesinden sonra açılmayan ödeme formu"
+        ],
+        rescueCapability: "Ödeme kayıtlarıyla sipariş kayıtlarının karşılaştırılması, geri dönüş adresinin ve çerez ayarlarının (SameSite) düzeltilmesi, bildirim işleyicisinin her ödemeyi tek kez işleyecek hale getirilmesi, eksik siparişlerin ödeme kayıtlarından yeniden oluşturulması.",
+        riskLevel: "Ödeme Akışında Kritik",
+        interventionLimit: "Ödeme altyapısı, 3D Secure sayfası ve iyzico hesabı iyzico'ya aittir. Müdahale alanı sizin taraftaki kod: ödemenin başlatılması, geri dönüşün ve bildirimin işlenmesi, siparişin güncellenmesi, iade akışı. Hesap, limit ve komisyon konuları iyzico ile hesap sahibi arasında kalır."
+      },
+      {
+        id: "paytr",
+        name: "PayTR",
+        category: "integration",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-0 ≤ 15 dk · SEV-1 ≤ 30 dk",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "PayTR iFrame API · platform eklentileri",
+        commonIncidents: [
+          "iFrame token üretiminde imza (hash) uyuşmazlığı",
+          "Bildirim (callback) isteğine beklenen yanıtın dönülmemesi ve tekrarlanan bildirimler",
+          "Ödeme alındı ama sipariş durumu güncellenmedi",
+          "Test ve canlı mağaza bilgilerinin karışması"
+        ],
+        rescueCapability: "Token isteğindeki alanların ve imza hesabının adım adım doğrulanması, bildirim işleyicisinin beklenen yanıtı dönecek ve her ödemeyi tek kez işleyecek hale getirilmesi, ödeme ve sipariş kayıtlarının mutabakatı.",
+        riskLevel: "Ödeme Akışında Kritik",
+        interventionLimit: "Ödeme altyapısı, ödeme sayfası ve PayTR hesabı PayTR'ye aittir. Müdahale alanı sizin taraftaki kod: token isteği, bildirimin işlenmesi, siparişin güncellenmesi. Hesap, limit ve komisyon konuları PayTR ile hesap sahibi arasında kalır."
+      },
+      {
+        id: "trendyol",
+        name: "Trendyol API",
+        category: "integration",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-1 ≤ 30 dk · SEV-2 ≤ 2 saat",
+        supportLevel: "SEV-1 / SEV-2",
+        versionRange: "Trendyol satıcı API'si · entegratör bağlantıları",
+        commonIncidents: [
+          "Hız sınırına takılıp yarıda kalan stok ve fiyat güncellemeleri",
+          "Toplu işlem sonucu kontrol edilmediği için gönderildi sanılan ama reddedilen ürünler",
+          "Sipariş paketlerinin çekilmesinde tekrarlanan ya da atlanan siparişler",
+          "API bilgileri değişince sessizce duran entegrasyon"
+        ],
+        rescueCapability: "İsteklerin hız sınırına uygun kuyruğa alınması ve artan aralıklarla yeniden denenmesi, toplu işlem sonuçlarının takip edilmesi, sipariş çekiminin kaldığı yerden devam edecek hale getirilmesi, stok mutabakat raporu ve entegrasyon durduğunda uyarı.",
+        riskLevel: "Stok ve Sipariş Senkronunda Yüksek",
+        interventionLimit: "Pazaryeri, kuralları ve satıcı paneli Trendyol'a aittir. Müdahale alanı mağazanın entegrasyon kodu: kimlik doğrulama, hız sınırına uyum, stok, fiyat ve sipariş eşlemesi, yeniden deneme ve mutabakat. Hazır bir entegratör kullanılıyorsa entegratörün kendi yazılımına müdahale edilmez. Satıcı hesabı işlemleri ve pazaryeri destek talepleri mağaza sahibinde kalır."
+      },
+      {
+        id: "hepsiburada",
+        name: "Hepsiburada API",
+        category: "integration",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-1 ≤ 30 dk · SEV-2 ≤ 2 saat",
+        supportLevel: "SEV-1 / SEV-2",
+        versionRange: "Hepsiburada satıcı API'si · entegratör bağlantıları",
+        commonIncidents: [
+          "Servis anahtarı ya da kullanıcı bilgisi hatası nedeniyle reddedilen istekler",
+          "Hız sınırına takılıp yarıda kalan stok ve fiyat güncellemeleri",
+          "Varyant ve katalog eşleşmesinde hatalı ürün bağlantıları",
+          "Sipariş çekiminde tekrarlanan ya da atlanan siparişler"
+        ],
+        rescueCapability: "Kimlik bilgilerinin ve istek biçiminin doğrulanması, isteklerin hız sınırına uygun kuyruğa alınması, ürün eşleşmelerinin listelenip düzeltilmesi, sipariş çekiminin kaldığı yerden devam edecek hale getirilmesi, entegrasyon durduğunda uyarı.",
+        riskLevel: "Stok ve Sipariş Senkronunda Yüksek",
+        interventionLimit: "Pazaryeri, kuralları ve satıcı paneli Hepsiburada'ya aittir. Müdahale alanı mağazanın entegrasyon kodu: kimlik doğrulama, hız sınırına uyum, stok, fiyat ve sipariş eşlemesi, yeniden deneme ve mutabakat. Hazır bir entegratör kullanılıyorsa entegratörün kendi yazılımına müdahale edilmez. Satıcı hesabı işlemleri ve pazaryeri destek talepleri mağaza sahibinde kalır."
+      },
+      {
+        id: "efatura",
+        name: "e-Fatura & e-Arşiv Entegratörleri",
+        category: "integration",
+        readiness: "Anında SWAT Triyajı — İlk yanıt SEV-1 ≤ 30 dk · SEV-2 ≤ 2 saat",
+        supportLevel: "SEV-1 / SEV-2",
+        versionRange: "Özel entegratör API'leri",
+        commonIncidents: [
+          "Sipariş tamamlandı ama fatura oluşmadı",
+          "Aynı sipariş için iki fatura",
+          "Vergi numarası, T.C. kimlik numarası ya da adres alanı eksik olduğu için reddedilen faturalar",
+          "İade ve iptallerin faturaya yansımaması"
+        ],
+        rescueCapability: "Sipariş ve fatura kayıtlarının eşlenmesi, fatura isteğinin her sipariş için tek kez gönderilmesi, entegratörün ret yanıtlarının kaydedilip düzeltilmesi, eksik faturaların listelenip yeniden gönderilmesi.",
+        riskLevel: "Yasal Yükümlülük Açısından Yüksek",
+        interventionLimit: "Faturayı düzenleyen ve Gelir İdaresi Başkanlığı'na (GİB) ileten, mükellefin anlaştığı özel entegratördür. Müdahale alanı entegratöre giden bağlantı: sipariş–fatura eşlemesi, istek, hata yakalama ve yeniden gönderim. Vergi, mevzuat ve muhasebe görüşü verilmez; bu konular mali müşavirde kalır."
+      },
       {
         id: "nodejs",
         name: "Node.js (Nest / Express / Fastify)",
@@ -263,17 +452,206 @@ export const techStackData = {
     hero: {
       badge: "ENGINEERING CAPABILITY MATRIX",
       title: "Tech Stack Compatibility & Rescue Matrix",
-      subtitle: "Regardless of your languages, databases, or cloud infrastructure: inspect TMA's surgical rescue depth, known mission-critical bottlenecks, and operational readiness times.",
+      subtitle: "Whatever your language, database, cloud infrastructure, e-commerce platform or payment integration: inspect TMA's rescue depth, known critical bottlenecks, readiness times, and where our intervention ends.",
       notice: "All interventions are performed with pre-intervention snapshot and rollback discipline to safeguard production."
     },
     categories: [
       { id: "all", label: "All Technologies" },
+      { id: "commerce", label: "E-commerce Platforms" },
+      { id: "integration", label: "Payments, Marketplaces & e-Invoicing" },
       { id: "backend", label: "Backend & Microservices" },
       { id: "frontend", label: "Frontend & Mobile" },
       { id: "database", label: "Databases & Cache" },
       { id: "infra", label: "Cloud, DevOps & Kernel" }
     ],
     items: [
+      {
+        id: "woocommerce",
+        name: "WordPress & WooCommerce",
+        category: "commerce",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "WordPress 6.x · WooCommerce (incl. HPOS)",
+        commonIncidents: [
+          "White screen after a plugin or theme update (PHP fatal error)",
+          "Payment captured but the order stuck in 'Pending payment'",
+          "Autoloaded wp_options bloat and a slow admin panel",
+          "Scheduled jobs tied to WP-Cron (stock, email, subscriptions) not running"
+        ],
+        rescueCapability: "Locating the fault through debug.log and PHP-FPM logs, isolating plugin conflicts by bisection on a staging copy, reconciling orders against payment records, and moving WP-Cron to a real server cron.",
+        riskLevel: "Critical Around Plugin Updates",
+        interventionLimit: "We work on all the code on your server: theme, plugins, WooCommerce hooks and the database. Commercial plugins belong to their vendors; if the fault is inside one, it is reported to the vendor with evidence and a workaround is applied in your own code."
+      },
+      {
+        id: "shopify",
+        name: "Shopify",
+        category: "commerce",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "SaaS — versioned by Shopify",
+        commonIncidents: [
+          "Product or cart page broken after a theme edit (Liquid)",
+          "Webhook delivery failures and the same order processed twice",
+          "Bulk product and stock updates cut off by API rate limits",
+          "Drift in external stock or ERP sync"
+        ],
+        rescueCapability: "Diffing theme versions and rolling back to the last working one, webhook signature verification and processing each event once, rate-limit-aware queuing of API calls, and a stock reconciliation script.",
+        riskLevel: "High in the Theme and Integration Layer",
+        interventionLimit: "Shopify's infrastructure and checkout belong to Shopify and are not modified. Scope: theme code, custom apps, webhooks, API integrations and the agency's own code. Platform-wide outages are tracked on Shopify's status page."
+      },
+      {
+        id: "ikas",
+        name: "ikas",
+        category: "commerce",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "SaaS — versioned by ikas",
+        commonIncidents: [
+          "Records missing from orders because of incomplete mapping in a payment or invoicing integration",
+          "Page components broken after a theme customisation",
+          "Stock counts drifting in marketplace and stock integrations",
+          "A custom integration stopping after API credentials change"
+        ],
+        rescueCapability: "Using logs to separate platform, integration and custom-code faults; diffing theme changes and rolling back; reconciling orders, stock and products through the API; an evidence pack for the platform's support team when the fix belongs to them.",
+        riskLevel: "High in the Integration and Theme Layer",
+        interventionLimit: "The platform's core code and infrastructure belong to ikas and are not modified. Scope: theme and template customisations, connections built on the platform's API and integration services, the agency's own code, and data consistency. Faults on the platform side are reported to ikas support with evidence."
+      },
+      {
+        id: "ticimax",
+        name: "Ticimax",
+        category: "commerce",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "SaaS — versioned by Ticimax",
+        commonIncidents: [
+          "Pages failing after a custom design or template change",
+          "Carrier or volumetric-weight rules not matching in the shipping integration",
+          "Missing or duplicated products in XML or service-based product imports",
+          "Drift in marketplace stock sync"
+        ],
+        rescueCapability: "Using logs to separate platform, integration and custom-code faults; diffing template changes and rolling back; reconciling orders, stock and products through the services; an evidence pack for the platform's support team when the fix belongs to them.",
+        riskLevel: "High in the Integration and Theme Layer",
+        interventionLimit: "The platform's core code and infrastructure belong to Ticimax and are not modified. Scope: theme and template customisations, connections built on the platform's API and integration services, the agency's own code, and data consistency. Faults on the platform side are reported to Ticimax support with evidence."
+      },
+      {
+        id: "ideasoft",
+        name: "IdeaSoft",
+        category: "commerce",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "SaaS — versioned by IdeaSoft",
+        commonIncidents: [
+          "Storefront page broken after a template edit",
+          "Variants not matching in API-based product and stock imports",
+          "Payment or shipping status changes not reaching the order",
+          "Stock drifting in marketplace integrations"
+        ],
+        rescueCapability: "Using logs to separate platform, integration and custom-code faults; diffing template changes and rolling back; reconciling orders, stock and products through the API; an evidence pack for the platform's support team when the fix belongs to them.",
+        riskLevel: "High in the Integration and Theme Layer",
+        interventionLimit: "The platform's core code and infrastructure belong to IdeaSoft and are not modified. Scope: theme and template customisations, connections built on the platform's API and integration services, the agency's own code, and data consistency. Faults on the platform side are reported to IdeaSoft support with evidence."
+      },
+      {
+        id: "tsoft",
+        name: "T-Soft",
+        category: "commerce",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "SaaS — versioned by T-Soft",
+        commonIncidents: [
+          "Custom code left incompatible after a platform update",
+          "404s and lost redirects after URL changes",
+          "Missing records in API-based product and stock imports",
+          "Payment or shipping states not reaching the order"
+        ],
+        rescueCapability: "Using logs to separate platform, integration and custom-code faults; mapping old URLs to new ones and setting up redirects; reconciling orders, stock and products through the API; an evidence pack for the platform's support team when the fix belongs to them.",
+        riskLevel: "High in the Integration and Theme Layer",
+        interventionLimit: "The platform's core code and infrastructure belong to T-Soft and are not modified. Scope: theme and template customisations, connections built on the platform's API and integration services, the agency's own code, and data consistency. Faults on the platform side are reported to T-Soft support with evidence."
+      },
+      {
+        id: "iyzico",
+        name: "iyzico",
+        category: "integration",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "iyzico API · WooCommerce and platform plugins",
+        commonIncidents: [
+          "Payment succeeds but the callback is not processed, so no order is created",
+          "Empty cart after the 3D Secure return because the session cookie is lost",
+          "A second order for the same payment (notification processed twice)",
+          "Payment form not loading after a plugin update"
+        ],
+        rescueCapability: "Matching payment records against orders, fixing the callback URL and cookie settings (SameSite), making the notification handler process each payment once, and rebuilding missing orders from payment records.",
+        riskLevel: "Critical in the Checkout Flow",
+        interventionLimit: "The payment infrastructure, the 3D Secure page and the iyzico account belong to iyzico. Scope is the code on your side: starting the payment, handling the callback and notification, updating the order, and the refund flow. Account, limit and fee matters stay between iyzico and the account holder."
+      },
+      {
+        id: "paytr",
+        name: "PayTR",
+        category: "integration",
+        readiness: "Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min",
+        supportLevel: "SEV-0 / SEV-1",
+        versionRange: "PayTR iFrame API · platform plugins",
+        commonIncidents: [
+          "Signature (hash) mismatch when generating the iFrame token",
+          "Notification (callback) requests not getting the expected response, causing repeated notifications",
+          "Payment captured but the order status not updated",
+          "Test and live merchant credentials mixed up"
+        ],
+        rescueCapability: "Step-by-step verification of the token request fields and signature calculation, making the notification handler return the expected response and process each payment once, and reconciling payments against orders.",
+        riskLevel: "Critical in the Checkout Flow",
+        interventionLimit: "The payment infrastructure, the payment page and the PayTR account belong to PayTR. Scope is the code on your side: the token request, handling the notification, and updating the order. Account, limit and fee matters stay between PayTR and the account holder."
+      },
+      {
+        id: "trendyol",
+        name: "Trendyol API",
+        category: "integration",
+        readiness: "Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours",
+        supportLevel: "SEV-1 / SEV-2",
+        versionRange: "Trendyol seller API · integrator connections",
+        commonIncidents: [
+          "Stock and price updates cut off by rate limits",
+          "Products assumed sent but actually rejected because batch results were never checked",
+          "Duplicated or skipped orders when pulling shipment packages",
+          "The integration silently stopping after API credentials change"
+        ],
+        rescueCapability: "Rate-limit-aware queuing with retries at increasing intervals, tracking batch results, making order pulls resume from where they stopped, a stock reconciliation report, and an alert when the integration stops.",
+        riskLevel: "High in Stock and Order Sync",
+        interventionLimit: "The marketplace, its rules and the seller panel belong to Trendyol. Scope is the store's integration code: authentication, rate-limit compliance, stock, price and order mapping, retries and reconciliation. If a ready-made integrator is used, the integrator's own software is not modified. Seller account actions and marketplace support tickets stay with the store owner."
+      },
+      {
+        id: "hepsiburada",
+        name: "Hepsiburada API",
+        category: "integration",
+        readiness: "Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours",
+        supportLevel: "SEV-1 / SEV-2",
+        versionRange: "Hepsiburada seller API · integrator connections",
+        commonIncidents: [
+          "Requests rejected because of a wrong service key or user credentials",
+          "Stock and price updates cut off by rate limits",
+          "Wrong product links in variant and catalogue matching",
+          "Duplicated or skipped orders when pulling orders"
+        ],
+        rescueCapability: "Verifying credentials and request format, rate-limit-aware queuing of requests, listing and fixing product matches, making order pulls resume from where they stopped, and an alert when the integration stops.",
+        riskLevel: "High in Stock and Order Sync",
+        interventionLimit: "The marketplace, its rules and the seller panel belong to Hepsiburada. Scope is the store's integration code: authentication, rate-limit compliance, stock, price and order mapping, retries and reconciliation. If a ready-made integrator is used, the integrator's own software is not modified. Seller account actions and marketplace support tickets stay with the store owner."
+      },
+      {
+        id: "efatura",
+        name: "e-Fatura & e-Arşiv Integrators (Turkey)",
+        category: "integration",
+        readiness: "Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours",
+        supportLevel: "SEV-1 / SEV-2",
+        versionRange: "Private integrator APIs",
+        commonIncidents: [
+          "Order completed but no invoice created",
+          "Two invoices for the same order",
+          "Invoices rejected because the tax number, national ID number or address field is missing",
+          "Returns and cancellations not reflected on invoices"
+        ],
+        rescueCapability: "Matching orders to invoice records, sending each invoice request once per order, logging and fixing integrator rejections, and listing and resubmitting missing invoices.",
+        riskLevel: "High for Legal Compliance",
+        interventionLimit: "Invoices are issued and transmitted to the Turkish Revenue Administration (GİB) by the private integrator the taxpayer has contracted. Scope is the connection to the integrator: order-to-invoice mapping, requests, error handling and resubmission. No tax, regulatory or accounting advice is given; those stay with the taxpayer's accountant."
+      },
       {
         id: "nodejs",
         name: "Node.js (Nest / Express / Fastify)",
