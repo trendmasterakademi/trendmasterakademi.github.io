@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { AlertTriangle, ArrowRight, Stethoscope } from 'lucide-react';
 import { teshisSummaries } from '../data/teshis/indexSummary';
 import { teshisCatalogH1 } from '../data/pageH1Data';
+import { teshisSayisi } from '../data/teshis/count.js';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 
@@ -39,7 +40,7 @@ const TeshisIndex = () => {
         {/* Feature Badges */}
         <div className="flex flex-wrap gap-2.5 pt-2 font-mono text-xs">
           <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--tint-ok-ink)] font-semibold">
-            {isTr ? '20 belirti' : '20 symptoms'}
+            {isTr ? `${teshisSayisi} belirti` : `${teshisSayisi} symptoms`}
           </span>
           <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] font-semibold">
             {isTr ? 'İlk teşhis ücretsiz' : 'First diagnosis is free'}

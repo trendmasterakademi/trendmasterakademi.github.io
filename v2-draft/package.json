@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "prebuild": "node build_teshis_index.mjs",
     "dev": "vite",
     "build": "vite build && node generate_static_pages.js",
     "lint": "oxlint",

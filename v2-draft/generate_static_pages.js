@@ -135,29 +135,6 @@ function unescapeHtml(str) {
     .replace(/&#39;/g, "'");
 }
 
-// 3.5 — Veri Kaynağı Sapma Kontrolü (teshisData.js vs src/data/teshis/<slug>.js)
-for (const item of teshisData) {
-  const singleFilePath = path.join(__dirname, 'src', 'data', 'teshis', `${item.slug}.js`);
-  if (fs.existsSync(singleFilePath)) {
-    try {
-      const singleModule = await import(`./src/data/teshis/${item.slug}.js`);
-      const singleData = singleModule.default;
-      const diffFields = [];
-      const keys = Array.from(new Set([...Object.keys(item), ...Object.keys(singleData)]));
-      for (const k of keys) {
-        if (JSON.stringify(item[k]) !== JSON.stringify(singleData[k])) {
-          diffFields.push(k);
-        }
-      }
-      if (diffFields.length > 0) {
-        console.warn(`UYARI: teshisData.js ile src/data/teshis/${item.slug}.js farklı — alanlar: ${diffFields.join(', ')}`);
-      }
-    } catch (err) {
-      console.warn(`UYARI: src/data/teshis/${item.slug}.js yüklenemedi: ${err.message}`);
-    }
-  }
-}
-
 // Ortak Kurumsal JSON-LD Düğümleri
 const professionalServiceNode = {
   "@type": "ProfessionalService",
@@ -254,10 +231,10 @@ const webSiteNode = {
   "inLanguage": ["tr-TR"]
 };
 
-// 2.1 — /teshis/ Katalog Hub'ı İçeriği (20 Teşhis)
+// 2.1 — /teshis/ Katalog Hub'ı İçeriği (${teshisData.length} Teşhis)
 const teshisHubExtraContent = `
   <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
-    <h2 class="text-xl font-bold text-[var(--ink)]">Yayınlanmış arıza kataloğu — 20 teşhis</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Yayınlanmış arıza kataloğu — ${teshisData.length} teşhis</h2>
     <ul class="space-y-4">
       ${teshisData.map(item => {
         const firstSentence = item.ozet?.tr ? (item.ozet.tr.split('.')[0] + '.') : '';
@@ -276,7 +253,7 @@ const teshisHubExtraContent = `
 
 const teshisHubExtraContentEn = `
   <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
-    <h2 class="text-xl font-bold text-[var(--ink)]">Published Incident Catalog — 20 Diagnoses</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Published Incident Catalog — ${teshisData.length} Diagnoses</h2>
     <ul class="space-y-4">
       ${teshisData.map(item => {
         const firstSentence = item.ozet?.en ? (item.ozet.en.split('.')[0] + '.') : '';
@@ -376,7 +353,7 @@ const homePageExtraContent = `
       }).join('\n      ')}
     </ul>
     <p class="pt-2">
-      <a href="/teshis/" class="text-[var(--accent)] hover:underline font-bold">Tüm teşhis kataloğunu inceleyin (20 belirti) →</a>
+      <a href="/teshis/" class="text-[var(--accent)] hover:underline font-bold">Tüm teşhis kataloğunu inceleyin (${teshisData.length} belirti) →</a>
     </p>
   </section>
   ${homeFounderHtml}
@@ -509,7 +486,7 @@ const sosPageExtraContent = `
       <h2 class="text-xl font-bold text-[var(--ink)]">Aciliyet yoksa</h2>
       <ul class="space-y-2 text-[var(--ink-3)]">
         <li><a href="/crash-test/" class="text-[var(--accent)] hover:underline">60 saniyelik Agency Crash Test ile durumu kendiniz teşhis edin</a></li>
-        <li><a href="/teshis/" class="text-[var(--accent)] hover:underline">20 arızanın belgelenmiş teşhis kataloğu</a></li>
+        <li><a href="/teshis/" class="text-[var(--accent)] hover:underline">${teshisData.length} arızanın belgelenmiş teşhis kataloğu</a></li>
       </ul>
     </div>
   </section>
@@ -3606,8 +3583,9 @@ function verifySeoAndHtmlIntegrity() {
   const seenTitles = new Map();
   const seenDescs = new Map();
 
-  if (canonicalPages.length !== 109) {
-    errors.push(`Expected exactly 109 canonical pages, found ${canonicalPages.length}`);
+  const beklenen = 69 + 2 * teshisData.length;   // 69 = teşhis dışındaki sayfalar
+  if (canonicalPages.length !== beklenen) {
+    errors.push(`Expected exactly ${beklenen} canonical pages, found ${canonicalPages.length}`);
   }
 
   canonicalPages.forEach(page => {
@@ -3749,7 +3727,7 @@ function verifySeoAndHtmlIntegrity() {
     process.exit(1);
   }
 
-  console.log(`[BUILD GUARD] All 109 pages passed SEO & HTML integrity verification!`);
+  console.log(`[BUILD GUARD] All ${beklenen} pages passed SEO & HTML integrity verification!`);
 }
 
 verifySeoAndHtmlIntegrity();
@@ -4063,7 +4041,7 @@ function verifyH1Integrity() {
     });
     process.exit(1);
   }
-  console.log(`[BUILD GUARD H1-C GEÇTİ] Tüm 109 sayfanın dist HTML H1 başlığı veri dosyasıyla birebir eşleşiyor (${pages.length} sayfa doğrulandı).`);
+  console.log(`[BUILD GUARD H1-C GEÇTİ] Tüm ${69 + 2 * teshisData.length} sayfanın dist HTML H1 başlığı veri dosyasıyla birebir eşleşiyor (${pages.length} sayfa doğrulandı).`);
 }
 
 verifyH1Integrity();

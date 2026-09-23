@@ -13,6 +13,7 @@ import { setPageSeo } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
 import { crashTestH1 } from '../data/agencyKitData';
+import { teshisSayisi } from '../data/teshis/count.js';
 
 // Dynamic code-split loaders: Each diagnostic chunk is loaded strictly on demand!
 const teshisLoaders = {
@@ -894,8 +895,8 @@ const CrashTest = () => {
                 <div className="p-6 rounded-lg bg-[var(--paper)] border border-[var(--rule)] space-y-5">
                   <p className="text-[var(--ink)] text-sm sm:text-base leading-relaxed">
                     {isTr 
-                      ? 'Bu bir arıza değil, kapasite ve zaman sorunu. Teşhis Kataloğu yayında olan 20 arızayı kapsıyor; sizinki onlardan biri değil. Bu durumda yapılacak şey teşhis değil, kapsamı konuşmak: ne kadar iş kaldığını ve ne kadar sürede kapatılabileceğini birlikte çıkarırız.'
-                      : 'This is a capacity and timeline problem, not a fault. The Diagnostic Catalog covers 20 published failures and yours is not one of them. What you need here is not a diagnosis but a scoping conversation: we work out together how much work remains and how quickly it can be closed.'}
+                      ? `Bu bir arıza değil, kapasite ve zaman sorunu. Teşhis Kataloğu yayında olan ${teshisSayisi} arızayı kapsıyor; sizinki onlardan biri değil. Bu durumda yapılacak şey teşhis değil, kapsamı konuşmak: ne kadar iş kaldığını ve ne kadar sürede kapatılabileceğini birlikte çıkarırız.`
+                      : `This is a capacity and timeline problem, not a fault. The Diagnostic Catalog covers ${teshisSayisi} published failures and yours is not one of them. What you need here is not a diagnosis but a scoping conversation: we work out together how much work remains and how quickly it can be closed.`}
                   </p>
                 </div>
               </div>

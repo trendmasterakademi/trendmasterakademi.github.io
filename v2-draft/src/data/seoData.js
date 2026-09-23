@@ -1,6 +1,6 @@
 // TMA Single Source of Truth for SEO (109 pages)
 // Auto-generated & validated against Step 57 specifications.
-// DO NOT EDIT MANUALLY. Run build scripts to regenerate.
+import { teshisSayisi } from './teshis/count.js';
 
 export const seoData = {
   "/": {
@@ -66,13 +66,13 @@ export const seoData = {
   "/teshis/": {
     "tr": {
       "title": "Teşhis Kataloğu | Trend Master Akademi",
-      "desc": "Belirtiden nedene: 20 yaygın yazılım arızası, her biri için olası üç neden, ayırt edici test ve çözüm yolu. Ajans diliyle yazılmış teşhis kataloğu."
+      "desc": `Belirtiden nedene: ${teshisSayisi} yaygın yazılım arızası, her biri için olası üç neden, ayırt edici test ve çözüm yolu. Ajans diliyle yazılmış teşhis kataloğu.`
     }
   },
   "/diagnostic/": {
     "en": {
       "title": "Diagnostic Catalog | Trend Master Akademi",
-      "desc": "From symptom to cause: 20 common software failures, each with three likely causes, the test that tells them apart, and the fix. Written for agencies."
+      "desc": `From symptom to cause: ${teshisSayisi} common software failures, each with three likely causes, the test that tells them apart, and the fix. Written for agencies.`
     }
   },
   "/glossary/": {

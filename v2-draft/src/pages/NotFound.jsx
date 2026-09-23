@@ -5,6 +5,7 @@ import { PhoneCall, MessageSquare, AlertCircle, ArrowRight, ArrowLeft } from 'lu
 import { formatDocumentTitle } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
+import { teshisSayisi } from '../data/teshis/count.js';
 
 const NotFound = () => {
   const { i18n } = useTranslation();
@@ -118,7 +119,7 @@ const NotFound = () => {
           >
             <div>
               <div className="text-sm font-semibold text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
-                {isTr ? 'Teşhis kataloğu — 20 belgelenmiş arıza' : 'Diagnosis catalog — 20 failure patterns'}
+                {isTr ? `Teşhis kataloğu — ${teshisSayisi} belgelenmiş arıza` : `Diagnosis catalog — ${teshisSayisi} failure patterns`}
               </div>
               <div className="text-xs text-[var(--ink-3)] mt-0.5">
                 {isTr ? 'Hata belirtileri ve çözüm adımları' : 'Error symptoms and resolution steps'}

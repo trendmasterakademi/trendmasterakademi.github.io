@@ -6,6 +6,7 @@ import { setPageSeo } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
 import { sosH1 } from '../data/pageH1Data';
+import { teshisSayisi } from '../data/teshis/count.js';
 
 const Sos = () => {
   const { i18n } = useTranslation();
@@ -160,8 +161,8 @@ const Sos = () => {
           >
             <span className="text-xs sm:text-sm text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors">
               {isTr 
-                ? '20 arızanın belgelenmiş teşhis kataloğu' 
-                : 'Documented diagnosis catalog for 20 failure patterns'}
+                ? `${teshisSayisi} arızanın belgelenmiş teşhis kataloğu` 
+                : `Documented diagnosis catalog for ${teshisSayisi} failure patterns`}
             </span>
             <ArrowRight className="w-4 h-4 text-[var(--accent)] group-hover:translate-x-1 transition-transform flex-shrink-0" />
           </Link>

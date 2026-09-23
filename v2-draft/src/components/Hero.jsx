@@ -6,6 +6,7 @@ import {
 } from 'lucide-react';
 import { getCalendlyUrl } from '../utils/calendly';
 import { isTurkish } from '../i18n';
+import { teshisSayisi } from '../data/teshis/count.js';
 
 export const diagnosticLogs = [
   {
@@ -241,7 +242,7 @@ const Hero = () => {
             </div>
             <div>
               <strong className="block text-xl font-serif font-semibold text-[var(--ink)] tabular">
-                {isTr ? '20 Teşhis' : '20 Diagnostics'}
+                {isTr ? `${teshisSayisi} Teşhis` : `${teshisSayisi} Diagnostics`}
               </strong>
               <span className="text-xs text-[var(--ink-3)]">
                 {isTr ? 'Yayınlanmış Arıza Kataloğu' : 'Published Fault Catalog'}
@@ -353,7 +354,7 @@ const Hero = () => {
                   to="/teshis/"
                   className="text-[var(--term-accent)] hover:underline font-medium inline-flex items-center gap-1.5 min-h-[44px] py-[13px] -my-[13px]"
                 >
-                  <span>{isTr ? 'Tüm Teşhis Kataloğunu İncele (20 Belirti)' : 'Explore All Diagnostics (20 Symptoms)'}</span>
+                  <span>{isTr ? `Tüm Teşhis Kataloğunu İncele (${teshisSayisi} Belirti)` : `Explore All Diagnostics (${teshisSayisi} Symptoms)`}</span>
                   <span>→</span>
                 </Link>
                 <span className="hidden sm:inline">
