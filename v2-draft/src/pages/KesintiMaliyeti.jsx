@@ -298,7 +298,7 @@ const KesintiMaliyeti = () => {
                       }`}
                     >
                       <span>{preset.label[isTr ? 'tr' : 'en']}</span>
-                      <span className="font-mono text-xs opacity-75">{isTr ? `${preset.factor.toFixed(1).replace('.', ',')}×` : `× ${preset.factor.toFixed(1)}`}</span>
+                      <span className="font-mono text-xs">{isTr ? `${preset.factor.toFixed(1).replace('.', ',')}×` : `× ${preset.factor.toFixed(1)}`}</span>
                     </button>
                   );
                 })}

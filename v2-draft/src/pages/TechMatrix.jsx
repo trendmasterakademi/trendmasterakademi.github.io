@@ -114,7 +114,7 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
           >
             {lang === "en" ? "+ Select All in View" : "+ Görünenleri Seç"}
           </button>
-          <span className="text-[var(--rule)]">|</span>
+          <span className="text-[var(--rule)]" aria-hidden="true">|</span>
           <button
             onClick={clearAll}
             className="text-[var(--ink-2)] hover:text-[var(--tint-danger-ink)] transition cursor-pointer min-h-[44px] flex items-center"
