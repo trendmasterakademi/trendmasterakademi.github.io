@@ -365,7 +365,7 @@ export const CodeDiffTerminal = () => {
                 onClick={() => setViewMode('before')}
                 className={`px-3 py-1.5 rounded-[var(--r-control)] font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
                   viewMode === 'before'
-                    ? 'bg-[var(--sev-1)]/20 text-[var(--term-diff-del)] border border-[var(--sev-1)]/40 shadow-sm'
+                    ? 'bg-[var(--term-diff-del)]/20 text-[var(--term-ink)] border border-[var(--term-diff-del)]/40 shadow-sm'
                     : 'text-[var(--term-dim)] hover:text-[var(--term-ink)]'
                 }`}
               >
@@ -377,7 +377,7 @@ export const CodeDiffTerminal = () => {
                 onClick={() => setViewMode('after')}
                 className={`px-3 py-1.5 rounded-[var(--r-control)] font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
                   viewMode === 'after'
-                    ? 'bg-[var(--sev-4)]/20 text-[var(--term-diff-add)] border border-[var(--sev-4)]/40 shadow-sm'
+                    ? 'bg-[var(--term-diff-add)]/20 text-[var(--term-diff-add)] border border-[var(--term-diff-add)]/40 shadow-sm'
                     : 'text-[var(--term-dim)] hover:text-[var(--term-ink)]'
                 }`}
               >
@@ -394,7 +394,7 @@ export const CodeDiffTerminal = () => {
                 <span>{current.title[isTr ? 'tr' : 'en']}</span>
               </h3>
               <p className="text-xs font-mono text-[var(--term-dim)] break-all">
-                <span className="text-[var(--sev-1)] font-semibold">{isTr ? 'Belirti:' : 'Symptom:'}</span> {current.symptom}
+                <span className="text-[var(--term-diff-del)] font-semibold">{isTr ? 'Belirti:' : 'Symptom:'}</span> {current.symptom}
               </p>
             </div>
 
@@ -402,17 +402,17 @@ export const CodeDiffTerminal = () => {
             <div className="flex items-center gap-2 sm:gap-3 flex-wrap font-mono text-xs">
               <div className="px-3 py-1 rounded-[var(--r-control)] bg-[var(--term-bg)] border border-[var(--term-rule)] text-[var(--term-ink)]">
                 <span className="text-[var(--term-dim)] text-xs block">{isTr ? 'GECİKME' : 'LATENCY'}</span>
-                <span className={viewMode === 'before' ? 'text-[var(--sev-1)] font-semibold' : 'text-[var(--sev-4)] font-semibold'}>
+                <span className={viewMode === 'before' ? 'text-[var(--term-diff-del)] font-semibold' : 'text-[var(--term-diff-add)] font-semibold'}>
                   {viewMode === 'before' ? current.metrics.latencyBefore : current.metrics.latencyAfter}
                 </span>
               </div>
               <div className="px-3 py-1 rounded-[var(--r-control)] bg-[var(--term-bg)] border border-[var(--term-rule)] text-[var(--term-ink)]">
                 <span className="text-[var(--term-dim)] text-xs block">{isTr ? 'KAYNAK' : 'RESOURCE'}</span>
-                <span className={viewMode === 'before' ? 'text-[var(--sev-2)] font-semibold' : 'text-[var(--sev-4)] font-semibold'}>
+                <span className={viewMode === 'before' ? 'text-[var(--term-warn)] font-semibold' : 'text-[var(--term-diff-add)] font-semibold'}>
                   {viewMode === 'before' ? getMetricValue(current.metrics.cpuBefore) : getMetricValue(current.metrics.cpuAfter)}
                 </span>
               </div>
-              <div className="px-3 py-1 rounded-[var(--r-control)] bg-[var(--sev-4)]/10 border border-[var(--sev-4)]/30 text-[var(--sev-4)] font-semibold flex items-center gap-1">
+              <div className="px-3 py-1 rounded-[var(--r-control)] bg-[var(--term-diff-add)]/10 border border-[var(--term-diff-add)]/30 text-[var(--term-diff-add)] font-semibold flex items-center gap-1">
                 <Zap className="w-3.5 h-3.5 fill-current" />
                 <span>{getMetricValue(current.metrics.status)}</span>
               </div>
@@ -429,7 +429,7 @@ export const CodeDiffTerminal = () => {
           {/* Terminal Footer Action Bar */}
           <div className="bg-[var(--term-bg-2)] px-5 sm:px-7 py-3.5 border-t border-[var(--term-rule)] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
             <div className="flex items-center gap-2 text-[var(--term-dim)]">
-              <ShieldCheck className="w-4 h-4 text-[var(--sev-4)]" />
+              <ShieldCheck className="w-4 h-4 text-[var(--term-diff-add)]" />
               <span>{isTr ? '%100 White-Label & Resmi NDA güvencesiyle onarılır.' : 'Rescued under 100% White-Label & Binding NDA.'}</span>
             </div>
             <a

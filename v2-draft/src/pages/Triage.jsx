@@ -180,11 +180,11 @@ Rapor Tarihi: ${new Date().toISOString()}`;
               <div className="space-y-3">
                 {activeScenario.diagnosticCommands.map((diag, idx) => (
                   <div key={idx} className="rounded-xl bg-[var(--term-bg)] border border-[var(--rule)] overflow-hidden">
-                    <div className="flex items-center justify-between px-4 py-2 bg-[var(--term-card)] border-b border-[var(--term-rule)] text-xs font-mono text-[var(--term-dim)]">
+                    <div className="flex items-center justify-between px-4 py-2 bg-[var(--term-bg-2)] border-b border-[var(--term-rule)] text-xs font-mono text-[var(--term-dim)]">
                       <span>{diag.desc[lang]}</span>
                       <button
                         onClick={() => copyCommand(diag.cmd, idx)}
-                        className="inline-flex items-center gap-1 text-[var(--term-ink)] hover:text-white transition-colors cursor-pointer min-h-[44px] px-2 py-1"
+                        className="inline-flex items-center gap-1 text-[var(--term-ink)] hover:text-[var(--term-bright)] transition-colors cursor-pointer min-h-[44px] px-2 py-1"
                       >
                         {copiedCmd === idx ? (
                           <>

@@ -300,7 +300,7 @@ const Hero = () => {
                             <div className="font-mono text-xs sm:text-sm text-[var(--term-accent)] mb-1.5 leading-snug break-words">
                               {item.log}
                             </div>
-                            <div className="flex items-center gap-1.5 text-xs font-sans text-[var(--term-ink)] hover:text-white transition-colors">
+                            <div className="flex items-center gap-1.5 text-xs font-sans text-[var(--term-ink)] hover:text-[var(--term-bright)] transition-colors">
                               <span>→</span>
                               <span className="underline underline-offset-4">
                                 {isTr ? item.title.tr : item.title.en}
@@ -334,7 +334,7 @@ const Hero = () => {
                           <div className="font-mono text-xs sm:text-sm text-[var(--term-accent)] mb-2 leading-snug break-words">
                             {item.log}
                           </div>
-                          <div className="flex items-center gap-1.5 text-xs font-sans text-[var(--term-ink)] hover:text-white transition-colors">
+                          <div className="flex items-center gap-1.5 text-xs font-sans text-[var(--term-ink)] hover:text-[var(--term-bright)] transition-colors">
                             <span>→</span>
                             <span className="underline underline-offset-4">
                               {isTr ? item.title.tr : item.title.en}

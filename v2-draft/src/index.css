@@ -33,8 +33,10 @@
   --term-ink:     #C7CEDA;
   --term-dim:     #7E8A9B;
   --term-accent:  #E4636C;   /* koyu zeminde aksanın açılmış hali */
-  --term-diff-add:#338E61;   /* 4,67 : 1 terminal zemini üstünde */
-  --term-diff-del:#B21F2B;
+  --term-diff-add:#4CB282;   /* 7,20 : 1 terminal zemini üstünde */
+  --term-diff-del:#E4636C;   /* 5,67 : 1 terminal zemini üstünde */
+  --term-warn:    #E0A458;   /* 8,66 : 1 terminal zemini üstünde */
+  --term-bright:  #FFFFFF;
   --term-rule:    var(--rule);
 
   /* Aciliyet — YALNIZ teşhis katalogunda */
@@ -115,8 +117,10 @@
     --term-ink:     #C7CEDA;
     --term-dim:     #7E8A9B;
     --term-accent:  #E4636C;
-    --term-diff-add:#338E61;   /* 4,67 : 1 terminal zemini üstünde */
+    --term-diff-add:#4CB282;
     --term-diff-del:#E4636C;
+    --term-warn:    #E0A458;
+    --term-bright:  #FFFFFF;
     --term-rule:    var(--rule);
 
     --sev-critical: #E4636C;
@@ -174,8 +178,10 @@
   --term-ink:     #C7CEDA;
   --term-dim:     #7E8A9B;
   --term-accent:  #E4636C;
-  --term-diff-add:#338E61;   /* 4,67 : 1 terminal zemini üstünde */
+  --term-diff-add:#4CB282;
   --term-diff-del:#E4636C;
+  --term-warn:    #E0A458;
+  --term-bright:  #FFFFFF;
   --term-rule:    var(--rule);
 
   --sev-critical: #E4636C;
@@ -232,8 +238,10 @@
   --term-ink:     #C7CEDA;
   --term-dim:     #7E8A9B;
   --term-accent:  #E4636C;
-  --term-diff-add:#338E61;   /* 4,67 : 1 terminal zemini üstünde */
-  --term-diff-del:#B21F2B;
+  --term-diff-add:#4CB282;
+  --term-diff-del:#E4636C;
+  --term-warn:    #E0A458;
+  --term-bright:  #FFFFFF;
   --term-rule:    var(--rule);
 
   --sev-critical: #B21F2B;

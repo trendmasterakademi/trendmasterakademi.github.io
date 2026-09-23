@@ -225,7 +225,7 @@ const TeshisDetay = () => {
 
           {/* Section 1: Sisteminizde bunu arayın (Log Satırları - Terminal Theme) */}
           <section className="border border-[var(--rule)] rounded-2xl bg-[var(--term-bg)] overflow-hidden">
-            <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-[var(--term-rule)] bg-[var(--term-card)]">
+            <div className="flex items-center justify-between gap-3 px-5 py-3 border-b border-[var(--term-rule)] bg-[var(--term-bg-2)]">
               <h2 className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--term-ink)] flex items-center gap-2">
                 <Terminal className="w-4 h-4" />
                 {isTr ? 'Sisteminizde bunu arayın' : 'Look for this in your system'}

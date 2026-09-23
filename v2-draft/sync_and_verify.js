@@ -239,7 +239,9 @@ const approvedHexes = new Set([
   '#2e1b1e', '#f29aa0', '#5b2d33',
   '#19213a', '#a6bcf3', '#2c3e6e',
   // Dış İstisna (WhatsApp)
-  '#25d366'
+  '#25d366',
+  // Terminal Renkleri (Adım 66)
+  '#4cb282', '#e0a458'
 ]);
 
 const unapprovedHexes = new Map();
