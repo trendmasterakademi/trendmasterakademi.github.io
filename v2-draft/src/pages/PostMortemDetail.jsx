@@ -5,7 +5,7 @@ import {
   AlertTriangle, ArrowLeft, Clock, ShieldCheck, 
   Terminal, CheckCircle2, Flame, Wrench, AlertCircle, Calendar
 } from 'lucide-react';
-import { postMortems, postMortemDisclosure } from '../data/postMortemData';
+import { postMortems, postMortemDisclosure, getPostMortemH1 } from '../data/postMortemData';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
@@ -90,7 +90,7 @@ const PostMortemDetail = () => {
         </div>
 
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-semibold text-[var(--ink)] leading-tight">
-          {item.title[lang]}
+          {getPostMortemH1(item, lang)}
         </h1>
 
         {/* Impact Box */}

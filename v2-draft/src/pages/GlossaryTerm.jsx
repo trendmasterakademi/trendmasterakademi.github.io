@@ -5,7 +5,7 @@ import {
   ArrowLeft, ArrowRight, ShieldCheck, AlertTriangle, 
   HelpCircle, CheckCircle2, PhoneCall, BookOpen, ExternalLink, Zap, Calendar
 } from 'lucide-react';
-import { glossaryTerms } from '../data/glossaryData';
+import { glossaryTerms, getGlossaryH1 } from '../data/glossaryData';
 import { teshisSummaries } from '../data/teshis/indexSummary';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
@@ -87,7 +87,7 @@ const GlossaryTerm = () => {
             {isTr ? 'TEKNİK TERİM REHBERİ' : 'TECHNICAL GLOSSARY ITEM'} // {term.slug.toUpperCase()}
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
-            {isTr ? term.title : (term.titleEn || term.title.split(' (')[0])}
+            {getGlossaryH1(term, isTr ? 'tr' : 'en')}
           </h1>
           <p className="text-lg sm:text-xl text-[var(--ink)] font-medium leading-relaxed p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
             {term.shortDef[isTr ? 'tr' : 'en']}

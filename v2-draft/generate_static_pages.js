@@ -3,9 +3,9 @@ import path from 'path';
 import crypto from 'crypto';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
-import { glossaryTerms } from './src/data/glossaryData.js';
+import { glossaryTerms, getGlossaryH1 } from './src/data/glossaryData.js';
 import { teshisData } from './src/data/teshisData.js';
-import { postMortems, postMortemDisclosure } from './src/data/postMortemData.js';
+import { postMortems, postMortemDisclosure, getPostMortemH1 } from './src/data/postMortemData.js';
 import { triageScenarios } from './src/data/triageData.js';
 import { slaTiers, coreCommitments, slaScope, slaMetaDesc } from './src/data/slaData.js';
 import { techStackData } from './src/data/techStackData.js';
@@ -2737,7 +2737,7 @@ const glossaryPages = glossaryTerms.flatMap(term => {
   const trPage = {
     dir: `sozluk/${term.slug}`,
     title: formatPageTitle(`${term.title} Nedir?`),
-    h1: `${term.title} Nedir?`,
+    h1: getGlossaryH1(term, 'tr'),
     description: `${term.title.split(' (')[0]}: ${term.shortDef.tr}`,
     canonical: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
     ogUrl: `https://trendmasterakademi.com/sozluk/${term.slug}/`,
@@ -2753,7 +2753,7 @@ const glossaryPages = glossaryTerms.flatMap(term => {
     dir: `glossary/${term.slug}`,
     lang: 'en',
     title: formatPageTitle(`What is ${term.titleEn || term.title}?`),
-    h1: `What is ${term.titleEn || term.title}?`,
+    h1: getGlossaryH1(term, 'en'),
     description: `${(term.titleEn || term.title).split(' (')[0]}: ${term.shortDef.en || term.shortDef.tr}`,
     canonical: `https://trendmasterakademi.com/glossary/${term.slug}/`,
     ogUrl: `https://trendmasterakademi.com/glossary/${term.slug}/`,
@@ -3331,7 +3331,7 @@ const postMortemPages = postMortems.flatMap(item => {
   const trPage = {
     dir: `post-mortem/${item.slug}`,
     title: formatPageTitle(`${item.no} Post-Mortem | ${item.title?.tr}`),
-    h1: `${item.no} · ${item.title?.tr}`,
+    h1: getPostMortemH1(item, 'tr'),
     description: item.summary?.tr,
     canonical: `https://trendmasterakademi.com/post-mortem/${item.slug}/`,
     ogUrl: `https://trendmasterakademi.com/post-mortem/${item.slug}/`,
@@ -3347,7 +3347,7 @@ const postMortemPages = postMortems.flatMap(item => {
     dir: `post-mortems/${item.slug}`,
     lang: 'en',
     title: formatPageTitle(`${item.no} Post-Mortem | ${item.title?.en || item.title?.tr}`),
-    h1: `${item.no} · ${item.title?.en || item.title?.tr}`,
+    h1: getPostMortemH1(item, 'en'),
     description: item.summary?.en || item.summary?.tr,
     canonical: `https://trendmasterakademi.com/post-mortems/${item.slug}/`,
     ogUrl: `https://trendmasterakademi.com/post-mortems/${item.slug}/`,

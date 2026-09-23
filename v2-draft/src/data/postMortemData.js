@@ -320,3 +320,8 @@ export const postMortemDisclosure = {
     en: "The records below are taken from real TMA interventions. Client and agency identities are not disclosed; identifying details have been generalized."
   }
 };
+
+export function getPostMortemH1(item, lang = 'tr') {
+  if (!item || !item.title) return '';
+  return item.title[lang] || item.title.tr || item.title.en || '';
+}

@@ -20,52 +20,52 @@
     "lastmod": "2026-09-21"
   },
   "https://trendmasterakademi.com/sozluk/deadlock/": {
-    "hash": "64edf2f1bcd938e4aa4f19802fb884b7965ecc79ddf9678fb5956b18e4e2d9a2",
-    "lastmod": "2026-09-21"
+    "hash": "f5d811652364643a6126858ac4d3ad5e351bc438a40a51363b6204b12a7af9ee",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/sozluk/n-plus-1-sorgu/": {
-    "hash": "13db5775182cdf3ddfc428cf532a4c55f9f41535783833d5cf2deeff0d396b42",
-    "lastmod": "2026-09-21"
+    "hash": "138e3ae111b579c09da9ebd26aa10185b419e8d9286554f467545dcc1a001fb6",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/sozluk/race-condition/": {
-    "hash": "2d6186bb61ccebc85e9e29811b7cb669c1c144e72eabc8d814f39492ceabdc83",
-    "lastmod": "2026-09-21"
+    "hash": "d1120b4fd1bd1a01d89fd0f0b5dfd47dbc7187aaca6accd9732d669a59c29dcf",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/sozluk/idempotency/": {
-    "hash": "346dccd15f35abfb447133a58f5b325fab2550306e3019ba69cc7f7b1c95be44",
-    "lastmod": "2026-09-21"
+    "hash": "a4b4faf146bcd7ba9745b40b46cd0a132917c3d7ed398ba0a563e7724e5a2ecd",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/sozluk/webhook/": {
-    "hash": "cf2e1983ad610a186e793d73d436d652f0e05aa6742318261c75803c36beffd1",
-    "lastmod": "2026-09-21"
+    "hash": "e5ce0f5cd6db2a40cba92e7d77093335e248f2d26491de8df1a06c4de438c086",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/sozluk/teknik-borc/": {
-    "hash": "a79d0c38475014675ecd22bb18c4fc52f99290a4bc7e8a42869231fd8a665292",
-    "lastmod": "2026-09-21"
+    "hash": "c37ec557fe596e83b9bc0f8e4a937ae71e6d61d61104dff0ab8be90e5e9efe46",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/sozluk/refactor/": {
-    "hash": "0f54c535c7a0b9cc45b58f2bde6ca40486645d91967f8b2d85486f793866f076",
-    "lastmod": "2026-09-21"
+    "hash": "b5bb5c5b3c35ae5c98851fe5a2ce1134c0d732ff6e02261a636a2c1915f2046d",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/sozluk/ci-cd/": {
-    "hash": "f16a58852e7d136c9e38afce89dccd5ddb809d9bf44099e0e51cc08134e890ed",
-    "lastmod": "2026-09-21"
+    "hash": "752c804bf317a8411b32665933fc5d2608cd1a0754fb5d7bdfd1d3115d367cc7",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/sozluk/staging-ortami/": {
-    "hash": "72589c0e223f4d91ffb19219909f3111567b6470f621d8d4125e50f5f8f6ad71",
-    "lastmod": "2026-09-21"
+    "hash": "256daf46498569f313692b29e21595455b928bc157aefc83009ac8a2efa45e1b",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/sozluk/migration/": {
-    "hash": "f9f3b783a98595fb42198a3a3c608e5c890064172a7ecfdd0f3fb847a7e667b3",
-    "lastmod": "2026-09-21"
+    "hash": "e014a8202fb7fa653edf1f0e677c465cb99e7a9e94bd1439acb067b3fff0b14a",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/sozluk/rate-limit/": {
-    "hash": "b057347d3bfb22a31aa2c14fa1bc9656facc1b3746188165365b98114f464e42",
-    "lastmod": "2026-09-21"
+    "hash": "6217cb2e092c218027caf6dbd93902dfbce239f9b2fca34d9261bb5f78d8e8f6",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/sozluk/memory-leak/": {
-    "hash": "2b55abad70e9423c889752294c746cad3bd15a062a9a05922fc4cbd77bb62ea1",
-    "lastmod": "2026-09-21"
+    "hash": "fdc8d077a5ff739a8973e5f78de10311318fc9f1456c2ee7038f4ae8ab7a9877",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/kesinti-maliyeti/": {
     "hash": "b3fa203880740d0d8452bd52c3057a126977b9de35e119a4a1cef26c94357759",
@@ -192,36 +192,36 @@
     "lastmod": "2026-09-21"
   },
   "https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/": {
-    "hash": "17aef2aa7d5116ade0cb576788b40c2976cbfc9f3e4e613f0635d1747653d42c",
-    "lastmod": "2026-09-21"
+    "hash": "82c6ffa394def79f500ea04286a5060175054831dac7b06afe0cdc4540d2aa03",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/post-mortems/pm-01-postgresql-connection-pool-deadlock/": {
-    "hash": "fc2f28c29b331257fba9ea93ef560692495ddc1c21397617ad6baa59968ecab8",
-    "lastmod": "2026-09-21"
+    "hash": "8edc124927ddf75a9f89e1b7adf92cf390457860fefa784f22ab333633d42b3a",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/post-mortem/pm-02-race-condition-double-charge/": {
-    "hash": "e48cf13afc4b2af2d563f38984a2297a8be37137976bf623b09b98ff5e1a841a",
-    "lastmod": "2026-09-21"
+    "hash": "ad0ed26f3753fca4ffeb7692da84b6b77c69b07d177c89a6aca0db5d6d1b849a",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/post-mortems/pm-02-race-condition-double-charge/": {
-    "hash": "8d508412e5321c319d4280ff97b21e5cd9e29963383bcd2c9ecbd9aa016143cb",
-    "lastmod": "2026-09-21"
+    "hash": "c872417b13175f54e5ec434c8a1bf0010062d89d8ff76923c5ed32ecd03b8977",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/": {
-    "hash": "6f3ec715b31a53f6ce18b8fc9a4e272bd66624e6fadb3461602aaaba0910011e",
-    "lastmod": "2026-09-21"
+    "hash": "04d4ecf8721fb73380bbbdbe4bdeaec865784a250351d842c4a18b2b0be32f96",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/post-mortems/pm-03-memory-leak-unhandled-promise/": {
-    "hash": "3e8064ca457ea82cd1b37a83272eb9c297bd6aa94981d836526b60237e75ae86",
-    "lastmod": "2026-09-21"
+    "hash": "1db79bddc8ad8cb8c6fb0df4b093c106dd938c5bf3bd48269794c7a9a4d5663a",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/": {
-    "hash": "9066ab07d3902dc02112a3ff659c1c67c4081572d8ba50b9eafcdd20afd824c1",
-    "lastmod": "2026-09-21"
+    "hash": "67156786278fbc303d13689e185cc5422b4a3029aa6dcd30f56f72ab1745e74e",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/post-mortems/pm-04-ghost-developer-handover-block/": {
-    "hash": "0f0a189e75bdb1e8b217d218e5d07fadbb3952baa8080c187572699e955b5303",
-    "lastmod": "2026-09-21"
+    "hash": "dd4fb4d30cbf664b25de517e9dfe0f9d581d72dee981ce94bca5279ae2997f70",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/triyaj/": {
     "hash": "4d6c8904e5f90fddac9c3129c2ca310c294da0adc42d887071693b1adb918696",
@@ -308,52 +308,52 @@
     "lastmod": "2026-09-21"
   },
   "https://trendmasterakademi.com/glossary/deadlock/": {
-    "hash": "65fdb02af981e9cd7936673e6a5a06074abc248d46c9faba1b05a496fe8d3102",
-    "lastmod": "2026-09-21"
+    "hash": "55b6565a5b9b65a9983a08e61b798d08d3983038ae0b8f25eb3e09dba9869543",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/glossary/n-plus-1-sorgu/": {
-    "hash": "5e4be94c5e76c44104592e4ce211b20d9749fcf90be1e691275e2a55861a9b3b",
-    "lastmod": "2026-09-21"
+    "hash": "978adb7b5f5a38e8f582e71ca786d168283958a1eff0572c222fbac323e073d1",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/glossary/race-condition/": {
-    "hash": "7cc83cfe652d8cdde269cab602e81bf2c35a163e60184faccefbd1c227186f0a",
-    "lastmod": "2026-09-21"
+    "hash": "0139a525ecc75f8b9f344dfc18985241d1258dc4ac691394350ef1f6ec3551c0",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/glossary/idempotency/": {
-    "hash": "47679c8549ede35ae7d6d74b4d4abea15d4a8c552e6ffd6b7f63aa827891e355",
-    "lastmod": "2026-09-21"
+    "hash": "f23f3405c03db52ee68a84051972946b3918ff01ce05478e49a63a040dcd48a7",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/glossary/webhook/": {
-    "hash": "33f93b5c98a1caddbf600ead1bb724b7dc73cc50d379b1a5cf22a5c4d0779602",
-    "lastmod": "2026-09-21"
+    "hash": "7ccd9f7c10f204801797e186103146cf74db9bfd7f8606d213f6e74da8855649",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/glossary/teknik-borc/": {
-    "hash": "69e14f95f22d1ea41288e346fa26db198ed3012c03a2663d26dfdc751791ff80",
-    "lastmod": "2026-09-21"
+    "hash": "12dfafb33f17c5b157ca6aefa6a112917902d80cbc523eba82b1ac8aa53227fc",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/glossary/refactor/": {
-    "hash": "02096dd264df4f587c826dcab87fbfe097156866b834bdbdcdb31003844b9199",
-    "lastmod": "2026-09-21"
+    "hash": "4ecff077371a49b7a9d59ded78bd7c64b9c8d51dc75485bd897a2d93e67b32b6",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/glossary/ci-cd/": {
-    "hash": "bbf49c6a94443d028776e2e15ff7c45c202dd89c08d57cf33ff5f0c67764b8e0",
-    "lastmod": "2026-09-21"
+    "hash": "9ebdc30e0ab97b3a5f587a93cda218b2e22d50ee07fde4689527ca7289a7adb1",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/glossary/staging-ortami/": {
-    "hash": "1dd2d7230202b8b95d4c99bb70b76082a054df85abaedd793bee523509f451f9",
-    "lastmod": "2026-09-21"
+    "hash": "ee263fa384a21c101789466190d74d634bcd69024c9d36f1c7f4dc1b91a1dad7",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/glossary/migration/": {
-    "hash": "086eb5b16eaea704f1c2fbb87485daa9aba8ef742fbfab31b5b521515aed60b8",
-    "lastmod": "2026-09-21"
+    "hash": "655f52d6da6925f43848e90cf4ee18ad88f0a35030d198ebf3355f3cc3f011ba",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/glossary/rate-limit/": {
-    "hash": "096e1df9e01f82f3aa0c4ebadd2852340d8208994e40cf2ff22ee4552f1267ae",
-    "lastmod": "2026-09-21"
+    "hash": "a2abaab997da4a42beb5bc7e512a49912540cd17d590ecac872e7a0a9253dd79",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/glossary/memory-leak/": {
-    "hash": "b25e12955215bddb8e63a87a5a475d748ccea65eb79b27e1220e69f4e70b16c9",
-    "lastmod": "2026-09-21"
+    "hash": "d6340520df17864eebbdebd3c42c3f59bfbcc519647408c232e670d7ef87b22a",
+    "lastmod": "2026-09-23"
   },
   "https://trendmasterakademi.com/diagnostic/ayni-stok-iki-musteriye-satildi/": {
     "hash": "0190a993422373c5ba507e83e61d8c17c023bc2e86e005d3b5edc4907324fa3e",

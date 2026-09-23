@@ -301,3 +301,8 @@ export const glossaryTerms = [
     }
   }
 ];
+
+export function getGlossaryH1(term, lang = 'tr') {
+  if (!term) return '';
+  return lang === 'tr' ? term.title : (term.titleEn || term.title.split(' (')[0]);
+}
