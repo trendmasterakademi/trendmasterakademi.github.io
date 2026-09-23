@@ -95,5 +95,23 @@ export const diagnosticLogEnMap = {
   "Görev süresi: tahmin 2 saat, gerçekleşen 2 gün": "Task duration: 2h estimated, 2 days actual delivery",
   "Kurulum: yeni bir geliştirici projeyi kaç günde çalıştırıyor?": "Onboarding: how many days for new engineer to boot project?",
   "Belge var mı: kurulum notu, mimari şeması, karar kaydı": "Documentation exists: setup guide, architecture schema, ADRs?",
-  "Yayın sıklığı: haftada kaç kez canlıya çıkılabiliyor?": "Deploy cadence: how many production releases per week?"
+  "Yayın sıklığı: haftada kaç kez canlıya çıkılabiliyor?": "Deploy cadence: how many production releases per week?",
+
+  // paytr-token-ve-bildirim-hatasi
+  "get-token yanıtı: status success değil, reason alanı dolu": "get-token response: status is not success, reason field is filled",
+  "İşlemler sayfası: ödeme alındı, durum «Devam Ediyor»": "Transactions page: payment taken, status 'In Progress'",
+  "Bildirim URL erişim kaydı: aynı merchant_oid dakikada bir geliyor": "Notification URL access log: the same merchant_oid arrives every minute",
+  "Aynı merchant_oid için iki kez stok düşümü ve iki onay e-postası": "Stock reduced twice and two confirmation emails for one merchant_oid",
+
+  // iyzico-3d-secure-donusu-hata
+  "Dönüş isteği (callbackUrl): status=failure, mdStatus 1 değil": "Return request (callbackUrl): status=failure, mdStatus is not 1",
+  "Dönüş geldi ama 3DS Tamamlama isteği hiç gönderilmemiş": "Return arrived but the 3DS completion request was never sent",
+  "3DS Tamamlama yanıtı: errorCode ve errorMessage dolu": "3DS completion response: errorCode and errorMessage are filled",
+  "Dönüşte oturum yok: sepet boş, kullanıcı çıkış yapmış görünüyor": "No session on return: cart is empty, the user appears logged out",
+
+  // woocommerce-odendi-siparis-bekliyor
+  "Sağlayıcı paneli: ödeme başarılı · WooCommerce: «Ödeme bekliyor»": "Provider panel: payment successful · WooCommerce: 'Pending payment'",
+  "Erişim kaydı: ?wc-api= ile biten bildirim adresine 403 / 503": "Access log: 403 / 503 on the notification URL ending in ?wc-api=",
+  "fatal-errors kaydında ödeme eklentisi hatası": "Payment plugin error in the fatal-errors log",
+  "Sipariş notu: durum eklenti tarafından «Beklemede» yapıldı": "Order note: status set to 'On hold' by the plugin"
 };

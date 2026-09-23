@@ -483,6 +483,24 @@ export const seoData = {
       "desc": "Trivial edits like updating button styles or adding a form field drag on for days, leading clients to assume reluctance."
     }
   },
+  "/teshis/paytr-token-ve-bildirim-hatasi/": { "tr": {
+    "title": "PayTR token hatası ve «Devam Ediyor» | Trend Master Akademi",
+    "desc": "PayTR ödeme çerçevesi açılmıyor ya da ödeme panelde «Devam Ediyor» kalıyor. Token imzası, bildirime «OK» yanıtı ve çift bildirim: ayırt edici test ve çözüm." } },
+  "/diagnostic/paytr-token-ve-bildirim-hatasi/": { "en": {
+    "title": "PayTR Token Error and 'In Progress' | Trend Master Akademi",
+    "desc": "PayTR payment frame won't open, or the payment stays 'In Progress'. Token signature, the 'OK' reply, duplicate notifications: the tests and the fixes." } },
+  "/teshis/iyzico-3d-secure-donusu-hata/": { "tr": {
+    "title": "iyzico 3D Secure dönüşünde hata | Trend Master Akademi",
+    "desc": "Bankadan dönüşte «Sistem hatası oluştu» ya da genel bir hata mesajı. mdStatus, 3DS Tamamlama isteği ve kaybolan oturum: ayırt edici test ve çözüm." } },
+  "/diagnostic/iyzico-3d-secure-donusu-hata/": { "en": {
+    "title": "iyzico 3D Secure Return Error | Trend Master Akademi",
+    "desc": "A generic error after returning from bank verification. mdStatus, the 3DS completion request and a lost session: the test that tells them apart, and the fix." } },
+  "/teshis/woocommerce-odendi-siparis-bekliyor/": { "tr": {
+    "title": "WooCommerce: ödendi, sipariş bekliyor | Trend Master Akademi",
+    "desc": "Ödeme sağlayıcıda başarılı, WooCommerce'te sipariş «Ödeme bekliyor» ya da «Beklemede». Engellenen bildirim, eklenti hatası ve onay süreci: test ve çözüm." } },
+  "/diagnostic/woocommerce-odendi-siparis-bekliyor/": { "en": {
+    "title": "WooCommerce: Paid but Order Pending | Trend Master Akademi",
+    "desc": "Paid at the provider, but the WooCommerce order stays 'Pending payment' or 'On hold'. Blocked notification, plugin error or approval step: tests and fixes." } },
   "/sozluk/": {
     "tr": {
       "title": "Teknik Terimler Sözlüğü | Trend Master Akademi",

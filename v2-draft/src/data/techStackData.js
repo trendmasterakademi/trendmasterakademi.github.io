@@ -25,7 +25,7 @@ export const techStackData = {
         versionRange: "WordPress 6.x · WooCommerce (HPOS dahil)",
         commonIncidents: [
           "Eklenti ya da tema güncellemesinden sonra beyaz ekran (PHP fatal error)",
-          "Ödeme alındı ama sipariş 'Ödeme bekleniyor' durumunda kaldı",
+          "Ödeme alındı ama sipariş 'Ödeme bekliyor' durumunda kaldı",
           "wp_options tablosunda autoload şişmesi ve yavaşlayan yönetim paneli",
           "WP-Cron'a bağlı zamanlanmış işlerin (stok, e-posta, abonelik) çalışmaması"
         ],

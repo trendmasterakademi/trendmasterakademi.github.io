@@ -200,6 +200,11 @@ export default {
     "idempotency",
     "rate-limit"
   ],
+  "ilgiliTeshisler": [
+    "paytr-token-ve-bildirim-hatasi",
+    "iyzico-3d-secure-donusu-hata",
+    "woocommerce-odendi-siparis-bekliyor"
+  ],
   "ilgiliHizmet": {
     "baslik": {
       "tr": "Acil Kriz Müdahalesi & Crash Test",

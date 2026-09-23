@@ -193,6 +193,9 @@ export default {
     "webhook",
     "race-condition"
   ],
+  "ilgiliTeshisler": [
+    "paytr-token-ve-bildirim-hatasi"
+  ],
   "ilgiliHizmet": {
     "baslik": {
       "tr": "Acil Kriz Müdahalesi & Crash Test",

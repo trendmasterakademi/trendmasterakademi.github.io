@@ -1096,5 +1096,167 @@ export const teshisSummaries = [
         }
       }
     ]
+  },
+  {
+    "slug": "paytr-token-ve-bildirim-hatasi",
+    "no": "21",
+    "baslik": {
+      "tr": "PayTR token hatası ve «Devam Ediyor»",
+      "en": "PayTR Token Error and 'In Progress'"
+    },
+    "diyagramBaslik": {
+      "tr": "Token ya da bildirim",
+      "en": "Token or notification"
+    },
+    "kirinti": {
+      "tr": "Sipariş & Ödeme",
+      "en": "Orders & Payments"
+    },
+    "aciliyet": {
+      "seviye": "kritik",
+      "etiket": {
+        "tr": "Kritik · ödeme durdu",
+        "en": "Critical · checkout halted"
+      }
+    },
+    "ozet": {
+      "tr": "PayTR ödeme ekranı açılmıyor ya da müşteri ödüyor ama işlem PayTR panelinde «Devam Ediyor» olarak kalıyor. İki ayrı kopukluk var: ödemeden önce token isteğinde ya da ödemeden sonra bildirim adresinde. Hangisi olduğunu PayTR'nin kendi yanıtı söyler.",
+      "en": "The PayTR payment frame will not open, or the customer pays but the transaction stays 'In Progress' in the PayTR panel. There are two separate breaks: in the token request before payment, or at the notification URL after payment. PayTR's own response tells you which."
+    },
+    "ilgiliTerimler": [
+      "webhook",
+      "idempotency"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Token isteği reddedildi",
+          "en": "Token request rejected"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Bildirime «OK» dönülmüyor",
+          "en": "No 'OK' to the notification"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Bildirim iki kez işlendi",
+          "en": "Notification processed twice"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "iyzico-3d-secure-donusu-hata",
+    "no": "22",
+    "baslik": {
+      "tr": "iyzico 3D Secure dönüşünde hata",
+      "en": "iyzico 3D Secure Return Error"
+    },
+    "diyagramBaslik": {
+      "tr": "3D dönüşü tamamlanmadı",
+      "en": "3DS return not completed"
+    },
+    "kirinti": {
+      "tr": "Sipariş & Ödeme",
+      "en": "Orders & Payments"
+    },
+    "aciliyet": {
+      "seviye": "kritik",
+      "etiket": {
+        "tr": "Kritik · ödeme durdu",
+        "en": "Critical · checkout halted"
+      }
+    },
+    "ozet": {
+      "tr": "Müşteri bankanın doğrulama ekranında kodu girdi, siteye döndüğünde «Sistem hatası oluştu» ya da «beklenmedik bir hata oluştu» gibi genel bir mesajla karşılaştı; bazen sepet de boşaldı. Genel mesajın arkasındaki gerçek sebep, iyzico'nun dönüşte gönderdiği değerlerde ve ödeme tamamlama isteğinin yanıtındadır.",
+      "en": "The customer entered the code on the bank's verification screen and, back on the site, hit a generic message such as 'system error' or 'an unexpected error occurred', sometimes with an emptied cart. The real reason behind the generic message is in the values iyzico sends back on return and in the response to the payment completion request."
+    },
+    "ilgiliTerimler": [
+      "webhook",
+      "idempotency"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Banka doğrulaması geçmedi",
+          "en": "Bank verification failed"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Ödeme tamamlanmadı",
+          "en": "Payment not completed"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Dönüşte oturum kayboldu",
+          "en": "Session lost on return"
+        }
+      }
+    ]
+  },
+  {
+    "slug": "woocommerce-odendi-siparis-bekliyor",
+    "no": "23",
+    "baslik": {
+      "tr": "WooCommerce: ödendi, sipariş bekliyor",
+      "en": "WooCommerce: Paid but Order Pending"
+    },
+    "diyagramBaslik": {
+      "tr": "Ödendi, durum aynı kaldı",
+      "en": "Paid, status unchanged"
+    },
+    "kirinti": {
+      "tr": "Sipariş & Ödeme",
+      "en": "Orders & Payments"
+    },
+    "aciliyet": {
+      "seviye": "kritik",
+      "etiket": {
+        "tr": "Kritik · ticari kayıp",
+        "en": "Critical · commercial loss"
+      }
+    },
+    "ozet": {
+      "tr": "Ödeme sağlayıcısında ödeme başarılı görünüyor ama WooCommerce'te sipariş «Ödeme bekliyor» ya da «Beklemede» durumunda kalıyor. Sipariş hazırlanmıyor ve bir süre sonra kendiliğinden iptal olabiliyor. Sorun çoğunlukla ödeme sonucunun siparişe işlendiği adımdadır.",
+      "en": "The payment provider shows a successful payment, but in WooCommerce the order stays 'Pending payment' or 'On hold'. The order is not fulfilled and may cancel itself after a while. The problem is usually in the step where the payment result is written to the order."
+    },
+    "ilgiliTerimler": [
+      "webhook",
+      "idempotency"
+    ],
+    "nedenler": [
+      {
+        "harf": "A",
+        "ad": {
+          "tr": "Bildirim engellendi",
+          "en": "Notification blocked"
+        }
+      },
+      {
+        "harf": "B",
+        "ad": {
+          "tr": "Eklenti hata verdi",
+          "en": "Plugin error"
+        }
+      },
+      {
+        "harf": "C",
+        "ad": {
+          "tr": "Bilerek beklemeye alındı",
+          "en": "Put on hold on purpose"
+        }
+      }
+    ]
   }
 ];

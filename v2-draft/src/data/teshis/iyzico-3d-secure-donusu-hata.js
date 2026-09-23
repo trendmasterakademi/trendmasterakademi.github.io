@@ -1,0 +1,249 @@
+export default {
+  "slug": "iyzico-3d-secure-donusu-hata",
+  "no": "22",
+  "baslik": {
+    "tr": "iyzico 3D Secure dönüşünde hata",
+    "en": "iyzico 3D Secure Return Error"
+  },
+  "diyagramBaslik": {
+    "tr": "3D dönüşü tamamlanmadı",
+    "en": "3DS return not completed"
+  },
+  "kirinti": {
+    "tr": "Sipariş & Ödeme",
+    "en": "Orders & Payments"
+  },
+  "aciliyet": {
+    "seviye": "kritik",
+    "etiket": {
+      "tr": "Kritik · ödeme durdu",
+      "en": "Critical · checkout halted"
+    }
+  },
+  "ozet": {
+    "tr": "Müşteri bankanın doğrulama ekranında kodu girdi, siteye döndüğünde «Sistem hatası oluştu» ya da «beklenmedik bir hata oluştu» gibi genel bir mesajla karşılaştı; bazen sepet de boşaldı. Genel mesajın arkasındaki gerçek sebep, iyzico'nun dönüşte gönderdiği değerlerde ve ödeme tamamlama isteğinin yanıtındadır.",
+    "en": "The customer entered the code on the bank's verification screen and, back on the site, hit a generic message such as 'system error' or 'an unexpected error occurred', sometimes with an emptied cart. The real reason behind the generic message is in the values iyzico sends back on return and in the response to the payment completion request."
+  },
+  "sahadaNasilGorunur": {
+    "tr": "Hata, banka ekranından siteye dönüş anında çıkar. Müşteri ödemenin gerçekleşip gerçekleşmediğini bilmez ve yeniden dener; destek hattına «param çekildi mi?» sorusu gelir. Ekrandaki mesaj her durumda aynı olduğu için sebep oradan anlaşılmaz.",
+    "en": "The error appears the moment the customer returns from the bank screen to the site. They do not know whether the payment went through and try again; support gets the question 'was I charged?'. The on-screen message is the same in every case, so it says nothing about the cause."
+  },
+  "hataMetinleri": [
+    {
+      "metin": {
+        "tr": "Sistem hatası oluştu",
+        "en": "errorCode 1 / 2: system error"
+      },
+      "nerede": {
+        "tr": "iyzico hata kodu 1 ve 2 — resmî hata kodları listesi",
+        "en": "iyzico error codes 1 and 2 — official error code list"
+      }
+    },
+    {
+      "metin": {
+        "tr": "3D Secure doğrulaması aşamasında hata oluştu",
+        "en": "CALLBACK_3DS / INIT_3DS: error during 3D Secure verification"
+      },
+      "nerede": {
+        "tr": "iyzico hata kodları CALLBACK_3DS ve INIT_3DS",
+        "en": "iyzico error codes CALLBACK_3DS and INIT_3DS"
+      }
+    },
+    {
+      "metin": {
+        "tr": "3dsecure esnasında conversation data decrypt edilemedi",
+        "en": "errorCode 5014: conversation data could not be decrypted during 3D Secure"
+      },
+      "nerede": {
+        "tr": "iyzico hata kodu 5014",
+        "en": "iyzico error code 5014"
+      }
+    }
+  ],
+  "logSatirlari": [
+    "Dönüş isteği (callbackUrl): status=failure, mdStatus 1 değil",
+    "Dönüş geldi ama 3DS Tamamlama isteği hiç gönderilmemiş",
+    "3DS Tamamlama yanıtı: errorCode ve errorMessage dolu",
+    "Dönüşte oturum yok: sepet boş, kullanıcı çıkış yapmış görünüyor"
+  ],
+  "logEslesme": [
+    { "satir": 0, "harf": "A" },
+    { "satir": 1, "harf": "B" },
+    { "satir": 2, "harf": "B" },
+    { "satir": 3, "harf": "C" }
+  ],
+  "logNotu": {
+    "tr": "iyzico dönüşte status, paymentId, conversationId, conversationData ve mdStatus değerlerini gönderir. Bu beş değeri dönüş adresinde kayda yazmak, genel hata mesajının arkasındaki adımı ilk bakışta gösterir.",
+    "en": "On return, iyzico posts status, paymentId, conversationId, conversationData and mdStatus. Logging these five values at the return URL shows at a glance which step sits behind the generic error message."
+  },
+  "nedenler": [
+    {
+      "harf": "A",
+      "ad": {
+        "tr": "Banka doğrulaması geçmedi",
+        "en": "Bank verification failed"
+      },
+      "aciklama": {
+        "tr": "Dönüşte mdStatus 1 değilse kart sahibi ya da banka doğrulamayı tamamlamamıştır. iyzico dokümanı her değerin anlamını verir; örneğin 0 geçersiz doğrulama, 5 doğrulama yapılamıyor, 7 sistem hatası demektir. Bu, sitenin kodunda bir hata değildir; müşteriye doğru mesajı göstermek gerekir.",
+        "en": "If mdStatus is not 1 on return, the cardholder or the bank did not complete verification. iyzico's documentation lists what each value means: for example 0 is an invalid verification, 5 means verification could not be performed, 7 is a system error. This is not a bug in the site's code; the customer needs to see the right message."
+      },
+      "kanit": {
+        "tr": "mdStatus 1 değil → A",
+        "en": "mdStatus is not 1 → A"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Hata görülünce ödeme kodu değiştirilir; oysa sorun kartta ya da bankadadır, kod değişikliği çalışan akışı bozar ve müşteri yine genel bir mesaj görür.",
+        "en": "The payment code gets changed when the error shows up; but the problem is with the card or the bank, the change breaks a working flow, and the customer still sees a generic message."
+      },
+      "diyagramAd": {
+        "tr": "Banka onaylamadı",
+        "en": "Bank declined 3DS"
+      },
+      "diyagramTest": {
+        "tr": ["Dönüşte", "mdStatus 1'den", "farklı mı?"],
+        "en": ["Is mdStatus", "anything other", "than 1?"]
+      },
+      "diyagramCozum": {
+        "tr": ["Anlamlı mesaj", "göster"],
+        "en": ["Show a clear", "message"]
+      }
+    },
+    {
+      "harf": "B",
+      "ad": {
+        "tr": "Ödeme tamamlanmadı",
+        "en": "Payment not completed"
+      },
+      "aciklama": {
+        "tr": "Doğrulama başarılı döndü ama site 3DS Tamamlama isteğini göndermedi ya da eksik gönderdi. iyzico dokümanına göre ödeme bu istekle kesinleşir; dönüşte conversationData geldiyse bu isteğe eklenmelidir. Tamamlama yanıtındaki errorCode ve errorMessage hangi adımın düştüğünü söyler.",
+        "en": "Verification came back successful, but the site did not send the 3DS completion request, or sent it incomplete. According to iyzico's documentation the payment is finalised by this request, and if conversationData came back on return it must be included. The errorCode and errorMessage in the completion response tell you which step failed."
+      },
+      "kanit": {
+        "tr": "Dönüş var, tamamlama yok ya da hatalı → B",
+        "en": "Return present, completion missing or failed → B"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Dönüşte doğrulama başarılıysa sipariş doğrudan onaylanır; tamamlama isteği atlandığı için ödeme kesinleşmemiş olur ve sipariş parası alınmadan hazırlanır.",
+        "en": "The order is confirmed as soon as verification succeeds on return; with the completion request skipped, the payment is never finalised and the order is fulfilled without being paid."
+      },
+      "diyagramAd": {
+        "tr": "Tamamlanmadı",
+        "en": "Not completed"
+      },
+      "diyagramTest": {
+        "tr": ["mdStatus 1 ama", "tamamlama isteği", "yok ya da hatalı?"],
+        "en": ["mdStatus is 1 but", "completion call", "missing or failed?"]
+      },
+      "diyagramCozum": {
+        "tr": ["Tamamlama isteğini", "conversationData", "ile gönder"],
+        "en": ["Send completion", "with", "conversationData"]
+      }
+    },
+    {
+      "harf": "C",
+      "ad": {
+        "tr": "Dönüşte oturum kayboldu",
+        "en": "Session lost on return"
+      },
+      "aciklama": {
+        "tr": "Banka ekranından siteye dönüş, başka bir siteden gelen bir form gönderimidir (POST). Tarayıcılar SameSite=Lax olarak işaretlenmiş çerezleri bu tür isteklerle göndermez. Oturum çerezi bu ayardaysa site dönüşte kullanıcıyı ve sepeti tanımaz, sipariş eşlenemez.",
+        "en": "The return from the bank screen to the site is a form submission (POST) coming from another site. Browsers do not send cookies marked SameSite=Lax with such requests. If the session cookie uses this setting, the site does not recognise the user or the cart on return, and the order cannot be matched."
+      },
+      "kanit": {
+        "tr": "Dönüşte oturum yok, sepet boş → C",
+        "en": "No session and empty cart on return → C"
+      },
+      "yanlisDuzeltme": {
+        "tr": "Oturum bulunamayınca müşteri giriş sayfasına yönlendirilir; dönüşte gelen ödeme bilgisi bu yönlendirmede kaybolur ve sipariş hiç eşlenmez.",
+        "en": "When no session is found, the customer is redirected to the login page; the payment data posted on return is lost in that redirect and the order is never matched."
+      },
+      "diyagramAd": {
+        "tr": "Oturum kayboldu",
+        "en": "Session lost"
+      },
+      "diyagramTest": {
+        "tr": ["Dönüşte sepet", "boş, oturum", "yok mu?"],
+        "en": ["Cart empty and", "session gone", "on return?"]
+      },
+      "diyagramCozum": {
+        "tr": ["Siparişi oturumla", "değil, kimlikle", "eşle"],
+        "en": ["Match the order", "by ID, not by", "session"]
+      }
+    }
+  ],
+  "kimCozer": {
+    "tr": "Ödeme entegrasyonunu bilen backend mühendisi. Dönüş adresinin gelen değerleri kaydetmesi, mdStatus'a göre anlamlı mesaj göstermesi, 3DS Tamamlama isteğini eksiksiz göndermesi ve siparişi oturumla değil kimlikle eşlemesi gerekir.",
+    "en": "A backend engineer who knows payment integrations. The return URL has to log the incoming values, show a meaningful message based on mdStatus, send the 3DS completion request in full, and match the order by ID rather than by session."
+  },
+  "cozulmezse": {
+    "tr": "Müşteri ödemenin geçip geçmediğini bilmeden yeniden dener ya da vazgeçer. Genel hata mesajı sorunun yerini gizlediği için aynı kayıp her gün tekrarlanır ve yalnız şikâyet gelince fark edilir.",
+    "en": "Customers retry or give up without knowing whether they were charged. Because the generic message hides where the problem is, the same loss repeats every day and is noticed only when complaints arrive."
+  },
+  "kontrolAdimlari": {
+    "tr": [
+      "Dönüş adresine gelen status ve mdStatus değerlerini kayıtta bulun. mdStatus 1 değilse sorun kartta ya da bankadadır, kodda değil.",
+      "mdStatus 1 ise 3DS Tamamlama isteğinin gönderilip gönderilmediğine ve yanıtındaki errorCode ile errorMessage'a bakın.",
+      "errorCode'u iyzico'nun resmî hata kodları listesinde arayın; ekrandaki genel mesaj yerine bu kodu esas alın.",
+      "Dönüşte sepet boşalıyorsa tarayıcının geliştirici araçlarında oturum çerezinin SameSite ayarına bakın.",
+      "iyzico panelinde aynı siparişe ait ödeme kaydı olup olmadığına bakın. Varsa sipariş bu kayıtla eşlenmeden müşteriden yeniden ödeme istemeyin."
+    ],
+    "en": [
+      "Find the status and mdStatus values posted to the return URL in your logs. If mdStatus is not 1, the problem is with the card or the bank, not the code.",
+      "If mdStatus is 1, check whether the 3DS completion request was sent, and read the errorCode and errorMessage in its response.",
+      "Look the errorCode up in iyzico's official error code list; rely on that code, not on the generic on-screen message.",
+      "If the cart empties on return, check the SameSite setting of the session cookie in the browser's developer tools.",
+      "Check the iyzico panel for a payment record belonging to the same order. If there is one, do not ask the customer to pay again before the order is matched to it."
+    ]
+  },
+  "devirNoktasi": {
+    "tr": "3DS Tamamlama isteği ya da dönüş adresinin kodu değiştirilecekse, çerez ayarı canlıdaki oturumları etkileyecekse ya da ödeme kaydı olup siparişi olmayan müşteriler varsa devredin.",
+    "en": "Hand it over if the 3DS completion request or the return URL code has to change, if a cookie setting will affect live sessions, or if there are customers with a payment record but no order."
+  },
+  "resmiKaynaklar": [
+    {
+      "ad": {
+        "tr": "iyzico — Hata Kodları",
+        "en": "iyzico error codes (in Turkish)"
+      },
+      "url": {
+        "tr": "https://docs.iyzico.com/ek-bilgiler/hata-kodlari",
+        "en": "https://docs.iyzico.com/ek-bilgiler/hata-kodlari"
+      }
+    },
+    {
+      "ad": {
+        "tr": "iyzico — 3DS Entegrasyonu (dönüş değerleri ve mdStatus)",
+        "en": "iyzico 3DS Implementation (return values and mdStatus)"
+      },
+      "url": {
+        "tr": "https://docs.iyzico.com/odeme-metotlari/api/3ds/3ds-entegrasyonu",
+        "en": "https://docs.iyzico.com/en/payment-methods/api/3ds/3ds-implementation"
+      }
+    },
+    {
+      "ad": {
+        "tr": "MDN — Set-Cookie ve SameSite (İngilizce)",
+        "en": "MDN — Set-Cookie and SameSite"
+      },
+      "url": {
+        "tr": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie",
+        "en": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie"
+      }
+    }
+  ],
+  "ilgiliTerimler": [
+    "webhook",
+    "idempotency"
+  ],
+  "ilgiliTeshisler": [
+    "odeme-alindi-siparis-olusmadi",
+    "woocommerce-odendi-siparis-bekliyor"
+  ],
+  "ilgiliHizmet": {
+    "baslik": {
+      "tr": "Acil Kriz Müdahalesi & Crash Test",
+      "en": "Emergency Incident Triage & Crash Test"
+    },
+    "link": "/crash-test/"
+  }
+};
