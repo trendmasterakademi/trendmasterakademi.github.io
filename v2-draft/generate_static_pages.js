@@ -4057,4 +4057,107 @@ function verifyH1Integrity() {
 
 verifyH1Integrity();
 
+// =========================================================================
+// 3.9 — GERÇEK DERLEME KORUMASI: RENK KONTRASTI VE SEMANTİK TOKEN BÜTÜNLÜĞÜ
+// Guard A: index.css içinde zorunlu semantik tokenların eksiksiz tanımlanması
+// Guard B: src/ altındaki tüm .jsx dosyalarında ve generate_static_pages.js içinde sabit Tailwind renk sınıfları yasağı
+// Guard C: bg-[var(--accent)] ve bg-[var(--sev-ok)] üzerinde text-white yerine semantik --on-* kullanımı
+// =========================================================================
+function verifyColorIntegrity() {
+  console.log('\n[BUILD GUARD RENK] Renk Kontrastı ve Semantik Token Derleme Koruması Çalıştırılıyor...');
+
+  const errors = [];
+
+  // 1. index.css içinde semantik token kontrolü
+  const cssPath = path.join(__dirname, 'src/index.css');
+  if (!fs.existsSync(cssPath)) {
+    console.error('[BUILD GUARD RENK HATA] src/index.css dosyası bulunamadı!');
+    process.exit(1);
+  }
+  const cssContent = fs.readFileSync(cssPath, 'utf8');
+  const requiredTokens = [
+    '--on-accent',
+    '--on-sev-ok',
+    '--term-dim',
+    '--tint-ok-bg',
+    '--tint-ok-ink',
+    '--tint-ok-rule',
+    '--tint-warn-bg',
+    '--tint-warn-ink',
+    '--tint-warn-rule',
+    '--tint-danger-bg',
+    '--tint-danger-ink',
+    '--tint-danger-rule',
+    '--tint-info-bg',
+    '--tint-info-ink',
+    '--tint-info-rule'
+  ];
+
+  for (const token of requiredTokens) {
+    if (!cssContent.includes(token)) {
+      errors.push(`src/index.css içinde zorunlu token eksik: ${token}`);
+    }
+  }
+
+  // 2. src/ altındaki tüm JSX dosyaları ve generate_static_pages.js içinde sabit renk sınıfları taraması
+  function getJsxFiles(dir) {
+    let files = [];
+    if (!fs.existsSync(dir)) return files;
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const ent of entries) {
+      const full = path.join(dir, ent.name);
+      if (ent.isDirectory()) files = files.concat(getJsxFiles(full));
+      else if (ent.name.endsWith('.jsx')) files.push(full);
+    }
+    return files;
+  }
+
+  const filesToScan = [
+    ...getJsxFiles(path.join(__dirname, 'src')),
+    __filename
+  ];
+
+  // Yasaklı sabit Tailwind renk sınıfları
+  const forbiddenColorRegex = /\b(bg|text|border)-(emerald|rose|amber|green|red|yellow|blue|purple|slate|gray|zinc|neutral|stone)-[0-9]+\b/g;
+
+  // Yasaklı text-white doğrudan accent üzerinde
+  const accentTextWhiteRegex = /bg-\[var\(--(accent|sev-ok)\)\][^"']*?\btext-white\b/g;
+
+  filesToScan.forEach(file => {
+    const rel = path.relative(__dirname, file).replace(/\\/g, '/');
+    const content = fs.readFileSync(file, 'utf8');
+
+    // Eğer generate_static_pages.js ise, verifyColorIntegrity fonksiyonunun kendi kodunu ve yorumunu tarama dışı bırakıyoruz.
+    let contentToScan = content;
+    if (file === __filename) {
+      const guardStart = content.indexOf('3.9 — GERÇEK DERLEME KORUMASI: RENK KONTRASTI');
+      if (guardStart !== -1) {
+        contentToScan = content.slice(0, guardStart);
+      }
+    }
+
+    // Sabit renk sınıfı kontrolü
+    const colorMatches = contentToScan.match(forbiddenColorRegex);
+    if (colorMatches) {
+      errors.push(`${rel} dosyasında yasaklı sabit Tailwind renk sınıfı tespit edildi: ${[...new Set(colorMatches)].join(', ')}`);
+    }
+
+    // Accent üzerinde text-white kontrolü
+    const accentMatches = contentToScan.match(accentTextWhiteRegex);
+    if (accentMatches) {
+      errors.push(`${rel} dosyasında aksan/onay zemini üzerinde doğrudan text-white tespit edildi (text-[var(--on-accent)] veya text-[var(--on-sev-ok)] kullanılmalı)`);
+    }
+  });
+
+  if (errors.length > 0) {
+    console.error(`\n[BUILD GUARD RENK HATA] Renk kontrast bütünlüğü koruması ${errors.length} hata ile başarısız oldu:`);
+    errors.forEach(err => console.error(`  - ${err}`));
+    process.exit(1);
+  }
+
+  console.log(`[BUILD GUARD RENK GEÇTİ] Tüm 15 semantik token mevcut, ${filesToScan.length} dosyada 0 sabit renk sınıfı ve 0 kontrast ihlali doğrulandı.`);
+}
+
+verifyColorIntegrity();
+
 
