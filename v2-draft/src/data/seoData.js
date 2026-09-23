@@ -687,4 +687,9 @@ export const seoData = {
   }
 };
 
+export const ogImageAlt = {
+  tr: "Trend Master Akademi — Ajanslar için white-label mühendislik ve acil kod kurtarma masası",
+  en: "Trend Master Akademi - B2B Technical SWAT & White-Label Engineering Studio"
+};
+
 export default seoData;

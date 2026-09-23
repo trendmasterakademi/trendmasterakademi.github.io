@@ -16,7 +16,7 @@ import { radarData, radarH1 } from './src/data/radarData.js';
 import { codeHealthData, codeHealthH1 } from './src/data/codeHealthData.js';
 import { rescueRoiData, rescueRoiH1 } from './src/data/rescueRoiData.js';
 import { agencyKitData, agencyKitH1, crashTestH1 } from './src/data/agencyKitData.js';
-import { seoData } from './src/data/seoData.js';
+import { seoData, ogImageAlt } from './src/data/seoData.js';
 import { agencyH1, handoverAuditH1, downtimeCostH1, aboutH1, storyH1, salvageabilityH1, teshisCatalogH1, sosH1, privacyH1 } from './src/data/pageH1Data.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -3411,6 +3411,8 @@ pages.forEach(page => {
   html = html.replace(/<meta property="og:url" content=".*?" \/>/i, `<meta property="og:url" content="${escapeHtml(page.ogUrl)}" />`);
   html = html.replace(/<meta property="og:description" content=".*?" \/>/i, `<meta property="og:description" content="${escapeHtml(page.description)}" />`);
   html = html.replace(/<meta property="og:image" content=".*?" \/>/i, `<meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />`);
+  const currentOgImageAlt = page.lang === 'en' ? ogImageAlt.en : ogImageAlt.tr;
+  html = html.replace(/<meta property="og:image:alt" content=".*?" \/>/i, `<meta property="og:image:alt" content="${escapeHtml(currentOgImageAlt)}" />`);
   html = html.replace(/<meta property="og:locale" content=".*?" \/>/i, `<meta property="og:locale" content="${ogLocale}" />`);
 
   // Replace Twitter Title & URL
