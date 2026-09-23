@@ -344,7 +344,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   <div className="pt-2 flex flex-wrap gap-2">
                     <a
                       href="tel:+905343713573"
-                      className="flex-1 min-w-[140px] px-3 py-2 bg-[#25D366] text-white font-semibold font-mono text-xs rounded-lg flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
+                      className="flex-1 min-w-[140px] px-3 py-2 bg-[var(--sev-ok)] text-[var(--on-sev-ok)] font-semibold font-mono text-xs rounded-lg flex items-center justify-center gap-1.5 transition-colors cursor-pointer"
                     >
                       <PhoneCall className="w-3.5 h-3.5" />
                       <span>{isTr ? 'Kriz Masasını Ara' : 'Call Response Desk'}</span>

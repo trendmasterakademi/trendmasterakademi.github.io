@@ -18,8 +18,14 @@
   /* Aksan — sayfadaki TEK aksan */
   --accent:       #B21F2B;   /* koyulaştırılmış kiremit kırmızısı */
   --accent-ink:   #8E1A23;   /* açık zeminde aksan metni (kontrast için) */
+  --accent-hover: #8E1A23;   /* açık: üstünde --on-accent #FFF -> 9,04 · sayfa zemininde 7,57 */
   --accent-wash:  #F6E7E8;   /* aksan tonlu zemin */
   --on-accent:    #FFFFFF;   /* açık: #B21F2B üstünde 6,72 : 1 */
+
+  /* WhatsApp & İletişim */
+  --wa:           #25D366;
+  --on-wa:        #15181E;   /* --wa üstünde 8,96:1 */
+  --wa-logo:      #FFFFFF;
 
   /* Terminal bandı — yalnız log / kod / hata çıktısı */
   --term-bg:      #0E1116;
@@ -95,8 +101,14 @@
 
     --accent:       #E4636C;
     --accent-ink:   #F08D94;
+    --accent-hover: #F08D94;   /* koyu: üstünde --on-accent #15181E -> 7,57 · sayfa zemininde 7,57 */
     --accent-wash:  #2A1619;
     --on-accent:    #15181E;   /* koyu: #E4636C üstünde 5,33 : 1 */
+
+    /* WhatsApp & İletişim */
+    --wa:           #25D366;
+    --on-wa:        #15181E;
+    --wa-logo:      #FFFFFF;
 
     --term-bg:      #0E1116;
     --term-bg-2:    #0E1116;
@@ -148,8 +160,14 @@
 
   --accent:       #E4636C;
   --accent-ink:   #F08D94;
+  --accent-hover: #F08D94;   /* koyu: üstünde --on-accent #15181E -> 7,57 · sayfa zemininde 7,57 */
   --accent-wash:  #2A1619;
   --on-accent:    #15181E;   /* koyu: #E4636C üstünde 5,33 : 1 */
+
+  /* WhatsApp & İletişim */
+  --wa:           #25D366;
+  --on-wa:        #15181E;
+  --wa-logo:      #FFFFFF;
 
   --term-bg:      #0E1116;
   --term-bg-2:    #0E1116;
@@ -200,8 +218,14 @@
 
   --accent:       #B21F2B;
   --accent-ink:   #8E1A23;
+  --accent-hover: #8E1A23;   /* açık: üstünde --on-accent #FFF -> 9,04 · sayfa zemininde 7,57 */
   --accent-wash:  #F6E7E8;
   --on-accent:    #FFFFFF;   /* açık: #B21F2B üstünde 6,72 : 1 */
+
+  /* WhatsApp & İletişim */
+  --wa:           #25D366;
+  --on-wa:        #15181E;   /* --wa üstünde 8,96:1 */
+  --wa-logo:      #FFFFFF;
 
   --term-bg:      #0E1116;
   --term-bg-2:    #0E1116;

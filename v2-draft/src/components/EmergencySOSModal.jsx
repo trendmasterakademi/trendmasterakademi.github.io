@@ -219,7 +219,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'sos_success_screen' })}
-                  className="px-6 py-3 rounded-lg bg-[#25D366] text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-sm min-h-[44px]"
+                  className="px-6 py-3 rounded-lg bg-[var(--wa)] text-[var(--on-wa)] font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-sm min-h-[44px]"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>{isTr ? 'WhatsApp Mesajını Aç' : 'Open WhatsApp'}</span>
@@ -252,7 +252,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   target="_blank"
                   rel="noreferrer"
                   onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'sos_error_fallback' })}
-                  className="px-7 py-3.5 rounded-lg bg-[#25D366] text-white font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-sm min-h-[44px]"
+                  className="px-7 py-3.5 rounded-lg bg-[var(--wa)] text-[var(--on-wa)] font-semibold text-xs sm:text-sm flex items-center gap-2 shadow-sm min-h-[44px]"
                 >
                   <MessageSquare className="w-4 h-4" />
                   <span>{isTr ? 'WhatsApp ile Anında Gönder (Tek Tıkla)' : 'Send via WhatsApp (One-Click)'}</span>
@@ -427,7 +427,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                     className="btn-secondary min-h-[44px] flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold"
                     title="WhatsApp ile İletişim"
                   >
-                    <MessageSquare className="w-4 h-4 text-[#25D366] shrink-0" />
+                    <MessageSquare className="w-4 h-4 text-[var(--wa)] shrink-0" />
                     <span>WhatsApp</span>
                   </a>
                   <a
