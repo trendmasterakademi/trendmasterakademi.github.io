@@ -77,9 +77,17 @@ export default function StatusRadar({ lang = "tr" }) {
             >
               <div className="flex items-center justify-between">
                 <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
-                <span className="text-xs font-mono text-emerald-800 px-2 py-0.5 rounded bg-emerald-50 border border-emerald-200">
-                  {comp.uptime}
-                </span>
+                {comp.metric && (
+                  comp.metricLink ? (
+                    <Link to={comp.metricLink} className="text-xs font-mono text-[var(--ink-2)] hover:underline">
+                      {comp.metric}
+                    </Link>
+                  ) : (
+                    <span className="text-xs font-mono text-[var(--ink-2)]">
+                      {comp.metric}
+                    </span>
+                  )
+                )}
               </div>
               <div>
                 <h3 className="text-sm font-semibold text-[var(--ink)] tracking-tight">{comp.name}</h3>
