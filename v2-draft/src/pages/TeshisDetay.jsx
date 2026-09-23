@@ -7,6 +7,7 @@ import { setPageSeo } from '../utils/pageTitle';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
 import { diagnosticLogEnMap } from '../data/diagnosticLogEnMap';
+import { teshisSummaries } from '../data/teshis/indexSummary.js';
 
 // Dynamic code-split loaders: Each diagnostic chunk is loaded strictly on demand!
 const teshisModules = import.meta.glob(['../data/teshis/*.js', '!../data/teshis/indexSummary.js', '!../data/teshis/count.js']);
@@ -200,6 +201,28 @@ const TeshisDetay = () => {
                 </p>
               </div>
             )}
+
+            {teshis.hataMetinleri && teshis.hataMetinleri.length > 0 && (
+              <div className="pt-4 border-t border-[var(--rule)] space-y-3">
+                <h2 className="text-xs sm:text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)]">
+                  {isTr ? 'Ekranda gördüğünüz metin' : 'What you see on screen'}
+                </h2>
+                <div className="space-y-3">
+                  {teshis.hataMetinleri.map((hm, idx) => (
+                    <div key={idx} className="space-y-1">
+                      <div className="p-3 rounded-xl bg-[var(--term-bg)] border border-[var(--rule)] font-mono text-xs sm:text-sm text-[var(--term-ink)] overflow-x-auto whitespace-pre">
+                        <code>{hm.metin?.[lang] || hm.metin?.tr || ''}</code>
+                      </div>
+                      {(hm.nerede?.[lang] || hm.nerede?.tr) && (
+                        <p className="text-xs text-[var(--ink-3)] font-sans">
+                          {hm.nerede[lang] || hm.nerede.tr}
+                        </p>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Kriz Şeridi (Konum 1: Başlık + özet altı, log satırları üstü) */}
@@ -309,6 +332,38 @@ const TeshisDetay = () => {
             </div>
           </section>
 
+          {/* Section: İlk 10 dakikada kendiniz kontrol edin */}
+          {teshis.kontrolAdimlari && (teshis.kontrolAdimlari[lang] || teshis.kontrolAdimlari.tr)?.length > 0 && (
+            <section className="space-y-3">
+              <h2 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)]">
+                {isTr ? 'İlk 10 dakikada kendiniz kontrol edin' : 'Check it yourself in the first 10 minutes'}
+              </h2>
+              <div className="border border-[var(--rule)] rounded-2xl p-5 sm:p-6 bg-[var(--paper)]">
+                <ol className="list-decimal list-inside space-y-2 text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
+                  {(teshis.kontrolAdimlari[lang] || teshis.kontrolAdimlari.tr).map((step, idx) => (
+                    <li key={idx}>
+                      <span className="font-sans text-[var(--ink)]">{step}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </section>
+          )}
+
+          {/* Section: Ne zaman devretmeli? */}
+          {teshis.devirNoktasi && (teshis.devirNoktasi[lang] || teshis.devirNoktasi.tr) && (
+            <section className="space-y-3">
+              <h2 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)]">
+                {isTr ? 'Ne zaman devretmeli?' : 'When to hand it over'}
+              </h2>
+              <div className="border border-[var(--rule)] rounded-2xl p-5 sm:p-6 bg-[var(--surface)]">
+                <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
+                  {teshis.devirNoktasi[lang] || teshis.devirNoktasi.tr}
+                </p>
+              </div>
+            </section>
+          )}
+
           {/* Section 4: Kim çözer / Çözülmezse */}
           <section className="space-y-3">
             <h2 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)]">
@@ -336,32 +391,84 @@ const TeshisDetay = () => {
             </div>
           </section>
 
+          {/* Section: Resmî dokümanlar */}
+          {teshis.resmiKaynaklar && teshis.resmiKaynaklar.length > 0 && (
+            <section className="space-y-3">
+              <h2 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)]">
+                {isTr ? 'Resmî dokümanlar' : 'Official documentation'}
+              </h2>
+              <ul className="space-y-2 font-mono text-xs sm:text-sm">
+                {teshis.resmiKaynaklar.map((rk, idx) => {
+                  const ad = rk.ad?.[lang] || rk.ad?.tr || '';
+                  const url = rk.url?.[lang] || rk.url?.tr || '';
+                  return (
+                    <li key={idx}>
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[var(--accent)] hover:underline inline-flex items-center gap-1.5"
+                      >
+                        <span>→ {ad}</span>
+                      </a>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          )}
+
           {/* Kriz Şeridi (Konum 2: Kim çözer / Çözülmezse altı, alt çipler üstü) */}
           <KrizSeridi teshis={teshis} isTr={isTr} lang={lang} krizHattiAcik={krizHattiAcik} />
 
           {/* Bottom Chips & CTA */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-6 border-t border-[var(--rule)]">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-mono text-[var(--ink-3)] mr-1">
-                {isTr ? 'İlgili Terimler:' : 'Related Terms:'}
-              </span>
-              {teshis.ilgiliTerimler.map((termSlug) => (
-                <Link
-                  key={termSlug}
-                  to={isTr ? `/sozluk/${termSlug}/` : `/glossary/${termSlug}/`}
-                  className="px-3 py-1.5 rounded-lg border border-[var(--rule)] bg-[var(--paper)] font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors min-h-[44px] inline-flex items-center"
-                >
-                  {termSlug}
-                </Link>
-              ))}
+          <div className="space-y-4 pt-6 border-t border-[var(--rule)]">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="text-xs font-mono text-[var(--ink-3)] mr-1">
+                  {isTr ? 'İlgili Terimler:' : 'Related Terms:'}
+                </span>
+                {teshis.ilgiliTerimler.map((termSlug) => (
+                  <Link
+                    key={termSlug}
+                    to={isTr ? `/sozluk/${termSlug}/` : `/glossary/${termSlug}/`}
+                    className="px-3 py-1.5 rounded-lg border border-[var(--rule)] bg-[var(--paper)] font-mono text-xs text-[var(--ink)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors min-h-[44px] inline-flex items-center"
+                  >
+                    {termSlug}
+                  </Link>
+                ))}
+              </div>
+
+              <Link
+                to={teshis.ilgiliHizmet?.link || '/crash-test/'}
+                className="btn-primary min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm font-semibold"
+              >
+                <span>{isTr ? 'Ücretsiz teşhis alın →' : 'Get a free triage →'}</span>
+              </Link>
             </div>
 
-            <Link
-              to={teshis.ilgiliHizmet?.link || '/crash-test/'}
-              className="btn-primary min-h-[44px] inline-flex items-center gap-2 text-xs sm:text-sm font-semibold"
-            >
-              <span>{isTr ? 'Ücretsiz teşhis alın →' : 'Get a free triage →'}</span>
-            </Link>
+            {teshis.ilgiliTeshisler && teshis.ilgiliTeshisler.length > 0 && (
+              <div className="pt-4 border-t border-[var(--rule)] space-y-2">
+                <span className="text-xs font-mono text-[var(--ink-3)] block">
+                  {isTr ? 'İlgili teşhisler:' : 'Related diagnostics:'}
+                </span>
+                <div className="flex flex-wrap items-center gap-2">
+                  {teshis.ilgiliTeshisler.map((tSlug) => {
+                    const target = teshisSummaries.find((s) => s.slug === tSlug);
+                    const title = target ? (target.baslik?.[lang] || target.baslik?.tr || tSlug) : tSlug;
+                    return (
+                      <Link
+                        key={tSlug}
+                        to={isTr ? `/teshis/${tSlug}/` : `/diagnostic/${tSlug}/`}
+                        className="px-3 py-1.5 rounded-lg border border-[var(--rule)] bg-[var(--paper)] font-sans text-xs sm:text-sm text-[var(--ink)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-colors min-h-[44px] inline-flex items-center"
+                      >
+                        → {title}
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
           </div>
 
         </div>

@@ -2970,10 +2970,139 @@ const teshisPages = teshisData.flatMap(item => {
     `
     : '';
 
+  const hataMetinleriHtmlTr = item.hataMetinleri && item.hataMetinleri.length > 0
+    ? `
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Ekranda gördüğünüz metin</h2>
+        <div class="space-y-2">
+          ${item.hataMetinleri.map(hm => `
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>${escapeHtml(hm.metin?.tr || '')}</code>
+              </div>
+              ${hm.nerede?.tr ? `<p class="text-xs text-[var(--ink-3)]">${escapeHtml(hm.nerede.tr)}</p>` : ''}
+            </div>
+          `).join('\n          ')}
+        </div>
+      </section>
+    `
+    : '';
+
+  const hataMetinleriHtmlEn = item.hataMetinleri && item.hataMetinleri.length > 0
+    ? `
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">What you see on screen</h2>
+        <div class="space-y-2">
+          ${item.hataMetinleri.map(hm => `
+            <div class="space-y-1">
+              <div class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--ink)] overflow-x-auto">
+                <code>${escapeHtml(hm.metin?.en || hm.metin?.tr || '')}</code>
+              </div>
+              ${(hm.nerede?.en || hm.nerede?.tr) ? `<p class="text-xs text-[var(--ink-3)]">${escapeHtml(hm.nerede?.en || hm.nerede?.tr || '')}</p>` : ''}
+            </div>
+          `).join('\n          ')}
+        </div>
+      </section>
+    `
+    : '';
+
+  const kontrolAdimlariHtmlTr = item.kontrolAdimlari?.tr && item.kontrolAdimlari.tr.length > 0
+    ? `
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">İlk 10 dakikada kendiniz kontrol edin</h2>
+        <ol class="list-decimal list-inside space-y-2 text-[var(--ink-3)] text-sm">
+          ${item.kontrolAdimlari.tr.map(step => `<li>${escapeHtml(step)}</li>`).join('\n          ')}
+        </ol>
+      </section>
+    `
+    : '';
+
+  const kontrolAdimlariHtmlEn = (item.kontrolAdimlari?.en || item.kontrolAdimlari?.tr) && (item.kontrolAdimlari.en || item.kontrolAdimlari.tr).length > 0
+    ? `
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Check it yourself in the first 10 minutes</h2>
+        <ol class="list-decimal list-inside space-y-2 text-[var(--ink-3)] text-sm">
+          ${(item.kontrolAdimlari.en || item.kontrolAdimlari.tr).map(step => `<li>${escapeHtml(step)}</li>`).join('\n          ')}
+        </ol>
+      </section>
+    `
+    : '';
+
+  const devirNoktasiHtmlTr = item.devirNoktasi?.tr
+    ? `
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Ne zaman devretmeli?</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">${escapeHtml(item.devirNoktasi.tr)}</p>
+      </section>
+    `
+    : '';
+
+  const devirNoktasiHtmlEn = (item.devirNoktasi?.en || item.devirNoktasi?.tr)
+    ? `
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">When to hand it over</h2>
+        <p class="text-[var(--ink-3)] leading-relaxed">${escapeHtml(item.devirNoktasi.en || item.devirNoktasi.tr)}</p>
+      </section>
+    `
+    : '';
+
+  const resmiKaynaklarHtmlTr = item.resmiKaynaklar && item.resmiKaynaklar.length > 0
+    ? `
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Resmî dokümanlar</h2>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          ${item.resmiKaynaklar.map(rk => `<li><a href="${escapeHtml(rk.url?.tr || rk.url)}" target="_blank" rel="noopener noreferrer" class="hover:underline">→ ${escapeHtml(rk.ad?.tr || '')}</a></li>`).join('\n          ')}
+        </ul>
+      </section>
+    `
+    : '';
+
+  const resmiKaynaklarHtmlEn = item.resmiKaynaklar && item.resmiKaynaklar.length > 0
+    ? `
+      <section class="space-y-2">
+        <h2 class="text-xl font-bold text-[var(--ink)]">Official documentation</h2>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          ${item.resmiKaynaklar.map(rk => `<li><a href="${escapeHtml(rk.url?.en || rk.url?.tr || rk.url)}" target="_blank" rel="noopener noreferrer" class="hover:underline">→ ${escapeHtml(rk.ad?.en || rk.ad?.tr || '')}</a></li>`).join('\n          ')}
+        </ul>
+      </section>
+    `
+    : '';
+
+  const ilgiliTeshislerHtmlTr = item.ilgiliTeshisler && item.ilgiliTeshisler.length > 0
+    ? `
+      <div class="pt-2">
+        <h3 class="text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)] mb-2">İlgili teşhisler</h3>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          ${item.ilgiliTeshisler.map(tSlug => {
+            const target = teshisData.find(d => d.slug === tSlug);
+            const title = target ? target.baslik?.tr : tSlug;
+            return `<li><a href="/teshis/${escapeHtml(tSlug)}/" class="hover:underline">→ ${escapeHtml(title)}</a></li>`;
+          }).join('\n          ')}
+        </ul>
+      </div>
+    `
+    : '';
+
+  const ilgiliTeshislerHtmlEn = item.ilgiliTeshisler && item.ilgiliTeshisler.length > 0
+    ? `
+      <div class="pt-2">
+        <h3 class="text-sm font-mono font-semibold uppercase tracking-wider text-[var(--accent)] mb-2">Related diagnostics</h3>
+        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
+          ${item.ilgiliTeshisler.map(tSlug => {
+            const target = teshisData.find(d => d.slug === tSlug);
+            const title = target ? (target.baslik?.en || target.baslik?.tr) : tSlug;
+            return `<li><a href="/diagnostic/${escapeHtml(tSlug)}/" class="hover:underline">→ ${escapeHtml(title)}</a></li>`;
+          }).join('\n          ')}
+        </ul>
+      </div>
+    `
+    : '';
+
   const trExtraContent = `
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Aciliyet: ${escapeHtml(item.aciliyet?.etiket?.tr || '')} · Kategori: ${escapeHtml(item.kirinti?.tr || '')}</p>
 ${sahadaHtmlTr}
+${hataMetinleriHtmlTr}
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-[var(--ink)]">Sisteminizde bu satırları görüyorsanız</h2>
         ${logRowsHtmlTr}
@@ -2984,7 +3113,8 @@ ${sahadaHtmlTr}
         <h2 class="text-xl font-bold text-[var(--ink)]">Üç olası neden ve ayırt edici testleri</h2>
         ${nedenlerHtmlTr}
       </section>
-
+${kontrolAdimlariHtmlTr}
+${devirNoktasiHtmlTr}
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer, ne kadar sürer</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">${escapeHtml(item.kimCozer?.tr || '')}</p>
@@ -2994,10 +3124,11 @@ ${sahadaHtmlTr}
         <h2 class="text-xl font-bold text-[var(--ink)]">Çözülmezse ne olur</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">${escapeHtml(item.cozulmezse?.tr || '')}</p>
       </section>
-
+${resmiKaynaklarHtmlTr}
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">İlgili terimler ve hizmet</h2>
         ${termsHtmlTr}
+        ${ilgiliTeshislerHtmlTr}
         ${serviceHtmlTr}
       </section>
     </section>
@@ -3007,6 +3138,7 @@ ${sahadaHtmlTr}
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <p class="text-sm font-mono text-[var(--accent)]">Urgency: ${escapeHtml(item.aciliyet?.etiket?.en || item.aciliyet?.etiket?.tr || '')} · Category: ${escapeHtml(item.kirinti?.en || item.kirinti?.tr || '')}</p>
 ${sahadaHtmlEn}
+${hataMetinleriHtmlEn}
       <section class="space-y-3">
         <h2 class="text-xl font-bold text-[var(--ink)]">Observed System Error Signatures</h2>
         ${logRowsHtmlEn}
@@ -3017,7 +3149,8 @@ ${sahadaHtmlEn}
         <h2 class="text-xl font-bold text-[var(--ink)]">Three Potential Root Causes & Differential Tests</h2>
         ${nedenlerHtmlEn}
       </section>
-
+${kontrolAdimlariHtmlEn}
+${devirNoktasiHtmlEn}
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">${escapeHtml(item.kimCozer?.en || item.kimCozer?.tr || '')}</p>
@@ -3027,10 +3160,11 @@ ${sahadaHtmlEn}
         <h2 class="text-xl font-bold text-[var(--ink)]">Impact If Left Unresolved</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">${escapeHtml(item.cozulmezse?.en || item.cozulmezse?.tr || '')}</p>
       </section>
-
+${resmiKaynaklarHtmlEn}
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Related Concepts & Services</h2>
         ${termsHtmlEn}
+        ${ilgiliTeshislerHtmlEn}
         ${serviceHtmlEn}
       </section>
     </section>
@@ -3091,11 +3225,46 @@ ${sahadaHtmlEn}
   if (teshisDates.dateModified) {
     techArticleNode.dateModified = teshisDates.dateModified;
   }
+  if (item.resmiKaynaklar && item.resmiKaynaklar.length > 0) {
+    techArticleNode.citation = item.resmiKaynaklar.map(rk => rk.url?.tr || rk.url);
+  }
 
-  const schema = {
+  const techArticleNodeEn = {
+    ...techArticleNode,
+    headline: item.baslik.en || item.baslik.tr,
+    description: item.ozet.en || item.ozet.tr,
+    url: `https://trendmasterakademi.com/diagnostic/${item.slug}/`,
+    mainEntityOfPage: `https://trendmasterakademi.com/diagnostic/${item.slug}/`,
+    inLanguage: "en-US",
+    about: item.kirinti.en || item.kirinti.tr
+  };
+  if (item.resmiKaynaklar && item.resmiKaynaklar.length > 0) {
+    techArticleNodeEn.citation = item.resmiKaynaklar.map(rk => rk.url?.en || rk.url?.tr || rk.url);
+  }
+
+  const schemaTr = {
     "@context": "https://schema.org",
     "@graph": [
       techArticleNode,
+      {
+        "@type": "FAQPage",
+        "mainEntity": faqQuestions
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Teşhis Kataloğu", "item": "https://trendmasterakademi.com/teshis/" },
+          { "@type": "ListItem", "position": 3, "name": item.baslik.tr, "item": `https://trendmasterakademi.com/teshis/${item.slug}/` }
+        ]
+      }
+    ]
+  };
+
+  const schemaEn = {
+    "@context": "https://schema.org",
+    "@graph": [
+      techArticleNodeEn,
       {
         "@type": "FAQPage",
         "mainEntity": faqQuestions
@@ -3131,7 +3300,7 @@ ${sahadaHtmlEn}
     hreflangEn: `https://trendmasterakademi.com/diagnostic/${item.slug}/`,
     subheading: item.ozet.tr,
     extraContent: trExtraContent,
-    schema
+    schema: schemaTr
   };
 
   const enPage = {
@@ -3146,7 +3315,7 @@ ${sahadaHtmlEn}
     hreflangEn: `https://trendmasterakademi.com/diagnostic/${item.slug}/`,
     subheading: item.ozet.en || item.ozet.tr,
     extraContent: enExtraContent,
-    schema
+    schema: schemaEn
   };
 
   return [trPage, enPage];
