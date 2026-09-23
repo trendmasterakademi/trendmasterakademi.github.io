@@ -39,7 +39,7 @@ const GlossaryTerm = () => {
   if (!term) {
     return (
       <div className="min-h-screen pt-36 pb-28 px-4 text-center space-y-6 bg-[var(--paper)] text-[var(--ink)]">
-        <h1 className="text-3xl font-serif font-semibold text-[var(--ink)]">Terim Bulunamadı</h1>
+        <h1 className="text-3xl font-serif font-semibold text-[var(--ink)]">{isTr ? 'Terim Bulunamadı' : 'Term Not Found'}</h1>
         <p className="text-[var(--ink-light)]">Aradığınız terim sözlüğümüzde yer almıyor olabilir.</p>
         <Link to="/sozluk/" className="btn-primary min-h-[44px] inline-flex items-center gap-2">
           <ArrowLeft className="w-4 h-4" /> Terim Sözlüğüne Dön

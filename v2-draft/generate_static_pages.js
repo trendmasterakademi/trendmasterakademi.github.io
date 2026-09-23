@@ -3867,4 +3867,194 @@ function verifyNdaIntegrity() {
 
 verifyNdaIntegrity();
 
+// =========================================================================
+// 3.8 — GERÇEK DERLEME KORUMASI: H1 TEK KAYNAK VE BÜTÜNLÜK KORUMASI
+// Guard A: generate_static_pages.js basePages içinde elle yazılmış H1 yasağı
+// Guard B: JSX dosyalarında elle yazılmış H1 yasağı
+// Guard C: dist HTML ön-render H1 ile veri dosyası birebir eşleşme kontrolü
+// =========================================================================
+function verifyH1Integrity() {
+  console.log('\n[BUILD GUARD H1] 3 Seviyeli H1 Gerçek Derleme Koruması Çalıştırılıyor...');
+
+  // -------------------------------------------------------------
+  // GUARD A: generate_static_pages.js içinde basePages dizisi kontrolü
+  // -------------------------------------------------------------
+  const selfContent = fs.readFileSync(__filename, 'utf8');
+  const basePagesMatch = selfContent.match(/const\s+basePages\s*=\s*\[([\s\S]*?)\];/);
+  if (!basePagesMatch) {
+    console.error('[BUILD GUARD H1-A HATA] generate_static_pages.js içinde basePages dizisi bulunamadı!');
+    process.exit(1);
+  }
+  const basePagesCode = basePagesMatch[1];
+  const lines = basePagesCode.split('\n');
+  const violationsA = [];
+  lines.forEach((line, idx) => {
+    const trimmed = line.trim();
+    if (/^h1:\s*['"`]/.test(trimmed)) {
+      violationsA.push({ line: trimmed, lineNum: idx + 1 });
+    }
+  });
+  if (violationsA.length > 0) {
+    console.error(`[BUILD GUARD H1-A HATA] generate_static_pages.js basePages dizisinde elle yazılmış dize sabiti H1 tespit edildi:`);
+    violationsA.forEach(v => console.error(`  - Satır: ${v.line}`));
+    process.exit(1);
+  }
+  console.log('[BUILD GUARD H1-A GEÇTİ] generate_static_pages.js basePages içinde elle yazılmış H1 dize sabiti yok (tümü tek kaynak değişken/fonksiyon).');
+
+  // -------------------------------------------------------------
+  // GUARD B: JSX içinde elle yazılmış H1 yasağı
+  // -------------------------------------------------------------
+  function getJsxFiles(dir) {
+    let files = [];
+    if (!fs.existsSync(dir)) return files;
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const ent of entries) {
+      const full = path.join(dir, ent.name);
+      if (ent.isDirectory()) files = files.concat(getJsxFiles(full));
+      else if (ent.name.endsWith('.jsx')) files.push(full);
+    }
+    return files;
+  }
+
+  const jsxFiles = [
+    ...getJsxFiles(path.join(__dirname, 'src/pages')),
+    ...getJsxFiles(path.join(__dirname, 'src/components'))
+  ];
+
+  // H1 tanımları ve ait oldukları sayfa bileşenleri
+  const pageH1Bindings = [
+    { file: 'About.jsx', h1s: [aboutH1.tr, aboutH1.en] },
+    { file: 'Story.jsx', h1s: [storyH1.tr, storyH1.en] },
+    { file: 'Agency.jsx', h1s: [agencyH1.tr.full, agencyH1.en.full] },
+    { file: 'AgencyKit.jsx', h1s: [agencyKitH1.tr.full, agencyKitH1.en.full] },
+    { file: 'CrashTest.jsx', h1s: [crashTestH1.tr.full, crashTestH1.en.full] },
+    { file: 'DevirKontrolu.jsx', h1s: [handoverAuditH1.tr, handoverAuditH1.en] },
+    { file: 'KesintiMaliyeti.jsx', h1s: [downtimeCostH1.tr, downtimeCostH1.en] },
+    { file: 'Salvageability.jsx', h1s: [salvageabilityH1.tr, salvageabilityH1.en] },
+    { file: 'Triage.jsx', h1s: [triageH1.tr, triageH1.en] },
+    { file: 'TeshisIndex.jsx', h1s: [teshisCatalogH1.tr, teshisCatalogH1.en] },
+    { file: 'Sos.jsx', h1s: [sosH1.tr, sosH1.en] },
+    { file: 'Privacy.jsx', h1s: [privacyH1.tr, privacyH1.en] },
+    { file: 'GlossaryIndex.jsx', h1s: [glossaryHubH1.tr, glossaryHubH1.en] },
+    { file: 'PostMortemIndex.jsx', h1s: [postMortemHubH1.tr, postMortemHubH1.en] },
+    { file: 'Sla.jsx', h1s: [slaH1.tr, slaH1.en] },
+    { file: 'TechMatrix.jsx', h1s: [techStackH1.tr, techStackH1.en] },
+    { file: 'OutageSimulator.jsx', h1s: [outageSimulatorH1.tr, outageSimulatorH1.en] },
+    { file: 'StatusRadar.jsx', h1s: [radarH1.tr, radarH1.en] },
+    { file: 'CodeHealth.jsx', h1s: [codeHealthH1.tr, codeHealthH1.en] },
+    { file: 'RescueRoi.jsx', h1s: [rescueRoiH1.tr, rescueRoiH1.en] },
+    { file: 'NdaGenerator.jsx', h1s: [mutualNdaH1.tr, mutualNdaH1.en] }
+  ];
+
+  const violationsB = [];
+
+  // B.1: Sayfa bileşeni içinde kendi H1 dize sabitini elle yazma kontrolü
+  for (const binding of pageH1Bindings) {
+    const pagePath = path.join(__dirname, 'src/pages', binding.file);
+    if (!fs.existsSync(pagePath)) continue;
+    const content = fs.readFileSync(pagePath, 'utf8');
+    const cleanContent = content.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*/g, '');
+    for (const h1Str of binding.h1s) {
+      if (typeof h1Str === 'string' && h1Str.length >= 12 && cleanContent.includes(h1Str)) {
+        violationsB.push({
+          file: `src/pages/${binding.file}`,
+          h1: h1Str,
+          reason: `Sayfa H1 başlığı dosya içinde dize sabiti olarak elle yazılmış (veri dosyasından import edilmeli)`
+        });
+      }
+    }
+  }
+
+  // B.2: Tüm JSX dosyalarında <h1 ...> etiketi içinde ham metin kontrolü
+  for (const f of jsxFiles) {
+    const rel = path.relative(__dirname, f).replace(/\\/g, '/');
+    const content = fs.readFileSync(f, 'utf8');
+    const clean = content.replace(/\/\*[\s\S]*?\*\//g, '').replace(/\/\/.*/g, '');
+    const h1TagMatches = clean.matchAll(/<h1\b[^>]*>([\s\S]*?)<\/h1>/gi);
+    for (const match of h1TagMatches) {
+      const inner = match[1];
+      const withoutExpressions = inner.replace(/\{[\s\S]*?\}/g, '').replace(/<[^>]+>/g, '').trim();
+      if (withoutExpressions.length >= 12) {
+        violationsB.push({
+          file: rel,
+          h1: withoutExpressions,
+          reason: `<h1> etiketi içinde JSX ifadesi ({...}) yerine ham metin yazılmış`
+        });
+      }
+    }
+  }
+
+  if (violationsB.length > 0) {
+    console.error(`[BUILD GUARD H1-B HATA] JSX dosyalarında elle yazılmış H1 başlığı tespit edildi (${violationsB.length} ihlal):`);
+    violationsB.forEach(v => {
+      console.error(`  - Dosya: ${v.file}`);
+      console.error(`    Başlık: "${v.h1}"`);
+      console.error(`    Neden: ${v.reason}`);
+    });
+    process.exit(1);
+  }
+  console.log(`[BUILD GUARD H1-B GEÇTİ] src/pages ve src/components içinde elle yazılmış H1 dize sabiti veya ham metin yok (${jsxFiles.length} JSX dosyası denetlendi).`);
+
+  // -------------------------------------------------------------
+  // GUARD C: dist HTML ön-render çıktısı H1 kontrolü (tüm 109 sayfa)
+  // -------------------------------------------------------------
+  function normalizeH1(t) {
+    return (t || '')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  const mismatchesC = [];
+  pages.forEach(page => {
+    const pageDirRel = page.dir ? page.dir.replace(/\/$/, '') : '';
+    const htmlPath = path.join(distDir, pageDirRel, 'index.html');
+    if (!fs.existsSync(htmlPath)) {
+      mismatchesC.push({
+        path: htmlPath,
+        expected: page.h1,
+        found: '[DOSYA YOK]'
+      });
+      return;
+    }
+    const html = fs.readFileSync(htmlPath, 'utf8');
+    const match = html.match(/<h1\b[^>]*>([\s\S]*?)<\/h1>/i);
+    if (!match) {
+      mismatchesC.push({
+        path: htmlPath,
+        expected: page.h1,
+        found: '[H1 BULUNAMADI]'
+      });
+      return;
+    }
+    const foundH1 = normalizeH1(match[1]);
+    const expectedH1 = normalizeH1(page.h1);
+    if (foundH1 !== expectedH1) {
+      mismatchesC.push({
+        path: htmlPath,
+        expected: expectedH1,
+        found: foundH1
+      });
+    }
+  });
+
+  if (mismatchesC.length > 0) {
+    console.error(`[BUILD GUARD H1-C HATA] ${mismatchesC.length} sayfada dist H1 ile veri dosyası uyuşmazlığı tespit edildi:`);
+    mismatchesC.forEach(m => {
+      console.error(`  - Dosya: ${m.path}`);
+      console.error(`    Beklenen: "${m.expected}"`);
+      console.error(`    Bulunan:  "${m.found}"`);
+    });
+    process.exit(1);
+  }
+  console.log(`[BUILD GUARD H1-C GEÇTİ] Tüm 109 sayfanın dist HTML H1 başlığı veri dosyasıyla birebir eşleşiyor (${pages.length} sayfa doğrulandı).`);
+}
+
+verifyH1Integrity();
+
 
