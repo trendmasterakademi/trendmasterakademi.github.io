@@ -52,14 +52,14 @@ const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
   const waUrl = `https://wa.me/905343713573?text=${encodeURIComponent(waMessage)}`;
 
   return (
-    <section className="border border-emerald-300 rounded-2xl bg-emerald-50/50 p-4 sm:p-5 space-y-3">
+    <section className="border border-[var(--tint-ok-rule)] rounded-2xl bg-[var(--tint-ok-bg)] p-4 sm:p-5 space-y-3">
       <div className="space-y-1.5">
         <h3 className="text-sm sm:text-base font-serif font-semibold text-[var(--ink)]">
           {isTr ? 'Bu belirti şu an sizin sisteminizde mi?' : 'Are you seeing this right now?'}
         </h3>
         <div className="flex items-center gap-2 text-xs font-mono text-[var(--ink-light)]">
-          <span className={`w-2 h-2 rounded-full flex-shrink-0 ${krizHattiAcik ? 'bg-emerald-600 animate-pulse' : 'bg-amber-600'}`}></span>
-          <span className={krizHattiAcik ? 'text-emerald-900 font-medium' : 'text-amber-900 font-medium'}>
+          <span className={`w-2 h-2 rounded-full flex-shrink-0 ${krizHattiAcik ? 'bg-[var(--tint-ok-ink)] animate-pulse' : 'bg-[var(--tint-warn-ink)]'}`}></span>
+          <span className={krizHattiAcik ? 'text-[var(--tint-ok-ink)] font-medium' : 'text-[var(--tint-warn-ink)] font-medium'}>
             {krizHattiAcik
               ? (isTr
                   ? 'Kriz hattı şu an açık · her gün 09:00 – 24:00 · canlı kesintilerde ilk yanıt taahhüdü 15 dakika'
@@ -86,7 +86,7 @@ const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
           href="tel:+905343713573"
           className="btn-secondary min-h-[44px] inline-flex items-center justify-center gap-2 text-xs sm:text-sm font-semibold font-mono"
         >
-          <PhoneCall className="w-4 h-4 text-emerald-700 flex-shrink-0" />
+          <PhoneCall className="w-4 h-4 text-[var(--tint-ok-ink)] flex-shrink-0" />
           <span>+90 534 371 35 73</span>
         </a>
       </div>
@@ -189,8 +189,8 @@ const TeshisDetay = () => {
               </span>
               <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-lg font-mono text-xs font-semibold uppercase tracking-wider ${
                 isKritik 
-                  ? 'bg-rose-50 border border-rose-300 text-rose-800' 
-                  : 'bg-amber-50 border border-amber-300 text-amber-800'
+                  ? 'bg-[var(--tint-danger-bg)] border border-[var(--tint-danger-rule)] text-[var(--tint-danger-ink)]' 
+                  : 'bg-[var(--tint-warn-bg)] border border-[var(--tint-warn-rule)] text-[var(--tint-warn-ink)]'
               }`}>
                 <AlertTriangle className="w-3.5 h-3.5" />
                 {aciliyetText}
@@ -311,8 +311,8 @@ const TeshisDetay = () => {
                       </div>
 
                       {cause.yanlisDuzeltme && (
-                        <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-950 space-y-1">
-                          <span className="font-mono text-xs font-semibold uppercase tracking-wider text-amber-800 block">
+                        <div className="p-2.5 rounded-xl bg-[var(--tint-warn-bg)] border border-[var(--tint-warn-rule)] text-xs text-[var(--ink)] space-y-1">
+                          <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[var(--tint-warn-ink)] block">
                             {isTr ? 'Sık yapılan yanlış düzeltme' : 'Common wrong fix'}
                           </span>
                           <p className="leading-relaxed">
@@ -334,20 +334,20 @@ const TeshisDetay = () => {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="border border-emerald-300 rounded-2xl p-5 bg-emerald-50/50 space-y-2">
-                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-emerald-800 block">
+              <div className="border border-[var(--tint-ok-rule)] rounded-2xl p-5 bg-[var(--tint-ok-bg)] space-y-2">
+                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[var(--tint-ok-ink)] block">
                   {isTr ? 'Kim çözer' : 'Who resolves it'}
                 </span>
-                <p className="text-xs sm:text-sm text-emerald-950 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[var(--ink)] leading-relaxed">
                   {kimCozerText}
                 </p>
               </div>
 
-              <div className="border border-amber-300 rounded-2xl p-5 bg-amber-50/50 space-y-2">
-                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-amber-800 block">
+              <div className="border border-[var(--tint-warn-rule)] rounded-2xl p-5 bg-[var(--tint-warn-bg)] space-y-2">
+                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[var(--tint-warn-ink)] block">
                   {isTr ? 'Çözülmezse' : 'If left unresolved'}
                 </span>
-                <p className="text-xs sm:text-sm text-amber-950 leading-relaxed">
+                <p className="text-xs sm:text-sm text-[var(--ink)] leading-relaxed">
                   {cozulmezseText}
                 </p>
               </div>

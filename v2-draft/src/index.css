@@ -38,6 +38,24 @@
   --sev-ok:       #1D764B;   /* kâğıtta 4,69 · panelde 5,23 · üstünde beyaz 5,61 */
   --sev-ok-hover: #1D764B;
   --sev-ok-dot:   #1D764B;
+  --on-sev-ok:    #FFFFFF;
+
+  /* Anlamsal Renk Aileleri (İki Temada Kontrast Garantili) */
+  --tint-ok-bg:       #E3F2E9;
+  --tint-ok-ink:      #1A6A43;
+  --tint-ok-rule:     #B7DEC6;
+
+  --tint-warn-bg:     #FAEFD9;
+  --tint-warn-ink:    #83480A;
+  --tint-warn-rule:   #ECD3A2;
+
+  --tint-danger-bg:   #FAE6E7;
+  --tint-danger-ink:  #A11D29;
+  --tint-danger-rule: #F0BFC3;
+
+  --tint-info-bg:     #E6ECF8;
+  --tint-info-ink:    #2C4A9A;
+  --tint-info-rule:   #BFCFF0;
 
   /* Tipografi ölçeği (6 basamak) */
   --t-xs:   0.75rem;    /* 12.75px */
@@ -95,6 +113,24 @@
     --sev-ok:       #2E9E66;
     --sev-ok-hover: #2E9E66;
     --sev-ok-dot:   #2E9E66;
+    --on-sev-ok:    #15181E;
+
+    /* Anlamsal Renk Aileleri (İki Temada Kontrast Garantili) */
+    --tint-ok-bg:       #15271F;
+    --tint-ok-ink:      #79D3A6;
+    --tint-ok-rule:     #234B36;
+
+    --tint-warn-bg:     #2B2316;
+    --tint-warn-ink:    #EDB965;
+    --tint-warn-rule:   #544023;
+
+    --tint-danger-bg:   #2E1B1E;
+    --tint-danger-ink:  #F29AA0;
+    --tint-danger-rule: #5B2D33;
+
+    --tint-info-bg:     #19213A;
+    --tint-info-ink:    #A6BCF3;
+    --tint-info-rule:   #2C3E6E;
   }
 }
 
@@ -130,6 +166,24 @@
   --sev-ok:       #2E9E66;
   --sev-ok-hover: #2E9E66;
   --sev-ok-dot:   #2E9E66;
+  --on-sev-ok:    #15181E;
+
+  /* Anlamsal Renk Aileleri (İki Temada Kontrast Garantili) */
+  --tint-ok-bg:       #15271F;
+  --tint-ok-ink:      #79D3A6;
+  --tint-ok-rule:     #234B36;
+
+  --tint-warn-bg:     #2B2316;
+  --tint-warn-ink:    #EDB965;
+  --tint-warn-rule:   #544023;
+
+  --tint-danger-bg:   #2E1B1E;
+  --tint-danger-ink:  #F29AA0;
+  --tint-danger-rule: #5B2D33;
+
+  --tint-info-bg:     #19213A;
+  --tint-info-ink:    #A6BCF3;
+  --tint-info-rule:   #2C3E6E;
 }
 
 :root[data-theme="light"] {
@@ -164,6 +218,24 @@
   --sev-ok:       #1D764B;   /* kâğıtta 4,69 · panelde 5,23 · üstünde beyaz 5,61 */
   --sev-ok-hover: #1D764B;
   --sev-ok-dot:   #1D764B;
+  --on-sev-ok:    #FFFFFF;
+
+  /* Anlamsal Renk Aileleri (İki Temada Kontrast Garantili) */
+  --tint-ok-bg:       #E3F2E9;
+  --tint-ok-ink:      #1A6A43;
+  --tint-ok-rule:     #B7DEC6;
+
+  --tint-warn-bg:     #FAEFD9;
+  --tint-warn-ink:    #83480A;
+  --tint-warn-rule:   #ECD3A2;
+
+  --tint-danger-bg:   #FAE6E7;
+  --tint-danger-ink:  #A11D29;
+  --tint-danger-rule: #F0BFC3;
+
+  --tint-info-bg:     #E6ECF8;
+  --tint-info-ink:    #2C4A9A;
+  --tint-info-rule:   #BFCFF0;
 }
 
 /* Logo CSS display rules */

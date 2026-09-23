@@ -660,9 +660,9 @@ const Agency = () => {
             </div>
 
             {/* Acil Teklif Hattı */}
-            <div className="p-7 sm:p-9 rounded-xl bg-emerald-50 border-2 border-emerald-300 space-y-6 shadow-sm">
+            <div className="p-7 sm:p-9 rounded-xl bg-[var(--tint-ok-bg)] border-2 border-[var(--tint-ok-rule)] space-y-6 shadow-sm">
               <div className="space-y-2">
-                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-emerald-800">
+                <span className="text-xs font-mono font-semibold uppercase tracking-wider text-[var(--tint-ok-ink)]">
                   {isTr ? 'ACİL TEKLİF HATTI' : 'URGENT QUOTE LINE'}
                 </span>
                 <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)]">

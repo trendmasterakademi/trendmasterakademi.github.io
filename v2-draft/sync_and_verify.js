@@ -221,13 +221,23 @@ const approvedHexes = new Set([
   // Açık Tema Paleti
   '#e9ebee', '#f6f7f9', '#cfd5dc', '#a9b2bd', '#6e7784',
   '#14181f', '#49535f', '#626b77', '#b21f2b', '#8e1a23',
-  '#f6e7e8', '#0e1116', '#c7ceda', '#6f7b8c',
-  '#e4636c', '#1f7a4d', '#a85b12', '#5a6472',
+  '#f6e7e8', '#0e1116', '#c7ceda', '#6f7b8c', '#7e8a9b',
+  '#e4636c', '#1f7a4d', '#a85b12', '#8f4b0c', '#5a6472',
   '#ffffff', '#1d764b', '#338e61',
+  // Açık Tint Aileleri
+  '#e3f2e9', '#1a6a43', '#b7dec6',
+  '#faefd9', '#83480a', '#ecd3a2',
+  '#fae6e7', '#a11d29', '#f0bfc3',
+  '#e6ecf8', '#2c4a9a', '#bfcff0',
   // Koyu Tema Paleti
   '#15181e', '#1c2027', '#2b313a', '#3d444f', '#616b77',
   '#e7eaef', '#aeb6c2', '#8a93a1', '#f08d94', '#2a1619',
   '#d47a2a', '#2e9e66',
+  // Koyu Tint Aileleri
+  '#15271f', '#79d3a6', '#234b36',
+  '#2b2316', '#edb965', '#544023',
+  '#2e1b1e', '#f29aa0', '#5b2d33',
+  '#19213a', '#a6bcf3', '#2c3e6e',
   // Dış İstisna (WhatsApp)
   '#25d366'
 ]);
