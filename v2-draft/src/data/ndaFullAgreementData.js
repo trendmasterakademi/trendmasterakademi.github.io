@@ -1,150 +1,241 @@
 export const ndaFullAgreementData = {
-  whatItGivesYou: [
-    {
-      title: {
-        tr: "Müşteriniz sizin müşteriniz olarak kalır.",
-        en: "Your client stays your client."
-      },
-      desc: {
-        tr: "Yazılı onayınız olmadan müşterinizle iletişime geçmez, teklif sunmaz, ticari ilişki kurmayız. Bu yükümlülük iş bittikten sonra iki yıl daha sürer.",
-        en: "We do not contact your client, pitch them or enter into any commercial relationship without your written consent. This obligation continues for two years after the work ends."
-      }
+  pageHeader: {
+    backLink: {
+      tr: "← Ana Sayfaya Dön",
+      en: "← Back to Home"
     },
-    {
-      title: {
-        tr: "Adımız hiçbir yerde görünmez.",
-        en: "Our name appears nowhere."
-      },
-      desc: {
-        tr: "Çalışma %100 beyaz etikettir. Teslim edilen işte markamız, logomuz veya adımız yer almaz. İsterseniz iletişim sizin alan adınıza ait bir e-posta üzerinden yürür.",
-        en: "The work is 100% white-label. Our brand, logo and name do not appear in anything delivered. If you prefer, communication runs through an email address on your own domain."
-      }
+    badge: {
+      tr: "RESMİ NDA & ÇALIŞMA SÖZLEŞMESİ",
+      en: "MUTUAL NDA & ENGAGEMENT AGREEMENT"
     },
-    {
-      title: {
-        tr: "Kod ve mali haklar size geçer.",
-        en: "Code and economic rights transfer to you."
-      },
-      desc: {
-        tr: "Bedel tamamlandığında; işleme, çoğaltma, yayma, temsil ve umuma iletim hakları tek tek sayılarak size devredilir. Genel bir \"her hak sizindir\" cümlesiyle değil, kanunun aradığı biçimde. Devraldığınız hakları üçüncü kişilere devredebilir, alt lisans verebilirsiniz.",
-        en: "Once payment is complete, the rights of adaptation, reproduction, distribution, performance and communication to the public are transferred to you — enumerated individually, as the law requires, not as a generic \"everything is yours\" sentence. You may transfer those rights onward or sub-license them."
-      }
+    h1: {
+      tr: "Gizlilik ve Çalışma Sözleşmesi",
+      en: "Confidentiality and Engagement Agreement"
     },
-    {
-      title: {
-        tr: "Kimliğiniz açıklanmaz.",
-        en: "Your identity is never disclosed."
-      },
-      desc: {
-        tr: "Yayınladığımız vaka anlatımları kimliğe dair hiçbir ayrıntı içermez. Sizin veya müşterinizin adını referans ya da tanıtım amacıyla yazılı onayınız olmadan kullanmayız.",
-        en: "The case accounts we publish contain no identifying detail. We do not use your name or your client's name for reference or promotion without your written consent."
-      }
-    },
-    {
-      title: {
-        tr: "Verileriniz için sıfatımız bellidir.",
-        en: "Our role with your data is defined."
-      },
-      desc: {
-        tr: "Kişisel veri işlenmesi gerekiyorsa siz veya müşteriniz veri sorumlusu, biz veri işleyeniz. Verileri yalnızca sizin talimatınız doğrultusunda işler, iş bitiminde siler veya iade ederiz. Bir ihlalden haberdar olursak sizi 24 saat içinde bilgilendiririz.",
-        en: "Where personal data is processed, you or your client are the data controller and we are the data processor. We process data only on your instruction and delete or return it when the work ends. If we become aware of a breach, we notify you within 24 hours."
-      }
-    },
-    {
-      title: {
-        tr: "Gizlilik iş bitince bitmez.",
-        en: "Confidentiality outlives the engagement."
-      },
-      desc: {
-        tr: "Gizlilik yükümlülüğü sözleşme sona erdikten sonra beş yıl sürer; ticari sır ve kişisel veri niteliğindeki bilgilerde süresizdir.",
-        en: "It continues for five years after the agreement ends — indefinitely for trade secrets and personal data."
-      }
-    },
-    {
-      title: {
-        tr: "İlk teşhis ücretsiz ve taahhütsüzdür.",
-        en: "The initial diagnosis is free and carries no commitment."
-      },
-      desc: {
-        tr: "Bu aşamada hiçbir tarafın iş yapma veya iş verme yükümlülüğü doğmaz. Ama gizlilik teşhis aşamasında da geçerlidir — paylaştığınız her şey aynı korumaya tabidir.",
-        en: "Neither side is obliged to proceed. Confidentiality still applies at that stage — everything you share is protected the same way."
-      }
-    },
-    {
-      title: {
-        tr: "Bedel sabittir.",
-        en: "The fee is fixed."
-      },
-      desc: {
-        tr: "Teşhis tamamlandıktan sonra yazılı olarak bildirilir. Saatlik veya ucu açık çalışmıyoruz. Kapsam dışı talepler ayrıca fiyatlanır ve yazılı onayınız olmadan uygulanmaz.",
-        en: "It is confirmed in writing after the diagnosis. We do not bill hourly or open-ended. Out-of-scope requests are priced separately and never carried out without your written approval."
-      }
+    lead: {
+      tr: "Çalışmaya başlamadan önce karşılıklı bir gizlilik ve çalışma sözleşmesi imzalıyoruz. Ne imzalayacağınızı önceden bilmeniz için sözleşmenin ne dediğini burada sade dille anlattık.",
+      en: "Before any work begins, we sign a mutual confidentiality and engagement agreement. So you know what you'll be signing, here is what it says in plain language."
     }
-  ],
+  },
 
-  protectsUsToo: [
-    {
-      title: {
-        tr: "Devraldığımız koddaki eski kusurlardan sorumlu değiliz.",
-        en: "We are not liable for pre-existing defects in code we take over."
-      },
-      desc: {
-        tr: "Yarım kalmış bir projeyi devralırken, bizden önce yazılmış hataların, güvenlik açıklarının ve lisans ihlallerinin sorumluluğunu üstlenemeyiz. Sorumluluğumuz, üzerinde fiilen çalıştığımız ve iş emrinde tanımlanan kapsamla sınırlıdır. Teşhiste gördüğümüz ama kapsam dışında kalan kusurları size yazılı olarak bildiririz.",
-        en: "When we inherit an unfinished project, we cannot assume responsibility for faults, security gaps or licence breaches written before us. Our liability is limited to what we actually worked on, as defined in the work order. We report in writing any defects we find that fall outside scope."
-      }
+  whatItGivesYou: {
+    title: {
+      tr: "Size ne sağlıyor",
+      en: "What it gives you"
     },
-    {
-      title: {
-        tr: "Sorumluluğumuzun bir tavanı var.",
-        en: "Our liability has a cap."
+    items: [
+      {
+        title: {
+          tr: "Müşteriniz sizin müşteriniz olarak kalır.",
+          en: "Your client stays your client."
+        },
+        desc: {
+          tr: "Yazılı onayınız olmadan müşterinizle iletişime geçmez, teklif sunmaz, ticari ilişki kurmayız. Bu yükümlülük iş bittikten sonra iki yıl daha sürer.",
+          en: "We do not contact your client, pitch them or enter into any commercial relationship without your written consent. This obligation continues for two years after the work ends."
+        }
       },
-      desc: {
-        tr: "O iş için fiilen ödenen bedeli aşmaz ve dolaylı zararları — kâr kaybı, iş kaybı, itibar kaybı — kapsamaz. Kast ve ağır kusur bunun dışındadır; o hâllerde genel hükümler geçerlidir ve hiçbir sınırlama uygulanmaz.",
-        en: "It does not exceed the fee actually paid for that engagement and does not cover indirect losses — lost profit, lost business, reputational harm. Intent and gross negligence are excluded from this cap; in those cases general provisions apply and no limitation operates."
+      {
+        title: {
+          tr: "Adımız hiçbir yerde görünmez.",
+          en: "Our name appears nowhere."
+        },
+        desc: {
+          tr: "Çalışma %100 beyaz etikettir. Teslim edilen işte markamız, logomuz veya adımız yer almaz. İsterseniz iletişim sizin alan adınıza ait bir e-posta üzerinden yürür.",
+          en: "The work is 100% white-label. Our brand, logo and name do not appear in anything delivered. If you prefer, communication runs through an email address on your own domain."
+        }
+      },
+      {
+        title: {
+          tr: "Kod ve mali haklar size geçer.",
+          en: "Code and economic rights transfer to you."
+        },
+        desc: {
+          tr: "Bedel tamamlandığında; işleme, çoğaltma, yayma, temsil ve umuma iletim hakları tek tek sayılarak size devredilir. Genel bir \"her hak sizindir\" cümlesiyle değil, kanunun aradığı biçimde. Devraldığınız hakları üçüncü kişilere devredebilir, alt lisans verebilirsiniz.",
+          en: "Once payment is complete, the rights of adaptation, reproduction, distribution, performance and communication to the public are transferred to you — enumerated individually, as the law requires, not as a generic \"everything is yours\" sentence. You may transfer those rights onward or sub-license them."
+        }
+      },
+      {
+        title: {
+          tr: "Kimliğiniz açıklanmaz.",
+          en: "Your identity is never disclosed."
+        },
+        desc: {
+          tr: "Yayınladığımız vaka anlatımları kimliğe dair hiçbir ayrıntı içermez. Sizin veya müşterinizin adını referans ya da tanıtım amacıyla yazılı onayınız olmadan kullanmayız.",
+          en: "The case accounts we publish contain no identifying detail. We do not use your name or your client's name for reference or promotion without your written consent."
+        }
+      },
+      {
+        title: {
+          tr: "Verileriniz için sıfatımız bellidir.",
+          en: "Our role with your data is defined."
+        },
+        desc: {
+          tr: "Kişisel veri işlenmesi gerekiyorsa siz veya müşteriniz veri sorumlusu, biz veri işleyeniz. Verileri yalnızca sizin talimatınız doğrultusunda işler, iş bitiminde siler veya iade ederiz. Bir ihlalden haberdar olursak sizi 24 saat içinde bilgilendiririz.",
+          en: "Where personal data is processed, you or your client are the data controller and we are the data processor. We process data only on your instruction and delete or return it when the work ends. If we become aware of a breach, we notify you within 24 hours."
+        }
+      },
+      {
+        title: {
+          tr: "Gizlilik iş bitince bitmez.",
+          en: "Confidentiality outlives the engagement."
+        },
+        desc: {
+          tr: "Gizlilik yükümlülüğü sözleşme sona erdikten sonra beş yıl sürer; ticari sır ve kişisel veri niteliğindeki bilgilerde süresizdir.",
+          en: "It continues for five years after the agreement ends — indefinitely for trade secrets and personal data."
+        }
+      },
+      {
+        title: {
+          tr: "İlk teşhis ücretsiz ve taahhütsüzdür.",
+          en: "The initial diagnosis is free and carries no commitment."
+        },
+        desc: {
+          tr: "Bu aşamada hiçbir tarafın iş yapma veya iş verme yükümlülüğü doğmaz. Ama gizlilik teşhis aşamasında da geçerlidir — paylaştığınız her şey aynı korumaya tabidir.",
+          en: "Neither side is obliged to proceed. Confidentiality still applies at that stage — everything you share is protected the same way."
+        }
+      },
+      {
+        title: {
+          tr: "Bedel sabittir.",
+          en: "The fee is fixed."
+        },
+        desc: {
+          tr: "Teşhis tamamlandıktan sonra yazılı olarak bildirilir. Saatlik veya ucu açık çalışmıyoruz. Kapsam dışı talepler ayrıca fiyatlanır ve yazılı onayınız olmadan uygulanmaz.",
+          en: "It is confirmed in writing after the diagnosis. We do not bill hourly or open-ended. Out-of-scope requests are priced separately and never carried out without your written approval."
+        }
       }
+    ]
+  },
+
+  protectsUsToo: {
+    title: {
+      tr: "Dürüst olalım: sözleşme bizi de koruyor",
+      en: "Let's be straight: the agreement protects us too"
     },
-    {
-      title: {
-        tr: "Yöntemlerimiz ve araçlarımız bizde kalır.",
-        en: "Our methods and tools remain ours."
-      },
-      desc: {
-        tr: "Sizin projeniz sizindir. Ama bizim kontrol listelerimiz, şablonlarımız ve genel amaçlı araçlarımız devrin dışındadır. Teslim edilen işte kullanılmışlarsa, o iş özelinde süresiz kullanım hakkınız olur.",
-        en: "Your project is yours. Our checklists, templates and general-purpose tooling are not part of the transfer. Where they were used in your delivery, you get an unlimited right to use them for that engagement."
-      }
+    lead: {
+      tr: "Yayınlanan her sözleşme gibi bu da bizim standart metnimiz ve bazı maddeleri bizim lehimize. Sonradan bulun diye saklamıyoruz — burada yazıyoruz.",
+      en: "Like any published contract, this is our standard text and some clauses favour us. We're not hiding them at the bottom — they're here."
     },
-    {
-      title: {
-        tr: "Müdahale öncesi yedek almak sizin sorumluluğunuzdadır.",
-        en: "Taking a backup before intervention is your responsibility."
+    items: [
+      {
+        title: {
+          tr: "Devraldığımız koddaki eski kusurlardan sorumlu değiliz.",
+          en: "We are not liable for pre-existing defects in code we take over."
+        },
+        desc: {
+          tr: "Yarım kalmış bir projeyi devralırken, bizden önce yazılmış hataların, güvenlik açıklarının ve lisans ihlallerinin sorumluluğunu üstlenemeyiz. Sorumluluğumuz, üzerinde fiilen çalıştığımız ve iş emrinde tanımlanan kapsamla sınırlıdır. Teşhiste gördüğümüz ama kapsam dışında kalan kusurları size yazılı olarak bildiririz.",
+          en: "When we inherit an unfinished project, we cannot assume responsibility for faults, security gaps or licence breaches written before us. Our liability is limited to what we actually worked on, as defined in the work order. We report in writing any defects we find that fall outside scope."
+        }
       },
-      desc: {
-        tr: "İsterseniz bu konuda destek veririz; ayrıca fiyatlanabilir.",
-        en: "We can help; that support may be priced separately."
+      {
+        title: {
+          tr: "Sorumluluğumuzun bir tavanı var.",
+          en: "Our liability has a cap."
+        },
+        desc: {
+          tr: "O iş için fiilen ödenen bedeli aşmaz ve dolaylı zararları — kâr kaybı, iş kaybı, itibar kaybı — kapsamaz. Kast ve ağır kusur bunun dışındadır; o hâllerde genel hükümler geçerlidir ve hiçbir sınırlama uygulanmaz.",
+          en: "It does not exceed the fee actually paid for that engagement and does not cover indirect losses — lost profit, lost business, reputational harm. Intent and gross negligence are excluded from this cap; in those cases general provisions apply and no limitation operates."
+        },
+        highlight: {
+          tr: "Kast ve ağır kusur bunun dışındadır",
+          en: "Intent and gross negligence are excluded from this cap"
+        }
+      },
+      {
+        title: {
+          tr: "Yöntemlerimiz ve araçlarımız bizde kalır.",
+          en: "Our methods and tools remain ours."
+        },
+        desc: {
+          tr: "Sizin projeniz sizindir. Ama bizim kontrol listelerimiz, şablonlarımız ve genel amaçlı araçlarımız devrin dışındadır. Teslim edilen işte kullanılmışlarsa, o iş özelinde süresiz kullanım hakkınız olur.",
+          en: "Your project is yours. Our checklists, templates and general-purpose tooling are not part of the transfer. Where they were used in your delivery, you get an unlimited right to use them for that engagement."
+        }
+      },
+      {
+        title: {
+          tr: "Müdahale öncesi yedek almak sizin sorumluluğunuzdadır.",
+          en: "Taking a backup before intervention is your responsibility."
+        },
+        desc: {
+          tr: "İsterseniz bu konuda destek veririz; ayrıca fiyatlanabilir.",
+          en: "We can help; that support may be priced separately."
+        }
+      },
+      {
+        title: {
+          tr: "Ödeme gecikirse çalışmayı askıya alabiliriz.",
+          en: "We may suspend work if payment is delayed."
+        },
+        desc: {
+          tr: "Askı süresi teslim süresine eklenir.",
+          en: "The suspension period is added to the delivery timeline."
+        }
       }
+    ]
+  },
+
+  canItBeChanged: {
+    title: {
+      tr: "Değiştirilebilir mi?",
+      en: "Can it be changed?"
     },
-    {
-      title: {
-        tr: "Ödeme gecikirse çalışmayı askıya alabiliriz.",
-        en: "We may suspend work if payment is delayed."
+    paragraphs: [
+      {
+        tr: "Evet. Bu bizim standart metnimiz, dayatma değil. İtiraz ettiğiniz maddeyi konuşuruz — sözleşme, iki tarafın da kabul ettiği şeydir.",
+        en: "Yes. This is our standard text, not an ultimatum. If you object to a clause, we discuss it — a contract is what both sides agree to."
       },
-      desc: {
-        tr: "Askı süresi teslim süresine eklenir.",
-        en: "The suspension period is added to the delivery timeline."
+      {
+        tr: "Sözleşmenin tam metni, çalışma öncesinde tarafınıza iletilir.",
+        en: "The full text of the agreement is provided to you before work begins."
       }
-    }
-  ],
+    ]
+  },
+
+  fullAgreementHeader: {
+    title: {
+      tr: "Sözleşmenin tam metni",
+      en: "Full text of the agreement"
+    },
+    subtitle: {
+      tr: "16 Madde · Tam ve Açık Metin",
+      en: "16 Articles · Full and Explicit Text"
+    },
+    pdfButton: {
+      tr: "Sözleşmeyi PDF olarak indir",
+      en: "Download the agreement (PDF)"
+    },
+    pdfHref: "/sozlesme/tma-gizlilik-ve-calisma-sozlesmesi.pdf",
+    pdfDownloadName: "tma-gizlilik-ve-calisma-sozlesmesi.pdf",
+    documentTitle: "GİZLİLİK VE ÇALIŞMA SÖZLEŞMESİ",
+    documentSubtitle: "Trend Master Akademi — Standart B2B Sözleşme Metni"
+  },
 
   clauses: [
     {
       num: 1,
       title: "MADDE 1 — TARAFLAR",
-      paragraphs: [
-        "1.1. İşbu sözleşme aşağıdaki taraflar arasında akdedilmiştir:",
-        "HİZMET SAĞLAYICI: Trend Master Akademi markası altında faaliyet gösteren Mehmet Şahin (Şahıs İşletmesi) — Konak Vergi Dairesi · VKN: 7930336132 — Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir — E-posta: info@trendmasterakademi.com (Bundan sonra \"TMA\" olarak anılacaktır.)",
-        "HİZMET ALAN: Unvan: ……… Vergi Dairesi / VKN: ……… Adres: ……… Yetkili & E-posta: ……… (Bundan sonra \"AJANS\" olarak anılacaktır.)",
-        "1.2. TMA ve AJANS birlikte \"Taraflar\", ayrı ayrı \"Taraf\" olarak anılır."
-      ]
+      intro: "1.1. İşbu sözleşme aşağıdaki taraflar arasında akdedilmiştir:",
+      serviceProvider: {
+        title: "HİZMET SAĞLAYICI:",
+        lines: [
+          "Trend Master Akademi markası altında faaliyet gösteren Mehmet Şahin (Şahıs İşletmesi)",
+          "Konak Vergi Dairesi · VKN: 7930336132",
+          "Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir",
+          "E-posta: info@trendmasterakademi.com"
+        ],
+        suffix: "(Bundan sonra \"TMA\" olarak anılacaktır.)"
+      },
+      client: {
+        title: "HİZMET ALAN:",
+        fields: [
+          { label: "Unvan:" },
+          { label: "Vergi Dairesi / VKN:" },
+          { label: "Adres:" },
+          { label: "Yetkili & E-posta:" }
+        ],
+        suffix: "(Bundan sonra \"AJANS\" olarak anılacaktır.)"
+      },
+      outro: "1.2. TMA ve AJANS birlikte \"Taraflar\", ayrı ayrı \"Taraf\" olarak anılır."
     },
     {
       num: 2,
@@ -158,14 +249,16 @@ export const ndaFullAgreementData = {
     {
       num: 3,
       title: "MADDE 3 — GİZLİ BİLGİ",
-      paragraphs: [
-        "3.1. \"Gizli Bilgi\", Taraflardan birinin diğerine yazılı, sözlü, elektronik veya başka herhangi bir biçimde ilettiği; ticari, teknik, finansal veya operasyonel nitelikteki her türlü bilgiyi kapsar. Buna sınırlayıcı olmaksızın şunlar dâhildir:",
+      lead1: "3.1. \"Gizli Bilgi\", Taraflardan birinin diğerine yazılı, sözlü, elektronik veya başka herhangi bir biçimde ilettiği; ticari, teknik, finansal veya operasyonel nitelikteki her türlü bilgiyi kapsar. Buna sınırlayıcı olmaksızın şunlar dâhildir:",
+      list1: [
         "a) Kaynak kod, veri tabanı yapıları, mimari şemalar, API anahtarları, erişim bilgileri",
         "b) Müşteri listeleri, müşteri kimlikleri ve ticari ilişkiler",
         "c) Fiyatlandırma, teklif ve sözleşme koşulları",
         "d) İş süreçleri, yöntemler, kontrol listeleri ve şablonlar",
-        "e) Proje kapsamında öğrenilen her türlü kurumsal bilgi",
-        "3.2. Aşağıdakiler Gizli Bilgi sayılmaz:",
+        "e) Proje kapsamında öğrenilen her türlü kurumsal bilgi"
+      ],
+      lead2: "3.2. Aşağıdakiler Gizli Bilgi sayılmaz:",
+      list2: [
         "a) İfşa anında kamuya açık olan veya alıcı Tarafın kusuru olmaksızın sonradan kamuya açılan bilgiler",
         "b) Alıcı Tarafın ifşadan önce hukuka uygun şekilde sahip olduğu bilgiler",
         "c) Alıcı Tarafın Gizli Bilgi'den bağımsız olarak kendi geliştirdiği bilgiler",
@@ -220,7 +313,13 @@ export const ndaFullAgreementData = {
       paragraphs: [
         "8.1. Bedel, teşhis tamamlandıktan sonra sabit tutar olarak yazılı biçimde bildirilir. TMA saatlik veya ucu açık esasla çalışmaz.",
         "8.2. Acil müdahalelerde teşhis ve sabit bedel birlikte iletilir.",
-        "8.3. Ödeme koşulları her İş Emri'nde ayrıca belirlenir. Aksi kararlaştırılmadıkça: Acil müdahalelerde bedelin %50'si işe başlamadan, kalanı teslimde; Planlı işlerde bedelin %40'ı işe başlamadan, kalanı teslimde ödenir.",
+        "8.3. Ödeme koşulları her İş Emri'nde ayrıca belirlenir. Aksi kararlaştırılmadıkça:"
+      ],
+      list: [
+        "- Acil müdahalelerde bedelin %50'si işe başlamadan, kalanı teslimde,",
+        "- Planlı işlerde bedelin %40'ı işe başlamadan, kalanı teslimde ödenir."
+      ],
+      postParagraphs: [
         "8.4. Kapsam değişikliği: İş Emri'nde tanımlanmayan talepler ek iş sayılır; ayrıca fiyatlanır ve yazılı onay alınmadan uygulanmaz.",
         "8.5. Ödemede gecikme hâlinde TMA, çalışmayı askıya alma hakkına sahiptir; askı süresi teslim süresine eklenir."
       ]
@@ -230,7 +329,16 @@ export const ndaFullAgreementData = {
       title: "MADDE 9 — FİKRİ MÜLKİYET VE MALİ HAKLARIN DEVRİ",
       paragraphs: [
         "9.1. TMA tarafından işbu sözleşme kapsamında üretilen ve 5846 sayılı FSEK anlamında eser niteliği taşıyan yazılım, kod, dokümantasyon ve tasarımlar üzerindeki mali haklar, bedelin tamamı ödendiği anda, süresiz, yer ve sayı bakımından sınırsız olarak AJANS'a devredilir.",
-        "9.2. Devredilen mali haklar şunlardır ve bunlarla sınırlıdır: a) İşleme hakkı (FSEK m.21), b) Çoğaltma hakkı (FSEK m.22), c) Yayma hakkı (FSEK m.23), d) Temsil hakkı (FSEK m.24), e) İşaret, ses ve/veya görüntü nakline yarayan araçlarla umuma iletim hakkı (FSEK m.25).",
+        "9.2. Devredilen mali haklar şunlardır ve bunlarla sınırlıdır:"
+      ],
+      list: [
+        "a) İşleme hakkı (FSEK m.21)",
+        "b) Çoğaltma hakkı (FSEK m.22)",
+        "c) Yayma hakkı (FSEK m.23)",
+        "d) Temsil hakkı (FSEK m.24)",
+        "e) İşaret, ses ve/veya görüntü nakline yarayan araçlarla umuma iletim hakkı (FSEK m.25)"
+      ],
+      postParagraphs: [
         "9.3. AJANS, devraldığı hakları üçüncü kişilere devredebilir ve alt lisans verebilir.",
         "9.4. Devir, bedelin tamamının ödenmesi şartına bağlıdır. Ödeme tamamlanana kadar mali haklar TMA'da kalır; AJANS'a bu süre boyunca yalnızca test ve değerlendirme amaçlı kullanım izni verilmiştir.",
         "9.5. TMA'nın kendisine ait kalanlar: TMA'nın işbu sözleşmeden önce geliştirdiği veya sözleşmeden bağımsız olarak geliştirdiği genel amaçlı araçlar, kütüphaneler, kontrol listeleri, şablonlar ve çalışma yöntemleri devir kapsamı dışındadır. Bunlar teslim edilen işte kullanılmışsa, AJANS'a bu iş özelinde süresiz, münhasır olmayan, devredilebilir kullanım hakkı tanınır.",
@@ -305,11 +413,39 @@ export const ndaFullAgreementData = {
     }
   ],
 
+  signatures: {
+    title: "İMZA",
+    intro: "Taraflar, işbu sözleşmeyi okuyup anlayarak, 16 maddeden ibaret hâliyle iki nüsha olarak imza altına almıştır.",
+    tma: {
+      title: "TMA",
+      lines: [
+        "Trend Master Akademi",
+        "Mehmet Şahin — Şahıs İşletmesi",
+        "VKN: 7930336132"
+      ],
+      fields: [
+        { label: "Tarih:" },
+        { label: "İmza:" }
+      ]
+    },
+    ajans: {
+      title: "AJANS",
+      fields: [
+        { label: "Unvan:" },
+        { label: "VKN:" },
+        { label: "Yetkili:" },
+        { label: "Tarih:" },
+        { label: "İmza:" }
+      ]
+    }
+  },
+
   precedenceNotice: {
     title: {
       tr: "ÖNCELİK KAYDI",
       en: "NOTICE OF PRECEDENCE"
     },
+    enNotice: "The following notice is provided in Turkish, the governing language of the agreement.",
     text: "Bu sayfa genel bilgilendirme amacıyla hazırlanmış olup taraflar arasındaki hak ve yükümlülükler akdedilecek olan ıslak/güvenli elektronik imzalı \"Gizlilik ve Çalışma Sözleşmesi\" metnine tabidir. Bu özet ile imzalanan sözleşme arasında çelişki olması halinde imzalı sözleşme hükümleri esas alınır."
   }
 };

@@ -598,25 +598,27 @@ const devirExtraContentEn = `
   </section>
 `;
 
+const DOT_LINE_64 = '.'.repeat(64);
+
 const ndaExtraContent = `
   <section class="space-y-12 mt-8 border-t border-[var(--rule)] pt-8">
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)]">
       <div>
-        <h2 class="text-xl font-bold text-[var(--ink)] font-serif">Gizlilik ve Çalışma Sözleşmesi (16 Madde)</h2>
-        <p class="text-xs text-[var(--ink-muted)] font-mono mt-1">Resmi B2B Karşılıklı Gizlilik ve Çalışma Sözleşmesi Tam Metni</p>
+        <h2 class="text-xl font-bold text-[var(--ink)] font-serif">${escapeHtml(ndaFullAgreementData.fullAgreementHeader.documentTitle)} (16 Madde)</h2>
+        <p class="text-xs text-[var(--ink-muted)] font-mono mt-1">${escapeHtml(ndaFullAgreementData.fullAgreementHeader.documentSubtitle)}</p>
       </div>
-      <a href="/sozlesme/tma-gizlilik-ve-calisma-sozlesmesi.pdf" download="tma-gizlilik-ve-calisma-sozlesmesi.pdf" class="inline-flex items-center justify-center px-4 py-2.5 rounded bg-[var(--accent)] text-white font-semibold text-xs hover:opacity-90 transition-opacity min-h-[44px]">
-        Sözleşmeyi PDF Olarak İndir
+      <a href="${escapeHtml(ndaFullAgreementData.fullAgreementHeader.pdfHref)}" download="${escapeHtml(ndaFullAgreementData.fullAgreementHeader.pdfDownloadName)}" class="inline-flex items-center justify-center px-4 py-2.5 rounded bg-[var(--accent)] text-white font-semibold text-xs hover:opacity-90 transition-opacity min-h-[44px]">
+        ${escapeHtml(ndaFullAgreementData.fullAgreementHeader.pdfButton.tr)}
       </a>
     </div>
 
-    <!-- Bölüm 1: Size ne sağlıyor -->
+    <!-- Section 1 -->
     <section class="space-y-6">
       <h2 class="text-2xl font-serif font-semibold text-[var(--ink)] border-b border-[var(--rule)] pb-4">
-        Size ne sağlıyor
+        ${escapeHtml(ndaFullAgreementData.whatItGivesYou.title.tr)}
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        ${ndaFullAgreementData.whatItGivesYou.map(item => `
+        ${ndaFullAgreementData.whatItGivesYou.items.map(item => `
           <div class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
             <h3 class="text-base font-semibold font-serif text-[var(--ink)]">${escapeHtml(item.title.tr)}</h3>
             <p class="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.desc.tr)}</p>
@@ -625,13 +627,18 @@ const ndaExtraContent = `
       </div>
     </section>
 
-    <!-- Bölüm 2: Dürüst olalım: sözleşme bizi de koruyor -->
+    <!-- Section 2 -->
     <section class="space-y-6">
-      <h2 class="text-2xl font-serif font-semibold text-[var(--ink)] border-b border-[var(--rule)] pb-4">
-        Dürüst olalım: sözleşme bizi de koruyor
-      </h2>
+      <div class="border-b border-[var(--rule)] pb-4 mb-6">
+        <h2 class="text-2xl font-serif font-semibold text-[var(--ink)]">
+          ${escapeHtml(ndaFullAgreementData.protectsUsToo.title.tr)}
+        </h2>
+        <p class="text-[var(--ink-muted)] text-xs sm:text-sm mt-2 leading-relaxed">
+          ${escapeHtml(ndaFullAgreementData.protectsUsToo.lead.tr)}
+        </p>
+      </div>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        ${ndaFullAgreementData.protectsUsToo.map(item => `
+        ${ndaFullAgreementData.protectsUsToo.items.map(item => `
           <div class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
             <h3 class="text-base font-semibold font-serif text-[var(--ink)]">${escapeHtml(item.title.tr)}</h3>
             <p class="text-xs sm:text-sm text-[var(--ink-muted)] leading-relaxed">${escapeHtml(item.desc.tr)}</p>
@@ -640,83 +647,133 @@ const ndaExtraContent = `
       </div>
     </section>
 
-    <!-- Bölüm 3: 16 Maddelik Sözleşme Metni -->
-    <section class="space-y-6">
-      <h2 class="text-2xl font-serif font-semibold text-[var(--ink)] border-b border-[var(--rule)] pb-4">
-        Sözleşmenin tam metni
+    <!-- Section 3 -->
+    <section class="space-y-4 p-8 rounded-xl bg-[var(--paper)] border border-[var(--rule)] shadow-sm">
+      <h2 class="text-2xl font-serif font-semibold text-[var(--ink)]">
+        ${escapeHtml(ndaFullAgreementData.canItBeChanged.title.tr)}
       </h2>
+      <div class="space-y-2 text-sm sm:text-base text-[var(--ink)] leading-relaxed">
+        <p>${escapeHtml(ndaFullAgreementData.canItBeChanged.paragraphs[0].tr)}</p>
+        <p class="text-xs sm:text-sm text-[var(--ink-muted)] font-mono">
+          ${escapeHtml(ndaFullAgreementData.canItBeChanged.paragraphs[1].tr)}
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 4 -->
+    <section class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[var(--rule)] pb-6 mb-8">
+        <div>
+          <h2 class="text-2xl font-serif font-semibold text-[var(--ink)]">
+            ${escapeHtml(ndaFullAgreementData.fullAgreementHeader.title.tr)}
+          </h2>
+          <p class="text-xs sm:text-sm text-[var(--ink-muted)] mt-1 font-mono">
+            ${escapeHtml(ndaFullAgreementData.fullAgreementHeader.subtitle.tr)}
+          </p>
+        </div>
+        <a href="${escapeHtml(ndaFullAgreementData.fullAgreementHeader.pdfHref)}" download="${escapeHtml(ndaFullAgreementData.fullAgreementHeader.pdfDownloadName)}" class="inline-flex items-center justify-center gap-2 px-5 py-3 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-xs sm:text-sm shadow-sm transition-colors cursor-pointer flex-shrink-0 min-h-[44px]">
+          <span>${escapeHtml(ndaFullAgreementData.fullAgreementHeader.pdfButton.tr)}</span>
+        </a>
+      </div>
+
       <div class="space-y-6 text-sm text-[var(--ink-muted)] leading-relaxed">
-        ${ndaFullAgreementData.clauses.map(clause => `
+        ${ndaFullAgreementData.clauses.map(clause => {
+          if (clause.num === 1) {
+            return `
+          <article class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-3" data-clause="${clause.num}">
+            <h3 class="text-base font-bold text-[var(--ink)] font-serif">${escapeHtml(clause.title)}</h3>
+            <p class="leading-relaxed">${escapeHtml(clause.intro)}</p>
+            <div class="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-1 font-mono text-xs">
+              <p class="text-[var(--ink)] font-bold">${escapeHtml(clause.serviceProvider.title)}</p>
+              ${clause.serviceProvider.lines.map(line => `<p>${escapeHtml(line)}</p>`).join('\n              ')}
+              <p class="text-[var(--ink-muted)] italic">${escapeHtml(clause.serviceProvider.suffix)}</p>
+            </div>
+            <div class="p-4 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-1.5 font-mono text-xs overflow-hidden">
+              <p class="text-[var(--ink)] font-bold">${escapeHtml(clause.client.title)}</p>
+              ${clause.client.fields.map(field => `<p class="flex items-baseline gap-1 overflow-hidden"><span class="shrink-0">${escapeHtml(field.label)}</span><span class="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">${DOT_LINE_64}</span></p>`).join('\n              ')}
+              <p class="text-[var(--ink-muted)] italic pt-0.5">${escapeHtml(clause.client.suffix)}</p>
+            </div>
+            <p class="leading-relaxed">${escapeHtml(clause.outro)}</p>
+          </article>`;
+          }
+
+          if (clause.num === 3) {
+            return `
+          <article class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-3" data-clause="${clause.num}">
+            <h3 class="text-base font-bold text-[var(--ink)] font-serif">${escapeHtml(clause.title)}</h3>
+            <p class="leading-relaxed">${escapeHtml(clause.lead1)}</p>
+            <ul class="list-none space-y-1 pl-4">
+              ${clause.list1.map(item => `<li>${escapeHtml(item)}</li>`).join('\n              ')}
+            </ul>
+            <p class="leading-relaxed">${escapeHtml(clause.lead2)}</p>
+            <ul class="list-none space-y-1 pl-4">
+              ${clause.list2.map(item => `<li>${escapeHtml(item)}</li>`).join('\n              ')}
+            </ul>
+          </article>`;
+          }
+
+          if (clause.num === 8) {
+            return `
           <article class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-3" data-clause="${clause.num}">
             <h3 class="text-base font-bold text-[var(--ink)] font-serif">${escapeHtml(clause.title)}</h3>
             ${clause.paragraphs.map(p => `<p class="leading-relaxed">${escapeHtml(p)}</p>`).join('\n            ')}
-          </article>
-        `).join('\n        ')}
+            <ul class="list-none space-y-1 pl-4">
+              ${clause.list.map(item => `<li>${escapeHtml(item)}</li>`).join('\n              ')}
+            </ul>
+            ${clause.postParagraphs.map(p => `<p class="leading-relaxed">${escapeHtml(p)}</p>`).join('\n            ')}
+          </article>`;
+          }
+
+          if (clause.num === 9) {
+            return `
+          <article class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-3" data-clause="${clause.num}">
+            <h3 class="text-base font-bold text-[var(--ink)] font-serif">${escapeHtml(clause.title)}</h3>
+            ${clause.paragraphs.map(p => `<p class="leading-relaxed">${escapeHtml(p)}</p>`).join('\n            ')}
+            <ul class="list-none space-y-1 pl-4">
+              ${clause.list.map(item => `<li>${escapeHtml(item)}</li>`).join('\n              ')}
+            </ul>
+            ${clause.postParagraphs.map(p => `<p class="leading-relaxed">${escapeHtml(p)}</p>`).join('\n            ')}
+          </article>`;
+          }
+
+          return `
+          <article class="p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-3" data-clause="${clause.num}">
+            <h3 class="text-base font-bold text-[var(--ink)] font-serif">${escapeHtml(clause.title)}</h3>
+            ${clause.paragraphs.map(p => `<p class="leading-relaxed">${escapeHtml(p)}</p>`).join('\n            ')}
+          </article>`;
+        }).join('\n        ')}
       </div>
     </section>
 
-    <!-- İMZA BLOĞU -->
+    <!-- Section: İMZA -->
     <div class="pt-6 border-t border-[var(--rule)] space-y-4">
-      <h3 class="font-semibold font-serif text-[var(--ink)] text-sm sm:text-base">İMZA</h3>
-      <p class="text-xs sm:text-sm text-[var(--ink-muted)]">Taraflar, işbu sözleşmeyi okuyup anlayarak, 16 maddeden ibaret hâliyle iki nüsha olarak imza altına almıştır.</p>
+      <h3 class="font-semibold font-serif text-[var(--ink)] text-sm sm:text-base">${escapeHtml(ndaFullAgreementData.signatures.title)}</h3>
+      <p class="text-xs sm:text-sm text-[var(--ink-muted)]">${escapeHtml(ndaFullAgreementData.signatures.intro)}</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4 font-mono text-xs text-[var(--ink)]">
-        <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-          <p class="font-bold">TMA</p>
-          <p>Trend Master Akademi</p>
-          <p>Mehmet Şahin — Şahıs İşletmesi</p>
-          <p>VKN: 7930336132</p>
-          <p>Tarih: ................................</p>
-          <p>İmza: ................................</p>
+        <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 overflow-hidden">
+          <p class="font-bold">${escapeHtml(ndaFullAgreementData.signatures.tma.title)}</p>
+          ${ndaFullAgreementData.signatures.tma.lines.map(line => `<p>${escapeHtml(line)}</p>`).join('\n          ')}
+          <div class="pt-2 space-y-1.5">
+            ${ndaFullAgreementData.signatures.tma.fields.map(field => `<p class="flex items-baseline gap-1 overflow-hidden"><span class="shrink-0">${escapeHtml(field.label)}</span><span class="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">${DOT_LINE_64}</span></p>`).join('\n            ')}
+          </div>
         </div>
-        <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-          <p class="font-bold">AJANS</p>
-          <p>Unvan: ................................</p>
-          <p>VKN: ................................</p>
-          <p>Yetkili: ................................</p>
-          <p>Tarih: ................................</p>
-          <p>İmza: ................................</p>
+        <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 overflow-hidden">
+          <p class="font-bold">${escapeHtml(ndaFullAgreementData.signatures.ajans.title)}</p>
+          ${ndaFullAgreementData.signatures.ajans.fields.slice(0, 3).map(field => `<p class="flex items-baseline gap-1 overflow-hidden"><span class="shrink-0">${escapeHtml(field.label)}</span><span class="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">${DOT_LINE_64}</span></p>`).join('\n            ')}
+          <div class="pt-2 space-y-1.5">
+            ${ndaFullAgreementData.signatures.ajans.fields.slice(3).map(field => `<p class="flex items-baseline gap-1 overflow-hidden"><span class="shrink-0">${escapeHtml(field.label)}</span><span class="overflow-hidden whitespace-nowrap text-[var(--ink-muted)] select-none">${DOT_LINE_64}</span></p>`).join('\n            ')}
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Öncelik Kaydı -->
+    <!-- Section: Öncelik Kaydı -->
     <div class="p-6 rounded-xl bg-amber-50 border-2 border-amber-300 text-amber-950 text-xs sm:text-sm leading-relaxed space-y-2">
       <strong class="text-amber-800 font-semibold block uppercase">${escapeHtml(ndaFullAgreementData.precedenceNotice.title.tr)}</strong>
       <p>${escapeHtml(ndaFullAgreementData.precedenceNotice.text)}</p>
     </div>
   </section>
 `;
-
-// 3.6 — Build Guard: /nda/ Ön-render ve ndaFullAgreementData Eşitlik Koruması
-function normalizeWhitespace(text) {
-  return (text || '').replace(/\s+/g, ' ').trim();
-}
-
-console.log('[BUILD GUARD] /nda/ ön-render tek kaynak doğrulaması yapılıyor...');
-
-if (!Array.isArray(ndaFullAgreementData.clauses) || ndaFullAgreementData.clauses.length !== 16) {
-  console.error(`[BUILD GUARD HATA] ndaFullAgreementData.clauses 16 madde olmalı, bulunan: ${ndaFullAgreementData.clauses?.length}`);
-  process.exit(1);
-}
-
-const normalizedNdaExtra = normalizeWhitespace(ndaExtraContent);
-
-for (const clause of ndaFullAgreementData.clauses) {
-  const normTitle = normalizeWhitespace(clause.title);
-  if (!normalizedNdaExtra.includes(normTitle)) {
-    console.error(`[BUILD GUARD HATA] Madde ${clause.num} başlığı ön-render çıktısında eşleşmedi: "${normTitle}"`);
-    process.exit(1);
-  }
-  for (let pIdx = 0; pIdx < clause.paragraphs.length; pIdx++) {
-    const p = clause.paragraphs[pIdx];
-    const normP = normalizeWhitespace(escapeHtml(p));
-    if (!normalizedNdaExtra.includes(normP)) {
-      console.error(`[BUILD GUARD HATA] Madde ${clause.num} paragraf ${pIdx + 1} ön-render çıktısında eşleşmedi:\nBeklenen: "${normP}"`);
-      process.exit(1);
-    }
-  }
-}
-console.log('[BUILD GUARD BAŞARILI] /nda/ 16 maddesi ve tüm paragrafları tam doğrulandı.');
 
 const kitExtraContentTr = `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-8">
@@ -1905,11 +1962,11 @@ const basePages = [
   {
     dir: 'nda',
     title: 'Gizlilik ve Çalışma Sözleşmesi | Trend Master Akademi',
-    h1: 'Gizlilik ve Çalışma Sözleşmesi',
+    h1: ndaFullAgreementData.pageHeader.h1.tr,
     description: 'Çalışmaya başlamadan önce imzaladığımız karşılıklı gizlilik ve çalışma sözleşmesinin tam metni ve sade dilli özeti.',
     canonical: 'https://trendmasterakademi.com/nda/',
     ogUrl: 'https://trendmasterakademi.com/nda/',
-    subheading: 'Çalışmaya başlamadan önce karşılıklı bir gizlilik ve çalışma sözleşmesi imzalıyoruz. Ne imzalayacağınızı önceden bilmeniz için sözleşmenin ne dediğini burada sade dille anlattık.',
+    subheading: ndaFullAgreementData.pageHeader.lead.tr,
     extraContent: ndaExtraContent,
     schema: {
       "@context": "https://schema.org",
@@ -3673,5 +3730,125 @@ function verifySeoAndHtmlIntegrity() {
 }
 
 verifySeoAndHtmlIntegrity();
+
+// 3.7 — Gerçek Derleme Koruması: /nda/ 3 Kontrollü Tek Kaynak ve İçerik Doğrulaması
+function verifyNdaIntegrity() {
+  console.log('\n[BUILD GUARD /nda/] 3 Kontrollü Gerçek Derleme Koruması Çalıştırılıyor...');
+
+  const ndaJsxPath = path.join(__dirname, 'src/pages/Nda.jsx');
+  if (!fs.existsSync(ndaJsxPath)) {
+    console.error('[BUILD GUARD HATA] src/pages/Nda.jsx dosyası bulunamadı!');
+    process.exit(1);
+  }
+  const ndaJsxContent = fs.readFileSync(ndaJsxPath, 'utf8');
+
+  // KONTROL A: src/pages/Nda.jsx ndaFullAgreementData'yı içe aktarıyor mu?
+  const importRegex = /import\s+[\s\S]*?\bndaFullAgreementData\b[\s\S]*?from/;
+  if (!importRegex.test(ndaJsxContent)) {
+    console.error('[BUILD GUARD A HATA] src/pages/Nda.jsx ndaFullAgreementData\'yı içe aktarmıyor!');
+    process.exit(1);
+  }
+  console.log('[BUILD GUARD A GEÇTİ] src/pages/Nda.jsx ndaFullAgreementData\'yı içe aktarıyor.');
+
+  // KONTROL B: src/pages/Nda.jsx'te veri dosyasındaki herhangi bir metin (≥ 25 karakter) string olarak geçiyor mu?
+  function extractAllStrings(obj, result = []) {
+    if (obj == null) return result;
+    if (typeof obj === 'string') {
+      const trimmed = obj.trim();
+      if (trimmed.length >= 25) {
+        result.push(trimmed);
+      }
+    } else if (Array.isArray(obj)) {
+      for (const item of obj) {
+        extractAllStrings(item, result);
+      }
+    } else if (typeof obj === 'object') {
+      for (const val of Object.values(obj)) {
+        extractAllStrings(val, result);
+      }
+    }
+    return result;
+  }
+
+  const allNdaStrings = extractAllStrings(ndaFullAgreementData);
+  for (const s of allNdaStrings) {
+    if (ndaJsxContent.includes(s)) {
+      console.error(`[BUILD GUARD B HATA] src/pages/Nda.jsx içinde veri dosyasındaki metin elle yazılmış bulundu (≥ 25 karakter):\n"${s}"`);
+      process.exit(1);
+    }
+  }
+  console.log(`[BUILD GUARD B GEÇTİ] src/pages/Nda.jsx içinde veri dosyasından elle yazılmış metin yok (${allNdaStrings.length} metin denetlendi).`);
+
+  // KONTROL C: dist/nda/index.html ana içeriğinde veri dosyasındaki HER metin (özet · maddeler · liste öğeleri · İMZA · öncelik kaydı) geçiyor mu?
+  const ndaHtmlFile = path.join(distDir, 'nda', 'index.html');
+  if (!fs.existsSync(ndaHtmlFile)) {
+    console.error('[BUILD GUARD C HATA] dist/nda/index.html dosyası bulunamadı!');
+    process.exit(1);
+  }
+  const ndaRawHtml = fs.readFileSync(ndaHtmlFile, 'utf8');
+  const mainMatch = ndaRawHtml.match(/<main class="space-y-6">([\s\S]*?)<\/main>/i);
+  const mainContent = mainMatch ? mainMatch[1] : ndaRawHtml;
+
+  function normalizeText(t) {
+    return (t || '')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/&amp;/g, '&')
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  const normalizedMain = normalizeText(mainContent);
+
+  // Özet, maddeler, liste öğeleri, İMZA ve öncelik kaydı
+  const targetSections = {
+    whatItGivesYou: ndaFullAgreementData.whatItGivesYou,
+    protectsUsToo: ndaFullAgreementData.protectsUsToo,
+    canItBeChanged: ndaFullAgreementData.canItBeChanged,
+    fullAgreementHeader: ndaFullAgreementData.fullAgreementHeader,
+    clauses: ndaFullAgreementData.clauses,
+    signatures: ndaFullAgreementData.signatures,
+    precedenceNotice: ndaFullAgreementData.precedenceNotice
+  };
+
+  function extractRequiredTrStrings(obj, result = []) {
+    if (obj == null) return result;
+    if (typeof obj === 'string') {
+      const trimmed = obj.trim();
+      if (trimmed.length > 0) result.push(trimmed);
+    } else if (Array.isArray(obj)) {
+      for (const item of obj) {
+        extractRequiredTrStrings(item, result);
+      }
+    } else if (typeof obj === 'object') {
+      if ('tr' in obj) {
+        if (typeof obj.tr === 'string' && obj.tr.trim().length > 0) {
+          result.push(obj.tr.trim());
+        }
+      } else {
+        for (const [key, val] of Object.entries(obj)) {
+          if (key === 'en' || key === 'enNotice' || key === 'pdfHref' || key === 'pdfDownloadName') continue;
+          extractRequiredTrStrings(val, result);
+        }
+      }
+    }
+    return result;
+  }
+
+  const requiredTexts = extractRequiredTrStrings(targetSections);
+  for (const text of requiredTexts) {
+    const normExpected = normalizeText(text);
+    if (!normalizedMain.includes(normExpected)) {
+      console.error(`[BUILD GUARD C HATA] dist/nda/index.html ana içeriğinde veri dosyasındaki metin eksik:\n"${text}"`);
+      process.exit(1);
+    }
+  }
+  console.log(`[BUILD GUARD C GEÇTİ] dist/nda/index.html ana içeriğinde veri dosyasındaki tüm metinler eksiksiz mevcut (${requiredTexts.length} metin doğrulandı).`);
+}
+
+verifyNdaIntegrity();
 
 
