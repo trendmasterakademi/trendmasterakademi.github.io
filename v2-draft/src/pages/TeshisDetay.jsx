@@ -157,7 +157,7 @@ const TeshisDetay = () => {
   const isKritik = teshis.aciliyet.seviye === 'kritik';
 
   return (
-    <div className="min-h-screen pt-28 pb-24 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-white">
+    <div className="min-h-screen pt-28 pb-24 px-4 sm:px-6 md:px-12 max-w-5xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
       
       {/* Back Link */}
       <div className="mb-6">

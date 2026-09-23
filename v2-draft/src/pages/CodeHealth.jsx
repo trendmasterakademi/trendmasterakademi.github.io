@@ -97,7 +97,7 @@ Agreement & NDA Protection: https://trendmasterakademi.com/nda/
   };
 
   return (
-    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-white">
+    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
       {/* Header */}
       <div className="max-w-6xl mx-auto text-center mb-12">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-muted)] text-xs font-mono font-medium uppercase tracking-widest mb-4">
@@ -162,7 +162,7 @@ Agreement & NDA Protection: https://trendmasterakademi.com/nda/
                       <div
                         className={`w-5 h-5 mt-0.5 rounded flex items-center justify-center text-xs font-bold transition-all shrink-0 ${
                           isChecked
-                            ? "bg-[var(--accent)] text-white"
+                            ? "bg-[var(--accent)] text-[var(--on-accent)]"
                             : "border border-[var(--rule)] text-transparent"
                         }`}
                       >

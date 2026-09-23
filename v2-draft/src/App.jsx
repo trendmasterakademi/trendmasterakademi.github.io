@@ -59,10 +59,10 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-[var(--paper)] text-[var(--ink-2)] selection:bg-[var(--accent)] selection:text-white w-full max-w-full relative font-sans">
+      <div className="min-h-screen bg-[var(--paper)] text-[var(--ink-2)] selection:bg-[var(--accent)] selection:text-[var(--on-accent)] w-full max-w-full relative font-sans">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-[var(--accent)] focus:text-white focus:font-medium focus:text-sm focus:rounded-[var(--r-control)] focus:shadow-navbar focus:outline-none transition-all"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2.5 focus:bg-[var(--accent)] focus:text-[var(--on-accent)] focus:font-medium focus:text-sm focus:rounded-[var(--r-control)] focus:shadow-navbar focus:outline-none transition-all"
         >
           {isTr ? 'İçeriğe atla' : 'Skip to content'}
         </a>

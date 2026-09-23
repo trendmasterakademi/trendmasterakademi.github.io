@@ -653,7 +653,7 @@ const CrashTest = () => {
                     });
                   }
                 }}
-                className="px-8 py-4 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-sm sm:text-base tracking-wide flex items-center gap-3 shadow-sm transition-colors cursor-pointer min-h-[48px]"
+                className="px-8 py-4 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] font-semibold text-sm sm:text-base tracking-wide flex items-center gap-3 shadow-sm transition-colors cursor-pointer min-h-[48px]"
               >
                 <span>{isTr ? 'Durum Teşhisine Geç' : 'Proceed to Diagnosis'}</span>
                 <ArrowRight className="w-5 h-5" />
@@ -737,7 +737,7 @@ const CrashTest = () => {
                         >
                           <span className="leading-snug">{opt.label[isTr ? 'tr' : 'en']}</span>
                           <div className={`w-6 h-6 rounded-full border flex items-center justify-center flex-shrink-0 ${
-                            isSelected ? 'border-[var(--accent)] bg-[var(--accent)] text-white' : 'border-[var(--rule-dark)]'
+                            isSelected ? 'border-[var(--accent)] bg-[var(--accent)] text-[var(--on-accent)]' : 'border-[var(--rule-dark)]'
                           }`}>
                             {isSelected && <Check className="w-4 h-4 stroke-[3]" />}
                           </div>
@@ -773,7 +773,7 @@ const CrashTest = () => {
                 }}
                 className={`px-8 py-4 rounded font-semibold text-sm sm:text-base tracking-wide flex items-center gap-3 transition-all cursor-pointer min-h-[48px] ${
                   isAllAnswered
-                    ? 'bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm'
+                    ? 'bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] shadow-sm'
                     : 'bg-[var(--surface)] text-[var(--ink-muted)] border border-[var(--rule)] cursor-not-allowed opacity-50'
                 }`}
               >
@@ -1005,7 +1005,7 @@ const CrashTest = () => {
                 {matchResult.matched ? (
                   <button
                     onClick={openWhatsAppDispatch}
-                    className="w-full py-4 sm:py-5 px-8 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-base sm:text-lg shadow-sm flex items-center justify-center gap-3 transition-colors cursor-pointer min-h-[56px]"
+                    className="w-full py-4 sm:py-5 px-8 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] font-semibold text-base sm:text-lg shadow-sm flex items-center justify-center gap-3 transition-colors cursor-pointer min-h-[56px]"
                   >
                     <PhoneCall className="w-5 h-5 sm:w-6 sm:h-6" />
                     <span>{isTr ? 'Kriz Masasını Devreye Sok (WhatsApp)' : 'Deploy Crisis Desk (WhatsApp)'}</span>
@@ -1016,7 +1016,7 @@ const CrashTest = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'crash_test_result', scenario: selectedScenario?.code, agency_code: campaignParams.agency_code })}
-                    className="w-full py-4 sm:py-5 px-8 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-base sm:text-lg shadow-sm flex items-center justify-center gap-3 transition-colors min-h-[56px]"
+                    className="w-full py-4 sm:py-5 px-8 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] font-semibold text-base sm:text-lg shadow-sm flex items-center justify-center gap-3 transition-colors min-h-[56px]"
                   >
                     <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
                     <span>{isTr ? 'Takvimden 30 Dakikalık Kapsam Görüşmesi Seç' : 'Book a 30-Minute Scoping Call'}</span>
@@ -1117,7 +1117,7 @@ const CrashTest = () => {
                         <button
                           type="button"
                           onClick={openWhatsAppDispatch}
-                          className="w-full py-3 px-4 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-sm min-h-[44px]"
+                          className="w-full py-3 px-4 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-sm min-h-[44px]"
                         >
                           <PhoneCall className="w-4 h-4" />
                           <span>{isTr ? 'WhatsApp ile Raporu Talep Et →' : 'Request Blueprint via WhatsApp →'}</span>
@@ -1199,7 +1199,7 @@ const CrashTest = () => {
                         <button
                           type="submit"
                           disabled={isSendingLead}
-                          className="sm:col-span-3 py-3 px-6 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-sm disabled:opacity-50 min-h-[44px]"
+                          className="sm:col-span-3 py-3 px-6 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] font-semibold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-sm disabled:opacity-50 min-h-[44px]"
                         >
                           <Send className="w-4 h-4" />
                           <span>{isSendingLead ? (isTr ? 'Gönderiliyor...' : 'Sending...') : (isTr ? 'Detaylı Eylem Raporumu Gönder' : 'Send My Custom Blueprint')}</span>

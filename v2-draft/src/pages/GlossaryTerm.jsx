@@ -64,7 +64,7 @@ const GlossaryTerm = () => {
   };
 
   return (
-    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[var(--paper)] text-[var(--ink)] relative font-sans selection:bg-[var(--accent)] selection:text-white">
+    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[var(--paper)] text-[var(--ink)] relative font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
       <div className="max-w-4xl mx-auto space-y-8">
         
         {/* Navigation Breadcrumb */}

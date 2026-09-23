@@ -17,7 +17,7 @@ export const incidents = [
       latencyAfter: '24 ms',
       cpuBefore: { tr: '98% Spike', en: '98% Spike' },
       cpuAfter: { tr: '3.2% Normal', en: '3.2% Normal' },
-      status: { tr: 'ÇÖZÜLDÜ (%99.8 Daha Hızlı)', en: 'RESOLVED (99.8% Faster)' }
+      status: { tr: 'ÇÖZÜLDÜ', en: 'RESOLVED' }
     },
     beforeCode: {
       tr: `// [ESKİ KOD]: Her döngüde ayrı DB sorgusu & açık transaction kilidi
@@ -353,7 +353,7 @@ export const CodeDiffTerminal = () => {
           <div className="bg-[var(--term-bg-2)] px-4 sm:px-6 py-3 border-b border-[var(--term-rule)] flex flex-wrap items-center justify-between gap-3">
             {/* Source Header (replaced fake macOS dots) */}
             <div className="flex items-center gap-2">
-              <span className="font-mono text-xs text-[var(--term-rule)] flex items-center gap-2">
+              <span className="font-mono text-xs text-[var(--term-dim)] flex items-center gap-2">
                 <Terminal className="w-3.5 h-3.5 text-[var(--term-accent)]" />
                 <span>kernel // {current.id}.patch</span>
               </span>
@@ -366,7 +366,7 @@ export const CodeDiffTerminal = () => {
                 className={`px-3 py-1.5 rounded-[var(--r-control)] font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
                   viewMode === 'before'
                     ? 'bg-[var(--sev-1)]/20 text-[var(--term-diff-del)] border border-[var(--sev-1)]/40 shadow-sm'
-                    : 'text-[var(--term-rule)] hover:text-[var(--term-ink)]'
+                    : 'text-[var(--term-dim)] hover:text-[var(--term-ink)]'
                 }`}
               >
                 <AlertCircle className="w-3.5 h-3.5" />
@@ -378,7 +378,7 @@ export const CodeDiffTerminal = () => {
                 className={`px-3 py-1.5 rounded-[var(--r-control)] font-medium transition-all cursor-pointer flex items-center gap-1.5 ${
                   viewMode === 'after'
                     ? 'bg-[var(--sev-4)]/20 text-[var(--term-diff-add)] border border-[var(--sev-4)]/40 shadow-sm'
-                    : 'text-[var(--term-rule)] hover:text-[var(--term-ink)]'
+                    : 'text-[var(--term-dim)] hover:text-[var(--term-ink)]'
                 }`}
               >
                 <Check className="w-3.5 h-3.5" />

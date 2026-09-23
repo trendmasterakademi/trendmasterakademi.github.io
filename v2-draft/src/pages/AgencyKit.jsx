@@ -52,7 +52,7 @@ export default function AgencyKit({ lang }) {
   }, [activeSlideIndex, isPosterLightboxOpen]);
 
   return (
-    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] pt-28 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-white">
+    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] pt-28 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
       <div className="max-w-7xl mx-auto space-y-16 sm:space-y-24">
         
         {/* ========================================================
@@ -163,10 +163,10 @@ export default function AgencyKit({ lang }) {
 
                     {/* Hover Overlay with Zoom Icon */}
                     <div className="absolute inset-0 bg-[var(--ink)]/75 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2 p-4 text-center">
-                      <span className="w-10 h-10 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-bold shadow-lg">
+                      <span className="w-10 h-10 rounded-full bg-[var(--accent)] text-[var(--on-accent)] flex items-center justify-center font-bold shadow-lg">
                         <ZoomIn className="w-5 h-5" />
                       </span>
-                      <span className="font-mono text-xs font-semibold text-white uppercase tracking-wider">
+                      <span className="font-mono text-xs font-semibold text-[var(--term-ink)] uppercase tracking-wider">
                         {isTr ? 'Büyüt & İncele' : 'Inspect Slide'}
                       </span>
                     </div>
@@ -231,7 +231,7 @@ export default function AgencyKit({ lang }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center rounded-2xl bg-[var(--surface)] border border-[var(--rule)] p-6 sm:p-10 relative overflow-hidden">
             
             {/* Background 500 watermark */}
-            <div className="absolute top-1/2 right-10 -translate-y-1/2 text-[160px] sm:text-[240px] font-mono font-bold text-[var(--rule)]/30 select-none pointer-events-none">
+            <div aria-hidden="true" className="absolute top-1/2 right-10 -translate-y-1/2 text-[160px] sm:text-[240px] font-mono font-bold text-[var(--rule)]/30 select-none pointer-events-none">
               500
             </div>
 
@@ -247,10 +247,10 @@ export default function AgencyKit({ lang }) {
                   className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-102"
                 />
                 <div className="absolute inset-0 bg-[var(--ink)]/75 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2">
-                  <span className="w-12 h-12 rounded-full bg-[var(--accent)] text-white flex items-center justify-center font-bold shadow-xl">
+                  <span className="w-12 h-12 rounded-full bg-[var(--accent)] text-[var(--on-accent)] flex items-center justify-center font-bold shadow-xl">
                     <ZoomIn className="w-6 h-6" />
                   </span>
-                  <span className="font-mono text-xs font-semibold text-white uppercase tracking-wider">
+                  <span className="font-mono text-xs font-semibold text-[var(--term-ink)] uppercase tracking-wider">
                     {isTr ? 'Posteri Tam Ekran İncele' : 'Zoom Full Poster'}
                   </span>
                 </div>
@@ -451,7 +451,7 @@ export default function AgencyKit({ lang }) {
             {/* Prev Button */}
             <button
               onClick={() => setActiveSlideIndex((prev) => (prev - 1 + 8) % 8)}
-              className="absolute left-2 sm:left-6 z-20 p-2 sm:p-3 min-h-[44px] min-w-[44px] rounded-full bg-black/60 hover:bg-[var(--accent)] text-white border border-white/20 transition-all cursor-pointer shadow-2xl flex items-center justify-center"
+              className="absolute left-2 sm:left-6 z-20 p-2 sm:p-3 min-h-[44px] min-w-[44px] rounded-full bg-black/60 hover:bg-[var(--accent)] text-[var(--term-ink)] hover:text-[var(--on-accent)] border border-[var(--term-dim)]/30 transition-all cursor-pointer shadow-2xl flex items-center justify-center"
               aria-label={isTr ? "Önceki Slayt" : "Previous Slide"}
             >
               <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
@@ -462,14 +462,14 @@ export default function AgencyKit({ lang }) {
               <img
                 src={`/agency-kit/response-kit-slide-${activeSlideIndex + 1}.png`}
                 alt={`Slide ${activeSlideIndex + 1}`}
-                className="max-h-full max-w-full object-contain rounded-xl shadow-2xl border border-white/10"
+                className="max-h-full max-w-full object-contain rounded-xl shadow-2xl border border-[var(--term-dim)]/20"
               />
             </div>
 
             {/* Next Button */}
             <button
               onClick={() => setActiveSlideIndex((prev) => (prev + 1) % 8)}
-              className="absolute right-2 sm:right-6 z-20 p-2 sm:p-3 min-h-[44px] min-w-[44px] rounded-full bg-black/60 hover:bg-[var(--accent)] text-white border border-white/20 transition-all cursor-pointer shadow-2xl flex items-center justify-center"
+              className="absolute right-2 sm:right-6 z-20 p-2 sm:p-3 min-h-[44px] min-w-[44px] rounded-full bg-black/60 hover:bg-[var(--accent)] text-[var(--term-ink)] hover:text-[var(--on-accent)] border border-[var(--term-dim)]/30 transition-all cursor-pointer shadow-2xl flex items-center justify-center"
               aria-label={isTr ? "Sonraki Slayt" : "Next Slide"}
             >
               <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />

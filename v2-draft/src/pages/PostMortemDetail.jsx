@@ -49,7 +49,7 @@ const PostMortemDetail = () => {
   const isSev1 = item.severity.includes('SEV-1');
 
   return (
-    <article className="min-h-screen pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-white">
+    <article className="min-h-screen pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
       
       {/* Back to Archive Breadcrumb */}
       <nav className="mb-8">

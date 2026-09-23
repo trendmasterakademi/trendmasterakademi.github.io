@@ -117,7 +117,7 @@ const KesintiMaliyeti = () => {
   };
 
   return (
-    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[var(--paper)] text-[var(--ink)] relative font-sans selection:bg-[var(--accent)] selection:text-white">
+    <div className="min-h-screen pt-28 pb-28 px-4 sm:px-6 md:px-8 bg-[var(--paper)] text-[var(--ink)] relative font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
       <div className="max-w-5xl mx-auto space-y-10">
         
         {/* Eyebrow & Header */}
@@ -154,7 +154,7 @@ const KesintiMaliyeti = () => {
                     type="button"
                     onClick={() => { setInputMode('tier'); setDailyOrders(''); }}
                     className={`px-3 py-1.5 min-h-[44px] rounded-lg transition-colors cursor-pointer ${
-                      inputMode !== 'orders' ? 'bg-[var(--accent)] text-white font-semibold' : 'text-[var(--ink-light)] hover:text-[var(--ink)]'
+                      inputMode !== 'orders' ? 'bg-[var(--accent)] text-[var(--on-accent)] font-semibold' : 'text-[var(--ink-light)] hover:text-[var(--ink)]'
                     }`}
                   >
                     {isTr ? 'Aylık Ciro' : 'Monthly Revenue'}

@@ -185,7 +185,7 @@ const Story = () => {
               target="_blank"
               rel="noreferrer"
               onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'story_end' })}
-              className="px-6 py-3 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-sm w-full sm:w-fit min-h-[44px]"
+              className="px-6 py-3 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 transition-colors shadow-sm w-full sm:w-fit min-h-[44px]"
             >
               <Calendar className="w-4 h-4" />
               <span>{isTr ? '30 dakikalık teknik tanışma görüşmesi →' : '30-minute technical intro call →'}</span>

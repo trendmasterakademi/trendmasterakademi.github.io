@@ -25,7 +25,7 @@
   --term-bg:      #0E1116;
   --term-bg-2:    #0E1116;
   --term-ink:     #C7CEDA;
-  --term-dim:     #6F7B8C;
+  --term-dim:     #7E8A9B;
   --term-accent:  #E4636C;   /* koyu zeminde aksanın açılmış hali */
   --term-diff-add:#338E61;   /* 4,67 : 1 terminal zemini üstünde */
   --term-diff-del:#B21F2B;
@@ -33,7 +33,7 @@
 
   /* Aciliyet — YALNIZ teşhis katalogunda */
   --sev-critical: #B21F2B;
-  --sev-high:     #A85B12;
+  --sev-high:     #8F4B0C;
   --sev-normal:   #5A6472;
   --sev-ok:       #1D764B;   /* kâğıtta 4,69 · panelde 5,23 · üstünde beyaz 5,61 */
   --sev-ok-hover: #1D764B;
@@ -101,7 +101,7 @@
     --term-bg:      #0E1116;
     --term-bg-2:    #0E1116;
     --term-ink:     #C7CEDA;
-    --term-dim:     #6F7B8C;
+    --term-dim:     #7E8A9B;
     --term-accent:  #E4636C;
     --term-diff-add:#338E61;   /* 4,67 : 1 terminal zemini üstünde */
     --term-diff-del:#E4636C;
@@ -154,7 +154,7 @@
   --term-bg:      #0E1116;
   --term-bg-2:    #0E1116;
   --term-ink:     #C7CEDA;
-  --term-dim:     #6F7B8C;
+  --term-dim:     #7E8A9B;
   --term-accent:  #E4636C;
   --term-diff-add:#338E61;   /* 4,67 : 1 terminal zemini üstünde */
   --term-diff-del:#E4636C;
@@ -206,14 +206,14 @@
   --term-bg:      #0E1116;
   --term-bg-2:    #0E1116;
   --term-ink:     #C7CEDA;
-  --term-dim:     #6F7B8C;
+  --term-dim:     #7E8A9B;
   --term-accent:  #E4636C;
   --term-diff-add:#338E61;   /* 4,67 : 1 terminal zemini üstünde */
   --term-diff-del:#B21F2B;
   --term-rule:    var(--rule);
 
   --sev-critical: #B21F2B;
-  --sev-high:     #A85B12;
+  --sev-high:     #8F4B0C;
   --sev-normal:   #5A6472;
   --sev-ok:       #1D764B;   /* kâğıtta 4,69 · panelde 5,23 · üstünde beyaz 5,61 */
   --sev-ok-hover: #1D764B;

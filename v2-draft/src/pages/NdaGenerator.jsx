@@ -84,7 +84,7 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
   )}`;
 
   return (
-    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-white">
+    <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
       {/* Print Styles */}
       <style dangerouslySetInnerHTML={{ __html: `
         @media print {

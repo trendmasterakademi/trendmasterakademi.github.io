@@ -488,7 +488,7 @@ const DevirKontrolu = () => {
               <button
                 type="button"
                 onClick={startChecklist}
-                className="px-10 py-4 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-base sm:text-lg shadow-sm flex items-center gap-3 transition-colors cursor-pointer min-h-[44px]"
+                className="px-10 py-4 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] font-semibold text-base sm:text-lg shadow-sm flex items-center gap-3 transition-colors cursor-pointer min-h-[44px]"
               >
                 <span>{isTr ? 'Devir Kontrolünü Başlat (12 Soru)' : 'Start Handover Audit (12 Items)'}</span>
                 <ArrowRight className="w-5 h-5" />
@@ -632,7 +632,7 @@ const DevirKontrolu = () => {
                 onClick={completeChecklist}
                 className={`px-8 py-3.5 rounded font-semibold text-sm sm:text-base tracking-wide flex items-center gap-3 transition-colors cursor-pointer min-h-[44px] ${
                   isAllAnswered
-                    ? 'bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white shadow-sm'
+                    ? 'bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] shadow-sm'
                     : 'bg-[var(--rule)] text-[var(--ink-muted)] cursor-not-allowed'
                 }`}
               >
@@ -833,7 +833,7 @@ const DevirKontrolu = () => {
                   <button
                     type="button"
                     onClick={openWhatsAppDispatch}
-                    className="w-full py-3 px-4 rounded bg-[var(--sev-ok)] hover:opacity-90 text-white font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-sm min-h-[44px]"
+                    className="w-full py-3 px-4 rounded bg-[var(--sev-ok)] hover:opacity-90 text-[var(--on-sev-ok)] font-semibold text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer shadow-sm min-h-[44px]"
                   >
                     <PhoneCall className="w-4 h-4" />
                     <span>{isTr ? 'WhatsApp ile Raporu Talep Et →' : 'Request Report via WhatsApp →'}</span>
@@ -874,7 +874,7 @@ const DevirKontrolu = () => {
                     <button
                       type="submit"
                       disabled={isSendingLead}
-                      className="w-full py-3 px-6 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-sm tracking-wide transition-colors shadow-sm cursor-pointer disabled:opacity-50 min-h-[44px]"
+                      className="w-full py-3 px-6 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] font-semibold text-sm tracking-wide transition-colors shadow-sm cursor-pointer disabled:opacity-50 min-h-[44px]"
                     >
                       {isSendingLead ? (isTr ? 'İletiliyor...' : 'Sending...') : (isTr ? 'Raporu & Kontrol Listesini E-Postama Gönder →' : 'Send Blueprint to My Email →')}
                     </button>
@@ -899,7 +899,7 @@ const DevirKontrolu = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => window.trackEvent && window.trackEvent('calendar_clicked', { source: 'handover_result', agency_code: campaignParams.agency_code })}
-                  className="px-6 py-3 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-sm sm:text-base flex items-center gap-2 whitespace-nowrap shadow-sm cursor-pointer transition-colors min-h-[44px]"
+                  className="px-6 py-3 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] font-semibold text-sm sm:text-base flex items-center gap-2 whitespace-nowrap shadow-sm cursor-pointer transition-colors min-h-[44px]"
                 >
                   <Calendar className="w-4 h-4" />
                   <span>{isTr ? 'Takvimden 30 Dakikalık Görüşme Seç' : 'Book a 30-Minute Intro Call'}</span>
@@ -908,7 +908,7 @@ const DevirKontrolu = () => {
                 <button
                   type="button"
                   onClick={openWhatsAppDispatch}
-                  className="px-5 py-3 rounded bg-[var(--sev-ok)] hover:opacity-90 text-white font-semibold text-sm flex items-center gap-2 whitespace-nowrap cursor-pointer transition-colors min-h-[44px]"
+                  className="px-5 py-3 rounded bg-[var(--sev-ok)] hover:opacity-90 text-[var(--on-sev-ok)] font-semibold text-sm flex items-center gap-2 whitespace-nowrap cursor-pointer transition-colors min-h-[44px]"
                 >
                   <PhoneCall className="w-4 h-4" />
                   <span>{isTr ? 'WhatsApp ile Danışın' : 'Consult via WhatsApp'}</span>

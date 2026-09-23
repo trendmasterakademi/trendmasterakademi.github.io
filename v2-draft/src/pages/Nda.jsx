@@ -136,7 +136,7 @@ const Nda = () => {
           <a
             href={fullAgreementHeader.pdfHref}
             download={fullAgreementHeader.pdfDownloadName}
-            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-white font-semibold text-xs sm:text-sm shadow-sm transition-colors cursor-pointer flex-shrink-0 min-h-[44px]"
+            className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-[var(--on-accent)] font-semibold text-xs sm:text-sm shadow-sm transition-colors cursor-pointer flex-shrink-0 min-h-[44px]"
           >
             <Download className="w-4 h-4" />
             <span>{fullAgreementHeader.pdfButton[lang]}</span>

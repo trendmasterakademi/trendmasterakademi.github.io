@@ -20,7 +20,7 @@ const NotFound = () => {
   }, [isTr]);
 
   return (
-    <div className="min-h-screen pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-white">
+    <div className="min-h-screen pt-32 pb-28 px-4 sm:px-6 md:px-12 max-w-4xl mx-auto bg-[var(--paper)] text-[var(--ink)] font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
       
       {/* Back Navigation */}
       <div className="mb-8">
