@@ -71,6 +71,9 @@ if (!fs.existsSync(templatePath)) {
 
 const template = fs.readFileSync(templatePath, 'utf8');
 
+// Teşhis veri bütünlüğünü (A-F) sayfa üretiminden hemen önce doğrula
+verifyTeshisIntegrity();
+
 // 2.0 — Kaynak tekilleştirme: Hero.jsx ve FAQ.jsx'ten verileri doğrudan oku
 const heroContent = fs.readFileSync(path.join(__dirname, 'src/components/Hero.jsx'), 'utf8');
 const heroMatch = heroContent.match(/export const diagnosticLogs = (\[[\s\S]*?\]);\s*\/\//);
@@ -4291,6 +4294,198 @@ function verifyColorIntegrity() {
 }
 
 verifyColorIntegrity();
+
+// =============================================================================
+// 3.10 — GERÇEK DERLEME KORUMASI: TEŞHİS BÜTÜNLÜĞÜ (verifyTeshisIntegrity)
+// =============================================================================
+function verifyTeshisIntegrity() {
+  console.log('\n[BUILD GUARD TEŞHİS] Teşhis bütünlüğü denetimi başlatılıyor (Kurallar A-F)...');
+  const errors = [];
+
+  // ---------------------------------------------------------------------------
+  // Kural A: indexSummary.js ve count.js güncel
+  // teshisData'dan bellekte yeniden üretilen özet ve sayı, dosyadakiyle aynı değilse → DUR
+  // ---------------------------------------------------------------------------
+  const dir = path.join(__dirname, 'src/data/teshis');
+  const sortedItems = [...teshisData].sort((a, b) => Number(a.no) - Number(b.no));
+  const ALANLAR = ['slug', 'no', 'baslik', 'diyagramBaslik', 'kirinti', 'aciliyet', 'ozet', 'ilgiliTerimler', 'nedenler'];
+  const expectedSummaries = sortedItems.map((t) =>
+    Object.fromEntries(
+      ALANLAR.map((k) => [k, k === 'nedenler' ? t.nedenler.map((n) => ({ harf: n.harf, ad: n.ad })) : t[k]])
+    )
+  );
+  const expectedSummariesStr = ('export const teshisSummaries = ' + JSON.stringify(expectedSummaries, null, 2) + ';\n').replace(/\r\n/g, '\n').trim();
+  const expectedCountStr = ('export const teshisSayisi = ' + sortedItems.length + ';\n').replace(/\r\n/g, '\n').trim();
+
+  const actualSummariesPath = path.join(dir, 'indexSummary.js');
+  const actualCountPath = path.join(dir, 'count.js');
+
+  if (!fs.existsSync(actualSummariesPath)) {
+    errors.push('[KURAL A] src/data/teshis/indexSummary.js dosyası bulunamadı.');
+  } else {
+    const actualSummariesStr = fs.readFileSync(actualSummariesPath, 'utf8').replace(/\r\n/g, '\n').trim();
+    if (actualSummariesStr !== expectedSummariesStr) {
+      errors.push('[KURAL A] src/data/teshis/indexSummary.js güncel değil! teshisData ile uyuşmuyor.');
+    }
+  }
+
+  if (!fs.existsSync(actualCountPath)) {
+    errors.push('[KURAL A] src/data/teshis/count.js dosyası bulunamadı.');
+  } else {
+    const actualCountStr = fs.readFileSync(actualCountPath, 'utf8').replace(/\r\n/g, '\n').trim();
+    if (actualCountStr !== expectedCountStr) {
+      errors.push('[KURAL A] src/data/teshis/count.js güncel değil! teshisData ile uyuşmuyor.');
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Kural B: EN kayıt satırı
+  // Her logSatirlari satırının diagnosticLogEnMap'te karşılığı yoksa → DUR
+  // (Halihazırda saf İngilizce sistem ve sunucu log satırları hariç)
+  // ---------------------------------------------------------------------------
+  const trLogRegex = /[çğıöşüÇĞİÖŞÜ«»]|←|\b(ve|veya|için|ile|değil|kullanıcı|oturum|kaydı|sayfası|eklentisi|alanı|yanıtı|isteği|hatası|başarılı|ödeme|sipariş|durum|erişim|kutusu|E-posta)\b/i;
+
+  for (const item of teshisData) {
+    if (Array.isArray(item.logSatirlari)) {
+      for (const log of item.logSatirlari) {
+        const hasEnTranslation = Boolean(diagnosticLogEnMap && diagnosticLogEnMap[log]);
+        const needsTranslation = trLogRegex.test(log);
+        if (needsTranslation && !hasEnTranslation) {
+          errors.push(`[KURAL B] "${item.slug}" teşhisindeki log satırının diagnosticLogEnMap karşılığı yok: "${log}"`);
+        }
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Kural C: seoData
+  // Her slug için "/teshis/<slug>/".tr ve "/diagnostic/<slug>/".en yoksa,
+  // başlık > 60 ya da açıklama 120–160 dışındaysa → DUR
+  // ---------------------------------------------------------------------------
+  for (const item of teshisData) {
+    const trPath = `/teshis/${item.slug}/`;
+    const enPath = `/diagnostic/${item.slug}/`;
+
+    const trSeo = seoData?.[trPath]?.tr;
+    if (!trSeo) {
+      errors.push(`[KURAL C] seoData içinde "${trPath}".tr kaydı eksik.`);
+    } else {
+      if (!trSeo.title || trSeo.title.length > 60) {
+        errors.push(`[KURAL C] "${trPath}" başlık 60 karakterden uzun (${trSeo.title?.length || 0}): "${trSeo.title}"`);
+      }
+      if (!trSeo.desc || trSeo.desc.length < 120 || trSeo.desc.length > 160) {
+        errors.push(`[KURAL C] "${trPath}" açıklama 120-160 karakter aralığında değil (${trSeo.desc?.length || 0}): "${trSeo.desc}"`);
+      }
+    }
+
+    const enSeo = seoData?.[enPath]?.en;
+    if (!enSeo) {
+      errors.push(`[KURAL C] seoData içinde "${enPath}".en kaydı eksik.`);
+    } else {
+      if (!enSeo.title || enSeo.title.length > 60) {
+        errors.push(`[KURAL C] "${enPath}" başlık 60 karakterden uzun (${enSeo.title?.length || 0}): "${enSeo.title}"`);
+      }
+      if (!enSeo.desc || enSeo.desc.length < 120 || enSeo.desc.length > 160) {
+        errors.push(`[KURAL C] "${enPath}" açıklama 120-160 karakter aralığında değil (${enSeo.desc?.length || 0}): "${enSeo.desc}"`);
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Kural D: ilgiliTeshisler
+  // Var olmayan slug ya da tek yönlü bağlantı varsa → DUR
+  // ---------------------------------------------------------------------------
+  for (const item of teshisData) {
+    if (Array.isArray(item.ilgiliTeshisler)) {
+      for (const targetSlug of item.ilgiliTeshisler) {
+        const target = teshisData.find((d) => d.slug === targetSlug);
+        if (!target) {
+          errors.push(`[KURAL D] "${item.slug}" içinde var olmayan ilgiliTeshisler slug'ı: "${targetSlug}"`);
+        } else {
+          if (!Array.isArray(target.ilgiliTeshisler) || !target.ilgiliTeshisler.includes(item.slug)) {
+            errors.push(`[KURAL D] "${item.slug}" -> "${targetSlug}" bağlantısı simetrik (karşılıklı) değil! "${targetSlug}" içinde "${item.slug}" listelenmemiş.`);
+          }
+        }
+      }
+    }
+  }
+
+  // ---------------------------------------------------------------------------
+  // Kural E: elle yazılmış teşhis sayısı
+  // src/**/*.{js,jsx}, src/locales/*.json ve üretici (korumalar hariç) içinde
+  // /\b([2-9]|\d{2,})\s+(Teşhis|teşhis|Belirti|belirti|arıza|belgelenmiş arıza|yaygın yazılım arıza|Diagnos|diagnos|Symptom|symptom|failure pattern|published failure|common software failure)/ → DUR
+  // ---------------------------------------------------------------------------
+  const hardcodedNumberRegex = /\b([2-9]|\d{2,})\s+(Teşhis|teşhis|Belirti|belirti|arıza|belgelenmiş arıza|yaygın yazılım arıza|Diagnos|diagnos|Symptom|symptom|failure pattern|published failure|common software failure)/;
+
+  function getFilesToScan(dirPath) {
+    let results = [];
+    if (!fs.existsSync(dirPath)) return results;
+    const list = fs.readdirSync(dirPath);
+    for (const file of list) {
+      const fullPath = path.join(dirPath, file);
+      const stat = fs.statSync(fullPath);
+      if (stat.isDirectory()) {
+        results = results.concat(getFilesToScan(fullPath));
+      } else if (file.endsWith('.js') || file.endsWith('.jsx') || file.endsWith('.json')) {
+        results.push(fullPath);
+      }
+    }
+    return results;
+  }
+
+  const filesForE = [
+    ...getFilesToScan(path.join(__dirname, 'src')),
+    __filename
+  ];
+
+  for (const file of filesForE) {
+    let content = fs.readFileSync(file, 'utf8');
+    if (file === __filename) {
+      const guardIdx = content.indexOf('3.10 — GERÇEK DERLEME KORUMASI: TEŞHİS BÜTÜNLÜĞÜ');
+      if (guardIdx !== -1) {
+        content = content.slice(0, guardIdx);
+      }
+    }
+    const lines = content.split('\n');
+    lines.forEach((line, idx) => {
+      const m = hardcodedNumberRegex.exec(line);
+      if (m) {
+        const rel = path.relative(__dirname, file).replace(/\\/g, '/');
+        errors.push(`[KURAL E] ${rel}:${idx + 1} dosyasında elle yazılmış teşhis sayısı tespit edildi: "${m[0]}"`);
+      }
+    });
+  }
+
+  // ---------------------------------------------------------------------------
+  // Kural F: resmiKaynaklar
+  // url.tr ya da url.en https:// ile başlamıyorsa → DUR
+  // ---------------------------------------------------------------------------
+  for (const item of teshisData) {
+    if (Array.isArray(item.resmiKaynaklar)) {
+      for (const rk of item.resmiKaynaklar) {
+        const trUrl = typeof rk.url === 'string' ? rk.url : rk.url?.tr;
+        const enUrl = typeof rk.url === 'string' ? rk.url : rk.url?.en;
+        if (!trUrl || !trUrl.startsWith('https://')) {
+          errors.push(`[KURAL F] "${item.slug}" resmi kaynak Türkçe URL 'https://' ile başlamıyor: "${trUrl}"`);
+        }
+        if (!enUrl || !enUrl.startsWith('https://')) {
+          errors.push(`[KURAL F] "${item.slug}" resmi kaynak İngilizce URL 'https://' ile başlamıyor: "${enUrl}"`);
+        }
+      }
+    }
+  }
+
+  if (errors.length > 0) {
+    console.error(`\n[BUILD GUARD TEŞHİS HATA] Teşhis bütünlüğü koruması ${errors.length} hata ile başarısız oldu:`);
+    errors.forEach((err) => console.error(`  - ${err}`));
+    process.exit(1);
+  }
+
+  console.log(`[BUILD GUARD TEŞHİS GEÇTİ] ${teshisData.length} teşhis için A-F bütünlük denetimleri (özet, count, log eşleme, seoData, simetrik linkler, sabit rakam taraması, resmi kaynaklar) başarıyla doğrulandı.`);
+}
+
+verifyTeshisIntegrity();
+
 
 
 
