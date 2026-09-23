@@ -342,12 +342,12 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-BQ6_ogI4.js"></script>
+    <script type="module" crossorigin src="/assets/index-BOXgLL3E.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DzVnsezM.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BS--CUnt.css">
   </head>
   <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
     <div id="root">
@@ -391,7 +391,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/deadlock/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ Deadlock (Veritabanı Kilitlenmesi)</a>
-            <span class="text-xs font-mono text-amber-700">Kritik (P0)</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">Kritik (P0)</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">İki farklı işlemin aynı anda birbirinin kilitlediği veriyi beklemesi sonucu veritabanının tamamen durma noktasına gelmesidir.</p>
         </li>
@@ -399,7 +399,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/n-plus-1-sorgu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ N+1 Sorgu Problemi (N+1 Query)</a>
-            <span class="text-xs font-mono text-amber-700">Orta / Yüksek</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">Orta / Yüksek</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Bir listedeki her satır için veritabanına tek tek ek sorgu atılması ve sistemin binlerce gereksiz sorguyla boğulmasıdır.</p>
         </li>
@@ -407,7 +407,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/race-condition/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ Race Condition (Yarış Durumu)</a>
-            <span class="text-xs font-mono text-amber-700">Kritik (P0)</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">Kritik (P0)</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Aynı anda gelen iki isteğin veriyi eşzamanlı değiştirmeye çalışması ve sistemin hangisini önce yazacağını bilemeyip veri tutarsızlığı üretmesidir.</p>
         </li>
@@ -415,7 +415,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/idempotency/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ Idempotency (Çift İşlem Koruması)</a>
-            <span class="text-xs font-mono text-amber-700">Yüksek</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">Yüksek</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Aynı isteğin sisteme 10 kez gönderilse bile yalnızca bir kez çalışacağını ve mükerrer kayıt üretmeyeceğini garanti eden mimari kuraldır.</p>
         </li>
@@ -423,7 +423,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/webhook/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ Webhook (Sistemler Arası Anlık Bildirim)</a>
-            <span class="text-xs font-mono text-amber-700">Kritik (P0)</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">Kritik (P0)</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Bir sistemde olay gerçekleştiğinde (örn.</p>
         </li>
@@ -431,7 +431,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/teknik-borc/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ Teknik Borç (Technical Debt)</a>
-            <span class="text-xs font-mono text-amber-700">Orta / Stratejik</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">Orta / Stratejik</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Günü kurtarmak için aceleyle yazılan kalitesiz kodun, gelecekte yapılacak her yeni özelliğin geliştirme süresini katlaması durumudur.</p>
         </li>
@@ -439,7 +439,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/refactor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ Refactor (Kod İyileştirme &amp; Yeniden Yapılandırma)</a>
-            <span class="text-xs font-mono text-amber-700">Orta</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">Orta</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Yazılımın dışarıdan görünen davranışını değiştirmeden, iç kod mimarisini daha temiz, hızlı ve bakımı kolay hale getirme işlemidir.</p>
         </li>
@@ -447,7 +447,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/ci-cd/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ CI/CD (Sürekli Entegrasyon ve Sürekli Dağıtım)</a>
-            <span class="text-xs font-mono text-amber-700">Yüksek</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">Yüksek</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Yazılan kodun otomatik olarak test edilip tek bir tuşla veya commit ile canlı sunucuya hatasız yüklenmesini sağlayan otomasyon hattıdır.</p>
         </li>
@@ -455,7 +455,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/staging-ortami/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ Staging Ortamı (Canlı Öncesi Test Ortamı)</a>
-            <span class="text-xs font-mono text-amber-700">Orta</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">Orta</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Canlı sistemin birebir kopyası olan ve yeni özelliklerin müşteriye gösterilmeden önce güvenle test edildiği izole sunucudur.</p>
         </li>
@@ -463,7 +463,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/migration/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ Migration (Veritabanı Şema Geçişi)</a>
-            <span class="text-xs font-mono text-amber-700">Yüksek</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">Yüksek</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Veritabanı tablolarına yeni sütunlar ekleme veya yapıyı değiştirme adımlarının kod dosyalarıyla tarihsel olarak kayıt altına alınmasıdır.</p>
         </li>
@@ -471,7 +471,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/rate-limit/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ Rate Limiting (Trafik &amp; İstek Sınırlandırma)</a>
-            <span class="text-xs font-mono text-amber-700">Yüksek</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">Yüksek</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Bir kullanıcının veya botun belirli bir zaman diliminde (örn.</p>
         </li>
@@ -479,7 +479,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/sozluk/memory-leak/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ Memory Leak (Bellek Sızıntısı)</a>
-            <span class="text-xs font-mono text-amber-700">Kritik (P0)</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">Kritik (P0)</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">Uygulamanın kullandığı RAM belleği işi bittikten sonra serbest bırakmaması ve zamanla sunucunun tüm belleğini tüketip kilitlenmesidir.</p>
         </li>

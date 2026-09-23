@@ -353,12 +353,12 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-BQ6_ogI4.js"></script>
+    <script type="module" crossorigin src="/assets/index-BOXgLL3E.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DzVnsezM.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BS--CUnt.css">
   </head>
   <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
     <div id="root">
@@ -398,7 +398,7 @@
   <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-muted)] font-mono">
       <div><strong class="text-[var(--ink)] block text-sm">6 Outage Types</strong> Database, Payment, Memory, Deploy, 429, Handover</div>
-      <div><strong class="text-emerald-700 block text-sm">First 15 Mins</strong> Critical DO NOTs and diagnostic CLI commands</div>
+      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">First 15 Mins</strong> Critical DO NOTs and diagnostic CLI commands</div>
       <div><strong class="text-[var(--accent)] block text-sm">Free Triage</strong> Senior engineering desk engages directly</div>
     </div>
 
@@ -408,10 +408,10 @@
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">Database &amp; Concurrency</h3>
-          <span class="text-xs font-mono text-amber-700">SEV-0 CRITICAL · MTTA: 15 Minutes</span>
+          <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-0 CRITICAL · MTTA: 15 Minutes</span>
         </div>
         <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Database connection pool exhausted (max_connections reached), API requests hanging or throwing 504 Gateway Timeout.</p>
-        <div class="pt-2 text-xs font-mono text-rose-700">
+        <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
           <strong>Caution:</strong> Do NOT reboot the database server blindly. In-flight transactions entering crash recovery can turn a 10-minute deadlock into an hour-long recovery freeze.
         </div>
       </article>
@@ -420,10 +420,10 @@
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">Payment &amp; Double Charge</h3>
-          <span class="text-xs font-mono text-amber-700">SEV-0 CRITICAL · MTTA: 15 Minutes</span>
+          <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-0 CRITICAL · MTTA: 15 Minutes</span>
         </div>
         <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Customers charged multiple times or payment captured but orders stuck in &quot;Pending&quot; or failed state.</p>
-        <div class="pt-2 text-xs font-mono text-rose-700">
+        <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
           <strong>Caution:</strong> Do NOT trigger bulk refunds blindly from payment dashboards. Initiating refunds before verifying database ledger integrity results in double financial losses.
         </div>
       </article>
@@ -432,10 +432,10 @@
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">Memory &amp; Node/Pod Crash</h3>
-          <span class="text-xs font-mono text-amber-700">SEV-1 HIGH · MTTA: 30 Minutes</span>
+          <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-1 HIGH · MTTA: 30 Minutes</span>
         </div>
         <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Node.js/Python service crashes periodically with OOM (Out of Memory); RAM usage steadily increases without dropping.</p>
-        <div class="pt-2 text-xs font-mono text-rose-700">
+        <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
           <strong>Caution:</strong> Do NOT just double container RAM limits as a fix. Memory leaks will consume 8GB or 16GB just as readily, simply delaying the inevitable crash.
         </div>
       </article>
@@ -444,10 +444,10 @@
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">Deploy &amp; CI/CD</h3>
-          <span class="text-xs font-mono text-amber-700">SEV-0 CRITICAL · MTTA: 15 Minutes</span>
+          <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-0 CRITICAL · MTTA: 15 Minutes</span>
         </div>
         <p class="text-[var(--ink-muted)] text-sm leading-relaxed">New deployment shipped to production and immediately threw HTTP 500 or blank White Screen of Death.</p>
-        <div class="pt-2 text-xs font-mono text-rose-700">
+        <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
           <strong>Caution:</strong> Do NOT hot-edit source files directly on live production servers via SSH/FTP. Diverging from Git history ruins rollback capability.
         </div>
       </article>
@@ -456,10 +456,10 @@
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">Integrations &amp; Rate Limits</h3>
-          <span class="text-xs font-mono text-amber-700">SEV-1 HIGH · MTTA: 30 Minutes</span>
+          <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-1 HIGH · MTTA: 30 Minutes</span>
         </div>
         <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Third-party API (shipping, SMS, ERP, marketplace) returning HTTP 429 Too Many Requests; pending jobs blocking worker queues.</p>
-        <div class="pt-2 text-xs font-mono text-rose-700">
+        <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
           <strong>Caution:</strong> Do NOT trigger aggressive zero-delay retries. Hammering an already rate-limited provider guarantees complete IP banishment.
         </div>
       </article>
@@ -468,10 +468,10 @@
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">Handover &amp; Locked Access</h3>
-          <span class="text-xs font-mono text-amber-700">SEV-2 MAJOR · MTTA: 2 Hours</span>
+          <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-2 MAJOR · MTTA: 2 Hours</span>
         </div>
         <p class="text-[var(--ink-muted)] text-sm leading-relaxed">Developer abruptly left; root server credentials, DNS or repo access missing, project completely frozen.</p>
-        <div class="pt-2 text-xs font-mono text-rose-700">
+        <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
           <strong>Caution:</strong> Do NOT hastily delete user accounts without verifying whether background daemons or cron jobs rely on that user identity.
         </div>
       </article>

@@ -353,12 +353,12 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-BQ6_ogI4.js"></script>
+    <script type="module" crossorigin src="/assets/index-BOXgLL3E.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-DzVnsezM.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-BS--CUnt.css">
   </head>
   <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-white">
     <div id="root">
@@ -406,7 +406,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/post-mortems/pm-01-postgresql-connection-pool-deadlock/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ PM-01 · Friday 18:40 — Payment Webhook Storm, Database Deadlock, and Connection Pool Starvation</a>
-            <span class="text-xs font-mono text-amber-700">SEV-1 CRITICAL · Database &amp; Concurrency</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-1 CRITICAL · Database &amp; Concurrency</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">During a high-traffic campaign, thousands of concurrent payment webhooks hit the backend simultaneously, opening unbuffered database transactions that deadlocked on unindexed foreign keys and exhausted PostgreSQL connection pools.</p>
           <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: 42 minutes · Impact: Over 1,400 failed checkout transactions, 42 minutes of HTTP 500/504 errors, severe support escalation.</div>
@@ -416,7 +416,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/post-mortems/pm-02-race-condition-double-charge/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ PM-02 · Flash Sale Double Charges and Concurrent Balance Race Conditions</a>
-            <span class="text-xs font-mono text-amber-700">SEV-1 CRITICAL · Payment &amp; Distributed Systems</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-1 CRITICAL · Payment &amp; Distributed Systems</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">During a flash sale, impatient users multi-clicked the payment button. Due to lack of backend request deduplication and distributed locking, concurrent payment gateway charges were executed for identical cart states.</p>
           <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: 14 minutes · Impact: Duplicate credit card charges in the $15–20k range across 70+ customers within 14 minutes, chargeback warning from payment gateway.</div>
@@ -426,7 +426,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/post-mortems/pm-03-memory-leak-unhandled-promise/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ PM-03 · Node.js API OOM Crash Every 6 Hours: The Undetected Event Listener Leak</a>
-            <span class="text-xs font-mono text-amber-700">SEV-2 MAJOR · Memory &amp; Performance</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-2 MAJOR · Memory &amp; Performance</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">A SaaS production backend suffered recurring Out-Of-Memory (OOM) crashes every 5.5 to 6 hours as RSS heap climbed past 1.4GB. The internal team had resorted to a cron job rebooting the server every 4 hours.</p>
           <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: 3-week chronic bug → Solved in 4 hours · Impact: API crashing 4 times daily from Out-Of-Memory (OOM), dropped WebSocket sessions, mobile app disconnects.</div>
@@ -436,7 +436,7 @@
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/post-mortems/pm-04-ghost-developer-handover-block/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ PM-04 · Departed Developer Handover Block: Uncommitted .env, Lost AWS Root, and Frozen CI/CD</a>
-            <span class="text-xs font-mono text-amber-700">SEV-2 MAJOR · DevOps &amp; Security Handover</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">SEV-2 MAJOR · DevOps &amp; Security Handover</span>
           </div>
           <p class="text-sm text-[var(--ink-muted)] leading-relaxed">The sole lead engineer departed abruptly. Production environment secrets were missing from Git, the primary AWS root was bound to the developer’s personal email, and the CI/CD pipeline depended on private uncommitted runner scripts.</p>
           <div class="text-xs font-mono text-[var(--ink-muted)]">Duration: 3-week freeze → 48h full recovery · Impact: Zero deployments possible for 3 weeks; production hotfixes stalled; critical security exposure from active ex-developer keys.</div>
