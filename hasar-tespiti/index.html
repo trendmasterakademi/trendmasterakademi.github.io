@@ -337,7 +337,7 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Hasar Tespiti Simülatörü",
+          "name": "Kesinti ve İtibar Zararı Simülatörü",
           "item": "https://trendmasterakademi.com/hasar-tespiti/"
         }
       ]
@@ -353,7 +353,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-CuYSJOoD.js"></script>
+    <script type="module" crossorigin src="/assets/index-CJ1QT5-Z.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -364,7 +364,7 @@
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
-        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Gelişmiş Kesinti & İtibar Zararı Simülatörü</h1>
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Kesinti ve İtibar Zararı Simülatörü</h1>
         
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">Ana Sayfa</a>
@@ -394,50 +394,50 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-[var(--ink)]">Gelişmiş Kesinti & İtibar Zararı Simülatörü (TCOD)</h2>
-        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Bir üretim arızasında doğrudan sepet kaybı toplam hasarın sadece küçük bir kısmıdır. Yanan reklamları, SLA cezalarını, müşteri terkini ve mühendislik fırsat maliyetini simüle edin.</p>
+        
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Bir kesintide doğrudan ciro kaybının yanında boşa giden reklam bütçesi, sözleşme cezası, müşteri kaybı ve ekibinizin arızaya harcadığı saatler de maliyettir. Beş kalemi kendi rakamlarınızla, formülleri görerek hesaplayın.</p>
         
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
-      <div><strong class="text-[var(--tint-danger-ink)] block text-sm">5 Boyutlu Zarar</strong> Ciro, Reklam, SLA, Churn, Mühendislik</div>
-      <div><strong class="text-[var(--ink)] block text-sm">TCOD Motoru</strong> True Cost of Downtime hesaplaması</div>
-      <div><strong class="text-[var(--tint-warn-ink)] block text-sm">Gizli Maliyet</strong> Ciro kaybının 2x - 4x katı teminat riski</div>
-      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">≤ 15 Dk</strong> Masaya bağlanarak hasarı durdurma</div>
-    </div>
-
-    <h2 class="text-xl font-bold text-[var(--ink)]">Hesaplanan 5 Kurumsal Hasar Kalemi (TCOD)</h2>
+    <p class="text-sm text-[var(--ink-2)]">SEV-0 kesintide ilk yanıt süresi SLA'da ≤ 15 dakika olarak yazılıdır.</p>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Hesap</h2>
     <div class="space-y-4">
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
         <h3 class="text-base font-bold text-[var(--ink)] font-mono">Doğrudan Ciro Kaybı</h3>
-        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Kesinti süresince gerçekleşemeyen sipariş ve ödeme işlemlerinin toplam bedeli.</p>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Kesinti süresince gerçekleşemeyen sipariş ve ödemelerin bedeli.</p>
+        <p class="font-mono text-xs text-[var(--ink)]">(Aylık ciro ÷ 730) × Kesinti süresi × Zaman çarpanı</p>
       </article>
       
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
-        <h3 class="text-base font-bold text-[var(--ink)] font-mono">Yanan Reklam Bütçesi</h3>
-        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Google Ads ve Meta reklamları 500/502 hatası veren sayfalara trafik çekmeye devam ederken boşa harcanan bütçe.</p>
+        <h3 class="text-base font-bold text-[var(--ink)] font-mono">Boşa Giden Reklam Bütçesi</h3>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Reklamlar hata veren sayfalara trafik göndermeye devam ederken harcanan bütçe.</p>
+        <p class="font-mono text-xs text-[var(--ink)]">(Günlük reklam bütçesi ÷ 24) × Kesinti süresi</p>
       </article>
       
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
         <h3 class="text-base font-bold text-[var(--ink)] font-mono">Sözleşmesel SLA Cezası</h3>
-        <p class="text-[var(--ink-3)] text-sm leading-relaxed">B2B sözleşmelerinde yer alan %99,9 uptime taahhüdünün ihlali halinde müşteriye ödenmesi gereken yasal tazminat.</p>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Müşterinizle yaptığınız sözleşmede kesinti için ceza ya da iade maddesi varsa, onun bedeli.</p>
+        <p class="font-mono text-xs text-[var(--ink)]">Aylık ciro × SLA ceza oranı</p>
       </article>
       
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
-        <h3 class="text-base font-bold text-[var(--ink)] font-mono">Müşteri Terki &amp; LTV Kaybı</h3>
-        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Kesinti nedeniyle rakibe geçen veya aboneliğini iptal eden müşterilerin yaşam boyu değer kaybı.</p>
+        <h3 class="text-base font-bold text-[var(--ink)] font-mono">Müşteri Kaybı</h3>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Kesinti nedeniyle ayrılan müşterilerin, kayıp sürdükçe getirmeyeceği ciro.</p>
+        <p class="font-mono text-xs text-[var(--ink)]">Aylık ciro × Müşteri kaybı oranı × Kaybın süreceği ay</p>
       </article>
       
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
-        <h3 class="text-base font-bold text-[var(--ink)] font-mono">Mühendislik Fırsat Maliyeti</h3>
-        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Şirket içi ekibin planlı sprint'i durdurup panikle arıza çözmeye çalışırken harcadığı adam/saat maliyeti.</p>
+        <h3 class="text-base font-bold text-[var(--ink)] font-mono">Mühendislik Maliyeti</h3>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Ekibinizin planlı işini bırakıp arızayla uğraştığı saatlerin maliyeti.</p>
+        <p class="font-mono text-xs text-[var(--ink)]">Mühendis sayısı × Saatlik maliyet × Kesinti süresi</p>
       </article>
       
     </div>
+    <p class="text-xs text-[var(--ink-3)]">Gizli çarpan yoktur: her kalemin formülü yanında yazılıdır ve bütün değerler sizin girdiğiniz ya da seçtiğiniz değerlerdir. 730, bir aydaki ortalama saattir (365 × 24 ÷ 12). Zaman çarpanı ve kaybın süreceği ay birer varsayımdır; kendi verinizi biliyorsanız değiştirin.</p>
   </section>
 
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">

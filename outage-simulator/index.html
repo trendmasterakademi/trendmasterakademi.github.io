@@ -337,7 +337,7 @@
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Outage Damage Simulator",
+          "name": "Outage & Reputation Cost Simulator",
           "item": "https://trendmasterakademi.com/outage-simulator/"
         }
       ]
@@ -353,7 +353,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-CuYSJOoD.js"></script>
+    <script type="module" crossorigin src="/assets/index-CJ1QT5-Z.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -364,7 +364,7 @@
     <div id="root">
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
-        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Outage & Reputational Damage Simulator</h1>
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Outage & Reputation Cost Simulator</h1>
         
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">Home</a>
@@ -394,50 +394,50 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-[var(--ink)]">Outage & Reputational Damage Simulator (TCOD)</h2>
-        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Lost sales are only the tip of the iceberg. Quantify wasted ad spend, contractual penalties, customer churn, and engineering opportunity drag in real time.</p>
+        
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">In an outage, lost revenue is not the only cost: wasted ad spend, contractual penalties, lost customers and the hours your team spends on the incident count too. Calculate all five with your own numbers, with every formula shown.</p>
         
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
-      <div><strong class="text-[var(--tint-danger-ink)] block text-sm">5 Damage Vectors</strong> Revenue, Ads, SLA, Churn, Engineering</div>
-      <div><strong class="text-[var(--ink)] block text-sm">TCOD Engine</strong> True Cost of Downtime arithmetic</div>
-      <div><strong class="text-[var(--tint-warn-ink)] block text-sm">Hidden Drag</strong> 2x to 4x direct lost checkout sales</div>
-      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">≤ 15 Mins</strong> Stop bleeding via instant senior triage</div>
-    </div>
-
-    <h2 class="text-xl font-bold text-[var(--ink)]">5 Modeled Damage Components (TCOD)</h2>
+    <p class="text-sm text-[var(--ink-2)]">For a SEV-0 outage, the first response time written in the SLA is ≤ 15 minutes.</p>
+    <h2 class="text-xl font-bold text-[var(--ink)]">Calculation</h2>
     <div class="space-y-4">
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
         <h3 class="text-base font-bold text-[var(--ink)] font-mono">Direct Lost Revenue</h3>
-        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Total value of unfulfilled transactions and orders blocked while systems remain offline.</p>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Value of the orders and payments that could not happen during the outage.</p>
+        <p class="font-mono text-xs text-[var(--ink)]">(Monthly revenue ÷ 730) × Outage duration × Time multiplier</p>
       </article>
       
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
         <h3 class="text-base font-bold text-[var(--ink)] font-mono">Wasted Ad Spend</h3>
-        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Budget burned driving active paid traffic (Google/Meta Ads) into HTTP 500/502 error screens.</p>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Budget spent while ads keep sending traffic to failing pages.</p>
+        <p class="font-mono text-xs text-[var(--ink)]">(Daily ad spend ÷ 24) × Outage duration</p>
       </article>
       
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
-        <h3 class="text-base font-bold text-[var(--ink)] font-mono">Contractual SLA Penalties</h3>
-        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Direct financial clawbacks owed to enterprise clients for breaching contractual uptime commitments.</p>
+        <h3 class="text-base font-bold text-[var(--ink)] font-mono">Contractual SLA Penalty</h3>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">If your contract with your client has a penalty or refund clause for downtime, its cost.</p>
+        <p class="font-mono text-xs text-[var(--ink)]">Monthly revenue × SLA penalty rate</p>
       </article>
       
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
-        <h3 class="text-base font-bold text-[var(--ink)] font-mono">Customer Churn &amp; LTV Loss</h3>
-        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Lifetime value lost from frustrated users defecting to competitors during the downtime window.</p>
+        <h3 class="text-base font-bold text-[var(--ink)] font-mono">Lost Customers</h3>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Revenue that customers who leave because of the outage will not bring while the loss lasts.</p>
+        <p class="font-mono text-xs text-[var(--ink)]">Monthly revenue × Customer loss rate × Months the loss lasts</p>
       </article>
       
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
-        <h3 class="text-base font-bold text-[var(--ink)] font-mono">Engineering Opportunity Drag</h3>
-        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Cost of internal engineering payroll diverted from revenue-generating roadmap sprints into crisis fighting.</p>
+        <h3 class="text-base font-bold text-[var(--ink)] font-mono">Engineering Cost</h3>
+        <p class="text-[var(--ink-3)] text-sm leading-relaxed">Cost of the hours your team spends on the incident instead of planned work.</p>
+        <p class="font-mono text-xs text-[var(--ink)]">Engineers × Hourly cost × Outage duration</p>
       </article>
       
     </div>
+    <p class="text-xs text-[var(--ink-3)]">There are no hidden multipliers: each item's formula is shown next to it, and every value is one you entered or selected. 730 is the average number of hours in a month (365 × 24 ÷ 12). The time multiplier and the months the loss lasts are assumptions; change them if you know your own data.</p>
   </section>
 
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
