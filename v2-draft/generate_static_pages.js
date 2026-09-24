@@ -18,7 +18,8 @@ import { codeHealthData, codeHealthH1 } from './src/data/codeHealthData.js';
 import { rescueRoiData, rescueRoiH1 } from './src/data/rescueRoiData.js';
 import { agencyKitData, agencyKitH1, crashTestH1 } from './src/data/agencyKitData.js';
 import { seoData, ogImageAlt } from './src/data/seoData.js';
-import { agencyH1, handoverAuditH1, downtimeCostH1, aboutH1, storyH1, salvageabilityH1, teshisCatalogH1, sosH1, privacyH1 } from './src/data/pageH1Data.js';
+import { agencyH1, handoverAuditH1, downtimeCostH1, aboutH1, storyH1, salvageabilityH1, teshisCatalogH1, sosH1, privacyH1, tmaiH1 } from './src/data/pageH1Data.js';
+import { tmaiData, tmaiYollar, tmaiAraclar } from './src/data/tmaiData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -1491,6 +1492,129 @@ const rescueRoiExtraContentEn = `
   </section>
 `;
 
+function renderTmaiContent(lang) {
+  const d = tmaiData[lang];
+  const isTr = lang === 'tr';
+  const checkLabel = isTr ? 'Bakılan:' : 'What we check:';
+
+  return `
+    <div class="space-y-12">
+      <!-- 1. Rozet & Giris -->
+      <section class="space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] text-xs font-mono font-semibold uppercase tracking-wider">
+          ${escapeHtml(d.rozet)}
+        </div>
+        <p class="text-base sm:text-lg text-[var(--ink-2)] leading-relaxed">
+          ${escapeHtml(d.giris)}
+        </p>
+      </section>
+
+      <!-- 2. Ne Zaman -->
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          ${escapeHtml(d.neZaman.baslik)}
+        </h2>
+        <ul class="space-y-3">
+          ${d.neZaman.maddeler.map(m => `
+            <li class="flex items-start gap-3 text-base text-[var(--ink-2)]">
+              <span class="text-[var(--accent)] font-mono font-bold mt-0.5">•</span>
+              <span>${escapeHtml(m)}</span>
+            </li>
+          `).join('')}
+        </ul>
+      </section>
+
+      <!-- 3. Kontroller -->
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          ${escapeHtml(d.kontroller.baslik)}
+        </h2>
+        <p class="text-base text-[var(--ink-2)] leading-relaxed">
+          ${escapeHtml(d.kontroller.giris)}
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+          ${d.kontroller.maddeler.map(kart => `
+            <article class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+              <h3 class="text-lg font-semibold font-serif text-[var(--ink)]">
+                ${escapeHtml(kart.baslik)}
+              </h3>
+              <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                ${escapeHtml(kart.neden)}
+              </p>
+              <div class="text-xs font-mono text-[var(--ink-3)] pt-2 border-t border-[var(--rule)]">
+                <strong class="text-[var(--accent)] font-semibold">${checkLabel}</strong> ${escapeHtml(kart.bakilan)}
+              </div>
+            </article>
+          `).join('')}
+        </div>
+      </section>
+
+      <!-- 4. Surec -->
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          ${escapeHtml(d.surec.baslik)}
+        </h2>
+        <div class="space-y-4 pt-2">
+          ${d.surec.adimlar.map((adim, idx) => `
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                ${idx + 1}
+              </div>
+              <div class="space-y-1.5 flex-1">
+                ${adim.link ? `
+                  <a href="${adim.link}" class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)] hover:text-[var(--accent)] hover:underline inline-flex items-center gap-1.5 transition-colors">
+                    <span>${escapeHtml(adim.baslik)}</span> →
+                  </a>
+                ` : `
+                  <h3 class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">
+                    ${escapeHtml(adim.baslik)}
+                  </h3>
+                `}
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                  ${escapeHtml(adim.metin)}
+                </p>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+      </section>
+
+      <!-- 5. Sinir -->
+      <section class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h2 class="text-xl font-semibold font-serif text-[var(--ink)]">
+          ${escapeHtml(d.sinir.baslik)}
+        </h2>
+        <p class="text-sm sm:text-base text-[var(--ink-2)] leading-relaxed">
+          ${escapeHtml(d.sinir.metin)}
+        </p>
+      </section>
+
+      <!-- 6. Arac Notu -->
+      <p class="text-xs text-[var(--ink-3)] font-mono leading-relaxed">
+        ${escapeHtml(d.aracNotu)}
+      </p>
+
+      <!-- 7. CTA -->
+      <section class="p-6 sm:p-8 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-4 text-left">
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">
+          ${escapeHtml(d.cta.baslik)}
+        </h2>
+        <p class="text-sm sm:text-base text-[var(--ink-2)] leading-relaxed">
+          ${escapeHtml(d.cta.metin)}
+        </p>
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="${d.cta.birincil.link}" class="btn-primary">
+            <span>${escapeHtml(d.cta.birincil.etiket)}</span> →
+          </a>
+          <a href="${d.cta.ikincil.link}" class="btn-secondary">
+            <span>${escapeHtml(d.cta.ikincil.etiket)}</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  `;
+}
+
 const trLocale = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'src/locales/tr.json'), 'utf8'));
 const homeH1 = `${trLocale['hero-title-line1']} ${trLocale['hero-title-line2']} ${trLocale['hero-title-highlight']}`;
 
@@ -2569,6 +2693,79 @@ const basePages = [
         }
       ]
     }
+  },
+  {
+    dir: 'tmai',
+    title: seoData['/tmai/'].tr.title,
+    h1: tmaiH1.tr,
+    description: seoData['/tmai/'].tr.desc,
+    canonical: 'https://trendmasterakademi.com/tmai/',
+    ogUrl: 'https://trendmasterakademi.com/tmai/',
+    hreflangTr: 'https://trendmasterakademi.com/tmai/',
+    hreflangEn: 'https://trendmasterakademi.com/ai-code-takeover/',
+    heading: tmaiH1.tr,
+    subheading: tmaiData.tr.giris,
+    extraContent: renderTmaiContent('tr'),
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "Service",
+          "name": "tmai",
+          "serviceType": "Yapay zekâyla yazılmış kodun devralınması",
+          "description": seoData['/tmai/'].tr.desc,
+          "provider": {
+            "@id": "https://trendmasterakademi.com/#organization"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "tmai", "item": "https://trendmasterakademi.com/tmai/" }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    dir: 'ai-code-takeover',
+    lang: 'en',
+    title: seoData['/ai-code-takeover/'].en.title,
+    h1: tmaiH1.en,
+    description: seoData['/ai-code-takeover/'].en.desc,
+    canonical: 'https://trendmasterakademi.com/ai-code-takeover/',
+    ogUrl: 'https://trendmasterakademi.com/ai-code-takeover/',
+    hreflangTr: 'https://trendmasterakademi.com/tmai/',
+    hreflangEn: 'https://trendmasterakademi.com/ai-code-takeover/',
+    heading: tmaiH1.en,
+    subheading: tmaiData.en.giris,
+    extraContent: renderTmaiContent('en'),
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "Service",
+          "name": "tmai",
+          "serviceType": "AI-generated code takeover",
+          "description": seoData['/ai-code-takeover/'].en.desc,
+          "provider": {
+            "@id": "https://trendmasterakademi.com/#organization"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "tmai", "item": "https://trendmasterakademi.com/ai-code-takeover/" }
+          ]
+        }
+      ]
+    }
   }
 ];
 
@@ -3505,6 +3702,7 @@ pages.forEach(page => {
           <a href="${page.lang === 'en' ? '/agency-kit/' : '/kit/'}" class="hover:underline">${page.lang === 'en' ? 'Agency Kit' : 'Ajans Kiti'}</a>
           <a href="/crash-test/" class="hover:underline">${page.lang === 'en' ? 'Crash Test (60s)' : 'Crash Test (60sn)'}</a>
           <a href="${page.lang === 'en' ? '/handover-audit/' : '/devir-kontrolu/'}" class="hover:underline">${page.lang === 'en' ? 'Handover Audit' : 'Devir Kontrolü'}</a>
+          <a href="${page.lang === 'en' ? tmaiYollar.en : tmaiYollar.tr}" class="hover:underline">tmai</a>
           <a href="${page.lang === 'en' ? '/diagnostic/' : '/teshis/'}" class="hover:underline">${page.lang === 'en' ? 'Diagnostic Catalog' : 'Teşhis Kataloğu'}</a>
           <a href="${page.lang === 'en' ? '/salvageability/' : '/kurtarilabilirlik/'}" class="hover:underline">${page.lang === 'en' ? 'Salvageability Index' : 'Kurtarılabilirlik İndeksi'}</a>
           <a href="${page.lang === 'en' ? '/post-mortems/' : '/post-mortem/'}" class="hover:underline">${page.lang === 'en' ? 'Post-Mortem & RCA' : 'Post-Mortem & RCA'}</a>
@@ -3657,7 +3855,7 @@ function verifySeoAndHtmlIntegrity() {
   const seenTitles = new Map();
   const seenDescs = new Map();
 
-  const beklenen = 69 + 2 * teshisData.length;   // 69 = teşhis dışındaki sayfalar
+  const beklenen = 71 + 2 * teshisData.length;   // 71 = teşhis dışındaki sayfalar
   if (canonicalPages.length !== beklenen) {
     errors.push(`Expected exactly ${beklenen} canonical pages, found ${canonicalPages.length}`);
   }
@@ -4007,7 +4205,8 @@ function verifyH1Integrity() {
     { file: 'StatusRadar.jsx', h1s: [radarH1.tr, radarH1.en] },
     { file: 'CodeHealth.jsx', h1s: [codeHealthH1.tr, codeHealthH1.en] },
     { file: 'RescueRoi.jsx', h1s: [rescueRoiH1.tr, rescueRoiH1.en] },
-    { file: 'NdaGenerator.jsx', h1s: [mutualNdaH1.tr, mutualNdaH1.en] }
+    { file: 'NdaGenerator.jsx', h1s: [mutualNdaH1.tr, mutualNdaH1.en] },
+    { file: 'Tmai.jsx', h1s: [tmaiH1.tr, tmaiH1.en] }
   ];
 
   const violationsB = [];
@@ -4116,7 +4315,7 @@ function verifyH1Integrity() {
     });
     process.exit(1);
   }
-  console.log(`[BUILD GUARD H1-C GEÇTİ] Tüm ${69 + 2 * teshisData.length} sayfanın dist HTML H1 başlığı veri dosyasıyla birebir eşleşiyor (${pages.length} sayfa doğrulandı).`);
+  console.log(`[BUILD GUARD H1-C GEÇTİ] Tüm ${71 + 2 * teshisData.length} sayfanın dist HTML H1 başlığı veri dosyasıyla birebir eşleşiyor (${pages.length} sayfa doğrulandı).`);
 }
 
 verifyH1Integrity();
