@@ -5,6 +5,7 @@ import { setPageSeo } from "../utils/pageTitle";
 
 // Kurtarma mı, sıfırdan yazım mı? — yalnız kullanıcının girdiği değerlerle sıfırdan yazımın maaş maliyeti.
 // TMA fiyatı, oran, getiri ya da süre vaadi yok (Adım 79). Metinler: src/data/rescueRoiData.js
+// Profil değerleri elle değişince seçili profil düşer; rapor 'Özel Proje' yazar (Adım 80).
 export default function RescueRoi({ lang = "tr" }) {
   const t = rescueRoiData[lang] || rescueRoiData.tr;
   const isEn = lang === "en";
@@ -159,7 +160,7 @@ TMA Mühendislik Masası: info@trendmasterakademi.com | +90 534 371 35 73
                 step="1"
                 aria-label={t.labels.teamSize}
                 value={teamSize}
-                onChange={(e) => setTeamSize(Number(e.target.value))}
+                onChange={(e) => { setSelectedPreset(null); setTeamSize(Number(e.target.value)); }}
                 className="w-full h-11 accent-[var(--accent)] cursor-pointer"
               />
             </div>
@@ -178,7 +179,7 @@ TMA Mühendislik Masası: info@trendmasterakademi.com | +90 534 371 35 73
                 step="1"
                 aria-label={t.labels.rebuildMonths}
                 value={rebuildMonths}
-                onChange={(e) => setRebuildMonths(Number(e.target.value))}
+                onChange={(e) => { setSelectedPreset(null); setRebuildMonths(Number(e.target.value)); }}
                 className="w-full h-11 accent-[var(--accent)] cursor-pointer"
               />
             </div>
@@ -192,7 +193,7 @@ TMA Mühendislik Masası: info@trendmasterakademi.com | +90 534 371 35 73
                   type="number"
                   aria-label={t.labels.monthlyRate}
                   value={monthlyRatePerDev}
-                  onChange={(e) => setMonthlyRatePerDev(Math.max(0, Number(e.target.value)))}
+                  onChange={(e) => { setSelectedPreset(null); setMonthlyRatePerDev(Math.max(0, Number(e.target.value))); }}
                   className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>
@@ -206,7 +207,7 @@ TMA Mühendislik Masası: info@trendmasterakademi.com | +90 534 371 35 73
                   max="12"
                   aria-label={t.labels.recruitingMonths}
                   value={recruitingMonths}
-                  onChange={(e) => setRecruitingMonths(Math.max(0, Number(e.target.value)))}
+                  onChange={(e) => { setSelectedPreset(null); setRecruitingMonths(Math.max(0, Number(e.target.value))); }}
                   className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
                 />
               </div>

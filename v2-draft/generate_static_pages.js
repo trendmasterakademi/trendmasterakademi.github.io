@@ -1249,47 +1249,28 @@ const ndaGeneratorExtraContentEn = `
   </section>
 `;
 
-const outageSimulatorExtraContentTr = `
+// Kesinti ve itibar zararı hesabı — ön-render içeriği tek kaynaktan (src/data/outageSimulatorData.js). Adım 80.
+const renderOutageExtra = (lang) => {
+  const d = outageSimulatorData[lang];
+  return `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
-      <div><strong class="text-[var(--tint-danger-ink)] block text-sm">5 Boyutlu Zarar</strong> Ciro, Reklam, SLA, Churn, Mühendislik</div>
-      <div><strong class="text-[var(--ink)] block text-sm">TCOD Motoru</strong> True Cost of Downtime hesaplaması</div>
-      <div><strong class="text-[var(--tint-warn-ink)] block text-sm">Gizli Maliyet</strong> Ciro kaybının 2x - 4x katı teminat riski</div>
-      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">≤ 15 Dk</strong> Masaya bağlanarak hasarı durdurma</div>
-    </div>
-
-    <h2 class="text-xl font-bold text-[var(--ink)]">Hesaplanan 5 Kurumsal Hasar Kalemi (TCOD)</h2>
+    <p class="text-sm text-[var(--ink-2)]">${escapeHtml(d.hero.notice)}</p>
+    <h2 class="text-xl font-bold text-[var(--ink)]">${escapeHtml(d.labels.methodTitle)}</h2>
     <div class="space-y-4">
-      ${outageSimulatorData.tr.dimensions.map(dim => `
+      ${d.dimensions.map(dim => `
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
         <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(dim.title)}</h3>
         <p class="text-[var(--ink-3)] text-sm leading-relaxed">${escapeHtml(dim.desc)}</p>
+        <p class="font-mono text-xs text-[var(--ink)]">${escapeHtml(dim.formula)}</p>
       </article>
       `).join('\n      ')}
     </div>
+    <p class="text-xs text-[var(--ink-3)]">${escapeHtml(d.labels.methodNote)}</p>
   </section>
 `;
-
-const outageSimulatorExtraContentEn = `
-  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
-      <div><strong class="text-[var(--tint-danger-ink)] block text-sm">5 Damage Vectors</strong> Revenue, Ads, SLA, Churn, Engineering</div>
-      <div><strong class="text-[var(--ink)] block text-sm">TCOD Engine</strong> True Cost of Downtime arithmetic</div>
-      <div><strong class="text-[var(--tint-warn-ink)] block text-sm">Hidden Drag</strong> 2x to 4x direct lost checkout sales</div>
-      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">≤ 15 Mins</strong> Stop bleeding via instant senior triage</div>
-    </div>
-
-    <h2 class="text-xl font-bold text-[var(--ink)]">5 Modeled Damage Components (TCOD)</h2>
-    <div class="space-y-4">
-      ${outageSimulatorData.en.dimensions.map(dim => `
-      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
-        <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(dim.title)}</h3>
-        <p class="text-[var(--ink-3)] text-sm leading-relaxed">${escapeHtml(dim.desc)}</p>
-      </article>
-      `).join('\n      ')}
-    </div>
-  </section>
-`;
+};
+const outageSimulatorExtraContentTr = renderOutageExtra('tr');
+const outageSimulatorExtraContentEn = renderOutageExtra('en');
 
 const radarExtraContentTr = `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
@@ -2468,8 +2449,8 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/hasar-tespiti/',
     hreflangTr: 'https://trendmasterakademi.com/hasar-tespiti/',
     hreflangEn: 'https://trendmasterakademi.com/outage-simulator/',
-    heading: 'Gelişmiş Kesinti & İtibar Zararı Simülatörü (TCOD)',
-    subheading: 'Bir üretim arızasında doğrudan sepet kaybı toplam hasarın sadece küçük bir kısmıdır. Yanan reklamları, SLA cezalarını, müşteri terkini ve mühendislik fırsat maliyetini simüle edin.',
+    heading: '',
+    subheading: outageSimulatorData.tr.hero.subtitle,
     extraContent: outageSimulatorExtraContentTr,
     schema: {
       "@context": "https://schema.org",
@@ -2480,7 +2461,7 @@ const basePages = [
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Hasar Tespiti Simülatörü", "item": "https://trendmasterakademi.com/hasar-tespiti/" }
+            { "@type": "ListItem", "position": 2, "name": outageSimulatorH1.tr, "item": "https://trendmasterakademi.com/hasar-tespiti/" }
           ]
         }
       ]
@@ -2496,8 +2477,8 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/outage-simulator/',
     hreflangTr: 'https://trendmasterakademi.com/hasar-tespiti/',
     hreflangEn: 'https://trendmasterakademi.com/outage-simulator/',
-    heading: 'Outage & Reputational Damage Simulator (TCOD)',
-    subheading: 'Lost sales are only the tip of the iceberg. Quantify wasted ad spend, contractual penalties, customer churn, and engineering opportunity drag in real time.',
+    heading: '',
+    subheading: outageSimulatorData.en.hero.subtitle,
     extraContent: outageSimulatorExtraContentEn,
     schema: {
       "@context": "https://schema.org",
@@ -2508,7 +2489,7 @@ const basePages = [
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trendmasterakademi.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Outage Damage Simulator", "item": "https://trendmasterakademi.com/outage-simulator/" }
+            { "@type": "ListItem", "position": 2, "name": outageSimulatorH1.en, "item": "https://trendmasterakademi.com/outage-simulator/" }
           ]
         }
       ]

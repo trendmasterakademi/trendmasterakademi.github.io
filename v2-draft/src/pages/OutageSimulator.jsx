@@ -3,8 +3,11 @@ import { outageSimulatorData } from "../data/outageSimulatorData";
 import { getCalendlyUrl } from "../utils/calendly";
 import { setPageSeo } from "../utils/pageTitle";
 
+// Kesinti ve itibar zararı hesabı. Kural (Adım 79–80): gizli çarpan yok; her kalemin formülü
+// o anki değerlerle ekranda yazılı. Metinler: src/data/outageSimulatorData.js
 export default function OutageSimulator({ lang = "tr" }) {
   const t = outageSimulatorData[lang] || outageSimulatorData.tr;
+  const isEn = lang === "en";
 
   useEffect(() => {
     setPageSeo(lang === 'tr' ? '/hasar-tespiti/' : '/outage-simulator/', lang);
@@ -17,6 +20,7 @@ export default function OutageSimulator({ lang = "tr" }) {
   const [dailyAdSpend, setDailyAdSpend] = useState(15000);
   const [slaPenaltyRate, setSlaPenaltyRate] = useState(0);
   const [churnRiskRate, setChurnRiskRate] = useState(1.5);
+  const [churnMonths, setChurnMonths] = useState(3);
   const [engTeamSize, setEngTeamSize] = useState(4);
   const [engHourlyRate, setEngHourlyRate] = useState(950);
   const [copied, setCopied] = useState(false);
@@ -33,86 +37,63 @@ export default function OutageSimulator({ lang = "tr" }) {
     setEngHourlyRate(p.engHourlyRate);
   };
 
-  // Calculations
+  // Profil değerleri elle değişince rapor artık o profilin adını taşımaz.
+  const edit = (setter) => (e) => { setSelectedPreset(null); setter(Math.max(0, Number(e.target.value))); };
+
   const metrics = useMemo(() => {
-    const hourlyRevenue = monthlyRevenue / 730;
-    const directRevenueLoss = Math.round(hourlyRevenue * durationHours * peakMultiplier);
+    const directRevenueLoss = Math.round((monthlyRevenue / 730) * durationHours * peakMultiplier);
     const wastedAdSpend = Math.round((dailyAdSpend / 24) * durationHours);
-    
-    // SLA Penalty applies if duration exceeds 1 hour and penalty rate > 0
-    const slaPenalty = durationHours >= 1 ? Math.round(monthlyRevenue * (slaPenaltyRate / 100)) : 0;
-    
-    // Churn impact: annualized lost LTV from frustrated clients
-    const churnLoss = Math.round((monthlyRevenue * (churnRiskRate / 100)) * (durationHours >= 4 ? 6 : 3));
-    
-    // Engineering opportunity drag: internal dev hours burned in fire-fighting (1.5x panic factor)
-    const engDrag = Math.round(engTeamSize * engHourlyRate * durationHours * 1.5);
+    const slaPenalty = Math.round(monthlyRevenue * (slaPenaltyRate / 100));
+    const churnLoss = Math.round(monthlyRevenue * (churnRiskRate / 100) * churnMonths);
+    const engDrag = Math.round(engTeamSize * engHourlyRate * durationHours);
+    const indirect = wastedAdSpend + slaPenalty + churnLoss + engDrag;
+    return { directRevenueLoss, wastedAdSpend, slaPenalty, churnLoss, engDrag, indirect, total: directRevenueLoss + indirect };
+  }, [monthlyRevenue, durationHours, peakMultiplier, dailyAdSpend, slaPenaltyRate, churnRiskRate, churnMonths, engTeamSize, engHourlyRate]);
 
-    const totalTcod = directRevenueLoss + wastedAdSpend + slaPenalty + churnLoss + engDrag;
-    const hiddenCollateral = wastedAdSpend + slaPenalty + churnLoss + engDrag;
-    const hiddenMultiplier = directRevenueLoss > 0 ? (hiddenCollateral / directRevenueLoss).toFixed(1) : "0";
+  const formatCurrency = (val) => new Intl.NumberFormat(isEn ? "en-US" : "tr-TR", {
+    style: "currency", currency: "TRY", currencyDisplay: "narrowSymbol", maximumFractionDigits: 0
+  }).format(val);
+  const num = (n) => Number(n).toLocaleString(isEn ? "en-US" : "tr-TR", { maximumFractionDigits: 2 });
+  const pct = (n) => (isEn ? `${num(n)}%` : `%${num(n)}`);
+  const hours = (n) => (isEn ? `${n} ${n === 1 ? "hour" : "hours"}` : `${n} saat`);
+  const months = (n) => (isEn ? `${n} ${n === 1 ? "month" : "months"}` : `${n} ay`);
+  const engineers = (n) => (isEn ? `${n} ${n === 1 ? "engineer" : "engineers"}` : `${n} mühendis`);
+  const perHour = isEn ? "/ hour" : "/ saat";
 
-    return {
-      directRevenueLoss,
-      wastedAdSpend,
-      slaPenalty,
-      churnLoss,
-      engDrag,
-      totalTcod,
-      hiddenCollateral,
-      hiddenMultiplier
-    };
-  }, [
-    monthlyRevenue,
-    durationHours,
-    peakMultiplier,
-    dailyAdSpend,
-    slaPenaltyRate,
-    churnRiskRate,
-    engTeamSize,
-    engHourlyRate
-  ]);
-
-  const formatCurrency = (val) => {
-    return new Intl.NumberFormat(lang === "en" ? "en-US" : "tr-TR", {
-      style: "currency",
-      currency: lang === "en" ? "USD" : "TRY",
-      maximumFractionDigits: 0
-    }).format(val);
-  };
+  const items = [
+    { key: "direct_revenue", amount: metrics.directRevenueLoss, calc: `(${formatCurrency(monthlyRevenue)} ÷ 730) × ${hours(durationHours)} × ${num(peakMultiplier)}` },
+    { key: "wasted_ads", amount: metrics.wastedAdSpend, calc: `(${formatCurrency(dailyAdSpend)} ÷ 24) × ${hours(durationHours)}` },
+    { key: "sla_penalty", amount: metrics.slaPenalty, calc: `${formatCurrency(monthlyRevenue)} × ${pct(slaPenaltyRate)}` },
+    { key: "churn_ltv", amount: metrics.churnLoss, calc: `${formatCurrency(monthlyRevenue)} × ${pct(churnRiskRate)} × ${months(churnMonths)}` },
+    { key: "eng_drag", amount: metrics.engDrag, calc: `${engineers(engTeamSize)} × ${formatCurrency(engHourlyRate)} ${perHour} × ${hours(durationHours)}` }
+  ].map((it) => ({ ...it, dim: t.dimensions.find((d) => d.id === it.key) }));
 
   const copyBrief = () => {
-    const brief = lang === "en" ? `[TMA OUTAGE & DAMAGE ASSESSMENT BRIEF (TCOD)]
+    const profile = t.presets.find((p) => p.id === selectedPreset)?.name;
+    const lines = items.map((it, i) => `${i + 1}. ${it.dim.title}: ${formatCurrency(it.amount)}\n   ${it.calc}`).join("\n");
+    const brief = isEn ? `[TMA OUTAGE COST REPORT]
 ============================================================
-Scenario analysed: ${t.presets.find(p => p.id === selectedPreset)?.name || "Custom profile"}
-Outage duration: ${durationHours} ${durationHours === 1 ? "hour" : "hours"} (time multiplier: ${peakMultiplier}x)
+Profile: ${profile || "Custom profile"}
+Outage duration: ${hours(durationHours)} (time multiplier: ${num(peakMultiplier)})
 
-TOTAL COST OF DOWNTIME (TCOD): ${formatCurrency(metrics.totalTcod)}
+TOTAL ESTIMATED COST OF THE OUTAGE: ${formatCurrency(metrics.total)}
 ------------------------------------------------------------
-1. Direct sales / revenue loss:     ${formatCurrency(metrics.directRevenueLoss)}
-2. Wasted ad spend:                 ${formatCurrency(metrics.wastedAdSpend)}
-3. Contractual SLA penalty:         ${formatCurrency(metrics.slaPenalty)}
-4. Customer churn & LTV loss:       ${formatCurrency(metrics.churnLoss)}
-5. Engineering opportunity cost:    ${formatCurrency(metrics.engDrag)}
+${lines}
 
-Hidden damage ratio: ${metrics.hiddenMultiplier}x the direct revenue loss.
+${t.labels.methodNote}
 
 TMA Crisis Triage Desk: info@trendmasterakademi.com | +90 534 371 35 73
 SLA & response commitments: https://trendmasterakademi.com/sla/
-============================================================` : `[TMA KURUMSAL KESİNTİ & HASAR TESPİT BRİFİNGİ (TCOD)]
+============================================================` : `[TMA KESİNTİ MALİYETİ RAPORU]
 ============================================================
-Analiz Edilen Senaryo: ${t.presets.find(p => p.id === selectedPreset)?.name || "Özel Profil"}
-Kesinti Süresi: ${durationHours} Saat (Zaman Çarpanı: ${String(peakMultiplier).replace('.', ',')}x)
+Profil: ${profile || "Özel Profil"}
+Kesinti süresi: ${hours(durationHours)} (zaman çarpanı: ${num(peakMultiplier)})
 
-TOPLAM GERÇEK HASAR (TCOD): ${formatCurrency(metrics.totalTcod)}
+TOPLAM TAHMİNİ KESİNTİ MALİYETİ: ${formatCurrency(metrics.total)}
 ------------------------------------------------------------
-1. Doğrudan Satış/Ciro Kaybı:       ${formatCurrency(metrics.directRevenueLoss)}
-2. Boşa Yanan Reklam Bütçesi:      ${formatCurrency(metrics.wastedAdSpend)}
-3. Sözleşmesel SLA Cezası:          ${formatCurrency(metrics.slaPenalty)}
-4. Müşteri Terki & LTV Kaybı:       ${formatCurrency(metrics.churnLoss)}
-5. Mühendislik Fırsat Maliyeti:     ${formatCurrency(metrics.engDrag)}
+${lines}
 
-Gizli Hasar Oranı: Doğrudan ciro kaybının ${String(metrics.hiddenMultiplier).replace('.', ',')} katı!
+${t.labels.methodNote}
 
 TMA Kriz Triyaj Masası: info@trendmasterakademi.com | +90 534 371 35 73
 SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
@@ -123,6 +104,8 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
       setTimeout(() => setCopied(false), 3000);
     });
   };
+
+  const inputCls = "w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]";
 
   return (
     <div className="min-h-screen bg-[var(--paper)] text-[var(--ink)] py-16 px-4 sm:px-6 lg:px-8 font-sans selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
@@ -161,28 +144,28 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
             >
               <h3 className="text-xs font-bold font-mono tracking-tight">{preset.name}</h3>
               <p className="text-xs text-[var(--ink-3)] mt-1 font-mono">
-                {formatCurrency(preset.monthlyRevenue)} / {lang === "en" ? "mo" : "ay"}
+                {formatCurrency(preset.monthlyRevenue)} / {isEn ? "mo" : "ay"}
               </p>
             </button>
           ))}
         </div>
       </div>
 
-      {/* Interactive Controls + Real-Time TCOD Output */}
+      {/* Inputs + Output */}
       <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
         {/* Controls Column */}
         <div className="lg:col-span-6 space-y-5">
           <div className="bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-6 shadow-sm space-y-5">
             <h2 className="text-base font-serif font-semibold text-[var(--ink)] flex items-center gap-2 border-b border-[var(--rule)] pb-3">
               <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent)]"></span>
-              {lang === "en" ? "Incident Variables & Exposure" : "Kesinti Değişkenleri & Maruziyet"}
+              {t.labels.inputsTitle}
             </h2>
 
             {/* Duration Slider */}
             <div>
               <div className="flex justify-between text-xs font-mono mb-2">
                 <label htmlFor="duration-slider" className="text-[var(--ink)] font-medium">{t.labels.durationHours}</label>
-                <span className="text-[var(--accent)] font-bold">{durationHours} {lang === "en" ? (durationHours === 1 ? "Hour" : "Hours") : "Saat"}</span>
+                <span className="text-[var(--accent)] font-bold">{isEn ? `${durationHours} ${durationHours === 1 ? "Hour" : "Hours"}` : `${durationHours} Saat`}</span>
               </div>
               <input
                 id="duration-slider"
@@ -215,140 +198,75 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
               </select>
             </div>
 
-            {/* Revenue & Ad Spend Inputs */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
               <div>
                 <label htmlFor="monthly-rev-input" className="block text-[var(--ink-2)] mb-1">{t.labels.monthlyRevenue}</label>
-                <input
-                  id="monthly-rev-input"
-                  type="number"
-                  aria-label={t.labels.monthlyRevenue}
-                  value={monthlyRevenue}
-                  onChange={(e) => setMonthlyRevenue(Math.max(0, Number(e.target.value)))}
-                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
-                />
+                <input id="monthly-rev-input" type="number" aria-label={t.labels.monthlyRevenue} value={monthlyRevenue} onChange={edit(setMonthlyRevenue)} className={inputCls} />
               </div>
-
               <div>
                 <label htmlFor="daily-ad-input" className="block text-[var(--ink-2)] mb-1">{t.labels.dailyAdSpend}</label>
-                <input
-                  id="daily-ad-input"
-                  type="number"
-                  aria-label={t.labels.dailyAdSpend}
-                  value={dailyAdSpend}
-                  onChange={(e) => setDailyAdSpend(Math.max(0, Number(e.target.value)))}
-                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
-                />
+                <input id="daily-ad-input" type="number" aria-label={t.labels.dailyAdSpend} value={dailyAdSpend} onChange={edit(setDailyAdSpend)} className={inputCls} />
               </div>
             </div>
 
-            {/* SLA Penalty & Churn */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
               <div>
                 <label htmlFor="sla-penalty-input" className="block text-[var(--ink-2)] mb-1">{t.labels.slaPenaltyRate}</label>
-                <input
-                  id="sla-penalty-input"
-                  type="number"
-                  min="0"
-                  max="100"
-                  aria-label={t.labels.slaPenaltyRate}
-                  value={slaPenaltyRate}
-                  onChange={(e) => setSlaPenaltyRate(Math.max(0, Number(e.target.value)))}
-                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
-                />
+                <input id="sla-penalty-input" type="number" min="0" max="100" aria-label={t.labels.slaPenaltyRate} value={slaPenaltyRate} onChange={edit(setSlaPenaltyRate)} className={inputCls} />
               </div>
-
               <div>
                 <label htmlFor="churn-risk-input" className="block text-[var(--ink-2)] mb-1">{t.labels.churnRiskRate}</label>
-                <input
-                  id="churn-risk-input"
-                  type="number"
-                  step="0.5"
-                  min="0"
-                  max="100"
-                  aria-label={t.labels.churnRiskRate}
-                  value={churnRiskRate}
-                  onChange={(e) => setChurnRiskRate(Math.max(0, Number(e.target.value)))}
-                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
-                />
+                <input id="churn-risk-input" type="number" step="0.5" min="0" max="100" aria-label={t.labels.churnRiskRate} value={churnRiskRate} onChange={edit(setChurnRiskRate)} className={inputCls} />
               </div>
             </div>
 
-            {/* Engineering Team Drag */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-mono">
               <div>
-                <label htmlFor="eng-team-input" className="block text-[var(--ink-2)] mb-1">{t.labels.engTeamSize}</label>
-                <input
-                  id="eng-team-input"
-                  type="number"
-                  min="1"
-                  max="50"
-                  aria-label={t.labels.engTeamSize}
-                  value={engTeamSize}
-                  onChange={(e) => setEngTeamSize(Math.max(1, Number(e.target.value)))}
-                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
-                />
+                <label htmlFor="churn-months-input" className="block text-[var(--ink-2)] mb-1">{t.labels.churnMonths}</label>
+                <input id="churn-months-input" type="number" min="0" max="24" aria-label={t.labels.churnMonths} value={churnMonths} onChange={(e) => setChurnMonths(Math.max(0, Number(e.target.value)))} className={inputCls} />
               </div>
-
               <div>
-                <label htmlFor="eng-rate-input" className="block text-[var(--ink-2)] mb-1">{t.labels.engHourlyRate}</label>
-                <input
-                  id="eng-rate-input"
-                  type="number"
-                  aria-label={t.labels.engHourlyRate}
-                  value={engHourlyRate}
-                  onChange={(e) => setEngHourlyRate(Math.max(0, Number(e.target.value)))}
-                  className="w-full bg-[var(--paper)] border border-[var(--rule)] rounded-lg p-2.5 text-[var(--ink)] focus:outline-none focus:border-[var(--accent)]"
-                />
+                <label htmlFor="eng-team-input" className="block text-[var(--ink-2)] mb-1">{t.labels.engTeamSize}</label>
+                <input id="eng-team-input" type="number" min="0" max="50" aria-label={t.labels.engTeamSize} value={engTeamSize} onChange={edit(setEngTeamSize)} className={inputCls} />
               </div>
+            </div>
+
+            <div className="text-xs font-mono">
+              <label htmlFor="eng-rate-input" className="block text-[var(--ink-2)] mb-1">{t.labels.engHourlyRate}</label>
+              <input id="eng-rate-input" type="number" aria-label={t.labels.engHourlyRate} value={engHourlyRate} onChange={edit(setEngHourlyRate)} className={inputCls} />
             </div>
           </div>
         </div>
 
-        {/* Real-time TCOD Output & Breakdown Column */}
+        {/* Output Column */}
         <div className="lg:col-span-6 space-y-5">
-          {/* Main TCOD Banner */}
           <div className="bg-[var(--surface)] border border-[var(--rule)] rounded-2xl p-6 sm:p-8 shadow-sm relative overflow-hidden">
             <span className="text-xs font-mono uppercase text-[var(--accent)] tracking-wider block mb-2 font-semibold">
               {t.labels.totalTcod}
             </span>
             <div className="text-3xl sm:text-4xl lg:text-5xl font-serif font-semibold text-[var(--ink)] font-mono tracking-tight mb-3">
-              {formatCurrency(metrics.totalTcod)}
+              {formatCurrency(metrics.total)}
             </div>
+            <p className="text-xs font-mono text-[var(--ink-2)]">
+              {t.labels.indirectTotal}: <strong className="text-[var(--ink)]">{formatCurrency(metrics.indirect)}</strong>
+            </p>
 
-            {/* Hidden Cost Alert */}
-            <div className="p-3.5 rounded-xl bg-[var(--accent-wash)] border border-[var(--accent)]/30 text-xs font-mono text-[var(--accent)]">
-              <strong>{t.labels.hiddenCostWarning}</strong>{" "}
-              <span className="font-bold underline">{lang === "en" ? `${metrics.hiddenMultiplier}x` : String(metrics.hiddenMultiplier).replace('.', ',')}</span>{" "}
-              {lang === "en" ? "of direct sales losses." : "katına ulaşıyor!"}
-            </div>
-
-            {/* Breakdown Cards */}
+            {/* Breakdown with live formulas */}
             <div className="mt-6 space-y-2.5 border-t border-[var(--rule)] pt-6 text-xs font-mono">
-              <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-2)]">1. {t.dimensions[0].title}</span>
-                <span className="font-bold text-[var(--ink)]">{formatCurrency(metrics.directRevenueLoss)}</span>
-              </div>
+              {items.map((it, i) => (
+                <div key={it.key} className="p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)] space-y-1">
+                  <div className="flex justify-between items-center gap-3">
+                    <span className="text-[var(--ink-2)]">{i + 1}. {it.dim.title}</span>
+                    <span className="font-bold text-[var(--ink)]">{formatCurrency(it.amount)}</span>
+                  </div>
+                  <div className="text-[var(--ink-3)] break-words">{it.calc}</div>
+                </div>
+              ))}
+            </div>
 
-              <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-2)]">2. {t.dimensions[1].title}</span>
-                <span className="font-bold text-[var(--tint-warn-ink)]">{formatCurrency(metrics.wastedAdSpend)}</span>
-              </div>
-
-              <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-2)]">3. {t.dimensions[2].title}</span>
-                <span className="font-bold text-[var(--tint-danger-ink)]">{formatCurrency(metrics.slaPenalty)}</span>
-              </div>
-
-              <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-2)]">4. {t.dimensions[3].title}</span>
-                <span className="font-bold text-[var(--tint-info-ink)]">{formatCurrency(metrics.churnLoss)}</span>
-              </div>
-
-              <div className="flex justify-between items-center p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)]">
-                <span className="text-[var(--ink-2)]">5. {t.dimensions[4].title}</span>
-                <span className="font-bold text-[var(--tint-info-ink)]">{formatCurrency(metrics.engDrag)}</span>
-              </div>
+            <div className="mt-4 space-y-2">
+              <span className="text-xs font-mono uppercase text-[var(--ink-3)] block">{t.labels.methodTitle}</span>
+              <p className="text-xs text-[var(--ink-2)] leading-relaxed">{t.labels.methodNote}</p>
             </div>
 
             {/* Actions */}
