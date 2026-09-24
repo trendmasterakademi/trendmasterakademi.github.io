@@ -79,7 +79,7 @@ const CaseStudySection = () => {
             <div className="space-y-3 pt-2">
               <div className="text-xs font-mono font-medium uppercase tracking-wider text-[var(--ink-3)] flex items-center gap-2">
                 <Clock className="w-3.5 h-3.5 text-[var(--accent)]" />
-                <span>{isTr ? 'Operasyonel Zaman Çizelgesi (T-Minus Timeline)' : 'Operational Response Timeline'}</span>
+                <span>{isTr ? 'Operasyonel Zaman Çizelgesi' : 'Operational Response Timeline'}</span>
               </div>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {activeCase.timeline.map((step, sIdx) => (

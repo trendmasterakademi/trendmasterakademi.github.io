@@ -529,7 +529,7 @@ const DevirKontrolu = () => {
               <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-[var(--rule)] text-xs font-mono">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[var(--sev-ok)]"></span>
-                  <span className="text-xs text-[var(--ink-3)] uppercase tracking-wider">
+                  <span lang="en" className="text-xs text-[var(--ink-3)] uppercase tracking-wider">
                     TMA Diagnostic Tool // Handover Readiness v1.0
                   </span>
                 </div>

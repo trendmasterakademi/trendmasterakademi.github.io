@@ -228,7 +228,7 @@ const Agency = () => {
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5 shadow-sm">
               <div className="flex items-center gap-2 text-[var(--accent)]">
                 <ShieldCheck className="w-5 h-5" />
-                <span className="font-semibold text-xs sm:text-sm uppercase font-mono">%100 White-Label</span>
+                <span lang="en" className="font-semibold text-xs sm:text-sm uppercase font-mono">%100 White-Label</span>
               </div>
               <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'Sizin müşteriniz, sizin logonuz; arka plandaki görünmez güç biziz.' : 'Your client, your brand; we operate purely as your invisible engineering backline.'}

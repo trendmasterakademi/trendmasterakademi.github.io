@@ -63,7 +63,7 @@ const questions = [
   },
   {
     id: 'test_knowledge',
-    category: { tr: '2. Test & Bilgi Aktarımı (Knowledge Transfer)', en: '2. Test Coverage & Knowledge' },
+    category: { tr: '2. Test & Bilgi Aktarımı', en: '2. Test Coverage & Knowledge' },
     title: { 
       tr: 'Mevcut test kapsamı ve kodu yazan ekibin erişilebilirliği ne durumda?', 
       en: 'What is the test coverage and availability of the original authors?' 
@@ -94,7 +94,7 @@ const questions = [
   },
   {
     id: 'db_integrity',
-    category: { tr: '3. Veritabanı & Veri Bütünlüğü (Database Integrity)', en: '3. Database & Data Integrity' },
+    category: { tr: '3. Veritabanı & Veri Bütünlüğü', en: '3. Database & Data Integrity' },
     title: { 
       tr: 'Veritabanı şeması, ilişkisel bütünlük ve veri sağlığı ne seviyede?', 
       en: 'What is the state of database schemas, relational integrity, and data health?' 
@@ -125,7 +125,7 @@ const questions = [
   },
   {
     id: 'traffic_deadline',
-    category: { tr: '4. Canlı Trafik & Zaman Baskısı (Live Traffic & Deadlines)', en: '4. Live Traffic & Deadlines' },
+    category: { tr: '4. Canlı Trafik & Zaman Baskısı', en: '4. Live Traffic & Deadlines' },
     title: { 
       tr: 'Sistemin canlı kullanıcı trafiği ve yaklaşan teslimat baskısı nedir?', 
       en: 'What is the live user traffic level and approaching delivery pressure?' 
@@ -156,7 +156,7 @@ const questions = [
   },
   {
     id: 'tech_debt_drag',
-    category: { tr: '5. Teknik Borç Faizi (Technical Debt Drag)', en: '5. Technical Debt Drag' },
+    category: { tr: '5. Teknik Borç Faizi', en: '5. Technical Debt Drag' },
     title: { 
       tr: 'Yeni bir özellik eklemek veya hata düzeltmek ne kadar sürüyor?', 
       en: 'How long does it take to ship a simple feature or fix a bug?' 
