@@ -6,7 +6,7 @@ export const seoData = {
   "/": {
     "tr": {
       "title": "Trend Master Akademi | Ajansların İmdat Butonu",
-      "desc": "Dijital ajansların imdat butonu: B2B White-Label mühendislik masası, acil kod kurtarma (SWAT), SaaS mimarisi ve kriz çözüm stüdyosu."
+      "desc": "Ajansların imdat butonu: müşterinizin görmediği kıdemli teknik masa. White-label çalışma, imzalı gizlilik sözleşmesi, yazılı SLA, ücretsiz teşhis araçları."
     }
   },
   "/about/": {
@@ -672,11 +672,11 @@ export const seoData = {
   "/agency/": {
     "tr": {
       "title": "Ajanslar İçin White-Label Mühendislik | Trend Master Akademi",
-      "desc": "Dijital ajansların görünmez teknik gücü: %100 White-Label, resmi NDA güvencesi, 20+ teknik yetkinlik, acil kriz masası ve kıdemli mühendislik takviyesi."
+      "desc": "Ajansların görünmez teknik gücü: %100 white-label çalışma, imzalı gizlilik sözleşmesi, yazılı SLA, ücretsiz teşhis araçları ve kıdemli mühendislik takviyesi."
     },
     "en": {
       "title": "White-Label Engineering for Agencies | Trend Master Akademi",
-      "desc": "The invisible senior engineering desk for digital agencies: 100% White-Label, binding NDA, 20+ capabilities, incident SWAT, and capacity extension."
+      "desc": "The invisible senior engineering desk for agencies: 100% white-label delivery, a signed confidentiality agreement, a written SLA and free diagnostic tools."
     }
   },
   "/crash-test/": {
