@@ -176,7 +176,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
                 aria-label={t.labels.durationHours}
                 value={durationHours}
                 onChange={(e) => setDurationHours(Number(e.target.value))}
-                className="w-full accent-[var(--accent)] cursor-pointer"
+                className="w-full h-11 accent-[var(--accent)] cursor-pointer"
               />
             </div>
 

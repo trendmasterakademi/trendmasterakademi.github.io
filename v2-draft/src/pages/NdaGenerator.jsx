@@ -168,10 +168,11 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
 
             <div className="space-y-4 text-xs font-mono">
               <div>
-                <label className="block text-[var(--ink-2)] mb-1 font-medium">
+                <label htmlFor="nda-sirket" className="block text-[var(--ink-2)] mb-1 font-medium">
                   {t.formLabels.companyName} *
                 </label>
                 <input
+                  id="nda-sirket"
                   type="text"
                   name="companyName"
                   value={formData.companyName}
@@ -182,10 +183,11 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
               </div>
 
               <div>
-                <label className="block text-[var(--ink-2)] mb-1 font-medium">
+                <label htmlFor="nda-imzaci" className="block text-[var(--ink-2)] mb-1 font-medium">
                   {t.formLabels.signatory} *
                 </label>
                 <input
+                  id="nda-imzaci"
                   type="text"
                   name="signatory"
                   value={formData.signatory}
@@ -196,10 +198,11 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
               </div>
 
               <div>
-                <label className="block text-[var(--ink-2)] mb-1 font-medium">
+                <label htmlFor="nda-unvan" className="block text-[var(--ink-2)] mb-1 font-medium">
                   {t.formLabels.signatoryTitle}
                 </label>
                 <input
+                  id="nda-unvan"
                   type="text"
                   name="signatoryTitle"
                   value={formData.signatoryTitle}
@@ -210,10 +213,11 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
               </div>
 
               <div>
-                <label className="block text-[var(--ink-2)] mb-1 font-medium">
+                <label htmlFor="nda-eposta" className="block text-[var(--ink-2)] mb-1 font-medium">
                   {t.formLabels.email} *
                 </label>
                 <input
+                  id="nda-eposta"
                   type="email"
                   name="email"
                   value={formData.email}
@@ -224,10 +228,11 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
               </div>
 
               <div>
-                <label className="block text-[var(--ink-2)] mb-1 font-medium">
+                <label htmlFor="nda-kapsam" className="block text-[var(--ink-2)] mb-1 font-medium">
                   {t.formLabels.scope}
                 </label>
                 <select
+                  id="nda-kapsam"
                   name="scope"
                   value={formData.scope}
                   onChange={handleChange}
@@ -242,10 +247,11 @@ Tarih: ${formData.effectiveDate}         Tarih: ${formData.effectiveDate}
               </div>
 
               <div>
-                <label className="block text-[var(--ink-2)] mb-1 font-medium">
+                <label htmlFor="nda-tarih" className="block text-[var(--ink-2)] mb-1 font-medium">
                   {t.formLabels.effectiveDate}
                 </label>
                 <input
+                  id="nda-tarih"
                   type="date"
                   name="effectiveDate"
                   value={formData.effectiveDate}

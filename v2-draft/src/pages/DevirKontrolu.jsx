@@ -926,6 +926,7 @@ const DevirKontrolu = () => {
                   <input
                     type="text"
                     required
+                    aria-label={isTr ? 'Adınız Soyadınız' : 'Your Full Name'}
                     placeholder={isTr ? 'Adınız Soyadınız' : 'Your Full Name'}
                     value={leadName}
                     onChange={e => setLeadName(e.target.value)}
@@ -934,6 +935,7 @@ const DevirKontrolu = () => {
                   <input
                     type="email"
                     required
+                    aria-label={isTr ? 'Kurumsal E-Posta Adresiniz' : 'Corporate Email Address'}
                     placeholder={isTr ? 'Kurumsal E-Posta Adresiniz' : 'Corporate Email Address'}
                     value={leadEmail}
                     onChange={e => setLeadEmail(e.target.value)}
@@ -941,6 +943,7 @@ const DevirKontrolu = () => {
                   />
                   <input
                     type="tel"
+                    aria-label={isTr ? 'WhatsApp / Telefon (Opsiyonel)' : 'Phone (Optional)'}
                     placeholder={isTr ? 'WhatsApp / Telefon (Opsiyonel)' : 'Phone (Optional)'}
                     value={leadPhone}
                     onChange={e => setLeadPhone(e.target.value)}

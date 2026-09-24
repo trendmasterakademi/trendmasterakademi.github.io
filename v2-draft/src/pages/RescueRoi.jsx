@@ -165,7 +165,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                 aria-label={t.labels.teamSize}
                 value={teamSize}
                 onChange={(e) => setTeamSize(Number(e.target.value))}
-                className="w-full accent-[var(--accent)] cursor-pointer"
+                className="w-full h-11 accent-[var(--accent)] cursor-pointer"
               />
             </div>
 
@@ -184,7 +184,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                 aria-label={t.labels.rebuildMonths}
                 value={rebuildMonths}
                 onChange={(e) => setRebuildMonths(Number(e.target.value))}
-                className="w-full accent-[var(--accent)] cursor-pointer"
+                className="w-full h-11 accent-[var(--accent)] cursor-pointer"
               />
             </div>
 

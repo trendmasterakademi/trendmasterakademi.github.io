@@ -175,10 +175,11 @@ const KesintiMaliyeti = () => {
                 /* Daily Orders Mode */
                 <div className="space-y-3 pt-1">
                   <div>
-                    <label className="text-xs text-[var(--ink-2)] mb-1.5 block">
+                    <label htmlFor="kesinti-siparis" className="text-xs text-[var(--ink-2)] mb-1.5 block">
                       {isTr ? 'Tahmini Günlük Sipariş Adedi:' : 'Estimated Daily Orders:'}
                     </label>
                     <input
+                      id="kesinti-siparis"
                       type="number"
                       placeholder={isTr ? 'Örn: 100 sipariş/gün' : 'e.g. 100 orders/day'}
                       value={dailyOrders}
@@ -226,6 +227,7 @@ const KesintiMaliyeti = () => {
                   <div>
                     <input
                       type="number"
+                      aria-label={isTr ? 'Net aylık ciro' : 'Exact monthly revenue'}
                       placeholder={isTr ? 'Veya net aylık ciro girin (örn: 1500000)' : 'Or specify exact monthly revenue (e.g. 1500000)'}
                       value={customRevenue}
                       onChange={e => { setCustomRevenue(e.target.value); setInputMode('custom'); }}
@@ -239,7 +241,7 @@ const KesintiMaliyeti = () => {
             {/* Input 2: Duration Slider */}
             <div className="p-6 sm:p-7 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 shadow-sm">
               <div className="flex items-center justify-between">
-                <label className="text-sm font-mono uppercase text-[var(--ink-3)] font-semibold">
+                <label htmlFor="kesinti-sure" className="text-sm font-mono uppercase text-[var(--ink-3)] font-semibold">
                   2. {isTr ? 'Tahmini Kesinti Süresi' : 'Estimated Outage Duration'}
                 </label>
                 <span className="text-lg font-bold font-mono text-[var(--accent)]">
@@ -247,13 +249,14 @@ const KesintiMaliyeti = () => {
                 </span>
               </div>
               <input
+                id="kesinti-sure"
                 type="range"
                 min="1"
                 max="48"
                 step="1"
                 value={durationHours}
                 onChange={e => setDurationHours(parseInt(e.target.value))}
-                className="w-full h-2 bg-[var(--rule)] rounded-lg appearance-none cursor-pointer accent-[var(--accent)]"
+                className="w-full h-11 accent-[var(--accent)] cursor-pointer"
               />
               <div className="flex justify-between text-xs font-mono text-[var(--ink-3)]">
                 <span>1 Saat</span>
@@ -266,19 +269,20 @@ const KesintiMaliyeti = () => {
             {/* Input 3: Peak Factor (Visible and Adjustable) */}
             <div className="p-6 sm:p-7 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 shadow-sm">
               <div className="flex flex-wrap items-center justify-between gap-2">
-                <label className="text-sm font-mono uppercase text-[var(--ink-3)] font-semibold">
+                <label htmlFor="kesinti-katsayi" className="text-sm font-mono uppercase text-[var(--ink-3)] font-semibold">
                   3. {isTr ? 'Zirve Katsayısı (Trafik Yoğunluğu)' : 'Peak Factor (Traffic Intensity)'}
                 </label>
                 <div className="flex items-center gap-2">
                   <span className="text-xs text-[var(--ink-3)] font-mono">{isTr ? 'Katsayı:' : 'Multiplier:'}</span>
                   <input
+                    id="kesinti-katsayi"
                     type="number"
                     step="0.1"
                     min="0.1"
                     max="10.0"
                     value={peakFactor}
                     onChange={e => setPeakFactor(parseFloat(e.target.value) || 1.0)}
-                    className="w-20 px-3 py-1 rounded-lg bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] font-mono font-bold text-center text-sm focus:border-[var(--accent)] focus:outline-none"
+                    className="w-20 px-3 py-1 rounded-lg bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] font-mono font-bold text-center text-sm focus:border-[var(--accent)] focus:outline-none min-h-[44px]"
                   />
                 </div>
               </div>

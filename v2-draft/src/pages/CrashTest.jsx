@@ -1176,6 +1176,7 @@ const CrashTest = () => {
                         <input
                           type="text"
                           required
+                          aria-label={isTr ? 'Adınız Soyadınız' : 'Your Full Name'}
                           placeholder={isTr ? 'Adınız Soyadınız' : 'Your Full Name'}
                           value={leadName}
                           onChange={e => setLeadName(e.target.value)}
@@ -1184,6 +1185,7 @@ const CrashTest = () => {
                         <input
                           type="email"
                           required
+                          aria-label={isTr ? 'Kurumsal E-posta' : 'Corporate Email'}
                           placeholder={isTr ? 'Kurumsal E-posta' : 'Corporate Email'}
                           value={leadEmail}
                           onChange={e => setLeadEmail(e.target.value)}
@@ -1192,6 +1194,7 @@ const CrashTest = () => {
                         <input
                           type="tel"
                           required
+                          aria-label={isTr ? 'Telefon / WhatsApp' : 'Phone / WhatsApp'}
                           placeholder={isTr ? 'Telefon / WhatsApp' : 'Phone / WhatsApp'}
                           value={leadPhone}
                           onChange={e => setLeadPhone(e.target.value)}

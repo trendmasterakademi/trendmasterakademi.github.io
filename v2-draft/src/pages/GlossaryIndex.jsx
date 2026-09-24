@@ -53,6 +53,7 @@ const GlossaryIndex = () => {
           </div>
           <input
             type="text"
+            aria-label={isTr ? 'Sözlükte ara' : 'Search the glossary'}
             placeholder={isTr ? 'Terim veya kavram ara... (örn: deadlock, webhook, refactor)' : 'Search terms... (e.g. deadlock, webhook, refactor)'}
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
