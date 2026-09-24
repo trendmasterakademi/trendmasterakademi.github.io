@@ -35,6 +35,7 @@ const OutageSimulator = lazy(() => import('./pages/OutageSimulator'));
 const StatusRadar = lazy(() => import('./pages/StatusRadar'));
 const CodeHealth = lazy(() => import('./pages/CodeHealth'));
 const RescueRoi = lazy(() => import('./pages/RescueRoi'));
+const Tmai = lazy(() => import('./pages/Tmai'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
 // Lightweight, thematic skeleton fallback matching pre-render aesthetic
@@ -190,6 +191,11 @@ function App() {
               <Route path="/kurtarma-maliyeti" element={<RescueRoi lang={isTr ? 'tr' : 'en'} />} />
               <Route path="/rescue-roi/" element={<RescueRoi lang="en" />} />
               <Route path="/rescue-roi" element={<RescueRoi lang="en" />} />
+
+              <Route path="/tmai/" element={<Tmai />} />
+              <Route path="/tmai" element={<Tmai />} />
+              <Route path="/ai-code-takeover/" element={<Tmai />} />
+              <Route path="/ai-code-takeover" element={<Tmai />} />
 
               <Route path="*" element={<NotFound />} />
             </Routes>
