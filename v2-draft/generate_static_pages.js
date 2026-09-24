@@ -555,6 +555,7 @@ const crashTestExtraContent = `
 
 const devirExtraContent = `
   <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <p class="text-sm text-[var(--ink-2)]"><a href="${tmaiYollar.tr}" class="text-[var(--accent)] hover:underline">${escapeHtml(tmaiAraclar.secenek.tr)} →</a></p>
     <h2 class="text-xl font-bold text-[var(--ink)]">Kontrol edilen 12 kalem</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${handoverItems.map(item => `
@@ -569,6 +570,7 @@ const devirExtraContent = `
 
 const devirExtraContentEn = `
   <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <p class="text-sm text-[var(--ink-2)]"><a href="${tmaiYollar.en}" class="text-[var(--accent)] hover:underline">${escapeHtml(tmaiAraclar.secenek.en)} →</a></p>
     <h2 class="text-xl font-bold text-[var(--ink)]">12 Critical Checkpoints Audited</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       ${handoverItems.map(item => `
@@ -887,6 +889,7 @@ const kitExtraContentEn = `
 
 const salvageabilityExtraContentTr = `
   <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <p class="text-sm text-[var(--ink-2)]"><a href="${tmaiYollar.tr}" class="text-[var(--accent)] hover:underline">${escapeHtml(tmaiAraclar.secenek.tr)} →</a></p>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
       <div><strong class="text-[var(--ink)] block text-sm">5 Boyutlu Risk</strong> Mimari, Test, Veritabanı, Trafik, Teknik Borç</div>
       <div><strong class="text-[var(--tint-ok-ink)] block text-sm">0 Erişim</strong> Şifre veya repo istemez</div>
@@ -921,6 +924,7 @@ const salvageabilityExtraContentTr = `
 
 const salvageabilityExtraContentEn = `
   <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+    <p class="text-sm text-[var(--ink-2)]"><a href="${tmaiYollar.en}" class="text-[var(--accent)] hover:underline">${escapeHtml(tmaiAraclar.secenek.en)} →</a></p>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
       <div><strong class="text-[var(--ink)] block text-sm">5 Risk Dimensions</strong> Architecture, Tests, Database, Traffic, Debt Drag</div>
       <div><strong class="text-[var(--tint-ok-ink)] block text-sm">Zero Access</strong> No credentials or repo access needed</div>

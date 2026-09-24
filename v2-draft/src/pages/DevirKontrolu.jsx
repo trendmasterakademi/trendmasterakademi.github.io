@@ -11,6 +11,7 @@ import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 import { handoverAuditH1 } from '../data/pageH1Data';
+import { tmaiData, tmaiYollar, tmaiAraclar } from '../data/tmaiData';
 
 /**
  * 12 Kalemlik Devir Hazırlık Kontrolü (Handover Readiness Checklist)
@@ -198,6 +199,7 @@ const DevirKontrolu = () => {
   const [step, setStep] = useState(1);
   const [answers, setAnswers] = useState({});
   const [copied, setCopied] = useState(false);
+  const [isAiProject, setIsAiProject] = useState(false);
 
   useEffect(() => {
     document.documentElement.scrollTop = 0;
@@ -228,6 +230,9 @@ const DevirKontrolu = () => {
 
     try {
       const params = new URLSearchParams(window.location.search);
+      if (params.get('ai') === '1') {
+        setIsAiProject(true);
+      }
       const src = params.get('utm_source') || '';
       const cmp = params.get('utm_campaign') || '';
       const agency = params.get('a') || params.get('agency') || '';
@@ -322,11 +327,13 @@ const DevirKontrolu = () => {
   };
 
   const copyReport = () => {
+    const aiLine = isAiProject ? `\n${tmaiAraclar.brifSatiri[isTr ? 'tr' : 'en']}\n` : '';
     const text = `=== TMA DEVİR HAZIRLIK DENETİM RAPORU ===\n` +
       `Risk Skoru: %${riskScore} (${riskDetails.level})\n` +
-      `Eksik / Şüpheli Kalem Sayısı: ${missingItems.length} / 12\n\n` +
-      `EKSİK KALEMLER & RİSKLER:\n` +
-      missingItems.map((item, i) => `${i + 1}. ${item.title.tr} (${answers[item.id] === 'no' ? 'YOK' : 'EMİN DEĞİL'})\n   - Risk: ${item.impact.tr}`).join('\n') +
+      `Eksik / Şüpheli Kalem Sayısı: ${missingItems.length} / 12\n` +
+      aiLine +
+      `\nEKSİK KALEMLER & RİSKLER:\n` +
+      missingItems.map((item, i) => `${i + 1}. ${item.title[isTr ? 'tr' : 'en']} (${answers[item.id] === 'no' ? (isTr ? 'YOK' : 'MISSING') : (isTr ? 'EMİN DEĞİL' : 'UNSURE')})\n   - Risk: ${item.impact[isTr ? 'tr' : 'en']}`).join('\n') +
       `\n\n3 ADIMLI TOPARLAMA PROTOKOLÜ:\n` +
       `1. Erişim & Sırların Dondurulması (GitHub, AWS, DNS, Stripe)\n` +
       `2. İzole Sandbox Ortamında Derleme & .env Doğrulaması\n` +
@@ -348,14 +355,15 @@ const DevirKontrolu = () => {
     }
 
     const kitBadge = campaignParams.agency_code ? `\n📦 *Kriz Kiti Ajans Kodu:* #${campaignParams.agency_code}` : '';
+    const aiBadge = isAiProject ? `\n🤖 *${tmaiAraclar.brifSatiri[isTr ? 'tr' : 'en']}*` : '';
     const rawText = isTr
       ? `📋 *TMA DEVİR HAZIRLIK KONTROLÜ RAPORU* 📋\n\n` +
         `🔥 *Hesaplanan Devir Riski:* %${riskScore} (${riskDetails.level})\n` +
-        `⚠️ *Eksik / Belirsiz Kalem:* ${missingItems.length} / 12 Adet${kitBadge}\n\n` +
+        `⚠️ *Eksik / Belirsiz Kalem:* ${missingItems.length} / 12 Adet${kitBadge}${aiBadge}\n\n` +
         `Ayrılan geliştiriciden kalan projemiz için acil devir analizi ve white-label mühendislik desteği almak istiyoruz.`
       : `📋 *TMA DEVELOPER HANDOVER READINESS REPORT* 📋\n\n` +
         `🔥 *Calculated Takeover Risk:* ${riskScore}% (${riskDetails.level})\n` +
-        `⚠️ *Missing Checkpoints:* ${missingItems.length} / 12${kitBadge}\n\n` +
+        `⚠️ *Missing Checkpoints:* ${missingItems.length} / 12${kitBadge}${aiBadge}\n\n` +
         `We would like to request an emergency handover triage and white-label engineering support for our project.`;
 
     window.open(`https://wa.me/905343713573?text=${encodeURIComponent(rawText)}`, '_blank');
@@ -483,6 +491,21 @@ const DevirKontrolu = () => {
               </div>
             </div>
 
+            {/* AI Option Checkbox */}
+            <div className="max-w-2xl mx-auto pt-2">
+              <label className="flex items-center gap-3 p-4 rounded bg-[var(--surface)] border border-[var(--rule)] cursor-pointer hover:border-[var(--accent)] transition-colors">
+                <input
+                  type="checkbox"
+                  checked={isAiProject}
+                  onChange={(e) => setIsAiProject(e.target.checked)}
+                  className="w-4 h-4 rounded border-[var(--rule)] text-[var(--accent)] focus:ring-[var(--accent)] cursor-pointer"
+                />
+                <span className="text-sm sm:text-base font-medium text-[var(--ink)]">
+                  {tmaiAraclar.secenek[isTr ? 'tr' : 'en']}
+                </span>
+              </label>
+            </div>
+
             {/* Start Button */}
             <div className="flex justify-center pt-2">
               <button
@@ -539,6 +562,19 @@ const DevirKontrolu = () => {
                 </div>
               </div>
             </div>
+
+            {/* AI Option Checkbox */}
+            <label className="flex items-center gap-3 p-4 rounded bg-[var(--surface)] border border-[var(--rule)] cursor-pointer hover:border-[var(--accent)] transition-colors">
+              <input
+                type="checkbox"
+                checked={isAiProject}
+                onChange={(e) => setIsAiProject(e.target.checked)}
+                className="w-4 h-4 rounded border-[var(--rule)] text-[var(--accent)] focus:ring-[var(--accent)] cursor-pointer"
+              />
+              <span className="text-sm sm:text-base font-medium text-[var(--ink)]">
+                {tmaiAraclar.secenek[isTr ? 'tr' : 'en']}
+              </span>
+            </label>
 
             {/* Questions Grid */}
             <div className="space-y-6">
@@ -703,6 +739,37 @@ const DevirKontrolu = () => {
                 </div>
               </div>
             </div>
+
+            {/* AI Takeover Block (tmai) */}
+            {isAiProject && (
+              <div className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-4 shadow-sm">
+                <div className="space-y-1">
+                  <span className="text-xs font-mono font-semibold tracking-wider text-[var(--accent)] uppercase">
+                    {tmaiAraclar.devirBlok.baslik[isTr ? 'tr' : 'en']}
+                  </span>
+                  <p className="text-sm sm:text-base text-[var(--ink-2)] leading-relaxed">
+                    {tmaiAraclar.devirBlok.metin[isTr ? 'tr' : 'en']}
+                  </p>
+                </div>
+                <ul className="space-y-2 pt-2">
+                  {tmaiData[isTr ? 'tr' : 'en'].kontroller.maddeler.map((m, idx) => (
+                    <li key={idx} className="flex items-start gap-3 text-sm sm:text-base text-[var(--ink)]">
+                      <span className="text-[var(--accent)] font-mono font-bold mt-0.5">•</span>
+                      <span>{m.baslik}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="pt-2">
+                  <Link
+                    to={tmaiYollar[isTr ? 'tr' : 'en']}
+                    className="text-sm font-semibold font-mono text-[var(--accent)] hover:underline inline-flex items-center gap-1.5"
+                  >
+                    <span>{tmaiAraclar.devirBlok.linkEtiketi[isTr ? 'tr' : 'en']}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+            )}
 
             {/* Missing Items Breakdown List */}
             {missingItems.length > 0 && (

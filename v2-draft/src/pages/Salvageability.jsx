@@ -10,6 +10,7 @@ import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 import { salvageabilityH1 } from '../data/pageH1Data';
+import { tmaiAraclar, tmaiYollar } from '../data/tmaiData';
 
 /**
  * Salvageability Index // Kurtarılabilirlik Karar Matrisi
@@ -196,16 +197,27 @@ const Salvageability = () => {
     test_knowledge: 10,
     db_integrity: 12,
     traffic_deadline: 10,
-    tech_debt_drag: 8
+    tech_debt_drag: 8,
+    [tmaiAraclar.kurtarilabilirlikBoyut.id]: 10
   });
 
+  const [aiSecili, setAiSecili] = useState(false);
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     setPageSeo(isTr ? '/kurtarilabilirlik/' : '/salvageability/', lang);
+    try {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('ai') === '1') {
+        setAiSecili(true);
+      }
+    } catch (e) {}
   }, [lang]);
 
-  const totalScore = Object.values(answers).reduce((a, b) => a + b, 0);
+  const boyutlar = aiSecili ? [...questions, tmaiAraclar.kurtarilabilirlikBoyut] : questions;
+  const ham = boyutlar.reduce((t, q) => t + (answers[q.id] ?? 0), 0);
+  const enYuksek = boyutlar.reduce((t, q) => t + Math.max(...q.options.map((o) => o.score)), 0);
+  const totalScore = Math.round((ham / enYuksek) * 100);
 
   // Karar Matrisi Mantığı:
   // 70 - 100: Cerrahi Kurtarma (SWAT Viable)
@@ -283,23 +295,30 @@ const Salvageability = () => {
   }
 
   const copyReport = () => {
+    let aiMetin = '';
+    if (aiSecili) {
+      const seciliOpt = tmaiAraclar.kurtarilabilirlikBoyut.options.find(o => o.score === answers[tmaiAraclar.kurtarilabilirlikBoyut.id]);
+      const optLabel = seciliOpt ? seciliOpt.label[lang] : '';
+      aiMetin = `\n${tmaiAraclar.brifSatiri[lang]}\n- ${tmaiAraclar.kurtarilabilirlikBoyut.category[lang]}: ${optLabel}\n`;
+    }
+
     const reportText = `[TMA SALVAGEABILITY INDEX REPORT]
 Tarih: ${new Date().toISOString().split('T')[0]}
 Kurtarılabilirlik Skoru: %${totalScore} / 100
-Karar: ${decision.title.tr}
-Strateji: ${decision.tag.tr}
-
+Karar: ${decision.title[lang]}
+Strateji: ${decision.tag[lang]}
+${aiMetin}
 Özet Değerlendirme:
-${decision.summary.tr}
+${decision.summary[lang]}
 
 Tavsiye Edilen Eylem Adımları:
-${decision.actionPlan.map((a, i) => `${i + 1}. ${a.tr}`).join('\n')}
+${decision.actionPlan.map((a, i) => `${i + 1}. ${a[lang]}`).join('\n')}
 
 Finansal & Süreç Etkisi:
-${decision.financialRoi.tr}
+${decision.financialRoi[lang]}
 
 Doğrulama & Triyaj Masası: Trend Master Akademi Studio & Labs
-https://trendmasterakademi.com/kurtarilabilirlik/`;
+https://trendmasterakademi.com${isTr ? '/kurtarilabilirlik/' : '/salvageability/'}`;
 
     navigator.clipboard.writeText(reportText);
     setCopied(true);
@@ -341,7 +360,20 @@ https://trendmasterakademi.com/kurtarilabilirlik/`;
         
         {/* Questions Column (7 Cols) */}
         <div className="lg:col-span-7 space-y-6">
-          {questions.map((q, idx) => (
+          {/* AI Option Checkbox */}
+          <label className="flex items-center gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] cursor-pointer hover:border-[var(--accent)] transition-colors">
+            <input
+              type="checkbox"
+              checked={aiSecili}
+              onChange={(e) => setAiSecili(e.target.checked)}
+              className="w-4 h-4 rounded border-[var(--rule)] text-[var(--accent)] focus:ring-[var(--accent)] cursor-pointer"
+            />
+            <span className="text-sm sm:text-base font-medium text-[var(--ink)]">
+              {tmaiAraclar.secenek[lang]}
+            </span>
+          </label>
+
+          {boyutlar.map((q, idx) => (
             <div key={q.id} className="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 shadow-sm">
               <div className="space-y-1">
                 <span className="text-xs font-mono font-semibold text-[var(--accent)] uppercase tracking-wider">
