@@ -10,10 +10,10 @@ import { isTurkish } from '../i18n';
 import { downtimeCostH1 } from '../data/pageH1Data';
 
 const revenueTiers = [
-  { id: 't1', label: '₺250.000 - ₺500.000 / ay', monthlyAvg: 375000 },
-  { id: 't2', label: '₺500.000 - ₺1.500.000 / ay', monthlyAvg: 1000000 },
-  { id: 't3', label: '₺1.500.000 - ₺5.000.000 / ay', monthlyAvg: 3250000 },
-  { id: 't4', label: '₺5.000.000 - ₺15.000.000+ / ay', monthlyAvg: 10000000 }
+  { id: 't1', label: { tr: '₺250.000 - ₺500.000 / ay', en: '₺250,000 - ₺500,000 / month' }, monthlyAvg: 375000 },
+  { id: 't2', label: { tr: '₺500.000 - ₺1.500.000 / ay', en: '₺500,000 - ₺1,500,000 / month' }, monthlyAvg: 1000000 },
+  { id: 't3', label: { tr: '₺1.500.000 - ₺5.000.000 / ay', en: '₺1,500,000 - ₺5,000,000 / month' }, monthlyAvg: 3250000 },
+  { id: 't4', label: { tr: '₺5.000.000 - ₺15.000.000+ / ay', en: '₺5,000,000 - ₺15,000,000+ / month' }, monthlyAvg: 10000000 }
 ];
 
 const peakPresets = [
@@ -85,7 +85,7 @@ const KesintiMaliyeti = () => {
   }, [inputMode, selectedTier, customRevenue, dailyOrders, peakFactor, durationHours]);
 
   const formatCurrency = (val) => {
-    return new Intl.NumberFormat('tr-TR', { style: 'currency', currency: 'TRY', maximumFractionDigits: 0 }).format(Math.round(val));
+    return new Intl.NumberFormat(isTr ? 'tr-TR' : 'en-US', { style: 'currency', currency: 'TRY', currencyDisplay: 'narrowSymbol', maximumFractionDigits: 0 }).format(Math.round(val));
   };
 
   const openWhatsApp = () => {
@@ -220,7 +220,7 @@ const KesintiMaliyeti = () => {
                             : 'bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-2)] hover:bg-[var(--surface)] hover:text-[var(--ink)]'
                         }`}
                       >
-                        {t.label}
+                        {t.label[isTr ? 'tr' : 'en']}
                       </button>
                     ))}
                   </div>
@@ -259,10 +259,10 @@ const KesintiMaliyeti = () => {
                 className="w-full h-11 accent-[var(--accent)] cursor-pointer"
               />
               <div className="flex justify-between text-xs font-mono text-[var(--ink-3)]">
-                <span>1 Saat</span>
-                <span>12 Saat</span>
-                <span>24 Saat</span>
-                <span>48 Saat</span>
+                <span>{isTr ? '1 Saat' : '1 Hour'}</span>
+                <span>{isTr ? '12 Saat' : '12 Hours'}</span>
+                <span>{isTr ? '24 Saat' : '24 Hours'}</span>
+                <span>{isTr ? '48 Saat' : '48 Hours'}</span>
               </div>
             </div>
 
