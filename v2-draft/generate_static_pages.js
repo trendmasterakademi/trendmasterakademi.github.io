@@ -3700,6 +3700,7 @@ pages.forEach(page => {
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
         <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">${page.h1}</h1>
+        ${page.dir === '' ? `<p class="text-base sm:text-lg text-[var(--ink-2)] leading-relaxed mb-4">${escapeHtml(trLocale['hero-desc'])}</p>` : ''}
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">${page.lang === 'en' ? 'Home' : 'Ana Sayfa'}</a>
           <a href="/agency/" class="hover:underline">${page.lang === 'en' ? 'Capacity & Infrastructure' : 'Kapasite & Altyapı'}</a>

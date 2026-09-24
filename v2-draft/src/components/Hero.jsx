@@ -154,7 +154,7 @@ const Hero = () => {
           <div className="flex flex-wrap items-center gap-2.5">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-[var(--r-control)] border border-[var(--rule)] bg-[var(--surface)] text-[var(--ink-2)] text-xs font-medium">
               <span className="w-2 h-2 rounded-full bg-[var(--sev-ok-dot)]"></span>
-              <span className="label-caps">{t('hero-badge', 'INCIDENT TRIAGE & SYSTEMS ARCHITECTURE // KERNEL DESK')}</span>
+              <span className="label-caps">{t('hero-badge')}</span>
             </div>
             <span className="text-xs text-[var(--ink-3)]">
               {isTr ? 'İzmir · Uzaktan (TR / EN)' : 'İzmir · Remote (TR / EN)'}
@@ -176,9 +176,7 @@ const Hero = () => {
           
           {/* Body Description */}
           <p className="text-base sm:text-lg text-[var(--ink-2)] leading-relaxed max-w-[68ch] font-normal">
-            {t('hero-desc', isTr 
-              ? "Yüksek eşzamanlılık (concurrency), veritabanı kilitlenmeleri (deadlock), kopan ödeme pipeline'ları ve devralınması gereken dokümantasyonsuz kod tabanları için derin operasyonel mühendislik masası. Sessiz, izole ve tamamen görünmez." 
-              : "Deep operational engineering desk for high concurrency, database deadlocks, severed payment pipelines, and undocumented stranded codebases. Silent, isolated, and completely invisible.")}
+            {t('hero-desc')}
           </p>
 
           {/* Above-the-fold Guarantees */}

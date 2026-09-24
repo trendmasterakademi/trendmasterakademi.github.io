@@ -12,11 +12,11 @@
   "nav-sos": "Incident Desk (SOS)",
   "nav-switch-lang": "Türkçe'ye Geç",
 
-  "hero-badge": "INCIDENT TRIAGE & SYSTEMS ARCHITECTURE // KERNEL DESK",
+  "hero-badge": "WHITE-LABEL ENGINEERING DESK FOR AGENCIES",
   "hero-title-line1": "Critical Systems Outages,",
   "hero-title-line2": "Locked Codebases:",
   "hero-title-highlight": "Kernel-Level Engineering Triage.",
-  "hero-desc": "Deep operational engineering desk for high concurrency, database deadlocks, severed payment pipelines, and undocumented stranded codebases. Silent, isolated, and completely invisible.",
+  "hero-desc": "A senior technical desk your client never sees, standing behind your agency. The work runs under your brand, a confidentiality agreement is signed before we look at the code, and response times are written down by severity. You can also see the problem yourself with our free, open diagnostic tools.",
   "btn-crashtest": "Diagnose System Failure (Simulator)",
   "btn-agency-model": "Technical Operations Model",
   "btn-contact-quick": "Connect to Senior Desk",
