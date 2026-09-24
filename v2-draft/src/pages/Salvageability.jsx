@@ -302,8 +302,10 @@ const Salvageability = () => {
       aiMetin = `\n${tmaiAraclar.brifSatiri[lang]}\n- ${tmaiAraclar.kurtarilabilirlikBoyut.category[lang]}: ${optLabel}\n`;
     }
 
-    const reportText = `[TMA SALVAGEABILITY INDEX REPORT]
-Tarih: ${new Date().toISOString().split('T')[0]}
+    const tarih = new Date().toISOString().split('T')[0];
+    const adimlar = decision.actionPlan.map((a, i) => `${i + 1}. ${a[lang]}`).join('\n');
+    const reportText = isTr ? `[TMA KURTARILABİLİRLİK İNDEKSİ RAPORU]
+Tarih: ${tarih}
 Kurtarılabilirlik Skoru: %${totalScore} / 100
 Karar: ${decision.title[lang]}
 Strateji: ${decision.tag[lang]}
@@ -312,13 +314,29 @@ ${aiMetin}
 ${decision.summary[lang]}
 
 Tavsiye Edilen Eylem Adımları:
-${decision.actionPlan.map((a, i) => `${i + 1}. ${a[lang]}`).join('\n')}
+${adimlar}
 
 Finansal & Süreç Etkisi:
 ${decision.financialRoi[lang]}
 
 Doğrulama & Triyaj Masası: Trend Master Akademi Studio & Labs
-https://trendmasterakademi.com${isTr ? '/kurtarilabilirlik/' : '/salvageability/'}`;
+https://trendmasterakademi.com/kurtarilabilirlik/` : `[TMA SALVAGEABILITY INDEX REPORT]
+Date: ${tarih}
+Salvageability score: ${totalScore} / 100
+Decision: ${decision.title[lang]}
+Strategy: ${decision.tag[lang]}
+${aiMetin}
+Summary assessment:
+${decision.summary[lang]}
+
+Recommended action steps:
+${adimlar}
+
+Financial & process impact:
+${decision.financialRoi[lang]}
+
+Verification & triage desk: Trend Master Akademi Studio & Labs
+https://trendmasterakademi.com/salvageability/`;
 
     navigator.clipboard.writeText(reportText);
     setCopied(true);

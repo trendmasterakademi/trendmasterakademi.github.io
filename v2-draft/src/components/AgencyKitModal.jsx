@@ -69,8 +69,8 @@ export default function AgencyKitModal({ isOpen, onClose }) {
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--rule)] transition-colors cursor-pointer"
-              aria-label="Kapat"
+              className="p-1.5 rounded-lg text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--rule)] transition-colors cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label={isTr ? 'Kapat' : 'Close'}
             >
               <X className="w-5 h-5" />
             </button>

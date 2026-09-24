@@ -69,14 +69,14 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
   const getWhatsAppUrl = () => {
     const phone = "905343713573";
     const text = encodeURIComponent(
-      `🚨 *TMA ACİL TEKNİK KRİZ BİLDİRİMİ (SOS)* 🚨\n\n` +
+      `${isTr ? '🚨 *TMA ACİL TEKNİK KRİZ BİLDİRİMİ (SOS)* 🚨' : '🚨 *TMA EMERGENCY TECHNICAL INCIDENT REPORT (SOS)* 🚨'}\n\n` +
       `🏢 *${isTr ? 'Ajans / Şirket:' : 'Agency / Company:'}* ${agencyName || (isTr ? 'Belirtilmedi' : 'Not specified')}\n` +
       `👤 *${isTr ? 'Yetkili:' : 'Contact Person:'}* ${contactPerson || (isTr ? 'Belirtilmedi' : 'Not specified')}\n` +
       `📞 *${isTr ? 'Telefon / WhatsApp:' : 'Phone / WhatsApp:'}* ${contactPhone}\n` +
       `⚡ *${isTr ? 'Aciliyet Düzeyi:' : 'Urgency Level:'}* ${getUrgencyLabel()}\n` +
       (budget ? `💰 *${isTr ? 'Bütçe Aralığı:' : 'Budget Range:'}* ${budget}\n` : '') +
       `📝 *${isTr ? 'Kriz Özeti:' : 'Crisis Scope:'}* ${problemDesc}\n\n` +
-      `_TMA Response Desk üzerinden gönderildi._`
+      (isTr ? '_TMA Kriz Masası üzerinden gönderildi._' : '_Sent via the TMA Response Desk._')
     );
     return `https://wa.me/905343713573?text=${text}`;
   };
@@ -425,7 +425,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                     rel="noreferrer"
                     onClick={() => window.trackEvent && window.trackEvent('whatsapp_clicked', { source: 'sos_bottom_bar' })}
                     className="btn-secondary min-h-[44px] flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold"
-                    title="WhatsApp ile İletişim"
+                    title={isTr ? 'WhatsApp ile İletişim' : 'Contact via WhatsApp'}
                   >
                     <MessageSquare className="w-4 h-4 text-[var(--wa)] shrink-0" />
                     <span>WhatsApp</span>
@@ -433,7 +433,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                   <a
                     href="tel:+905343713573"
                     className="btn-secondary min-h-[44px] flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold"
-                    title="Doğrudan Telefonla Ara"
+                    title={isTr ? 'Doğrudan Telefonla Ara' : 'Call directly'}
                   >
                     <PhoneCall className="w-4 h-4 text-[var(--sev-ok)] shrink-0" />
                     <span>{isTr ? 'Ara' : 'Call'}</span>

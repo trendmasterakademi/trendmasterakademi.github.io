@@ -33,7 +33,7 @@ export const Triage = () => {
   };
 
   const copyFullReport = () => {
-    const report = `[TMA INCIDENT TRIAGE REPORT]
+    const report = isTr ? `[TMA OLAY TRİYAJ RAPORU]
 Kategori: ${activeScenario.category[lang]}
 Şiddet: ${activeScenario.severity}
 Semptom: ${activeScenario.symptom[lang]}
@@ -47,7 +47,21 @@ ${activeScenario.immediateAction[lang]}
 
 --- TMA SWAT PROTOKOLÜ ---
 ${activeScenario.tmaResolution[lang]}
-Rapor Tarihi: ${new Date().toISOString()}`;
+Rapor Tarihi: ${new Date().toISOString()}` : `[TMA INCIDENT TRIAGE REPORT]
+Category: ${activeScenario.category[lang]}
+Severity: ${activeScenario.severity}
+Symptom: ${activeScenario.symptom[lang]}
+Estimated first response time: ${activeScenario.firstResponseTime[lang]}
+
+--- WHAT NOT TO DO ---
+${activeScenario.doNot.map(d => `• ${d[lang]}`).join('\n')}
+
+--- IMMEDIATE ACTION PLAN ---
+${activeScenario.immediateAction[lang]}
+
+--- TMA SWAT PROTOCOL ---
+${activeScenario.tmaResolution[lang]}
+Report date: ${new Date().toISOString()}`;
 
     navigator.clipboard.writeText(report);
     setCopiedReport(true);

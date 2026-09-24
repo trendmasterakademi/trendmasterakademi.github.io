@@ -60,7 +60,7 @@ const Story = () => {
               <img
                 src="/images/mehmet-sahin-160.jpg"
                 srcSet="/images/mehmet-sahin-320.jpg 2x, /images/mehmet-sahin-480.jpg 3x"
-                alt="Mehmet Şahin — Kurucu & Baş Yazılım Mimarı"
+                alt={isTr ? 'Mehmet Şahin — Kurucu & Baş Yazılım Mimarı' : 'Mehmet Şahin — Founder & Lead Software Architect'}
                 width="64"
                 height="64"
                 loading="lazy"

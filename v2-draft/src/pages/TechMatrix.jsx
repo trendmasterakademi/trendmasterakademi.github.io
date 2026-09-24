@@ -52,7 +52,7 @@ export default function TechMatrix({ lang = "tr" }) {
     if (selectedItems.length === 0) return;
     const names = selectedItems.map((i) => i.name).join(", ");
     const readiness = activeTier
-      ? `${activeTier.level} (MTTA: ${activeTier.mtta[lang] || activeTier.mtta.tr} · ${activeTier.timeToTable[lang] || activeTier.timeToTable.tr})`
+      ? `${activeTier.level} (MTTA: ${activeTier.mtta[lang] || activeTier.mtta.tr} · ${lang === "en" ? "time to engage" : "masaya oturma"}: ${activeTier.timeToTable[lang] || activeTier.timeToTable.tr})`
       : (lang === "en" ? "SEV-1 (≤ 30 Minutes)" : "SEV-1 (≤ 30 Dakika)");
 
     const interventionLines = selectedItems
@@ -68,7 +68,17 @@ export default function TechMatrix({ lang = "tr" }) {
       .map((r) => `  - ${r}`)
       .join("\n");
 
-    const brief = `[TMA MÜHENDİSLİK STACK BRİFİNGİ / ARCHITECTURE BRIEF]
+    const brief = lang === "en" ? `[TMA ENGINEERING STACK BRIEF]
+--------------------------------------------------
+Selected technologies: ${names}
+Intervention readiness: ${readiness}${interventionLines.length > 0 ? "\n" + interventionLines.join("\n") : ""}
+
+Potential architectural risk points identified:
+${combinedRisks}
+
+TMA Engineering Desk: info@trendmasterakademi.com | +90 534 371 35 73
+Direct triage: https://trendmasterakademi.com/triage/
+--------------------------------------------------` : `[TMA MÜHENDİSLİK STACK BRİFİNGİ]
 --------------------------------------------------
 Seçilen Teknolojiler: ${names}
 Müdahale Hazırbulunuşluğu: ${readiness}${interventionLines.length > 0 ? "\n" + interventionLines.join("\n") : ""}
@@ -77,7 +87,7 @@ Tespit Edilen Olası Mimari Risk Noktaları:
 ${combinedRisks}
 
 TMA Mühendislik Masası: info@trendmasterakademi.com | +90 534 371 35 73
-Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "triyaj"}/
+Doğrudan Triyaj: https://trendmasterakademi.com/triyaj/
 --------------------------------------------------`;
 
     navigator.clipboard.writeText(brief).then(() => {

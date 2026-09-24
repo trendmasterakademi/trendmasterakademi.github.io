@@ -82,7 +82,24 @@ export default function OutageSimulator({ lang = "tr" }) {
   };
 
   const copyBrief = () => {
-    const brief = `[TMA KURUMSAL KESİNTİ & HASAR TESPİT BRİFİNGİ (TCOD)]
+    const brief = lang === "en" ? `[TMA OUTAGE & DAMAGE ASSESSMENT BRIEF (TCOD)]
+============================================================
+Scenario analysed: ${t.presets.find(p => p.id === selectedPreset)?.name || "Custom profile"}
+Outage duration: ${durationHours} ${durationHours === 1 ? "hour" : "hours"} (time multiplier: ${peakMultiplier}x)
+
+TOTAL COST OF DOWNTIME (TCOD): ${formatCurrency(metrics.totalTcod)}
+------------------------------------------------------------
+1. Direct sales / revenue loss:     ${formatCurrency(metrics.directRevenueLoss)}
+2. Wasted ad spend:                 ${formatCurrency(metrics.wastedAdSpend)}
+3. Contractual SLA penalty:         ${formatCurrency(metrics.slaPenalty)}
+4. Customer churn & LTV loss:       ${formatCurrency(metrics.churnLoss)}
+5. Engineering opportunity cost:    ${formatCurrency(metrics.engDrag)}
+
+Hidden damage ratio: ${metrics.hiddenMultiplier}x the direct revenue loss.
+
+TMA Crisis Triage Desk: info@trendmasterakademi.com | +90 534 371 35 73
+SLA & response commitments: https://trendmasterakademi.com/sla/
+============================================================` : `[TMA KURUMSAL KESİNTİ & HASAR TESPİT BRİFİNGİ (TCOD)]
 ============================================================
 Analiz Edilen Senaryo: ${t.presets.find(p => p.id === selectedPreset)?.name || "Özel Profil"}
 Kesinti Süresi: ${durationHours} Saat (Zaman Çarpanı: ${peakMultiplier}x)
@@ -165,7 +182,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
             <div>
               <div className="flex justify-between text-xs font-mono mb-2">
                 <label htmlFor="duration-slider" className="text-[var(--ink)] font-medium">{t.labels.durationHours}</label>
-                <span className="text-[var(--accent)] font-bold">{durationHours} {lang === "en" ? "Hours" : "Saat"}</span>
+                <span className="text-[var(--accent)] font-bold">{durationHours} {lang === "en" ? (durationHours === 1 ? "Hour" : "Hours") : "Saat"}</span>
               </div>
               <input
                 id="duration-slider"

@@ -113,7 +113,7 @@ function KitBanner() {
           <button
             onClick={() => setIsModalOpen(true)}
             className="px-2.5 py-1 sm:px-2 sm:py-0.5 rounded-[var(--r-control)] bg-[var(--accent)] hover:bg-[var(--accent-ink)] text-[var(--on-accent)] font-medium text-xs flex items-center justify-center gap-1 transition-colors cursor-pointer min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 sm:h-5"
-            aria-label="TMA Kiti İncele"
+            aria-label={isTr ? 'TMA Kiti İncele' : 'View Kit: TMA Agency Kit'}
           >
             <BookOpen className="w-3.5 h-3.5 sm:w-3 sm:h-3 flex-shrink-0" />
             <span className="hidden xs:inline">{data.cta}</span>
@@ -122,7 +122,7 @@ function KitBanner() {
           <button
             onClick={handleDismiss}
             className="p-1 sm:p-0.5 rounded-[var(--r-control)] text-[var(--ink-3)] hover:text-[var(--ink)] hover:bg-[var(--paper)] transition-colors cursor-pointer min-h-[44px] min-w-[44px] sm:min-h-0 sm:min-w-0 sm:h-5 sm:w-5 flex items-center justify-center"
-            aria-label="Kapat"
+            aria-label={isTr ? 'Kapat' : 'Close'}
             title={isTr ? "Banner'ı gizle" : "Hide banner"}
           >
             <X className="w-4 h-4 sm:w-3.5 sm:h-3.5" />

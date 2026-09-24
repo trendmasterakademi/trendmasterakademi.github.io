@@ -330,17 +330,30 @@ const DevirKontrolu = () => {
 
   const copyReport = () => {
     const aiLine = isAiProject ? `\n${tmaiAraclar.brifSatiri[isTr ? 'tr' : 'en']}\n` : '';
-    const text = `=== TMA DEVİR HAZIRLIK DENETİM RAPORU ===\n` +
-      `Risk Skoru: %${riskScore} (${riskDetails.level})\n` +
-      `Eksik / Şüpheli Kalem Sayısı: ${missingItems.length} / 12\n` +
-      aiLine +
-      `\nEKSİK KALEMLER & RİSKLER:\n` +
-      missingItems.map((item, i) => `${i + 1}. ${item.title[isTr ? 'tr' : 'en']} (${answers[item.id] === 'no' ? (isTr ? 'YOK' : 'MISSING') : (isTr ? 'EMİN DEĞİL' : 'UNSURE')})\n   - Risk: ${item.impact[isTr ? 'tr' : 'en']}`).join('\n') +
-      `\n\n3 ADIMLI TOPARLAMA PROTOKOLÜ:\n` +
-      `1. Erişim & Sırların Dondurulması (GitHub, AWS, DNS, Stripe)\n` +
-      `2. İzole Sandbox Ortamında Derleme & .env Doğrulaması\n` +
-      `3. Bağımsız Dokümantasyon & Eksiksiz Kod Mülkiyet Devri\n\n` +
-      `TMA Kriz Masası: +90 534 371 35 73 | info@trendmasterakademi.com`;
+    const maddeler = missingItems.map((item) => `• ${item.title[isTr ? 'tr' : 'en']} (${answers[item.id] === 'no' ? (isTr ? 'YOK' : 'MISSING') : (isTr ? 'EMİN DEĞİL' : 'UNSURE')})\n   - Risk: ${item.impact[isTr ? 'tr' : 'en']}`).join('\n');
+    const text = isTr
+      ? `=== TMA DEVİR HAZIRLIK DENETİM RAPORU ===\n` +
+        `Risk Skoru: %${riskScore} (${riskDetails.level})\n` +
+        `Eksik / Şüpheli Kalem Sayısı: ${missingItems.length} / 12\n` +
+        aiLine +
+        `\nEKSİK KALEMLER & RİSKLER:\n` +
+        maddeler +
+        `\n\n3 ADIMLI TOPARLAMA PROTOKOLÜ:\n` +
+        `1. Erişim & Sırların Dondurulması (GitHub, AWS, DNS, Stripe)\n` +
+        `2. İzole Sandbox Ortamında Derleme & .env Doğrulaması\n` +
+        `3. Bağımsız Dokümantasyon & Eksiksiz Kod Mülkiyet Devri\n\n` +
+        `TMA Kriz Masası: +90 534 371 35 73 | info@trendmasterakademi.com`
+      : `=== TMA HANDOVER READINESS AUDIT REPORT ===\n` +
+        `Risk score: ${riskScore}% (${riskDetails.level})\n` +
+        `Missing / uncertain items: ${missingItems.length} / 12\n` +
+        aiLine +
+        `\nMISSING ITEMS & RISKS:\n` +
+        maddeler +
+        `\n\n3-STEP RECOVERY PROTOCOL:\n` +
+        `1. Freeze access and secrets (GitHub, AWS, DNS, Stripe)\n` +
+        `2. Build in an isolated sandbox and verify the .env\n` +
+        `3. Independent documentation and full code ownership transfer\n\n` +
+        `TMA Response Desk: +90 534 371 35 73 | info@trendmasterakademi.com`;
 
     navigator.clipboard.writeText(text);
     setCopied(true);

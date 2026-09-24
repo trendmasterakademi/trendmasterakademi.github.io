@@ -68,7 +68,27 @@ export default function RescueRoi({ lang = "tr" }) {
   };
 
   const copyBrief = () => {
-    const brief = `[TMA FİNANSAL ROI & KURTARMA VS. REBUILD RAPORU]
+    const brief = lang === "en" ? `[TMA FINANCIAL ROI REPORT: RESCUE VS. REBUILD]
+============================================================
+Profile analysed: ${t.presets.find(p => p.id === selectedPreset)?.name || "Custom project"}
+
+NET CAPITAL SAVED: ${formatCurrency(metrics.netCapitalSaved)}
+TIME SAVED: ${metrics.timeSavedMonths} ${metrics.timeSavedMonths === 1 ? "month" : "months"}
+RETURN ON INVESTMENT (ROI): ${metrics.roiMultiplier}x
+
+Financial comparison:
+------------------------------------------------------------
+1. Total cost of a ground-up rebuild: ${formatCurrency(metrics.totalRebuildCost)}
+   - Direct engineering payroll (${metrics.totalRebuildMonths} months): ${formatCurrency(metrics.rebuildPayrollCost)}
+   - Lost market & revenue opportunity cost: ${formatCurrency(metrics.rebuildOpportunityCost)}
+
+2. TMA SWAT surgical rescue investment: ${formatCurrency(metrics.tmaRescueCost)}
+   - Estimated intervention time: 2 - 4 weeks
+   - Data-loss risk: zero (live revenue is protected)
+
+TMA Engineering Desk: info@trendmasterakademi.com | +90 534 371 35 73
+Agreement & NDA protection: https://trendmasterakademi.com/mutual-nda/
+============================================================` : `[TMA FİNANSAL ROI & KURTARMA VS. REBUILD RAPORU]
 ============================================================
 Analiz Edilen Profil: ${t.presets.find(p => p.id === selectedPreset)?.name || "Özel Proje"}
 
@@ -154,7 +174,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
             <div>
               <div className="flex justify-between text-xs font-mono mb-2">
                 <label htmlFor="team-size-slider" className="text-[var(--ink)] font-medium">{t.labels.teamSize}</label>
-                <span className="text-[var(--accent)] font-bold">{teamSize} {lang === "en" ? "Engineers" : "Mühendis"}</span>
+                <span className="text-[var(--accent)] font-bold">{teamSize} {lang === "en" ? (teamSize === 1 ? "Engineer" : "Engineers") : "Mühendis"}</span>
               </div>
               <input
                 id="team-size-slider"

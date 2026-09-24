@@ -107,7 +107,7 @@ const KesintiMaliyeti = () => {
         `📉 Tahmini doğrudan ciro kaybı: ${formatCurrency(directLoss)}${kitBadge}\n\n` +
         `Canlı sistemdeki kesinti için TMA'dan teşhis talep ediyoruz.`
       : `⏱️ *TMA DOWNTIME COST ASSESSMENT*\n\n` +
-        `⏳ Outage duration: ${durationHours} hours\n` +
+        `⏳ Outage duration: ${durationHours} ${durationHours === 1 ? 'hour' : 'hours'}\n` +
         `📊 Monthly revenue: ${formatCurrency(monthlyRev)}\n` +
         `⚙️ Peak factor: ${factorStr} (assumption)\n` +
         `📉 Estimated direct revenue loss: ${formatCurrency(directLoss)}${kitBadge}\n\n` +
@@ -245,7 +245,7 @@ const KesintiMaliyeti = () => {
                   2. {isTr ? 'Tahmini Kesinti Süresi' : 'Estimated Outage Duration'}
                 </label>
                 <span className="text-lg font-bold font-mono text-[var(--accent)]">
-                  {durationHours} {isTr ? 'Saat' : 'Hours'}
+                  {durationHours} {isTr ? 'Saat' : (durationHours === 1 ? 'Hour' : 'Hours')}
                 </span>
               </div>
               <input
@@ -342,7 +342,7 @@ const KesintiMaliyeti = () => {
                 <span className="text-xs text-[var(--ink-3)] font-mono block pt-0.5">
                   {isTr 
                     ? `(${durationHours} saat × ${formatCurrency(hourlyRev)} / saat × ${peakFactor.toFixed(1).replace('.', ',')}x)`
-                    : `(${durationHours} hrs × ${formatCurrency(hourlyRev)} / hr × ${peakFactor.toFixed(1)}x)`}
+                    : `(${durationHours} ${durationHours === 1 ? 'hr' : 'hrs'} × ${formatCurrency(hourlyRev)} / hr × ${peakFactor.toFixed(1)}x)`}
                 </span>
               </div>
 
@@ -358,7 +358,7 @@ const KesintiMaliyeti = () => {
                 </div>
                 <div className="flex justify-between items-center text-[var(--ink-2)]">
                   <span>{isTr ? 'Kesinti süresi' : 'Outage duration'}</span>
-                  <span className="font-semibold text-[var(--ink)]">{durationHours} {isTr ? 'saat' : 'hours'}</span>
+                  <span className="font-semibold text-[var(--ink)]">{durationHours} {isTr ? 'saat' : (durationHours === 1 ? 'hour' : 'hours')}</span>
                 </div>
                 <div className="flex justify-between items-center text-[var(--ink-2)]">
                   <span className="text-xs">

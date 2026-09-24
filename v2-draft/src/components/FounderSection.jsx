@@ -98,7 +98,7 @@ export const FounderSection = () => {
                     <img
                       src="/images/mehmet-sahin-320.jpg"
                       srcSet="/images/mehmet-sahin-480.jpg 2x"
-                      alt="Mehmet Şahin — Kurucu & Baş Yazılım Mimarı"
+                      alt={isTr ? 'Mehmet Şahin — Kurucu & Baş Yazılım Mimarı' : 'Mehmet Şahin — Founder & Lead Software Architect'}
                       width="260"
                       height="260"
                       loading="lazy"
