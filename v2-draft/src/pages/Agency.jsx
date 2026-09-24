@@ -245,17 +245,20 @@ const Agency = () => {
               </p>
             </div>
 
-            <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5 shadow-sm">
+            <Link 
+              to={agencySlaKarti.link} 
+              className="block p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5 shadow-sm transition-colors hover:border-[var(--accent)]"
+            >
               <div className="flex items-center gap-2 text-[var(--tint-warn-ink)]">
                 <Clock className="w-5 h-5" />
-                <Link to={agencySlaKarti.link} className="font-semibold text-xs sm:text-sm uppercase font-mono hover:underline">
+                <span className="font-semibold text-xs sm:text-sm uppercase font-mono">
                   {agencySlaKarti.baslik[isTr ? 'tr' : 'en']}
-                </Link>
+                </span>
               </div>
               <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                 {agencySlaKarti.metin[isTr ? 'tr' : 'en']}
               </p>
-            </div>
+            </Link>
 
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5 shadow-sm">
               <div className="flex items-center gap-2 text-[var(--tint-info-ink)]">
