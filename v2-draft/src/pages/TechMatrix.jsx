@@ -306,7 +306,7 @@ Doğrudan Triyaj: https://trendmasterakademi.com/${lang === "en" ? "triage" : "t
                         {item.name.split(" ")[0]}
                         <button
                           onClick={() => toggleTech(item.id)}
-                          className="text-[var(--ink-3)] hover:text-[var(--tint-danger-ink)] ml-1 cursor-pointer relative after:absolute after:inset-[-14px_-18px] after:content-['']"
+                          className="text-[var(--ink-3)] hover:text-[var(--tint-danger-ink)] ml-1 cursor-pointer relative after:absolute after:inset-[-14px_-20px] after:content-['']"
                           aria-label={lang === "en" ? `Remove ${item.name}` : `${item.name} seçimini kaldır`}
                         >
                           ×

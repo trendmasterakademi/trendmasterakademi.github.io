@@ -397,7 +397,7 @@ const TeshisDetay = () => {
               <h2 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)]">
                 {isTr ? 'Resmî dokümanlar' : 'Official documentation'}
               </h2>
-              <ul className="space-y-2 font-mono text-xs sm:text-sm">
+              <ul className="font-mono text-xs sm:text-sm">
                 {teshis.resmiKaynaklar.map((rk, idx) => {
                   const ad = rk.ad?.[lang] || rk.ad?.tr || '';
                   const url = rk.url?.[lang] || rk.url?.tr || '';
@@ -407,7 +407,7 @@ const TeshisDetay = () => {
                         href={url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[var(--accent)] hover:underline inline-flex items-center gap-1.5"
+                        className="text-[var(--accent)] hover:underline flex items-center gap-1.5 min-h-[44px] py-1"
                       >
                         <span>→ {ad}</span>
                       </a>

@@ -1567,7 +1567,7 @@ function renderTmaiContent(lang) {
               </div>
               <div class="space-y-1.5 flex-1">
                 ${adim.link ? `
-                  <a href="${adim.link}" class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)] hover:text-[var(--accent)] hover:underline inline-flex items-center gap-1.5 transition-colors">
+                  <a href="${adim.link}" class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)] hover:text-[var(--accent)] hover:underline inline-flex items-center gap-1.5 transition-colors relative after:absolute after:inset-[-10px_0] after:content-['']">
                     <span>${escapeHtml(adim.baslik)}</span> →
                   </a>
                 ` : `
@@ -3157,8 +3157,8 @@ const teshisPages = teshisData.flatMap(item => {
     ? `
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resmî dokümanlar</h2>
-        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
-          ${item.resmiKaynaklar.map(rk => `<li><a href="${escapeHtml(rk.url?.tr || rk.url)}" target="_blank" rel="noopener noreferrer" class="hover:underline">→ ${escapeHtml(rk.ad?.tr || '')}</a></li>`).join('\n          ')}
+        <ul class="font-mono text-sm text-[var(--accent)]">
+          ${item.resmiKaynaklar.map(rk => `<li><a href="${escapeHtml(rk.url?.tr || rk.url)}" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center min-h-[44px] py-1">→ ${escapeHtml(rk.ad?.tr || '')}</a></li>`).join('\n          ')}
         </ul>
       </section>
     `
@@ -3168,8 +3168,8 @@ const teshisPages = teshisData.flatMap(item => {
     ? `
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Official documentation</h2>
-        <ul class="space-y-1 font-mono text-sm text-[var(--accent)]">
-          ${item.resmiKaynaklar.map(rk => `<li><a href="${escapeHtml(rk.url?.en || rk.url?.tr || rk.url)}" target="_blank" rel="noopener noreferrer" class="hover:underline">→ ${escapeHtml(rk.ad?.en || rk.ad?.tr || '')}</a></li>`).join('\n          ')}
+        <ul class="font-mono text-sm text-[var(--accent)]">
+          ${item.resmiKaynaklar.map(rk => `<li><a href="${escapeHtml(rk.url?.en || rk.url?.tr || rk.url)}" target="_blank" rel="noopener noreferrer" class="hover:underline flex items-center min-h-[44px] py-1">→ ${escapeHtml(rk.ad?.en || rk.ad?.tr || '')}</a></li>`).join('\n          ')}
         </ul>
       </section>
     `

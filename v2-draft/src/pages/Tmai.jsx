@@ -89,7 +89,7 @@ const Tmai = () => {
                 </div>
                 <div className="space-y-1.5 flex-1">
                   {adim.link ? (
-                    <Link to={adim.link} className="text-base sm:text-lg font-semibold font-serif text-[var(--ink)] hover:text-[var(--accent)] hover:underline inline-flex items-center gap-1.5 transition-colors">
+                    <Link to={adim.link} className="text-base sm:text-lg font-semibold font-serif text-[var(--ink)] hover:text-[var(--accent)] hover:underline inline-flex items-center gap-1.5 transition-colors relative after:absolute after:inset-[-10px_0] after:content-['']">
                       <span>{adim.baslik}</span>
                       <ArrowRight className="w-4 h-4 text-[var(--accent)]" />
                     </Link>

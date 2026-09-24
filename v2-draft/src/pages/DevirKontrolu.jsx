@@ -729,15 +729,18 @@ const DevirKontrolu = () => {
                   <strong className="text-base sm:text-lg font-semibold text-[var(--tint-ok-ink)] font-mono">{isTr ? 'Ücretsiz' : 'Free'}</strong>
                   <span className="text-xs text-[var(--ink-3)] block mt-1">{isTr ? 'Sonraki adımlar kapsama göre belirlenir' : 'Next steps scoped per project'}</span>
                 </div>
-                <div className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)]">
+                <Link
+                  to="/sla/"
+                  className="block p-5 rounded bg-[var(--paper)] border border-[var(--rule)] transition-colors hover:border-[var(--accent)]"
+                >
                   <span className="text-xs sm:text-sm text-[var(--ink-3)] block mb-1">{isTr ? 'Önerilen Devir SLA' : 'Recommended SLA'}</span>
                   <strong className="text-base sm:text-lg font-semibold text-[var(--accent)]">
                     {recommendedTier ? `${recommendedTier.level} · ${recommendedTier.mtta[isTr ? 'tr' : 'en']}` : ''}
                   </strong>
-                  <Link to="/sla/" className="text-xs text-[var(--ink-3)] hover:text-[var(--accent)] hover:underline block mt-1 transition-colors">
+                  <span className="text-xs text-[var(--ink-3)] block mt-1">
                     {isTr ? "İlk yanıt, SLA'ya göre" : 'First response, per the SLA'}
-                  </Link>
-                </div>
+                  </span>
+                </Link>
                 <div className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)]">
                   <span className="text-xs sm:text-sm text-[var(--ink-3)] block mb-1">{isTr ? 'Çalışma Güvencesi' : 'TMA Guarantee'}</span>
                   <strong className="text-base sm:text-lg font-semibold text-[var(--tint-ok-ink)]">%100 White-Label</strong>
@@ -768,7 +771,7 @@ const DevirKontrolu = () => {
                 <div className="pt-2">
                   <Link
                     to={tmaiYollar[isTr ? 'tr' : 'en']}
-                    className="text-sm font-semibold font-mono text-[var(--accent)] hover:underline inline-flex items-center gap-1.5"
+                    className="text-sm font-semibold font-mono text-[var(--accent)] hover:underline inline-flex items-center gap-1.5 min-h-[44px]"
                   >
                     <span>{tmaiAraclar.devirBlok.linkEtiketi[isTr ? 'tr' : 'en']}</span>
                     <ArrowRight className="w-4 h-4" />
