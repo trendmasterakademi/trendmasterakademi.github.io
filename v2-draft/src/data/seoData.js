@@ -90,13 +90,13 @@ export const seoData = {
   "/downtime-calc/": {
     "en": {
       "title": "Downtime Cost Calculator | Trend Master Akademi",
-      "desc": "Calculate hourly and total estimated revenue loss during server crashes or HTTP 500 outages. Transparent math and recovery ROI analysis."
+      "desc": "Calculate hourly and total estimated revenue loss during server crashes or HTTP 500 outages. One formula, transparent math, no hidden multipliers."
     }
   },
   "/kesinti-maliyeti/": {
     "tr": {
       "title": "Kesinti Maliyeti Hesaplayıcı | Trend Master Akademi",
-      "desc": "Sunucu çökmesi veya HTTP 500 kesintisinde saatlik ve toplam tahmini ciro kaybınızı hesaplayın. Şeffaf matematik ve kurtarma ROI analizi."
+      "desc": "Sunucu çökmesi veya HTTP 500 kesintisinde saatlik ve toplam tahmini ciro kaybınızı hesaplayın. Tek formül, şeffaf matematik, gizli çarpan yok."
     }
   },
   "/nda/": {
@@ -155,26 +155,26 @@ export const seoData = {
   },
   "/kurtarma-maliyeti/": {
     "tr": {
-      "title": "Kurtarma mı, Yeniden Yazım mı? | Trend Master Akademi",
-      "desc": "Mevcut kodu kurtarmak mı, yoksa sıfırdan yeniden yazmak mı? 5 kritik boyutta objektif CTO karar matrisi, risk analizi ve kurtarma ROI hesaplayıcı."
+      "title": "Kurtarma mı, Sıfırdan Yazım mı? | Trend Master Akademi",
+      "desc": "Çalışan bir sistemi baştan yazmanın maaş maliyetini kendi rakamlarınızla hesaplayın. Kurtarmanın bedeli ise ücretsiz teşhisten sonra sabit ve yazılı verilir."
     }
   },
   "/rescue-roi/": {
     "en": {
-      "title": "Rescue vs Rebuild ROI | Trend Master Akademi",
-      "desc": "Rescue or rebuild legacy code? Objective CTO decision matrix, risk analysis, and recovery ROI calculator across 5 critical engineering dimensions."
+      "title": "Rescue or Rebuild? | Trend Master Akademi",
+      "desc": "Calculate the payroll cost of rebuilding a working system from scratch with your own numbers. A rescue is priced as a fixed fee, in writing, after diagnosis."
     }
   },
   "/hasar-tespiti/": {
     "tr": {
       "title": "Kesinti ve İtibar Zararı Simülatörü | Trend Master Akademi",
-      "desc": "Sunucu çökmesi veya kritik kesintilerde saatlik ve toplam ciro kaybınızı, müşteri itibar zararını ve teknik kurtarma yatırım getirisini hesaplayın."
+      "desc": "Sunucu çökmesi veya kritik kesintide ciro kaybını, boşa giden reklam bütçesini, SLA cezasını, müşteri kaybını ve mühendislik maliyetini hesaplayın."
     }
   },
   "/outage-simulator/": {
     "en": {
       "title": "Outage & Reputation Cost Simulator | Trend Master Akademi",
-      "desc": "Calculate hourly and total revenue loss, brand reputation damage, and technical recovery ROI during live production server crashes and HTTP 500 outages."
+      "desc": "Calculate revenue loss, wasted ad spend, SLA penalties, customer churn and engineering drag during live production outages and HTTP 500 errors."
     }
   },
   "/tech-matrix/": {

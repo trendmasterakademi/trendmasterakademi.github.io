@@ -1,138 +1,97 @@
+// Kurtarma mı, sıfırdan yazım mı? — sayfa metinleri.
+// React (RescueRoi.jsx) ve ön-render (generate_static_pages.js) buradan okur.
+// Hesap yalnız kullanıcının girdiği değerlerden yapılır: TMA fiyatı, oran, getiri ya da süre vaadi yoktur (Adım 79).
+// Kurtarmanın fiyatlanmasıyla ilgili cümleler sözleşme Madde 7.1 ve 8.1'e dayanır.
+
 export const rescueRoiData = {
   tr: {
     hero: {
-      badge: "FİNANSAL FİZİBİLİTE & SERMAYE TASARRUFU",
-      title: "SWAT Kurtarma vs. Sıfırdan Yazım ROI Hesaplayıcı",
-      subtitle: "Tıkanan bir projeyi çöpe atıp yeniden yazmak aylar süren bir sermaye tuzağıdır. TMA SWAT cerrahi müdahalesi ile sıfırdan yazım (Rebuild) arasındaki maliyet, zaman ve ROI farkını finansal olarak karşılaştırın.",
-      notice: "TMA kurtarma operasyonları, mevcut canlı ciro akışını durdurmadan paralel cerrahi disipliniyle yürütülür."
+      badge: "SIFIRDAN YAZIM MALİYETİ",
+      title: "Kurtarma mı, Sıfırdan Yazım mı?",
+      subtitle: "Çalışan bir sistemi çöpe atıp baştan yazmanın maaş maliyetini kendi rakamlarınızla hesaplayın. Kurtarmanın bedeli ise kod incelenmeden söylenemez.",
+      notice: "Kurtarmanın bedeli, ücretsiz ilk teşhisten sonra sabit tutar olarak yazılı bildirilir."
     },
     presets: [
-      {
-        id: "saas",
-        name: "Büyüyen SaaS / Startup",
-        teamSize: 3,
-        monthlyRatePerDev: 90000,
-        rebuildMonths: 5,
-        monthlyRevenueAtRisk: 450000,
-        recruitingMonths: 2
-      },
-      {
-        id: "ecommerce",
-        name: "Orta Ölçek E-Ticaret / Ajans Müşterisi",
-        teamSize: 4,
-        monthlyRatePerDev: 100000,
-        rebuildMonths: 7,
-        monthlyRevenueAtRisk: 1200000,
-        recruitingMonths: 2
-      },
-      {
-        id: "enterprise",
-        name: "Kurumsal Monolit / Fintech",
-        teamSize: 7,
-        monthlyRatePerDev: 130000,
-        rebuildMonths: 10,
-        monthlyRevenueAtRisk: 3500000,
-        recruitingMonths: 3
-      }
+      { id: "saas", name: "Büyüyen SaaS / Startup", teamSize: 3, monthlyRatePerDev: 90000, rebuildMonths: 5, recruitingMonths: 2 },
+      { id: "ecommerce", name: "Orta Ölçek E-Ticaret / Ajans Müşterisi", teamSize: 4, monthlyRatePerDev: 100000, rebuildMonths: 7, recruitingMonths: 2 },
+      { id: "enterprise", name: "Kurumsal Monolit / Fintech", teamSize: 7, monthlyRatePerDev: 130000, rebuildMonths: 10, recruitingMonths: 3 }
     ],
     labels: {
-      presetTitle: "Hazır Proje Profili Seçin",
+      presetTitle: "Örnek Proje Profili Seçin",
+      inputsTitle: "Sıfırdan Yazım Varsayımları",
       teamSize: "Sıfırdan Yazım İçin Gereken Mühendis Sayısı",
       monthlyRate: "Mühendis Başına Aylık Maliyet (Maaş + Yan Haklar) (₺)",
       rebuildMonths: "Tahmini Sıfırdan Yazım Süresi (Ay)",
-      recruitingMonths: "İşe Alım & Onboarding Süresi (Ay)",
-      monthlyRevenue: "Risk Altındaki Aylık Ciro / Fatura Bedeli (₺)",
-      rebuildSummaryTitle: "Sıfırdan Yazım (Rebuild) Maliyeti",
-      rescueSummaryTitle: "TMA SWAT Kurtarma (Rescue) Modeli",
-      capitalSaved: "Tasarruf Edilen Net Sermaye",
-      timeSaved: "Kazanılan Zaman",
-      roiMultiplier: "Sermaye Geri Dönüş Oranı (ROI)",
-      copyReport: "Yatırımcı / Yönetim Kurulu Raporunu Kopyala",
-      copiedNotice: "Finansal ROI raporu panoya kopyalandı!",
-      triageCta: "Bu Tasarruf İçin Fizibilite Randevusu Al",
-      rebuildBreakdown: "Sıfırdan Yazım Maliyet Kalemleri:",
-      rescueBreakdown: "TMA SWAT Kurtarma Avantajları:",
-      sourceNote: "Aralıklar sektör verilerinin ortalamasıdır; tek bir TMA projesinin sonucu değildir."
+      recruitingMonths: "İşe Alım & Oryantasyon Süresi (Ay)",
+      resultTitle: "Sıfırdan Yazımın Maaş Maliyeti",
+      teamLine: "Ekip",
+      durationLine: "Süre",
+      formulaTitle: "Hesap",
+      formula: "Maaş Maliyeti = Mühendis Sayısı × Aylık Maliyet × (İşe Alım Süresi + Yazım Süresi)",
+      excluded: "Dahil olmayanlar: bu sürede ertelenen iş ve ciro, eski sistemdeki yazılı olmayan kuralların kaybı, yeni sistemin ilk aylarındaki hatalar.",
+      sourceNote: "Hesaptaki bütün rakamlar sizin girdiğiniz değerlerdir; hazır profiller yalnız örnektir.",
+      copyReport: "Maliyet Raporunu Kopyala",
+      copiedNotice: "Maliyet raporu panoya kopyalandı!",
+      triageCta: "Ücretsiz İlk Teşhis İçin Görüşme Planla",
+      rebuildBreakdown: "Sıfırdan yazımın riskleri",
+      rescueBreakdown: "Kurtarma nasıl fiyatlanır"
     },
     rebuildItems: [
-      "2-3 ay işe alım, mülakat ve oryantasyon gecikmesi",
-      "Geliştirme süresince kaçırılan pazar fırsatları ve ciro kaybı",
-      "Eski sistemdeki yıllarca birikmiş özel kuralların (edge cases) kaybolması",
-      "Sıfırdan yazılan sistemin canlıya çıktığında yeni çocukluk hastalıkları üretmesi"
+      "İşe alım, mülakat ve oryantasyon için geçen süre",
+      "Geliştirme süresince ertelenen yol haritası ve kaçırılan pazar fırsatları",
+      "Eski sistemde yıllarca birikmiş, yazılı olmayan özel kuralların (edge case) kaybolması",
+      "Sıfırdan yazılan sistemin canlıya çıktığında yeni hatalar üretmesi"
     ],
     rescueItems: [
-      "Yalnızca 2-4 haftalık hedefe yönelik cerrahi refactor süresi",
-      "Öngörülebilir, sürprizsiz sabit mühendislik bütçesi",
-      "Mevcut veri ve kullanıcıların sıfır kesintiyle korunması",
-      "Eski sistemdeki çalışan iş mantığının korunarak darboğazların elenmesi"
+      "Kurtarmada mevcut sistem ve içindeki iş kuralları yerinde kalır; önce darboğazlar ele alınır.",
+      "Süre ve bedel kod incelenmeden verilmez.",
+      "İlk teşhis ücretsizdir; bulgular yazılı iletilir.",
+      "Bedel, teşhisten sonra sabit tutar olarak yazılı bildirilir; saatlik ya da ucu açık çalışılmaz."
     ]
   },
   en: {
     hero: {
-      badge: "FINANCIAL FEASIBILITY & CAPITAL PRESERVATION",
-      title: "Rescue vs. Rebuild Financial ROI Calculator",
-      subtitle: "Scrapping working software to rebuild from scratch is often a multi-quarter capital trap. Compare direct payroll, opportunity costs, time-to-market, and ROI between TMA SWAT Rescue and a ground-up Rebuild.",
-      notice: "TMA surgical rescue engagements preserve active revenue streams without halting ongoing business."
+      badge: "REBUILD COST",
+      title: "Rescue or Rebuild?",
+      subtitle: "Calculate the payroll cost of scrapping a working system and rebuilding it, using your own numbers. The cost of a rescue cannot be stated before the code has been reviewed.",
+      notice: "A rescue is priced after the free initial diagnosis, as a fixed fee, in writing."
     },
     presets: [
-      {
-        id: "saas",
-        name: "Growth SaaS / Startup",
-        teamSize: 3,
-        monthlyRatePerDev: 90000,
-        rebuildMonths: 5,
-        monthlyRevenueAtRisk: 450000,
-        recruitingMonths: 2
-      },
-      {
-        id: "ecommerce",
-        name: "Mid-Market E-Commerce / Agency Client",
-        teamSize: 4,
-        monthlyRatePerDev: 100000,
-        rebuildMonths: 7,
-        monthlyRevenueAtRisk: 1200000,
-        recruitingMonths: 2
-      },
-      {
-        id: "enterprise",
-        name: "Enterprise Monolith / Fintech",
-        teamSize: 7,
-        monthlyRatePerDev: 130000,
-        rebuildMonths: 10,
-        monthlyRevenueAtRisk: 3500000,
-        recruitingMonths: 3
-      }
+      { id: "saas", name: "Growth SaaS / Startup", teamSize: 3, monthlyRatePerDev: 90000, rebuildMonths: 5, recruitingMonths: 2 },
+      { id: "ecommerce", name: "Mid-Market E-Commerce / Agency Client", teamSize: 4, monthlyRatePerDev: 100000, rebuildMonths: 7, recruitingMonths: 2 },
+      { id: "enterprise", name: "Enterprise Monolith / Fintech", teamSize: 7, monthlyRatePerDev: 130000, rebuildMonths: 10, recruitingMonths: 3 }
     ],
     labels: {
-      presetTitle: "Select Project Profile",
-      teamSize: "Engineers Required for Full Rebuild",
-      monthlyRate: "Monthly Cost per Senior Engineer (Payroll + Burden) ($ / ₺)",
+      presetTitle: "Select an Example Project Profile",
+      inputsTitle: "Rebuild Assumptions",
+      teamSize: "Engineers Required for a Full Rebuild",
+      monthlyRate: "Monthly Cost per Engineer (Salary + Benefits) (₺)",
       rebuildMonths: "Estimated Rebuild Duration (Months)",
-      recruitingMonths: "Recruiting & Onboarding Lead Time (Months)",
-      monthlyRevenue: "Monthly Revenue at Risk ($ / ₺)",
-      rebuildSummaryTitle: "Ground-Up Rebuild Total Cost",
-      rescueSummaryTitle: "TMA SWAT Rescue Model",
-      capitalSaved: "Net Capital Preserved",
-      timeSaved: "Time to Market Saved",
-      roiMultiplier: "Return on Capital (ROI)",
-      copyReport: "Copy Board / Investor Feasibility Brief",
-      copiedNotice: "Financial ROI brief copied to clipboard!",
-      triageCta: "Schedule Feasibility Review for This ROI",
-      rebuildBreakdown: "Ground-Up Rebuild Liabilities:",
-      rescueBreakdown: "TMA SWAT Rescue Advantages:",
-      sourceNote: "Ranges are industry averages, not the result of a single TMA project."
+      recruitingMonths: "Recruiting & Onboarding Time (Months)",
+      resultTitle: "Payroll Cost of a Rebuild",
+      teamLine: "Team",
+      durationLine: "Duration",
+      formulaTitle: "Calculation",
+      formula: "Payroll Cost = Engineers × Monthly Cost × (Recruiting Time + Rebuild Time)",
+      excluded: "Not included: work and revenue put on hold meanwhile, loss of unwritten rules in the old system, bugs in the new system's first months.",
+      sourceNote: "Every figure in this calculation is a value you entered; the profiles are only examples.",
+      copyReport: "Copy Cost Report",
+      copiedNotice: "Cost report copied to clipboard!",
+      triageCta: "Book a Call for a Free Initial Diagnosis",
+      rebuildBreakdown: "Risks of a rebuild",
+      rescueBreakdown: "How a rescue is priced"
     },
     rebuildItems: [
-      "2-3 months lost in sourcing, interviewing, and ramp-up drag",
-      "Opportunity cost of frozen roadmap and forfeited market share",
-      "Catastrophic loss of undocumented domain logic and edge-case handling",
-      "New greenfield systems inevitably introduce fresh, untested regressions"
+      "Time spent sourcing, interviewing and onboarding",
+      "Roadmap on hold and market opportunities missed during development",
+      "Loss of unwritten edge-case rules accumulated in the old system over years",
+      "A system rewritten from scratch produces new bugs once it goes live"
     ],
     rescueItems: [
-      "Targeted 2-4 week surgical refactor and bottleneck elimination",
-      "Predictable, capped engineering investment with zero scope bloat",
-      "Zero downtime and uninterrupted preservation of live customer data",
-      "Hardened architecture keeping existing proprietary domain knowledge intact"
+      "In a rescue, the existing system and its business rules stay in place; bottlenecks are addressed first.",
+      "No timeline or price is given before the code has been reviewed.",
+      "The initial diagnosis is free; findings are shared in writing.",
+      "The fee is given in writing as a fixed amount after the diagnosis; there is no hourly or open-ended billing."
     ]
   }
 };

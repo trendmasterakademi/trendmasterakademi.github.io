@@ -1415,87 +1415,37 @@ const codeHealthExtraContentEn = `
   </section>
 `;
 
-const rescueRoiExtraContentTr = `
+// Kurtarma mı, sıfırdan yazım mı? — ön-render içeriği tek kaynaktan (src/data/rescueRoiData.js). Adım 79.
+const renderRescueExtra = (lang) => {
+  const d = rescueRoiData[lang];
+  return `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
-      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">%60 - %80</strong> Korunan Sermaye & Bütçe</div>
-      <div><strong class="text-[var(--ink)] block text-sm">4x - 10x ROI</strong> Cerrahi Kurtarma Çarpanı</div>
-      <div><strong class="text-[var(--accent)] block text-sm">4 - 8 Ay</strong> Kazanılan Pazar Süresi</div>
-      <div><strong class="text-[var(--tint-warn-ink)] block text-sm">Zero-Rebuild Risk</strong> Sıfırdan yazım tuzaklarını bertaraf</div>
+    <p class="text-sm text-[var(--ink-2)]">${escapeHtml(d.hero.notice)}</p>
+    <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+      <h2 class="text-xl font-bold text-[var(--ink)]">${escapeHtml(d.labels.formulaTitle)}</h2>
+      <p class="font-mono text-xs text-[var(--ink)]">${escapeHtml(d.labels.formula)}</p>
+      <p class="text-xs text-[var(--ink-3)]">${escapeHtml(d.labels.excluded)}</p>
+      <p class="text-xs text-[var(--ink-3)] font-mono">${escapeHtml(d.labels.sourceNote)}</p>
     </div>
-
-    <p class="text-xs text-[var(--ink-3)] font-mono">
-      Aralıklar sektör verilerinin ortalamasıdır; tek bir TMA projesinin sonucu değildir.
-    </p>
-
-    <h2 class="text-xl font-bold text-[var(--ink)]">Sıfırdan Yazım Riskleri vs. TMA SWAT Kurtarma Modeli</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <article class="p-5 rounded-2xl bg-[var(--tint-danger-bg)] border border-[var(--tint-danger-rule)] space-y-3">
-        <h3 class="text-base font-bold text-[var(--tint-danger-ink)] font-mono">Sıfırdan Yazım (Rebuild) Maliyet & Risk Kalemleri</h3>
+        <h3 class="text-base font-bold text-[var(--tint-danger-ink)] font-mono">${escapeHtml(d.labels.rebuildBreakdown)}</h3>
         <ul class="space-y-2 text-xs text-[var(--ink-3)]">
-          ${rescueRoiData.tr.rebuildItems.map(item => `
-          <li class="flex items-start gap-2">
-            <span class="text-[var(--tint-danger-ink)] font-mono font-bold">✕</span>
-            <span>${escapeHtml(item)}</span>
-          </li>
-          `).join('\n          ')}
+          ${d.rebuildItems.map(item => `<li class="flex items-start gap-2"><span class="text-[var(--tint-danger-ink)] font-mono font-bold">✕</span><span>${escapeHtml(item)}</span></li>`).join('\n          ')}
         </ul>
       </article>
-      <article class="p-5 rounded-2xl bg-[var(--tint-ok-bg)] border border-[var(--tint-ok-rule)] space-y-3">
-        <h3 class="text-base font-bold text-[var(--tint-ok-ink)] font-mono">TMA SWAT Kurtarma (Rescue) Avantajları</h3>
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+        <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(d.labels.rescueBreakdown)}</h3>
         <ul class="space-y-2 text-xs text-[var(--ink-3)]">
-          ${rescueRoiData.tr.rescueItems.map(item => `
-          <li class="flex items-start gap-2">
-            <span class="text-[var(--tint-ok-ink)] font-mono font-bold">✓</span>
-            <span>${escapeHtml(item)}</span>
-          </li>
-          `).join('\n          ')}
+          ${d.rescueItems.map(item => `<li class="flex items-start gap-2"><span class="text-[var(--ink)] font-mono font-bold">•</span><span>${escapeHtml(item)}</span></li>`).join('\n          ')}
         </ul>
       </article>
     </div>
   </section>
 `;
-
-const rescueRoiExtraContentEn = `
-  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
-      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">60% - 80%</strong> Capital Preserved</div>
-      <div><strong class="text-[var(--ink)] block text-sm">4x - 10x ROI</strong> Surgical Rescue Multiplier</div>
-      <div><strong class="text-[var(--accent)] block text-sm">4 - 8 Months</strong> Time to Market Saved</div>
-      <div><strong class="text-[var(--tint-warn-ink)] block text-sm">Zero-Rebuild Trap</strong> Eliminates ground-up rewrite failure risk</div>
-    </div>
-
-    <p class="text-xs text-[var(--ink-3)] font-mono">
-      Ranges are industry averages, not the result of a single TMA project.
-    </p>
-
-    <h2 class="text-xl font-bold text-[var(--ink)]">Rebuild Liabilities vs. TMA SWAT Rescue Advantages</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      <article class="p-5 rounded-2xl bg-[var(--tint-danger-bg)] border border-[var(--tint-danger-rule)] space-y-3">
-        <h3 class="text-base font-bold text-[var(--tint-danger-ink)] font-mono">Ground-Up Rebuild Liabilities</h3>
-        <ul class="space-y-2 text-xs text-[var(--ink-3)]">
-          ${rescueRoiData.en.rebuildItems.map(item => `
-          <li class="flex items-start gap-2">
-            <span class="text-[var(--tint-danger-ink)] font-mono font-bold">✕</span>
-            <span>${escapeHtml(item)}</span>
-          </li>
-          `).join('\n          ')}
-        </ul>
-      </article>
-      <article class="p-5 rounded-2xl bg-[var(--tint-ok-bg)] border border-[var(--tint-ok-rule)] space-y-3">
-        <h3 class="text-base font-bold text-[var(--tint-ok-ink)] font-mono">TMA SWAT Rescue Advantages</h3>
-        <ul class="space-y-2 text-xs text-[var(--ink-3)]">
-          ${rescueRoiData.en.rescueItems.map(item => `
-          <li class="flex items-start gap-2">
-            <span class="text-[var(--tint-ok-ink)] font-mono font-bold">✓</span>
-            <span>${escapeHtml(item)}</span>
-          </li>
-          `).join('\n          ')}
-        </ul>
-      </article>
-    </div>
-  </section>
-`;
+};
+const rescueRoiExtraContentTr = renderRescueExtra('tr');
+const rescueRoiExtraContentEn = renderRescueExtra('en');
 
 function renderTmaiContent(lang) {
   const d = tmaiData[lang];
@@ -1899,9 +1849,9 @@ const basePages = [
   },
   {
     dir: 'kesinti-maliyeti',
-    title: 'Kesinti Maliyeti Hesaplayıcı | Trend Master Akademi',
+    title: seoData['/kesinti-maliyeti/'].tr.title,
     h1: downtimeCostH1.tr,
-    description: 'Sunucu çökmesi veya HTTP 500 kesintisinde saatlik ve toplam tahmini ciro kaybınızı hesaplayın. Şeffaf matematik ve kurtarma ROI analizi.',
+    description: seoData['/kesinti-maliyeti/'].tr.desc,
     canonical: 'https://trendmasterakademi.com/kesinti-maliyeti/',
     ogUrl: 'https://trendmasterakademi.com/kesinti-maliyeti/',
     hreflangTr: 'https://trendmasterakademi.com/kesinti-maliyeti/',
@@ -1927,9 +1877,9 @@ const basePages = [
   {
     dir: 'downtime-calc',
     lang: 'en',
-    title: 'Downtime Loss Calculator | Trend Master Akademi',
+    title: seoData['/downtime-calc/'].en.title,
     h1: downtimeCostH1.en,
-    description: 'Calculate hourly and total estimated revenue loss during server crashes or HTTP 500 outages. Transparent math and recovery ROI analysis.',
+    description: seoData['/downtime-calc/'].en.desc,
     canonical: 'https://trendmasterakademi.com/downtime-calc/',
     ogUrl: 'https://trendmasterakademi.com/downtime-calc/',
     hreflangTr: 'https://trendmasterakademi.com/kesinti-maliyeti/',
@@ -2511,9 +2461,9 @@ const basePages = [
   },
   {
     dir: 'hasar-tespiti',
-    title: 'Gelişmiş Kesinti & İtibar Zararı Simülatörü | Trend Master Akademi',
+    title: seoData['/hasar-tespiti/'].tr.title,
     h1: outageSimulatorH1.tr,
-    description: 'Buzdağının görünmeyen yüzü: doğrudan sepet kaybı, yanan reklam bütçesi, sözleşmesel SLA cezaları, churn ve mühendislik maliyeti hesaplayıcı.',
+    description: seoData['/hasar-tespiti/'].tr.desc,
     canonical: 'https://trendmasterakademi.com/hasar-tespiti/',
     ogUrl: 'https://trendmasterakademi.com/hasar-tespiti/',
     hreflangTr: 'https://trendmasterakademi.com/hasar-tespiti/',
@@ -2539,9 +2489,9 @@ const basePages = [
   {
     dir: 'outage-simulator',
     lang: 'en',
-    title: 'Outage & Reputational Damage Simulator (TCOD) | Trend Master Akademi',
+    title: seoData['/outage-simulator/'].en.title,
     h1: outageSimulatorH1.en,
-    description: 'Calculate the true total cost of downtime: direct revenue loss, burned advertising budgets, contractual SLA penalties, churn, and developer drag.',
+    description: seoData['/outage-simulator/'].en.desc,
     canonical: 'https://trendmasterakademi.com/outage-simulator/',
     ogUrl: 'https://trendmasterakademi.com/outage-simulator/',
     hreflangTr: 'https://trendmasterakademi.com/hasar-tespiti/',
@@ -2646,15 +2596,15 @@ const basePages = [
   },
   {
     dir: 'kurtarma-maliyeti',
-    title: 'Kurtarma vs Yeniden Yazım Finansal ROI Hesaplayıcı | Trend Master Akademi',
+    title: seoData['/kurtarma-maliyeti/'].tr.title,
     h1: rescueRoiH1.tr,
-    description: 'Spagetti kod tabanını sıfırdan yazmak mı, TMA SWAT cerrahi müdahalesiyle kurtarmak mı? Korunan sermaye, kazanılan aylar ve net ROI hesaplayıcı.',
+    description: seoData['/kurtarma-maliyeti/'].tr.desc,
     canonical: 'https://trendmasterakademi.com/kurtarma-maliyeti/',
     ogUrl: 'https://trendmasterakademi.com/kurtarma-maliyeti/',
     hreflangTr: 'https://trendmasterakademi.com/kurtarma-maliyeti/',
     hreflangEn: 'https://trendmasterakademi.com/rescue-roi/',
-    heading: 'Kurtarma vs Yeniden Yazım Finansal ROI Hesaplayıcı',
-    subheading: 'Sıfırdan yazım (rebuild) maliyeti, fırsat kaybı ve riskleri ile TMA cerrahi kurtarma modelini karşılaştırın. Korunan sermaye ve yatırım geri dönüşünü anında simüle edin.',
+    heading: '',
+    subheading: rescueRoiData.tr.hero.subtitle,
     extraContent: rescueRoiExtraContentTr,
     schema: {
       "@context": "https://schema.org",
@@ -2665,7 +2615,7 @@ const basePages = [
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Kurtarma ROI Hesaplayıcı", "item": "https://trendmasterakademi.com/kurtarma-maliyeti/" }
+            { "@type": "ListItem", "position": 2, "name": rescueRoiH1.tr, "item": "https://trendmasterakademi.com/kurtarma-maliyeti/" }
           ]
         }
       ]
@@ -2674,15 +2624,15 @@ const basePages = [
   {
     dir: 'rescue-roi',
     lang: 'en',
-    title: 'SWAT Rescue vs Rebuild Financial ROI Calculator | Trend Master Akademi',
+    title: seoData['/rescue-roi/'].en.title,
     h1: rescueRoiH1.en,
-    description: 'Ground-up rewrite vs surgical rescue: calculate preserved capital, months saved to market, developer drag, and clear financial ROI multiplier.',
+    description: seoData['/rescue-roi/'].en.desc,
     canonical: 'https://trendmasterakademi.com/rescue-roi/',
     ogUrl: 'https://trendmasterakademi.com/rescue-roi/',
     hreflangTr: 'https://trendmasterakademi.com/kurtarma-maliyeti/',
     hreflangEn: 'https://trendmasterakademi.com/rescue-roi/',
-    heading: 'SWAT Rescue vs Rebuild Financial ROI Calculator',
-    subheading: 'Compare ground-up rewrite costs, engineering drag, and catastrophic failure risks against TMA surgical stabilization. Simulate preserved capital and ROI multiplier in real time.',
+    heading: '',
+    subheading: rescueRoiData.en.hero.subtitle,
     extraContent: rescueRoiExtraContentEn,
     schema: {
       "@context": "https://schema.org",
@@ -2693,7 +2643,7 @@ const basePages = [
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trendmasterakademi.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Rescue vs Rebuild ROI", "item": "https://trendmasterakademi.com/rescue-roi/" }
+            { "@type": "ListItem", "position": 2, "name": rescueRoiH1.en, "item": "https://trendmasterakademi.com/rescue-roi/" }
           ]
         }
       ]
@@ -3720,7 +3670,7 @@ pages.forEach(page => {
           <a href="${page.lang === 'en' ? '/outage-simulator/' : '/hasar-tespiti/'}" class="hover:underline">${page.lang === 'en' ? 'Damage Simulator' : 'Hasar Simülatörü'}</a>
           <a href="/radar/" class="hover:underline">${page.lang === 'en' ? 'Status Radar' : 'SWAT Radarı'}</a>
           <a href="${page.lang === 'en' ? '/codebase-health/' : '/kod-sagligi/'}" class="hover:underline">${page.lang === 'en' ? 'Codebase Health' : 'Kod Sağlığı'}</a>
-          <a href="${page.lang === 'en' ? '/rescue-roi/' : '/kurtarma-maliyeti/'}" class="hover:underline">${page.lang === 'en' ? 'Rescue ROI' : 'Kurtarma ROI'}</a>
+          <a href="${page.lang === 'en' ? '/rescue-roi/' : '/kurtarma-maliyeti/'}" class="hover:underline">${page.lang === 'en' ? 'Rescue or Rebuild?' : 'Kurtarma mı, Sıfırdan Yazım mı?'}</a>
           <a href="${page.lang === 'en' ? '/downtime-calc/' : '/kesinti-maliyeti/'}" class="hover:underline">${page.lang === 'en' ? 'Downtime Calculator' : 'Kesinti Maliyeti'}</a>
           <a href="${page.lang === 'en' ? '/glossary/' : '/sozluk/'}" class="hover:underline">${page.lang === 'en' ? 'Technical Glossary' : 'Teknik Sözlük'}</a>
           <a href="${page.lang === 'en' ? '/story/' : '/hikayemiz/'}" class="hover:underline">${page.lang === 'en' ? 'Our Story' : 'Hikayemiz'}</a>
