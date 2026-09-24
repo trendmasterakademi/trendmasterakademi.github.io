@@ -720,7 +720,13 @@ export const seoData = {
       "title": "Teknoloji Uyumluluk Matrisi | Trend Master Akademi",
       "desc": "Trend Master Akademi teknik kurtarma derinliği: programlama dilleri, veritabanları ve bulut altyapılarında bilinen darboğazlar ve müdahale hazırlığı."
     }
-  }
+  },
+  "/tmai/": { "tr": {
+    "title": "tmai: Yapay Zekâ Kodunu Devralma | Trend Master Akademi",
+    "desc": "Lovable, Cursor ya da Bolt gibi araçlarla yazılmış bir projeyi mi devraldınız? tmai; anahtar, veritabanı kuralı, yetki, test ve paket kontrolüyle başlar." } },
+  "/ai-code-takeover/": { "en": {
+    "title": "tmai: AI-Generated Code Takeover | Trend Master Akademi",
+    "desc": "Took over a project built with tools like Lovable, Cursor or Bolt? tmai starts by checking keys, database rules, permissions, tests and dependencies." } }
 };
 
 export const ogImageAlt = {

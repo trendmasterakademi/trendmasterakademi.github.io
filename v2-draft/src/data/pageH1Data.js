@@ -55,3 +55,9 @@ export const privacyH1 = {
   tr: "KVKK Aydınlatma Metni & Gizlilik Politikası",
   en: "Privacy Policy & NDA Standard"
 };
+
+export const tmaiH1 = {
+  tr: "tmai — Yapay Zekâyla Yazılmış Kodun Devralınması",
+  en: "tmai — Taking Over AI-Generated Code"
+};
+
