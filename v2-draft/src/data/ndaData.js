@@ -7,12 +7,12 @@ export const ndaData = {
       notice: "TMA ile paylaşılan tüm erişimler, şifrelenmiş kanallardan aktarılır ve operasyon tamamlandığında geri dönülemez şekilde imha edilir."
     },
     tmaParty: {
-      companyName: "Trend Master Akademi Mühendislik & Yazılım Danışmanlığı",
-      signatory: "Mehmet Şahin",
-      title: "Kurucu & Baş Sistem Mimarı",
-      address: "Akdeniz Mah. Heris Tower No:55/091 Konak / İzmir (Merkez: Zafertepe 547 No:24-26 Konak / İzmir)",
+      companyName: "________________________",
+      signatory: "________________________",
+      title: "________________________",
+      address: "________________________",
       email: "info@trendmasterakademi.com",
-      phone: "+90 534 371 35 73 / 0531 785 94 68",
+      phone: "________________________",
       website: "www.trendmasterakademi.com"
     },
     scopeTypes: [
@@ -84,12 +84,12 @@ export const ndaData = {
       notice: "All credentials shared with TMA are transferred via encrypted tunnels and irrevocably purged once the engagement concludes."
     },
     tmaParty: {
-      companyName: "Trend Master Akademi Engineering & Software Advisory",
-      signatory: "Mehmet Şahin",
-      title: "Founder & Principal Systems Architect",
-      address: "Akdeniz Mah. Heris Tower No:55/091 Konak / Izmir, Turkey (HQ: Zafertepe 547 No:24-26 Konak / Izmir)",
+      companyName: "________________________",
+      signatory: "________________________",
+      title: "________________________",
+      address: "________________________",
       email: "info@trendmasterakademi.com",
-      phone: "+90 534 371 35 73 / +90 531 785 94 68",
+      phone: "________________________",
       website: "www.trendmasterakademi.com"
     },
     scopeTypes: [

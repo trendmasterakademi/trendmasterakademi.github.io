@@ -94,7 +94,7 @@ Analiz Edilen Profil: ${t.presets.find(p => p.id === selectedPreset)?.name || "�
 
 NET TASARRUF EDİLEN SERMAYE: ${formatCurrency(metrics.netCapitalSaved)}
 KAZANILAN ZAMAN: ${metrics.timeSavedMonths} Ay
-SERMAYE GETİRİ ORANI (ROI): ${metrics.roiMultiplier}x Kat
+SERMAYE GETİRİ ORANI (ROI): ${String(metrics.roiMultiplier).replace('.', ',')} kat
 
 Finansal Karşılaştırma:
 ------------------------------------------------------------
@@ -277,7 +277,7 @@ Sözleşme & NDA Koruma: https://trendmasterakademi.com/gizlilik-sozlesmesi/
                   {t.labels.roiMultiplier}
                 </span>
                 <span className="text-2xl font-bold text-[var(--accent)]">
-                  {metrics.roiMultiplier}x
+                  {lang === "en" ? metrics.roiMultiplier : String(metrics.roiMultiplier).replace('.', ',')}x
                 </span>
               </div>
             </div>

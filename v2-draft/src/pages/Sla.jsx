@@ -37,7 +37,7 @@ export const Sla = () => {
         </h1>
         <p className="text-[var(--ink-3)] text-base sm:text-lg leading-relaxed">
           {isTr
-            ? 'Ajanslar ve kurumsal şirketler için muğlak "en kısa sürede inceleriz" sözleri yerine; dakikalarla tanımlanmış, bağlayıcı mühendislik masası taahhütleri.'
+            ? 'Ajanslar ve kurumsal şirketler için muğlak "en kısa sürede inceleriz" sözleri yerine; dakikalarla tanımlanmış mühendislik masası taahhütleri.'
             : 'Instead of vague "we will look into it ASAP" promises; strictly defined, minute-by-minute senior engineering desk commitments.'}
         </p>
       </div>

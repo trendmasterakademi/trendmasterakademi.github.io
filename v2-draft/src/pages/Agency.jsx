@@ -482,7 +482,7 @@ const Agency = () => {
                   <span className="px-3 py-1 rounded-[var(--r-control)] text-xs font-mono font-semibold bg-[var(--tint-danger-bg)] text-[var(--tint-danger-ink)] border border-[var(--tint-danger-rule)]">
                     {isTr ? 'Lansman T-24H Kriz SWAT' : 'Launch T-24H SWAT Hotfix'}
                   </span>
-                  <span className="text-xs font-mono text-[var(--ink-3)]">2.5 {isTr ? 'Saat' : 'Hours'}</span>
+                  <span className="text-xs font-mono text-[var(--ink-3)]">{isTr ? '2,5 Saat' : '2.5 Hours'}</span>
                 </div>
                 <h3 className="text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                   {isTr ? 'PostgreSQL Deadlock & Ödeme Webhook Kopması' : 'PostgreSQL Deadlock & Payment Webhook Break'}
@@ -578,7 +578,7 @@ const Agency = () => {
                 </div>
               </div>
               <div className="pt-4 border-t border-[var(--rule)] flex items-center justify-between text-xs font-mono">
-                <span className="text-[var(--ink-2)]">{isTr ? 'Yanıt Süresi:' : 'Latency:'} <strong className="text-[var(--tint-ok-ink)]">4.2s → 120ms</strong></span>
+                <span className="text-[var(--ink-2)]">{isTr ? 'Yanıt Süresi:' : 'Latency:'} <strong className="text-[var(--tint-ok-ink)]">{isTr ? '4,2s → 120ms' : '4.2s → 120ms'}</strong></span>
               </div>
             </div>
           </div>

@@ -102,7 +102,7 @@ SLA & response commitments: https://trendmasterakademi.com/sla/
 ============================================================` : `[TMA KURUMSAL KESİNTİ & HASAR TESPİT BRİFİNGİ (TCOD)]
 ============================================================
 Analiz Edilen Senaryo: ${t.presets.find(p => p.id === selectedPreset)?.name || "Özel Profil"}
-Kesinti Süresi: ${durationHours} Saat (Zaman Çarpanı: ${peakMultiplier}x)
+Kesinti Süresi: ${durationHours} Saat (Zaman Çarpanı: ${String(peakMultiplier).replace('.', ',')}x)
 
 TOPLAM GERÇEK HASAR (TCOD): ${formatCurrency(metrics.totalTcod)}
 ------------------------------------------------------------
@@ -112,7 +112,7 @@ TOPLAM GERÇEK HASAR (TCOD): ${formatCurrency(metrics.totalTcod)}
 4. Müşteri Terki & LTV Kaybı:       ${formatCurrency(metrics.churnLoss)}
 5. Mühendislik Fırsat Maliyeti:     ${formatCurrency(metrics.engDrag)}
 
-Gizli Hasar Oranı: Doğrudan ciro kaybının ${metrics.hiddenMultiplier} katı!
+Gizli Hasar Oranı: Doğrudan ciro kaybının ${String(metrics.hiddenMultiplier).replace('.', ',')} katı!
 
 TMA Kriz Triyaj Masası: info@trendmasterakademi.com | +90 534 371 35 73
 SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
@@ -319,7 +319,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
             {/* Hidden Cost Alert */}
             <div className="p-3.5 rounded-xl bg-[var(--accent-wash)] border border-[var(--accent)]/30 text-xs font-mono text-[var(--accent)]">
               <strong>{t.labels.hiddenCostWarning}</strong>{" "}
-              <span className="font-bold underline">{metrics.hiddenMultiplier}x</span>{" "}
+              <span className="font-bold underline">{lang === "en" ? `${metrics.hiddenMultiplier}x` : String(metrics.hiddenMultiplier).replace('.', ',')}</span>{" "}
               {lang === "en" ? "of direct sales losses." : "katına ulaşıyor!"}
             </div>
 

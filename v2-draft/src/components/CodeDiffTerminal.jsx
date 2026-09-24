@@ -8,22 +8,22 @@ export const incidents = [
     id: 'deadlock',
     tabName: { tr: '01 · PostgreSQL Deadlock & N+1', en: '01 · PostgreSQL Deadlock & N+1' },
     title: { 
-      tr: '18.4 Saniyede Çöken N+1 Sorgu ve Veritabanı Kilitlenmesi', 
+      tr: '18,4 Saniyede Çöken N+1 Sorgu ve Veritabanı Kilitlenmesi', 
       en: '18.4s Timeout N+1 Query Loop & Database Deadlock' 
     },
     symptom: 'SQLSTATE[40001]: Serialization failure: 1213 Deadlock found when trying to get lock',
     metrics: {
-      latencyBefore: '18,420 ms',
+      latencyBefore: { tr: '18.420 ms', en: '18,420 ms' },
       latencyAfter: '24 ms',
-      cpuBefore: { tr: '98% Spike', en: '98% Spike' },
-      cpuAfter: { tr: '3.2% Normal', en: '3.2% Normal' },
+      cpuBefore: { tr: '%98 Spike', en: '98% Spike' },
+      cpuAfter: { tr: '%3,2 Normal', en: '3.2% Normal' },
       status: { tr: 'ÇÖZÜLDÜ', en: 'RESOLVED' }
     },
     beforeCode: {
       tr: `// [ESKİ KOD]: Her döngüde ayrı DB sorgusu & açık transaction kilidi
 const orders = await db.query('SELECT * FROM orders WHERE status = $1', ['pending']);
 
-// N+1 Felaketi: 2,500 sipariş için 2,500 kez ayrı SQL sorgusu atılıyor!
+// N+1 Felaketi: 2.500 sipariş için 2.500 kez ayrı SQL sorgusu atılıyor!
 for (const order of orders) {
   const user = await db.query('SELECT * FROM users WHERE id = $1', [order.user_id]);
   const items = await db.query('SELECT * FROM order_items WHERE order_id = $1', [order.id]);
@@ -49,7 +49,7 @@ for (const order of orders) {
     },
     afterCode: {
       tr: `// [TMA ÇÖZÜMÜ]: Tek CTE sorgusu, Redis önbelleği ve asenkron kuyruk
-// 1. Tek batch join ile 2,500 sorgu 1 tek optimize sorguya indirildi:
+// 1. Tek batch join ile 2.500 sorgu 1 tek optimize sorguya indirildi:
 const ordersWithDetails = await db.query(\`
   WITH pending_batch AS (
     SELECT id, user_id, total FROM orders 
@@ -64,7 +64,7 @@ const ordersWithDetails = await db.query(\`
 
 // 2. İşlem kuyruğu (BullMQ + Redis) ile lock süresi <5ms'ye çekildi:
 await paymentQueue.addBulk(ordersWithDetails.rows.map(o => ({ name: 'process', data: o })));
-// [SONUÇ]: 18.4s -> 24ms. Sıfır kilitlenme, 100,000 siparişte tam istikrar.`,
+// [SONUÇ]: 18,4s -> 24ms. Sıfır kilitlenme, 100.000 siparişte tam istikrar.`,
       en: `// [TMA SOLUTION]: Single CTE query, Redis cache, and async worker queue
 // 1. Reduced 2,500 queries to 1 optimized batch query via CTE & join:
 const ordersWithDetails = await db.query(\`
@@ -191,7 +191,7 @@ app.post('/api/webhook/payment', async (req, res) => {
     },
     symptom: 'Out of memory: Killed process 41028 (node) total-vm:4.2GB, anon-rss:3.9GB',
     metrics: {
-      latencyBefore: 'Heap: 3.9 GB',
+      latencyBefore: { tr: 'Heap: 3,9 GB', en: 'Heap: 3.9 GB' },
       latencyAfter: 'Heap: 82 MB',
       cpuBefore: { tr: 'Her Gece Restart', en: 'Nightly Restarts' },
       cpuAfter: { tr: '34 Gün Uptime', en: '34 Days Uptime' },
@@ -403,7 +403,7 @@ export const CodeDiffTerminal = () => {
               <div className="px-3 py-1 rounded-[var(--r-control)] bg-[var(--term-bg)] border border-[var(--term-rule)] text-[var(--term-ink)]">
                 <span className="text-[var(--term-dim)] text-xs block">{isTr ? 'GECİKME' : 'LATENCY'}</span>
                 <span className={viewMode === 'before' ? 'text-[var(--term-diff-del)] font-semibold' : 'text-[var(--term-diff-add)] font-semibold'}>
-                  {viewMode === 'before' ? current.metrics.latencyBefore : current.metrics.latencyAfter}
+                  {viewMode === 'before' ? getMetricValue(current.metrics.latencyBefore) : getMetricValue(current.metrics.latencyAfter)}
                 </span>
               </div>
               <div className="px-3 py-1 rounded-[var(--r-control)] bg-[var(--term-bg)] border border-[var(--term-rule)] text-[var(--term-ink)]">

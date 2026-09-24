@@ -2382,7 +2382,7 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/sla/',
     ogUrl: 'https://trendmasterakademi.com/sla/',
     heading: 'Şeffaf Mühendislik SLA & Yanıt Süresi Matrisi',
-    subheading: 'Ajanslar ve kurumsal şirketler için muğlak "en kısa sürede inceleriz" sözleri yerine; dakikalarla tanımlanmış, bağlayıcı mühendislik masası taahhütleri.',
+    subheading: 'Ajanslar ve kurumsal şirketler için muğlak "en kısa sürede inceleriz" sözleri yerine; dakikalarla tanımlanmış mühendislik masası taahhütleri.',
     extraContent: slaExtraContentTr,
     schema: {
       "@context": "https://schema.org",
