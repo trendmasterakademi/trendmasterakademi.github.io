@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>tmai: Yapay Zekâ Kodunu Devralma | Trend Master Akademi</title>
+    <meta name="description" content="Lovable, Cursor ya da Bolt gibi araçlarla yazılmış bir projeyi mi devraldınız? tmai; anahtar, veritabanı kuralı, yetki, test ve paket kontrolüyle başlar." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/tmai/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/tmai/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/tmai/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/ai-code-takeover/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/tmai/" />
+    <meta property="og:title" content="tmai: Yapay Zekâ Kodunu Devralma | Trend Master Akademi" />
+    <meta property="og:description" content="Lovable, Cursor ya da Bolt gibi araçlarla yazılmış bir projeyi mi devraldınız? tmai; anahtar, veritabanı kuralı, yetki, test ve paket kontrolüyle başlar." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi — Ajanslar için white-label mühendislik ve acil kod kurtarma masası" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/tmai/" />
+    <meta name="twitter:title" content="tmai: Yapay Zekâ Kodunu Devralma | Trend Master Akademi" />
+    <meta name="twitter:description" content="Lovable, Cursor ya da Bolt gibi araçlarla yazılmış bir projeyi mi devraldınız? tmai; anahtar, veritabanı kuralı, yetki, test ve paket kontrolüyle başlar." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://trendmasterakademi.com/#organization",
+      "name": "Trend Master Akademi",
+      "alternateName": "TMA Studio & Labs",
+      "legalName": "Mehmet Şahin",
+      "taxID": "7930336132",
+      "url": "https://trendmasterakademi.com",
+      "logo": "https://trendmasterakademi.com/logo-dark.png",
+      "image": "https://trendmasterakademi.com/og-image.jpg",
+      "description": "Dijital ajanslar, SaaS girişimleri ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), API Entegrasyonu ve Özel Yazılım Geliştirme Stüdyosu.",
+      "founder": {
+        "@type": "Person",
+        "name": "Mehmet Şahin",
+        "jobTitle": "Kurucu & Baş Yazılım Mimarı (Lead Architect)",
+        "image": "https://trendmasterakademi.com/images/mehmet-sahin-480.jpg",
+        "url": "https://trendmasterakademi.com/about/"
+      },
+      "telephone": "+905343713573",
+      "email": "info@trendmasterakademi.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091",
+        "addressLocality": "Konak",
+        "addressRegion": "İzmir",
+        "addressCountry": "TR"
+      },
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 09:00-24:00",
+      "sameAs": [
+        "https://www.linkedin.com/in/trendmasterakademi/"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Türkiye"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "B2B SWAT & Mühendislik Hizmetleri",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Acil Kod Kurtarma & Canlı Sistem Hotfix (Incident SWAT)",
+              "description": "HTTP 500 hataları, veritabanı kilitlenmeleri ve ödeme API kopmalarında acil müdahale."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yarım Kalan Proje Devralma (Abandoned Codebase Takeover)",
+              "description": "Önceki geliştiriciden kalan dokümantasyonsuz ve spagetti kod tabanlarının onarılması ve yayına alınması."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "B2B %100 White-Label Mühendislik & Kapasite Takviyesi",
+              "description": "Ajansların arka planında görünmez teknik ekip olarak resmi NDA altında proje teslimi."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "SaaS & Özel Web Uygulaması Mimarisi",
+              "description": "React, Next.js, Python/FastAPI ve Node.js ile sıfırdan ölçeklenebilir web ve bulut sistemleri."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yapay Zeka, LLM & Akıllı Otomasyon Entegrasyonları",
+              "description": "OpenAI, LLM, RAG ve akıllı agent iş akışlarının şirket içi süreçlere entegrasyonu."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://trendmasterakademi.com/#website",
+      "url": "https://trendmasterakademi.com",
+      "name": "Trend Master Akademi",
+      "publisher": {
+        "@id": "https://trendmasterakademi.com/#organization"
+      },
+      "inLanguage": [
+        "tr-TR"
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "tmai",
+      "serviceType": "Yapay zekâyla yazılmış kodun devralınması",
+      "description": "Lovable, Cursor ya da Bolt gibi araçlarla yazılmış bir projeyi mi devraldınız? tmai; anahtar, veritabanı kuralı, yetki, test ve paket kontrolüyle başlar.",
+      "provider": {
+        "@id": "https://trendmasterakademi.com/#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "tmai",
+          "item": "https://trendmasterakademi.com/tmai/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-CbVB2Z0D.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-DLNihHPN.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-BfE9GEl2.css">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">tmai — Yapay Zekâyla Yazılmış Kodun Devralınması</h1>
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
+          <a href="/kit/" class="hover:underline">Ajans Kiti</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
+          <a href="/tmai/" class="hover:underline">tmai</a>
+          <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
+          <a href="/kurtarilabilirlik/" class="hover:underline">Kurtarılabilirlik İndeksi</a>
+          <a href="/post-mortem/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triyaj/" class="hover:underline">Triyaj Simülatörü</a>
+          <a href="/sla/" class="hover:underline">SLA & Taahhütler</a>
+          <a href="/teknoloji-uyumluluk/" class="hover:underline">Teknoloji Matrisi</a>
+          <a href="/gizlilik-sozlesmesi/" class="hover:underline">Gizlilik Sözleşmesi</a>
+          <a href="/nda/" class="hover:underline">Gizlilik ve Çalışma Sözleşmesi</a>
+          <a href="/hasar-tespiti/" class="hover:underline">Hasar Simülatörü</a>
+          <a href="/radar/" class="hover:underline">SWAT Radarı</a>
+          <a href="/kod-sagligi/" class="hover:underline">Kod Sağlığı</a>
+          <a href="/kurtarma-maliyeti/" class="hover:underline">Kurtarma ROI</a>
+          <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
+          <a href="/sozluk/" class="hover:underline">Teknik Sözlük</a>
+          <a href="/hikayemiz/" class="hover:underline">Hikayemiz</a>
+          <a href="/sos/" class="hover:underline">Acil Teknik Destek</a>
+          <a href="/about/" class="hover:underline">Hakkımızda</a>
+          <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-[var(--ink)]">tmai — Yapay Zekâyla Yazılmış Kodun Devralınması</h2>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Ajansınızın müşterisi projesini Lovable, Cursor, Bolt gibi bir araçla yaptırdı. Prototip çalışıyor; ama canlıya çıkarken ya da ilk büyük hatada iş size kaldı. tmai, bu kodun üzerine inşa etmeden önce nerede güvenli, nerede değil olduğunu çıkarır ve kodu devralınabilir hâle getirir.</p>
+        
+    <div class="space-y-12">
+      <!-- 1. Rozet & Giris -->
+      <section class="space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] text-xs font-mono font-semibold uppercase tracking-wider">
+          tmai · yapay zekâyla yazılmış kod
+        </div>
+        <p class="text-base sm:text-lg text-[var(--ink-2)] leading-relaxed">
+          Ajansınızın müşterisi projesini Lovable, Cursor, Bolt gibi bir araçla yaptırdı. Prototip çalışıyor; ama canlıya çıkarken ya da ilk büyük hatada iş size kaldı. tmai, bu kodun üzerine inşa etmeden önce nerede güvenli, nerede değil olduğunu çıkarır ve kodu devralınabilir hâle getirir.
+        </p>
+      </section>
+
+      <!-- 2. Ne Zaman -->
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          Ne zaman tmai?
+        </h2>
+        <ul class="space-y-3">
+          
+            <li class="flex items-start gap-3 text-base text-[var(--ink-2)]">
+              <span class="text-[var(--accent)] font-mono font-bold mt-0.5">•</span>
+              <span>Müşteri prototipi bir yapay zekâ aracıyla yaptırdı, şimdi gerçek kullanıcıya açılacak.</span>
+            </li>
+          
+            <li class="flex items-start gap-3 text-base text-[var(--ink-2)]">
+              <span class="text-[var(--accent)] font-mono font-bold mt-0.5">•</span>
+              <span>Kodu yazan bir geliştirici yok; elde yalnız aracın ürettiği proje ve bir hesap var.</span>
+            </li>
+          
+            <li class="flex items-start gap-3 text-base text-[var(--ink-2)]">
+              <span class="text-[var(--accent)] font-mono font-bold mt-0.5">•</span>
+              <span>Her yeni istek önceki bir özelliği bozuyor ve nedenini kimse bilmiyor.</span>
+            </li>
+          
+            <li class="flex items-start gap-3 text-base text-[var(--ink-2)]">
+              <span class="text-[var(--accent)] font-mono font-bold mt-0.5">•</span>
+              <span>Ödeme, üyelik ya da kişisel veri devreye girecek ve güvenliğinden emin değilsiniz.</span>
+            </li>
+          
+        </ul>
+      </section>
+
+      <!-- 3. Kontroller -->
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          İlk bakışta kontrol ettiklerimiz
+        </h2>
+        <p class="text-base text-[var(--ink-2)] leading-relaxed">
+          Bu altı başlık, yapay zekâ araçlarıyla hızlı üretilen projelerde üzerine inşa etmeden önce bakılması gereken yerlerdir.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+          
+            <article class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+              <h3 class="text-lg font-semibold font-serif text-[var(--ink)]">
+                Tarayıcıya gömülmüş anahtarlar
+              </h3>
+              <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                API anahtarları ve gizli anahtarlar ön yüz koduna yazılmış olabilir. Tarayıcıya giden her şeyi ziyaretçi okuyabilir.
+              </p>
+              <div class="text-xs font-mono text-[var(--ink-3)] pt-2 border-t border-[var(--rule)]">
+                <strong class="text-[var(--accent)] font-semibold">Bakılan:</strong> Derlenmiş ön yüz dosyalarında ve depoda anahtar izleri; hangi anahtarın sunucu tarafına taşınıp yenilenmesi gerektiği.
+              </div>
+            </article>
+          
+            <article class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+              <h3 class="text-lg font-semibold font-serif text-[var(--ink)]">
+                Açık bırakılmış veritabanı kuralları
+              </h3>
+              <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                Supabase ya da Firebase gibi barındırılan veritabanı servislerinde erişim kuralları kapalı ya da herkese açık bırakılmış olabilir.
+              </p>
+              <div class="text-xs font-mono text-[var(--ink-3)] pt-2 border-t border-[var(--rule)]">
+                <strong class="text-[var(--accent)] font-semibold">Bakılan:</strong> Her tabloyu ya da koleksiyonu kimin okuyup yazabildiği; ön yüzden doğrudan erişilebilen veriler.
+              </div>
+            </article>
+          
+            <article class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+              <h3 class="text-lg font-semibold font-serif text-[var(--ink)]">
+                Yalnız ön yüzde yapılan kimlik doğrulama
+              </h3>
+              <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                Giriş kontrolü yalnız arayüzde yapılıyorsa, sayfayı atlayıp isteği doğrudan gönderen biri korunan veriye ulaşabilir.
+              </p>
+              <div class="text-xs font-mono text-[var(--ink-3)] pt-2 border-t border-[var(--rule)]">
+                <strong class="text-[var(--accent)] font-semibold">Bakılan:</strong> Korunan her işlemde sunucu tarafında da yetki kontrolü yapılıp yapılmadığı.
+              </div>
+            </article>
+          
+            <article class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+              <h3 class="text-lg font-semibold font-serif text-[var(--ink)]">
+                Test yokluğu
+              </h3>
+              <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                Üretilen projede otomatik test olmayabilir; bir değişikliğin neyi bozduğu ancak canlıda görülür.
+              </p>
+              <div class="text-xs font-mono text-[var(--ink-3)] pt-2 border-t border-[var(--rule)]">
+                <strong class="text-[var(--accent)] font-semibold">Bakılan:</strong> Kayıt, ödeme ve sipariş gibi kritik akışlar için test olup olmadığı; yoksa önce hangi akışlara test yazılacağı.
+              </div>
+            </article>
+          
+            <article class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+              <h3 class="text-lg font-semibold font-serif text-[var(--ink)]">
+                Tekrar eden mantık
+              </h3>
+              <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                Aynı işi yapan kod farklı dosyalarda birbirinden habersiz tekrarlanmış olabilir; bir yerde düzeltilen hata başka yerde sürer.
+              </p>
+              <div class="text-xs font-mono text-[var(--ink-3)] pt-2 border-t border-[var(--rule)]">
+                <strong class="text-[var(--accent)] font-semibold">Bakılan:</strong> Fiyat, yetki ve stok gibi kuralların tek bir yerde mi yoksa dağınık mı durduğu.
+              </div>
+            </article>
+          
+            <article class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+              <h3 class="text-lg font-semibold font-serif text-[var(--ink)]">
+                Var olmayan ya da eskimiş paketler
+              </h3>
+              <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                Yapay zekâ araçları var olmayan bir paket adını ya da bilinen güvenlik açığı olan eski bir sürümü projeye ekleyebilir.
+              </p>
+              <div class="text-xs font-mono text-[var(--ink-3)] pt-2 border-t border-[var(--rule)]">
+                <strong class="text-[var(--accent)] font-semibold">Bakılan:</strong> Her bağımlılığın gerçekten var olduğu, sürümü ve bilinen açıkları.
+              </div>
+            </article>
+          
+        </div>
+      </section>
+
+      <!-- 4. Surec -->
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          Nasıl ilerler?
+        </h2>
+        <div class="space-y-4 pt-2">
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                1
+              </div>
+              <div class="space-y-1.5 flex-1">
+                
+                  <a href="/devir-kontrolu/?ai=1" class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)] hover:text-[var(--accent)] hover:underline inline-flex items-center gap-1.5 transition-colors">
+                    <span>Ön değerlendirme</span> →
+                  </a>
+                
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                  Devir Kontrolü'nde «Proje yapay zekâ araçlarıyla üretildi» seçeneğini işaretleyip 12 kalemi doldurun. Eksik erişimler baştan görünür.
+                </p>
+              </div>
+            </div>
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                2
+              </div>
+              <div class="space-y-1.5 flex-1">
+                
+                  <a href="/nda/" class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)] hover:text-[var(--accent)] hover:underline inline-flex items-center gap-1.5 transition-colors">
+                    <span>Gizlilik</span> →
+                  </a>
+                
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                  Koda bakmadan önce gizlilik ve çalışma sözleşmesi imzalanır.
+                </p>
+              </div>
+            </div>
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                3
+              </div>
+              <div class="space-y-1.5 flex-1">
+                
+                  <h3 class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">
+                    İnceleme
+                  </h3>
+                
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                  Yukarıdaki altı başlık projenin kendi deposu ve hesapları üzerinde kontrol edilir; sonuç yazılı olarak ajansla paylaşılır.
+                </p>
+              </div>
+            </div>
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                4
+              </div>
+              <div class="space-y-1.5 flex-1">
+                
+                  <a href="/kurtarilabilirlik/?ai=1" class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)] hover:text-[var(--accent)] hover:underline inline-flex items-center gap-1.5 transition-colors">
+                    <span>Karar</span> →
+                  </a>
+                
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                  Kurtarılabilirlik İndeksi ile kodun onarılarak mı sürdürüleceği, yoksa kritik parçalarının yeniden mi yazılacağı birlikte kararlaştırılır.
+                </p>
+              </div>
+            </div>
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                5
+              </div>
+              <div class="space-y-1.5 flex-1">
+                
+                  <h3 class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">
+                    Müdahale
+                  </h3>
+                
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">
+                  Önce anahtarlar, veritabanı kuralları ve yetki; sonra test ve sadeleştirme. Her müdahaleden önce geri dönüş noktası alınır.
+                </p>
+              </div>
+            </div>
+          
+        </div>
+      </section>
+
+      <!-- 5. Sinir -->
+      <section class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <h2 class="text-xl font-semibold font-serif text-[var(--ink)]">
+          Müdahale sınırı
+        </h2>
+        <p class="text-sm sm:text-base text-[var(--ink-2)] leading-relaxed">
+          Yapay zekâ aracının kendisi, barındırma hizmeti ve veritabanı servisi kendi sağlayıcılarına aittir. tmai, sizin hesaplarınızdaki kod ve yapılandırma üzerinde çalışır. Aracı kullanmaya devam edip etmeyeceğiniz sizin kararınızdır.
+        </p>
+      </section>
+
+      <!-- 6. Arac Notu -->
+      <p class="text-xs text-[var(--ink-3)] font-mono leading-relaxed">
+        Araç adları yalnız örnek olarak geçer; bu araçlarla bir iş birliğimiz yoktur.
+      </p>
+
+      <!-- 7. CTA -->
+      <section class="p-6 sm:p-8 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-4 text-left">
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">
+          Önce ne devraldığınızı görün
+        </h2>
+        <p class="text-sm sm:text-base text-[var(--ink-2)] leading-relaxed">
+          Devir Kontrolü ile başlayın; kriz anındaysanız doğrudan kriz hattına yazın.
+        </p>
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="/devir-kontrolu/?ai=1" class="btn-primary">
+            <span>Devir Kontrolü'ne başla</span> →
+          </a>
+          <a href="/sos/" class="btn-secondary">
+            <span>Kriz hattına yaz</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>
