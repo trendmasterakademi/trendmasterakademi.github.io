@@ -1,494 +1,494 @@
 {
   "https://trendmasterakademi.com/": {
-    "hash": "72bd1726326ae1be6721c3e78457f58ec7d535aedbf170da80b126a61de0448a",
+    "hash": "cf2eb59d60e16d27f1023aede8271e8b4f25a328d2ca77b9282728e4339c1719",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/agency/": {
-    "hash": "eb5e96e1b9f3e255b0bc259b16cefb244a4307b58c8206a81f7bd2aaf826ef80",
+    "hash": "f8150f15098d087a6b610575f09e3447410be1623564e1801e59bfd3be0ea094",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/crash-test/": {
-    "hash": "7cd7291bc95249f8768be25a1630036fdc84ae610347eb0a2eaa8103fc475ee7",
+    "hash": "2c8c2f9388b0cb58971f9cd467cc3e5c5d2929239e2565445b48b06832a36e4f",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/devir-kontrolu/": {
-    "hash": "0c132eea1579c6fc67521ff452a658ac9d921c8078a7b681f679c10b57d05fd6",
+    "hash": "60dbf4f77e6e7fdbc12fd58b5166ca99559bc1b85cbddb7e0f6733f5e554b6f1",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/": {
-    "hash": "c5c9f7551a8ffa7a10e60a995154bc753cf4404fd55d2406e4fa9e9a48aaf5cd",
+    "hash": "1a831b397003fb20c35cbfd29dea786db56cd159fb0a8e8db552f1d036c1b124",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/deadlock/": {
-    "hash": "92a4fc5e7b6fd88d6815d42e0914553f8337f7efad587cd8bc83c51e22ca7a21",
+    "hash": "8f009fa5e057110eedd3c51b708bec00a3734bbd09e703950961ab32925a60d2",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/n-plus-1-sorgu/": {
-    "hash": "c49d00de7829cf70c9d64bbda2d5f15b0984b80660e2648201af23cfb08d11f8",
+    "hash": "3f39099d953a011f33104c0dbe2a52636c0d0b0d409cc0a56996c90d9e0fb6fa",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/race-condition/": {
-    "hash": "24dd53549e50d7093a8616408b658eda0b3622278ee1478fde0fe582938d8e3b",
+    "hash": "7463562b22986e989d0ad9fce1e41cb860bc4de0afda32a89331520c18f1f51a",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/idempotency/": {
-    "hash": "1fcc6909c27e2bbafad2176bc6afb48912da48121f64bff402da71372e119b7e",
+    "hash": "73f9fea68d10529775432dc21be3395c6d83f6be1265140e74fdf70a03ff5f77",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/webhook/": {
-    "hash": "d8e7a55653751a15f8f5d3718a4f9efe4f280355776afe424c272757c94bbfba",
+    "hash": "672bc025439a6e9fa3a60bd6ee3eefef4830e7e3290088ad6a7349a2eef9a691",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/teknik-borc/": {
-    "hash": "82832a1ca90abfdb7c3df2de68dc920fb88500692642d8118852faf2ac4f8a5b",
+    "hash": "521cc3e38e0015a11041489bc51937a4b23bd7e77e4b5e097f1f8ff5bd8ee3da",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/refactor/": {
-    "hash": "0494b0480c2be0193bc13ceed4399d0716466b31d4078b65e122e3e49f210de8",
+    "hash": "e1583017438f19e33c3a189c24fafb07dc231e7f2ede673cf81f56f06528b8f7",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/ci-cd/": {
-    "hash": "1316e1ebf41edaecdaefa70ac38dd3e486d07bf660034547cf172238649e2dab",
+    "hash": "deed5068336f03e2320a29edb773bf1fd01e557ee8417a164cd320e4d90a735c",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/staging-ortami/": {
-    "hash": "5868f5a822095e4bdd4ff180b134d2389d3e8d2aab8192c25ad6f9dd0494aa1a",
+    "hash": "714df46c351880f95ed4ebf97d74c79499209867c6b2e4d7ef01c6eee7336ec5",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/migration/": {
-    "hash": "8632f731c78634b39e0fceb64f386c4f284a6aac35f47e76cc850119a83284b5",
+    "hash": "4c7fb9f29cb7ae907d29486ca5a43a0034cbb48f1199bf9ecb3701186911a933",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/rate-limit/": {
-    "hash": "cf7804beabc503d7a03cc4e6fb28a15584f884e591fa50865af30f3ade60c7c2",
+    "hash": "a1f9e8f64d4d8b1d5c164ba253a8c390d4880017cdf4e3b5d050930ecfa281f9",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sozluk/memory-leak/": {
-    "hash": "d557220475a5f43c213c4d89da8bf6cc4c418fc9d616baa27e57553d06049d23",
+    "hash": "ecbb9cb496448c73d7faf2332fd542e2713015d4b1fe56973293cd86bf98b5e0",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/kesinti-maliyeti/": {
-    "hash": "151170965704e69abfd69bb6922937746d4baa06aef8586e385b141cde7bc7dd",
+    "hash": "4e276e6fba1f9cc6da442c2b3da3605904c7df8d2893df9f8eba03167d1e2fab",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/about/": {
-    "hash": "b7d12464ed5ae933f10874189d9bd834c47252a9cbc25d7c2c750a6241958081",
+    "hash": "7dad717f39ebfaa5e2c450e0189297f34e2e2cf64a909c88fcfc30b73fb090ba",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/hikayemiz/": {
-    "hash": "ea294cc22b416d5b6e1a21ba68b9a57211582b283c1b145ac586ea0fb6969d1b",
+    "hash": "1304b6b20c128d6545dfd5ba2c0c8caab514ca43d4117bcbeb4642d300f75a4d",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/privacy/": {
-    "hash": "b50cfaa50ae3ad210e0ff47eed1b72d5ee8121a90db64b5bd860f54e537f0c0e",
+    "hash": "71d18aed2af4f4fcda25e3612d478a6f2e8df6721f71f2523efcc6bbdef87800",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/nda/": {
-    "hash": "1e8f95dc40db4461c7f49e4093296b48745602b34e36566e52d9477343b522f4",
+    "hash": "d5bcd3d18c38be53205b11f98d44af9d06377c776ad2168005bde48ed9f56abf",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/": {
-    "hash": "84f76268da33ed8902743a5f5ead784d0770d15dd1ad519d6b625d1448d998e1",
+    "hash": "beffcda921f45ba605700c565cc6e867ac05a0088559c264470a95a953e04d3d",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/": {
-    "hash": "4abbe969ae5a880d38c10c2bd4cca89e1d8bea0118130e687510688c19d03b5c",
+    "hash": "793853c7295e531c05c21202597ec8c07c1285431ecc70fd89fa2944f557b89f",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/": {
-    "hash": "770a6df0b6b1baaaae8283e5074dfb42d286aeef3f9576777f710b58a9e3db5a",
+    "hash": "c42738f4b23bdafe0961eca0515a6259f7995e197564663688acf263e2d1b5aa",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/": {
-    "hash": "616a93a4cd104fbf85c6a790c4373646f12bd37452d14df8ec4df3dfe4ea4042",
+    "hash": "ba5308edee5f90f148d02f829a2ebf75d853974538b97dd3edb0ff6357a5aa0f",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/site-500-veriyor-dun-calisiyordu/": {
-    "hash": "ed76861fdcf84807e7224f30a184b3db3e865bc03a4e91c5388a71354b235820",
+    "hash": "a01e111a0b6092de3f818066e0eef305ca8737d5334df3ed5511bd175508c6fa",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/yedek-var-sanildi-yedek-yok/": {
-    "hash": "774dd8dc97a482c5c343eed9d734fc0ccb05bc4f9d6b9fd1ff8d96d18e3827dd",
+    "hash": "51e4d4b02e8f44c69f4efb164bb8bd9952de134211ae6a5e5776cb42e4ae1713",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/domain-hosting-erisimi-yok/": {
-    "hash": "41cf52d2f9c079b83b85b9d0ac59ee2ac23d0287147c8b7f50457d4b9fa8cdb6",
+    "hash": "eaea898f5c17c9250385ff928c78eac5b5c83e693361194893a9547fd24f17f2",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/ssl-suresi-doldu/": {
-    "hash": "dc5664a243ab784b0ca645fbcb2a7a90bbf63a018beccff9d0463c472b96babe",
+    "hash": "fdce3287d000d2801dde18ec6fc5c2ea7e9ad15294de4a855ebf44971fcaa1db",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/form-gonderiliyor-mail-gelmiyor/": {
-    "hash": "5cd31d6bcb18278a5fe2a7a5285efda7bf1b8152e1a894983b36266ac9b725e5",
+    "hash": "095b93f90922fc1f53fe32eaf8cc2dfb01b97afdfdc57d7a9d8b8c1ffa468903",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/site-aramalarda-gorunmez-oldu/": {
-    "hash": "179308e8c921fb1078d58630bc0c390fe037e4e0c4395293b1eea76ee2455aed",
+    "hash": "9b3023a61e47d4356dfe982128267938262e7800d9e0e59e45df2e2f71303224",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/": {
-    "hash": "b0d4ab858a607f93ff6aafa54dcec9c73bcfcf8e2307b4ce061301b6cfd24cce",
+    "hash": "eeae50b58b7b5958234b66db26fb6cd3be07032a88b90f9e7f57c39f0bd12331",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/": {
-    "hash": "5dd15ef1e0a597982cbee45cff06060b2e331f1c1654b3e7a91cca0e4d6d872a",
+    "hash": "743aacae5c8ea566313fececdcae0d07b9fea22965bdf951cd61927d7849b4db",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/": {
-    "hash": "7022e938e914aae65117576c38154ead193c6e696b857117d0e2bc573d6a6458",
+    "hash": "89c8f4d27503f4cf94ec99d69dd0bf076d369c220adbdc08ebad62cfe46f28df",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/": {
-    "hash": "39c913e716c32283f1c0290114288207a691ae80981e1573ce40ad1b7558595f",
+    "hash": "9d3b4bf0291584fc348473ffa851e905d05e547c01b9173fdb34d8802a85962d",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/": {
-    "hash": "2d88df5c2c1c54c5ce6ebe4297cfb5e3e13b36e2dacf85fc72bf90fd67d4b7d9",
+    "hash": "5d12453d7a99490dd5f409ce7e66831f98bbc466d12f51f1549060b0922b5e29",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/sunucu-her-gun-yeniden-baslatiliyor/": {
-    "hash": "eff4c275716ec6b231c64fda7141e5d35faa82f541f1ff3f53e72f2bf2317407",
+    "hash": "d28e4e414b5884f9850cba2e408752aeacc26d85594e4cf5489cc9cf01f003ef",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/guncelleme-sonrasi-veri-kayboldu/": {
-    "hash": "5b75fb0b41692d2b94986e7fa15e9e281710716b74182fb3a50bebe16727bf8a",
+    "hash": "dde7cb77d22dee024ae747e8bf24a7d8f633ec010388490844e02164eb400e2c",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/testte-calisiyor-canlida-calismiyor/": {
-    "hash": "c85973ce245ff4e28b07227b6974862385ee0ecfb15f74619c0794ee7e58ab3e",
+    "hash": "eecc718f1667c1fd0e926776dbd69a032a20e1bf97c1bf52722a074ab060fab7",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/deploy-sonrasi-site-bozuldu/": {
-    "hash": "c987ec09b938f787d228928a2bd843c6f7e5b25d26b751c4ff336fc2573e8116",
+    "hash": "90d36e62490fd6c1cf4caaf9f54d4c3143244de98e433bfce9c0c52bb09204e4",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/her-yeni-ozellik-oncekini-bozuyor/": {
-    "hash": "7911c251b4b332f2fcc19c550f6956f63c24ee1c66a2a27bc1e32533829531dd",
+    "hash": "cd7b7ec9355aca8d27db56cd074832f7d372c0a22f22fc6b14519f2768cf26f8",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/": {
-    "hash": "0f88001dabe69b95f90d24347d64040755546eaef54a39ce29c1d3fc499ba57a",
+    "hash": "345a8f26ec11b2dc4d9fea9403134e3b91332460a7abb197a76c313de0983f4c",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sos/": {
-    "hash": "77149a524fcc18361cc8f63606515fc52fb1a843e5ed8e68c35a7aafd47ea732",
+    "hash": "dc5fda3a438d9939d70e80e61ed7044bdd5b1c3f12a695e7cf2b189a8eb640d0",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/kurtarilabilirlik/": {
-    "hash": "95b1d35b1999e6a3613b79bc254ae1618e81c2189c0ac5cb4784218f3491087a",
+    "hash": "9f6fbfd1bde58bf592cf7418c320dd5c8321637aeb96431d89d28a1e6bbbbf8a",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/salvageability/": {
-    "hash": "a55bc2bbdb7c13b16e4563d269bd3c8efb60e4f92640c00a34c42ee72cd8ef78",
+    "hash": "ce0365c79d3aadeaeeb70d47bdb108282386d4b71ddb5783e4bfa3a9d0853e87",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/post-mortem/": {
-    "hash": "abe979a3785b26a92788189e60c0b70e9a067d2a9b4d2ffce860e4856822bc81",
+    "hash": "797b53a0231d554a7b63ca2befe1bce1c1a501f89b70c9e9ed8e92cfbfd9494a",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/post-mortems/": {
-    "hash": "33b53b590fc622f2ff4a82665f8f3d4a3ea29237dda758a48c52920632832c32",
+    "hash": "3dc48449416e19915eb50e7b9e21bfe35f3d4cd8272a61cf01e07acde1c56a51",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/post-mortem/pm-01-postgresql-connection-pool-deadlock/": {
-    "hash": "b8d839ef4f322378f7319b1e0332a70fe26a1a0e291d554b1d4caa86ffc6f272",
+    "hash": "5eebe4c8b3c05607b83f230938affe19d113b91ba8581e972cfa9844ae586818",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/post-mortems/pm-01-postgresql-connection-pool-deadlock/": {
-    "hash": "b1704c75e5286d8f60e167a38dda2e5ef77b060f61bf9857720b7c442c21e8c3",
+    "hash": "bb2583bb0cd2e427a561b237c34c56c89b414aa50dddebc657ce1889687d36f3",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/post-mortem/pm-02-race-condition-double-charge/": {
-    "hash": "43349e1006c67ea5dbb3662a7c2089f0c467f1879ec7da646a38edcbf5aa0070",
+    "hash": "40ed0253c6669e9130f0bd455b271d1b8014d861419b839dcd553f7ab2c1334a",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/post-mortems/pm-02-race-condition-double-charge/": {
-    "hash": "774784037230e2845094d3e5944e968524cf6945cd6bc1d026030e2995daf5eb",
+    "hash": "4d0ca96e6f57a84b360ba639876f85a963dd52c789e229acdbdc1071aa83326c",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/post-mortem/pm-03-memory-leak-unhandled-promise/": {
-    "hash": "101d9df0a635eba7c32f904b79cabdd95d5ade11518e3a65f3f47983f98b248f",
+    "hash": "20061b2946127733e9ad0e59ec4485573da485f56d49d950f2de7376bfcf14f1",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/post-mortems/pm-03-memory-leak-unhandled-promise/": {
-    "hash": "3a1fe2aec87141d8ad3e58dfb61bffb1421fc03351d592df801712c35b47e228",
+    "hash": "7752f9f6ac7a90a4604aac69f00f6b65b6d5527f560700aad198af767d3fc023",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/post-mortem/pm-04-ghost-developer-handover-block/": {
-    "hash": "ff00385530a4f4069eb66f5fa1346d9c1607149f2a6f51869a7d4589c4174b4c",
+    "hash": "33df6ec1b3025a77460bb3edb46e4c586f4a4955c8141d1b92738b777c60df21",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/post-mortems/pm-04-ghost-developer-handover-block/": {
-    "hash": "dcfe1a26eb1bdf8ad0eff868254fab840cae5a2ccce512798c1a7122749b6d55",
+    "hash": "25d5f144c0b23d2ea5aca206a95fbabeb20230f555a0938bcdd285bdeeba8b17",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/triyaj/": {
-    "hash": "53f830cd2443c962afcda1751d9668a0f58c4c000b123f76f6b57aa9ef0f063f",
+    "hash": "c7c047a60e1993d1caf36106944e82656ae0355297e7612603ada1a264d15304",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/triage/": {
-    "hash": "430d0bb3e45b950fc9e5837b3f5762aa9467ef005b8466ae076bd4d9f9651958",
+    "hash": "99ebbf08db8deca2ab97e09ba026997bd65dc1519f1adce9e9c548c7fda80263",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/sla/": {
-    "hash": "fee60272e369496e0763e1c955d12677a2a53030d679589b99c5946fc7a70242",
+    "hash": "4b74e6aac560c57e429eec3dbd3860229c4a9a8e7ef35200ffb12f6cb0fdaa25",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teknoloji-uyumluluk/": {
-    "hash": "ef4c8db910b8e5ea396c112aa46dae1f9b3227451e9401c76bed75ef34566ee1",
+    "hash": "95addaa5c3849e454f18d0813b59796a4a997da8a0d6bfd7222bf4f3bc1ecf16",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/tech-matrix/": {
-    "hash": "215a29d71aad7f00443f61b2e447fe334032938137c52b02aea33b4f9adbee0f",
+    "hash": "8af3f76d308c796a6259cd0d85be666187e1e33aeb93f2e2ed822fa06b8ec862",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/gizlilik-sozlesmesi/": {
-    "hash": "156489eb6fe64b2c872e457ae9ce9e3e4472818efbc625f0f8dac1587c130258",
+    "hash": "237545662a09a05e2256ac07b1caaa8d23ec480ceeb10f73adf2efc10981fc16",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/mutual-nda/": {
-    "hash": "bb03d07337cd56e02ff283d09d8d3e7a305e7528e46081aad27c8b12fd831610",
+    "hash": "2e2697b14f1f87c6f4f8e8a217aab5abac2b2211f3bf5ec4973130ffc4b44ebb",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/hasar-tespiti/": {
-    "hash": "a2c84559fc47d2e18d9b32ab71027f557bc734a21efc577b4bbc19f0b2a0eb97",
+    "hash": "c3afecb5b54cba1a6386239a2d48181c4c46f714c7799c3fd4548713ca7bff3f",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/outage-simulator/": {
-    "hash": "16c04e7b500a7f5afcc35d4b353ce50a54927b13a9a7c8b7c596271c7af3909a",
+    "hash": "2399841780be7d74d9896cd8362deb1eeb3a41dcb5a191611349b2d4a6b922ce",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/radar/": {
-    "hash": "2e452c3b341703cc8a1b448d775f9ec0a824e5d164886d925b755796a810b2cd",
+    "hash": "4b1a1ef41c9e28bed4de302f2bdefc6e36c343217f862ea8fcee83e3ae4e580d",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/kod-sagligi/": {
-    "hash": "445c4e99282305455b67021f48674719c2404cce45be6dc2bb8244661673d9bf",
+    "hash": "71ac575b81d8174aa23f96b38b5b249a2d19dc115cb006a737331ef9d9631c13",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/codebase-health/": {
-    "hash": "9a36319d7d8407ece9793cf547342099996745795f22dd6899ee9b331abec351",
+    "hash": "1c1c6525fc57ded2d52ecc5dec7a9b7884a19cc321c7c17e90d3caf14f09075e",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/kurtarma-maliyeti/": {
-    "hash": "ca5a3ea5ec99a03a5395781841c9a000b7eb7c2f7ebc7458a64e588feac540b4",
+    "hash": "545ea0847048b5774c366625d2689d2f2f230961a94c4943cd70bcd8b069d28a",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/rescue-roi/": {
-    "hash": "233f71289e44547dbe63f6a688af5aebf9f0e0488f75392a6be1b4f6f23762dc",
+    "hash": "283f1364f0c2e1179e47220380533b64806c99aadaee222e72e303fc9a9a8ee2",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/kit/": {
-    "hash": "a274b97f0f7a63ed37b1ac97a2d67975a30023b68b4ffbff6abbf1c2f29446e9",
+    "hash": "b2af2a8619135d2344060cd98e6c163a45b1cb4a2e9bc5f2db808d420e1a7680",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/agency-kit/": {
-    "hash": "c9ea089c3867f18861f60c2723959eb6223216f45216d9a37a7990d117cfcfb8",
+    "hash": "f1e6e45a94ddccc23166b5d08bd3b94ca1400ad028c96d9dd9ab0819ac49f447",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/handover-audit/": {
-    "hash": "b4ef674ef85675956a5e69097aa52056424e523d2da0308c1845162ea822c886",
+    "hash": "4925db1e52416d997bd1a035de04bb3e0d4346cd5531096cec06ea7d1b833e50",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/": {
-    "hash": "323305ec88e17a3fe3f7dc611d1594a553296005e1fe881a88e212190a8b1db2",
+    "hash": "341290043a5953b0a94dd373890850152f963858f6bbc307f7397106d40196c5",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/downtime-calc/": {
-    "hash": "c027e602df396ddb2373fb8a66808da13e0f08fa3555123fab761a004081e4e0",
+    "hash": "efedfd398d13fb120e74f8720ffc8b616f5dec00c59d8a36f97d59d90e4812b9",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/story/": {
-    "hash": "7c14dfa9f45416a1f32b95e996e1ad75bac3a7ba448ff2363b412f3a3b9828ef",
+    "hash": "13de4414828fb9ef90a33fa09840023e984147db85e6690e70274d2989d06544",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/": {
-    "hash": "941b94dccbff8ea4f12a007cdba8a843b757e26ba925714f70a7874dbb3f7153",
+    "hash": "7d115ee34da342b6851388291e7d372bd79b0c3ec6b2e2b2499cdc5e9ca16ce3",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/deadlock/": {
-    "hash": "e6f046b565db695846f06223c1f33ffc06a530f00daf362ab5508b7542c6bb0f",
+    "hash": "5a07111b06432af0c142eed3a113c8cd968a3b7802ac8f5b5e5c369e3fe3b083",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/n-plus-1-sorgu/": {
-    "hash": "bd073d5706cae5c403bbd33aaf776742485404f84a28e9f5a52543c44be8eafb",
+    "hash": "9a7c292f290676b041ea7fafd9563fbea2ea77b194b67c1c1afc9c6839c709ee",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/race-condition/": {
-    "hash": "918e7f25bc85233b47fe2252ea6d3bce49495db57a3f57c2708a616cf4ce86bc",
+    "hash": "8e1ed961a6d8b7bbcd1a37c0ce2919ee5259e9fac5d283dfeb4e14b09fd1db56",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/idempotency/": {
-    "hash": "69641edf996b9b0088f24b885c06effa4b00cfbb3b9489635575983b7590b853",
+    "hash": "f032ca5199653c1d0b516191bcb5e7b1ad9ed44087e3fcd328bbd9d194cab999",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/webhook/": {
-    "hash": "d5cedf8bc35218883b6d453e9c50c89d2a389d6c2fb85e81a02446051fd3a500",
+    "hash": "a2712e5dd342cd359d20c34195d4be658b124481ef69cacce929013d88321c9b",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/teknik-borc/": {
-    "hash": "f7d9a54c9ed1b594c5689bcdd1026366b4aa2169c273b81b244e21c0fc8cd4dc",
+    "hash": "3ced0455eb78c6058e5b7f9bbc994bbe832191ec94bc0ebbba5266ce21fba572",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/refactor/": {
-    "hash": "cb6b61419b16a1496acbf8e4888e32e9ec889c669f43be31b2bc7e36c51c2da7",
+    "hash": "df0297792ca8ca8a9f51e832ae50956668b08c03a06c505b7959333600dae433",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/ci-cd/": {
-    "hash": "a33cbde8662ed9fba23a328f423af3f5d750980c88b7498fabd4bed4079dc1bc",
+    "hash": "71e605aa4563fa9908981f0c33d289f66bde919251657969e4d426690e590a60",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/staging-ortami/": {
-    "hash": "e72e04646ecc0a07b04ec568c0b8c4d70d73a83e56d321a812e4973f0059ce54",
+    "hash": "2c291ae1b4eebd564b00bb31cc424f28b787d6a3981e780f1cccba5a50bf38f4",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/migration/": {
-    "hash": "92fe11e0933cccfcc7c326ad50f5f1d0050a09f18cdfa356568ae0bc3b46dc2f",
+    "hash": "9b7caf86f3f5546418fffe5a3076427e3846c286d45ebc32103a915cc0677b1b",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/rate-limit/": {
-    "hash": "93304f83d10e94440d132b27a5242c36653e9f5790bb730c58002dece5505d12",
+    "hash": "9c253f56240eb9ab43d3702e5b93dae8625767bf28e993cf295f88daa59dfceb",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/glossary/memory-leak/": {
-    "hash": "cc1418b3209dbfb72a39fbcf71c26bbabf8d950741b5c2ac4b25c30f46252f71",
+    "hash": "f1b22852283f82d4fd5f258f319d309dc6d5592293ffa7847ae547f4298d4687",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/ayni-stok-iki-musteriye-satildi/": {
-    "hash": "c1c1b99cbbbbe904bafe7fdf834dab7dc3832ab7b85d35b4dd937b67283bdb71",
+    "hash": "a4dc47d62acaea5af6cd3d5fab35169ad72a9ac16195cc9ac1ec1c7d9bc1e37d",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/odeme-alindi-siparis-olusmadi/": {
-    "hash": "ea37be2b9698f8ffa144adef57c9295d85bf344edf4737c9d2d4e288724d2a23",
+    "hash": "bb48e6e5fbfbc57c150506fa1b8d5f0884a4f4d76aaf299222490adbfb6d69cd",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/odeme-iki-kez-alindi/": {
-    "hash": "89cfed21653682cfc93cc7195cb504d9cc3e88dd64a1143cf97ca630a4795947",
+    "hash": "1c8161adbfad9d58a7fdc9b2461bc0dd44f9a04f593da881bb544160fa87aa12",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/islemler-kilitlendi-sayfa-donuyor/": {
-    "hash": "79e931995d714e951fb54cb61922d130dbf9498b21b9e75fc5a32cbc55af64c6",
+    "hash": "379359b88b5b245dd0c835dace92fc00879d49896a2dbba5c95f2c67856719e0",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/guncelleme-sonrasi-veri-kayboldu/": {
-    "hash": "27676f3cec357b6423cd2fcbb53b217e2dafa5660726ec6fdf6c997bb1de2336",
+    "hash": "12c4c7e79740bab47c3887bddeb47f630002b741ce6189a1fd9083e24399bade",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/deploy-sonrasi-site-bozuldu/": {
-    "hash": "edc75213a2b90064afd392b2de82def796262703ad5d2e99243e852576638cc4",
+    "hash": "3b05ffcd0b49589f353f2644350d68f0b4bf31ac1433162c4133fd6e70bca3a9",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/site-500-veriyor-dun-calisiyordu/": {
-    "hash": "ad20c5330f92d9f99715a8babb8f741eaff88cd03903417bc3ce84b974eaf97b",
+    "hash": "ca24a0020349ed5c592f3e26beb4ff4db2cd342c60428b5b64f7e483cfa03db4",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/bulut-hesabi-askiya-alindi/": {
-    "hash": "89376f5c06a89e1e4c28a3822a3f383721ea61f96beaf65884baa16c02dfe241",
+    "hash": "7b7815ea8d5f16834af205bcc08b8c37105f926984398ab700c165c4416d519e",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/yedek-var-sanildi-yedek-yok/": {
-    "hash": "2e81ef9b576ba856d60250f6f8b17ff2d730bbb9336dc0013d1381fafef492fb",
+    "hash": "a09b958b2d034ca0b5c3edcc0478075ca41de7885d4e7c5373cbb56dc8a60f18",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/ssl-suresi-doldu/": {
-    "hash": "a0b16486284bed90a9155fd569324d53a29fcaf21b09f464ca3f92b2ee2c5f91",
+    "hash": "11eb323294b263e80df0f258d2d44cf84fce669b5c7047946f35129afeb73f10",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/": {
-    "hash": "b4012795688c52d681811284be89d0b8e6fd74dc95aab0e8dd533d73a9a21f7a",
+    "hash": "9c0afa9e0350e6a9c7525b2ae95e28d22044a0e8c2911ca8629a639999e3274d",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/entegrasyon-429-veriyor/": {
-    "hash": "390bf0724450f8a7615ca54255ef6e247775dc9ff1962d9f336fa8f73607419e",
+    "hash": "031e94df601e4052eef416dbac7e27702a8fba18629ec2540668d0d45a8a38cd",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/sunucu-her-gun-yeniden-baslatiliyor/": {
-    "hash": "3403ed8b6f8a9722fdaf6949a70e808a385890d055ddaae765bd85b378098496",
+    "hash": "01981a00116f2373863eca2a2899dda0877c6b157e55112784af8c3bab243606",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/testte-calisiyor-canlida-calismiyor/": {
-    "hash": "301dc7a25cf84cebd46d57d184964c69782979c85704a0c7fb97027d824b0191",
+    "hash": "11d21637b5b41e6b53975cb3d901f0998fe3ded4b39ccac9e40bc63fe231c380",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/her-yeni-ozellik-oncekini-bozuyor/": {
-    "hash": "0ddfcd0e2f8fc567a195c43b418ae115119267f672ef63d080ff2fe7bc0dfbc0",
+    "hash": "4e825c6ff9c5d81c284598e17cb2f43f890b22b51b9df4cae9a8858cb5799047",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/yazilimci-gitti-koda-girilemiyor/": {
-    "hash": "6a1c36858d4bb09ad6463885e3b4bd04769a76bbfd700db65cb66dbdb5e26580",
+    "hash": "898b1595b94d1d4c409999032a87236ac5a7e6e7d5cf061b195b8eb4af961914",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/domain-hosting-erisimi-yok/": {
-    "hash": "d241a033cc3bd7e4c38d3a403f36fa8f8bbb3f62dd3f0ee7d1fcbdc915a4dae5",
+    "hash": "ddd03785a5cd88ff29528abe0504ee1eeb002db54ca3a9bdf90312ae3cea4db4",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/form-gonderiliyor-mail-gelmiyor/": {
-    "hash": "935d25e011282c9f49a3d24eab11927b4b92652bc54fd61460024e7ab1dd30c9",
+    "hash": "ed0803aba86796514a22bde3440e1094e23daa5b77829cc34e1bd86edaff7af5",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/site-aramalarda-gorunmez-oldu/": {
-    "hash": "9e2bd1c3fb6a4c6f972ab5ccc3cefafabc52ae08e000d7179a71afcfd3a8af06",
+    "hash": "feb3f2a4f332343f06bc1a183e2d23956a2d987465145dea0b02b03381845eb6",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/kucuk-degisiklik-gunler-suruyor/": {
-    "hash": "39c8119c0f857b4feb8e8e8341081a1e290795e460b097962e65d165e79cfbb4",
+    "hash": "d224b750dbbe74c21ee8de1662088b26b32061e3473802395e7bc8bf88d0a515",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/paytr-token-ve-bildirim-hatasi/": {
-    "hash": "d7fac0e0ec6c1e8778420fbafea2fb35a3616fa2b9e56df52c8e26ed7e0e0c8b",
+    "hash": "23671d5b683d033f6372e8dfac3f1df870801f09979ef7fc8c916753fa00bfb4",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/paytr-token-ve-bildirim-hatasi/": {
-    "hash": "a32a2a4cfad3e305993063c7035320cc95e0a16c65dac8d8231283ea8eaaec05",
+    "hash": "30ab5d888b31e0597378fd4ca81bebc530c075e808a6b625eaf0ac2d27fcb46e",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/": {
-    "hash": "05bf116235da5be5d7548c87ca0313b0dc47ed67cd15486948eb1890c423261c",
+    "hash": "2dd0732ba681e3e0b5203b85255ce7bed03a8c545c631990cd9d7900fa98627f",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/": {
-    "hash": "29b0dde6baa1bd4606514c5006f1699b14645c750e4a9080263e1dee887e6795",
+    "hash": "79105111ca0ea065c61d3ecbd4cb66bdac71f51c2ef460a33d0297afceaf8d05",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/woocommerce-odendi-siparis-bekliyor/": {
-    "hash": "7addfc7208b9f94067a7838cfcf6da304f6e5cc945a0c14017ebef8fd6f355f3",
+    "hash": "7d1161fd5b5d6e8d354eda80f79e34486ac3d2717037c387b8e036c9947221c8",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/woocommerce-odendi-siparis-bekliyor/": {
-    "hash": "72008d6b8b0ecd1beba69ec7519abd98e5f320f12fd1943808e2c21e78f3d57d",
+    "hash": "1019da0d573a1c58892223684f5a104c0af7ff5e8c371973ba22c6c42ba8d283",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/pazaryeri-api-429-401-hatasi/": {
-    "hash": "f012cc88f075dbb46830350a63b9855c064cf059231ae6ec000d24ce1a272b1c",
+    "hash": "7ddeca23c0045ab8ad2fb75dc4abb4bdf4c0398bfb9805b690b4cf3bbfe24090",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/pazaryeri-api-429-401-hatasi/": {
-    "hash": "1e5593890b47e0be71bedaa979025d2fd959c521cec86a73818b2ba724d528db",
+    "hash": "bc0dc4fdaf48b321a1e9ce6e47a5749ba2f0301439835476afe0071d615f7548",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/pazaryeri-stok-cift-satis/": {
-    "hash": "4ec75f8d03c857af2a02b9cc6277e5a546a66acebf28aed548a1d766961ebbf1",
+    "hash": "a580f06578982b0a84b583d1a2530e6981c1c6a5c2a844d3268adc2a375fe381",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/pazaryeri-stok-cift-satis/": {
-    "hash": "10671e35368302cb1f3e6905a53615f464822348a1c0065c997bea0b65efb9ee",
+    "hash": "c34d0c244e9d119765797012cf297cbbaa31febe754e09504e4ad7b93a018b1d",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/": {
-    "hash": "043557a998624e1f81d6b688e594ccab9e6b2b6793de7f10dcac7d3437e70ab5",
+    "hash": "ed077b947240934f1cb805a2c6670d84425dc9688594590abc14a54840284aa9",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/diagnostic/e-arsiv-fatura-kesilmiyor/": {
-    "hash": "9d590e083a6ca39961b1889bbb176578e9764fcd58e8315555b40d8c7d14c4b2",
+    "hash": "952b24e4603dcb43b3f3141a6a58626834a0965367c9e3c86ea5650f158b80f3",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/tmai/": {
-    "hash": "92bf9f39351d9b207cdec0c4197f2e63333a3d7372e80dbf126f2ed798ea838a",
+    "hash": "633e517cfdda07569b6f8fc0b8c2428b0c8e84bdd2a27be2d012fc4cb8ff3ba0",
     "lastmod": "2026-09-24"
   },
   "https://trendmasterakademi.com/ai-code-takeover/": {
-    "hash": "ae4c8b01627d7b4923c8a1ff91e9b81cd694151368271ca9fc257100b49eab9a",
+    "hash": "2d4b26ef54e69d355491344b6534d154414b632df3fb5d34185f015dcab94525",
     "lastmod": "2026-09-24"
   }
 }
