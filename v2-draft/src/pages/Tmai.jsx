@@ -22,7 +22,7 @@ const Tmai = () => {
       <div className="max-w-4xl mx-auto space-y-12">
         {/* 1. Rozet · H1 · Giris */}
         <section className="space-y-6">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] text-xs font-mono font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] text-xs font-mono font-semibold tracking-wider">
             {data.rozet}
           </div>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold font-serif text-[var(--ink)] tracking-tight leading-tight">

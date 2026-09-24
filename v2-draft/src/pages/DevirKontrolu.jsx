@@ -744,7 +744,7 @@ const DevirKontrolu = () => {
             {isAiProject && (
               <div className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] space-y-4 shadow-sm">
                 <div className="space-y-1">
-                  <span className="text-xs font-mono font-semibold tracking-wider text-[var(--accent)] uppercase">
+                  <span className="text-xs font-mono font-semibold tracking-wider text-[var(--accent)]">
                     {tmaiAraclar.devirBlok.baslik[isTr ? 'tr' : 'en']}
                   </span>
                   <p className="text-sm sm:text-base text-[var(--ink-2)] leading-relaxed">

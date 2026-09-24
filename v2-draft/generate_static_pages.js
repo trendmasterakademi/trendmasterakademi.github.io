@@ -1506,7 +1506,7 @@ function renderTmaiContent(lang) {
     <div class="space-y-12">
       <!-- 1. Rozet & Giris -->
       <section class="space-y-4">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] text-xs font-mono font-semibold uppercase tracking-wider">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] text-xs font-mono font-semibold tracking-wider">
           ${escapeHtml(d.rozet)}
         </div>
         <p class="text-base sm:text-lg text-[var(--ink-2)] leading-relaxed">
