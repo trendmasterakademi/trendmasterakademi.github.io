@@ -12,6 +12,7 @@ import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 import { handoverAuditH1 } from '../data/pageH1Data';
 import { tmaiData, tmaiYollar, tmaiAraclar } from '../data/tmaiData';
+import { slaTiers } from '../data/slaData';
 
 /**
  * 12 Kalemlik Devir Hazırlık Kontrolü (Handover Readiness Checklist)
@@ -278,7 +279,7 @@ const DevirKontrolu = () => {
         summary: isTr
           ? 'Proje devralınamaz aşamada. Temel erişimler veya sırlar kayıp; ayrılan geliştiriciye %100 bağımlılık sürüyor. 24-48 saat içinde acil envanter dondurması gereklidir.'
           : 'Codebase is at high takeover risk. Core infrastructure credentials or secrets are missing. Immediate credential freeze required.',
-        sla: isTr ? '0 - 2 Saat Triyaj' : '0 - 2 Hours Triage'
+        sevLevel: 'SEV-2'
       };
     } else if (score >= 35) {
       return {
@@ -288,7 +289,7 @@ const DevirKontrolu = () => {
         summary: isTr
           ? 'Temel kod elinizde olsa da kritik yapılandırmalarda veya ortam değişkenlerinde açıklar var. Devir sürecinin uzman denetiminde toparlanması gerekir.'
           : 'Core repository is accessible, but missing environment configurations or deployment assets pose operational risk.',
-        sla: isTr ? '12 - 24 Saat Toparlama' : '12 - 24 Hours Remediation'
+        sevLevel: 'SEV-3'
       };
     } else {
       return {
@@ -298,12 +299,13 @@ const DevirKontrolu = () => {
         summary: isTr
           ? 'Kritik erişimler ajansınızın kontrolünde. Eksik dokümantasyon ve test süreçleri kısa bir sprint ile tamamlanabilir.'
           : 'Primary administrative credentials are secured. Missing docs or test coverage can be finalized in a brief sprint.',
-        sla: isTr ? 'Sprint Bazlı Devir' : 'Sprint-Based Handover'
+        sevLevel: 'SEV-3'
       };
     }
   };
 
   const riskDetails = getRiskLevelDetails(riskScore);
+  const recommendedTier = slaTiers.find(t => t.level === riskDetails.sevLevel);
 
   const startChecklist = () => {
     setStep(2);
@@ -729,8 +731,12 @@ const DevirKontrolu = () => {
                 </div>
                 <div className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)]">
                   <span className="text-xs sm:text-sm text-[var(--ink-3)] block mb-1">{isTr ? 'Önerilen Devir SLA' : 'Recommended SLA'}</span>
-                  <strong className="text-base sm:text-lg font-semibold text-[var(--accent)]">{riskDetails.sla}</strong>
-                  <span className="text-xs text-[var(--ink-3)] block mt-1">{isTr ? 'İzole repo testi & devir' : 'Isolated repo testing'}</span>
+                  <strong className="text-base sm:text-lg font-semibold text-[var(--accent)]">
+                    {recommendedTier ? `${recommendedTier.level} · ${recommendedTier.mtta[isTr ? 'tr' : 'en']}` : ''}
+                  </strong>
+                  <Link to="/sla/" className="text-xs text-[var(--ink-3)] hover:text-[var(--accent)] hover:underline block mt-1 transition-colors">
+                    {isTr ? "İlk yanıt, SLA'ya göre" : 'First response, per the SLA'}
+                  </Link>
                 </div>
                 <div className="p-5 rounded bg-[var(--paper)] border border-[var(--rule)]">
                   <span className="text-xs sm:text-sm text-[var(--ink-3)] block mb-1">{isTr ? 'Çalışma Güvencesi' : 'TMA Guarantee'}</span>
