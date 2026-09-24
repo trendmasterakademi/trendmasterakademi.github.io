@@ -12,6 +12,7 @@ import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 import { agencyH1 } from '../data/pageH1Data';
+import { agencyGiris, agencySlaKarti } from '../data/mesajData';
 
 const capabilities = [
   { 
@@ -199,9 +200,7 @@ const Agency = () => {
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-[var(--ink-2)] leading-relaxed mb-10 max-w-[34rem] mx-auto font-normal">
-            {isTr 
-              ? 'Bir projede teknik olarak tıkandığınızda, ekibinizin kapasitesi dolduğunda, teslim tarihi yaklaştığında veya müşterinizin talebi mevcut uzmanlık alanınızın dışına çıktığında güvenilir teknik çözüm ortağınız ve kriz kurtarma ekibiniziz.' 
-              : 'When you are technically blocked, when your team is over capacity, when deadlines loom, or when client requirements exceed your internal stack — we are your reliable technical partner and crisis SWAT force.'}
+            {agencyGiris[isTr ? 'tr' : 'en']}
           </p>
 
           {/* Action CTAs */}
@@ -249,10 +248,12 @@ const Agency = () => {
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1.5 shadow-sm">
               <div className="flex items-center gap-2 text-[var(--tint-warn-ink)]">
                 <Clock className="w-5 h-5" />
-                <span className="font-semibold text-xs sm:text-sm uppercase font-mono">{isTr ? 'Hızlı SWAT Triyajı' : 'Rapid SWAT Triage'}</span>
+                <Link to={agencySlaKarti.link} className="font-semibold text-xs sm:text-sm uppercase font-mono hover:underline">
+                  {agencySlaKarti.baslik[isTr ? 'tr' : 'en']}
+                </Link>
               </div>
               <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
-                {isTr ? 'Kriz hattı her gün 09:00 – 24:00 açık; canlı kesintilerde ilk yanıt taahhüdü 15 dakika.' : 'Response desk open daily 09:00 – 24:00; first-response commitment for live outages 15 minutes.'}
+                {agencySlaKarti.metin[isTr ? 'tr' : 'en']}
               </p>
             </div>
 

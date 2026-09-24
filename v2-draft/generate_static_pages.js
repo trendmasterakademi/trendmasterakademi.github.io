@@ -20,6 +20,7 @@ import { agencyKitData, agencyKitH1, crashTestH1 } from './src/data/agencyKitDat
 import { seoData, ogImageAlt } from './src/data/seoData.js';
 import { agencyH1, handoverAuditH1, downtimeCostH1, aboutH1, storyH1, salvageabilityH1, teshisCatalogH1, sosH1, privacyH1, tmaiH1 } from './src/data/pageH1Data.js';
 import { tmaiData, tmaiYollar, tmaiAraclar } from './src/data/tmaiData.js';
+import { agencyGiris } from './src/data/mesajData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -1661,7 +1662,7 @@ const basePages = [
     canonical: 'https://trendmasterakademi.com/agency/',
     ogUrl: 'https://trendmasterakademi.com/agency/',
     heading: 'Ajansınızın Yerine Değil, Ajansınızın Yanında Güvenilir Mühendislik Masası.',
-    subheading: 'Bir projede teknik olarak tıkandığınızda, teslim tarihi yaklaştığında veya ekibinizin kapasitesi dolduğunda: %100 White-Label, resmi NDA ve doğrudan kıdemli mühendislik desteği.',
+    subheading: agencyGiris.tr,
     extraContent: agencyExtraContent,
     schema: {
       "@context": "https://schema.org",
