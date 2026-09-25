@@ -127,7 +127,7 @@ TMA Mühendislik Masası: info@trendmasterakademi.com | +90 534 371 35 73
                   : "bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] hover:border-[var(--ink-3)] hover:text-[var(--ink)]"
               }`}
             >
-              <h3 className="text-sm font-bold font-mono tracking-tight">{preset.name}</h3>
+              <span className="block text-sm font-bold font-mono tracking-tight">{preset.name}</span>
               <p className="text-xs text-[var(--ink-3)] mt-1 font-mono">
                 {engineers(preset.teamSize)} · {isEn ? `${months(preset.rebuildMonths)} rebuild` : `${months(preset.rebuildMonths)} yazım`}
               </p>

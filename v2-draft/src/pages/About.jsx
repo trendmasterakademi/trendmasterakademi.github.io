@@ -71,9 +71,9 @@ const About = () => {
               />
             </picture>
             <div>
-              <h3 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)] tracking-tight">
+              <h2 className="text-xl sm:text-2xl font-serif font-semibold text-[var(--ink)] tracking-tight">
                 {isTr ? 'Trend Master Akademi Adı Nereden Geliyor?' : 'Where Does the Name "Akademi" Come From?'}
-              </h3>
+              </h2>
               <p className="text-xs font-mono text-[var(--accent)] font-medium">
                 {isTr ? 'Mehmet Şahin — Kurucu & Baş Yazılım Mimarı' : 'Mehmet Şahin — Founder & Lead Software Architect'}
               </p>

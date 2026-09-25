@@ -397,9 +397,9 @@ https://trendmasterakademi.com/salvageability/`;
                 <span className="text-xs font-mono font-semibold text-[var(--accent)] uppercase tracking-wider">
                   {q.category[lang]}
                 </span>
-                <h3 className="text-base sm:text-lg font-serif font-semibold text-[var(--ink)]">
+                <h2 className="text-base sm:text-lg font-serif font-semibold text-[var(--ink)]">
                   {q.title[lang]}
-                </h3>
+                </h2>
                 {q.desc && (
                   <p className="text-xs text-[var(--ink-3)]">
                     {q.desc[lang]}
@@ -493,9 +493,9 @@ https://trendmasterakademi.com/salvageability/`;
 
             {/* Decision & Action */}
             <div className="space-y-4 pt-2 border-t border-[var(--rule)]">
-              <h4 className="text-lg font-serif font-semibold text-[var(--ink)] leading-snug">
+              <h3 className="text-lg font-serif font-semibold text-[var(--ink)] leading-snug">
                 {decision.title[lang]}
-              </h4>
+              </h3>
               <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                 {decision.summary[lang]}
               </p>

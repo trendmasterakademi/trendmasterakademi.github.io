@@ -142,7 +142,7 @@ SLA & Müdahale Taahhütleri: https://trendmasterakademi.com/sla/
                   : "bg-[var(--surface)] border-[var(--rule)] text-[var(--ink-2)] hover:border-[var(--ink-3)] hover:text-[var(--ink)]"
               }`}
             >
-              <h3 className="text-xs font-bold font-mono tracking-tight">{preset.name}</h3>
+              <span className="block text-xs font-bold font-mono tracking-tight">{preset.name}</span>
               <p className="text-xs text-[var(--ink-3)] mt-1 font-mono">
                 {formatCurrency(preset.monthlyRevenue)} / {isEn ? "mo" : "ay"}
               </p>

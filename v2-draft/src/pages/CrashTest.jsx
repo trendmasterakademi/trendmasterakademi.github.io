@@ -639,9 +639,9 @@ const CrashTest = () => {
                       </div>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] mb-2 group-hover:text-[var(--accent)] transition-colors">
+                    <span className="block text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] mb-2 group-hover:text-[var(--accent)] transition-colors">
                       {sc.title[isTr ? 'tr' : 'en']}
-                    </h3>
+                    </span>
                     <p className="text-sm text-[var(--ink-3)] leading-relaxed">
                       {sc.subtitle[isTr ? 'tr' : 'en']}
                     </p>
@@ -729,7 +729,7 @@ const CrashTest = () => {
                     <span className="w-7 h-7 rounded-full bg-[var(--paper)] text-[var(--accent)] flex items-center justify-center font-mono text-xs sm:text-sm font-semibold border border-[var(--rule)] flex-shrink-0">
                       {idx + 1}
                     </span>
-                    <h3 className="text-base sm:text-lg font-serif font-semibold text-[var(--ink)] leading-snug">{q.label[isTr ? 'tr' : 'en']}</h3>
+                    <h2 className="text-base sm:text-lg font-serif font-semibold text-[var(--ink)] leading-snug">{q.label[isTr ? 'tr' : 'en']}</h2>
                   </div>
 
                   <div className="grid grid-cols-1 gap-3">

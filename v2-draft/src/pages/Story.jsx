@@ -155,9 +155,9 @@ const Story = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] flex flex-col justify-between gap-4 shadow-sm">
             <div className="space-y-1 text-left">
-              <h3 className="text-lg font-semibold font-serif text-[var(--ink)]">
+              <h2 className="text-lg font-semibold font-serif text-[var(--ink)]">
                 {isTr ? 'Mühendislik Standartlarımızı İnceleyin' : 'Explore Our Engineering Standards'}
-              </h3>
+              </h2>
               <p className="text-xs sm:text-sm text-[var(--ink-3)]">
                 {isTr ? '%100 White-Label, Resmi NDA, Şeffaf Ücretlendirme ve Doğrudan Mühendislik Masası prensiplerimiz.' : '100% White-Label, Binding NDA, Transparent Pricing and Direct Engineering Desk.'}
               </p>
@@ -173,9 +173,9 @@ const Story = () => {
 
           <div className="p-6 sm:p-8 rounded bg-[var(--surface)] border border-[var(--rule)] flex flex-col justify-between gap-4 shadow-sm">
             <div className="space-y-1 text-left">
-              <h3 className="text-lg font-semibold font-serif text-[var(--ink)]">
+              <h2 className="text-lg font-semibold font-serif text-[var(--ink)]">
                 {isTr ? 'Birlikte Çalışmayı Konuşalım' : "Let's Discuss Working Together"}
-              </h3>
+              </h2>
               <p className="text-xs sm:text-sm text-[var(--ink-3)]">
                 {isTr ? 'Ekibiniz veya projeniz için uygun zamanı belirleyin, doğrudan teknik masa ile görüşün.' : 'Select a time for your agency or project to consult directly with senior engineering.'}
               </p>

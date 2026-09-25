@@ -755,9 +755,9 @@ const Agency = () => {
               </p>
 
               <div className="p-6 rounded-xl bg-[var(--paper)] border border-[var(--rule)] max-w-xl mx-auto text-left space-y-3">
-                <h4 className="text-base font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
+                <h3 className="text-base font-serif font-semibold text-[var(--ink)] flex items-center gap-2">
                   <Calendar className="w-5 h-5 text-[var(--accent)]" /> {isTr ? '30 Dakikalık Online Tanışma Görüşmesi' : '30-Minute Online Introductory Call'}
-                </h4>
+                </h3>
                 <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
                   {isTr 
                     ? 'Ortada aktif bir proje olması gerekmiyor; birbirimizi tanımamız ve ihtiyaç oluştuğunda kiminle iletişime geçeceğinizi bilmeniz yeterli.' 

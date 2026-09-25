@@ -162,6 +162,10 @@ Doğrudan Triyaj: https://trendmasterakademi.com/triyaj/
                 <div
                   key={tech.id}
                   onClick={() => toggleTech(tech.id)}
+                  role="checkbox"
+                  aria-checked={isSelected}
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleTech(tech.id); } }}
                   className={`cursor-pointer rounded-xl p-5 border transition-all relative ${
                     isLastOdd ? "md:col-span-2" : ""
                   } ${
@@ -173,9 +177,9 @@ Doğrudan Triyaj: https://trendmasterakademi.com/triyaj/
                   {/* Selection Indicator */}
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <div>
-                      <h3 className="text-base font-semibold text-[var(--ink)] tracking-tight flex items-center gap-2">
+                      <span className="text-base font-semibold text-[var(--ink)] tracking-tight flex items-center gap-2">
                         {tech.name}
-                      </h3>
+                      </span>
                       <span className="text-xs font-mono text-[var(--ink-3)]">
                         {tech.versionRange}
                       </span>

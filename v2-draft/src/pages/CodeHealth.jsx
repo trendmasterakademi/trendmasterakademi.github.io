@@ -153,6 +153,10 @@ Agreement & NDA Protection: https://trendmasterakademi.com/nda/
                     <div
                       key={item.id}
                       onClick={() => toggleItem(item.id)}
+                      role="checkbox"
+                      aria-checked={isChecked}
+                      tabIndex={0}
+                      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleItem(item.id); } }}
                       className={`cursor-pointer rounded-xl p-4 border transition-all flex items-start gap-3.5 ${
                         isChecked
                           ? "bg-[var(--surface)] border-[var(--accent)] shadow-sm"
@@ -171,9 +175,9 @@ Agreement & NDA Protection: https://trendmasterakademi.com/nda/
 
                       <div className="space-y-1">
                         <div className="flex items-center justify-between gap-2">
-                          <h3 className="text-sm font-semibold text-[var(--ink)] tracking-tight">
+                          <span className="text-sm font-semibold text-[var(--ink)] tracking-tight">
                             {item.title}
-                          </h3>
+                          </span>
                           <span className="text-xs font-mono px-1.5 py-0.5 rounded bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-3)]">
                             +{item.weight} {lang === 'en' ? 'pts' : 'puan'}
                           </span>

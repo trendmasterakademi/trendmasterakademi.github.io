@@ -150,6 +150,9 @@ export default function AgencyKit({ lang }) {
                 <div
                   key={slideNum}
                   onClick={() => setActiveSlideIndex(idx)}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setActiveSlideIndex(idx); } }}
                   className="group relative rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-all duration-300 overflow-hidden cursor-pointer flex flex-col shadow-sm hover:shadow-md"
                 >
                   {/* Slide Visual Container */}
@@ -239,6 +242,9 @@ export default function AgencyKit({ lang }) {
             <div className="lg:col-span-5 flex justify-center">
               <div 
                 onClick={() => setIsPosterLightboxOpen(true)}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsPosterLightboxOpen(true); } }}
                 className="relative group rounded-xl overflow-hidden border border-[var(--rule)] shadow-sm cursor-pointer max-w-sm w-full bg-[var(--paper)]"
               >
                 <img

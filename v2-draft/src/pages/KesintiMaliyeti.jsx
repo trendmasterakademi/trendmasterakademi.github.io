@@ -403,9 +403,9 @@ const KesintiMaliyeti = () => {
         <div className="p-6 sm:p-8 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 text-xs sm:text-sm text-[var(--ink-2)]">
           <div className="flex items-center gap-2 text-[var(--ink)] font-semibold">
             <Info className="w-4 h-4 text-[var(--accent)]" />
-            <h3 className="text-base font-serif font-semibold text-[var(--ink)]">
+            <h2 className="text-base font-serif font-semibold text-[var(--ink)]">
               {kesintiYontem[isTr ? 'tr' : 'en'].baslik}
-            </h3>
+            </h2>
           </div>
           
           <div className="p-4 rounded-xl bg-[var(--paper)] border border-[var(--rule)] font-mono text-[var(--ink)] text-xs overflow-x-auto">
