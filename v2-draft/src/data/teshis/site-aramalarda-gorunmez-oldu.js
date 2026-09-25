@@ -131,13 +131,13 @@ export default {
       "diyagramCozum": {
         "tr": [
           "Kuralı düzelt ·",
-          "etki günler",
-          "içinde"
+          "etki yeniden",
+          "taramada"
         ],
         "en": [
           "Fix rule ·",
-          "crawl recovery",
-          "in days"
+          "recovery on",
+          "re-crawl"
         ]
       }
     },
@@ -188,8 +188,8 @@ export default {
     }
   ],
   "kimCozer": {
-    "tr": "A ve B dakikalar içinde düzeltilir; etkisi arama motoru siteyi yeniden tarayınca görünür ve bu günler alır. C daha ağırdır: eski adreslerin yenilerine eşleştiği bir yönlendirme haritası çıkarılmalıdır.",
-    "en": "A and B are fixed in minutes; index restoration occurs when search engines re-crawl (days). C requires comprehensive URL mapping tables to preserve link equity."
+    "tr": "A ve B'de kapsam, süre ve bütçe teşhisten sonra netleşir; düzeltmenin etkisi arama motoru siteyi yeniden taradığında görünür. C daha ağırdır: eski adreslerin yenilerine eşleştiği bir yönlendirme haritası çıkarılmalıdır.",
+    "en": "For A and B, scope, timeline and budget become clear after diagnosis; index restoration occurs when search engines re-crawl the site. C requires comprehensive URL mapping tables to preserve link equity."
   },
   "cozulmezse": {
     "tr": "Arama görünürlüğü kaybı bileşik büyür. Kaybı geri kazanmak, kaybın sürdüğü süreden uzun sürer — erken fark edilmesi doğrudan para kazandırır.",

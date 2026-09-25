@@ -262,7 +262,7 @@
           "name": "/robots.txt Disallow: / mi?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "robots.txt kapalı — Dosya tüm siteyi tarayıcılara kapatmış durumda. Kanıt: robots.txt Disallow: / → B Çözüm: Kuralı düzelt · etki günler içinde"
+            "text": "robots.txt kapalı — Dosya tüm siteyi tarayıcılara kapatmış durumda. Kanıt: robots.txt Disallow: / → B Çözüm: Kuralı düzelt · etki yeniden taramada"
           }
         },
         {
@@ -278,7 +278,7 @@
           "name": "«robots.txt → Disallow: /» görüyorsam nedeni ne?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · robots.txt kapalı — Dosya tüm siteyi tarayıcılara kapatmış durumda. Çözüm: Kuralı düzelt · etki günler içinde"
+            "text": "B · robots.txt kapalı — Dosya tüm siteyi tarayıcılara kapatmış durumda. Çözüm: Kuralı düzelt · etki yeniden taramada"
           }
         },
         {
@@ -325,7 +325,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-tu2HgGGH.js"></script>
+    <script type="module" crossorigin src="/assets/index-BjjgcDyo.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -409,7 +409,7 @@
             <p class="text-[var(--ink-3)] leading-relaxed">robots.txt file instructs all crawlers to disallow indexation across root.</p>
             <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Does robots.txt contain Disallow: root slash?</p>
             <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> robots.txt Disallow: / → B</p>
-            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Fix rule · crawl recovery in days</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Fix rule · recovery on re-crawl</p>
             <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Resubmitting XML sitemaps achieves nothing while a rogue Disallow: / rule in robots.txt instructs search engine crawlers to abandon indexation.</p>
           </div>
         
@@ -428,7 +428,7 @@
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
-        <p class="text-[var(--ink-3)] leading-relaxed">A and B are fixed in minutes; index restoration occurs when search engines re-crawl (days). C requires comprehensive URL mapping tables to preserve link equity.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">For A and B, scope, timeline and budget become clear after diagnosis; index restoration occurs when search engines re-crawl the site. C requires comprehensive URL mapping tables to preserve link equity.</p>
       </section>
 
       <section class="space-y-2">

@@ -75,14 +75,12 @@ export default {
       },
       "diyagramCozum": {
         "tr": [
-          "İlişkileri toplu",
-          "çek · saatler",
-          "içinde biter"
+          "İlişkileri",
+          "toplu çek"
         ],
         "en": [
           "Eager loading +",
-          "batch SQL joins",
-          "· resolved today"
+          "batch SQL joins"
         ]
       }
     },
@@ -181,8 +179,8 @@ export default {
     }
   ],
   "kimCozer": {
-    "tr": "Kıdemli backend mühendisi. A ve B çoğunlukla aynı gün kapanır ve etkisi anında görülür. C'de asıl mesele harici servisi hızlandırmak değil, sayfanın onu beklememesini sağlamaktır.",
-    "en": "Senior backend engineer. A and B are resolved in hours with instant speedup. For C, the solution is asynchronous decoupling so pages never block on third parties."
+    "tr": "Kıdemli backend mühendisi. Kapsam, süre ve bütçe teşhisten sonra netleşir; A ve B kapandığında etkisi anında görülür. C'de asıl mesele harici servisi hızlandırmak değil, sayfanın onu beklememesini sağlamaktır.",
+    "en": "Senior backend engineer. Scope, timeline and budget become clear after diagnosis; once A and B are resolved, the speedup is immediate. For C, the solution is asynchronous decoupling so pages never block on third parties."
   },
   "cozulmezse": {
     "tr": "Yavaşlık dönüşümü doğrudan düşürür ve arama sıralamasında da karşılığı vardır. Sunucu yükseltmek maliyeti artırır, belirtiyi bir süre örter, nedeni bırakır.",

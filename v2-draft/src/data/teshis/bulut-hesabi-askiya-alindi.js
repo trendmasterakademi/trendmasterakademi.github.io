@@ -75,13 +75,11 @@ export default {
       "diyagramCozum": {
         "tr": [
           "Ödeme + hesap",
-          "sahibi · saatler",
-          "içinde açılır"
+          "sahibi"
         ],
         "en": [
           "Payment update +",
-          "account holder ·",
-          "fixed in hours"
+          "account holder"
         ]
       }
     },
@@ -181,8 +179,8 @@ export default {
     }
   ],
   "kimCozer": {
-    "tr": "A ise hesap sahibi ve muhasebe — kod işi değildir, saatler içinde açılır. B ise sistem yöneticisi. C ise güvenlik müdahalesi gerekir ve sıra bağlayıcıdır: temizlik yapılmadan askı kaldırılırsa hesap tekrar kapatılır.",
-    "en": "For A: Account owner and accounting — zero coding required, restored in hours. For B: DevOps / Sysadmin. For C: Forensic security SWAT is required with strict sequencing: requesting unban prior to full cleanup triggers instant re-suspension."
+    "tr": "A ise hesap sahibi ve muhasebe — kod işi değildir. B ise sistem yöneticisi. C ise güvenlik müdahalesi gerekir ve sıra bağlayıcıdır: temizlik yapılmadan askı kaldırılırsa hesap tekrar kapatılır.",
+    "en": "For A: Account owner and accounting — zero coding required. For B: DevOps / Sysadmin. For C: Forensic security SWAT is required with strict sequencing: requesting unban prior to full cleanup triggers instant re-suspension."
   },
   "cozulmezse": {
     "tr": "Sağlayıcılar askıya alınan hesapların verisini belirli bir süre saklar, sonra kalıcı olarak siler. Bu pencerenin uzunluğu sağlayıcıya göre değişir ve kaçırılırsa yedek yoksa geri dönüş yoktur.",

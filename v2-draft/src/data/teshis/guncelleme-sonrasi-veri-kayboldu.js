@@ -191,8 +191,8 @@ export default {
     }
   ],
   "kimCozer": {
-    "tr": "İlk adım geliştirici çağırmak değil, hiçbir şeye yazmamaktır. Yeni kayıt eklemek ve tablo değiştirmek geri dönüş seçeneklerini daraltır. A dakikalar içinde kapanır, B yedekten yürütülür, C'de her saat önemlidir.",
-    "en": "The absolute first rule is freezing all writes. Writing new data or altering schemas destroys recovery options. A is resolved in minutes, B via atomic rollback, C requires immediate point-in-time snapshot recovery."
+    "tr": "İlk adım geliştirici çağırmak değil, hiçbir şeye yazmamaktır. Yeni kayıt eklemek ve tablo değiştirmek geri dönüş seçeneklerini daraltır. Kapsam, süre ve bütçe teşhisten sonra netleşir: B yedekten yürütülür, C'de her saat önemlidir.",
+    "en": "The absolute first rule is freezing all writes. Writing new data or altering schemas destroys recovery options. Scope, timeline and budget become clear after diagnosis: B runs from backup, C requires immediate point-in-time snapshot recovery."
   },
   "cozulmezse": {
     "tr": "Gerçek silme hâlinde geri dönüş penceresi yedek politikanız kadardır. En sık yapılan hata, teşhis konmadan \"düzeltmeye\" başlamak ve kurtarılabilir veriyi üzerine yazmaktır.",

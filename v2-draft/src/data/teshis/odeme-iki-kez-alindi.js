@@ -181,8 +181,8 @@ export default {
     }
   ],
   "kimCozer": {
-    "tr": "Backend mühendisi · 2–4 saat. Üç nedenin ortak çözümü aynı ilkedir: her ödeme isteğinin tekrarlandığında aynı sonucu üretmesi. Bu sağlandığında üç senaryo da kendiliğinden kapanır.",
-    "en": "Backend engineer · 2–4 hours. The root solution for all three is strict idempotency: ensuring identical payment attempts return identical cached results without multiple charges."
+    "tr": "Backend mühendisi. Kapsam, süre ve bütçe teşhisten sonra netleşir. Üç nedenin ortak çözümü aynı ilkedir: her ödeme isteğinin tekrarlandığında aynı sonucu üretmesi. Bu sağlandığında üç senaryo da kendiliğinden kapanır.",
+    "en": "Backend engineer. Scope, timeline and budget become clear after diagnosis. The root solution for all three is strict idempotency: ensuring identical payment attempts return identical cached results without multiple charges."
   },
   "cozulmezse": {
     "tr": "Çift tahsilat iadeyle kapanır ama iade komisyonu geri gelmez ve müşteri güveni birlikte gider. Ödeme kuruluşları yüksek iade oranını risk olarak işaretler.",

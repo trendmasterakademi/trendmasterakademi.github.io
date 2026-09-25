@@ -254,7 +254,7 @@
           "name": "Fatura adresine 'suspended' maili gelmiş mi?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ödeme başarısız, hesap askıda — Kartın süresi doldu ya da tahsilat başarısız oldu. Sağlayıcı uyarıları gönderdi, kimse okumadı. Teknik bir arıza yok. Kanıt: Kutuda 'suspended' maili var → A Çözüm: Ödeme + hesap sahibi · saatler içinde açılır"
+            "text": "Ödeme başarısız, hesap askıda — Kartın süresi doldu ya da tahsilat başarısız oldu. Sağlayıcı uyarıları gönderdi, kimse okumadı. Teknik bir arıza yok. Kanıt: Kutuda 'suspended' maili var → A Çözüm: Ödeme + hesap sahibi"
           }
         },
         {
@@ -309,7 +309,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-tu2HgGGH.js"></script>
+    <script type="module" crossorigin src="/assets/index-BjjgcDyo.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -382,7 +382,7 @@
             <p class="text-[var(--ink-3)] leading-relaxed">Card expired or bank transaction declined. Provider dispatched warnings that went unread. Zero technical defect.</p>
             <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Differential test:</strong> Was a suspended email sent to billing address?</p>
             <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Evidence:</strong> Suspension email in inbox → A</p>
-            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Payment update + account holder · fixed in hours</p>
+            <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Resolution:</strong> Payment update + account holder</p>
             <p class="text-[var(--ink-3)] text-sm"><strong class="text-[var(--ink)]">Common anti-pattern fix:</strong> Increasing card limits without manually triggering repayment in the billing console leaves account suspensions active for hours.</p>
           </div>
         
@@ -411,7 +411,7 @@
 
       <section class="space-y-2">
         <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
-        <p class="text-[var(--ink-3)] leading-relaxed">For A: Account owner and accounting — zero coding required, restored in hours. For B: DevOps / Sysadmin. For C: Forensic security SWAT is required with strict sequencing: requesting unban prior to full cleanup triggers instant re-suspension.</p>
+        <p class="text-[var(--ink-3)] leading-relaxed">For A: Account owner and accounting — zero coding required. For B: DevOps / Sysadmin. For C: Forensic security SWAT is required with strict sequencing: requesting unban prior to full cleanup triggers instant re-suspension.</p>
       </section>
 
       <section class="space-y-2">

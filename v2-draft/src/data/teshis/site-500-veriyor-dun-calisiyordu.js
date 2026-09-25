@@ -192,8 +192,8 @@ export default {
     }
   ],
   "kimCozer": {
-    "tr": "A ve B sistem yöneticisi işidir ve çoğu zaman bir saatin altında kapanır. C'de geri alma yapılmadan önce hangi paketin güncellendiği tespit edilmelidir; yanlış paketi geri almak ikinci bir arıza üretir.",
-    "en": "A and B are sysadmin operations, typically resolved in under one hour. For C, the exact mutated package must be identified before executing rollbacks; reverting the wrong library causes secondary outages."
+    "tr": "A ve B sistem yöneticisi işidir; kapsam, süre ve bütçe teşhisten sonra netleşir. C'de geri alma yapılmadan önce hangi paketin güncellendiği tespit edilmelidir; yanlış paketi geri almak ikinci bir arıza üretir.",
+    "en": "A and B are sysadmin operations; scope, timeline and budget become clear after diagnosis. For C, the exact mutated package must be identified before executing rollbacks; reverting the wrong library causes secondary outages."
   },
   "cozulmezse": {
     "tr": "500 veren sayfayı arama motorları da görür. Kesinti uzadıkça dizin kaybı başlar ve geri gelmesi kesintinin kendisinden uzun sürer.",

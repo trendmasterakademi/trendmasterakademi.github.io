@@ -191,8 +191,8 @@ export default {
     }
   ],
   "kimCozer": {
-    "tr": "Kıdemli backend mühendisi · 2–4 saat. Doğru neden belirlendikten sonra üçü de kalıcı olarak kapanır. Teşhis olmadan yapılan düzeltme belirtiyi bastırır, kaynağı bırakır.",
-    "en": "Senior backend engineer · 2–4 hours. Once the exact cause is isolated, all three are permanently resolved. Fixes applied without proper diagnosis merely mask symptoms while leaving the root cause intact."
+    "tr": "Kıdemli backend mühendisi. Kapsam, süre ve bütçe teşhisten sonra netleşir. Doğru neden belirlendikten sonra üçü de kalıcı olarak kapanır. Teşhis olmadan yapılan düzeltme belirtiyi bastırır, kaynağı bırakır.",
+    "en": "Senior backend engineer. Scope, timeline and budget become clear after diagnosis. Once the exact cause is isolated, all three are permanently resolved. Fixes applied without proper diagnosis merely mask symptoms while leaving the root cause intact."
   },
   "cozulmezse": {
     "tr": "Her çift satış bir iade, bir kargo maliyeti ve bir olumsuz yorum riski. Kampanya günlerinde eşzamanlı trafik arttığı için sıklık katlanarak büyür.",

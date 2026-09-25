@@ -196,8 +196,8 @@ export default {
     }
   ],
   "kimCozer": {
-    "tr": "Sistem yöneticisi · genellikle bir saatin altında. Asıl mesele tekrarını önlemektir: yenileme başarısız olduğunda haber veren bir bildirim kurulmadıkça aynı arıza sertifika ömrü kadar sonra geri gelir.",
-    "en": "DevOps / Sysadmin · resolved in under one hour. The true goal is preventing recurrence: without automated cert expiration monitoring, the issue repeats every 90 days."
+    "tr": "Sistem yöneticisi. Kapsam, süre ve bütçe teşhisten sonra netleşir. Asıl mesele tekrarını önlemektir: yenileme başarısız olduğunda haber veren bir bildirim kurulmadıkça aynı arıza sertifika ömrü kadar sonra geri gelir.",
+    "en": "DevOps / Sysadmin. Scope, timeline and budget become clear after diagnosis. The true goal is preventing recurrence: without a notification that fires when renewal fails, the same failure returns once the certificate's lifetime runs out."
   },
   "cozulmezse": {
     "tr": "Tarayıcı uyarısı gören ziyaretçilerin büyük kısmı geri döner. Ödeme sayfasında bu uyarı, o günkü satışların durması demektir.",

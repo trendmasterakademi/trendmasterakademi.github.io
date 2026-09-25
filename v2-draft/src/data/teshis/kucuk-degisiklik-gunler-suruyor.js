@@ -178,8 +178,8 @@ export default {
     }
   ],
   "kimCozer": {
-    "tr": "Bu üçünün hiçbiri \"daha çok çalışarak\" çözülmez. Yatırımın karşılığı ilk haftada görünmez, ikinci ayda görünür: aynı ekip aynı sürede belirgin biçimde daha çok iş çıkarır.",
-    "en": "None of these are resolved by 'working overtime'. The payoff is felt by month two: identical teams outputting dramatically higher volume with zero overtime."
+    "tr": "Bu üçünün hiçbiri \"daha çok çalışarak\" çözülmez. Yatırımın karşılığı hemen görünmez, birikerek görünür: aynı ekip aynı sürede belirgin biçimde daha çok iş çıkarır.",
+    "en": "None of these are resolved by 'working overtime'. The payoff is not immediate; it builds up: the same team ships noticeably more work in the same time."
   },
   "cozulmezse": {
     "tr": "Yavaşlık bileşik büyür ve ilişkiyi aşındırır. Müşteri gecikmeyi ilgisizlik sanır; ekip ise gerçekten çalıştığı hâlde savunmaya geçer.",
