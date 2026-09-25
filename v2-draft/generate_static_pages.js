@@ -4621,3 +4621,62 @@ function verifyKitIntegrity() {
 }
 
 verifyKitIntegrity();
+
+// ---------------------------------------------------------------------------
+// [BUILD GUARD İÇERİK] Adım 87 — Adım 79–86'da kaldırılan vaat, garanti ve dil kalıntıları geri gelemez.
+// A) Aşağıdaki ifadeler src/ ve dist/ içinde geçemez (sözleşme/SLA dışı süre ve garanti, Türkçe sayfada İngilizce etiket).
+// B) Teşhis kataloğunda "Kim çözer" metni ve diyagram "Çözüm" kutuları süre içeremez (Adım 85).
+// Bir ifade meşru olarak geri gerekiyorsa önce Mehmet'in kararı alınır, sonra bu liste güncellenir.
+// ---------------------------------------------------------------------------
+function verifyContentRules() {
+  console.log('\n[BUILD GUARD İÇERİK] Vaat, garanti ve dil kuralları denetleniyor...');
+  const yasakIfadeler = [
+    // Adım 79–81 · süre ve sonuç vaatleri
+    'deadlock döngüsünü 20 dakikada', 'tamamen dindirir', 'kayıp anahtarları kurtarır', 'hatasız build hattı',
+    'ADIM 01 (0 - 24 Saat)', 'STEP 01 (0 - 24 Hours)', '(Aylık Ciro / 720 Saat)', 'veri kaybı riski sıfır',
+    // Adım 82 · kit ve radar
+    'sıfır kayıplı geri dönüş', 'zero-loss rollback', 'Masaya Oturma Ortalaması', 'Time to Table', 'masaya oturma protokolü',
+    // Adım 84 · süre ve Türkçe sayfada İngilizce
+    '0-2 saatte', 'within 0-2 hours', '48-72 saatte', 'within 48-72 hours', '3-4 haftalık sprint', '3-4 week sprint',
+    'HANDOVER HELL', 'T−48H CRUNCH', 'STRANDED CODEBASE', 'Salvageability Index (Karar Matrisi)', 'Incident Post-Mortem & RCA',
+    // Adım 85 · teşhis süreleri
+    '2–4 saat', '2–4 hours', 'saatler içinde açılır', 'saatler içinde biter',
+    // Adım 86 · garanti dili
+    'kesintiyi sıfırlıyoruz', 'Zero out downtime', 'gecikmesiz yakalamanızı', 'zero latency', 'Sorunsuz Canlı Dağıtım', 'Seamless Deployment',
+    '%100 Güvenli Analiz', '%100 Gizlilik Güvencesi', 'Confidentiality Guarantee', 'escalated instantly', 'eksiksiz teslim ederiz',
+    'Eksiksiz Teslim Ederiz', 'zero project blockage', 'Stres testleri ve güvenlik kontrolleri',
+  ];
+  const errors = [];
+  const dosyalar = (kok, uzanti) => {
+    const o = [];
+    if (!fs.existsSync(kok)) return o;
+    const gez = (d) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) gez(p); else if (uzanti.test(e.name)) o.push(p); } };
+    gez(kok);
+    return o;
+  };
+  const taranan = [...dosyalar(path.join(__dirname, 'src'), /\.(jsx?|json)$/), ...dosyalar(distDir, /\.(html|js)$/)];
+  for (const dosya of taranan) {
+    const icerik = fs.readFileSync(dosya, 'utf8');
+    for (const ifade of yasakIfadeler) if (icerik.includes(ifade)) errors.push(`${path.relative(__dirname, dosya)} → "${ifade}"`);
+  }
+  const sureTr = /\d+\s*[–-]\s*\d+\s*(saat|dakika|gün|hafta)|\b\d+\s*(saat|dakika|gün|hafta)\b|saatin altında|dakikalar içinde|aynı gün|saatler içinde|ilk haftada|ikinci ayda|günler alır/i;
+  const sureEn = /\b\d+\s*[–-]\s*\d+\s*(hours?|minutes?|days?|weeks?)\b|\b\d+\s*(hours?|minutes?|days?|weeks?|months?)\b|under (one|an) hour|in (hours|minutes|days)|month two|\(days\)/i;
+  const kutuTr = /saatler içinde|günler içinde|saatin altında|dakikalar içinde|aynı gün/i;
+  const kutuEn = /\b(hours?|days?|minutes?|today)\b/i;
+  for (const t of teshisData) {
+    if (sureTr.test(t.kimCozer?.tr || '')) errors.push(`teşhis "${t.slug}" — "Kim çözer" (TR) süre içeriyor`);
+    if (sureEn.test(t.kimCozer?.en || '')) errors.push(`teşhis "${t.slug}" — "Kim çözer" (EN) süre içeriyor`);
+    for (const n of t.nedenler || []) {
+      if (kutuTr.test([].concat(n.diyagramCozum?.tr || []).join(' '))) errors.push(`teşhis "${t.slug}" ${n.harf} — çözüm kutusu (TR) süre içeriyor`);
+      if (kutuEn.test([].concat(n.diyagramCozum?.en || []).join(' '))) errors.push(`teşhis "${t.slug}" ${n.harf} — çözüm kutusu (EN) süre içeriyor`);
+    }
+  }
+  if (errors.length > 0) {
+    console.error(`\n[BUILD GUARD İÇERİK HATA] ${errors.length} kural ihlali:`);
+    errors.forEach((err) => console.error(`  - ${err}`));
+    process.exit(1);
+  }
+  console.log(`[BUILD GUARD İÇERİK GEÇTİ] ${yasakIfadeler.length} yasak ifade ${taranan.length} dosyada yok; ${teshisData.length} teşhiste "Kim çözer" ve çözüm kutuları süresiz.`);
+}
+
+verifyContentRules();

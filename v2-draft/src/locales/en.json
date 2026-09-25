@@ -48,12 +48,12 @@
   "crisis-card1-desc": "Production downtime triggered by database transaction pool starvation, serialization locks, or unresponsive payment gateways.",
   "crisis-card1-action": "Diagnose in Crash Test →",
 
-  "crisis-card2-tag": "STRANDED CODEBASE",
+  "crisis-card2-tag": "HANDOVER",
   "crisis-card2-title": "Undocumented / Abandoned Codebase Handover",
   "crisis-card2-desc": "Departed lead developers, lost environment variables, and intricate codebases requiring deep reverse engineering and dependency isolation.",
   "crisis-card2-action": "Diagnose in Crash Test →",
 
-  "crisis-card3-tag": "T−48H CRUNCH",
+  "crisis-card3-tag": "T-48H",
   "crisis-card3-title": "Pre-Launch Critical Engineering Crunch",
   "crisis-card3-desc": "Urgent performance bottlenecks, async queue choke points, or last-minute refactoring required hours before delivery.",
   "crisis-card3-action": "Diagnose in Crash Test →",

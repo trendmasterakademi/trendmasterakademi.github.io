@@ -135,7 +135,7 @@ export const glossaryTerms = [
     },
     agencyImpact: {
       tr: 'Ajans için ne anlama gelir? Başta 3 günde biten basit bir revizyon, 6 ay sonra spagetti kod yüzünden 3 haftada yapılamaz hale gelir. Geliştiriciler projeye dokunmaktan korkar.',
-      en: 'What it means for agencies: Quick feature tweaks that used to take 2 hours now take weeks because modifying one line breaks 5 unrelated modules.'
+      en: 'What it means for agencies: A simple revision that took 3 days at the start can no longer be finished in 3 weeks six months later because of spaghetti code. Developers become afraid to touch the project.'
     },
     urgencyLevel: 'Orta / Stratejik',
     urgencyLevelEn: 'Medium / Strategic',
@@ -235,7 +235,7 @@ export const glossaryTerms = [
     },
     agencyImpact: {
       tr: 'Ajans için ne anlama gelir? Yeni geliştirici projeyi aldığında veritabanını tek komutla sıfırdan kurabilmesini sağlar. Migration yoksa devir süreci kilitlenir.',
-      en: 'What it means for agencies: Enables a new developer to bootstrap the database in 10 seconds. Without migrations, takeover requires manual DB archaeology.'
+      en: 'What it means for agencies: When a new developer takes over the project, they can build the database from scratch with a single command. Without migrations, the handover process locks up.'
     },
     urgencyLevel: 'Yüksek',
     urgencyLevelEn: 'High',

@@ -55,7 +55,7 @@ const capabilities = [
   },
   { 
     title: { tr: 'REST API & GraphQL Geliştirme', en: 'REST API & GraphQL Development' }, 
-    desc: { tr: 'Dokümante edilmiş, güvenli, hızlı ve versiyonlanmış API servisleri.', en: 'Fully documented, authenticated, versioned, and lightning-fast API microservices.' }, 
+    desc: { tr: 'Dokümante edilmiş, güvenli, hızlı ve versiyonlanmış API servisleri.', en: 'Documented, secure, fast and versioned API services.' }, 
     cat: 'API' 
   },
   { 
