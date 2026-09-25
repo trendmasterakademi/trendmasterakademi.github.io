@@ -43,7 +43,7 @@ export const seoData = {
   },
   "/radar/": {
     "tr": {
-      "title": "SWAT Hazırbulunuşluk & Olay Radarı | Trend Master Akademi",
+      "title": "SWAT Hazırbulunuşluğu & Olay Radarı | Trend Master Akademi",
       "desc": "Trend Master Akademi SWAT hazırbulunuşluğu ve olay radarı. 90 günlük dönemde kaydedilen 34 müdahale, ilk yanıt ve çözüm süreleri, olay dağılımı."
     },
     "en": {

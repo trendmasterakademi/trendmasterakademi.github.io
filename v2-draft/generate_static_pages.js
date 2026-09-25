@@ -2453,9 +2453,9 @@ const basePages = [
   },
   {
     dir: 'radar',
-    title: 'SWAT Hazırbulunuşluk & Olay Radarı | Trend Master Akademi',
+    title: seoData['/radar/'].tr.title,
     h1: radarH1.tr,
-    description: 'TMA mühendislik masası hazırbulunuşluğu, nöbet saatleri, 90 günlük SLA telemetrisi ve vaka dağılım özeti.',
+    description: seoData['/radar/'].tr.desc,
     canonical: 'https://trendmasterakademi.com/radar/',
     ogUrl: 'https://trendmasterakademi.com/radar/',
     heading: '',
@@ -2470,7 +2470,7 @@ const basePages = [
           "@type": "BreadcrumbList",
           "itemListElement": [
             { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
-            { "@type": "ListItem", "position": 2, "name": "Sistem Durumu ve Güvenilirlik Raporu", "item": "https://trendmasterakademi.com/radar/" }
+            { "@type": "ListItem", "position": 2, "name": radarH1.tr, "item": "https://trendmasterakademi.com/radar/" }
           ]
         }
       ]

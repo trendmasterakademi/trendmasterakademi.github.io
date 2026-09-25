@@ -70,7 +70,7 @@ function KitBanner() {
       <div 
         className="w-full h-[44px] sm:h-6 bg-[var(--surface)] border-b border-[var(--rule)] flex items-center justify-between text-xs font-sans select-none overflow-hidden relative z-50 text-[var(--ink-2)]"
         role="region"
-        aria-label="TMA Agency Response Kit Banner"
+        aria-label={isTr ? 'TMA Agency Kit bilgi bandı' : 'TMA Agency Kit banner'}
       >
         {/* Left: Brand Badge */}
         <div className="flex items-center gap-1.5 px-2.5 sm:px-3 bg-[var(--accent-wash)] h-full z-20 flex-shrink-0 border-r border-[var(--rule)]">

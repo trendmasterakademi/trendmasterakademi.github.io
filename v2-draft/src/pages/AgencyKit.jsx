@@ -61,7 +61,7 @@ export default function AgencyKit({ lang }) {
         <section className="text-center max-w-4xl mx-auto space-y-6">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-3)] font-mono text-xs tracking-wider uppercase">
             <span className="w-2 h-2 rounded-full bg-[var(--accent)]"></span>
-            <span>TMA AGENCY KIT // 2026 OFFICIAL RELEASE</span>
+            <span>{isTr ? 'TMA AGENCY KIT // 2026 RESMİ SÜRÜM' : 'TMA AGENCY KIT // 2026 OFFICIAL RELEASE'}</span>
           </div>
 
           <h1 className="text-3xl sm:text-5xl lg:text-6xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
@@ -173,7 +173,7 @@ export default function AgencyKit({ lang }) {
 
                     {/* Top Slide Number Badge */}
                     <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded bg-[var(--surface)]/90 border border-[var(--rule)] font-mono text-xs font-semibold text-[var(--ink)]">
-                      SLIDE 0{slideNum}
+                      {isTr ? 'SLAYT' : 'SLIDE'} 0{slideNum}
                     </div>
                   </div>
 
@@ -206,10 +206,10 @@ export default function AgencyKit({ lang }) {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between border-b border-[var(--rule)] pb-6 gap-4">
             <div className="space-y-1">
               <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[var(--accent)]">
-                02 // 60-SECOND TECHNICAL READINESS
+                02 // {data.crashTest.badge}
               </span>
               <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ink)]">
-                {data.crashTest.title} (HTTP 500 Poster)
+                {data.crashTest.title} ({isTr ? 'HTTP 500 Posteri' : 'HTTP 500 Poster'})
               </h2>
               <p className="text-xs sm:text-sm text-[var(--ink-2)] max-w-xl">
                 {data.crashTest.description}
@@ -267,10 +267,7 @@ export default function AgencyKit({ lang }) {
                   {data.crashTest.subtitle}
                 </h3>
                 <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
-                  {isTr
-                    ? "Kriz kapıyı çalmadan önce ajansınızın ilk müdahale refleksini ölçün. 3 soruya yanıt vererek teknik hazırlık puanınızı ve cerrahi eylem planınızı anında alın."
-                    : "Measure your agency's incident triage reflexes before outage strikes. Answer 3 questions to calculate your readiness score and surgical action plan instantly."
-                  }
+                  {data.crashTest.notice.security}
                 </p>
               </div>
 
@@ -322,7 +319,7 @@ export default function AgencyKit({ lang }) {
         <section className="space-y-6">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-xs font-mono font-semibold uppercase tracking-widest text-[var(--accent)]">
-              TRUST & SECURITY
+              {isTr ? 'GÜVEN & GÜVENLİK' : 'TRUST & SECURITY'}
             </span>
             <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ink)]">
               {isTr ? 'Ajanslar İçin 4 Temel Taahhüt' : '4 Foundational Agency Commitments'}
@@ -331,7 +328,7 @@ export default function AgencyKit({ lang }) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-              <span className="font-mono text-[var(--accent)] text-xs font-semibold block">01 // CLIENT OWNERSHIP</span>
+              <span className="font-mono text-[var(--accent)] text-xs font-semibold block">01 // {data.responseKit.slides[2].cards[0].title}</span>
               <h3 className="text-base font-serif font-semibold text-[var(--ink)]">{isTr ? 'Müşteri Sizde Kalır' : 'You Own the Client'}</h3>
               <p className="text-xs text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'Tüm müşteri iletişimi ajansınız üzerinden yürütülür. TMA asla görünmez veya temas kurmaz.' : 'All client communication stays strictly inside your agency. TMA remains completely invisible.'}
@@ -339,7 +336,7 @@ export default function AgencyKit({ lang }) {
             </div>
 
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-              <span className="font-mono text-[var(--accent)] text-xs font-semibold block">02 // ZERO BYPASS</span>
+              <span className="font-mono text-[var(--accent)] text-xs font-semibold block">02 // {data.responseKit.slides[2].cards[1].title}</span>
               <h3 className="text-base font-serif font-semibold text-[var(--ink)]">{isTr ? 'Sıfır Bypass İlkesi' : 'Zero Client Bypass'}</h3>
               <p className="text-xs text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'İzinsiz temas, arkadan dolanma veya doğrudan teklif verme kesinlikle yasaktır ve NDA ile korunur.' : 'Zero unauthorized contact or direct solicitation, legally secured under bilateral NDA.'}
@@ -347,7 +344,7 @@ export default function AgencyKit({ lang }) {
             </div>
 
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-              <span className="font-mono text-[var(--accent)] text-xs font-semibold block">03 // BINDING NDA</span>
+              <span className="font-mono text-[var(--accent)] text-xs font-semibold block">03 // {data.responseKit.slides[2].cards[2].title}</span>
               <h3 className="text-base font-serif font-semibold text-[var(--ink)]">{isTr ? 'Resmi Karşılıklı NDA' : 'Mutual Binding NDA'}</h3>
               <p className="text-xs text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'Projeye başlamadan önce iki taraflı bağlayıcı gizlilik sözleşmesi imzalayarak hukuki güvence sağlarız.' : 'We execute a binding bilateral non-disclosure agreement before any code review or deployment.'}
@@ -355,7 +352,7 @@ export default function AgencyKit({ lang }) {
             </div>
 
             <div className="p-5 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-              <span className="font-mono text-[var(--accent)] text-xs font-semibold block">04 // 100% IP</span>
+              <span className="font-mono text-[var(--accent)] text-xs font-semibold block">04 // {data.responseKit.slides[2].cards[3].title}</span>
               <h3 className="text-base font-serif font-semibold text-[var(--ink)]">{isTr ? 'Eksiksiz Kaynak Kod Mülkiyeti' : '100% IP & Source Code'}</h3>
               <p className="text-xs text-[var(--ink-2)] leading-relaxed">
                 {isTr ? 'Tüm kaynak kodlar, dokümantasyon ve sunucu yetkileri projenin sonunda eksiksiz ajansınıza devredilir.' : 'All source code, technical notes, and deployment access are handed over cleanly with zero lock-in.'}
@@ -418,7 +415,7 @@ export default function AgencyKit({ lang }) {
           <div className="flex items-center justify-between px-2 sm:px-4 py-2 text-xs font-mono text-[var(--term-dim)] z-10" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center gap-3">
               <span className="px-2.5 py-1 rounded bg-[var(--surface)] text-[var(--ink)] font-semibold border border-[var(--rule)]">
-                SLIDE 0{activeSlideIndex + 1} / 08
+                {isTr ? 'SLAYT' : 'SLIDE'} 0{activeSlideIndex + 1} / 08
               </span>
               <span className="hidden sm:inline font-semibold text-[var(--term-ink)]">
                 {data.responseKit.slides[activeSlideIndex].title}

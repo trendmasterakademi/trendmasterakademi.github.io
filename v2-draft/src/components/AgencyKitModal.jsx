@@ -164,7 +164,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">02 // {data.responseKit.slides[1].tag}</span>
-                    <span className="text-[var(--ink-3)]">CAPACITY</span>
+                    <span className="text-[var(--ink-3)]">{isTr ? 'KAPASİTE' : 'CAPACITY'}</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[1].title}
@@ -194,7 +194,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">03 // {data.responseKit.slides[2].tag}</span>
-                    <span className="text-[var(--ink-3)]">POLICY</span>
+                    <span className="text-[var(--ink-3)]">{isTr ? 'İLKELER' : 'POLICY'}</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[2].title}
@@ -224,7 +224,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">04 // {data.responseKit.slides[3].tag}</span>
-                    <span className="text-[var(--ink-3)]">SOLUTIONS</span>
+                    <span className="text-[var(--ink-3)]">{isTr ? 'ÇÖZÜMLER' : 'SOLUTIONS'}</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[3].title}
@@ -284,7 +284,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">06 // {data.responseKit.slides[5].tag}</span>
-                    <span className="text-[var(--ink-3)]">ENGAGEMENT</span>
+                    <span className="text-[var(--ink-3)]">{isTr ? 'MODELLER' : 'ENGAGEMENT'}</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[5].title}
@@ -306,7 +306,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">07 // {data.responseKit.slides[6].tag}</span>
-                    <span className="text-[var(--sev-ok)] font-semibold font-mono text-xs">STANDARDS</span>
+                    <span className="text-[var(--sev-ok)] font-semibold font-mono text-xs">{isTr ? 'STANDARTLAR' : 'STANDARDS'}</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[6].title}
@@ -332,7 +332,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                     </div>
                     <div className="flex justify-between items-center text-xs font-mono mb-2">
                       <span className="text-[var(--accent)] font-semibold">08 // {data.responseKit.slides[7].tag}</span>
-                      <span className="px-2 py-0.5 rounded bg-[var(--accent-wash)] border border-[var(--accent)]/20 text-[var(--accent-ink)] font-semibold text-xs">HOTLINE</span>
+                      <span className="px-2 py-0.5 rounded bg-[var(--accent-wash)] border border-[var(--accent)]/20 text-[var(--accent-ink)] font-semibold text-xs">{isTr ? 'KRİZ HATTI' : 'HOTLINE'}</span>
                     </div>
                     <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug mb-2">
                       {data.responseKit.slides[7].title}
@@ -458,7 +458,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
           <div className="flex items-center gap-2">
             <span>Trend Master Akademi Studio & Labs</span>
             <span>•</span>
-            <span className="text-[var(--accent)] font-semibold">White-Label Engineering Desk</span>
+            <span className="text-[var(--accent)] font-semibold">{isTr ? 'White-Label Mühendislik Masası' : 'White-Label Engineering Desk'}</span>
           </div>
           <div className="flex items-center gap-3">
             <a href="tel:+905343713573" className="text-[var(--sev-ok)] hover:text-[var(--ink)] transition-colors flex items-center gap-1 font-semibold">
