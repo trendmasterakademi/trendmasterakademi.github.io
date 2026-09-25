@@ -196,8 +196,8 @@ export default {
         "en": "WooCommerce — Order statuses"
       },
       "url": {
-        "tr": "https://woocommerce.com/documentation/woocommerce/getting-started/managing-orders/order-statuses/",
-        "en": "https://woocommerce.com/documentation/woocommerce/getting-started/managing-orders/order-statuses/"
+        "tr": "https://woocommerce.com/document/managing-orders/order-statuses/",
+        "en": "https://woocommerce.com/document/managing-orders/order-statuses/"
       }
     },
     {

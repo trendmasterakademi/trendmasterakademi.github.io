@@ -46,7 +46,7 @@ export default {
   ],
   "logNotu": {
     "tr": "İlk iki satır tek başına tüm siteyi arama sonuçlarından çıkarır ve genellikle test ortamından canlıya yanlışlıkla taşınır. Kontrolü saniyeler sürer.",
-    "en": "The first two directives wipe an entire domain from Google index within days, typically leaked accidentally during staging deployments. Takes seconds to verify."
+    "en": "The first two directives alone remove the entire site from search results, and they are usually carried over from the test environment to production by mistake. Takes seconds to verify."
   },
   "nedenler": [
     {
