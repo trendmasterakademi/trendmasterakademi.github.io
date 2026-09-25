@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { use, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, AlertTriangle, Terminal, MessageSquare, PhoneCall } from 'lucide-react';
@@ -77,6 +77,33 @@ const KrizSeridi = ({ teshis, isTr, lang, krizHattiAcik }) => {
   );
 };
 
+// Teşhis verisi Suspense ile okunur: sayfa ilk kez içerikle çizilir. Eskiden önce yükleme iskeleti çiziliyor,
+// veri gelince alt bilgi yer değiştiriyordu (mobilde ekran kayması 0,62). Söz her teşhis için bir kez kurulur;
+// çözülünce status/value alanları yazılır, böylece önceden yüklenen veri React'te beklemeden okunur.
+const teshisSozleri = new Map();
+const teshisOku = (slug) => {
+  if (!teshisSozleri.has(slug)) {
+    const soz = teshisLoaders[slug]()
+      .then((mod) => mod.default || mod)
+      .catch((err) => {
+        console.error('Failed to load diagnostic module:', err);
+        return null;
+      });
+    soz.then((deger) => {
+      soz.status = 'fulfilled';
+      soz.value = deger;
+    });
+    teshisSozleri.set(slug, soz);
+  }
+  return teshisSozleri.get(slug);
+};
+
+// İlk açılışta sayfa yükleyicisi (utils/sayfaYukle.js) çizimden önce bunu bekler.
+export const hazirla = (yol) => {
+  const eslesme = yol.match(/^\/(?:teshis|diagnostic|diagnostics)\/([^/]+)\/?$/);
+  return eslesme && teshisLoaders[eslesme[1]] ? teshisOku(eslesme[1]) : null;
+};
+
 const TeshisDetay = () => {
   const { slug } = useParams();
   const { i18n } = useTranslation();
@@ -84,49 +111,15 @@ const TeshisDetay = () => {
   const lang = isTr ? 'tr' : 'en';
   const krizHattiAcik = useKrizHattiAcik();
 
-  const [teshis, setTeshis] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [notFound, setNotFound] = useState(false);
-
-  useEffect(() => {
-    if (!slug || !teshisLoaders[slug]) {
-      setNotFound(true);
-      setLoading(false);
-      return;
-    }
-
-    setLoading(true);
-    setNotFound(false);
-
-    teshisLoaders[slug]()
-      .then((mod) => {
-        setTeshis(mod.default || mod);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error('Failed to load diagnostic module:', err);
-        setNotFound(true);
-        setLoading(false);
-      });
-  }, [slug]);
+  const teshis = slug && teshisLoaders[slug] ? use(teshisOku(slug)) : null;
 
   useEffect(() => {
     if (!teshis) return;
     setPageSeo(isTr ? `/teshis/${teshis.slug}/` : `/diagnostic/${teshis.slug}/`, lang);
   }, [teshis, lang, isTr]);
 
-  if (notFound) {
+  if (!teshis) {
     return <Navigate to="/teshis/" replace />;
-  }
-
-  if (loading || !teshis) {
-    return (
-      <div className="min-h-[70vh] pt-32 pb-24 px-4 max-w-5xl mx-auto flex flex-col items-center justify-center text-center space-y-6 bg-[var(--paper)]">
-        <div className="w-48 h-6 bg-[var(--surface)] rounded-full border border-[var(--rule)]"></div>
-        <div className="w-3/4 max-w-lg h-10 bg-[var(--surface)] rounded-2xl border border-[var(--rule)]"></div>
-        <div className="w-full max-w-md h-4 bg-[var(--surface)] rounded-lg"></div>
-      </div>
-    );
   }
 
   const baslikText = teshis.baslik[lang] || teshis.baslik.tr;

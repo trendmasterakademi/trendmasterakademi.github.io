@@ -3,9 +3,13 @@ import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
 import './index.css'
 import './i18n' // Initialize i18n
+import { ilkSayfayiHazirla } from './utils/sayfaYukle'
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+// Sayfanın kendi kodu inmeden çizme: ön-render HTML ekranda kalır, React sayfayı tek seferde içerikle çizer.
+ilkSayfayiHazirla().then(() => {
+  createRoot(document.getElementById('root')).render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  )
+})

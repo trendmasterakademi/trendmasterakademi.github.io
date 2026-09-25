@@ -3575,6 +3575,40 @@ const postMortemPages = postMortems.flatMap(item => {
 
 const pages = [...basePages, ...glossaryPages, ...teshisPages, ...postMortemPages];
 
+// Adım 92 — her sayfanın kendi kodu (ve teşhis sayfasında teşhis verisi) ana paketle aynı anda insin.
+// Eskiden ana paket → sayfa kodu → (teşhiste) veri sırayla iniyor, gerçek içerik geç çiziliyordu.
+// Rota → sayfa eşlemesi App.jsx'ten okunur (tek kaynak); paket adları derleme çıktısından bulunur, bağımlılıkları da eklenir.
+const assetDosyalari = fs.readdirSync(path.join(distDir, 'assets'));
+const paketBul = (ad) => {
+  const kacis = ad.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const eslesen = assetDosyalari.filter((f) => new RegExp(`^${kacis}-[A-Za-z0-9_-]{8}\\.js$`).test(f));
+  if (eslesen.length !== 1) {
+    console.error(`[ÖN-YÜKLEME HATA] "${ad}" paketi ${eslesen.length} kez bulundu (1 bekleniyordu).`);
+    process.exit(1);
+  }
+  return `/assets/${eslesen[0]}`;
+};
+const paketZinciri = (adres, gorulen = new Set()) => {
+  if (gorulen.has(adres)) return gorulen;
+  gorulen.add(adres);
+  const kod = fs.readFileSync(path.join(distDir, adres), 'utf8');
+  for (const m of kod.matchAll(/(?:from|import)\s*["'`]\.\/([A-Za-z0-9_.-]+\.js)["'`]/g)) paketZinciri(`/assets/${m[1]}`, gorulen);
+  return gorulen;
+};
+const appKaynak = fs.readFileSync(path.join(__dirname, 'src', 'App.jsx'), 'utf8');
+const sayfaDosyasi = Object.fromEntries([...appKaynak.matchAll(/const (\w+) = sayfa\('(\w+)', \(\) => import\('\.\/pages\/(\w+)'\)\);/g)].map((m) => [m[1], m[3]]));
+const rotalar = [...appKaynak.matchAll(/<Route path="([^"*]+)" element=\{<(\w+)[\s/>]/g)]
+  .filter((m) => sayfaDosyasi[m[2]])
+  .map((m) => ({ desen: new RegExp(`^${m[1].replace(/:\w+/g, '[^/]+').replace(/\/$/, '')}/?$`), dosya: sayfaDosyasi[m[2]] }));
+const sayfaOnYukleme = (temizYol) => {
+  const rota = rotalar.find((r) => r.desen.test(temizYol));
+  if (!rota) return [];
+  const liste = [...paketZinciri(paketBul(rota.dosya))];
+  const teshis = temizYol.match(/^\/(?:teshis|diagnostic)\/([^/]+)\/$/);
+  if (teshis) liste.push(paketBul(teshis[1]));
+  return liste;
+};
+
 pages.forEach(page => {
   const targetDir = path.join(distDir, page.dir);
   if (!fs.existsSync(targetDir)) {
@@ -3703,6 +3737,11 @@ pages.forEach(page => {
   `;
 
   html = html.replace(/<div id="root">[\s\S]*?<\/body>/i, `<div id="root">${semanticBlock}</div>\n  </body>`);
+
+  const onYukle = sayfaOnYukleme(cleanPath).filter((u) => !html.includes(u));
+  if (onYukle.length) {
+    html = html.replace('</head>', `${onYukle.map((u) => `  <link rel="modulepreload" crossorigin href="${u}">`).join('\n')}\n  </head>`);
+  }
 
   const destFile = path.join(targetDir, 'index.html');
   fs.writeFileSync(destFile, html, 'utf8');
@@ -4846,3 +4885,63 @@ function verifyFormRules() {
 }
 
 verifyFormRules();
+
+// ---------------------------------------------------------------------------
+// [BUILD GUARD HIZ] Adım 92 — Açılışta sayfa kayması (CLS) geri gelmesin.
+// A) Her sayfa kendi kodunu <link rel="modulepreload"> ile ana paketle aynı anda indirir (teşhis sayfası verisini de); dosyalar vardır.
+// B) React ilk çizimi sayfanın kodu (ve teşhis verisi) hazır olunca yapar; iskelet → içerik geçişi alt bilgiyi kaydırıyordu.
+//    main.jsx ilkSayfayiHazirla()'yı bekler, App.jsx sayfaları sayfa() ile tanımlar, TeshisDetay yükleme iskeleti taşımaz.
+// C) Serif ve mono yığınlarında web fontundan hemen sonra ölçüleri eşitlenmiş yedek yüz gelir; derlenmiş CSS'te size-adjust vardır.
+// ---------------------------------------------------------------------------
+function verifySpeedRules() {
+  console.log('\n[BUILD GUARD HIZ] Açılış kayması kuralları denetleniyor...');
+  const errors = [];
+  let sayfa = 0, tumSayfa = 0;
+  const ortak = /\/(rolldown-runtime|vendor-[a-z]+)-[A-Za-z0-9_-]{8}\.js$/;
+  const gezHtml = (d) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) { if (e.name !== 'assets') gezHtml(p); } else if (e.name === 'index.html') {
+    const h = fs.readFileSync(p, 'utf8');
+    const yol = '/' + path.relative(distDir, path.dirname(p)).split(path.sep).join('/') + '/';
+    if (!/rel="canonical"/.test(h)) return;
+    tumSayfa++;
+    const kendi = [...h.matchAll(/<link rel="modulepreload" crossorigin href="([^"]+)">/g)].map((m) => m[1]).filter((u) => !ortak.test(u));
+    if (kendi.length === 0) errors.push(`${yol.replace('//', '/')} — sayfanın kendi kodu ön-yüklenmiyor`);
+  } } };
+  gezHtml(distDir);
+  for (const kok of ['teshis', 'diagnostic']) {
+    const d = path.join(distDir, kok);
+    if (!fs.existsSync(d)) continue;
+    for (const e of fs.readdirSync(d, { withFileTypes: true })) {
+      if (!e.isDirectory()) continue;
+      const f = path.join(d, e.name, 'index.html');
+      if (!fs.existsSync(f)) continue;
+      sayfa++;
+      const h = fs.readFileSync(f, 'utf8');
+      const onYukle = [...h.matchAll(/<link rel="modulepreload" crossorigin href="([^"]+)">/g)].map((m) => m[1]);
+      const kod = onYukle.find((u) => /\/TeshisDetay-[A-Za-z0-9_-]{8}\.js$/.test(u));
+      const veri = onYukle.find((u) => new RegExp(`/${e.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}-[A-Za-z0-9_-]{8}\\.js$`).test(u));
+      if (!kod) errors.push(`/${kok}/${e.name}/ — teşhis sayfa kodu ön-yüklenmiyor`);
+      if (!veri) errors.push(`/${kok}/${e.name}/ — teşhis verisi ön-yüklenmiyor`);
+      for (const u of onYukle) if (!fs.existsSync(path.join(distDir, u))) errors.push(`/${kok}/${e.name}/ — ön-yüklenen dosya yok: ${u}`);
+    }
+  }
+  if (sayfa !== teshisData.length * 2) errors.push(`teşhis sayfası ${sayfa} (beklenen ${teshisData.length * 2})`);
+  const detay = fs.readFileSync(path.join(__dirname, 'src', 'pages', 'TeshisDetay.jsx'), 'utf8');
+  if (!detay.includes('use(teshisOku(slug))') || !detay.includes('export const hazirla') || /setLoading\(|useState\(true\)/.test(detay)) errors.push('TeshisDetay.jsx — teşhis verisi Suspense ile okunmuyor ya da yükleme iskeleti geri gelmiş');
+  const anaGiris = fs.readFileSync(path.join(__dirname, 'src', 'main.jsx'), 'utf8');
+  if (!/ilkSayfayiHazirla\(\)\.then\(\(\) => \{\s*createRoot/.test(anaGiris)) errors.push('main.jsx — React ilk çizimi sayfanın kodunu beklemiyor (ilkSayfayiHazirla)');
+  const uygulama = fs.readFileSync(path.join(__dirname, 'src', 'App.jsx'), 'utf8');
+  if (/\blazy\(/.test(uygulama) || !/= sayfa\('/.test(uygulama)) errors.push('App.jsx — sayfalar sayfa() yerine doğrudan lazy() ile tanımlanmış');
+  const css = fs.readFileSync(path.join(__dirname, 'src', 'index.css'), 'utf8');
+  if (!css.includes('--font-serif: "Source Serif 4", "Source Serif 4 Yedek",')) errors.push('index.css — serif yığınında web fontundan sonra "Source Serif 4 Yedek" yok');
+  if (!css.includes('--font-mono: "IBM Plex Mono", "IBM Plex Mono Yedek",')) errors.push('index.css — mono yığınında web fontundan sonra "IBM Plex Mono Yedek" yok');
+  const derlenmis = fs.readdirSync(path.join(distDir, 'assets')).filter((x) => x.endsWith('.css')).map((x) => fs.readFileSync(path.join(distDir, 'assets', x), 'utf8')).join('\n');
+  if (!/Source Serif 4 Yedek/.test(derlenmis) || !/size-adjust/.test(derlenmis)) errors.push('derlenmiş CSS — yedek font yüzü ya da size-adjust yok');
+  if (errors.length > 0) {
+    console.error(`\n[BUILD GUARD HIZ HATA] ${errors.length} kural ihlali:`);
+    errors.forEach((err) => console.error(`  - ${err}`));
+    process.exit(1);
+  }
+  console.log(`[BUILD GUARD HIZ GEÇTİ] ${tumSayfa} sayfa kendi kodunu ön-yüklüyor (${sayfa} teşhis sayfası verisini de); React ilk çizimde sayfanın kodunu bekliyor; yedek font yüzleri yerinde.`);
+}
+
+verifySpeedRules();
