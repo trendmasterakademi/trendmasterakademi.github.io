@@ -44,8 +44,8 @@ export const triageScenarios = [
       en: '1. Attempt soft cancellation with pg_cancel_backend().\n2. If unresponsive, safely terminate the blocking process with pg_terminate_backend(blocking_pid).\n3. Throttle inbound webhook/cron spikes until a connection pooler (PgBouncer) is engaged.'
     },
     tmaResolution: {
-      tr: 'TMA SWAT masası canlıya bağlanarak deadlock döngüsünü 20 dakikada izole eder; eksik foreign-key indekslerini CONCURRENTLY olarak ekler ve PgBouncer transaction havuzunu yayına alır.',
-      en: 'TMA SWAT connects to production, isolates the deadlock loop within 20 minutes, patches missing FK indexes concurrently, and activates PgBouncer transaction pooling.'
+      tr: 'TMA SWAT masası canlıya bağlanır ve deadlock döngüsünü izole eder; eksik foreign-key indekslerini CONCURRENTLY olarak ekler ve PgBouncer transaction havuzunu devreye alır.',
+      en: 'TMA SWAT connects to production and isolates the deadlock loop, adds missing FK indexes concurrently, and enables PgBouncer transaction pooling.'
     },
     linkedTeshisSlug: 'islemler-kilitlendi-sayfa-donuyor'
   },
@@ -89,8 +89,8 @@ export const triageScenarios = [
       en: '1. Decouple webhook processing: accept the payload into Redis and immediately return HTTP 200.\n2. Enforce strict Idempotency Key validation keyed on checkout token / order ID.\n3. Disable the checkout submit button immediately upon first client click.'
     },
     tmaResolution: {
-      tr: 'TMA mühendisleri 30 dakikada ödeme akışına Redis Redlock ve idempotency katmanı kurar; mükerrer çekimleri mutabakat tablosuyla eşleştirip müşteri bakiyesini düzeltir.',
-      en: 'TMA engineers deploy Redis Redlock and idempotency safeguards within 30 minutes, reconciling duplicate charges against gateway ledgers.'
+      tr: 'TMA mühendisleri ödeme akışına Redis Redlock ve idempotency katmanı kurar; mükerrer çekimleri ödeme sağlayıcısının kayıtlarıyla eşleştirir.',
+      en: 'TMA engineers add Redis Redlock and an idempotency layer to the payment flow, and reconcile duplicate charges against the payment provider\'s records.'
     },
     linkedTeshisSlug: 'odeme-iki-kez-alindi'
   },
@@ -134,8 +134,8 @@ export const triageScenarios = [
       en: '1. Spin up an extra worker replica to distribute load.\n2. Drain traffic from the leaking instance but keep it alive for snapshot comparison.\n3. Audit unclosed database streams, dangling event emitters, and unbounded in-memory caches.'
     },
     tmaResolution: {
-      tr: 'TMA kıdemli masası heap dökümünü analiz ederek tutulan closure veya dinleyici referansını satır numarasına kadar bulur; sızıntıyı giderip memory profiling testini tamamlar.',
-      en: 'TMA seniors profile the heap snapshot, isolate the retaining closure down to the exact source line, patch the leak, and verify memory stabilization.'
+      tr: 'TMA kıdemli masası heap dökümünü analiz ederek belleği tutan closure veya dinleyici referansını arar; sızıntıyı giderir ve bellek profili testiyle doğrular.',
+      en: 'TMA seniors analyse the heap snapshot to find the closure or listener that retains memory, fix the leak, and verify it with a memory profiling test.'
     },
     linkedTeshisSlug: 'sunucu-her-gun-yeniden-baslatiliyor'
   },
@@ -179,8 +179,8 @@ export const triageScenarios = [
       en: '1. Verify missing environment variables (.env) or unbuilt frontend asset chunks.\n2. If the bug is pure application logic with no breaking schema changes, trigger an instant rollback to the previous green release.\n3. Reproduce and patch the crash trace in a staging clone.'
     },
     tmaResolution: {
-      tr: 'TMA SWAT masası 15 dakikada deploy pipeline\'ını önceki stabil sürüme döndürür, kilitlenen çevre değişkenlerini güvenli kasaya (Vault) alır ve hatasız build hattı kurar.',
-      en: 'TMA SWAT executes zero-downtime rollback in 15 minutes, restores missing secret vaults, and fortifies the CI/CD deployment pipeline.'
+      tr: 'TMA SWAT masası deploy pipeline\'ını önceki stabil sürüme döndürür, eksik çevre değişkenlerini güvenli kasaya (Vault) alır ve build hattını yeniden kurar.',
+      en: 'TMA SWAT rolls the deploy pipeline back to the last stable release, moves missing secrets into a vault, and rebuilds the CI/CD pipeline.'
     },
     linkedTeshisSlug: 'deploy-sonrasi-site-bozuldu'
   },
@@ -224,8 +224,8 @@ export const triageScenarios = [
       en: '1. Implement exponential backoff with randomized jitter immediately on retry loops.\n2. Configure token bucket rate limiters matching provider-approved TPS ceilings.\n3. Pause low-priority notifications (marketing) to preserve quota for checkout transactions.'
     },
     tmaResolution: {
-      tr: 'TMA mühendisleri 45 dakikada dayanıklı kuyruk mimarisi (BullMQ/Redis) kurar, circuit breaker (devre kesici) modelini entegre eder ve 429 fırtınasını tamamen dindirir.',
-      en: 'TMA engineers deploy BullMQ with resilient circuit breakers within 45 minutes, smoothing traffic spikes below provider rate thresholds.'
+      tr: 'TMA mühendisleri kuyruk mimarisi (BullMQ/Redis) kurar ve circuit breaker (devre kesici) modelini ekleyerek istekleri sağlayıcının sınırının altında tutar.',
+      en: 'TMA engineers set up a queue (BullMQ/Redis) with circuit breakers to keep requests below the provider\'s rate limits.'
     },
     linkedTeshisSlug: 'entegrasyon-429-veriyor'
   },
@@ -269,8 +269,8 @@ export const triageScenarios = [
       en: '1. Salvage live environment variables from active process memory before any reboot.\n2. Provision a new corporate SSH key and revoke departed engineer keys from authorized_keys.\n3. Capture full disk snapshots in cloud provider consoles immediately.'
     },
     tmaResolution: {
-      tr: 'TMA çekirdek masası 12 kalemlik devir protokolünü çalıştırarak kayıp anahtarları kurtarır, yetkileri devralır ve ajans adına temiz bir teslim tutanağı hazırlar.',
-      en: 'TMA executes our 12-checkpoint Handover Protocol, extracts missing secrets from memory, rotates keys, and restores full agency ownership.'
+      tr: 'TMA çekirdek masası 12 kalemlik devir protokolünü uygular: kurtarılabilen anahtarları kurtarır, gerekenleri yeniler, yetkileri devralır ve ajans adına bir teslim tutanağı hazırlar.',
+      en: 'TMA runs its 12-checkpoint handover protocol: recovers the secrets that can be recovered, rotates keys, takes over access, and prepares a handover record for the agency.'
     },
     linkedTeshisSlug: 'yazilimci-gitti-koda-girilemiyor'
   }

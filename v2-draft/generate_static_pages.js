@@ -21,6 +21,7 @@ import { seoData, ogImageAlt } from './src/data/seoData.js';
 import { agencyH1, handoverAuditH1, downtimeCostH1, aboutH1, storyH1, salvageabilityH1, teshisCatalogH1, sosH1, privacyH1, tmaiH1 } from './src/data/pageH1Data.js';
 import { tmaiData, tmaiYollar, tmaiAraclar } from './src/data/tmaiData.js';
 import { agencyGiris } from './src/data/mesajData.js';
+import { kesintiYontem, peakPresets } from './src/data/kesintiYontemData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -411,63 +412,25 @@ const storyExtraContentEn = `
   </section>
 `;
 
-const kesintiExtraContent = `
-  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
-    <h2 class="text-2xl font-bold text-[var(--ink)] tracking-tight">Kesinti Maliyeti Nasıl Hesaplanır?</h2>
-    <p class="text-[var(--ink-3)] leading-relaxed">Bir web sitesi veya e-ticaret altyapısı çöktüğünde oluşan doğrudan ciro kaybı şeffaf bir matematiksel formüle dayanır:</p>
-    
-    <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--accent)] space-y-2">
-      <p>Saatlik Ciro Kaybı = (Aylık Ciro / 720 Saat) × Zaman Çarpanı</p>
-      <p>Toplam Kesinti Maliyeti = Saatlik Kayıp × Kesinti Süresi (Saat)</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
-      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
-        <h3 class="text-sm font-bold text-[var(--ink)]">Zirve Saat (Peak)</h3>
-        <p class="text-xs text-[var(--ink-3)] mt-1">2.0x Çarpan · Kampanya veya yoğun ziyaret saatleri.</p>
-      </div>
-      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
-        <h3 class="text-sm font-bold text-[var(--ink)]">Normal Saat</h3>
-        <p class="text-xs text-[var(--ink-3)] mt-1">1.0x Çarpan · Günlük standart trafik akışı.</p>
-      </div>
-      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
-        <h3 class="text-sm font-bold text-[var(--ink)]">Gece Saati</h3>
-        <p class="text-xs text-[var(--ink-3)] mt-1">0.5x Çarpan · Düşük trafik ve işlem hacmi.</p>
-      </div>
-    </div>
-
-    <p class="text-[var(--ink-3)] text-sm leading-relaxed">Doğrudan kayba ek olarak; Google reklam bütçesi israfı, arama motoru sıralama kaybı (SERP cezası) ve müşteri güven kaybı gibi dolaylı maliyetler genellikle doğrudan ciro kaybının 2 ila 3 katına ulaşır.</p>
-  </section>
+// Kesinti maliyeti — ön-render yöntem metni tek kaynaktan (src/data/kesintiYontemData.js). Adım 81.
+const renderKesintiExtra = (lang) => {
+  const y = kesintiYontem[lang];
+  const carpan = (f) => (lang === 'en' ? `${f.toFixed(1)}×` : `${f.toFixed(1).replace('.', ',')}×`);
+  return `
+<section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+<h2 class="text-2xl font-bold text-[var(--ink)] tracking-tight">${escapeHtml(y.baslik)}</h2>
+<div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--accent)]">
+<p>${escapeHtml(y.formul)}</p>
+</div>
+<ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
+${peakPresets.map(p => `<li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-sm"><strong class="text-[var(--ink)]">${escapeHtml(p.label[lang])}</strong> · ${carpan(p.factor)}</li>`).join('\n')}
+</ul>
+${y.paragraflar.map(t => `<p class="text-[var(--ink-3)] text-sm leading-relaxed">${escapeHtml(t)}</p>`).join('\n')}
+</section>
 `;
-
-const kesintiExtraContentEn = `
-  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
-    <h2 class="text-2xl font-bold text-[var(--ink)] tracking-tight">How Downtime Cost is Calculated</h2>
-    <p class="text-[var(--ink-3)] leading-relaxed">When an e-commerce platform or client API experiences an outage, direct lost revenue follows a transparent mathematical formula:</p>
-    
-    <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--accent)] space-y-2">
-      <p>Hourly Revenue Loss = (Monthly Revenue / 720 Hours) x Traffic Multiplier</p>
-      <p>Total Downtime Cost = Hourly Loss x Outage Duration (Hours)</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
-      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
-        <h3 class="text-sm font-bold text-[var(--ink)]">Peak Hours</h3>
-        <p class="text-xs text-[var(--ink-3)] mt-1">2.0x Multiplier · Campaign blasts or peak user checkout traffic.</p>
-      </div>
-      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
-        <h3 class="text-sm font-bold text-[var(--ink)]">Standard Hours</h3>
-        <p class="text-xs text-[var(--ink-3)] mt-1">1.0x Multiplier · Regular daytime business operations.</p>
-      </div>
-      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
-        <h3 class="text-sm font-bold text-[var(--ink)]">Off-Peak / Night</h3>
-        <p class="text-xs text-[var(--ink-3)] mt-1">0.5x Multiplier · Low traffic volume and background processing.</p>
-      </div>
-    </div>
-
-    <p class="text-[var(--ink-3)] text-sm leading-relaxed">Beyond direct checkout losses; burned advertising spend, search engine ranking degradation (SERP penalties), and damaged client trust often total 2x to 3x the direct revenue loss.</p>
-  </section>
-`;
+};
+const kesintiExtraContent = renderKesintiExtra('tr');
+const kesintiExtraContentEn = renderKesintiExtra('en');
 
 const sosPageExtraContent = `
   <section class="space-y-6">
@@ -1837,8 +1800,8 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/kesinti-maliyeti/',
     hreflangTr: 'https://trendmasterakademi.com/kesinti-maliyeti/',
     hreflangEn: 'https://trendmasterakademi.com/downtime-calc/',
-    heading: 'Web Sitesi & API Kesinti Maliyeti Hesaplayıcı',
-    subheading: 'Sistem çöktüğünde geçen her dakikanın ajansınıza ve müşterinize gerçek finansal ve itibar maliyetini hesaplayın.',
+    heading: '',
+    subheading: kesintiYontem.tr.altBaslik,
     extraContent: kesintiExtraContent,
     schema: {
       "@context": "https://schema.org",
@@ -1865,8 +1828,8 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/downtime-calc/',
     hreflangTr: 'https://trendmasterakademi.com/kesinti-maliyeti/',
     hreflangEn: 'https://trendmasterakademi.com/downtime-calc/',
-    heading: 'Website & API Downtime Loss Calculator',
-    subheading: 'Calculate the true financial and reputational cost of every minute your client systems remain offline.',
+    heading: '',
+    subheading: kesintiYontem.en.altBaslik,
     extraContent: kesintiExtraContentEn,
     schema: {
       "@context": "https://schema.org",

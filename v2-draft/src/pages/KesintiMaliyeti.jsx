@@ -8,18 +8,13 @@ import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 import { downtimeCostH1 } from '../data/pageH1Data';
+import { kesintiYontem, peakPresets } from '../data/kesintiYontemData';
 
 const revenueTiers = [
   { id: 't1', label: { tr: '₺250.000 - ₺500.000 / ay', en: '₺250,000 - ₺500,000 / month' }, monthlyAvg: 375000 },
   { id: 't2', label: { tr: '₺500.000 - ₺1.500.000 / ay', en: '₺500,000 - ₺1,500,000 / month' }, monthlyAvg: 1000000 },
   { id: 't3', label: { tr: '₺1.500.000 - ₺5.000.000 / ay', en: '₺1,500,000 - ₺5,000,000 / month' }, monthlyAvg: 3250000 },
   { id: 't4', label: { tr: '₺5.000.000 - ₺15.000.000+ / ay', en: '₺5,000,000 - ₺15,000,000+ / month' }, monthlyAvg: 10000000 }
-];
-
-const peakPresets = [
-  { id: 'peak', label: { tr: 'Zirve Saat', en: 'Peak Hours' }, factor: 2.0 },
-  { id: 'normal', label: { tr: 'Normal Saat', en: 'Normal Hours' }, factor: 1.0 },
-  { id: 'night', label: { tr: 'Gece', en: 'Night' }, factor: 0.5 }
 ];
 
 const AVERAGE_BASKET_TRY = 1268;
@@ -131,9 +126,7 @@ const KesintiMaliyeti = () => {
           </h1>
 
           <p className="text-[var(--ink-2)] text-base sm:text-lg leading-relaxed">
-            {isTr 
-              ? 'Sistem çöktüğünde veya sipariş akışı tıkandığında geçen sürenin doğrudan ciro kaybını şeffaf matematikle hesaplayın.' 
-              : 'Estimate direct revenue loss during live production outages with transparent, verifiable arithmetic.'}
+            {kesintiYontem[isTr ? 'tr' : 'en'].altBaslik}
           </p>
         </div>
 
@@ -411,34 +404,20 @@ const KesintiMaliyeti = () => {
           <div className="flex items-center gap-2 text-[var(--ink)] font-semibold">
             <Info className="w-4 h-4 text-[var(--accent)]" />
             <h3 className="text-base font-serif font-semibold text-[var(--ink)]">
-              {isTr ? 'Hesaplama Metodolojisi & Şeffaflık Beyanı' : 'Calculation Methodology & Transparency Disclosure'}
+              {kesintiYontem[isTr ? 'tr' : 'en'].baslik}
             </h3>
           </div>
           
           <div className="p-4 rounded-xl bg-[var(--paper)] border border-[var(--rule)] font-mono text-[var(--ink)] text-xs overflow-x-auto">
             <code>
-              {isTr 
-                ? 'Tahmini Doğrudan Kayıp = (Aylık Ciro ÷ 730 Saat) × Kesinti Süresi (Saat) × Zirve Katsayısı'
-                : 'Estimated Direct Loss = (Monthly Revenue ÷ 730 Hours) × Outage Duration (Hours) × Peak Factor'}
+              {kesintiYontem[isTr ? 'tr' : 'en'].formul}
             </code>
           </div>
 
           <div className="space-y-3 leading-relaxed text-[var(--ink-2)] text-xs sm:text-sm">
-            <p>
-              {isTr 
-                ? 'Bu hesap tek bir formülden ibarettir: aylık cironuz 730 saate bölünür, kesinti süresiyle ve seçtiğiniz zirve katsayısıyla çarpılır. Gizli çarpan yoktur; yukarıdaki her adım ekranda görünür ve katsayıyı siz değiştirirsiniz.'
-                : 'This calculation is a single formula: your monthly revenue divided by 730 hours, multiplied by the outage duration and the peak factor you choose. There are no hidden multipliers; every step above is shown on screen and you control the factor.'}
-            </p>
-            <p>
-              {isTr 
-                ? 'Sektöre göre çarpan, itibar kaybı oranı veya "müdahale edilmezse" senaryosu kullanmıyoruz — bunlar güvenilir biçimde ölçülemez. Dolaşan saatlik kesinti maliyeti rakamlarının çoğu kurumsal veri merkezi örneklemine dayanır ve ajans müşterisi ölçeğinde anlamsızdır.'
-                : 'We do not use sector multipliers, reputation-loss ratios or "what if nobody intervened" scenarios — those cannot be measured reliably. Most published hourly downtime figures come from enterprise data-centre samples and do not apply at agency-client scale.'}
-            </p>
-            <p>
-              {isTr 
-                ? 'Sonuç doğrudan ciro kaybının tahminidir; iade, kargo, destek yükü ve müşteri kaybı gibi dolaylı etkileri içermez.'
-                : 'The result estimates direct revenue loss only; it excludes refunds, shipping, support load and customer churn.'}
-            </p>
+            {kesintiYontem[isTr ? 'tr' : 'en'].paragraflar.map((t, i) => (
+              <p key={i}>{t}</p>
+            ))}
           </div>
         </div>
 

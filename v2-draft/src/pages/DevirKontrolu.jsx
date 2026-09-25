@@ -845,7 +845,7 @@ const DevirKontrolu = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="p-6 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-3">
                   <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[var(--surface)] text-[var(--ink)] border border-[var(--rule)]">
-                    {isTr ? 'ADIM 01 (0 - 24 Saat)' : 'STEP 01 (0 - 24 Hours)'}
+                    {isTr ? 'ADIM 01' : 'STEP 01'}
                   </span>
                   <h4 className="text-base font-semibold font-serif text-[var(--ink)]">
                     {isTr ? 'Erişim Dondurma & İzolasyon' : 'Credential Freeze & Isolation'}
@@ -859,7 +859,7 @@ const DevirKontrolu = () => {
 
                 <div className="p-6 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-3">
                   <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[var(--surface)] text-[var(--ink)] border border-[var(--rule)]">
-                    {isTr ? 'ADIM 02 (24 - 48 Saat)' : 'STEP 02 (24 - 48 Hours)'}
+                    {isTr ? 'ADIM 02' : 'STEP 02'}
                   </span>
                   <h4 className="text-base font-semibold font-serif text-[var(--ink)]">
                     {isTr ? 'Sandbox Derleme & .env Doğrulama' : 'Sandbox Build & Secrets Audit'}
@@ -873,7 +873,7 @@ const DevirKontrolu = () => {
 
                 <div className="p-6 rounded bg-[var(--paper)] border border-[var(--rule)] space-y-3">
                   <span className="px-2.5 py-0.5 rounded text-xs font-mono font-semibold bg-[var(--surface)] text-[var(--ink)] border border-[var(--rule)]">
-                    {isTr ? 'ADIM 03 (48 - 72 Saat)' : 'STEP 03 (48 - 72 Hours)'}
+                    {isTr ? 'ADIM 03' : 'STEP 03'}
                   </span>
                   <h4 className="text-base font-semibold font-serif text-[var(--ink)]">
                     {isTr ? 'Temiz Devir & Dokümantasyon' : 'Clean Handover & Docs'}
