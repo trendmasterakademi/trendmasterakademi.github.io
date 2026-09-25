@@ -5,6 +5,7 @@ import {
   FileText, AlertTriangle, ArrowRight, ShieldCheck, 
   Clock, Database, Layers, CheckCircle2, Terminal, Calendar
 } from 'lucide-react';
+import { siddetEtiketi } from '../data/siddetData';
 import { postMortems, postMortemDisclosure, postMortemHubH1 } from '../data/postMortemData';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
@@ -103,7 +104,7 @@ const PostMortemIndex = () => {
                       : 'bg-[var(--tint-warn-bg)] border border-[var(--tint-warn-rule)] text-[var(--tint-warn-ink)]'
                   }`}>
                     <AlertTriangle className="w-3 h-3" />
-                    {item.severity}
+                    {siddetEtiketi(item.severity, isTr ? 'tr' : 'en')}
                   </span>
                   <span className="font-mono text-xs text-[var(--ink-3)]">
                     {item.category[lang]}

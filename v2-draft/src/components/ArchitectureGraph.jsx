@@ -12,7 +12,7 @@ const ArchitectureGraph = () => {
     {
       id: 0,
       title: { tr: 'İstemci & Ajans Müşterileri', en: 'Client & User Traffic' },
-      badge: 'TRAFFIC SOURCE',
+      badge: { tr: 'TRAFİK KAYNAĞI', en: 'TRAFFIC SOURCE' },
       icon: Globe,
       desc: { 
         tr: 'Yüksek hacimli web, mobil (iOS/Android) ve 3. parti API istekleri.', 
@@ -23,7 +23,7 @@ const ArchitectureGraph = () => {
     {
       id: 1,
       title: { tr: 'Next.js Edge & CDN Katmanı', en: 'Next.js Edge & Global CDN' },
-      badge: 'EDGE ROUTING',
+      badge: { tr: 'EDGE YÖNLENDİRME', en: 'EDGE ROUTING' },
       icon: Layers,
       desc: { 
         tr: 'SSR, ISR, küresel önbellek ve DDoS kalkanı.', 
@@ -33,8 +33,8 @@ const ArchitectureGraph = () => {
     },
     {
       id: 2,
-      title: { tr: 'TMA SWAT & FastAPI Core', en: 'TMA SWAT & FastAPI Core' },
-      badge: 'CORE ENGINE',
+      title: { tr: 'TMA SWAT & FastAPI Çekirdeği', en: 'TMA SWAT & FastAPI Core' },
+      badge: { tr: 'ÇEKİRDEK MOTOR', en: 'CORE ENGINE' },
       icon: Cpu,
       desc: { 
         tr: 'Asenkron mikroservisler, yetkilendirme, iş mantığı ve acil hotfix koruması.', 
@@ -44,8 +44,8 @@ const ArchitectureGraph = () => {
     },
     {
       id: 3,
-      title: { tr: 'PostgreSQL & Redis DB Cluster', en: 'PostgreSQL & Redis DB Cluster' },
-      badge: 'DATA INTEGRITY',
+      title: { tr: 'PostgreSQL & Redis Veritabanı Kümesi', en: 'PostgreSQL & Redis DB Cluster' },
+      badge: { tr: 'VERİ BÜTÜNLÜĞÜ', en: 'DATA INTEGRITY' },
       icon: Database,
       desc: { 
         tr: 'B-Tree indeksleme, bağlantı havuzlama (Pooling) ve mikro-saniye caching.', 
@@ -56,7 +56,7 @@ const ArchitectureGraph = () => {
     {
       id: 4,
       title: { tr: 'AI Engine & Ödeme Webhookları', en: 'AI Engine & Payment Webhooks' },
-      badge: 'ASYNC WORKERS',
+      badge: { tr: 'ARKA PLAN İŞLERİ', en: 'ASYNC WORKERS' },
       icon: Server,
       desc: { 
         tr: "OpenAI/LLM otomasyonları, Stripe/iyzico idempotent güvenli ödeme pipeline'ları.", 
@@ -111,7 +111,7 @@ const ArchitectureGraph = () => {
                         <Icon className="w-5 h-5" />
                       </div>
                       <span className="text-xs font-mono font-medium text-[var(--ink-3)] bg-[var(--paper)] px-2 py-0.5 rounded border border-[var(--rule)]">
-                        {node.badge}
+                        {node.badge[isTr ? 'tr' : 'en']}
                       </span>
                     </div>
 

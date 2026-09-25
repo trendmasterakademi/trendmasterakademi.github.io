@@ -82,7 +82,7 @@ const scenarios = [
   },
   {
     id: 'handover',
-    code: 'HANDOVER HELL',
+    code: 'HANDOVER',
     tag: { tr: 'YÜKSEK RİSK', en: 'HIGH RISK' },
     title: { tr: 'Yazılımcı / Ekip Projeden Çekildi', en: 'Developer Disengaged / Stranded Codebase' },
     subtitle: { tr: 'Yarım kalmış kod tabanı · Dokümantasyon yok · Devir tıkanması', en: 'Stranded codebase · No documentation · Handover bottleneck' },
@@ -122,7 +122,7 @@ const scenarios = [
   },
   {
     id: 't48h',
-    code: 'T−48H CRUNCH',
+    code: 'T-48H',
     tag: { tr: 'ZAMAN KRİTİK', en: 'TIME CRITICAL' },
     title: { tr: 'Teslime 48 Saat Kaldı / Lansman Krizi', en: '48 Hours to Launch / Delivery Crunch' },
     subtitle: { tr: 'Kapasite açığı · Yetişmeyen modüller · Acil bitirme baskısı', en: 'Capacity shortage · Pending modules · Urgent delivery crunch' },
@@ -162,7 +162,7 @@ const scenarios = [
   },
   {
     id: 'overflow',
-    code: 'WHITE-LABEL CAPACITY',
+    code: 'WHITE-LABEL',
     tag: { tr: 'KAPASİTE VE TAŞERON ÜRETİM', en: 'CAPACITY & WHITE-LABEL' },
     title: { tr: 'Yoğunluktan Yetişmeyen İşler & Web Üretimi', en: 'Capacity Overflow & Web Production' },
     subtitle: { tr: 'İç ekip yoğunluğu · Yetişmeyen kurumsal web & SaaS · Dış kaynak yazılım üretimi', en: 'Internal team overload · Pending web & SaaS projects · White-label engineering' },
@@ -202,7 +202,7 @@ const scenarios = [
   },
   {
     id: 'complex',
-    code: 'SPECIAL ARCHITECTURE',
+    code: 'AI & API',
     tag: { tr: 'UZMANLIK GEREKSİNİMİ', en: 'SPECIALTY NEEDED' },
     title: { tr: 'Özel Mimari, AI & Ödeme Tıkanması', en: 'Custom Architecture, AI & Payment Block' },
     subtitle: { tr: 'Mevcut ekibin uzmanlık alanı dışı · Yapay zeka · Özel algoritmalar', en: 'Out of team expertise · Artificial intelligence · Custom algorithms' },
@@ -447,22 +447,31 @@ const CrashTest = () => {
   const isAllAnswered = currentQuestions.length > 0 && currentQuestions.every(q => answers[q.id]);
 
   const copyActionPlan = () => {
-    const header = `=== TMA AGENCY CRASH TEST REPORT ===\n` +
-      `Scenario: ${selectedScenario.title[isTr ? 'tr' : 'en']} (${selectedScenario.code})\n`;
+    const header = isTr
+      ? `=== TMA AGENCY CRASH TEST RAPORU ===\n` +
+        `Senaryo: ${selectedScenario.title.tr} (${selectedScenario.code})\n`
+      : `=== TMA AGENCY CRASH TEST REPORT ===\n` +
+        `Scenario: ${selectedScenario.title.en} (${selectedScenario.code})\n`;
 
     const body = matchResult.matched && diagData
-      ? `Matched Diagnosis: #${diagData.no} · ${diagData.baslik[isTr ? 'tr' : 'en']}\n` +
-        `Severity: ${diagData.aciliyet?.etiket?.[isTr ? 'tr' : 'en'] || ''}\n` +
-        `Diagnostic Tests:\n` +
+      ? `${isTr ? 'Eşleşen Teşhis' : 'Matched Diagnosis'}: #${diagData.no} · ${diagData.baslik[isTr ? 'tr' : 'en']}\n` +
+        `${isTr ? 'Aciliyet' : 'Severity'}: ${diagData.aciliyet?.etiket?.[isTr ? 'tr' : 'en'] || ''}\n` +
+        `${isTr ? 'Teşhis Testleri' : 'Diagnostic Tests'}:\n` +
         (diagData.nedenler || []).map(n => {
           const t = n.diyagramTest?.[isTr ? 'tr' : 'en'];
           return `  - ${Array.isArray(t) ? t.join(' ') : (t || '')}`;
         }).join('\n') + `\n\n`
       : matchResult.matched
-      ? `Matched Diagnosis: ${matchResult.slug}\n\n`
-      : `Result: Capacity and timeline scoping required.\n\n`;
+      ? `${isTr ? 'Eşleşen Teşhis' : 'Matched Diagnosis'}: ${matchResult.slug}\n\n`
+      : (isTr ? `Sonuç: Kapsam ve kapasite görüşmesi gerekli.\n\n` : `Result: Capacity and timeline scoping required.\n\n`);
 
-    const protocol = `ACTION RECOVERY PROTOCOL:\n` +
+    const protocol = isTr
+      ? `İLK KURTARMA REÇETESİ:\n` +
+        `Aşama 1: Kod Dondurma & İzole Teşhis\n` +
+        `Aşama 2: White-Label Hotfix & Onarım\n` +
+        `Aşama 3: Canlı Dağıtım & Temiz Devir\n\n` +
+        `TMA Kriz Masası: +90 534 371 35 73 | info@trendmasterakademi.com`
+      : `ACTION RECOVERY PROTOCOL:\n` +
       `Phase 1: Code Freeze, Repo Isolation & Diagnostics\n` +
       `Phase 2: White-Label Hotfix & Repair\n` +
       `Phase 3: Production Deployment & Clean Handover\n\n` +
@@ -520,8 +529,8 @@ const CrashTest = () => {
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-[var(--rule)]">
           <div className="flex items-center gap-3">
             <span className="w-2.5 h-2.5 rounded-full bg-[var(--sev-ok)]"></span>
-            <span lang="en" className="text-xs sm:text-sm font-mono tracking-widest text-[var(--ink-3)] uppercase">
-              TMA Response Desk // Diagnostic Engine
+            <span lang={isTr ? undefined : 'en'} className="text-xs sm:text-sm font-mono tracking-widest text-[var(--ink-3)] uppercase">
+              {isTr ? 'TMA Kriz Masası // Teşhis Motoru' : 'TMA Response Desk // Diagnostic Engine'}
             </span>
           </div>
           <div className="flex items-center gap-2">
@@ -1215,7 +1224,7 @@ const CrashTest = () => {
                   {/* Additional Actions Inside <details> */}
                   <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
                     {/* Handover Tool Link */}
-                    {selectedScenario?.code === 'HANDOVER HELL' && (
+                    {selectedScenario?.code === 'HANDOVER' && (
                       <Link
                         to="/devir-kontrolu/"
                         className="px-5 py-3 rounded bg-[var(--surface)] hover:bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink)] font-semibold text-xs sm:text-sm flex items-center gap-2 transition-colors cursor-pointer min-h-[44px]"

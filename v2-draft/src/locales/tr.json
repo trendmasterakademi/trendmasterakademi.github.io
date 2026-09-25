@@ -48,17 +48,17 @@
   "crisis-card1-desc": "Veritabanı transaction havuzunun kilitlenmesi, serialization hataları veya ödeme API'larının yanıt vermemesi sonucu oluşan canlı kesintiler.",
   "crisis-card1-action": "Crash Test'te Teşhis Et →",
 
-  "crisis-card2-tag": "STRANDED CODEBASE",
+  "crisis-card2-tag": "HANDOVER",
   "crisis-card2-title": "Dokümantasyonsuz / Yarım Kalan Kod Devri",
   "crisis-card2-desc": "Geliştiricisi ayrılmış, ortam değişkenleri (env) kayıp, tersine mühendislik ve bağımlılık izolasyonu gerektiren karmaşık kod tabanları.",
   "crisis-card2-action": "Crash Test'te Teşhis Et →",
 
-  "crisis-card3-tag": "T−48H CRUNCH",
+  "crisis-card3-tag": "T-48H",
   "crisis-card3-title": "Lansman Öncesi Son Mühendislik Sıkıştırması",
   "crisis-card3-desc": "Teslimata sayılı saatler kala darboğaza giren, asenkron kuyruk entegrasyonu veya acil performans refactor'ü gerektiren kritik modüller.",
   "crisis-card3-action": "Crash Test'te Teşhis Et →",
 
-  "crisis-card4-tag": "CAPACITY & HEADLESS",
+  "crisis-card4-tag": "KAPASİTE & HEADLESS",
   "crisis-card4-title": "Kapasite Aşımı & İleri Düzey Dış Kaynak Üretimi",
   "crisis-card4-desc": "Geliştirme kapasitesinin dolduğu noktalarda; özel kurumsal web, headless mimari ve SaaS platformlarının görünmez teknik ortaklıkla üretimi.",
   "crisis-card4-action": "Crash Test'te Değerlendir →",

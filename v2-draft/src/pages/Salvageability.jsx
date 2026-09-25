@@ -230,10 +230,10 @@ const Salvageability = () => {
       en: 'Surgical SWAT Rescue Viable (70%+ Salvageable)' 
     },
     badgeColor: 'text-[var(--tint-ok-ink)] bg-[var(--tint-ok-bg)] border-[var(--tint-ok-rule)]',
-    tag: { tr: 'REFACTOR & STABILIZE', en: 'REFACTOR & STABILIZE' },
+    tag: { tr: 'KURTAR & STABİLİZE ET', en: 'REFACTOR & STABILIZE' },
     summary: {
-      tr: 'Kod tabanının çekirdeği ve veri omurgası kurtarılmaya değer. Sıfırdan yazım hem maliyet hem de zaman açısından gereksiz bir risk yaratır. Cerrahi bir SWAT müdahalesiyle 48-72 saatte kilit noktalar izole edilip sistem stabilize edilebilir.',
-      en: 'The core and data backbone are worth saving. A full rewrite would introduce unnecessary cost and timeline risk. Surgical SWAT stabilization within 48-72 hours can unblock delivery.'
+      tr: 'Kod tabanının çekirdeği ve veri omurgası kurtarılmaya değer. Sıfırdan yazım hem maliyet hem de zaman açısından gereksiz bir risk yaratır. Cerrahi bir SWAT müdahalesiyle kilit noktalar izole edilip sistem stabilize edilebilir.',
+      en: 'The core and data backbone are worth saving. A full rewrite would introduce unnecessary cost and timeline risk. Surgical SWAT stabilization can unblock delivery.'
     },
     actionPlan: [
       { tr: 'Veritabanı transaction sırasını ve indeksleme kilitlerini izole et', en: 'Isolate DB transaction locks and indexing bottlenecks' },
@@ -254,7 +254,7 @@ const Salvageability = () => {
         en: 'Clean Slate Recommendation (Rebuild Is More Economical)' 
       },
       badgeColor: 'text-[var(--tint-danger-ink)] bg-[var(--tint-danger-bg)] border-[var(--tint-danger-rule)]',
-      tag: { tr: 'SCRAP & REBUILD', en: 'SCRAP & REBUILD' },
+      tag: { tr: 'SIFIRDAN YAZ', en: 'SCRAP & REBUILD' },
       summary: {
         tr: 'Mevcut kod tabanındaki teknik borç faizi, sıfırdan modern stack ile yazmaktan daha maliyetlidir. Bu koda harcanacak her geliştirici saati, yeni hatalar üretecek bir kara deliktir. Veritabanı şemasını dışa aktarıp temiz bir mimariyle baştan yazılması tavsiye edilir.',
         en: 'The technical debt drag exceeds the cost of a modern greenfield build. Investing further engineering hours here will generate diminishing returns. Export schema/data and rebuild clean.'
@@ -262,7 +262,7 @@ const Salvageability = () => {
       actionPlan: [
         { tr: 'Mevcut veritabanındaki verileri doğrula ve güvenli dump al', en: 'Verify and extract clean database schemas and data dumps' },
         { tr: 'Gereksiz karmaşıklığı atıp sadece çekirdek MVP fonksiyonlarını listele', en: 'Strip unnecessary legacy bloat; define core MVP specifications' },
-        { tr: 'Modern, tip güvenli altyapı (FastAPI / Next.js / Nest) ile 3-4 haftalık sprint kur', en: 'Launch a 3-4 week sprint on modern, type-safe architecture' }
+        { tr: 'Modern, tip güvenli altyapı (FastAPI / Next.js / Nest) ile sprint planı kur', en: 'Launch a sprint on modern, type-safe architecture' }
       ],
       financialRoi: {
         tr: 'Eski kodu yamamaya çalışmak, baştan yazmaktan %140 daha pahalıya mal olur.',
@@ -277,7 +277,7 @@ const Salvageability = () => {
         en: 'Staged Strangler Fig Migration Recommended' 
       },
       badgeColor: 'text-[var(--accent)] bg-[var(--accent-wash)] border-[var(--accent)]/30',
-      tag: { tr: 'STRANGLER MIGRATION', en: 'STRANGLER MIGRATION' },
+      tag: { tr: 'KADEMELİ GEÇİŞ (STRANGLER)', en: 'STRANGLER MIGRATION' },
       summary: {
         tr: 'Kod tabanı ne tamamen çöpe atılacak kadar çürük ne de tek seferde düzeltilecek kadar temiz. Canlı sistem durdurulamaz; bu nedenle monolitik yapı canlıda çalışırken, tıkanan modüller (ödeme, auth, api) paralel mikroservislerle kademeli olarak devralınmalıdır.',
         en: 'The system is neither completely dead nor clean enough for a quick hotfix. Live traffic cannot stop; adopt the Strangler Fig pattern to migrate bottleneck modules in parallel.'
@@ -365,7 +365,7 @@ https://trendmasterakademi.com/salvageability/`;
 
         <div className="flex flex-wrap gap-2.5 pt-2 font-mono text-xs">
           <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--accent)] font-semibold">
-            {isTr ? 'Refactor vs. Rebuild vs. Scrap' : 'Refactor vs. Rebuild vs. Scrap'}
+            {isTr ? 'Kurtar mı, Kademeli Geçiş mi, Sıfırdan Yaz mı?' : 'Refactor vs. Rebuild vs. Scrap'}
           </span>
           <span className="px-3 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] font-semibold">
             {isTr ? '60 Saniyede Matematiksel Karar' : 'Mathematical Decision in 60s'}

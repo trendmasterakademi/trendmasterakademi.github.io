@@ -8,6 +8,7 @@ import { teshisData } from './src/data/teshisData.js';
 import { diagnosticLogEnMap } from './src/data/diagnosticLogEnMap.js';
 import { postMortems, postMortemDisclosure, getPostMortemH1, postMortemHubH1 } from './src/data/postMortemData.js';
 import { triageScenarios, triageH1 } from './src/data/triageData.js';
+import { siddetEtiketi } from './src/data/siddetData.js';
 import { slaTiers, coreCommitments, slaScope, slaH1 } from './src/data/slaData.js';
 import { techStackData, techStackH1 } from './src/data/techStackData.js';
 import { ndaData, mutualNdaH1 } from './src/data/ndaData.js';
@@ -866,7 +867,7 @@ const salvageabilityExtraContentTr = `
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
       <div><strong class="text-[var(--ink)] block text-sm">5 Boyutlu Risk</strong> Mimari, Test, Veritabanı, Trafik, Teknik Borç</div>
       <div><strong class="text-[var(--tint-ok-ink)] block text-sm">0 Erişim</strong> Şifre veya repo istemez</div>
-      <div><strong class="text-[var(--accent)] block text-sm">3 Stratejik Karar</strong> SWAT Rescue, Strangler Fig veya Clean Slate</div>
+      <div><strong class="text-[var(--accent)] block text-sm">3 Stratejik Karar</strong> kurtarma, kademeli geçiş (Strangler Fig) veya sıfırdan yazım</div>
     </div>
 
     <h2 class="text-xl font-bold text-[var(--ink)]">Değerlendirilen 5 Kritik Boyut</h2>
@@ -942,7 +943,7 @@ const postMortemHubExtraContentTr = `
         <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
           <div class="flex flex-wrap items-center justify-between gap-2">
             <a href="/post-mortem/${escapeHtml(item.slug)}/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ ${escapeHtml(item.no)} · ${escapeHtml(item.title?.tr || '')}</a>
-            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">${escapeHtml(item.severity)} · ${escapeHtml(item.category?.tr || '')}</span>
+            <span class="text-xs font-mono text-[var(--tint-warn-ink)]">${escapeHtml(siddetEtiketi(item.severity, 'tr'))} · ${escapeHtml(item.category?.tr || '')}</span>
           </div>
           <p class="text-sm text-[var(--ink-3)] leading-relaxed">${escapeHtml(item.summary?.tr || '')}</p>
           <div class="text-xs font-mono text-[var(--ink-3)]">Süre: ${escapeHtml(item.duration?.tr || '')} · Etki: ${escapeHtml(item.impact?.tr || '')}</div>
@@ -988,7 +989,7 @@ const triageExtraContentTr = `
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between gap-2">
           <h3 class="text-base font-bold text-[var(--accent)] font-mono">${escapeHtml(sc.category?.tr || '')}</h3>
-          <span class="text-xs font-mono text-[var(--tint-warn-ink)]">${escapeHtml(sc.severity)} · İlk Yanıt: ${escapeHtml(sc.firstResponseTime?.tr || '')}</span>
+          <span class="text-xs font-mono text-[var(--tint-warn-ink)]">${escapeHtml(siddetEtiketi(sc.severity, 'tr'))} · İlk Yanıt: ${escapeHtml(sc.firstResponseTime?.tr || '')}</span>
         </div>
         <p class="text-[var(--ink-3)] text-sm leading-relaxed">${escapeHtml(sc.symptom?.tr || '')}</p>
         <div class="pt-2 text-xs font-mono text-[var(--tint-danger-ink)]">
@@ -2105,7 +2106,7 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/kurtarilabilirlik/',
     hreflangTr: 'https://trendmasterakademi.com/kurtarilabilirlik/',
     hreflangEn: 'https://trendmasterakademi.com/salvageability/',
-    heading: 'Kurtarılabilirlik İndeksi // Refactor vs Rebuild Karar Matrisi',
+    heading: '',
     subheading: 'Mevcut kodu kurtarmaya değer mi, boğma stratejisi mi uygulanmalı, yoksa temiz sayfa mı açılmalı? 5 boyutlu objektif risk puanlaması ve anlık karar raporu.',
     extraContent: salvageabilityExtraContentTr,
     schema: {
@@ -2160,7 +2161,7 @@ const basePages = [
     ogUrl: 'https://trendmasterakademi.com/post-mortem/',
     hreflangTr: 'https://trendmasterakademi.com/post-mortem/',
     hreflangEn: 'https://trendmasterakademi.com/post-mortems/',
-    heading: 'Incident Post-Mortem & RCA Kütüphanesi',
+    heading: '',
     subheading: 'Sahada yaşanmış gerçek krizler, kronolojik hata akışları, kök neden analizleri ve uygulanan kalıcı mühendislik çözümleri.',
     extraContent: postMortemHubExtraContentTr,
     schema: {
@@ -3319,7 +3320,7 @@ const postMortemPages = postMortems.flatMap(item => {
   const trExtraContent = `
     <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
       <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-xs text-[var(--ink-3)] grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div><span class="text-[var(--ink-3)] block">SEVERITY</span><strong class="text-[var(--tint-warn-ink)]">${escapeHtml(item.severity)}</strong></div>
+        <div><span class="text-[var(--ink-3)] block">ŞİDDET</span><strong class="text-[var(--tint-warn-ink)]">${escapeHtml(siddetEtiketi(item.severity, 'tr'))}</strong></div>
         <div><span class="text-[var(--ink-3)] block">KATEGORİ</span><strong class="text-[var(--ink)]">${escapeHtml(item.category?.tr || '')}</strong></div>
         <div><span class="text-[var(--ink-3)] block">KESİNTİ SÜRESİ</span><strong class="text-[var(--tint-ok-ink)]">${escapeHtml(item.duration?.tr || '')}</strong></div>
         <div><span class="text-[var(--ink-3)] block">TARİH</span><strong class="text-[var(--accent)]">${escapeHtml(resolveText(item.date, 'tr'))}</strong></div>
@@ -3598,7 +3599,7 @@ pages.forEach(page => {
           <a href="${page.lang === 'en' ? tmaiYollar.en : tmaiYollar.tr}" class="hover:underline">tmai</a>
           <a href="${page.lang === 'en' ? '/diagnostic/' : '/teshis/'}" class="hover:underline">${page.lang === 'en' ? 'Diagnostic Catalog' : 'Teşhis Kataloğu'}</a>
           <a href="${page.lang === 'en' ? '/salvageability/' : '/kurtarilabilirlik/'}" class="hover:underline">${page.lang === 'en' ? 'Salvageability Index' : 'Kurtarılabilirlik İndeksi'}</a>
-          <a href="${page.lang === 'en' ? '/post-mortems/' : '/post-mortem/'}" class="hover:underline">${page.lang === 'en' ? 'Post-Mortem & RCA' : 'Post-Mortem & RCA'}</a>
+          <a href="${page.lang === 'en' ? '/post-mortems/' : '/post-mortem/'}" class="hover:underline">${page.lang === 'en' ? 'Post-Mortem & RCA' : 'Post-Mortem ve Kök Neden Arşivi'}</a>
           <a href="${page.lang === 'en' ? '/triage/' : '/triyaj/'}" class="hover:underline">${page.lang === 'en' ? 'Triage Simulator' : 'Triyaj Simülatörü'}</a>
           <a href="/sla/" class="hover:underline">${page.lang === 'en' ? 'SLA & Commitments' : 'SLA & Taahhütler'}</a>
           <a href="${page.lang === 'en' ? '/tech-matrix/' : '/teknoloji-uyumluluk/'}" class="hover:underline">${page.lang === 'en' ? 'Tech Matrix' : 'Teknoloji Matrisi'}</a>

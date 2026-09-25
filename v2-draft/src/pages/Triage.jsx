@@ -6,6 +6,7 @@ import {
   ArrowRight, PhoneCall, ExternalLink, Activity, Flame, 
   CheckCircle2, XCircle, AlertOctagon, CornerDownRight, Clock
 } from 'lucide-react';
+import { siddetEtiketi } from '../data/siddetData';
 import { triageScenarios, triageH1 } from '../data/triageData';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
@@ -35,7 +36,7 @@ export const Triage = () => {
   const copyFullReport = () => {
     const report = isTr ? `[TMA OLAY TRİYAJ RAPORU]
 Kategori: ${activeScenario.category[lang]}
-Şiddet: ${activeScenario.severity}
+Şiddet: ${siddetEtiketi(activeScenario.severity, 'tr')}
 Semptom: ${activeScenario.symptom[lang]}
 Tahmini İlk Yanıt Süresi: ${activeScenario.firstResponseTime[lang]}
 
@@ -115,7 +116,7 @@ Report date: ${new Date().toISOString()}`;
                       ? 'bg-[var(--tint-warn-bg)] text-[var(--tint-warn-ink)] border border-[var(--tint-warn-rule)] font-semibold'
                       : 'bg-[var(--tint-info-bg)] text-[var(--tint-info-ink)] border border-[var(--tint-info-rule)] font-semibold'
                   }`}>
-                    {sc.severity}
+                    {siddetEtiketi(sc.severity, lang)}
                   </span>
                 </div>
                 <p className="text-sm text-[var(--ink)] line-clamp-2 leading-snug">
@@ -154,7 +155,7 @@ Report date: ${new Date().toISOString()}`;
                     ? 'bg-[var(--tint-warn-bg)] text-[var(--tint-warn-ink)] border border-[var(--tint-warn-rule)]'
                     : 'bg-[var(--tint-info-bg)] text-[var(--tint-info-ink)] border border-[var(--tint-info-rule)]'
                 }`}>
-                  {activeScenario.severity}
+                  {siddetEtiketi(activeScenario.severity, lang)}
                 </span>
               </div>
             </div>

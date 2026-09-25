@@ -439,8 +439,8 @@ const DevirKontrolu = () => {
           <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-[var(--rule)]">
             <div className="flex items-center gap-3">
               <span className="w-2.5 h-2.5 rounded-full bg-[var(--sev-ok)]"></span>
-              <span lang="en" className="text-xs sm:text-sm font-mono tracking-widest text-[var(--ink-3)] uppercase">
-                TMA Diagnostic Tool // Handover Readiness v1.0
+              <span lang={isTr ? undefined : 'en'} className="text-xs sm:text-sm font-mono tracking-widest text-[var(--ink-3)] uppercase">
+                {isTr ? 'TMA Teşhis Aracı // Devir Hazırlığı v1.0' : 'TMA Diagnostic Tool // Handover Readiness v1.0'}
               </span>
             </div>
             <div className="flex items-center gap-2">
@@ -544,8 +544,8 @@ const DevirKontrolu = () => {
               <div className="flex items-center justify-between gap-2 pb-2.5 border-b border-[var(--rule)] text-xs font-mono">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[var(--sev-ok)]"></span>
-                  <span lang="en" className="text-xs text-[var(--ink-3)] uppercase tracking-wider">
-                    TMA Diagnostic Tool // Handover Readiness v1.0
+                  <span lang={isTr ? undefined : 'en'} className="text-xs text-[var(--ink-3)] uppercase tracking-wider">
+                    {isTr ? 'TMA Teşhis Aracı // Devir Hazırlığı v1.0' : 'TMA Diagnostic Tool // Handover Readiness v1.0'}
                   </span>
                 </div>
                 <span className="px-2 py-0.5 rounded text-xs font-semibold bg-[var(--surface)] text-[var(--ink-3)] border border-[var(--rule)]">

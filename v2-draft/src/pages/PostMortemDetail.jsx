@@ -5,6 +5,7 @@ import {
   AlertTriangle, ArrowLeft, Clock, ShieldCheck, 
   Terminal, CheckCircle2, Flame, Wrench, AlertCircle, Calendar
 } from 'lucide-react';
+import { siddetEtiketi } from '../data/siddetData';
 import { postMortems, postMortemDisclosure, getPostMortemH1 } from '../data/postMortemData';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
@@ -74,7 +75,7 @@ const PostMortemDetail = () => {
               : 'bg-[var(--tint-warn-bg)] border border-[var(--tint-warn-rule)] text-[var(--tint-warn-ink)]'
           }`}>
             <AlertTriangle className="w-3.5 h-3.5" />
-            {item.severity}
+            {siddetEtiketi(item.severity, isTr ? 'tr' : 'en')}
           </span>
           <span className="px-3 py-1 rounded-lg bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)]">
             {item.category[lang]}
@@ -198,8 +199,8 @@ const PostMortemDetail = () => {
         </h3>
         <p className="text-[var(--ink-2)] text-sm max-w-xl mx-auto leading-relaxed">
           {isTr
-            ? 'TMA SWAT masası; yüksek eşzamanlılık, veritabanı kilitlenmeleri ve kopan ödeme pipeline’larında 0-2 saatte cerrahi müdahale uygular.'
-            : 'The TMA SWAT desk applies rapid surgical containment within 0-2 hours for high-concurrency deadlocks and broken pipelines.'}
+            ? 'TMA SWAT masası; yüksek eşzamanlılık, veritabanı kilitlenmeleri ve kopan ödeme pipeline’larında cerrahi müdahale uygular.'
+            : 'The TMA SWAT desk applies surgical containment for high-concurrency deadlocks and broken pipelines.'}
         </p>
         <div className="pt-2 flex flex-wrap justify-center gap-3">
           <a
@@ -215,7 +216,7 @@ const PostMortemDetail = () => {
             to={isTr ? "/kurtarilabilirlik/" : "/salvageability/"}
             className="btn-secondary min-h-[44px] text-xs sm:text-sm font-semibold flex items-center gap-2"
           >
-            <span>{isTr ? 'Salvageability Index (60sn) →' : 'Salvageability Index (60s) →'}</span>
+            <span>{isTr ? 'Kurtarılabilirlik İndeksi (60 sn) →' : 'Salvageability Index (60s) →'}</span>
           </Link>
         </div>
         <p className="text-xs text-[var(--ink-3)] pt-2">

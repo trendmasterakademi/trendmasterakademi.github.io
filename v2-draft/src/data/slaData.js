@@ -67,7 +67,7 @@ export const slaTiers = [
       en: 'Non-emergency technical debt cleanup, salvageability audits, N+1 query optimization, or white-label team extension.'
     },
     typicalIncidents: [
-      { tr: 'Salvageability Index (Refactor vs Rebuild)', en: 'Salvageability Audit (Refactor vs Rebuild)' },
+      { tr: 'Kurtarılabilirlik İndeksi (refactor mı, yeniden yazım mı?)', en: 'Salvageability Audit (Refactor vs Rebuild)' },
       { tr: 'SQL Sorgu Optimizasyonu & İndeks Mimarisi', en: 'SQL Query Optimization & Index Architecture' },
       { tr: 'B2B White-Label Sprint Takviyesi', en: 'B2B White-Label Engineering Sprint' }
     ]

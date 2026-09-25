@@ -327,6 +327,6 @@ export function getPostMortemH1(item, lang = 'tr') {
 }
 
 export const postMortemHubH1 = {
-  tr: "Incident Post-Mortem & RCA",
+  tr: "Post-Mortem ve Kök Neden Arşivi",
   en: "Incident Post-Mortems & RCA"
 };

@@ -154,7 +154,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                 <div className="flex items-center gap-1.5">
                   <span className="inline-block w-2 h-2 rounded-full bg-[var(--accent)]"></span>
                   <span className="text-xs font-mono font-semibold tracking-widest text-[var(--accent)] uppercase">
-                    TMA Response Desk // {isTr ? 'Kriz Masası' : 'Crisis Desk'}
+                    {isTr ? 'TMA Kriz Masası' : 'TMA Response Desk // Crisis Desk'}
                   </span>
                 </div>
                 <h3 id="sos-modal-basligi" className="text-base sm:text-lg font-serif font-semibold text-[var(--ink)] leading-tight">

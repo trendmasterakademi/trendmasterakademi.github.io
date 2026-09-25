@@ -175,7 +175,7 @@ Agreement & NDA Protection: https://trendmasterakademi.com/nda/
                             {item.title}
                           </h3>
                           <span className="text-xs font-mono px-1.5 py-0.5 rounded bg-[var(--paper)] border border-[var(--rule)] text-[var(--ink-3)]">
-                            +{item.weight} pts
+                            +{item.weight} {lang === 'en' ? 'pts' : 'puan'}
                           </span>
                         </div>
                         <p className="text-xs text-[var(--ink-2)] leading-relaxed">

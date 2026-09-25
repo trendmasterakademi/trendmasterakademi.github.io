@@ -84,7 +84,7 @@ const GlossaryTerm = () => {
         {/* Core Article Header */}
         <div className="space-y-4">
           <span className="text-xs font-mono tracking-widest text-[var(--ink-3)] uppercase block">
-            {isTr ? 'TEKNİK TERİM REHBERİ' : 'TECHNICAL GLOSSARY ITEM'} // {term.slug.toUpperCase()}
+            {isTr ? 'TEKNİK TERİM REHBERİ' : 'TECHNICAL GLOSSARY ITEM'} // {isTr ? term.title : (term.titleEn || term.title)}
           </span>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif font-semibold text-[var(--ink)] tracking-tight leading-tight">
             {getGlossaryH1(term, isTr ? 'tr' : 'en')}

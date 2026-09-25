@@ -14,6 +14,9 @@ import { isTurkish } from '../i18n';
 import { agencyH1 } from '../data/pageH1Data';
 import { agencyGiris, agencySlaKarti } from '../data/mesajData';
 
+// Türkçe sayfada İngilizce kalmayacak kategori adları (Frontend, Backend, SaaS, API, DevOps, FinTech, Panel terim olarak kalır)
+const kategoriTr = { Database: 'Veritabanı', Payment: 'Ödeme', Integration: 'Entegrasyon', Mobile: 'Mobil', Optimization: 'Optimizasyon', Rescue: 'Kurtarma', Security: 'Güvenlik', Consulting: 'Danışmanlık' };
+
 const capabilities = [
   { 
     title: { tr: 'Modern Kurumsal Web & Landing Page', en: 'High-Converting Corporate Web & Landing Pages' }, 
@@ -386,8 +389,8 @@ const Agency = () => {
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">
-                    <span lang="en" className="text-xs font-mono uppercase px-2.5 py-1 rounded bg-[var(--paper)] text-[var(--ink-2)] font-semibold border border-[var(--rule)]">
-                      {cap.cat}
+                    <span lang={isTr && kategoriTr[cap.cat] ? undefined : 'en'} className="text-xs font-mono uppercase px-2.5 py-1 rounded bg-[var(--paper)] text-[var(--ink-2)] font-semibold border border-[var(--rule)]">
+                      {isTr ? (kategoriTr[cap.cat] || cap.cat) : cap.cat}
                     </span>
                     <span className="text-xs font-mono text-[var(--accent)] font-semibold">#{idx + 1 < 10 ? `0${idx + 1}` : idx + 1}</span>
                   </div>
