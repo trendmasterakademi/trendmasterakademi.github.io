@@ -353,7 +353,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-CJ1QT5-Z.js"></script>
+    <script type="module" crossorigin src="/assets/index-BVwNj-wE.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -394,35 +394,23 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-[var(--ink)]">Web Sitesi & API Kesinti Maliyeti Hesaplayıcı</h2>
-        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Sistem çöktüğünde geçen her dakikanın ajansınıza ve müşterinize gerçek finansal ve itibar maliyetini hesaplayın.</p>
         
-  <section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
-    <h2 class="text-2xl font-bold text-[var(--ink)] tracking-tight">Kesinti Maliyeti Nasıl Hesaplanır?</h2>
-    <p class="text-[var(--ink-3)] leading-relaxed">Bir web sitesi veya e-ticaret altyapısı çöktüğünde oluşan doğrudan ciro kaybı şeffaf bir matematiksel formüle dayanır:</p>
-    
-    <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--accent)] space-y-2">
-      <p>Saatlik Ciro Kaybı = (Aylık Ciro / 720 Saat) × Zaman Çarpanı</p>
-      <p>Toplam Kesinti Maliyeti = Saatlik Kayıp × Kesinti Süresi (Saat)</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
-      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
-        <h3 class="text-sm font-bold text-[var(--ink)]">Zirve Saat (Peak)</h3>
-        <p class="text-xs text-[var(--ink-3)] mt-1">2.0x Çarpan · Kampanya veya yoğun ziyaret saatleri.</p>
-      </div>
-      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
-        <h3 class="text-sm font-bold text-[var(--ink)]">Normal Saat</h3>
-        <p class="text-xs text-[var(--ink-3)] mt-1">1.0x Çarpan · Günlük standart trafik akışı.</p>
-      </div>
-      <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)]">
-        <h3 class="text-sm font-bold text-[var(--ink)]">Gece Saati</h3>
-        <p class="text-xs text-[var(--ink-3)] mt-1">0.5x Çarpan · Düşük trafik ve işlem hacmi.</p>
-      </div>
-    </div>
-
-    <p class="text-[var(--ink-3)] text-sm leading-relaxed">Doğrudan kayba ek olarak; Google reklam bütçesi israfı, arama motoru sıralama kaybı (SERP cezası) ve müşteri güven kaybı gibi dolaylı maliyetler genellikle doğrudan ciro kaybının 2 ila 3 katına ulaşır.</p>
-  </section>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Sistem çöktüğünde veya sipariş akışı tıkandığında geçen sürenin doğrudan ciro kaybını şeffaf matematikle hesaplayın.</p>
+        
+<section class="space-y-6 mt-8 border-t border-[var(--rule)] pt-6">
+<h2 class="text-2xl font-bold text-[var(--ink)] tracking-tight">Hesaplama Metodolojisi &amp; Şeffaflık Beyanı</h2>
+<div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] font-mono text-sm text-[var(--accent)]">
+<p>Tahmini Doğrudan Kayıp = (Aylık Ciro ÷ 730 Saat) × Kesinti Süresi (Saat) × Zirve Katsayısı</p>
+</div>
+<ul class="grid grid-cols-1 sm:grid-cols-3 gap-4 my-4">
+<li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-sm"><strong class="text-[var(--ink)]">Zirve Saat</strong> · 2,0×</li>
+<li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-sm"><strong class="text-[var(--ink)]">Normal Saat</strong> · 1,0×</li>
+<li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-sm"><strong class="text-[var(--ink)]">Gece</strong> · 0,5×</li>
+</ul>
+<p class="text-[var(--ink-3)] text-sm leading-relaxed">Bu hesap tek bir formülden ibarettir: aylık cironuz 730 saate bölünür, kesinti süresiyle ve seçtiğiniz zirve katsayısıyla çarpılır. Gizli çarpan yoktur; yukarıdaki her adım ekranda görünür ve katsayıyı siz değiştirirsiniz.</p>
+<p class="text-[var(--ink-3)] text-sm leading-relaxed">Sektöre göre çarpan, itibar kaybı oranı veya &quot;müdahale edilmezse&quot; senaryosu kullanmıyoruz — bunlar güvenilir biçimde ölçülemez. Dolaşan saatlik kesinti maliyeti rakamlarının çoğu kurumsal veri merkezi örneklemine dayanır ve ajans müşterisi ölçeğinde anlamsızdır.</p>
+<p class="text-[var(--ink-3)] text-sm leading-relaxed">Sonuç doğrudan ciro kaybının tahminidir; iade, kargo, destek yükü ve müşteri kaybı gibi dolaylı etkileri içermez.</p>
+</section>
 
         <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
           <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
