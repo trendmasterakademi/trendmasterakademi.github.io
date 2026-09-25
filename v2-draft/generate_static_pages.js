@@ -4945,3 +4945,33 @@ function verifySpeedRules() {
 }
 
 verifySpeedRules();
+
+// ---------------------------------------------------------------------------
+// [BUILD GUARD ERİŞİM] Adım 93 — Düğmenin içinde başlık olmaz.
+// Düğmenin içeriği ekran okuyucuya tek bir metin olarak okunur; içindeki başlık, başlık listesinde görünmez.
+// Başlık gerekiyorsa düğmeyi sarar (SSS akordeonu: <h3><button …>); seçenek kartındaki ad span olur (Adım 90, 93).
+// ---------------------------------------------------------------------------
+function verifyAccessibilityRules() {
+  console.log('\n[BUILD GUARD ERİŞİM] Düğme içi başlık denetleniyor...');
+  const errors = [];
+  let dugme = 0;
+  const gez = (d) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) gez(p); else if (/\.jsx$/.test(e.name)) {
+    const s = fs.readFileSync(p, 'utf8');
+    for (let i = s.indexOf('<button'); i >= 0; i = s.indexOf('<button', i + 1)) {
+      const son = s.indexOf('</button>', i);
+      if (son < 0) continue;
+      dugme++;
+      const m = s.slice(i, son).match(/<h[1-6][\s>]/);
+      if (m) errors.push(`${path.relative(__dirname, p)}:${s.slice(0, i).split('\n').length} — düğmenin içinde ${m[0].trim()} başlığı`);
+    }
+  } } };
+  gez(path.join(__dirname, 'src'));
+  if (errors.length > 0) {
+    console.error(`\n[BUILD GUARD ERİŞİM HATA] ${errors.length} kural ihlali:`);
+    errors.forEach((err) => console.error(`  - ${err}`));
+    process.exit(1);
+  }
+  console.log(`[BUILD GUARD ERİŞİM GEÇTİ] ${dugme} düğmenin hiçbirinde başlık yok.`);
+}
+
+verifyAccessibilityRules();

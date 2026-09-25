@@ -139,34 +139,38 @@ const FAQ = () => {
                     : 'bg-[var(--surface)] border-[var(--rule)] hover:border-[var(--rule-strong)]'
                 }`}
               >
-                <button
-                  onClick={() => toggleAccordion(idx)}
-                  className="w-full p-6 sm:p-7 flex items-center justify-between gap-4 text-left cursor-pointer select-none focus:outline-none"
-                  aria-expanded={isOpen}
-                >
-                  <div className="flex items-center gap-4">
-                    <div className={`w-10 h-10 rounded-[var(--r-control)] flex items-center justify-center flex-shrink-0 transition-colors ${
-                      isOpen ? 'bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)]' : 'bg-[var(--paper)] text-[var(--ink-3)] border border-[var(--rule)]'
-                    }`}>
-                      <IconComponent className="w-5 h-5" />
+                <h3>
+                  <button
+                    id={`sss-soru-${item.id}`}
+                    onClick={() => toggleAccordion(idx)}
+                    className="w-full p-6 sm:p-7 flex items-center justify-between gap-4 text-left cursor-pointer select-none focus:outline-none"
+                    aria-expanded={isOpen}
+                    aria-controls={`sss-cevap-${item.id}`}
+                  >
+                    <div className="flex items-center gap-4">
+                      <div className={`w-10 h-10 rounded-[var(--r-control)] flex items-center justify-center flex-shrink-0 transition-colors ${
+                        isOpen ? 'bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)]' : 'bg-[var(--paper)] text-[var(--ink-3)] border border-[var(--rule)]'
+                      }`}>
+                        <IconComponent className="w-5 h-5" />
+                      </div>
+                      <span className={`text-base sm:text-lg font-semibold transition-colors ${
+                        isOpen ? 'text-[var(--accent)]' : 'text-[var(--ink)]'
+                      }`}>
+                        {item.question[isTr ? 'tr' : 'en']}
+                      </span>
                     </div>
-                    <h3 className={`text-base sm:text-lg font-semibold transition-colors ${
-                      isOpen ? 'text-[var(--accent)]' : 'text-[var(--ink)]'
-                    }`}>
-                      {item.question[isTr ? 'tr' : 'en']}
-                    </h3>
-                  </div>
 
-                  <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-200 ${
-                    isOpen ? 'rotate-180 bg-[var(--paper)] text-[var(--accent)]' : 'bg-[var(--paper)] text-[var(--ink-3)]'
-                  }`}>
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
-                </button>
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 transition-transform duration-200 ${
+                      isOpen ? 'rotate-180 bg-[var(--paper)] text-[var(--accent)]' : 'bg-[var(--paper)] text-[var(--ink-3)]'
+                    }`}>
+                      <ChevronDown className="w-4 h-4" />
+                    </div>
+                  </button>
+                </h3>
 
                 <React.Fragment>
                   {isOpen && (
-                    <div>
+                    <div id={`sss-cevap-${item.id}`} role="region" aria-labelledby={`sss-soru-${item.id}`}>
                       <div className="px-6 sm:px-7 pb-6 sm:pb-7 pt-1 text-[var(--ink-2)] text-sm sm:text-base leading-relaxed border-t border-[var(--rule)] ml-14 sm:ml-14 space-y-3">
                         <p>{item.answer[isTr ? 'tr' : 'en']}</p>
                         {isHomePage && item.id === 'whitelabel-model' && (

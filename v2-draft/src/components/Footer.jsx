@@ -66,9 +66,9 @@ const Footer = () => {
         <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-3 gap-6">
           {/* Column 1: Engineering & Incident */}
           <div>
-            <h3 className="text-[var(--ink-3)] font-semibold text-xs uppercase tracking-wider mb-2">
+            <h2 className="text-[var(--ink-3)] font-semibold text-xs uppercase tracking-wider mb-2">
               {isTr ? 'Mühendislik & Kriz' : 'Engineering & Incident'}
-            </h3>
+            </h2>
             <ul className="space-y-1 text-xs">
               <li><Link to="/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{t('nav-home')}</Link></li>
               <li><Link to="/agency/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {t('nav-agency')}</Link></li>
@@ -83,9 +83,9 @@ const Footer = () => {
 
           {/* Column 2: Tools & Audit */}
           <div>
-            <h3 className="text-[var(--ink-3)] font-semibold text-xs uppercase tracking-wider mb-2">
+            <h2 className="text-[var(--ink-3)] font-semibold text-xs uppercase tracking-wider mb-2">
               {isTr ? 'Araçlar & Denetim' : 'Tools & Audit'}
-            </h3>
+            </h2>
             <ul className="space-y-1 text-xs">
               <li><Link to="/sla/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'Şeffaf Mühendislik SLA' : 'Engineering SLA Matrix'}</Link></li>
               <li><Link to={isTr ? "/teknoloji-uyumluluk/" : "/tech-matrix/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><Layers className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'Teknoloji & Kurtarma Matrisi' : 'Tech Compatibility Matrix'}</Link></li>
@@ -99,9 +99,9 @@ const Footer = () => {
 
           {/* Column 3: Corporate & Legal */}
           <div>
-            <h3 className="text-[var(--ink-3)] font-semibold text-xs uppercase tracking-wider mb-2">
+            <h2 className="text-[var(--ink-3)] font-semibold text-xs uppercase tracking-wider mb-2">
               {isTr ? 'Kurumsal & Yasal' : 'Corporate & Legal'}
-            </h3>
+            </h2>
             <ul className="space-y-1 text-xs">
               <li><Link to="/about/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{t('nav-about')}</Link></li>
               <li><Link to={isTr ? "/hikayemiz/" : "/story/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{isTr ? 'Marka Hikâyemiz' : 'Our Story'}</Link></li>
@@ -129,9 +129,9 @@ const Footer = () => {
         
         {/* Security & Pricing Column */}
         <div className="lg:col-span-3 space-y-2.5">
-          <h3 className="text-[var(--ink)] font-semibold text-sm flex items-center gap-2">
+          <h2 className="text-[var(--ink)] font-semibold text-sm flex items-center gap-2">
             <ShieldCheck className="w-4 h-4 text-[var(--accent)]" /> {isTr ? 'Ücretlendirme' : 'Pricing'}
-          </h3>
+          </h2>
           <div className="p-3 rounded-[var(--r-panel)] bg-[var(--paper)] border border-[var(--rule)] space-y-1.5 text-xs text-[var(--ink-2)]">
             <div className="flex justify-between border-b border-[var(--rule)] pb-1">
               <span>{isTr ? 'İlk teşhis & triyaj' : 'Initial diagnosis & triage'}</span>

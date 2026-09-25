@@ -99,6 +99,7 @@ const ArchitectureGraph = () => {
               <div key={node.id} className={`relative flex flex-col ${idx === 4 ? 'sm:col-span-2 sm:max-w-md sm:w-full sm:mx-auto lg:max-w-none lg:col-span-1' : ''}`}>
                 <button
                   onClick={() => setSelectedNode(node.id)}
+                  aria-pressed={isSelected}
                   className={`p-4 sm:p-5 rounded-[var(--r-panel)] text-left border transition-all duration-200 cursor-pointer flex-1 flex flex-col justify-between ${
                     isSelected
                       ? 'bg-[var(--surface)] border-[var(--accent)] shadow-sm ring-1 ring-[var(--accent)]'
@@ -115,9 +116,9 @@ const ArchitectureGraph = () => {
                       </span>
                     </div>
 
-                    <h3 className="text-sm sm:text-base font-semibold text-[var(--ink)] mb-1.5 leading-snug">
+                    <span className="block text-sm sm:text-base font-semibold text-[var(--ink)] mb-1.5 leading-snug">
                       {node.title[isTr ? 'tr' : 'en']}
-                    </h3>
+                    </span>
                     <p className="text-xs text-[var(--ink-2)] leading-relaxed line-clamp-3">
                       {node.desc[isTr ? 'tr' : 'en']}
                     </p>
@@ -144,9 +145,9 @@ const ArchitectureGraph = () => {
                 {isTr ? 'SEÇİLİ KATMAN' : 'SELECTED LAYER'}
               </span>
             </div>
-            <h4 className="text-xl sm:text-2xl font-semibold text-[var(--ink)] font-serif">
+            <h3 className="text-xl sm:text-2xl font-semibold text-[var(--ink)] font-serif">
               {nodes[selectedNode].title[isTr ? 'tr' : 'en']}
-            </h4>
+            </h3>
             <p className="text-sm text-[var(--ink-2)] max-w-[34rem] leading-relaxed">
               {nodes[selectedNode].desc[isTr ? 'tr' : 'en']}
             </p>
