@@ -62,8 +62,8 @@ export const faqData = [
       en: "How do you take over undocumented or abandoned spaghetti codebases?"
     },
     answer: {
-      tr: "Önceki geliştiricinin devretmeden ayrıldığı projelerde; repoyu klonlayarak mimariyi, veri modellerini ve kilitlenen noktaları haritalandırıyoruz. Eksik kalan backend uçlarını tamamlayıp, spagetti kodu modern standartlara refactor ederek eksiksiz dokümante edilmiş şekilde teslim ediyoruz.",
-      en: "For stranded projects left without handover; we clone the repository and map architecture, data models, and bottlenecks. We complete missing backend endpoints, refactor tangled spaghetti code to modern standards, and hand over a fully documented production release."
+      tr: "Önceki geliştiricinin devretmeden ayrıldığı projelerde; repoyu klonlayarak mimariyi, veri modellerini ve kilitlenen noktaları haritalandırıyoruz. Eksik kalan backend uçlarını tamamlayıp, spagetti kodu modern standartlara refactor ederek dokümante edilmiş şekilde teslim ediyoruz.",
+      en: "For stranded projects left without handover; we clone the repository and map architecture, data models, and bottlenecks. We complete missing backend endpoints, refactor tangled spaghetti code to modern standards, and hand over a documented production release."
     }
   },
   {

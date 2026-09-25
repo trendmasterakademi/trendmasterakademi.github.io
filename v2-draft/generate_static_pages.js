@@ -1519,7 +1519,7 @@ const basePages = [
     description: 'Dijital ajansların imdat butonu: B2B White-Label mühendislik masası, acil kod kurtarma (SWAT), SaaS mimarisi ve kriz çözüm stüdyosu.',
     canonical: 'https://trendmasterakademi.com/',
     ogUrl: 'https://trendmasterakademi.com/',
-    heading: 'Teknik olarak projesi tıkanmış ajanslar için: Kodu Devralır, Ajansınız Adına Eksiksiz Teslim Ederiz.',
+    heading: 'Teknik olarak projesi tıkanmış ajanslar için: Kodu Devralır, Ajansınız Adına Teslim Ederiz.',
     subheading: 'Dijital ajansların imdat butonu. Teknik olarak tıkanan projeler için B2B White-Label mühendislik masası, acil kod kurtarma (SWAT), PostgreSQL deadlock onarımı, SaaS mimarisi ve kriz çözüm stüdyosu.',
     extraContent: homePageExtraContent,
     schema: {
@@ -1685,7 +1685,7 @@ const basePages = [
     hreflangTr: 'https://trendmasterakademi.com/devir-kontrolu/',
     hreflangEn: 'https://trendmasterakademi.com/handover-audit/',
     heading: 'Developer Handover Readiness Audit // 12-Point Transition Checklist',
-    subheading: 'Audit Git repos, environment variables, DNS, and payment keys to ensure zero project blockage during engineer transitions.',
+    subheading: 'Test whether you have fully received the Git repo, environment variables, DNS and payment keys from the departing developer.',
     extraContent: devirExtraContentEn,
     schema: {
       "@context": "https://schema.org",

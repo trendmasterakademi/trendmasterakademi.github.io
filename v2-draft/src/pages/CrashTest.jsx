@@ -686,7 +686,7 @@ const CrashTest = () => {
                   </span>
                 </div>
                 <span className="px-2 py-0.5 rounded text-xs font-semibold bg-[var(--paper)] text-[var(--ink-3)] border border-[var(--rule)]">
-                  {isTr ? '%100 Güvenli Analiz' : '100% Confidential'}
+                  {isTr ? 'Sisteminize Bağlanmaz' : 'No System Access'}
                 </span>
               </div>
 
@@ -969,8 +969,8 @@ const CrashTest = () => {
                   </h4>
                   <p className="text-xs sm:text-sm text-[var(--ink-3)] leading-relaxed">
                     {isTr 
-                      ? 'Stres testleri ve güvenlik kontrolleri sonrası sistem canlıya alınır. Tüm dokümante edilmiş kaynak kod ajansınıza eksiksiz teslim edilir.' 
-                      : 'Following automated stress and security audits, the system is deployed live. Documented clean source code is completely handed over to your agency.'}
+                      ? 'Test ve kontrollü yayınla sistem canlıya alınır; geri dönüş planı hazırdır. Kod, erişim ve teknik notlar ajansınıza devredilir.' 
+                      : 'The system goes live through testing and a controlled release, with a rollback plan in place. Code, access and technical notes are handed over to your agency.'}
                   </p>
                 </div>
               </div>

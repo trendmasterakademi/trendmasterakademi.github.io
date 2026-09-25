@@ -445,7 +445,7 @@ const DevirKontrolu = () => {
             </div>
             <div className="flex items-center gap-2">
               <span className="px-2.5 py-1 rounded text-xs font-mono font-semibold bg-[var(--surface)] text-[var(--ink-3)] border border-[var(--rule)]">
-                {isTr ? '%100 Gizlilik Güvencesi' : '100% Confidentiality Guarantee'}
+                {isTr ? 'Şifre veya Erişim İstemez' : 'No Passwords or Access Required'}
               </span>
             </div>
           </div>
@@ -549,7 +549,7 @@ const DevirKontrolu = () => {
                   </span>
                 </div>
                 <span className="px-2 py-0.5 rounded text-xs font-semibold bg-[var(--surface)] text-[var(--ink-3)] border border-[var(--rule)]">
-                  {isTr ? '%100 Gizlilik Güvencesi' : '100% Confidentiality Guarantee'}
+                  {isTr ? 'Şifre veya Erişim İstemez' : 'No Passwords or Access Required'}
                 </span>
               </div>
 

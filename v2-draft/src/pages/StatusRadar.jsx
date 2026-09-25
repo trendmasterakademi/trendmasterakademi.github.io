@@ -190,7 +190,7 @@ export default function StatusRadar({ lang = "tr" }) {
         <p className="text-xs text-[var(--ink-3)] font-mono mt-3">
           {isTr
             ? "SEV-0/1 krizlerinde satış temsilcisi olmadan doğrudan sistem mimarı masaya bağlanır"
-            : "SEV-0/1 incidents are escalated instantly • Zero sales middleman"}
+            : "In SEV-0/1 incidents, a systems architect joins directly — no sales representative in between"}
         </p>
       </div>
     </div>

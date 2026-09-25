@@ -433,7 +433,7 @@ const Agency = () => {
               {
                 step: '04',
                 title: { tr: 'Temiz Devir & Güvence', en: 'Clean Handover & IP Transfer' },
-                desc: { tr: 'Eksiksiz dokümantasyon, test edilmiş kod ve %100 mülkiyet devriyle projeyi teslim ediyoruz.', en: 'Tested, documented codebase handed over with 100% intellectual property rights transferred to you.' }
+                desc: { tr: 'Teknik dokümantasyon, test edilmiş kod ve %100 mülkiyet devriyle projeyi teslim ediyoruz.', en: 'Tested, documented codebase handed over with 100% intellectual property rights transferred to you.' }
               }
             ].map((p, idx) => (
               <div key={idx} className="p-7 rounded-xl bg-[var(--surface)] border border-[var(--rule)] relative space-y-3 shadow-sm">

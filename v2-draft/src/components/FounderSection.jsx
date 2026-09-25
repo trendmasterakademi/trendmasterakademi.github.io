@@ -62,7 +62,7 @@ export const FounderSection = () => {
                         <strong className="text-[var(--ink)]">Trend Master Akademi</strong> adı, COVID döneminde bildiklerimi sistemleştirip anlattığım online sınıflarda doğdu. O dönemde gördüğümüz en somut gerçek şuydu: Yüksek işlem hacimli projelerde, karmaşık veri akışlarında veya kritik teslimat eşiklerinde; altyapıyı eksiksiz ayağa kaldıracak, kilitlenen deadlock'ları çözecek derin mühendislik birikimi çok nadir bulunuyordu.
                       </p>
                       <p>
-                        Biz doğrudan bu kilitlenmeleri çözmek ve teknoloji liderlerinin arkasında görünmez, sarsılmaz bir teknik derinlik sağlamak için konumlandık. <strong>Sıfır dış görünürlük kuralıyla çalışırız:</strong> Projeyi devraldığımızda çift taraflı resmi NDA imzalar, mevcut ekibinizin sessiz bir uzantısı gibi operasyonu yürütür ve eksiksiz teslim ederiz.
+                        Biz doğrudan bu kilitlenmeleri çözmek ve teknoloji liderlerinin arkasında görünmez, sarsılmaz bir teknik derinlik sağlamak için konumlandık. <strong>Sıfır dış görünürlük kuralıyla çalışırız:</strong> Projeyi devraldığımızda çift taraflı resmi NDA imzalar, mevcut ekibinizin sessiz bir uzantısı gibi operasyonu yürütür ve teslim ederiz.
                       </p>
                     </>
                   ) : (
