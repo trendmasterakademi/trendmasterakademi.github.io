@@ -251,26 +251,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Aynı kural birden fazla yerde mi yazılı?",
+          "name": "Is business logic duplicated in multiple controllers?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Kopyalanmış mantık — Aynı kural birden çok yerde yazılı. Biri düzeltiliyor, diğerleri unutuluyor. Kanıt: Aynı mantık birden çok yerde → A Çözüm: Tek yere topla · kademeli"
+            "text": "Duplicated business logic — Identical calculation logic copy-pasted across multiple controllers. Fixing one leaves the others broken. Evidence: Duplicated algorithms in codebase → A Fix: Consolidate to single service class · incremental"
           }
         },
         {
           "@type": "Question",
-          "name": "Kritik akışların testi var mı?",
+          "name": "Do automated tests cover critical checkout paths?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Test yok — Güvenlik ağı yok; bir değişikliğin neyi bozduğu ancak canlıda anlaşılıyor. Kanıt: Otomatik test yok → B Çözüm: Önce kritik akışa test yaz"
+            "text": "Missing regression test suite — Zero automated unit/integration tests exist; side effects are discovered only after real customers encounter crashes. Evidence: Zero test coverage in CI pipeline → B Fix: Write regression tests on critical flows FIRST"
           }
         },
         {
           "@type": "Question",
-          "name": "Küçük değişiklik çok yeri mi etkiliyor?",
+          "name": "Does localized edit break unrelated views?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Aşırı bağlılık — Modüller birbirine sıkı bağlı; bir yeri değiştirmek zinciri kırıyor. Kanıt: Küçük değişiklik geniş etki yapıyor → C Çözüm: Sınırları ayır · parça parça"
+            "text": "High module coupling — Tightly coupled components mutate shared global state; altering one class triggers unpredictable cascade breaks. Evidence: Minor patch creates wide blast radius → C Fix: Decouple boundaries via interfaces · step by step"
           }
         }
       ]
@@ -281,20 +281,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Her yeni özellik bir öncekini bozuyor",
-          "item": "https://trendmasterakademi.com/teshis/her-yeni-ozellik-oncekini-bozuyor/"
+          "name": "Every New Feature Breaks an Existing Feature",
+          "item": "https://trendmasterakademi.com/diagnostic/her-yeni-ozellik-oncekini-bozuyor/"
         }
       ]
     }
@@ -411,7 +411,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Senior software architect. Sequence is mandatory: write regression tests FIRST, then refactor. Refactoring without test safety nets introduces secondary defects. Total rewrites from scratch are almost never the correct strategy.</p>
       </section>
 

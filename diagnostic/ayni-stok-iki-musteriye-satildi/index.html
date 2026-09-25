@@ -251,42 +251,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "İki siparişin created_at farkı < 1 sn mi?",
+          "name": "Are order created_at diffs < 1 second?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Race condition — Aynı anda gelen iki istek stoğu eşzamanlı düşürdü. Kontrol ile yazma arasında boşluk var. Kanıt: created_at farkı < 1sn → A Çözüm: Atomik UPDATE + etkilenen satır kontrolü"
+            "text": "Race condition — Two simultaneous requests decremented stock concurrently. There is an unisolated gap between check and write. Evidence: created_at diff < 1s → A Fix: Atomic UPDATE + affected rows validation"
           }
         },
         {
           "@type": "Question",
-          "name": "payment_reference değerleri aynı mı?",
+          "name": "Are payment reference IDs identical?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Idempotency yok — Tek bir ödeme iki kez işlendi; müşteri iki kez tıkladı ya da webhook tekrar geldi. Eşzamanlılık yok, tekrar var. Kanıt: payment_reference aynı → B Çözüm: unique index + idempotency anahtarı"
+            "text": "Missing idempotency — A single payment was processed twice; either the customer double-clicked or a webhook redelivered. No concurrency, just duplication. Evidence: payment_reference same → B Fix: unique index + idempotency key lock"
           }
         },
         {
           "@type": "Question",
-          "name": "Son ERP senkronu satıştan önce mi?",
+          "name": "Was last ERP sync before order timestamp?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Stok senkronu — Stoğun kaynağı ERP veya pazaryeri. Yarış sitede değil, iki sistem arasındaki gecikmede. Kanıt: Senkron satıştan eski → C Çözüm: Rezervasyon mantığı + senkron sıklığı"
+            "text": "Inventory sync lag — Inventory master resides in an ERP or marketplace. The race is not on-site, but within sync lag intervals. Evidence: Sync older than sale → C Fix: Reservation lock + higher sync frequency"
           }
         },
         {
           "@type": "Question",
-          "name": "«SQLSTATE[40001]: Serialization failure: 1213 Deadlock found» görüyorsam nedeni ne?",
+          "name": "What causes «SQLSTATE[40001]: Serialization failure: 1213 Deadlock found»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Race condition — Aynı anda gelen iki istek stoğu eşzamanlı düşürdü. Kontrol ile yazma arasında boşluk var. Çözüm: Atomik UPDATE + etkilenen satır kontrolü"
+            "text": "A · Race condition — Two simultaneous requests decremented stock concurrently. There is an unisolated gap between check and write. Fix: Atomic UPDATE + affected rows validation"
           }
         },
         {
           "@type": "Question",
-          "name": "«Duplicate entry '...' for key 'orders_reference_unique'» görüyorsam nedeni ne?",
+          "name": "What causes «Duplicate entry '...' for key 'orders_reference_unique'»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Idempotency yok — Tek bir ödeme iki kez işlendi; müşteri iki kez tıkladı ya da webhook tekrar geldi. Eşzamanlılık yok, tekrar var. Çözüm: unique index + idempotency anahtarı"
+            "text": "B · Missing idempotency — A single payment was processed twice; either the customer double-clicked or a webhook redelivered. No concurrency, just duplication. Fix: unique index + idempotency key lock"
           }
         }
       ]
@@ -297,20 +297,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Aynı stok iki müşteriye satıldı",
-          "item": "https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/"
+          "name": "Same Inventory Sold to Multiple Customers",
+          "item": "https://trendmasterakademi.com/diagnostic/ayni-stok-iki-musteriye-satildi/"
         }
       ]
     }
@@ -426,7 +426,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Senior backend engineer. Scope, timeline and budget become clear after diagnosis. Once the exact cause is isolated, all three are permanently resolved. Fixes applied without proper diagnosis merely mask symptoms while leaving the root cause intact.</p>
       </section>
 

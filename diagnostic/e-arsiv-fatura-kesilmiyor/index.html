@@ -256,58 +256,58 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Entegratörde siparişe ait kayıt var mı?",
+          "name": "Does the integrator have a record for the order?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Bağlantı koptu — Siteden entegratöre giden istek hiç gitmiyor ya da yolda düşüyor: kimlik bilgisi değişmiş, erişim anahtarının süresi dolmuş, entegratörün adresi değişmiş ya da istek zaman aşımına uğruyor. Entegratör panelinde o siparişe ait hiçbir kayıt yoktur. Kanıt: Entegratörde kayıt yok, uygulamada 401 → A Çözüm: Kimlik ve adresi düzelt, kuyruğa al"
+            "text": "Connection broken — The request from the site to the integrator never leaves or drops on the way: credentials changed, the access token expired, the integrator's address changed, or the request times out. The integrator's panel has no record at all for that order. Evidence: No record at the integrator, 401 in the app → A Fix: Fix credentials, queue the requests"
           }
         },
         {
           "@type": "Question",
-          "name": "Entegratör yanıtında ret var mı?",
+          "name": "Is there a rejection in the response?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Entegratör reddetti — İstek entegratöre ulaşıyor ama fatura verisi eksik ya da hatalı olduğu için reddediliyor: alıcının VKN ya da TCKN'si, adresi, vergi oranı ya da tutar alanları. Ret yanıtı kaydedilmiyorsa site faturanın kesildiğini sanar. Kanıt: Entegratör yanıtında ret ve hata kodu → B Çözüm: Veriyi düzelt, bir kez gönder"
+            "text": "Integrator rejected it — The request reaches the integrator but is rejected because the invoice data is missing or wrong: the buyer's tax ID or national ID number, address, tax rate or amount fields. If the rejection is not logged, the site assumes the invoice was issued. Evidence: Rejection and error code in the response → B Fix: Fix the data, send it once"
           }
         },
         {
           "@type": "Question",
-          "name": "Alıcı e-Fatura sistemine kayıtlı mı?",
+          "name": "Is the buyer registered for e-Invoice?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yanlış fatura türü — Gelir İdaresi Başkanlığı'na göre e-Arşiv fatura, e-Fatura sistemine kayıtlı olmayan mükelleflere ve mükellef olmayanlara yapılan satışlarda düzenlenir. Alıcı e-Fatura sistemine kayıtlıysa fatura e-Fatura olarak düzenlenmelidir. Site kurumsal alıcının kayıtlı olup olmadığını kontrol etmeden e-Arşiv gönderirse fatura yanlış türde düzenlenir ya da entegratör tarafından reddedilir. Kanıt: Alıcı e-Fatura kayıtlı, e-Arşiv gitmiş → C Çözüm: Alıcıya göre türü seç"
+            "text": "Wrong invoice type — According to the Turkish Revenue Administration, the e-Archive invoice is issued for sales to taxpayers not registered in the e-Invoice system and to non-taxpayers. If the buyer is registered in the e-Invoice system, the invoice must be issued as an e-Invoice. If the site sends an e-Archive invoice without checking whether a business buyer is registered, the invoice is issued as the wrong type or rejected by the integrator. Evidence: Buyer registered for e-Invoice, e-Archive sent → C Fix: Choose the type per buyer"
           }
         },
         {
           "@type": "Question",
-          "name": "«Entegratör paneli: sipariş numarasına ait fatura kaydı yok» görüyorsam nedeni ne?",
+          "name": "What causes «Integrator panel: no invoice record for the order number»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Bağlantı koptu — Siteden entegratöre giden istek hiç gitmiyor ya da yolda düşüyor: kimlik bilgisi değişmiş, erişim anahtarının süresi dolmuş, entegratörün adresi değişmiş ya da istek zaman aşımına uğruyor. Entegratör panelinde o siparişe ait hiçbir kayıt yoktur. Çözüm: Kimlik ve adresi düzelt, kuyruğa al"
+            "text": "A · Connection broken — The request from the site to the integrator never leaves or drops on the way: credentials changed, the access token expired, the integrator's address changed, or the request times out. The integrator's panel has no record at all for that order. Fix: Fix credentials, queue the requests"
           }
         },
         {
           "@type": "Question",
-          "name": "«Uygulama kaydı: entegratör isteği 401 ya da zaman aşımı» görüyorsam nedeni ne?",
+          "name": "What causes «Application log: integrator request 401 or timeout»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Bağlantı koptu — Siteden entegratöre giden istek hiç gitmiyor ya da yolda düşüyor: kimlik bilgisi değişmiş, erişim anahtarının süresi dolmuş, entegratörün adresi değişmiş ya da istek zaman aşımına uğruyor. Entegratör panelinde o siparişe ait hiçbir kayıt yoktur. Çözüm: Kimlik ve adresi düzelt, kuyruğa al"
+            "text": "A · Connection broken — The request from the site to the integrator never leaves or drops on the way: credentials changed, the access token expired, the integrator's address changed, or the request times out. The integrator's panel has no record at all for that order. Fix: Fix credentials, queue the requests"
           }
         },
         {
           "@type": "Question",
-          "name": "«Entegratör yanıtı: ret · alıcı VKN/TCKN ya da adres hatalı» görüyorsam nedeni ne?",
+          "name": "What causes «Integrator response: rejected · buyer tax ID / national ID or address invalid»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Entegratör reddetti — İstek entegratöre ulaşıyor ama fatura verisi eksik ya da hatalı olduğu için reddediliyor: alıcının VKN ya da TCKN'si, adresi, vergi oranı ya da tutar alanları. Ret yanıtı kaydedilmiyorsa site faturanın kesildiğini sanar. Çözüm: Veriyi düzelt, bir kez gönder"
+            "text": "B · Integrator rejected it — The request reaches the integrator but is rejected because the invoice data is missing or wrong: the buyer's tax ID or national ID number, address, tax rate or amount fields. If the rejection is not logged, the site assumes the invoice was issued. Fix: Fix the data, send it once"
           }
         },
         {
           "@type": "Question",
-          "name": "«Alıcı VKN'si e-Fatura kayıtlı kullanıcı, fatura e-Arşiv gönderilmiş» görüyorsam nedeni ne?",
+          "name": "What causes «Buyer's tax ID is a registered e-Invoice user, invoice sent as e-Archive»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "C · Yanlış fatura türü — Gelir İdaresi Başkanlığı'na göre e-Arşiv fatura, e-Fatura sistemine kayıtlı olmayan mükelleflere ve mükellef olmayanlara yapılan satışlarda düzenlenir. Alıcı e-Fatura sistemine kayıtlıysa fatura e-Fatura olarak düzenlenmelidir. Site kurumsal alıcının kayıtlı olup olmadığını kontrol etmeden e-Arşiv gönderirse fatura yanlış türde düzenlenir ya da entegratör tarafından reddedilir. Çözüm: Alıcıya göre türü seç"
+            "text": "C · Wrong invoice type — According to the Turkish Revenue Administration, the e-Archive invoice is issued for sales to taxpayers not registered in the e-Invoice system and to non-taxpayers. If the buyer is registered in the e-Invoice system, the invoice must be issued as an e-Invoice. If the site sends an e-Archive invoice without checking whether a business buyer is registered, the invoice is issued as the wrong type or rejected by the integrator. Fix: Choose the type per buyer"
           }
         }
       ]
@@ -318,20 +318,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "e-Arşiv fatura siteden kesilmiyor",
-          "item": "https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/"
+          "name": "e-Archive Invoice Not Being Issued",
+          "item": "https://trendmasterakademi.com/diagnostic/e-arsiv-fatura-kesilmiyor/"
         }
       ]
     }
@@ -478,7 +478,7 @@
       </section>
     
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">A backend engineer who knows the integration, together with the accountant. The engineer fixes the connection, the logging of rejections and the one-time resubmission of missing invoices; decisions about invoice type and tax fields belong to the accountant.</p>
       </section>
 

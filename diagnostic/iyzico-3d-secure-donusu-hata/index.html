@@ -256,58 +256,58 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Dönüşte mdStatus 1'den farklı mı?",
+          "name": "Is mdStatus anything other than 1?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Banka doğrulaması geçmedi — Dönüşte mdStatus 1 değilse kart sahibi ya da banka doğrulamayı tamamlamamıştır. iyzico dokümanı her değerin anlamını verir; örneğin 0 geçersiz doğrulama, 5 doğrulama yapılamıyor, 7 sistem hatası demektir. Bu, sitenin kodunda bir hata değildir; müşteriye doğru mesajı göstermek gerekir. Kanıt: mdStatus 1 değil → A Çözüm: Anlamlı mesaj göster"
+            "text": "Bank verification failed — If mdStatus is not 1 on return, the cardholder or the bank did not complete verification. iyzico's documentation lists what each value means: for example 0 is an invalid verification, 5 means verification could not be performed, 7 is a system error. This is not a bug in the site's code; the customer needs to see the right message. Evidence: mdStatus is not 1 → A Fix: Show a clear message"
           }
         },
         {
           "@type": "Question",
-          "name": "mdStatus 1 ama tamamlama isteği yok ya da hatalı?",
+          "name": "mdStatus is 1 but completion call missing or failed?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ödeme tamamlanmadı — Doğrulama başarılı döndü ama site 3DS Tamamlama isteğini göndermedi ya da eksik gönderdi. iyzico dokümanına göre ödeme bu istekle kesinleşir; dönüşte conversationData geldiyse bu isteğe eklenmelidir. Tamamlama yanıtındaki errorCode ve errorMessage hangi adımın düştüğünü söyler. Kanıt: Dönüş var, tamamlama yok ya da hatalı → B Çözüm: Tamamlama isteğini conversationData ile gönder"
+            "text": "Payment not completed — Verification came back successful, but the site did not send the 3DS completion request, or sent it incomplete. According to iyzico's documentation the payment is finalised by this request, and if conversationData came back on return it must be included. The errorCode and errorMessage in the completion response tell you which step failed. Evidence: Return present, completion missing or failed → B Fix: Send completion with conversationData"
           }
         },
         {
           "@type": "Question",
-          "name": "Dönüşte sepet boş, oturum yok mu?",
+          "name": "Cart empty and session gone on return?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Dönüşte oturum kayboldu — Banka ekranından siteye dönüş, başka bir siteden gelen bir form gönderimidir (POST). Tarayıcılar SameSite=Lax olarak işaretlenmiş çerezleri bu tür isteklerle göndermez. Oturum çerezi bu ayardaysa site dönüşte kullanıcıyı ve sepeti tanımaz, sipariş eşlenemez. Kanıt: Dönüşte oturum yok, sepet boş → C Çözüm: Siparişi oturumla değil, kimlikle eşle"
+            "text": "Session lost on return — The return from the bank screen to the site is a form submission (POST) coming from another site. Browsers do not send cookies marked SameSite=Lax with such requests. If the session cookie uses this setting, the site does not recognise the user or the cart on return, and the order cannot be matched. Evidence: No session and empty cart on return → C Fix: Match the order by ID, not by session"
           }
         },
         {
           "@type": "Question",
-          "name": "«Dönüş isteği (callbackUrl): status=failure, mdStatus 1 değil» görüyorsam nedeni ne?",
+          "name": "What causes «Return request (callbackUrl): status=failure, mdStatus is not 1»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Banka doğrulaması geçmedi — Dönüşte mdStatus 1 değilse kart sahibi ya da banka doğrulamayı tamamlamamıştır. iyzico dokümanı her değerin anlamını verir; örneğin 0 geçersiz doğrulama, 5 doğrulama yapılamıyor, 7 sistem hatası demektir. Bu, sitenin kodunda bir hata değildir; müşteriye doğru mesajı göstermek gerekir. Çözüm: Anlamlı mesaj göster"
+            "text": "A · Bank verification failed — If mdStatus is not 1 on return, the cardholder or the bank did not complete verification. iyzico's documentation lists what each value means: for example 0 is an invalid verification, 5 means verification could not be performed, 7 is a system error. This is not a bug in the site's code; the customer needs to see the right message. Fix: Show a clear message"
           }
         },
         {
           "@type": "Question",
-          "name": "«Dönüş geldi ama 3DS Tamamlama isteği hiç gönderilmemiş» görüyorsam nedeni ne?",
+          "name": "What causes «Return arrived but the 3DS completion request was never sent»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Ödeme tamamlanmadı — Doğrulama başarılı döndü ama site 3DS Tamamlama isteğini göndermedi ya da eksik gönderdi. iyzico dokümanına göre ödeme bu istekle kesinleşir; dönüşte conversationData geldiyse bu isteğe eklenmelidir. Tamamlama yanıtındaki errorCode ve errorMessage hangi adımın düştüğünü söyler. Çözüm: Tamamlama isteğini conversationData ile gönder"
+            "text": "B · Payment not completed — Verification came back successful, but the site did not send the 3DS completion request, or sent it incomplete. According to iyzico's documentation the payment is finalised by this request, and if conversationData came back on return it must be included. The errorCode and errorMessage in the completion response tell you which step failed. Fix: Send completion with conversationData"
           }
         },
         {
           "@type": "Question",
-          "name": "«3DS Tamamlama yanıtı: errorCode ve errorMessage dolu» görüyorsam nedeni ne?",
+          "name": "What causes «3DS completion response: errorCode and errorMessage are filled»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Ödeme tamamlanmadı — Doğrulama başarılı döndü ama site 3DS Tamamlama isteğini göndermedi ya da eksik gönderdi. iyzico dokümanına göre ödeme bu istekle kesinleşir; dönüşte conversationData geldiyse bu isteğe eklenmelidir. Tamamlama yanıtındaki errorCode ve errorMessage hangi adımın düştüğünü söyler. Çözüm: Tamamlama isteğini conversationData ile gönder"
+            "text": "B · Payment not completed — Verification came back successful, but the site did not send the 3DS completion request, or sent it incomplete. According to iyzico's documentation the payment is finalised by this request, and if conversationData came back on return it must be included. The errorCode and errorMessage in the completion response tell you which step failed. Fix: Send completion with conversationData"
           }
         },
         {
           "@type": "Question",
-          "name": "«Dönüşte oturum yok: sepet boş, kullanıcı çıkış yapmış görünüyor» görüyorsam nedeni ne?",
+          "name": "What causes «No session on return: cart is empty, the user appears logged out»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "C · Dönüşte oturum kayboldu — Banka ekranından siteye dönüş, başka bir siteden gelen bir form gönderimidir (POST). Tarayıcılar SameSite=Lax olarak işaretlenmiş çerezleri bu tür isteklerle göndermez. Oturum çerezi bu ayardaysa site dönüşte kullanıcıyı ve sepeti tanımaz, sipariş eşlenemez. Çözüm: Siparişi oturumla değil, kimlikle eşle"
+            "text": "C · Session lost on return — The return from the bank screen to the site is a form submission (POST) coming from another site. Browsers do not send cookies marked SameSite=Lax with such requests. If the session cookie uses this setting, the site does not recognise the user or the cart on return, and the order cannot be matched. Fix: Match the order by ID, not by session"
           }
         }
       ]
@@ -318,20 +318,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "iyzico 3D Secure dönüşünde hata",
-          "item": "https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/"
+          "name": "iyzico 3D Secure Return Error",
+          "item": "https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/"
         }
       ]
     }
@@ -494,7 +494,7 @@
       </section>
     
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">A backend engineer who knows payment integrations. The return URL has to log the incoming values, show a meaningful message based on mdStatus, send the 3DS completion request in full, and match the order by ID rather than by session.</p>
       </section>
 

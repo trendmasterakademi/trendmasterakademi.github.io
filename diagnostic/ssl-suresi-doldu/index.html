@@ -251,58 +251,58 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Yenileme görevi çalışıyor mu?",
+          "name": "Is certbot / ACME cron executing cleanly?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yenileme durdu — Kısa ömürlü sertifikalar otomatik yenilenir; yenileme görevi bir noktada sessizce durmuştur. Kanıt: Yenileme log'unda hata → A Çözüm: Görev onarımı + süre bildirimi"
+            "text": "Auto-renewal stopped — Automated 90-day certificates require active cron hooks; the renewal task failed silently without triggering alerts. Evidence: Certbot renewal error in log → A Fix: Certbot repair + expiry monitoring webhook"
           }
         },
         {
           "@type": "Question",
-          "name": "Hata kodu CN / alan adı hatası mı?",
+          "name": "Is error code COMMON_NAME mismatch?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Kapsam eksik — Sertifika ana alan adını kapsıyor ama `www` veya bir alt alan adını kapsamıyor. Kanıt: COMMON_NAME hatası → B Çözüm: Sertifikayı alt alan adlarıyla yeniden al"
+            "text": "Missing SAN / subdomains — Certificate covers apex domain but lacks SAN coverage for `www` or target subdomains. Evidence: COMMON_NAME_INVALID error → B Fix: Re-issue with all SAN / www subdomains"
           }
         },
         {
           "@type": "Question",
-          "name": "Bazı cihazlarda çalışıp bazılarında çalışmıyor mu?",
+          "name": "Does it fail only on specific mobile clients?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Zincir eksik — Sertifika geçerli ama zincir tamamlanmamış. Bazı cihazlarda çalışır, bazılarında çalışmaz — en yanıltıcı hâl budur. Kanıt: unable to get local issuer → C Çözüm: Ara sertifikayı zincire ekle"
+            "text": "Incomplete CA chain — Leaf certificate is valid but intermediate CA bundle is missing. Works on modern desktops, fails on mobile — the most deceptive failure. Evidence: unable to get local issuer error → C Fix: Install fullchain bundle to web server config"
           }
         },
         {
           "@type": "Question",
-          "name": "«NET::ERR_CERT_DATE_INVALID» görüyorsam nedeni ne?",
+          "name": "What causes «NET::ERR_CERT_DATE_INVALID <- certificate expired»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Yenileme durdu — Kısa ömürlü sertifikalar otomatik yenilenir; yenileme görevi bir noktada sessizce durmuştur. Çözüm: Görev onarımı + süre bildirimi"
+            "text": "A · Auto-renewal stopped — Automated 90-day certificates require active cron hooks; the renewal task failed silently without triggering alerts. Fix: Certbot repair + expiry monitoring webhook"
           }
         },
         {
           "@type": "Question",
-          "name": "«NET::ERR_CERT_COMMON_NAME_INVALID» görüyorsam nedeni ne?",
+          "name": "What causes «NET::ERR_CERT_COMMON_NAME_INVALID <- hostname mismatch»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Kapsam eksik — Sertifika ana alan adını kapsıyor ama `www` veya bir alt alan adını kapsamıyor. Çözüm: Sertifikayı alt alan adlarıyla yeniden al"
+            "text": "B · Missing SAN / subdomains — Certificate covers apex domain but lacks SAN coverage for `www` or target subdomains. Fix: Re-issue with all SAN / www subdomains"
           }
         },
         {
           "@type": "Question",
-          "name": "«SSL certificate problem: unable to get local issuer certificate» görüyorsam nedeni ne?",
+          "name": "What causes «SSL certificate problem: unable to get local issuer certificate»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "C · Zincir eksik — Sertifika geçerli ama zincir tamamlanmamış. Bazı cihazlarda çalışır, bazılarında çalışmaz — en yanıltıcı hâl budur. Çözüm: Ara sertifikayı zincire ekle"
+            "text": "C · Incomplete CA chain — Leaf certificate is valid but intermediate CA bundle is missing. Works on modern desktops, fails on mobile — the most deceptive failure. Fix: Install fullchain bundle to web server config"
           }
         },
         {
           "@type": "Question",
-          "name": "«certbot renew — hook command failed» görüyorsam nedeni ne?",
+          "name": "What causes «certbot renew — hook command failed»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Yenileme durdu — Kısa ömürlü sertifikalar otomatik yenilenir; yenileme görevi bir noktada sessizce durmuştur. Çözüm: Görev onarımı + süre bildirimi"
+            "text": "A · Auto-renewal stopped — Automated 90-day certificates require active cron hooks; the renewal task failed silently without triggering alerts. Fix: Certbot repair + expiry monitoring webhook"
           }
         }
       ]
@@ -313,20 +313,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "SSL süresi doldu, tarayıcı uyarı veriyor",
-          "item": "https://trendmasterakademi.com/teshis/ssl-suresi-doldu/"
+          "name": "SSL Certificate Expired, Security Warning Displayed",
+          "item": "https://trendmasterakademi.com/diagnostic/ssl-suresi-doldu/"
         }
       ]
     }
@@ -443,7 +443,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">DevOps / Sysadmin. Scope, timeline and budget become clear after diagnosis. The true goal is preventing recurrence: without a notification that fires when renewal fails, the same failure returns once the certificate's lifetime runs out.</p>
       </section>
 

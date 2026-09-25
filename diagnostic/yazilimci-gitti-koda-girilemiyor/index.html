@@ -251,26 +251,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Hesaplar şirket adresine mi kayıtlı?",
+          "name": "Are accounts tied to company domain email?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Erişim kaybı — Domain, hosting ve depo kişinin şahsi e-postasına kayıtlı. Kod sağlam, altyapı çalışıyor; devredilmesi gereken şey hesaplar. Kanıt: Hesaplar şahsi adreste → A Çözüm: Hesap devri — idari süreç, kod işi değil"
+            "text": "Loss of access — Domain registrar, host, and git repos are registered to personal emails. Code and infrastructure are sound; the bottleneck is credential handover. Evidence: Accounts on personal mail → A Fix: Account transfer — admin workflow, no coding needed"
           }
         },
         {
           "@type": "Question",
-          "name": "Sürüm kontrolü (git) var mı?",
+          "name": "Is version control (git remote) present?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Kaynak kod kayıp — Sürüm kontrolü hiç kurulmamış. Canlı sunucudaki dosyalar tek kopya. En kırılgan hâl budur. Kanıt: Depo yok → B Çözüm: ÖNCE canlıdan tam yedek, SONRA depo"
+            "text": "Missing source repository — Version control was never initialized. Live production server contains the sole surviving copy. The highest-risk state. Evidence: No remote repo → B Fix: Full live image FIRST, then git init setup"
           }
         },
         {
           "@type": "Question",
-          "name": "README ve bağımlılık kilidi var mı?",
+          "name": "Are README and package lockfiles available?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ortam belgesiz — Kod var ama çalıştırılamıyor: kurulum adımları, ortam değişkenleri ve bağımlılık sürümleri yazılı değil. Kanıt: .env.example / lock yok → C Çözüm: Ortam yeniden inşası + belgeleme"
+            "text": "Undocumented environment — Repository exists but cannot be booted: setup commands, environment variables, and lockfiles are absent. Evidence: Missing .env / lockfile → C Fix: Environment rebuild + documentation"
           }
         }
       ]
@@ -281,20 +281,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Yazılımcı gitti, kimse koda giremiyor",
-          "item": "https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/"
+          "name": "Developer Departed, Codebase Inaccessible",
+          "item": "https://trendmasterakademi.com/diagnostic/yazilimci-gitti-koda-girilemiyor/"
         }
       ]
     }
@@ -411,7 +411,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">A is an administrative process, requiring zero coding. For B, the absolute first step is pulling a full live server image, not writing code. C is precisely what a handover code audit diagnoses.</p>
       </section>
 

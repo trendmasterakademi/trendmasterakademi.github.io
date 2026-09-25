@@ -251,26 +251,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "İstek sayısı son aylarda arttı mı?",
+          "name": "Has API traffic grown steadily in recent months?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Hacim büyüdü — İş büyüdü, istek sayısı sessizce limitin üstüne çıktı. Kod aynı, trafik değişti. Kanıt: İstek sayısı zamanla artmış → A Çözüm: Toplu istek + paket yükseltme"
+            "text": "Natural volume growth — Order volume scaled naturally, exceeding baseline API tier quota without notice. Evidence: Request rate climbed over time → A Fix: Batch payloads + upgrade API tier"
           }
         },
         {
           "@type": "Question",
-          "name": "Aynı istek çok kısa aralıkla mı tekrarlıyor?",
+          "name": "Are retry requests fired without backoff delays?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Döngüsel tekrar — Hata sonrası yeniden deneme mantığı beklemeden tekrarlıyor ve limiti kendi kendine dolduruyor. Kanıt: Aynı istek çok kısa aralıkla tekrarlıyor → B Çözüm: Artan bekleme süresi ekle"
+            "text": "Retry storm (No backoff) — Worker catches transient error and immediately hammers API in tight loop, exhausting rate limits. Evidence: Rapid repeated requests in log → B Fix: Exponential backoff + jitter retry logic"
           }
         },
         {
           "@type": "Question",
-          "name": "Limit başlığındaki değer düştü mü?",
+          "name": "Did rate limit header cap drop unexpectedly?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Limit değişti — Karşı taraf kotayı değiştirdi ya da fiyat planı düştü. Sizde hiçbir şey değişmedi. Kanıt: Limit başlığındaki değer düşmüş → C Çözüm: Sağlayıcıyla plan görüşmesi"
+            "text": "Provider quota downgrade — Upstream provider tightened throttle policy or subscription plan lapsed to free tier. Evidence: X-RateLimit cap dropped in headers → C Fix: Negotiate higher tier with vendor"
           }
         }
       ]
@@ -281,20 +281,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Entegrasyon aniden 429 vermeye başladı",
-          "item": "https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/"
+          "name": "Third-Party Integration Returning HTTP 429",
+          "item": "https://trendmasterakademi.com/diagnostic/entegrasyon-429-veriyor/"
         }
       ]
     }
@@ -411,7 +411,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Backend engineer. Permanent resilience combines payload batching with exponential backoff and jitter algorithms. This enables integrations to scale gracefully with traffic spikes.</p>
       </section>
 

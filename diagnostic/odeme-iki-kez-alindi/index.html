@@ -251,26 +251,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "İki istek aynı oturumdan mı geldi?",
+          "name": "Did both requests originate from same session?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Çift gönderim — Düğme kilitlenmedi, sayfa yavaş yanıt verdi, müşteri tekrar tıkladı. Kanıt: İki gönderim, aynı oturum → A Çözüm: Düğme kilidi + idempotency anahtarı"
+            "text": "Client double submit — Submit button was not disabled on click; slow response caused user double-click. Evidence: Two posts, same session → A Fix: Button lock + idempotency key header"
           }
         },
         {
           "@type": "Question",
-          "name": "Aynı olay kimliği iki kez işlenmiş mi?",
+          "name": "Was same event ID executed multiple times?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Bildirim tekrarı — Sağlayıcı aynı bildirimi tekrar gönderdi; bu normaldir. Uygulama ikisini de yeni sanıp işledi. Kanıt: Aynı olay kimliği iki kez → B Çözüm: Olay kimliğini kaydet · tekrarı yok say"
+            "text": "Webhook redelivery — Gateway redelivered standard retry callback. App treated both as novel transactions. Evidence: Same event ID processed twice → B Fix: Record event ID · ignore duplicate callbacks"
           }
         },
         {
           "@type": "Question",
-          "name": "İlk istek zaman aşımına mı uğradı?",
+          "name": "Did first attempt experience read timeout?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yeniden deneme — Uygulama zaman aşımı aldı ve isteği tekrarladı. Oysa ilki de başarılıydı. Kanıt: Zaman aşımı sonrası tekrar → C Çözüm: Tekrarı güvenli hâle getir · aynı anahtar"
+            "text": "Blind client retry — App got network timeout and blindly retried transaction, unaware first attempt succeeded. Evidence: Retry after timeout → C Fix: Safe retry logic · reuse identical idempotency key"
           }
         }
       ]
@@ -281,20 +281,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Ödeme iki kez alındı",
-          "item": "https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/"
+          "name": "Payment Charged Twice for Single Order",
+          "item": "https://trendmasterakademi.com/diagnostic/odeme-iki-kez-alindi/"
         }
       ]
     }
@@ -411,7 +411,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Backend engineer. Scope, timeline and budget become clear after diagnosis. The root solution for all three is strict idempotency: ensuring identical payment attempts return identical cached results without multiple charges.</p>
       </section>
 

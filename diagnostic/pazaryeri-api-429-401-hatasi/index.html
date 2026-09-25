@@ -258,58 +258,58 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Yanıtlar toplu işlerde mi 429'a dönüyor?",
+          "name": "Do responses turn to 429 during bulk jobs?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Hız sınırı aşıldı — Pazaryerleri dakikalık istek sınırı uygular. Hepsiburada dokümanına göre bir satıcı için dakikada ortalama 240 istek atılabilir, aşılırsa 429 döner. Trendyol sınırları servis grubu bazında tanımlar; sınır dolunca aynı dakika içinde o gruba yeni istek gönderilemez. Toplu stok ve fiyat işleri aynı anda başlatılınca sınır dakikalar içinde dolar. Kanıt: Yoğun işlerde 429 → A Çözüm: İstekleri sınıra göre kuyruğa al"
+            "text": "Rate limit exceeded — Marketplaces apply per-minute request limits. According to Hepsiburada's documentation, a seller can send about 240 requests per minute, and exceeding that returns 429. Trendyol defines limits by service group; once a group's limit is reached, no new request to that group can be sent within the same minute. When bulk stock and price jobs start at the same time, the limit fills up within minutes. Evidence: 429 during bulk jobs → A Fix: Queue requests within the limit"
           }
         },
         {
           "@type": "Question",
-          "name": "401, bir anahtar değişikliğinden sonra mı başladı?",
+          "name": "Did 401 start after a key change?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Kimlik bilgisi değişti — Trendyol, hatalı yetkilendirmede 401 ve ClientApiAuthenticationException döndürür; bilgiler satıcı panelindeki Entegrasyon Bilgileri sayfasından alınır. Hepsiburada'da satıcı panelinden yeni servis anahtarı oluşturulduğunda, dokümana göre yeni anahtarın entegratör ekranlarında da güncellenmesi gerekir. Hepsiburada ayrıca servislerinin kimlik doğrulama yapısını değiştirdiğini duyurmuştur. Kanıt: Anahtar değişikliğinden sonra 401 → B Çözüm: Yeni anahtarı entegrasyona gir"
+            "text": "Credentials changed — Trendyol returns 401 with ClientApiAuthenticationException on failed authorization; the credentials come from the Integration Information page in the seller panel. On Hepsiburada, when a new service key is created in the seller panel, the documentation says it must also be updated in the integrator's screens. Hepsiburada has also announced a change to the authentication structure of its services. Evidence: 401 after a key change → B Fix: Enter the new key in the integration"
           }
         },
         {
           "@type": "Question",
-          "name": "İstek başlığında User-Agent var mı?",
+          "name": "Is there a User-Agent header?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "User-Agent eksik — Trendyol her istekte User-Agent başlığı ister: kendi yazdığınız entegrasyonda «Satıcı Id - SelfIntegration», bir entegratör kullanıyorsanız «Satıcı Id - Entegrasyon Firması İsmi». Dokümana göre User-Agent bilgisi olmayan istekler 403 hatasıyla engellenir. Sunucu, kütüphane ya da vekil sunucu değişikliği bu başlığı sessizce düşürebilir. Kanıt: Başlıkta User-Agent yok, yanıt 403 → C Çözüm: Başlığı doğru biçimde gönder"
+            "text": "User-Agent missing — Trendyol requires a User-Agent header on every request: 'Seller Id - SelfIntegration' for an integration you built yourself, or 'Seller Id - Integrator Company Name' if you use an integrator. According to the documentation, requests without a User-Agent are blocked with a 403 error. A server, library or proxy change can silently drop this header. Evidence: No User-Agent header, response 403 → C Fix: Send the header in the right format"
           }
         },
         {
           "@type": "Question",
-          "name": "«Toplu stok işi başladıktan sonra yanıtlar 429'a dönüyor» görüyorsam nedeni ne?",
+          "name": "What causes «After the bulk stock job starts, responses turn to 429»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Hız sınırı aşıldı — Pazaryerleri dakikalık istek sınırı uygular. Hepsiburada dokümanına göre bir satıcı için dakikada ortalama 240 istek atılabilir, aşılırsa 429 döner. Trendyol sınırları servis grubu bazında tanımlar; sınır dolunca aynı dakika içinde o gruba yeni istek gönderilemez. Toplu stok ve fiyat işleri aynı anda başlatılınca sınır dakikalar içinde dolar. Çözüm: İstekleri sınıra göre kuyruğa al"
+            "text": "A · Rate limit exceeded — Marketplaces apply per-minute request limits. According to Hepsiburada's documentation, a seller can send about 240 requests per minute, and exceeding that returns 429. Trendyol defines limits by service group; once a group's limit is reached, no new request to that group can be sent within the same minute. When bulk stock and price jobs start at the same time, the limit fills up within minutes. Fix: Queue requests within the limit"
           }
         },
         {
           "@type": "Question",
-          "name": "«Servis anahtarı yenilendi, aynı gün 401 başladı» görüyorsam nedeni ne?",
+          "name": "What causes «The service key was renewed and 401 began the same day»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Kimlik bilgisi değişti — Trendyol, hatalı yetkilendirmede 401 ve ClientApiAuthenticationException döndürür; bilgiler satıcı panelindeki Entegrasyon Bilgileri sayfasından alınır. Hepsiburada'da satıcı panelinden yeni servis anahtarı oluşturulduğunda, dokümana göre yeni anahtarın entegratör ekranlarında da güncellenmesi gerekir. Hepsiburada ayrıca servislerinin kimlik doğrulama yapısını değiştirdiğini duyurmuştur. Çözüm: Yeni anahtarı entegrasyona gir"
+            "text": "B · Credentials changed — Trendyol returns 401 with ClientApiAuthenticationException on failed authorization; the credentials come from the Integration Information page in the seller panel. On Hepsiburada, when a new service key is created in the seller panel, the documentation says it must also be updated in the integrator's screens. Hepsiburada has also announced a change to the authentication structure of its services. Fix: Enter the new key in the integration"
           }
         },
         {
           "@type": "Question",
-          "name": "«Trendyol yanıtı: 401 ClientApiAuthenticationException» görüyorsam nedeni ne?",
+          "name": "What causes «Trendyol response: 401 ClientApiAuthenticationException»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Kimlik bilgisi değişti — Trendyol, hatalı yetkilendirmede 401 ve ClientApiAuthenticationException döndürür; bilgiler satıcı panelindeki Entegrasyon Bilgileri sayfasından alınır. Hepsiburada'da satıcı panelinden yeni servis anahtarı oluşturulduğunda, dokümana göre yeni anahtarın entegratör ekranlarında da güncellenmesi gerekir. Hepsiburada ayrıca servislerinin kimlik doğrulama yapısını değiştirdiğini duyurmuştur. Çözüm: Yeni anahtarı entegrasyona gir"
+            "text": "B · Credentials changed — Trendyol returns 401 with ClientApiAuthenticationException on failed authorization; the credentials come from the Integration Information page in the seller panel. On Hepsiburada, when a new service key is created in the seller panel, the documentation says it must also be updated in the integrator's screens. Hepsiburada has also announced a change to the authentication structure of its services. Fix: Enter the new key in the integration"
           }
         },
         {
           "@type": "Question",
-          "name": "«İstek başlıklarında User-Agent yok, yanıt 403» görüyorsam nedeni ne?",
+          "name": "What causes «No User-Agent in the request headers, response 403»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "C · User-Agent eksik — Trendyol her istekte User-Agent başlığı ister: kendi yazdığınız entegrasyonda «Satıcı Id - SelfIntegration», bir entegratör kullanıyorsanız «Satıcı Id - Entegrasyon Firması İsmi». Dokümana göre User-Agent bilgisi olmayan istekler 403 hatasıyla engellenir. Sunucu, kütüphane ya da vekil sunucu değişikliği bu başlığı sessizce düşürebilir. Çözüm: Başlığı doğru biçimde gönder"
+            "text": "C · User-Agent missing — Trendyol requires a User-Agent header on every request: 'Seller Id - SelfIntegration' for an integration you built yourself, or 'Seller Id - Integrator Company Name' if you use an integrator. According to the documentation, requests without a User-Agent are blocked with a 403 error. A server, library or proxy change can silently drop this header. Fix: Send the header in the right format"
           }
         }
       ]
@@ -320,20 +320,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
           "name": "Trendyol & Hepsiburada API: 429, 401",
-          "item": "https://trendmasterakademi.com/teshis/pazaryeri-api-429-401-hatasi/"
+          "item": "https://trendmasterakademi.com/diagnostic/pazaryeri-api-429-401-hatasi/"
         }
       ]
     }
@@ -504,7 +504,7 @@
       </section>
     
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">A backend engineer who knows marketplace integrations. Requests must be queued within the limit, credential changes must reach the integration, the User-Agent header must be sent in the right format, and the HTTP code of every request must be logged.</p>
       </section>
 

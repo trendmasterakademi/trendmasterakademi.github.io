@@ -251,26 +251,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Kayıtlı e-posta şirkete mi ait?",
+          "name": "Is registrant email under corporate domain?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ayrılan kişide — Hesaplar eski geliştiricinin veya eski bir çalışanın şahsi adresine kayıtlı. İyi niyet varsa devir kolaydır. Kanıt: WHOIS'te şahsi adres → A Çözüm: Devir talebi · iletişim varsa hızlı"
+            "text": "Former employee holds auth — Registrar accounts reside under a former freelancer or employee personal email. If cooperative, handover is simple. Evidence: Personal email in WHOIS → A Fix: Direct transfer · fast if contact is open"
           }
         },
         {
           "@type": "Question",
-          "name": "Kayıt sahibi firma adına mı?",
+          "name": "Is registrar tied to reseller agency name?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Aracı firmada — Alan adını bir ajans ya da bayi kendi hesabından almış. Sizin adınıza değil, onun portföyünde duruyor. Kanıt: Kayıt sahibi bir firma → B Çözüm: Transfer kodu talebi + kayıt değişikliği"
+            "text": "Held by third-party agency — Domain purchased via third-party agency reseller pool. Owned in their account rather than client direct legal entity. Evidence: Registrant is reseller entity → B Fix: EPP auth code + registrant transfer request"
           }
         },
         {
           "@type": "Question",
-          "name": "Kayıtlı adrese mail ulaşıyor mu?",
+          "name": "Does registrant mailbox receive inbound mail?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ulaşılamıyor — Kayıtlı adres çalışmıyor, kişiye erişilemiyor. Sağlayıcının resmi erişim kurtarma sürecine girilmesi gerekir. Kanıt: Kayıtlı adrese ulaşılamıyor → C Çözüm: Sağlayıcı kurtarma süreci · belge gerekir"
+            "text": "Unreachable registrant — Registrant mailbox abandoned, account holder unresponsive. Official registrar legal escalation required. Evidence: Bouncing mailbox / ghosted → C Fix: Registrar recovery · corporate legal docs required"
           }
         }
       ]
@@ -281,20 +281,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Domain ve hosting erişimi kimsede yok",
-          "item": "https://trendmasterakademi.com/teshis/domain-hosting-erisimi-yok/"
+          "name": "Zero Access to Domain Registrar and Hosting",
+          "item": "https://trendmasterakademi.com/diagnostic/domain-hosting-erisimi-yok/"
         }
       ]
     }
@@ -411,7 +411,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">This is an administrative and legal challenge; developers are not required initially. Corporate tax registration, invoice trails, and trademark certificates accelerate registrar transfer.</p>
       </section>
 

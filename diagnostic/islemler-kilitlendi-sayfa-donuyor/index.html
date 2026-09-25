@@ -251,50 +251,50 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Log'da deadlock kaydı var mı?",
+          "name": "Are deadlock / lock wait errors present in logs?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ters sıralı kilit — İki işlem aynı iki tabloya farklı sırayla dokunuyor; her biri diğerinin bıraktığını bekliyor. Kanıt: Log'da deadlock kaydı var → A Çözüm: Tabloları sabit sırayla kilitle"
+            "text": "Cross-ordered row locks — Two transactions update tables in reverse order; each blocks waiting for the other's release. Evidence: Deadlock found in database log → A Fix: Enforce global consistent lock acquisition order"
           }
         },
         {
           "@type": "Question",
-          "name": "Açık işlem süresi dakikalarca mı?",
+          "name": "Do open DB locks persist for multiple minutes?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Uzun işlem — Bir işlem içinde rapor üretimi veya harici çağrı yapılıyor; kilit gereğinden uzun tutuluyor. Kanıt: Açık işlem dakikalarca sürüyor → B Çözüm: Harici işi işlem dışına çıkar"
+            "text": "Long-running transaction — Transaction wraps external API calls or PDF generation, holding database row locks for minutes. Evidence: Idle in transaction > 60s → B Fix: Move external I/O outside of SQL transactions"
           }
         },
         {
           "@type": "Question",
-          "name": "Kilitlenme arka plan göreviyle çakışıyor mu?",
+          "name": "Do lock spikes overlap with cron batch execution?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Toplu güncelleme — Arka plan görevi geniş bir aralığı kilitliyor, canlı trafik onun bitmesini bekliyor. Kanıt: Kilitlenme toplu görevle çakışıyor → C Çözüm: Parçalara böl + yoğun saat dışına al"
+            "text": "Broad table lock (Batch) — Nightly batch import locks wide index ranges, starving real-time checkout threads. Evidence: Deadlock coincides with cron batch → C Fix: Chunk batch updates + off-peak queue scheduling"
           }
         },
         {
           "@type": "Question",
-          "name": "«Deadlock found when trying to get lock; try restarting transaction» görüyorsam nedeni ne?",
+          "name": "What causes «Deadlock found when trying to get lock; try restarting transaction»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Ters sıralı kilit — İki işlem aynı iki tabloya farklı sırayla dokunuyor; her biri diğerinin bıraktığını bekliyor. Çözüm: Tabloları sabit sırayla kilitle"
+            "text": "A · Cross-ordered row locks — Two transactions update tables in reverse order; each blocks waiting for the other's release. Fix: Enforce global consistent lock acquisition order"
           }
         },
         {
           "@type": "Question",
-          "name": "«Lock wait timeout exceeded; try restarting transaction» görüyorsam nedeni ne?",
+          "name": "What causes «Lock wait timeout exceeded; try restarting transaction»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Uzun işlem — Bir işlem içinde rapor üretimi veya harici çağrı yapılıyor; kilit gereğinden uzun tutuluyor. Çözüm: Harici işi işlem dışına çıkar"
+            "text": "B · Long-running transaction — Transaction wraps external API calls or PDF generation, holding database row locks for minutes. Fix: Move external I/O outside of SQL transactions"
           }
         },
         {
           "@type": "Question",
-          "name": "«Veritabanında uzun süredir açık işlem (idle in transaction)» görüyorsam nedeni ne?",
+          "name": "What causes «Database holds long-running idle in transaction locks»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Uzun işlem — Bir işlem içinde rapor üretimi veya harici çağrı yapılıyor; kilit gereğinden uzun tutuluyor. Çözüm: Harici işi işlem dışına çıkar"
+            "text": "B · Long-running transaction — Transaction wraps external API calls or PDF generation, holding database row locks for minutes. Fix: Move external I/O outside of SQL transactions"
           }
         }
       ]
@@ -305,20 +305,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "İşlemler kilitlendi, sayfa dönüp duruyor",
-          "item": "https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/"
+          "name": "Transactions Deadlocked, Pages Spinning",
+          "item": "https://trendmasterakademi.com/diagnostic/islemler-kilitlendi-sayfa-donuyor/"
         }
       ]
     }
@@ -435,7 +435,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Senior backend engineer. Database engine outputs the conflicting queries in crash logs; resolution requires re-ordering table mutations and scoping transaction lifecycles.</p>
       </section>
 

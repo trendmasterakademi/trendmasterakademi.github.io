@@ -244,49 +244,49 @@
         "url": "https://trendmasterakademi.com"
       },
       "datePublished": "2026-08-29T17:06:29+03:00",
-      "dateModified": "2026-09-25T07:31:56+03:00"
+      "dateModified": "2026-09-25T09:03:46+03:00"
     },
     {
       "@type": "FAQPage",
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Sayfa kaynağında noindex var mı?",
+          "name": "Is <meta noindex> present in HTML source?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "noindex kalmış — Test ortamında arama motorlarını engellemek için konan etiket yayına da gitmiş. Kanıt: Sayfa kaynağında noindex → A Çözüm: Etiketi kaldır + yeniden dizinleme iste"
+            "text": "Staging noindex leaked — Robots noindex tag used to hide staging was mistakenly deployed to production release. Evidence: Meta noindex found in DOM → A Fix: Strip tag + request Google re-indexing"
           }
         },
         {
           "@type": "Question",
-          "name": "/robots.txt Disallow: / mi?",
+          "name": "Does robots.txt contain Disallow: root slash?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "robots.txt kapalı — Dosya tüm siteyi tarayıcılara kapatmış durumda. Kanıt: robots.txt Disallow: / → B Çözüm: Kuralı düzelt · etki yeniden taramada"
+            "text": "robots.txt blocked — robots.txt file instructs all crawlers to disallow indexation across root. Evidence: robots.txt Disallow: / → B Fix: Fix rule · recovery on re-crawl"
           }
         },
         {
           "@type": "Question",
-          "name": "Eski adresler 301 veriyor mu?",
+          "name": "Do legacy URLs return 301 to new counterparts?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Adresler değişti — Sayfa adresleri yönlendirme kurulmadan değiştirildi. Eski adresler 404 veriyor, birikmiş değer kayboldu. Kanıt: Eski adresler 404 veriyor → C Çözüm: Eski → yeni 301 haritası kur"
+            "text": "Broken 301 migrations — URL architecture was revamped without 301 redirects. Legacy URLs return 404, wiping historical domain authority. Evidence: Legacy URLs return 404 → C Fix: Deploy complete 301 redirect map table"
           }
         },
         {
           "@type": "Question",
-          "name": "«robots.txt → Disallow: /» görüyorsam nedeni ne?",
+          "name": "What causes «robots.txt → Disallow: /»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · robots.txt kapalı — Dosya tüm siteyi tarayıcılara kapatmış durumda. Çözüm: Kuralı düzelt · etki yeniden taramada"
+            "text": "B · robots.txt blocked — robots.txt file instructs all crawlers to disallow indexation across root. Fix: Fix rule · recovery on re-crawl"
           }
         },
         {
           "@type": "Question",
-          "name": "«<meta name=\"robots\" content=\"noindex\">» görüyorsam nedeni ne?",
+          "name": "What causes «<meta name=\"robots\" content=\"noindex\">»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · noindex kalmış — Test ortamında arama motorlarını engellemek için konan etiket yayına da gitmiş. Çözüm: Etiketi kaldır + yeniden dizinleme iste"
+            "text": "A · Staging noindex leaked — Robots noindex tag used to hide staging was mistakenly deployed to production release. Fix: Strip tag + request Google re-indexing"
           }
         }
       ]
@@ -297,20 +297,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Site aramalarda görünmez oldu",
-          "item": "https://trendmasterakademi.com/teshis/site-aramalarda-gorunmez-oldu/"
+          "name": "Website Dropped from Search Engine Results",
+          "item": "https://trendmasterakademi.com/diagnostic/site-aramalarda-gorunmez-oldu/"
         }
       ]
     }
@@ -427,7 +427,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">For A and B, scope, timeline and budget become clear after diagnosis; index restoration occurs when search engines re-crawl the site. C requires comprehensive URL mapping tables to preserve link equity.</p>
       </section>
 

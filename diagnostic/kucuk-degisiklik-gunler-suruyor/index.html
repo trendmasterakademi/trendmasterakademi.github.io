@@ -251,26 +251,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Yeni biri projeyi bir günde ayağa kaldırabilir mi?",
+          "name": "Can a new dev boot the project locally within 1 day?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Belgesizlik — Bilgi kimsenin yazmadığı yerde, insanların kafasında. Her değişiklik önce arkeoloji gerektiriyor. Kanıt: Kurulum belgesi yok → A Çözüm: Kurulum ve karar kaydı yaz"
+            "text": "Zero developer documentation — Domain knowledge exists solely in individuals' memories. Every change requires historical code archaeology. Evidence: Missing README / architecture docs → A Fix: Write README setup + architecture decision records"
           }
         },
         {
           "@type": "Question",
-          "name": "Yayın tek komutla yapılabiliyor mu?",
+          "name": "Is deployment automated with a single command?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Elle yayın — Her teslim elle yapılıyor; küçük bir değişiklik bile uzun bir tören gerektiriyor. Kanıt: Yayın elle ve uzun → B Çözüm: Yayını otomatikleştir · tek adım"
+            "text": "Manual deployment ceremony — Deployments rely on manual FTP / SSH commands; tiny tweaks require extensive manual rituals. Evidence: Manual FTP/SSH release steps → B Fix: Automate CI/CD · one-click release pipeline"
           }
         },
         {
           "@type": "Question",
-          "name": "Değişecek yeri bulmak saatler sürüyor mu?",
+          "name": "Does locating target logic require hours of grep searching?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Karışık yapı — Değişiklik gereken yeri bulmak zaman alıyor; mantık dağınık, isimlendirme tutarsız. Kanıt: Yeri bulmak saatler sürüyor → C Çözüm: Dokunulan yeri kademeli düzenle"
+            "text": "Unstructured spaghetti architecture — Locating which file controls the feature takes hours; scattered business logic and inconsistent naming conventions. Evidence: Hours spent locating source code file → C Fix: Apply Scout Rule: clean up target module gradually"
           }
         }
       ]
@@ -281,20 +281,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Küçük değişiklik günler sürüyor",
-          "item": "https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/"
+          "name": "Minor Changes Take Days to Deliver",
+          "item": "https://trendmasterakademi.com/diagnostic/kucuk-degisiklik-gunler-suruyor/"
         }
       ]
     }
@@ -411,7 +411,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">None of these are resolved by 'working overtime'. The payoff is not immediate; it builds up: the same team ships noticeably more work in the same time.</p>
       </section>
 

@@ -255,58 +255,58 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "get-token yanıtında reason dolu mu?",
+          "name": "Does get-token return a filled reason field?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Token isteği reddedildi — Ödeme başlamadan önceki get-token isteği başarısız oluyor. En sık sebep paytr_token imzasının dokümandaki sırayla hesaplanmaması: alanların sırası, tutarın 100 ile çarpılmaması, sepetin base64 kodlanmaması ya da test_mode değerinin imzaya katılmaması. Kanıt: Yanıtta reason alanı dolu → A Çözüm: İmza sırasını ve tutarı düzelt"
+            "text": "Token request rejected — The get-token request made before payment fails. The most common cause is a paytr_token signature not built in the documented order: field order, the amount not multiplied by 100, the basket not base64-encoded, or test_mode left out of the signature. Evidence: reason field filled in the response → A Fix: Fix signature order and amount"
           }
         },
         {
           "@type": "Question",
-          "name": "Aynı ödeme için bildirim dakikada bir mi geliyor?",
+          "name": "Is the same notification sent every minute?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Bildirime «OK» dönülmüyor — Ödeme alındı ve PayTR sonucu Bildirim URL'ine gönderdi, ama yanıt düz metin «OK» değil. PayTR dokümanına göre bu durumda bildirim başarısız sayılır, bir dakika sonra yeniden denenir ve işlem panelde «Devam Ediyor» kalır. Yanıt bir HTML sayfası, hata sayfası ya da yönlendirme olduğunda da PayTR «OK» almamış olur. Kanıt: Aynı bildirim dakikada bir geliyor → B Çözüm: Yalnız düz metin «OK» dön"
+            "text": "No 'OK' to the notification — The payment was taken and PayTR sent the result to the notification URL, but the reply is not the plain text 'OK'. According to PayTR's documentation the notification then counts as failed, is retried a minute later, and the transaction stays 'In Progress' in the panel. An HTML page, an error page or a redirect also means PayTR did not get 'OK'. Evidence: Same notification arrives every minute → B Fix: Reply with plain text 'OK' only"
           }
         },
         {
           "@type": "Question",
-          "name": "Aynı merchant_oid iki kez mi işlenmiş?",
+          "name": "Was the same merchant_oid processed twice?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Bildirim iki kez işlendi — PayTR aynı ödeme için birden fazla bildirim gönderebilir. Doküman yalnız ilk bildirimin dikkate alınmasını, tekrarlara yalnızca «OK» dönülmesini söyler. Bu kontrol yoksa aynı sipariş iki kez onaylanır: stok iki kez düşer, müşteriye iki e-posta gider. Kanıt: Aynı merchant_oid iki kez işlenmiş → C Çözüm: İlkini işle, tekrara «OK» dön"
+            "text": "Notification processed twice — PayTR may send more than one notification for the same payment. The documentation says only the first should be acted on and repeats should simply get 'OK'. Without this check the same order is confirmed twice: stock drops twice and the customer gets two emails. Evidence: Same merchant_oid processed twice → C Fix: Act on the first, 'OK' the repeats"
           }
         },
         {
           "@type": "Question",
-          "name": "«get-token yanıtı: status success değil, reason alanı dolu» görüyorsam nedeni ne?",
+          "name": "What causes «get-token response: status is not success, reason field is filled»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Token isteği reddedildi — Ödeme başlamadan önceki get-token isteği başarısız oluyor. En sık sebep paytr_token imzasının dokümandaki sırayla hesaplanmaması: alanların sırası, tutarın 100 ile çarpılmaması, sepetin base64 kodlanmaması ya da test_mode değerinin imzaya katılmaması. Çözüm: İmza sırasını ve tutarı düzelt"
+            "text": "A · Token request rejected — The get-token request made before payment fails. The most common cause is a paytr_token signature not built in the documented order: field order, the amount not multiplied by 100, the basket not base64-encoded, or test_mode left out of the signature. Fix: Fix signature order and amount"
           }
         },
         {
           "@type": "Question",
-          "name": "«İşlemler sayfası: ödeme alındı, durum «Devam Ediyor»» görüyorsam nedeni ne?",
+          "name": "What causes «Transactions page: payment taken, status 'In Progress'»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Bildirime «OK» dönülmüyor — Ödeme alındı ve PayTR sonucu Bildirim URL'ine gönderdi, ama yanıt düz metin «OK» değil. PayTR dokümanına göre bu durumda bildirim başarısız sayılır, bir dakika sonra yeniden denenir ve işlem panelde «Devam Ediyor» kalır. Yanıt bir HTML sayfası, hata sayfası ya da yönlendirme olduğunda da PayTR «OK» almamış olur. Çözüm: Yalnız düz metin «OK» dön"
+            "text": "B · No 'OK' to the notification — The payment was taken and PayTR sent the result to the notification URL, but the reply is not the plain text 'OK'. According to PayTR's documentation the notification then counts as failed, is retried a minute later, and the transaction stays 'In Progress' in the panel. An HTML page, an error page or a redirect also means PayTR did not get 'OK'. Fix: Reply with plain text 'OK' only"
           }
         },
         {
           "@type": "Question",
-          "name": "«Bildirim URL erişim kaydı: aynı merchant_oid dakikada bir geliyor» görüyorsam nedeni ne?",
+          "name": "What causes «Notification URL access log: the same merchant_oid arrives every minute»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Bildirime «OK» dönülmüyor — Ödeme alındı ve PayTR sonucu Bildirim URL'ine gönderdi, ama yanıt düz metin «OK» değil. PayTR dokümanına göre bu durumda bildirim başarısız sayılır, bir dakika sonra yeniden denenir ve işlem panelde «Devam Ediyor» kalır. Yanıt bir HTML sayfası, hata sayfası ya da yönlendirme olduğunda da PayTR «OK» almamış olur. Çözüm: Yalnız düz metin «OK» dön"
+            "text": "B · No 'OK' to the notification — The payment was taken and PayTR sent the result to the notification URL, but the reply is not the plain text 'OK'. According to PayTR's documentation the notification then counts as failed, is retried a minute later, and the transaction stays 'In Progress' in the panel. An HTML page, an error page or a redirect also means PayTR did not get 'OK'. Fix: Reply with plain text 'OK' only"
           }
         },
         {
           "@type": "Question",
-          "name": "«Aynı merchant_oid için iki kez stok düşümü ve iki onay e-postası» görüyorsam nedeni ne?",
+          "name": "What causes «Stock reduced twice and two confirmation emails for one merchant_oid»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "C · Bildirim iki kez işlendi — PayTR aynı ödeme için birden fazla bildirim gönderebilir. Doküman yalnız ilk bildirimin dikkate alınmasını, tekrarlara yalnızca «OK» dönülmesini söyler. Bu kontrol yoksa aynı sipariş iki kez onaylanır: stok iki kez düşer, müşteriye iki e-posta gider. Çözüm: İlkini işle, tekrara «OK» dön"
+            "text": "C · Notification processed twice — PayTR may send more than one notification for the same payment. The documentation says only the first should be acted on and repeats should simply get 'OK'. Without this check the same order is confirmed twice: stock drops twice and the customer gets two emails. Fix: Act on the first, 'OK' the repeats"
           }
         }
       ]
@@ -317,20 +317,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "PayTR token hatası ve «Devam Ediyor»",
-          "item": "https://trendmasterakademi.com/teshis/paytr-token-ve-bildirim-hatasi/"
+          "name": "PayTR Token Error and 'In Progress'",
+          "item": "https://trendmasterakademi.com/diagnostic/paytr-token-ve-bildirim-hatasi/"
         }
       ]
     }
@@ -485,7 +485,7 @@
       </section>
     
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">A backend engineer who knows payment integrations. The lasting fix has three parts: building the signature in the documented order, a notification URL that verifies the incoming hash and replies with plain 'OK' only, and never processing the same merchant_oid twice.</p>
       </section>
 

@@ -236,7 +236,7 @@ const webSiteNode = {
   "publisher": {
     "@id": "https://trendmasterakademi.com/#organization"
   },
-  "inLanguage": ["tr-TR"]
+  "inLanguage": ["tr-TR", "en-US"]
 };
 
 // 2.1 — /teshis/ Katalog Hub'ı İçeriği (${teshisData.length} Teşhis)
@@ -2813,6 +2813,35 @@ const glossaryPages = glossaryTerms.flatMap(term => {
     ]
   };
 
+  // Adım 89 — İngilizce sayfanın kendi yapısal verisi (Türkçe şema İngilizce sayfada kullanılmaz)
+  const definedTermNodeEn = {
+    ...definedTermNode,
+    "name": term.titleEn || term.title,
+    "description": term.shortDef.en || term.shortDef.tr,
+    "inDefinedTermSet": {
+      "@type": "DefinedTermSet",
+      "name": "Technical Glossary",
+      "url": "https://trendmasterakademi.com/glossary/"
+    },
+    "url": `https://trendmasterakademi.com/glossary/${term.slug}/`,
+    "inLanguage": "en-US"
+  };
+
+  const schemaEn = {
+    "@context": "https://schema.org",
+    "@graph": [
+      definedTermNodeEn,
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trendmasterakademi.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Technical Glossary", "item": "https://trendmasterakademi.com/glossary/" },
+          { "@type": "ListItem", "position": 3, "name": term.titleEn || term.title, "item": `https://trendmasterakademi.com/glossary/${term.slug}/` }
+        ]
+      }
+    ]
+  };
+
   const trPage = {
     dir: `sozluk/${term.slug}`,
     title: formatPageTitle(`${term.title} Nedir?`),
@@ -2841,7 +2870,7 @@ const glossaryPages = glossaryTerms.flatMap(term => {
     heading: term.titleEn || term.title,
     subheading: `${term.shortDef.en || term.shortDef.tr} ${term.agencyImpact?.en || term.agencyImpact?.tr || ''}`,
     extraContent: enExtraContent,
-    schema
+    schema: schemaEn
   };
 
   return [trPage, enPage];
@@ -3111,7 +3140,7 @@ ${hataMetinleriHtmlTr}
 ${kontrolAdimlariHtmlTr}
 ${devirNoktasiHtmlTr}
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer, ne kadar sürer</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Kim çözer</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">${escapeHtml(item.kimCozer?.tr || '')}</p>
       </section>
 
@@ -3147,7 +3176,7 @@ ${hataMetinleriHtmlEn}
 ${kontrolAdimlariHtmlEn}
 ${devirNoktasiHtmlEn}
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">${escapeHtml(item.kimCozer?.en || item.kimCozer?.tr || '')}</p>
       </section>
 
@@ -3191,6 +3220,39 @@ ${resmiKaynaklarHtmlEn}
           "acceptedAnswer": {
             "@type": "Answer",
             "text": `${neden.harf} · ${neden.ad.tr} — ${neden.aciklama.tr} Çözüm: ${cozumStr}`
+          }
+        });
+      }
+    }
+  }
+
+  // Adım 89 — İngilizce sayfanın SSS yapısal verisi İngilizce alanlardan kurulur
+  const faqQuestionsEn = (item.nedenler || []).map(n => {
+    const testStr = [].concat(n.diyagramTest?.en || n.diyagramTest?.tr || []).join(' ');
+    const cozumStr = [].concat(n.diyagramCozum?.en || n.diyagramCozum?.tr || []).join(' ');
+    return {
+      "@type": "Question",
+      "name": testStr,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": `${n.ad.en || n.ad.tr} — ${n.aciklama.en || n.aciklama.tr} Evidence: ${n.kanit.en || n.kanit.tr} Fix: ${cozumStr}`
+      }
+    };
+  });
+
+  if (item.logEslesme && item.logEslesme.length > 0) {
+    for (const eslesme of item.logEslesme) {
+      if (!eslesme.harf) continue;
+      const logSatiri = item.logSatirlari[eslesme.satir];
+      const neden = (item.nedenler || []).find(n => n.harf === eslesme.harf);
+      if (logSatiri && neden) {
+        const cozumStr = [].concat(neden.diyagramCozum?.en || neden.diyagramCozum?.tr || []).join(' ');
+        faqQuestionsEn.push({
+          "@type": "Question",
+          "name": `What causes «${cleanLogForQuestion(diagnosticLogEnMap[logSatiri] || logSatiri)}»?`,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": `${neden.harf} · ${neden.ad.en || neden.ad.tr} — ${neden.aciklama.en || neden.aciklama.tr} Fix: ${cozumStr}`
           }
         });
       }
@@ -3262,14 +3324,14 @@ ${resmiKaynaklarHtmlEn}
       techArticleNodeEn,
       {
         "@type": "FAQPage",
-        "mainEntity": faqQuestions
+        "mainEntity": faqQuestionsEn
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-          { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
-          { "@type": "ListItem", "position": 2, "name": "Teşhis Kataloğu", "item": "https://trendmasterakademi.com/teshis/" },
-          { "@type": "ListItem", "position": 3, "name": item.baslik.tr, "item": `https://trendmasterakademi.com/teshis/${item.slug}/` }
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trendmasterakademi.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Diagnostic Catalog", "item": "https://trendmasterakademi.com/diagnostic/" },
+          { "@type": "ListItem", "position": 3, "name": item.baslik.en || item.baslik.tr, "item": `https://trendmasterakademi.com/diagnostic/${item.slug}/` }
         ]
       }
     ]
@@ -4645,6 +4707,8 @@ function verifyContentRules() {
     'kesintiyi sıfırlıyoruz', 'Zero out downtime', 'gecikmesiz yakalamanızı', 'zero latency', 'Sorunsuz Canlı Dağıtım', 'Seamless Deployment',
     '%100 Güvenli Analiz', '%100 Gizlilik Güvencesi', 'Confidentiality Guarantee', 'escalated instantly', 'eksiksiz teslim ederiz',
     'Eksiksiz Teslim Ederiz', 'zero project blockage', 'Stres testleri ve güvenlik kontrolleri',
+    // Adım 89 · teşhis başlığında süre çağrışımı
+    'Kim çözer, ne kadar sürer', 'Time to Fix',
   ];
   const errors = [];
   const dosyalar = (kok, uzanti) => {
@@ -4680,3 +4744,46 @@ function verifyContentRules() {
 }
 
 verifyContentRules();
+
+// ---------------------------------------------------------------------------
+// [BUILD GUARD ŞEMA] Adım 89 — Yapısal veri (JSON-LD) sayfanın kendisiyle tutarlı olmalı.
+// A) Her sayfanın JSON-LD'si ayrıştırılabilir olmalı.
+// B) BreadcrumbList'in son öğesi sayfanın kendi adresi (canonical) olmalı.
+// C) inLanguage taşıyan her düğüm sayfanın <html lang> diliyle aynı dilde olmalı.
+// ---------------------------------------------------------------------------
+function verifySchemaConsistency() {
+  console.log('\n[BUILD GUARD ŞEMA] Yapısal veri tutarlılığı denetleniyor...');
+  const errors = [];
+  let sayfaSayisi = 0, dugumSayisi = 0;
+  const denetle = (dosya) => {
+    const h = fs.readFileSync(dosya, 'utf8');
+    const canonical = (h.match(/rel="canonical" href="([^"]+)"/) || [])[1];
+    const dil = ((h.match(/<html[^>]*lang="([^"]+)"/) || [])[1] || '').toLowerCase();
+    if (!canonical) return;
+    sayfaSayisi++;
+    const yol = new URL(canonical).pathname;
+    for (const m of h.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+      let j;
+      try { j = JSON.parse(m[1]); } catch (e) { errors.push(`${yol} — JSON-LD ayrıştırılamıyor`); continue; }
+      for (const d of (j['@graph'] || [j])) {
+        dugumSayisi++;
+        if (d['@type'] === 'BreadcrumbList') {
+          const liste = d.itemListElement || [];
+          const son = liste[liste.length - 1];
+          if (son && son.item && new URL(son.item).pathname !== yol) errors.push(`${yol} — breadcrumb son öğesi başka sayfa: ${son.item}`);
+        }
+        if (d.inLanguage && dil && ![].concat(d.inLanguage).some((x) => String(x).toLowerCase().startsWith(dil))) errors.push(`${yol} — ${d['@type']} inLanguage "${d.inLanguage}" sayfanın dili "${dil}" ile çelişiyor`);
+      }
+    }
+  };
+  const gez = (d) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) { if (e.name !== 'assets') gez(p); } else if (e.name === 'index.html') denetle(p); } };
+  gez(distDir);
+  if (errors.length > 0) {
+    console.error(`\n[BUILD GUARD ŞEMA HATA] ${errors.length} tutarsızlık:`);
+    errors.forEach((err) => console.error(`  - ${err}`));
+    process.exit(1);
+  }
+  console.log(`[BUILD GUARD ŞEMA GEÇTİ] ${sayfaSayisi} sayfada ${dugumSayisi} yapısal veri düğümü sayfanın adresi ve diliyle tutarlı.`);
+}
+
+verifySchemaConsistency();

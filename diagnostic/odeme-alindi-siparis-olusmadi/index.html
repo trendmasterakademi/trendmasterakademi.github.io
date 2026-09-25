@@ -251,42 +251,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Sağlayıcı panelinde deneme kaydı var mı?",
+          "name": "Are webhook retry logs visible in gateway panel?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Bildirim ulaşmadı — Sağlayıcı bildirimi gönderdi ama adres yanlış, kapalı ya da güvenlik duvarı engelledi. Kanıt: Sağlayıcı panelinde 404 / zaman aşımı → A Çözüm: Adres ve güvenlik duvarı düzeltme"
+            "text": "Callback undelivered — Gateway sent webhook but endpoint URL was invalid, firewalled (WAF), or blocked. Evidence: 404 or timeout in gateway panel → A Fix: Fix endpoint URL + whitelist WAF"
           }
         },
         {
           "@type": "Question",
-          "name": "Log'da bildirim geldi ama hata verdi mi?",
+          "name": "Did webhook arrive but throw 500 fatal error?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "İşlenemedi — Bildirim geldi, uygulama hata verdi. Sağlayıcı tekrar denedi, aynı hata tekrarlandı. Kanıt: Log'da 500 + tekrar denemeler → B Çözüm: Hatayı düzelt + kuyruğa al"
+            "text": "Callback unhandled (500) — Webhook arrived but application threw unhandled exception. Retries repeated the crash. Evidence: HTTP 500 + retry loop in logs → B Fix: Patch exception + queue job buffer"
           }
         },
         {
           "@type": "Question",
-          "name": "Bildirime 200 dönmüş ama kayıt yok mu?",
+          "name": "Was 200 returned without creating order record?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Kaydedilmedi — Bildirim başarıyla döndü ama sipariş yazılmadı. Genellikle bir doğrulama hatası kayıt oluşturmayı sessizce engeller. Kanıt: 200 dönmüş ama kayıt yok → C Çözüm: Doğrulama hatasını logla + kaydı garanti et"
+            "text": "Validation drop (Silent 200) — Webhook returned HTTP 200 but order insertion failed silently due to internal validation drops. Evidence: HTTP 200 returned but no row → C Fix: Log validation + guarantee atomic insert"
           }
         },
         {
           "@type": "Question",
-          "name": "«Ödeme sağlayıcı paneli: callback failed · retry 3/3» görüyorsam nedeni ne?",
+          "name": "What causes «Payment gateway panel: callback failed · retry 3/3»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Bildirim ulaşmadı — Sağlayıcı bildirimi gönderdi ama adres yanlış, kapalı ya da güvenlik duvarı engelledi. Çözüm: Adres ve güvenlik duvarı düzeltme"
+            "text": "A · Callback undelivered — Gateway sent webhook but endpoint URL was invalid, firewalled (WAF), or blocked. Fix: Fix endpoint URL + whitelist WAF"
           }
         },
         {
           "@type": "Question",
-          "name": "«HTTP 302 — bildirim yönlendirmeyi takip etmiyor» görüyorsam nedeni ne?",
+          "name": "What causes «HTTP 302 - notification fails to follow redirect»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Bildirim ulaşmadı — Sağlayıcı bildirimi gönderdi ama adres yanlış, kapalı ya da güvenlik duvarı engelledi. Çözüm: Adres ve güvenlik duvarı düzeltme"
+            "text": "A · Callback undelivered — Gateway sent webhook but endpoint URL was invalid, firewalled (WAF), or blocked. Fix: Fix endpoint URL + whitelist WAF"
           }
         }
       ]
@@ -297,20 +297,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Ödeme alındı, sipariş oluşmadı",
-          "item": "https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/"
+          "name": "Payment Charged but Order Not Created",
+          "item": "https://trendmasterakademi.com/diagnostic/odeme-alindi-siparis-olusmadi/"
         }
       ]
     }
@@ -427,7 +427,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Senior backend engineer. Permanent resilience requires decoupling ingestion from execution via message queues: ingest webhook payload to broker first, then process asynchronously.</p>
       </section>
 

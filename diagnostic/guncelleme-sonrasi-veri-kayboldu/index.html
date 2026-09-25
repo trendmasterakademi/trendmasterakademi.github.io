@@ -251,42 +251,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Tablodaki satır sayısı eskisiyle aynı mı?",
+          "name": "Is database row count identical to baseline?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Filtre değişti — Yeni bir durum alanı veya yumuşak silme kolonu eklendi; eski kayıtlar varsayılan filtrenin dışında kaldı. Kanıt: Satır sayısı eskisiyle aynı → A Çözüm: Varsayılan değeri geriye dönük ata"
+            "text": "Default query filter changed — A new status column or soft-delete flag was added; legacy rows fail the default WHERE clause. Evidence: Row count unchanged in DB → A Fix: Backfill default flag on legacy records"
           }
         },
         {
           "@type": "Question",
-          "name": "Göç log'unda yarıda kesilme var mı?",
+          "name": "Did migration log terminate with an unhandled error?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Göç yarıda kaldı — Şema değişikliği kesildi; bazı tablolar yeni, bazıları eski hâlde. Uygulama ikisini birden okuyamıyor. Kanıt: Göç log'unda kesinti → B Çözüm: Yedekten dön · göçü baştan çalıştır"
+            "text": "Interrupted schema migration — DDL migration halted mid-stream; half the tables are upgraded, causing joins to fail. Evidence: Migration abort in deploy log → B Fix: Restore snapshot · re-run clean migration script"
           }
         },
         {
           "@type": "Question",
-          "name": "Satır sayısı gerçekten düştü mü?",
+          "name": "Did physical row count actually drop?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Gerçek silme — Bir toplu işlem kayıtları gerçekten sildi. Üçü içinde en az görüleni ama tek gerçek kayıp hâli budur. Kanıt: Satır sayısı gerçekten düşmüş → C Çözüm: Yedekten geri yükleme · süre kritik"
+            "text": "Genuine bulk deletion — A runaway script or bad WHERE clause executed actual hard DELETE. Rare, but the only true data loss scenario. Evidence: Row count decreased in DB → C Fix: Point-in-time backup restore · time critical"
           }
         },
         {
           "@type": "Question",
-          "name": "«Göç log'u: rolled back veya yarıda kesilmiş» görüyorsam nedeni ne?",
+          "name": "What causes «Migration logs: rolled back or interrupted mid-execution»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Göç yarıda kaldı — Şema değişikliği kesildi; bazı tablolar yeni, bazıları eski hâlde. Uygulama ikisini birden okuyamıyor. Çözüm: Yedekten dön · göçü baştan çalıştır"
+            "text": "B · Interrupted schema migration — DDL migration halted mid-stream; half the tables are upgraded, causing joins to fail. Fix: Restore snapshot · re-run clean migration script"
           }
         },
         {
           "@type": "Question",
-          "name": "«Column not found / Unknown column in field list» görüyorsam nedeni ne?",
+          "name": "What causes «Column not found / Unknown column in field list»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Göç yarıda kaldı — Şema değişikliği kesildi; bazı tablolar yeni, bazıları eski hâlde. Uygulama ikisini birden okuyamıyor. Çözüm: Yedekten dön · göçü baştan çalıştır"
+            "text": "B · Interrupted schema migration — DDL migration halted mid-stream; half the tables are upgraded, causing joins to fail. Fix: Restore snapshot · re-run clean migration script"
           }
         }
       ]
@@ -297,20 +297,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Güncellemeden sonra veri kayboldu sanılıyor",
-          "item": "https://trendmasterakademi.com/teshis/guncelleme-sonrasi-veri-kayboldu/"
+          "name": "Data Assumed Lost After System Update",
+          "item": "https://trendmasterakademi.com/diagnostic/guncelleme-sonrasi-veri-kayboldu/"
         }
       ]
     }
@@ -427,7 +427,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">The absolute first rule is freezing all writes. Writing new data or altering schemas destroys recovery options. Scope, timeline and budget become clear after diagnosis: B runs from backup, C requires immediate point-in-time snapshot recovery.</p>
       </section>
 

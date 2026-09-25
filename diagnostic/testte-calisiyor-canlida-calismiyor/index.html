@@ -251,42 +251,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Canlıda eksik ortam değişkeni var mı?",
+          "name": "Is an environment variable missing in production?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yapılandırma farkı — Canlıda bir ortam değişkeni eksik ya da farklı. Kod aynı, girdisi değil. Kanıt: Canlıda eksik değişken → A Çözüm: Değişken listesini eşitle + örnek dosya tut"
+            "text": "Configuration drift — Production environment variable missing or set to invalid endpoint. Same code, differing inputs. Evidence: Missing .env in production → A Fix: Sync .env schema + track .env.example in git"
           }
         },
         {
           "@type": "Question",
-          "name": "Kilit dosyası var ve sürümler aynı mı?",
+          "name": "Are lockfile package versions identical across tiers?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sürüm farkı — Kütüphane veya dil sürümü iki ortamda farklı. Bağımlılıklar sabitlenmemiş. Kanıt: Sürümler uyuşmuyor → B Çözüm: Sürümleri sabitle · kilit dosyası"
+            "text": "Dependency / runtime mismatch — Language or package minor versions differ between environments. Unlocked package versions drifted. Evidence: Version mismatch in lockfile → B Fix: Commit strict package-lock / composer.lock"
           }
         },
         {
           "@type": "Question",
-          "name": "Log'da izin ya da yol hatası var mı?",
+          "name": "Does log show EACCES / permission denied errors?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "İzin / yol farkı — Canlıda yazma izni yok ya da dosya yolu farklı. Testte yerel klasör, canlıda kısıtlı dizin. Kanıt: Permission denied → C Çözüm: İzinleri ve yolu ortamdan oku"
+            "text": "Permissions / path discrepancy — Target directory lacks write permissions on production web server, or hardcoded absolute path fails. Evidence: Permission denied in production log → C Fix: Fix chmod permissions + load dynamic paths"
           }
         },
         {
           "@type": "Question",
-          "name": "«Undefined env variable / configuration missing» görüyorsam nedeni ne?",
+          "name": "What causes «Undefined env variable / configuration missing»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Yapılandırma farkı — Canlıda bir ortam değişkeni eksik ya da farklı. Kod aynı, girdisi değil. Çözüm: Değişken listesini eşitle + örnek dosya tut"
+            "text": "A · Configuration drift — Production environment variable missing or set to invalid endpoint. Same code, differing inputs. Fix: Sync .env schema + track .env.example in git"
           }
         },
         {
           "@type": "Question",
-          "name": "«Permission denied — dosya izni veya yol hatası» görüyorsam nedeni ne?",
+          "name": "What causes «Permission denied - file permissions or path mismatch»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "C · İzin / yol farkı — Canlıda yazma izni yok ya da dosya yolu farklı. Testte yerel klasör, canlıda kısıtlı dizin. Çözüm: İzinleri ve yolu ortamdan oku"
+            "text": "C · Permissions / path discrepancy — Target directory lacks write permissions on production web server, or hardcoded absolute path fails. Fix: Fix chmod permissions + load dynamic paths"
           }
         }
       ]
@@ -297,20 +297,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Test ortamında çalışıyor, canlıda çalışmıyor",
-          "item": "https://trendmasterakademi.com/teshis/testte-calisiyor-canlida-calismiyor/"
+          "name": "Works in Staging, Fails in Production",
+          "item": "https://trendmasterakademi.com/diagnostic/testte-calisiyor-canlida-calismiyor/"
         }
       ]
     }
@@ -427,7 +427,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Backend / DevOps. Permanent stability comes from Infrastructure as Code and immutable container recipes; patching discrepancies ad-hoc leaves every future release vulnerable.</p>
       </section>
 

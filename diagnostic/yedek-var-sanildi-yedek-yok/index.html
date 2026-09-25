@@ -251,42 +251,42 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Son yedek dosyası kaç günlük?",
+          "name": "How old is the latest backup file in storage?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yedek alınmıyor — Görev kurulmuş ama çalışmıyor: zamanlayıcı durmuş, kimlik değişmiş ya da hedef dolmuş. Kanıt: Son yedek tarihi çok eski → A Çözüm: Görev onarımı + başarısızlık bildirimi"
+            "text": "Backups not running — Cron was configured but terminated: scheduler daemon died, auth expired, or target bucket filled up. Evidence: Latest backup date is stale → A Fix: Cron repair + dead-man switch alerts"
           }
         },
         {
           "@type": "Question",
-          "name": "Yedekte veritabanı dökümü var mı?",
+          "name": "Does archive contain valid SQL dump file?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Yedek eksik alınıyor — Dosyalar var ama veritabanı yok, ya da tersi. Kısmi yedek olay anında tam geri dönüş sağlamaz. Kanıt: Yedekte veritabanı dökümü yok → B Çözüm: Kapsam genişletme + boyut kontrolü"
+            "text": "Partial / incomplete dump — Uploaded assets exist without SQL dumps, or vice versa. Partial snapshots prevent full recovery during disaster recovery. Evidence: Missing SQL dump in archive → B Fix: Full scope dump + file size threshold check"
           }
         },
         {
           "@type": "Question",
-          "name": "Boş ortama geri yükleme denendi mi?",
+          "name": "Was restore tested in clean sandbox env?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Geri yüklenemiyor — Dosya bozuk, şifresi kayıp ya da sürüm uyumsuz. Hiç denenmediği için bugüne kadar bilinmiyordu. Kanıt: Test geri yükleme başarısız → C Çözüm: Düzenli geri yükleme provası"
+            "text": "Un-restorable / corrupted — Archive is corrupt, decryption key is missing, or schema versions clash. Never tested until live disaster hit. Evidence: Test sandbox restore failed → C Fix: Automated drill restoration in staging sandbox"
           }
         },
         {
           "@type": "Question",
-          "name": "«cron log: backup job — exit status 1» görüyorsam nedeni ne?",
+          "name": "What causes «cron log: backup job — exit status 1»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Yedek alınmıyor — Görev kurulmuş ama çalışmıyor: zamanlayıcı durmuş, kimlik değişmiş ya da hedef dolmuş. Çözüm: Görev onarımı + başarısızlık bildirimi"
+            "text": "A · Backups not running — Cron was configured but terminated: scheduler daemon died, auth expired, or target bucket filled up. Fix: Cron repair + dead-man switch alerts"
           }
         },
         {
           "@type": "Question",
-          "name": "«Depolama sağlayıcısı: quota exceeded» görüyorsam nedeni ne?",
+          "name": "What causes «Storage provider: quota exceeded»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Yedek alınmıyor — Görev kurulmuş ama çalışmıyor: zamanlayıcı durmuş, kimlik değişmiş ya da hedef dolmuş. Çözüm: Görev onarımı + başarısızlık bildirimi"
+            "text": "A · Backups not running — Cron was configured but terminated: scheduler daemon died, auth expired, or target bucket filled up. Fix: Cron repair + dead-man switch alerts"
           }
         }
       ]
@@ -297,20 +297,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Yedek var sanılıyordu, yedek yok",
-          "item": "https://trendmasterakademi.com/teshis/yedek-var-sanildi-yedek-yok/"
+          "name": "Backup Assumed to Exist, No Valid Backup",
+          "item": "https://trendmasterakademi.com/diagnostic/yedek-var-sanildi-yedek-yok/"
         }
       ]
     }
@@ -427,7 +427,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Sysadmin / DevOps. But the true solution is procedural: dead-man failure alerts and scheduled sandbox restoration drills. An untested backup is not a backup.</p>
       </section>
 

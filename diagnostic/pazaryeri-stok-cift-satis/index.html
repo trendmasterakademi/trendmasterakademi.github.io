@@ -256,58 +256,58 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Toplu işlem sonucunda FAILED satır var mı?",
+          "name": "Any FAILED rows in the batch result?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Gönderildi sanıldı, reddedildi — Trendyol stok ve fiyat isteği kabul edildiğinde yalnız bir batchRequestId döndürür; ürün bazındaki sonuç toplu işlem kontrolü servisinden okunur ve tek tek ürünler başarısız olabilir. Hepsiburada da bir işlem numarası (Inventory Upload Id) döndürür; satır bazındaki hatalar ayrı bir kontrol servisinde görünür. Sonuç sorgulanmazsa reddedilen güncelleme fark edilmez. Kanıt: Toplu işlem sonucunda FAILED satır → A Çözüm: Sonucu sorgula, hatayı düzelt"
+            "text": "Assumed sent, actually rejected — When a Trendyol stock and price request is accepted, only a batchRequestId comes back; the per-item result is read from the batch result service, and individual items can fail. Hepsiburada also returns an operation ID (Inventory Upload Id); row-level errors appear in a separate status service. If the result is never queried, the rejected update goes unnoticed. Evidence: FAILED rows in the batch result → A Fix: Check results, fix the rejects"
           }
         },
         {
           "@type": "Question",
-          "name": "Sipariş ile stok düşümü arasında dakikalar mı var?",
+          "name": "Minutes between order and stock drop?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Güncelleme geç ulaştı — Stok senkronu belirli aralıklarla ya da bir kuyruktan çalışır. Hız sınırı dolduğunda ya da Hepsiburada'da aynı anda en fazla beş bekleyen işlem sınırına takıldığında kuyruk birikir. Siparişle diğer kanalın stoğunun düşmesi arasındaki sürede son ürün iki kanalda birden satılabilir. Kanıt: Sipariş ile stok düşümü arasında dakikalar → B Çözüm: Siparişte stoğu hemen düş, sonra kanallara yay"
+            "text": "Update arrived late — Stock sync runs at intervals or from a queue. When the rate limit fills up, or when Hepsiburada's limit of at most five pending operations at a time is reached, the queue backs up. In the time between the order and the stock drop on the other channel, the last unit can be sold on both channels. Evidence: Minutes between order and stock drop → B Fix: Reserve at order, then push to channels"
           }
         },
         {
           "@type": "Question",
-          "name": "Sipariş pazaryerinde var, merkezde yok mu?",
+          "name": "Order on the marketplace but not in center?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Sipariş ya da ürün eşleşmedi — Pazaryerindeki sipariş merkezi sisteme hiç çekilmemiş ya da ürün yanlış kayıtla eşleşmiş. Sipariş çekme sınırları, sayfalama ya da sorgu aralığı yüzünden atlanan bir sipariş stoğu düşürmez. Hepsiburada'da HBSku ile MerchantSku yanlış eşleştiğinde güncelleme MismatchingSkusSpecified hatasıyla reddedilir. Kanıt: Sipariş pazaryerinde var, merkezde yok → C Çözüm: Sipariş çekmeyi ve ürün eşlemesini düzelt"
+            "text": "Order or item not matched — The marketplace order was never pulled into the central system, or the item is matched to the wrong record. An order skipped because of order pull limits, pagination or the query window does not reduce stock. On Hepsiburada, when HBSku and MerchantSku are mismatched, the update is rejected with MismatchingSkusSpecified. Evidence: Order on the marketplace, not in the center → C Fix: Fix order pulls and item mapping"
           }
         },
         {
           "@type": "Question",
-          "name": "«Toplu işlem sonucu: ürün satırında status FAILED» görüyorsam nedeni ne?",
+          "name": "What causes «Batch result: status FAILED on the item row»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Gönderildi sanıldı, reddedildi — Trendyol stok ve fiyat isteği kabul edildiğinde yalnız bir batchRequestId döndürür; ürün bazındaki sonuç toplu işlem kontrolü servisinden okunur ve tek tek ürünler başarısız olabilir. Hepsiburada da bir işlem numarası (Inventory Upload Id) döndürür; satır bazındaki hatalar ayrı bir kontrol servisinde görünür. Sonuç sorgulanmazsa reddedilen güncelleme fark edilmez. Çözüm: Sonucu sorgula, hatayı düzelt"
+            "text": "A · Assumed sent, actually rejected — When a Trendyol stock and price request is accepted, only a batchRequestId comes back; the per-item result is read from the batch result service, and individual items can fail. Hepsiburada also returns an operation ID (Inventory Upload Id); row-level errors appear in a separate status service. If the result is never queried, the rejected update goes unnoticed. Fix: Check results, fix the rejects"
           }
         },
         {
           "@type": "Question",
-          "name": "«Stok güncellemesi yanıtı yalnız işlem numarası, sonuç hiç sorgulanmamış» görüyorsam nedeni ne?",
+          "name": "What causes «Stock update response is only an operation ID, the result was never queried»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Gönderildi sanıldı, reddedildi — Trendyol stok ve fiyat isteği kabul edildiğinde yalnız bir batchRequestId döndürür; ürün bazındaki sonuç toplu işlem kontrolü servisinden okunur ve tek tek ürünler başarısız olabilir. Hepsiburada da bir işlem numarası (Inventory Upload Id) döndürür; satır bazındaki hatalar ayrı bir kontrol servisinde görünür. Sonuç sorgulanmazsa reddedilen güncelleme fark edilmez. Çözüm: Sonucu sorgula, hatayı düzelt"
+            "text": "A · Assumed sent, actually rejected — When a Trendyol stock and price request is accepted, only a batchRequestId comes back; the per-item result is read from the batch result service, and individual items can fail. Hepsiburada also returns an operation ID (Inventory Upload Id); row-level errors appear in a separate status service. If the result is never queried, the rejected update goes unnoticed. Fix: Check results, fix the rejects"
           }
         },
         {
           "@type": "Question",
-          "name": "«Diğer kanalın stoğu siparişten dakikalar sonra düşmüş» görüyorsam nedeni ne?",
+          "name": "What causes «Stock on the other channel dropped minutes after the order»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Güncelleme geç ulaştı — Stok senkronu belirli aralıklarla ya da bir kuyruktan çalışır. Hız sınırı dolduğunda ya da Hepsiburada'da aynı anda en fazla beş bekleyen işlem sınırına takıldığında kuyruk birikir. Siparişle diğer kanalın stoğunun düşmesi arasındaki sürede son ürün iki kanalda birden satılabilir. Çözüm: Siparişte stoğu hemen düş, sonra kanallara yay"
+            "text": "B · Update arrived late — Stock sync runs at intervals or from a queue. When the rate limit fills up, or when Hepsiburada's limit of at most five pending operations at a time is reached, the queue backs up. In the time between the order and the stock drop on the other channel, the last unit can be sold on both channels. Fix: Reserve at order, then push to channels"
           }
         },
         {
           "@type": "Question",
-          "name": "«Pazaryerindeki sipariş merkezi stok sisteminde yok» görüyorsam nedeni ne?",
+          "name": "What causes «The marketplace order is not in the central stock system»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "C · Sipariş ya da ürün eşleşmedi — Pazaryerindeki sipariş merkezi sisteme hiç çekilmemiş ya da ürün yanlış kayıtla eşleşmiş. Sipariş çekme sınırları, sayfalama ya da sorgu aralığı yüzünden atlanan bir sipariş stoğu düşürmez. Hepsiburada'da HBSku ile MerchantSku yanlış eşleştiğinde güncelleme MismatchingSkusSpecified hatasıyla reddedilir. Çözüm: Sipariş çekmeyi ve ürün eşlemesini düzelt"
+            "text": "C · Order or item not matched — The marketplace order was never pulled into the central system, or the item is matched to the wrong record. An order skipped because of order pull limits, pagination or the query window does not reduce stock. On Hepsiburada, when HBSku and MerchantSku are mismatched, the update is rejected with MismatchingSkusSpecified. Fix: Fix order pulls and item mapping"
           }
         }
       ]
@@ -318,20 +318,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Aynı ürün iki pazaryerinde satıldı",
-          "item": "https://trendmasterakademi.com/teshis/pazaryeri-stok-cift-satis/"
+          "name": "Same Item Sold on Two Marketplaces",
+          "item": "https://trendmasterakademi.com/diagnostic/pazaryeri-stok-cift-satis/"
         }
       ]
     }
@@ -494,7 +494,7 @@
       </section>
     
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">A backend engineer who knows marketplace integrations. Stock must be reduced in one central place at order time and pushed to the channels from there; the result of every update must be checked, and order pulls must resume from where they stopped.</p>
       </section>
 

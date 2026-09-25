@@ -251,26 +251,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Fatura adresine 'suspended' maili gelmiş mi?",
+          "name": "Was a suspended email sent to billing address?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Ödeme başarısız, hesap askıda — Kartın süresi doldu ya da tahsilat başarısız oldu. Sağlayıcı uyarıları gönderdi, kimse okumadı. Teknik bir arıza yok. Kanıt: Kutuda 'suspended' maili var → A Çözüm: Ödeme + hesap sahibi"
+            "text": "Billing failure / suspended — Card expired or bank transaction declined. Provider dispatched warnings that went unread. Zero technical defect. Evidence: Suspension email in inbox → A Fix: Payment update + account holder"
           }
         },
         {
           "@type": "Question",
-          "name": "Panelde disk / bant genişliği %100 mü?",
+          "name": "Is disk or bandwidth usage at 100% cap?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Kaynak kotası doldu — Bant genişliği, disk veya CPU limiti aşıldı. Hesap askıda değil, kota kilidinde. Ödeme sorunu değildir. Kanıt: Panelde kullanım %100 → B Çözüm: Plan yükseltme veya kaynak optimizasyonu"
+            "text": "Quota / resource limit — Bandwidth, disk volume, or CPU throttle limits reached. Account is not delinquent, but throttled by quotas. Evidence: Dashboard usage 100% → B Fix: Plan tier upgrade or resource optimization"
           }
         },
         {
           "@type": "Question",
-          "name": "abuse@ adresine bildirim gelmiş mi?",
+          "name": "Was notice sent to abuse / root mailbox?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Kötüye kullanım bildirimi — Site ele geçirilmiş, spam veya zararlı içerik dağıtıyor olabilir. Sağlayıcı güvenlik gerekçesiyle kapatmıştır. Kanıt: abuse bildirimi var → C Çözüm: ÖNCE güvenlik temizliği, SONRA askı kaldırma"
+            "text": "Abuse notice / security lock — Application was compromised, sending spam or malicious outbound traffic. Provider hard-locked access for policy violations. Evidence: Abuse report in inbox → C Fix: Security sanitize FIRST, then request unlock"
           }
         }
       ]
@@ -281,20 +281,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Bulut hesabı askıya alındı, site kapandı",
-          "item": "https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/"
+          "name": "Cloud Account Suspended, Site Down",
+          "item": "https://trendmasterakademi.com/diagnostic/bulut-hesabi-askiya-alindi/"
         }
       ]
     }
@@ -410,7 +410,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">For A: Account owner and accounting — zero coding required. For B: DevOps / Sysadmin. For C: Forensic security SWAT is required with strict sequencing: requesting unban prior to full cleanup triggers instant re-suspension.</p>
       </section>
 

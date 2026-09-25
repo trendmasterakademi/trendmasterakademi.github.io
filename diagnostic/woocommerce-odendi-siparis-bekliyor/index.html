@@ -244,7 +244,7 @@
         "url": "https://trendmasterakademi.com"
       },
       "datePublished": "2026-09-23T22:57:29+03:00",
-      "dateModified": "2026-09-23T22:57:29+03:00",
+      "dateModified": "2026-09-25T09:03:46+03:00",
       "citation": [
         "https://woocommerce.com/document/managing-orders/order-statuses/",
         "https://developer.woocommerce.com/docs/features/payments/payment-gateway-api/",
@@ -256,58 +256,58 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Bildirim adresine 403 / 503 mü dönüyor?",
+          "name": "Does the callback URL return 403 / 503?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Bildirim engellendi — Ödeme sağlayıcısının sonucu bildirdiği adres bir güvenlik eklentisi, güvenlik duvarı ya da bakım modu tarafından engelleniyor. WooCommerce'te ödeme eklentilerinin bildirim adresi çoğunlukla ?wc-api= ile biter. Bildirim siparişe hiç ulaşmadığı için durum değişmez. Kanıt: Bildirim adresine 403 / 503 → A Çözüm: Adresi güvenlik kuralından çıkar"
+            "text": "Notification blocked — The URL where the payment provider reports the result is blocked by a security plugin, a firewall or maintenance mode. In WooCommerce, payment plugins' notification URLs usually end in ?wc-api=. The notification never reaches the order, so the status never changes. Evidence: 403 / 503 on the notification URL → A Fix: Exempt the URL from the firewall"
           }
         },
         {
           "@type": "Question",
-          "name": "fatal-errors kaydında ödeme eklentisi var mı?",
+          "name": "Is the payment plugin in the fatal-errors log?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Eklenti hata verdi — Adres erişilebilir, ama ödeme eklentisi bildirimi işlerken hata veriyor: PHP hatası, doğrulanamayan imza ya da tutar ve sipariş numarası uyuşmazlığı. WooCommerce bu tür ölümcül hataları fatal-errors kaydına yazar; sipariş güncellenmeden kalır. Kanıt: fatal-errors kaydında eklenti hatası → B Çözüm: Hatayı düzelt, bildirimi yeniden işle"
+            "text": "Plugin error — The URL is reachable, but the payment plugin fails while handling the notification: a PHP error, a signature that fails verification, or an amount or order-number mismatch. WooCommerce writes such fatal errors to the fatal-errors log; the order stays unchanged. Evidence: Plugin error in fatal-errors log → B Fix: Fix the error, reprocess the notification"
           }
         },
         {
           "@type": "Question",
-          "name": "Sipariş notunda durumu eklenti mi değiştirmiş?",
+          "name": "Do order notes show the plugin set the status?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Bilerek beklemeye alındı — WooCommerce'in tanımına göre «Beklemede», ödeme onayının beklendiği durumdur: stok düşülmüştür ama ödeme henüz onaylanmamıştır. Bazı ödeme yöntemleri ve eklenti ayarları siparişi bilerek bu duruma alır. Bu durumda sorun kodda değil, onay sürecindedir. Kanıt: Durumu eklenti değiştirmiş → C Çözüm: Onay sürecini netleştir"
+            "text": "Put on hold on purpose — By WooCommerce's definition, 'On hold' means payment confirmation is awaited: stock has been reduced but the payment is not yet confirmed. Some payment methods and plugin settings put orders into this status on purpose. In that case the issue is the approval process, not the code. Evidence: Status changed by the plugin → C Fix: Clarify the approval step"
           }
         },
         {
           "@type": "Question",
-          "name": "«Sağlayıcı paneli: ödeme başarılı · WooCommerce: «Ödeme bekliyor»» görüyorsam nedeni ne?",
+          "name": "What causes «Provider panel: payment successful · WooCommerce: 'Pending payment'»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Bildirim engellendi — Ödeme sağlayıcısının sonucu bildirdiği adres bir güvenlik eklentisi, güvenlik duvarı ya da bakım modu tarafından engelleniyor. WooCommerce'te ödeme eklentilerinin bildirim adresi çoğunlukla ?wc-api= ile biter. Bildirim siparişe hiç ulaşmadığı için durum değişmez. Çözüm: Adresi güvenlik kuralından çıkar"
+            "text": "A · Notification blocked — The URL where the payment provider reports the result is blocked by a security plugin, a firewall or maintenance mode. In WooCommerce, payment plugins' notification URLs usually end in ?wc-api=. The notification never reaches the order, so the status never changes. Fix: Exempt the URL from the firewall"
           }
         },
         {
           "@type": "Question",
-          "name": "«Erişim kaydı: ?wc-api= ile biten bildirim adresine 403 / 503» görüyorsam nedeni ne?",
+          "name": "What causes «Access log: 403 / 503 on the notification URL ending in ?wc-api=»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · Bildirim engellendi — Ödeme sağlayıcısının sonucu bildirdiği adres bir güvenlik eklentisi, güvenlik duvarı ya da bakım modu tarafından engelleniyor. WooCommerce'te ödeme eklentilerinin bildirim adresi çoğunlukla ?wc-api= ile biter. Bildirim siparişe hiç ulaşmadığı için durum değişmez. Çözüm: Adresi güvenlik kuralından çıkar"
+            "text": "A · Notification blocked — The URL where the payment provider reports the result is blocked by a security plugin, a firewall or maintenance mode. In WooCommerce, payment plugins' notification URLs usually end in ?wc-api=. The notification never reaches the order, so the status never changes. Fix: Exempt the URL from the firewall"
           }
         },
         {
           "@type": "Question",
-          "name": "«fatal-errors kaydında ödeme eklentisi hatası» görüyorsam nedeni ne?",
+          "name": "What causes «Payment plugin error in the fatal-errors log»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Eklenti hata verdi — Adres erişilebilir, ama ödeme eklentisi bildirimi işlerken hata veriyor: PHP hatası, doğrulanamayan imza ya da tutar ve sipariş numarası uyuşmazlığı. WooCommerce bu tür ölümcül hataları fatal-errors kaydına yazar; sipariş güncellenmeden kalır. Çözüm: Hatayı düzelt, bildirimi yeniden işle"
+            "text": "B · Plugin error — The URL is reachable, but the payment plugin fails while handling the notification: a PHP error, a signature that fails verification, or an amount or order-number mismatch. WooCommerce writes such fatal errors to the fatal-errors log; the order stays unchanged. Fix: Fix the error, reprocess the notification"
           }
         },
         {
           "@type": "Question",
-          "name": "«Sipariş notu: durum eklenti tarafından «Beklemede» yapıldı» görüyorsam nedeni ne?",
+          "name": "What causes «Order note: status set to 'On hold' by the plugin»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "C · Bilerek beklemeye alındı — WooCommerce'in tanımına göre «Beklemede», ödeme onayının beklendiği durumdur: stok düşülmüştür ama ödeme henüz onaylanmamıştır. Bazı ödeme yöntemleri ve eklenti ayarları siparişi bilerek bu duruma alır. Bu durumda sorun kodda değil, onay sürecindedir. Çözüm: Onay sürecini netleştir"
+            "text": "C · Put on hold on purpose — By WooCommerce's definition, 'On hold' means payment confirmation is awaited: stock has been reduced but the payment is not yet confirmed. Some payment methods and plugin settings put orders into this status on purpose. In that case the issue is the approval process, not the code. Fix: Clarify the approval step"
           }
         }
       ]
@@ -318,20 +318,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "WooCommerce: ödendi, sipariş bekliyor",
-          "item": "https://trendmasterakademi.com/teshis/woocommerce-odendi-siparis-bekliyor/"
+          "name": "WooCommerce: Paid but Order Pending",
+          "item": "https://trendmasterakademi.com/diagnostic/woocommerce-odendi-siparis-bekliyor/"
         }
       ]
     }
@@ -486,7 +486,7 @@
       </section>
     
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">A backend engineer who knows WordPress and the payment plugin. The notification URL must get through the security layers, the plugin error must be found in the logs and fixed, and paid orders stuck in 'Pending payment' must be matched to the provider's records.</p>
       </section>
 

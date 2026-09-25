@@ -251,50 +251,50 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Log'da 401 / auth hatası var mı?",
+          "name": "Is there a 401 / auth failure in system logs?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Kimlik süresi doldu — Bir API anahtarı, veritabanı parolası veya servis hesabı süresi doldu. Kod değişmedi ama sistem artık bağlanamıyor. Kanıt: Log'da authentication failed → A Çözüm: Anahtar yenileme · dakikalar"
+            "text": "Expired credentials — An API key, database secret, or service account credential expired. Code remains untouched, but upstream authentication is failing. Evidence: Authentication failed in log → A Fix: Secret rotation · fixed in mins"
           }
         },
         {
           "@type": "Question",
-          "name": "df -h çıktısında %100 var mı?",
+          "name": "Does df -h output show 100% disk utilization?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Disk veya bellek doldu — Log dosyaları, yedekler ya da geçici dosyalar diski doldurdu; uygulama yazamıyor. Kanıt: No space left on device → B Çözüm: Temizlik + log rotasyonu"
+            "text": "Disk / memory exhausted — Log files, automated dumps, or temp caches filled the disk partition; runtime writes fail. Evidence: No space left on device → B Fix: Disk sanitize + logrotate cron"
           }
         },
         {
           "@type": "Question",
-          "name": "Sistem log'unda dün gece update var mı?",
+          "name": "Did unattended upgrades execute last night?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Otomatik güncelleme — Sunucu, kütüphane veya eklenti kendiliğinden güncellendi. \"Kimse dokunmadı\" doğrudur; dokunan sistemin kendisidir. Kanıt: Paket log'unda gece güncellemesi → C Çözüm: Sürüm sabitleme + geri alma"
+            "text": "Unattended OS update — OS packages, shared libraries, or plugins auto-updated overnight. \"Nobody touched it\" is true; the daemon did. Evidence: Nightly auto-update in apt/yum log → C Fix: Package pinning + rollback patch"
           }
         },
         {
           "@type": "Question",
-          "name": "«502 Bad Gateway · upstream prematurely closed connection» görüyorsam nedeni ne?",
+          "name": "What causes «502 Bad Gateway · upstream prematurely closed connection»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Disk veya bellek doldu — Log dosyaları, yedekler ya da geçici dosyalar diski doldurdu; uygulama yazamıyor. Çözüm: Temizlik + log rotasyonu"
+            "text": "B · Disk / memory exhausted — Log files, automated dumps, or temp caches filled the disk partition; runtime writes fail. Fix: Disk sanitize + logrotate cron"
           }
         },
         {
           "@type": "Question",
-          "name": "«No space left on device» görüyorsam nedeni ne?",
+          "name": "What causes «No space left on device»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Disk veya bellek doldu — Log dosyaları, yedekler ya da geçici dosyalar diski doldurdu; uygulama yazamıyor. Çözüm: Temizlik + log rotasyonu"
+            "text": "B · Disk / memory exhausted — Log files, automated dumps, or temp caches filled the disk partition; runtime writes fail. Fix: Disk sanitize + logrotate cron"
           }
         },
         {
           "@type": "Question",
-          "name": "«SQLSTATE[HY000] [2002] Connection refused» görüyorsam nedeni ne?",
+          "name": "What causes «SQLSTATE[HY000] [2002] Connection refused»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · Disk veya bellek doldu — Log dosyaları, yedekler ya da geçici dosyalar diski doldurdu; uygulama yazamıyor. Çözüm: Temizlik + log rotasyonu"
+            "text": "B · Disk / memory exhausted — Log files, automated dumps, or temp caches filled the disk partition; runtime writes fail. Fix: Disk sanitize + logrotate cron"
           }
         }
       ]
@@ -305,20 +305,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Site 500 veriyor, dün çalışıyordu",
-          "item": "https://trendmasterakademi.com/teshis/site-500-veriyor-dun-calisiyordu/"
+          "name": "Site Returning 500 Error, Worked Yesterday",
+          "item": "https://trendmasterakademi.com/diagnostic/site-500-veriyor-dun-calisiyordu/"
         }
       ]
     }
@@ -435,7 +435,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">A and B are sysadmin operations; scope, timeline and budget become clear after diagnosis. For C, the exact mutated package must be identified before executing rollbacks; reverting the wrong library causes secondary outages.</p>
       </section>
 

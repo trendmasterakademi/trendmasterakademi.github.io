@@ -251,26 +251,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Log'da bulunamadı hatası var mı?",
+          "name": "Do logs show 404 / missing module fatal errors?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Eksik dosya — Yayın paketinde bir şey eksik kaldı; yerelde var, sunucuda yok. Kanıt: Log'da dosya veya modül bulunamadı → A Çözüm: Paketi tam yayınla · geri alma hazır"
+            "text": "Missing build asset / vendor — Artifact or composer/npm dependency omitted from build bundle. Present locally, missing on server. Evidence: Class / file not found in logs → A Fix: Deploy complete bundle · one-click rollback ready"
           }
         },
         {
           "@type": "Question",
-          "name": "Zorla yenilemede düzeliyor mu?",
+          "name": "Does Shift+F5 hard reload fix the page layout?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Önbellek eskisi — Kod yeni, tarayıcı veya sunucu önbelleği eski. Kısmi bozulma tipik belirtisidir. Kanıt: Zorla yenilemede düzeliyor → B Çözüm: Sürümlü dosya adı + önbellek temizle"
+            "text": "Stale client / CDN cache — HTML references new JS bundles while CDN or browser serves cached legacy files, causing partial rendering crashes. Evidence: Hard refresh resolves visual glitch → B Fix: Content hashing + automated CDN cache purge on deploy"
           }
         },
         {
           "@type": "Question",
-          "name": "Kolon veya tablo hatası var mı?",
+          "name": "Are SQL schema / missing column errors present?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Şema uyuşmazlığı — Kod yeni şemayı bekliyor ama göç çalışmadı, ya da tersi. Geri alma tek başına yetmez. Kanıt: Kolon veya tablo hatası var → C Çözüm: Kod ve göçü birlikte geri al"
+            "text": "Database schema desync — Code expects newly added table columns but migration failed to run, or vice versa. Code rollback alone is insufficient. Evidence: Column not found SQL errors → C Fix: Rollback schema + revert code synchronously"
           }
         }
       ]
@@ -281,20 +281,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Deploy sonrası site bozuldu",
-          "item": "https://trendmasterakademi.com/teshis/deploy-sonrasi-site-bozuldu/"
+          "name": "Website Broke Immediately After Deployment",
+          "item": "https://trendmasterakademi.com/diagnostic/deploy-sonrasi-site-bozuldu/"
         }
       ]
     }
@@ -411,7 +411,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">Permanent reliability requires automated rollbacks: immutable git releases, content-hashed assets, and backward-compatible database migrations. When in place, a bad deploy is resolved in 60 seconds.</p>
       </section>
 

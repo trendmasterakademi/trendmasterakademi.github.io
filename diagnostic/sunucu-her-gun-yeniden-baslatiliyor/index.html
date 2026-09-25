@@ -251,26 +251,26 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Bellek grafiği hiç düşüyor mu?",
+          "name": "Does RAM graph ever drop during idle periods?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Bellek sızıntısı — Uygulama ayırdığı belleği bırakmıyor; kullanım sürekli yükselir ve sistem sonunda süreci öldürür. Kanıt: Bellek hiç düşmüyor → A Çözüm: Sızıntıyı bul · profil çıkar"
+            "text": "Application memory leak — Unbounded caches or unclosed references accumulate until Linux OOM killer terminates the process. Evidence: RAM usage never drops → A Fix: Heap dump profile + patch leak"
           }
         },
         {
           "@type": "Question",
-          "name": "Tepe belirli bir raporda mı oluşuyor?",
+          "name": "Do memory spikes correlate with bulk export jobs?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Büyük veri yükü — Bir rapor veya dışa aktarma tüm kaydı belleğe alıyor. Sızıntı yok, tek seferlik aşırı yük var. Kanıt: Tepe belirli bir işlemde oluşuyor → B Çözüm: Parçalı işleme + akış kullan"
+            "text": "Unbuffered export spike — Bulk CSV export loads entire 500k row database into memory buffer at once, triggering instant OOM. Evidence: Crash coincides with heavy report → B Fix: Stream chunking + generator buffer"
           }
         },
         {
           "@type": "Question",
-          "name": "Kullanım sabit yüksek ama artmıyor mu?",
+          "name": "Is RAM steady high proportional to active users?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Kaynak yetersiz — Sızıntı yok, iş gerçekten büyüdü. Bu, tek meşru 'sunucu yükselt' hâlidir. Kanıt: Kullanım sabit yüksek, artmıyor → C Çözüm: Kaynak artırımı · meşru tek hâl"
+            "text": "Genuine capacity ceiling — Zero memory leaks; active concurrent user count simply exceeded instance memory limits. Evidence: Stable high load proportional to traffic → C Fix: Scale instance RAM · valid upgrade"
           }
         }
       ]
@@ -281,20 +281,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Sunucu her gün yeniden başlatılıyor",
-          "item": "https://trendmasterakademi.com/teshis/sunucu-her-gun-yeniden-baslatiliyor/"
+          "name": "Server Rebooted Daily to Clear Freeze",
+          "item": "https://trendmasterakademi.com/diagnostic/sunucu-her-gun-yeniden-baslatiliyor/"
         }
       ]
     }
@@ -411,7 +411,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">A and B are application bugs; automated cron reboots mask them without fixing. C is legitimate hardware scaling — but upgrading before diagnosing A &amp; B wastes cloud spend while crashes persist.</p>
       </section>
 

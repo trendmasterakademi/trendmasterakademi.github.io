@@ -251,50 +251,50 @@
       "mainEntity": [
         {
           "@type": "Question",
-          "name": "Log'da 535 auth hatası var mı?",
+          "name": "Is there an SMTP 535 auth error in system logs?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "SMTP kimliği — Parola değişti ya da sağlayıcı uygulama şifresi zorunlu kıldı. Mail hiç çıkmıyor. Kanıt: SMTP 535 hatası → A Çözüm: Uygulama şifresi + ayar güncelleme"
+            "text": "SMTP auth failure — Mailbox password expired or ESP enforced App Passwords/OAuth. Dispatch fails at origin. Evidence: SMTP 535 Authentication failed in log → A Fix: App Password + config update in .env"
           }
         },
         {
           "@type": "Question",
-          "name": "DNS'te SPF ve DKIM kaydı var mı?",
+          "name": "Are SPF and DKIM TXT records active in DNS?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "SPF / DKIM eksik — Mail çıkıyor ama alıcı sunucu reddediyor veya spam'e atıyor. Alan adı doğrulama kayıtları yok. Kanıt: 550 SPF/DKIM reddi → B Çözüm: DNS kayıtlarını ekle · teslimat düzelir"
+            "text": "Missing SPF / DKIM — Mail leaves server but destination MX rejects or junk-folders it due to missing SPF/DKIM/DMARC TXT records. Evidence: 550 5.7.1 SPF/DKIM rejected → B Fix: Add DNS records · deliverability restored"
           }
         },
         {
           "@type": "Question",
-          "name": "Ağ sekmesinde gönderim isteği başarılı mı?",
+          "name": "Does network tab show HTTP 200 on POST request?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Form arkada hatalı — Gönderim isteği başarısız oluyor ama arayüz yine de başarı mesajı gösteriyor. Kanıt: Ağ sekmesinde 4xx/5xx → C Çözüm: Gerçek yanıtı kontrol et · hata göster"
+            "text": "False positive frontend — AJAX endpoint returns 4xx/5xx but frontend ignores HTTP status and shows optimistic success alert. Evidence: Network tab shows 4xx/5xx → C Fix: Handle status · render error UI on failure"
           }
         },
         {
           "@type": "Question",
-          "name": "«SMTP error 535 Authentication failed» görüyorsam nedeni ne?",
+          "name": "What causes «SMTP error 535 Authentication failed»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "A · SMTP kimliği — Parola değişti ya da sağlayıcı uygulama şifresi zorunlu kıldı. Mail hiç çıkmıyor. Çözüm: Uygulama şifresi + ayar güncelleme"
+            "text": "A · SMTP auth failure — Mailbox password expired or ESP enforced App Passwords/OAuth. Dispatch fails at origin. Fix: App Password + config update in .env"
           }
         },
         {
           "@type": "Question",
-          "name": "«550 5.7.1 Message rejected · SPF / DKIM» görüyorsam nedeni ne?",
+          "name": "What causes «550 5.7.1 Message rejected · SPF / DKIM»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · SPF / DKIM eksik — Mail çıkıyor ama alıcı sunucu reddediyor veya spam'e atıyor. Alan adı doğrulama kayıtları yok. Çözüm: DNS kayıtlarını ekle · teslimat düzelir"
+            "text": "B · Missing SPF / DKIM — Mail leaves server but destination MX rejects or junk-folders it due to missing SPF/DKIM/DMARC TXT records. Fix: Add DNS records · deliverability restored"
           }
         },
         {
           "@type": "Question",
-          "name": "«Mail kuyruğu: deferred / stuck» görüyorsam nedeni ne?",
+          "name": "What causes «Mail queue: deferred / stuck»?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "B · SPF / DKIM eksik — Mail çıkıyor ama alıcı sunucu reddediyor veya spam'e atıyor. Alan adı doğrulama kayıtları yok. Çözüm: DNS kayıtlarını ekle · teslimat düzelir"
+            "text": "B · Missing SPF / DKIM — Mail leaves server but destination MX rejects or junk-folders it due to missing SPF/DKIM/DMARC TXT records. Fix: Add DNS records · deliverability restored"
           }
         }
       ]
@@ -305,20 +305,20 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Ana Sayfa",
+          "name": "Home",
           "item": "https://trendmasterakademi.com/"
         },
         {
           "@type": "ListItem",
           "position": 2,
-          "name": "Teşhis Kataloğu",
-          "item": "https://trendmasterakademi.com/teshis/"
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
         },
         {
           "@type": "ListItem",
           "position": 3,
-          "name": "Form gönderiliyor ama mail gelmiyor",
-          "item": "https://trendmasterakademi.com/teshis/form-gonderiliyor-mail-gelmiyor/"
+          "name": "Form Submits Successfully but No Email Delivered",
+          "item": "https://trendmasterakademi.com/diagnostic/form-gonderiliyor-mail-gelmiyor/"
         }
       ]
     }
@@ -435,7 +435,7 @@
 
 
       <section class="space-y-2">
-        <h2 class="text-xl font-bold text-[var(--ink)]">Resolution Path & Time to Fix</h2>
+        <h2 class="text-xl font-bold text-[var(--ink)]">Who resolves it</h2>
         <p class="text-[var(--ink-3)] leading-relaxed">A and B are DNS/Sysadmin issues. C is frontend defect that must be solved first: false-positive success toasts hide lead bleed for months.</p>
       </section>
 
