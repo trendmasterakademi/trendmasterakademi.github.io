@@ -352,7 +352,7 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-BVwNj-wE.js"></script>
+    <script type="module" crossorigin src="/assets/index-CR7od2Gq.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DuFhKn43.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BweOUOat.js">
@@ -393,21 +393,30 @@
         </nav>
       </header>
       <main class="space-y-6">
-        <h2 class="text-2xl font-bold text-[var(--ink)]">SWAT Hazırbulunuşluk & Olay Radarı</h2>
-        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Operasyonel hazırbulunuşluk, nöbet saatleri, son 90 günlük masaya oturma süreleri (MTTA) ve çözülen krizlerin kategori dağılımı.</p>
+        
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Nöbet saatleri, 90 günlük dönemde kaydedilen ilk yanıt ve çözüm süreleri, çözülen krizlerin kategori dağılımı.</p>
         
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">90 Günlük Mühendislik Telemetrisi</h2>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
-      <div><strong class="text-[var(--ink)] block text-sm">8,4 Dk MTTA</strong> Son 90 Gün Masaya Oturma Ortalaması</div>
-      <div><strong class="text-[var(--accent)] block text-sm">3,2 Saat TTR</strong> Ortalama Kalıcı Çözüm Süresi</div>
-      <div><strong class="text-[var(--tint-info-ink)] block text-sm">34</strong> Çözülen Vaka · 90 günlük dönem</div>
+      <div><span class="block">Ortalama İlk Yanıt (MTTA)</span><strong class="text-[var(--ink)] block text-sm">8,4 dk</strong><span class="block">Taahhüt: ≤ 15 dk (SEV-0)</span></div>
+      <div><span class="block">Ortalama Kalıcı Çözüm (TTR)</span><strong class="text-[var(--ink)] block text-sm">3,2 saat</strong><span class="block">90 günlük 34 müdahale</span></div>
+      <div><span class="block">Çözülen Vaka</span><strong class="text-[var(--ink)] block text-sm">34</strong><span class="block">90 günlük dönem</span></div>
     </div>
 
     <p class="text-xs text-[var(--ink-3)] font-mono">
-      Bu değerler 90 günlük dönemde kaydedilen 34 müdahaleden hesaplanmıştır. Son güncelleme: 21 Eylül 2026. Taahhüt edilen süreler için: <a href="/sla/" class="text-[var(--accent)] hover:underline font-bold">SLA ve Yanıt Taahhütleri →</a>
+      Bu değerler 90 günlük dönemde kaydedilen 34 müdahaleden hesaplanmıştır. Son güncelleme: 21 Eylül 2026. Bu rakamların dayanağını isterseniz, müdahale kayıtlarını firma adlarını gizleyerek NDA kapsamında paylaşırız. <a href="/sla/" class="text-[var(--accent)] hover:underline font-bold">SLA ve Yanıt Taahhütleri →</a>
     </p>
 
-    <h2 class="text-xl font-bold text-[var(--ink)]">NÖBET SAATLERİNDE ERİŞİLEBİLİRLİK (09:00–24:00)</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">90 Günlük Vaka Dağılımı</h2>
+    <ul class="text-xs text-[var(--ink-3)] font-mono space-y-1">
+      <li>Veritabanı &amp; Connection Deadlock: %38 (13 vaka)</li>
+      <li>Ödeme Webhook &amp; Çift Çekim / Race Condition: %26 (9 vaka)</li>
+      <li>Bellek Sızıntısı &amp; OOMKilled Pod Döngüsü: %21 (7 vaka)</li>
+      <li>Deploy Pipeline &amp; Kayıp Konfigürasyon Kilidi: %15 (5 vaka)</li>
+    </ul>
+
+    <h2 class="text-xl font-bold text-[var(--ink)]">Mühendislik Masaları & Altyapı · Nöbet saatlerinde erişilebilirlik (09:00–24:00)</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">

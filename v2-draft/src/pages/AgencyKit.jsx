@@ -156,7 +156,7 @@ export default function AgencyKit({ lang }) {
                   <div className="relative aspect-square w-full bg-[var(--paper)] overflow-hidden">
                     <img
                       src={`/agency-kit/response-kit-slide-${slideNum}.png`}
-                      alt={`TMA Agency Response Kit Slide ${slideNum}: ${slideInfo.title}`}
+                      alt={`TMA Agency Response Kit · ${isTr ? 'Slayt' : 'Slide'} ${slideNum}: ${slideInfo.title}`}
                       className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
@@ -243,7 +243,7 @@ export default function AgencyKit({ lang }) {
               >
                 <img
                   src="/agency-kit/crash-test-500-poster.png"
-                  alt="TMA Agency Crash Test 500 Poster"
+                  alt={isTr ? 'TMA Agency Crash Test 500 posteri' : 'TMA Agency Crash Test 500 poster'}
                   className="w-full h-auto object-contain transition-transform duration-300 group-hover:scale-102"
                 />
                 <div className="absolute inset-0 bg-[var(--ink)]/75 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex flex-col items-center justify-center gap-2">
@@ -374,7 +374,7 @@ export default function AgencyKit({ lang }) {
           </div>
 
           <h2 className="text-2xl sm:text-3xl font-serif font-semibold text-[var(--ink)]">
-            {isTr ? 'Bir Sonraki Teknik Çıkmazda Bizi Hatırlayın' : 'Remember Us at Your Next Technical Outage'}
+            {isTr ? 'Bir Sonraki Teknik Çıkmazda Bizi Hatırlayın' : 'Remember Us at Your Next Technical Dead End'}
           </h2>
 
           <p className="text-xs sm:text-sm text-[var(--ink-2)] max-w-lg mx-auto">
@@ -461,7 +461,7 @@ export default function AgencyKit({ lang }) {
             <div className="max-h-[75vh] max-w-[85vw] sm:max-w-[70vw] aspect-square flex items-center justify-center">
               <img
                 src={`/agency-kit/response-kit-slide-${activeSlideIndex + 1}.png`}
-                alt={`Slide ${activeSlideIndex + 1}`}
+                alt={`${isTr ? 'Slayt' : 'Slide'} ${activeSlideIndex + 1}: ${data.responseKit.slides[activeSlideIndex].title}`}
                 className="max-h-full max-w-full object-contain rounded-xl shadow-2xl border border-[var(--term-dim)]/20"
               />
             </div>
@@ -490,7 +490,7 @@ export default function AgencyKit({ lang }) {
               >
                 <img
                   src={`/agency-kit/response-kit-slide-${sNum}.png`}
-                  alt={`Thumb ${sNum}`}
+                  alt={`${isTr ? 'Slayt' : 'Slide'} ${sNum}`}
                   className="w-full h-full object-cover"
                 />
               </button>
@@ -542,7 +542,7 @@ export default function AgencyKit({ lang }) {
             <div className="max-h-[80vh] max-w-[85vw] flex items-center justify-center">
               <img
                 src="/agency-kit/crash-test-500-poster.png"
-                alt="Crash Test 500 Poster"
+                alt={isTr ? 'TMA Agency Crash Test 500 posteri' : 'TMA Agency Crash Test 500 poster'}
                 className="max-h-full max-w-full object-contain rounded-xl shadow-2xl border border-white/10"
               />
             </div>

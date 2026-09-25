@@ -722,6 +722,27 @@ const ndaExtraContent = `
   </section>
 `;
 
+// Adım 82 — Kit slaytları ön-render'da kargoyla giden kitin metniyle çizilir (tek kaynak: agencyKitData.js)
+const renderKitSlidesPre = (lang) => agencyKitData[lang].responseKit.slides.map(slide => {
+  const satirlar = [
+    ...(slide.points || []),
+    ...[...(slide.items || []), ...(slide.cards || []), ...(slide.solutions || []), ...(slide.steps || [])].map(x => `${x.title} — ${x.desc}`),
+    ...(slide.models || []).map(x => `${x.name} — ${x.desc}`),
+    ...(slide.stats || []).map(x => `${x.value} ${x.label} — ${x.desc}`)
+  ];
+  const iletisim = [slide.phone, slide.email, slide.website].filter(Boolean).join(' · ');
+  return `
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-3)] block">${lang === 'tr' ? 'SLAYT' : 'SLIDE'} ${escapeHtml(slide.slideNo)} // ${escapeHtml(slide.tag)}</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">${escapeHtml(slide.title)}</h3>${slide.desc ? `
+            <p class="text-xs text-[var(--ink-3)] leading-relaxed">${escapeHtml(slide.desc)}</p>` : ''}${satirlar.length ? `
+            <ul class="text-xs text-[var(--ink-3)] leading-relaxed space-y-1">${satirlar.map(s => `<li>${escapeHtml(s)}</li>`).join('')}</ul>` : ''}${slide.highlight ? `
+            <p class="text-xs font-mono font-semibold text-[var(--ink)]">${escapeHtml(slide.highlight)}</p>` : ''}${slide.techStack ? `
+            <p class="text-xs font-mono text-[var(--ink-3)]">${escapeHtml(slide.techStack)}</p>` : ''}${iletisim ? `
+            <p class="text-xs font-mono text-[var(--ink-3)]">${escapeHtml(iletisim)}</p>` : ''}
+          </div>`;
+}).join('\n        ');
+
 const kitExtraContentTr = `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-8">
     <div class="space-y-4 max-w-3xl">
@@ -737,7 +758,7 @@ const kitExtraContentTr = `
     <div class="space-y-4">
       <h2 class="text-xl font-bold text-[var(--ink)] font-serif">Kriz Senaryoları & Hazırlık Denetimi</h2>
       <p class="text-xs sm:text-sm text-[var(--ink-3)]">
-        Kriz kapıyı çalmadan önce ajansınızın ilk müdahale refleksini ölçün. 3 soruya yanıt vererek teknik hazırlık puanınızı ve cerrahi eylem planınızı anında alın.
+        ${escapeHtml(agencyKitData.tr.crashTest.notice.security)}
       </p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         ${agencyKitData.tr.crashTest.scenarios.map(sc => `
@@ -757,13 +778,7 @@ const kitExtraContentTr = `
     <div class="space-y-4 pt-4 border-t border-[var(--rule)]">
       <h2 class="text-xl font-bold text-[var(--ink)] font-serif">${escapeHtml(agencyKitData.tr.responseKit.title)} (8 Slayt)</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        ${agencyKitData.tr.responseKit.slides.map(slide => `
-          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-            <span class="font-mono text-xs text-[var(--ink-3)] block">SLIDE ${escapeHtml(slide.slideNo)} // ${escapeHtml(slide.tag)}</span>
-            <h3 class="text-sm font-semibold text-[var(--ink)]">${escapeHtml(slide.title)}</h3>
-            <p class="text-xs text-[var(--ink-3)] leading-relaxed">${escapeHtml(slide.desc)}</p>
-          </div>
-        `).join('\n        ')}
+        ${renderKitSlidesPre('tr')}
       </div>
     </div>
 
@@ -803,7 +818,7 @@ const kitExtraContentEn = `
     <div class="space-y-4">
       <h2 class="text-xl font-bold text-[var(--ink)] font-serif">Crisis Scenarios & Readiness Audit</h2>
       <p class="text-xs sm:text-sm text-[var(--ink-3)]">
-        Measure your agency's incident triage reflexes before outage strikes. Answer 3 questions to calculate your readiness score and surgical action plan instantly.
+        ${escapeHtml(agencyKitData.en.crashTest.notice.security)}
       </p>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         ${agencyKitData.en.crashTest.scenarios.map(sc => `
@@ -823,13 +838,7 @@ const kitExtraContentEn = `
     <div class="space-y-4 pt-4 border-t border-[var(--rule)]">
       <h2 class="text-xl font-bold text-[var(--ink)] font-serif">${escapeHtml(agencyKitData.en.responseKit.title)} (8 Slides)</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        ${agencyKitData.en.responseKit.slides.map(slide => `
-          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-            <span class="font-mono text-xs text-[var(--ink-3)] block">SLIDE ${escapeHtml(slide.slideNo)} // ${escapeHtml(slide.tag)}</span>
-            <h3 class="text-sm font-semibold text-[var(--ink)]">${escapeHtml(slide.title)}</h3>
-            <p class="text-xs text-[var(--ink-3)] leading-relaxed">${escapeHtml(slide.desc)}</p>
-          </div>
-        `).join('\n        ')}
+        ${renderKitSlidesPre('en')}
       </div>
     </div>
 
@@ -1235,21 +1244,31 @@ const renderOutageExtra = (lang) => {
 const outageSimulatorExtraContentTr = renderOutageExtra('tr');
 const outageSimulatorExtraContentEn = renderOutageExtra('en');
 
-const radarExtraContentTr = `
+// Adım 82 — Radar ön-render'ı sayfanın kendi verisinden çizilir (tek kaynak: radarData.js).
+// /radar/ tek adresli; ön-render yalnız Türkçe üretilir.
+const renderRadarExtra = (lang) => {
+  const t = radarData[lang];
+  const tr = lang === 'tr';
+  const yuzde = (p) => (tr ? `%${p}` : `${p}%`);
+  return `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">${escapeHtml(t.telemetry90Days.title)}</h2>
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
-      <div><strong class="text-[var(--ink)] block text-sm">8,4 Dk MTTA</strong> Son 90 Gün Masaya Oturma Ortalaması</div>
-      <div><strong class="text-[var(--accent)] block text-sm">3,2 Saat TTR</strong> Ortalama Kalıcı Çözüm Süresi</div>
-      <div><strong class="text-[var(--tint-info-ink)] block text-sm">34</strong> Çözülen Vaka · 90 günlük dönem</div>
+      ${t.telemetry90Days.metrics.map(m => `<div><span class="block">${escapeHtml(m.label)}</span><strong class="text-[var(--ink)] block text-sm">${escapeHtml(m.value)}</strong><span class="block">${escapeHtml(m.sub)}</span></div>`).join('\n      ')}
     </div>
 
     <p class="text-xs text-[var(--ink-3)] font-mono">
-      Bu değerler 90 günlük dönemde kaydedilen 34 müdahaleden hesaplanmıştır. Son güncelleme: 21 Eylül 2026. Taahhüt edilen süreler için: <a href="/sla/" class="text-[var(--accent)] hover:underline font-bold">SLA ve Yanıt Taahhütleri →</a>
+      ${escapeHtml(t.telemetry90Days.sourceNote)} <a href="/sla/" class="text-[var(--accent)] hover:underline font-bold">${escapeHtml(t.telemetry90Days.slaLinkText)}</a>
     </p>
 
-    <h2 class="text-xl font-bold text-[var(--ink)]">NÖBET SAATLERİNDE ERİŞİLEBİLİRLİK (09:00–24:00)</h2>
+    <h2 class="text-xl font-bold text-[var(--ink)]">${escapeHtml(t.incidentDistribution.title)}</h2>
+    <ul class="text-xs text-[var(--ink-3)] font-mono space-y-1">
+      ${t.incidentDistribution.categories.map(c => `<li>${escapeHtml(c.label)}: ${yuzde(c.percentage)} (${c.count} ${tr ? 'vaka' : 'cases'})</li>`).join('\n      ')}
+    </ul>
+
+    <h2 class="text-xl font-bold text-[var(--ink)]">${tr ? 'Mühendislik Masaları & Altyapı · Nöbet saatlerinde erişilebilirlik (09:00–24:00)' : 'Service Desks & Infrastructure · Availability during duty hours (09:00–24:00)'}</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      ${radarData.tr.components.map(comp => `
+      ${t.components.map(comp => `
       <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
         <div class="flex items-center justify-between">
           <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(comp.name)}</h3>
@@ -1262,34 +1281,8 @@ const radarExtraContentTr = `
     </div>
   </section>
 `;
-
-const radarExtraContentEn = `
-  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
-      <div><strong class="text-[var(--ink)] block text-sm">8.4 Min MTTA</strong> 90-Day Average Time to Table</div>
-      <div><strong class="text-[var(--accent)] block text-sm">3.2 Hr TTR</strong> 90-Day Mean Time to Recovery</div>
-      <div><strong class="text-[var(--tint-info-ink)] block text-sm">34</strong> Resolved Incidents · 90-day period</div>
-    </div>
-
-    <p class="text-xs text-[var(--ink-3)] font-mono">
-      Calculated from 34 recorded interventions over a 90-day window. Last updated: September 21, 2026. For contractual response times: <a href="/sla/" class="text-[var(--accent)] hover:underline font-bold">SLA & Response Commitments →</a>
-    </p>
-
-    <h2 class="text-xl font-bold text-[var(--ink)]">DUTY HOURS AVAILABILITY (09:00–24:00)</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-      ${radarData.en.components.map(comp => `
-      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
-        <div class="flex items-center justify-between">
-          <h3 class="text-base font-bold text-[var(--ink)] font-mono">${escapeHtml(comp.name)}</h3>
-          ${comp.metric ? (comp.metricLink ? `<a href="${comp.metricLink}" class="text-xs font-mono text-[var(--ink-2)] hover:underline inline-flex items-center min-h-[44px] py-[13.5px] -my-[13.5px]">${escapeHtml(comp.metric)}</a>` : `<span class="text-xs font-mono text-[var(--ink-2)]">${escapeHtml(comp.metric)}</span>`) : ''}
-        </div>
-        <p class="text-[var(--ink-3)] text-xs leading-relaxed">${escapeHtml(comp.desc)}</p>
-        <p class="text-xs font-mono text-[var(--accent)] pt-1">${escapeHtml(comp.latencyLabel)}: ${escapeHtml(comp.latency)}</p>
-      </article>
-      `).join('\n      ')}
-    </div>
-  </section>
-`;
+};
+const radarExtraContentTr = renderRadarExtra('tr');
 
 const codeHealthExtraContentTr = `
   <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
@@ -2465,8 +2458,8 @@ const basePages = [
     description: 'TMA mühendislik masası hazırbulunuşluğu, nöbet saatleri, 90 günlük SLA telemetrisi ve vaka dağılım özeti.',
     canonical: 'https://trendmasterakademi.com/radar/',
     ogUrl: 'https://trendmasterakademi.com/radar/',
-    heading: 'SWAT Hazırbulunuşluk & Olay Radarı',
-    subheading: 'Operasyonel hazırbulunuşluk, nöbet saatleri, son 90 günlük masaya oturma süreleri (MTTA) ve çözülen krizlerin kategori dağılımı.',
+    heading: '',
+    subheading: radarData.tr.hero.subtitle,
     extraContent: radarExtraContentTr,
     schema: {
       "@context": "https://schema.org",
@@ -4586,6 +4579,44 @@ function verifyTeshisIntegrity() {
 
 verifyTeshisIntegrity();
 
+// ---------------------------------------------------------------------------
+// [BUILD GUARD KİT] Adım 82 — Kit kargoyla fiziksel olarak gönderildi, değiştirilemez.
+// public/agency-kit, dist/agency-kit ve (varsa) canlı kökteki agency-kit klasöründeki
+// 11 dosya aşağıdaki SHA-256 değerleriyle birebir aynı olmalı. Biri farklıysa → DUR.
+// ---------------------------------------------------------------------------
+function verifyKitIntegrity() {
+  console.log('\n[BUILD GUARD KİT] Kit dosyası bütünlüğü denetleniyor...');
+  const kitHashes = {
+    'tma-agency-response-kit.pdf': '2b7379cbd6b0a1f3f2acec38fbb92cef87ae9bd4bf5ebf8eaa1e62af3348f681',
+    'tma-agency-crash-test-500.pdf': '79d156e6d5694492887fafaec1c64d351e118a188ed99e0c8cb917638160b04f',
+    'crash-test-500-poster.png': '35e16d3009329a30999b441238d4f9e3557c20a34841b8a811a03dcf19988b3c',
+    'response-kit-slide-1.png': 'da3f2be944fb10abfe59a6fa2f6889f78f7f7437f9d3416eda3d90b44b2fb757',
+    'response-kit-slide-2.png': 'daf5e748beb200738c6388073be88a1317e8113dd2b97010042ca700bdf214f8',
+    'response-kit-slide-3.png': '140d0c94164c5ce5af8a1d0ceec4d2825fad39aae21253f809c67e9945edb037',
+    'response-kit-slide-4.png': '3057ac56dc5be88cd818ef227c418af026df1d98a4c1d27b9d4b741625961aec',
+    'response-kit-slide-5.png': '0a4b0bf023e2e8795448cbb070f904135030dbe98f4d203a3025ea9305e97b8e',
+    'response-kit-slide-6.png': 'd4c14007378b8aea357f084d732acd6dd04766cb4b4a382cc9244085cfa7f4a2',
+    'response-kit-slide-7.png': '14a15f131a1d3d6c9bb686532e8f19d037dde448ce6017e0589020115567a935',
+    'response-kit-slide-8.png': '509c796e7c4d6a74b7d1235cf4a177779b3960f7f56515fa8fd9b6eb09c01573',
+  };
+  const kokKlasor = path.join(__dirname, '..', 'agency-kit');
+  const klasorler = [path.join(__dirname, 'public', 'agency-kit'), path.join(__dirname, 'dist', 'agency-kit')];
+  if (fs.existsSync(kokKlasor)) klasorler.push(kokKlasor);
+  const errors = [];
+  for (const klasor of klasorler) {
+    for (const [dosya, beklenen] of Object.entries(kitHashes)) {
+      const yol = path.join(klasor, dosya);
+      if (!fs.existsSync(yol)) { errors.push(`${path.relative(__dirname, yol)} bulunamadı`); continue; }
+      const gercek = crypto.createHash('sha256').update(fs.readFileSync(yol)).digest('hex');
+      if (gercek !== beklenen) errors.push(`${path.relative(__dirname, yol)} değişmiş (beklenen ${beklenen.slice(0, 16)}, bulunan ${gercek.slice(0, 16)})`);
+    }
+  }
+  if (errors.length > 0) {
+    console.error(`\n[BUILD GUARD KİT HATA] Kit dosyaları kargoyla gönderilen kitle aynı değil (${errors.length} hata):`);
+    errors.forEach((err) => console.error(`  - ${err}`));
+    process.exit(1);
+  }
+  console.log(`[BUILD GUARD KİT GEÇTİ] ${Object.keys(kitHashes).length} kit dosyası ${klasorler.length} klasörde kargoyla gönderilen kitle birebir aynı.`);
+}
 
-
-
+verifyKitIntegrity();

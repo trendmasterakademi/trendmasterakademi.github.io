@@ -166,7 +166,7 @@ export const radarData = {
     components: trComponents,
     telemetry90Days: {
       title: "90 Günlük Mühendislik Telemetrisi",
-      sourceNote: "Bu değerler 90 günlük dönemde kaydedilen 34 müdahaleden hesaplanmıştır. Son güncelleme: 21 Eylül 2026.",
+      sourceNote: "Bu değerler 90 günlük dönemde kaydedilen 34 müdahaleden hesaplanmıştır. Son güncelleme: 21 Eylül 2026. Bu rakamların dayanağını isterseniz, müdahale kayıtlarını firma adlarını gizleyerek NDA kapsamında paylaşırız.",
       slaLinkText: "SLA ve Yanıt Taahhütleri →",
       metrics: [
         { label: "Ortalama İlk Yanıt (MTTA)", value: "8,4 dk", sub: "Taahhüt: ≤ 15 dk (SEV-0)" },
@@ -187,10 +187,10 @@ export const radarData = {
     components: enComponents,
     telemetry90Days: {
       title: "90-Day Engineering Telemetry",
-      sourceNote: "Calculated from 34 interventions recorded in a 90-day period. Last update: 21 September 2026.",
+      sourceNote: "Calculated from 34 interventions recorded in a 90-day period. Last update: 21 September 2026. If you want the basis for these figures, we share the intervention records under NDA with company names removed.",
       slaLinkText: "SLA & Response Commitments →",
       metrics: [
-        { label: "Average First Response (MTTA)", value: "8.4 mins", sub: "Target: ≤ 15 mins (SEV-0)" },
+        { label: "Average First Response (MTTA)", value: "8.4 mins", sub: "Commitment: ≤ 15 mins (SEV-0)" },
         { label: "Average Resolution Time (TTR)", value: "3.2 hours", sub: "34 incidents over 90 days" },
         { label: "Resolved Incidents", value: "34", sub: "90-day period" }
       ]

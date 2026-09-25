@@ -89,7 +89,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
             }`}
           >
             <ShieldCheck className="w-4 h-4 text-[var(--accent)]" />
-            <span>01. Agency Response Kit (8 Kart)</span>
+            <span>{isTr ? '01. Agency Response Kit (8 Slayt)' : '01. Agency Response Kit (8 Slides)'}</span>
           </button>
           <button
             type="button"
@@ -101,7 +101,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
             }`}
           >
             <Zap className="w-4 h-4 text-[var(--accent)]" />
-            <span>02. 60sn Agency Crash Test (Poster)</span>
+            <span>{isTr ? '02. 60 Saniyelik Agency Crash Test (Poster)' : '02. 60-Second Agency Crash Test (Poster)'}</span>
           </button>
         </div>
 
@@ -129,7 +129,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                 {/* Slide 01: Kapak / Overview */}
                 <div className="p-5 sm:p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 relative overflow-hidden group hover:border-[var(--rule-strong)] transition-all">
                   <div className="rounded-lg overflow-hidden border border-[var(--rule)] mb-1">
-                    <img src="/agency-kit/response-kit-slide-1.png" alt="Slide 1: White-Label Engineering" className="w-full h-auto object-cover max-h-48" loading="lazy" />
+                    <img src="/agency-kit/response-kit-slide-1.png" alt={`${isTr ? 'Slayt' : 'Slide'} 1: ${data.responseKit.slides[0].title}`} className="w-full h-auto object-cover max-h-48" loading="lazy" />
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">01 // {data.responseKit.slides[0].tag}</span>
@@ -140,23 +140,27 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[0].title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
-                    {data.responseKit.slides[0].desc}
-                  </p>
-                  <ul className="space-y-2 text-xs text-[var(--ink-2)] pt-1 font-mono">
-                    {data.responseKit.slides[0].points.map((pt, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[var(--sev-ok)] flex-shrink-0 mt-0.5" />
-                        <span>{pt}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {data.responseKit.slides[0].desc && (
+                    <p className="text-xs sm:text-sm text-[var(--ink-2)] leading-relaxed">
+                      {data.responseKit.slides[0].desc}
+                    </p>
+                  )}
+                  {data.responseKit.slides[0].points.length > 0 && (
+                    <ul className="space-y-2 text-xs text-[var(--ink-2)] pt-1 font-mono">
+                      {data.responseKit.slides[0].points.map((pt, i) => (
+                        <li key={i} className="flex items-start gap-2">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-[var(--sev-ok)] flex-shrink-0 mt-0.5" />
+                          <span>{pt}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
 
                 {/* Slide 02: Görünmeyen Ekip */}
                 <div className="p-5 sm:p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 hover:border-[var(--rule-strong)] transition-all">
                   <div className="rounded-lg overflow-hidden border border-[var(--rule)] mb-1">
-                    <img src="/agency-kit/response-kit-slide-2.png" alt="Slide 2: Invisible Tech Squad" className="w-full h-auto object-cover max-h-48" loading="lazy" />
+                    <img src="/agency-kit/response-kit-slide-2.png" alt={`${isTr ? 'Slayt' : 'Slide'} 2: ${data.responseKit.slides[1].title}`} className="w-full h-auto object-cover max-h-48" loading="lazy" />
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">02 // {data.responseKit.slides[1].tag}</span>
@@ -165,9 +169,11 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[1].title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[var(--ink-2)]">
-                    {data.responseKit.slides[1].desc}
-                  </p>
+                  {data.responseKit.slides[1].desc && (
+                    <p className="text-xs sm:text-sm text-[var(--ink-2)]">
+                      {data.responseKit.slides[1].desc}
+                    </p>
+                  )}
                   <div className="space-y-2 pt-1">
                     {data.responseKit.slides[1].items.map((it, i) => (
                       <div key={i} className="p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)] flex items-center justify-between gap-3 text-xs">
@@ -184,7 +190,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                 {/* Slide 03: White-Label Model */}
                 <div className="p-5 sm:p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 hover:border-[var(--rule-strong)] transition-all">
                   <div className="rounded-lg overflow-hidden border border-[var(--rule)] mb-1">
-                    <img src="/agency-kit/response-kit-slide-3.png" alt="Slide 3: White-Label Model" className="w-full h-auto object-cover max-h-48" loading="lazy" />
+                    <img src="/agency-kit/response-kit-slide-3.png" alt={`${isTr ? 'Slayt' : 'Slide'} 3: ${data.responseKit.slides[2].title}`} className="w-full h-auto object-cover max-h-48" loading="lazy" />
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">03 // {data.responseKit.slides[2].tag}</span>
@@ -193,9 +199,11 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[2].title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[var(--ink-2)]">
-                    {data.responseKit.slides[2].desc}
-                  </p>
+                  {data.responseKit.slides[2].desc && (
+                    <p className="text-xs sm:text-sm text-[var(--ink-2)]">
+                      {data.responseKit.slides[2].desc}
+                    </p>
+                  )}
                   <div className="grid grid-cols-2 gap-2 pt-1">
                     {data.responseKit.slides[2].cards.map((c, i) => (
                       <div key={i} className="p-3 rounded-lg bg-[var(--paper)] border border-[var(--rule)] space-y-1">
@@ -212,7 +220,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                 {/* Slide 04: 6 Çözüm Alanı */}
                 <div className="p-5 sm:p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 hover:border-[var(--rule-strong)] transition-all">
                   <div className="rounded-lg overflow-hidden border border-[var(--rule)] mb-1">
-                    <img src="/agency-kit/response-kit-slide-4.png" alt="Slide 4: 6 Solutions" className="w-full h-auto object-cover max-h-48" loading="lazy" />
+                    <img src="/agency-kit/response-kit-slide-4.png" alt={`${isTr ? 'Slayt' : 'Slide'} 4: ${data.responseKit.slides[3].title}`} className="w-full h-auto object-cover max-h-48" loading="lazy" />
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">04 // {data.responseKit.slides[3].tag}</span>
@@ -221,9 +229,11 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[3].title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[var(--ink-2)]">
-                    {data.responseKit.slides[3].desc}
-                  </p>
+                  {data.responseKit.slides[3].desc && (
+                    <p className="text-xs sm:text-sm text-[var(--ink-2)]">
+                      {data.responseKit.slides[3].desc}
+                    </p>
+                  )}
                   <div className="grid grid-cols-2 gap-2 pt-1">
                     {data.responseKit.slides[3].solutions.map((s, i) => (
                       <div key={i} className="p-2.5 rounded-lg bg-[var(--paper)] border border-[var(--rule)] text-xs">
@@ -240,11 +250,11 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                 {/* Slide 05: Acil Durum Akışı */}
                 <div className="p-5 sm:p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 hover:border-[var(--rule-strong)] transition-all">
                   <div className="rounded-lg overflow-hidden border border-[var(--rule)] mb-1">
-                    <img src="/agency-kit/response-kit-slide-5.png" alt="Slide 5: Incident Workflow" className="w-full h-auto object-cover max-h-48" loading="lazy" />
+                    <img src="/agency-kit/response-kit-slide-5.png" alt={`${isTr ? 'Slayt' : 'Slide'} 5: ${data.responseKit.slides[4].title}`} className="w-full h-auto object-cover max-h-48" loading="lazy" />
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">05 // {data.responseKit.slides[4].tag}</span>
-                    <span className="text-[var(--sev-high)] font-semibold font-mono text-xs">30 MIN TARGET</span>
+                    <span className="text-[var(--sev-high)] font-semibold font-mono text-xs">{isTr ? 'HEDEF 30 DK' : 'TARGET 30 MIN'}</span>
                   </div>
                   <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug">
                     {data.responseKit.slides[4].title}
@@ -270,7 +280,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                 {/* Slide 06: Çalışma Modelleri */}
                 <div className="p-5 sm:p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 hover:border-[var(--rule-strong)] transition-all">
                   <div className="rounded-lg overflow-hidden border border-[var(--rule)] mb-1">
-                    <img src="/agency-kit/response-kit-slide-6.png" alt="Slide 6: Engagement Models" className="w-full h-auto object-cover max-h-48" loading="lazy" />
+                    <img src="/agency-kit/response-kit-slide-6.png" alt={`${isTr ? 'Slayt' : 'Slide'} 6: ${data.responseKit.slides[5].title}`} className="w-full h-auto object-cover max-h-48" loading="lazy" />
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">06 // {data.responseKit.slides[5].tag}</span>
@@ -292,7 +302,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                 {/* Slide 07: Güvenli ve Temiz Devir */}
                 <div className="p-5 sm:p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 hover:border-[var(--rule-strong)] transition-all">
                   <div className="rounded-lg overflow-hidden border border-[var(--rule)] mb-1">
-                    <img src="/agency-kit/response-kit-slide-7.png" alt="Slide 7: Clean Handover" className="w-full h-auto object-cover max-h-48" loading="lazy" />
+                    <img src="/agency-kit/response-kit-slide-7.png" alt={`${isTr ? 'Slayt' : 'Slide'} 7: ${data.responseKit.slides[6].title}`} className="w-full h-auto object-cover max-h-48" loading="lazy" />
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono">
                     <span className="text-[var(--accent)] font-semibold">07 // {data.responseKit.slides[6].tag}</span>
@@ -318,7 +328,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                 <div className="p-5 sm:p-6 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 flex flex-col justify-between">
                   <div>
                     <div className="rounded-lg overflow-hidden border border-[var(--rule)] mb-2">
-                      <img src="/agency-kit/response-kit-slide-8.png" alt="Slide 8: Response Desk Hotline" className="w-full h-auto object-cover max-h-48" loading="lazy" />
+                      <img src="/agency-kit/response-kit-slide-8.png" alt={`${isTr ? 'Slayt' : 'Slide'} 8: ${data.responseKit.slides[7].title}`} className="w-full h-auto object-cover max-h-48" loading="lazy" />
                     </div>
                     <div className="flex justify-between items-center text-xs font-mono mb-2">
                       <span className="text-[var(--accent)] font-semibold">08 // {data.responseKit.slides[7].tag}</span>
@@ -327,9 +337,11 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                     <h3 className="text-lg sm:text-xl font-serif font-semibold text-[var(--ink)] leading-snug mb-2">
                       {data.responseKit.slides[7].title}
                     </h3>
-                    <p className="text-xs text-[var(--ink-2)] mb-4">
-                      {data.responseKit.slides[7].desc}
-                    </p>
+                    {data.responseKit.slides[7].desc && (
+                      <p className="text-xs text-[var(--ink-2)] mb-4">
+                        {data.responseKit.slides[7].desc}
+                      </p>
+                    )}
                     <div className="space-y-2 text-xs font-mono text-[var(--ink-2)]">
                       <div className="flex items-center gap-2">
                         <PhoneCall className="w-4 h-4 text-[var(--sev-ok)]" />
@@ -373,7 +385,7 @@ export default function AgencyKitModal({ isOpen, onClose }) {
                 <div className="max-w-xs mx-auto rounded-xl overflow-hidden border border-[var(--rule)] shadow-sm relative z-10">
                   <img 
                     src="/agency-kit/crash-test-500-poster.png" 
-                    alt="Crash Test 500 Poster" 
+                    alt={isTr ? 'TMA Agency Crash Test 500 posteri' : 'TMA Agency Crash Test 500 poster'} 
                     className="w-full h-auto object-contain"
                   />
                 </div>

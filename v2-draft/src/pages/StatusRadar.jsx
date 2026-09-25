@@ -141,7 +141,7 @@ export default function StatusRadar({ lang = "tr" }) {
               <div key={idx} className="space-y-1.5 text-xs font-mono">
                 <div className="flex justify-between items-center text-[var(--ink)]">
                   <span>{cat.label}</span>
-                  <span className="font-semibold text-[var(--ink)]">%{cat.percentage} ({cat.count} {isTr ? "vaka" : "cases"})</span>
+                  <span className="font-semibold text-[var(--ink)]">{isTr ? `%${cat.percentage}` : `${cat.percentage}%`} ({cat.count} {isTr ? "vaka" : "cases"})</span>
                 </div>
                 <div className="w-full bg-[var(--paper)] h-2 rounded-full overflow-hidden border border-[var(--rule)]">
                   <div

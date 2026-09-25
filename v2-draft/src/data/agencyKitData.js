@@ -24,7 +24,7 @@ export const agencyKitData = {
         },
         {
           tag: "ACİL DURUM AKIŞI",
-          text: "3 Adımda Teknik Başlangıç: QR/Mesaj → Kısa Brif → Hedef 30 Dk Ön Değerlendirme",
+          text: "Üç adımda teknik başlangıç: QR'ı tara → Kısa brifi gönder → Planı onayla · İlk teknik ön değerlendirme: hedef 30 dk",
           link: "/sos/",
           highlight: "Hedef 30 Dk"
         },
@@ -68,13 +68,9 @@ export const agencyKitData = {
           slideNo: "01",
           tag: "WHITE-LABEL ENGINEERING",
           title: "Müşterinizle siz konuşun. Teknik yükü biz çözelim.",
-          desc: "Ajansınızın marka kimliğini %100 koruyarak arka planda görünmez kıdemli mühendislik masası olarak çalışırız.",
+          desc: "",
           status: "READY",
-          points: [
-            "Ajansınızın adı ve markası ön plandadır.",
-            "TMA doğrudan müşterinizle asla temas kurmaz.",
-            "Resmi karşılıklı NDA ile tam gizlilik güvencesi."
-          ]
+          points: []
         },
         {
           slideNo: "02",
@@ -82,46 +78,46 @@ export const agencyKitData = {
           title: "Proje tıkandığında yeni ekip aramayın.",
           desc: "Yetişmeyen işler ve canlı sistem sorunları için ajansınıza doğrudan kıdemli yazılım gücü ekleriz.",
           items: [
-            { no: "01", title: "YETİŞMEYEN SPRINT", desc: "Backlog ve özellik geliştirme darboğazları" },
-            { no: "02", title: "CANLI SİSTEM HATASI", desc: "Kritik bug, kesinti ve performans çöküşleri" },
-            { no: "03", title: "EKSİK TEKNİK UZMANLIK", desc: "Backend, karmaşık entegrasyon, AI ve mimari" }
+            { no: "01", title: "YETİŞMEYEN SPRINT", desc: "Backlog ve özellik geliştirme" },
+            { no: "02", title: "CANLI SİSTEM HATASI", desc: "Kritik bug, kesinti ve performans" },
+            { no: "03", title: "EKSİK TEKNİK UZMANLIK", desc: "Backend, entegrasyon, AI ve mimari" }
           ]
         },
         {
           slideNo: "03",
           tag: "WHITE-LABEL MODEL",
           title: "Sizin markanız. Bizim mühendisliğimiz.",
-          desc: "Ajansınızın güvenliği ve müşteri ilişkisi 4 temel ilke ile korunur:",
+          desc: "",
           cards: [
-            { no: "01", title: "MÜŞTERİ SİZDE", desc: "Tüm iletişim ajansınızda kalır." },
-            { no: "02", title: "BYPASS YOK", desc: "İzinsiz temas veya doğrudan teklif kesinlikle yok." },
-            { no: "03", title: "GİZLİLİK", desc: "İki taraflı bağlayıcı NDA ve portföy gizliliği." },
-            { no: "04", title: "TAM DEVİR", desc: "Kod, sunucu erişimi ve teknik notlar eksiksiz sizde." }
+            { no: "01", title: "MÜŞTERİ SİZDE", desc: "İletişim ajansınızda kalır." },
+            { no: "02", title: "BYPASS YOK", desc: "İzinsiz temas veya teklif yok." },
+            { no: "03", title: "GİZLİLİK", desc: "NDA ve portföy gizliliği." },
+            { no: "04", title: "TAM DEVİR", desc: "Kod, erişim ve teknik notlar sizde." }
           ]
         },
         {
           slideNo: "04",
           tag: "TEK PARTNER, ALTI ÇÖZÜM ALANI",
           title: "Koddan canlı sisteme.",
-          desc: "Ajansların en sık karşılaştığı 6 kritik teknik alanda tam yetkinlik:",
+          desc: "",
           solutions: [
-            { no: "01", title: "ACİL BUG FIX", desc: "Canlı hata, kesinti ve deadlock müdahalesi" },
-            { no: "02", title: "KOD DEVRALMA", desc: "Yarım kalan, spagetti veya dokümantasyonsuz projeler" },
-            { no: "03", title: "WEB & SAAS", desc: "React, Next.js, modern backend ve API mimarisi" },
-            { no: "04", title: "API & ÖDEME", desc: "Webhook, sanal POS, CRM ve çift yönlü veri akışı" },
-            { no: "05", title: "AI OTOMASYON", desc: "LLM, RAG ve şirkete özel akıllı iş akışları" },
-            { no: "06", title: "AUDIT & HIZ", desc: "Güvenlik, kod sağlığı ve Core Web Vitals optimizasyonu" }
+            { no: "01", title: "ACİL BUG FIX", desc: "Canlı hata ve kesinti" },
+            { no: "02", title: "KOD DEVRALMA", desc: "Yarım kalan projeler" },
+            { no: "03", title: "WEB & SaaS", desc: "React, Next.js, backend" },
+            { no: "04", title: "API & ÖDEME", desc: "Webhook, CRM, veri akışı" },
+            { no: "05", title: "AI OTOMASYON", desc: "LLM ve özel iş akışları" },
+            { no: "06", title: "AUDIT & HIZ", desc: "Güvenlik ve performans" }
           ]
         },
         {
           slideNo: "05",
           tag: "ACİL DURUM AKIŞI",
           title: "Üç adımda teknik başlangıç.",
-          desc: "Kriz anında bürokrasiye boğulmadan doğrudan masaya oturma protokolü:",
+          desc: "",
           steps: [
-            { step: "01", title: "QR'I TARA VEYA YAZ", desc: "Hazır mesajla ajans destek hattına doğrudan bağlanın." },
-            { step: "02", title: "KISA BRİFİ GÖNDER", desc: "URL, karşılaşılan hata, teknoloji yığını ve önceliği paylaşın." },
-            { step: "03", title: "PLANI ONAYLA", desc: "Kapsam, süre ve sabit bütçe netleşince cerrahi müdahaleye başlayalım." }
+            { step: "01", title: "QR'I TARA", desc: "Hazır mesajla ajans destek hattına bağlan." },
+            { step: "02", title: "KISA BRİFİ GÖNDER", desc: "URL, hata, teknoloji ve önceliği paylaş." },
+            { step: "03", title: "PLANI ONAYLA", desc: "Kapsam, süre ve bütçe netleşince başlayalım." }
           ],
           highlight: "İLK TEKNİK ÖN DEĞERLENDİRME: HEDEF 30 DK"
         },
@@ -129,23 +125,23 @@ export const agencyKitData = {
           slideNo: "06",
           tag: "ÇALIŞMA MODELLERİ",
           title: "İhtiyaç kadar kıdemli teknik güç.",
-          desc: "Projenizin durumuna göre esnek ve öngörülebilir iş birliği modelleri:",
+          desc: "",
           models: [
-            { name: "RESPONSE", desc: "Canlı sistem müdahalesi ve anlık kriz kurtarma" },
-            { name: "SPRINT", desc: "Backlog eritme ve yoğunluk dönemi kıdemli takviyesi" },
-            { name: "BUILD", desc: "Ajans markanızla sıfırdan uçtan uca mimari üretim" },
-            { name: "AUDIT", desc: "Kod, mimari, güvenlik, deadlock ve hız denetimi" }
+            { name: "RESPONSE", desc: "Canlı sistem müdahalesi" },
+            { name: "SPRINT", desc: "Backlog ve yoğunluk desteği" },
+            { name: "BUILD", desc: "Ajans markasıyla uçtan uca üretim" },
+            { name: "AUDIT", desc: "Kod, mimari, güvenlik ve hız denetimi" }
           ]
         },
         {
           slideNo: "07",
           tag: "GÜVENLİ VE TEMİZ DEVİR",
           title: "Sadece çalışan değil, devralınabilir kod.",
-          desc: "Teslim ettiğimiz her satır kod ajansınızın ve müşterinizin geleceğini korur:",
+          desc: "",
           stats: [
             { value: "10+", label: "YIL DENEYİM", desc: "Doğrudan kıdemli geliştirici muhatap" },
-            { value: "100%", label: "KAYNAK KOD", desc: "Erişim, mülkiyet ve teknik dokümantasyon sizde" },
-            { value: "CI/CD", label: "TESLİM DİSİPLİNİ", desc: "Test, kontrollü yayın ve sıfır kayıplı geri dönüş planı" }
+            { value: "100%", label: "KAYNAK KOD", desc: "Erişim, mülkiyet ve teknik dokümantasyon" },
+            { value: "CI/CD", label: "TESLİM DİSİPLİNİ", desc: "Test, kontrollü yayın ve geri dönüş planı" }
           ],
           techStack: "React / Next.js • Node.js / Python • PostgreSQL / Redis • Docker / Cloud • API / Webhook • OpenAI / LLM"
         },
@@ -153,7 +149,7 @@ export const agencyKitData = {
           slideNo: "08",
           tag: "WHITE-LABEL AGENCY ENGINEERING",
           title: "Bir sonraki teknik çıkmazda bizi hatırlayın.",
-          desc: "Kriz hattımız ve mühendislik masamız her gün 09:00 – 24:00 saatleri arasında aktiftir.",
+          desc: "Ajans destek hattına hazır mesajla bağlanın.",
           phone: "+90 534 371 35 73",
           email: "info@trendmasterakademi.com",
           website: "trendmasterakademi.com",
@@ -187,9 +183,9 @@ export const agencyKitData = {
         },
         {
           tag: "INCIDENT FLOW",
-          text: "3-Step Technical Kickoff: QR/Text → Quick Brief → 30-Minute Triage Target",
+          text: "Technical kickoff in three steps: Scan the QR → Send a short brief → Approve the plan · Initial technical pre-assessment: target 30 min",
           link: "/sos/",
-          highlight: "Target 30 Mins"
+          highlight: "Target 30 Min"
         },
         {
           tag: "ENGAGEMENT",
@@ -230,93 +226,89 @@ export const agencyKitData = {
         {
           slideNo: "01",
           tag: "WHITE-LABEL ENGINEERING",
-          title: "You manage the client. We solve the technical burden.",
-          desc: "We operate as an invisible senior engineering desk behind your agency's brand identity.",
+          title: "You talk to your client. We handle the technical load.",
+          desc: "",
           status: "READY",
-          points: [
-            "Your agency brand remains strictly front and center.",
-            "TMA never contacts your clients directly.",
-            "Full legal assurance under bilateral binding NDA."
-          ]
+          points: []
         },
         {
           slideNo: "02",
-          tag: "THE AGENCY'S INVISIBLE TECH SQUAD",
-          title: "When projects stall, don't waste weeks recruiting.",
-          desc: "We inject senior software firepower directly into your agency for unfinished backlogs and live outages.",
+          tag: "YOUR AGENCY'S INVISIBLE TECH TEAM",
+          title: "When a project stalls, don't go looking for a new team.",
+          desc: "For work that is falling behind and for live system problems, we add senior software capacity directly to your agency.",
           items: [
-            { no: "01", title: "UNFINISHED SPRINT", desc: "Backlog bottlenecks and delayed deliverables" },
-            { no: "02", title: "LIVE PRODUCTION OUTAGE", desc: "Critical bugs, downtime, and performance degradation" },
-            { no: "03", title: "SPECIALIZED TECH GAP", desc: "Complex backend, bespoke integrations, AI, and architecture" }
+            { no: "01", title: "UNFINISHED SPRINT", desc: "Backlog and feature development" },
+            { no: "02", title: "LIVE SYSTEM ERROR", desc: "Critical bugs, downtime and performance" },
+            { no: "03", title: "MISSING TECHNICAL EXPERTISE", desc: "Backend, integration, AI and architecture" }
           ]
         },
         {
           slideNo: "03",
           tag: "WHITE-LABEL MODEL",
           title: "Your brand. Our engineering.",
-          desc: "Your agency reputation and client relationship are shielded by 4 foundational rules:",
+          desc: "",
           cards: [
-            { no: "01", title: "YOU OWN THE CLIENT", desc: "All communication stays strictly within your agency." },
-            { no: "02", title: "ZERO BYPASS", desc: "Zero unauthorized client contact or solicitation." },
-            { no: "03", title: "STRICT PRIVACY", desc: "Binding mutual NDA and portfolio confidentiality." },
-            { no: "04", title: "FULL HANDOVER", desc: "Complete code, server credentials, and architecture notes stay yours." }
+            { no: "01", title: "THE CLIENT STAYS WITH YOU", desc: "Communication stays with your agency." },
+            { no: "02", title: "NO BYPASS", desc: "No unauthorised contact or offers." },
+            { no: "03", title: "CONFIDENTIALITY", desc: "NDA and portfolio confidentiality." },
+            { no: "04", title: "FULL HANDOVER", desc: "Code, access and technical notes stay with you." }
           ]
         },
         {
           slideNo: "04",
-          tag: "ONE PARTNER, SIX CAPABILITY DOMAINS",
-          title: "From code to live production.",
-          desc: "Full surgical mastery across the 6 most common agency technical bottlenecks:",
+          tag: "ONE PARTNER, SIX SOLUTION AREAS",
+          title: "From code to live system.",
+          desc: "",
           solutions: [
-            { no: "01", title: "EMERGENCY BUG FIX", desc: "Live production errors, downtime, and deadlock triage" },
-            { no: "02", title: "CODE TAKEOVER", desc: "Abandoned, spaghetti, or undocumented codebases" },
-            { no: "03", title: "WEB & SAAS", desc: "React, Next.js, modern backend and API architectures" },
-            { no: "04", title: "API & PAYMENTS", desc: "Webhooks, payment gateways, CRM, and two-way sync" },
-            { no: "05", title: "AI AUTOMATION", desc: "LLM, RAG pipelines, and proprietary enterprise workflows" },
-            { no: "06", title: "AUDIT & SPEED", desc: "Security, code health, and Core Web Vitals optimization" }
+            { no: "01", title: "EMERGENCY BUG FIX", desc: "Live errors and downtime" },
+            { no: "02", title: "CODE TAKEOVER", desc: "Unfinished projects" },
+            { no: "03", title: "WEB & SaaS", desc: "React, Next.js, backend" },
+            { no: "04", title: "API & PAYMENTS", desc: "Webhooks, CRM, data flow" },
+            { no: "05", title: "AI AUTOMATION", desc: "LLMs and custom workflows" },
+            { no: "06", title: "AUDIT & SPEED", desc: "Security and performance" }
           ]
         },
         {
           slideNo: "05",
-          tag: "INCIDENT RESPONSE WORKFLOW",
-          title: "3 steps to technical kickoff.",
-          desc: "Zero bureaucracy protocol to get senior engineers on table immediately:",
+          tag: "EMERGENCY FLOW",
+          title: "Technical kickoff in three steps.",
+          desc: "",
           steps: [
-            { step: "01", title: "SCAN OR MESSAGE", desc: "Connect directly to the agency response desk with a pre-filled prompt." },
-            { step: "02", title: "SEND A QUICK BRIEF", desc: "Share URL, observed error, tech stack, and urgency level." },
-            { step: "03", title: "APPROVE THE PLAN", desc: "Begin surgical triage as soon as scope, timeline, and fixed quote align." }
+            { step: "01", title: "SCAN THE QR", desc: "Connect to the agency support line with a ready-made message." },
+            { step: "02", title: "SEND A SHORT BRIEF", desc: "Share the URL, the error, the tech stack and the priority." },
+            { step: "03", title: "APPROVE THE PLAN", desc: "Once scope, timeline and budget are clear, we start." }
           ],
-          highlight: "INITIAL TECHNICAL TRIAGE: TARGET 30 MINS"
+          highlight: "INITIAL TECHNICAL PRE-ASSESSMENT: TARGET 30 MIN"
         },
         {
           slideNo: "06",
           tag: "ENGAGEMENT MODELS",
-          title: "Senior technical firepower calibrated to need.",
-          desc: "Flexible, predictable models tailored to project urgency:",
+          title: "As much senior technical capacity as you need.",
+          desc: "",
           models: [
-            { name: "RESPONSE", desc: "Live outage mitigation and emergency hotfixes" },
-            { name: "SPRINT", desc: "Backlog acceleration and peak-season senior extension" },
-            { name: "BUILD", desc: "End-to-end architecture delivered under your agency brand" },
-            { name: "AUDIT", desc: "Codebase, architecture, security, deadlock, and speed audit" }
+            { name: "RESPONSE", desc: "Live system intervention" },
+            { name: "SPRINT", desc: "Backlog and peak-load support" },
+            { name: "BUILD", desc: "End-to-end delivery under your agency's brand" },
+            { name: "AUDIT", desc: "Code, architecture, security and speed audit" }
           ]
         },
         {
           slideNo: "07",
           tag: "SECURE AND CLEAN HANDOVER",
-          title: "Not just working code, maintainable code.",
-          desc: "Every line delivered protects your agency's reputation and client's future:",
+          title: "Not just working code — code that can be taken over.",
+          desc: "",
           stats: [
-            { value: "10+", label: "YEARS EXP", desc: "Direct communication with lead engineers" },
-            { value: "100%", label: "SOURCE CODE", desc: "Full ownership, access, and technical documentation" },
-            { value: "CI/CD", label: "DELIVERY RIGOR", desc: "Automated testing, staged rollouts, zero-loss rollback plans" }
+            { value: "10+", label: "YEARS OF EXPERIENCE", desc: "A senior developer as your direct contact" },
+            { value: "100%", label: "SOURCE CODE", desc: "Access, ownership and technical documentation" },
+            { value: "CI/CD", label: "DELIVERY DISCIPLINE", desc: "Testing, controlled releases and a rollback plan" }
           ],
           techStack: "React / Next.js • Node.js / Python • PostgreSQL / Redis • Docker / Cloud • API / Webhook • OpenAI / LLM"
         },
         {
           slideNo: "08",
           tag: "WHITE-LABEL AGENCY ENGINEERING",
-          title: "Remember us at your next technical impasse.",
-          desc: "Our response desk and senior engineers are on duty daily from 09:00 to 24:00.",
+          title: "Remember us at your next technical dead end.",
+          desc: "Connect to the agency support line with a ready-made message.",
           phone: "+90 534 371 35 73",
           email: "info@trendmasterakademi.com",
           website: "trendmasterakademi.com",
