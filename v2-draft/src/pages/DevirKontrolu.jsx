@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
+import { WEB3FORMS_URL, WEB3FORMS_KEY } from '../utils/web3forms';
 import { handoverAuditH1 } from '../data/pageH1Data';
 import { tmaiData, tmaiYollar, tmaiAraclar } from '../data/tmaiData';
 import { slaTiers } from '../data/slaData';
@@ -386,14 +387,18 @@ const DevirKontrolu = () => {
 
   const handleLeadSubmit = async (e) => {
     e.preventDefault();
+    if (e.currentTarget.elements.botcheck?.checked) {
+      console.warn('Bot detected via honeypot.');
+      return;
+    }
     setIsSendingLead(true);
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch(WEB3FORMS_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          access_key: '64ef0cf5-703c-4cfd-92a4-4f0ba65bb2bb',
+          access_key: WEB3FORMS_KEY,
           from_name: 'TMA Devir Kontrol Diagnostic',
           subject: `📋 DEVİR KONTROL RAPORU: ${leadName} (%${riskScore} Risk - ${missingItems.length} Eksik)${campaignParams.agency_code ? ` [Kutu #${campaignParams.agency_code}]` : ''}`,
           name: leadName,
@@ -914,7 +919,7 @@ const DevirKontrolu = () => {
                 <div className="p-5 rounded bg-[var(--tint-warn-bg)] border border-[var(--tint-warn-rule)] space-y-3">
                   <div className="flex items-center gap-3 text-[var(--tint-warn-ink)] text-sm font-semibold">
                     <AlertTriangle className="w-5 h-5 flex-shrink-0 text-[var(--tint-warn-ink)]" />
-                    <span>{isTr ? 'Ağ kesintisi nedeniyle otomatik iletilemedi.' : 'Network interruption during auto-dispatch.'}</span>
+                    <span>{isTr ? 'Talebiniz otomatik olarak iletilemedi.' : 'Your request could not be sent automatically.'}</span>
                   </div>
                   <p className="text-xs text-[var(--ink-3)]">
                     {isTr ? 'Raporunuz hazır. Aşağıdaki butona tıklayarak WhatsApp üzerinden doğrudan talep edebilirsiniz:' : 'Your audit is ready. Request directly via WhatsApp:'}

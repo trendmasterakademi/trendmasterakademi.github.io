@@ -1,0 +1,1 @@
+var e=`https://api.web3forms.com/submit`,t=`eceed7d8-2ec5-4ae2-86bb-71fec33a50af`;export{e as n,t};

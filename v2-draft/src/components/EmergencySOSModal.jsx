@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { AlertTriangle, X, PhoneCall, ShieldCheck, Clock, Send, CheckCircle2, MessageSquare, RefreshCw } from 'lucide-react';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
+import { WEB3FORMS_URL, WEB3FORMS_KEY } from '../utils/web3forms';
 
 const EmergencySOSModal = ({ isOpen, onClose }) => {
   const { i18n } = useTranslation();
@@ -83,20 +84,24 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (e.currentTarget.elements.botcheck?.checked) {
+      console.warn('Bot detected via honeypot.');
+      return;
+    }
     setIsSubmitting(true);
     setSubmitStatus(null);
 
     const urgencyLabel = getUrgencyLabel();
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch(WEB3FORMS_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          access_key: '64ef0cf5-703c-4cfd-92a4-4f0ba65bb2bb',
+          access_key: WEB3FORMS_KEY,
           from_name: 'TMA SOS Dispatch Desk',
           subject: `🚨 ACİL KRİZ BİLDİRİMİ (SOS) - ${agencyName || 'Ajans'} (${urgencyLabel})`,
           agency: agencyName || 'Belirtilmedi',
@@ -115,8 +120,6 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
         if (window.trackEvent) {
           window.trackEvent('sos_form_submitted', { urgency: urgencyLabel });
         }
-        // Automatically trigger WhatsApp forward
-        window.open(getWhatsAppUrl(), '_blank');
       } else {
         throw new Error(data.message || 'SOS dispatch failed');
       }
@@ -211,7 +214,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                 {isTr ? 'Kriz Bildirimi Kaydedildi & İletildi!' : 'Crisis Ticket Saved & Dispatched!'}
               </h4>
               <p className="text-sm text-[var(--ink-2)] max-w-md">
-                {isTr ? 'Bildiriminiz kriz masamıza kaydedildi ve WhatsApp üzerinden kıdemli mühendislik masamıza aktarıldı.' : 'Your ticket is logged and forwarded directly to our senior engineering desk.'}
+                {isTr ? 'Bildiriminiz kriz masamıza kaydedildi ve kıdemli mühendislik masamıza e-postayla iletildi.' : 'Your ticket is logged and forwarded to our senior engineering desk by email.'}
               </p>
               <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
                 <a
@@ -239,7 +242,7 @@ const EmergencySOSModal = ({ isOpen, onClose }) => {
                 <AlertTriangle className="w-8 h-8" />
               </div>
               <h4 className="text-xl font-serif font-semibold text-[var(--ink)]">
-                {isTr ? 'Ağ Kesintisi Nedeniyle Otomatik İletilemedi' : 'Network Interruption During Dispatch'}
+                {isTr ? 'Bildirim Otomatik İletilemedi' : 'Automatic Dispatch Failed'}
               </h4>
               <p className="text-sm text-[var(--ink)] max-w-md">
                 {isTr 

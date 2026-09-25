@@ -4709,6 +4709,10 @@ function verifyContentRules() {
     'Eksiksiz Teslim Ederiz', 'zero project blockage', 'Stres testleri ve güvenlik kontrolleri',
     // Adım 89 · teşhis başlığında süre çağrışımı
     'Kim çözer, ne kadar sürer', 'Time to Fix',
+    // Adım 91 · formlar: düğme yazdığı kanalı kullanır, hata metni sebep uydurmaz, eski (geçersiz) anahtar
+    'WhatsApp Üzerinden Hemen İletişime Geç', 'Connect Immediately via WhatsApp', 'WhatsApp üzerinden kıdemli mühendislik masamıza aktarıldı',
+    'Ağ kesintisi nedeniyle', 'Ağ Kesintisi Nedeniyle', 'Network interruption during', 'Network Interruption During', 'Network timeout prevented',
+    'Sunucu Bağlantısı Kurulamadı', 'Server Connection Interrupted', '64ef0cf5-703c-4cfd-92a4-4f0ba65bb2bb',
   ];
   const errors = [];
   const dosyalar = (kok, uzanti) => {
@@ -4787,3 +4791,58 @@ function verifySchemaConsistency() {
 }
 
 verifySchemaConsistency();
+
+// ---------------------------------------------------------------------------
+// [BUILD GUARD FORM] Adım 91 — Formlar tek anahtarla gönderir, düğme yazdığı kanalı kullanır.
+// A) Web3Forms adresi ve anahtarı yalnız src/utils/web3forms.js'de durur; başka dosya kendi anahtarını yazamaz
+//    (eski anahtar 28 Ağustos'tan beri dört formda elle yazılıydı ve geçersizdi, hiçbir form e-posta göndermedi).
+// B) Gönder düğmesinin (type="submit") etiketi WhatsApp diyemez: form e-posta gönderir (Mehmet'in kararı, 2026-09-25).
+// C) E-posta gönderen işleyici WhatsApp açamaz: WhatsApp yalnız kendi düğmesinden açılır.
+// D) Bot tuzağı (botcheck kutusu) olan form onu okumak zorunda (üç formda kutu vardı, hiç okunmuyordu).
+// ---------------------------------------------------------------------------
+function verifyFormRules() {
+  console.log('\n[BUILD GUARD FORM] Form anahtarı ve düğme-kanal eşleşmesi denetleniyor...');
+  const errors = [];
+  const srcDir = path.join(__dirname, 'src');
+  const anahtarDosyasi = path.join(srcDir, 'utils', 'web3forms.js');
+  if (!fs.existsSync(anahtarDosyasi)) errors.push('src/utils/web3forms.js yok');
+  else if (!/export const WEB3FORMS_KEY = '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}';/i.test(fs.readFileSync(anahtarDosyasi, 'utf8'))) errors.push('src/utils/web3forms.js — WEB3FORMS_KEY anahtar biçiminde değil');
+  const yerel = ['tr', 'en'].map((dil) => JSON.parse(fs.readFileSync(path.join(srcDir, 'locales', `${dil}.json`), 'utf8')));
+  const dosyalar = [];
+  const gez = (d) => { for (const e of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, e.name); if (e.isDirectory()) gez(p); else if (/\.jsx?$/.test(e.name)) dosyalar.push(p); } };
+  gez(srcDir);
+  let formSayisi = 0, dugmeSayisi = 0, tuzakSayisi = 0;
+  for (const dosya of dosyalar) {
+    if (dosya === anahtarDosyasi) continue;
+    const ad = path.relative(__dirname, dosya);
+    const s = fs.readFileSync(dosya, 'utf8');
+    if (s.includes('api.web3forms.com')) errors.push(`${ad} — Web3Forms adresi elle yazılmış (WEB3FORMS_URL kullanılmalı)`);
+    if (/access_key\s*:\s*['"`]/.test(s)) errors.push(`${ad} — form anahtarı elle yazılmış (WEB3FORMS_KEY kullanılmalı)`);
+    for (const m of s.matchAll(/fetch\(WEB3FORMS_URL[\s\S]*?finally\s*\{/g)) {
+      formSayisi++;
+      if (/window\.open|wa\.me/.test(m[0])) errors.push(`${ad} — e-posta gönderen işleyici WhatsApp açıyor`);
+    }
+    for (let i = s.indexOf('type="submit"'); i >= 0; i = s.indexOf('type="submit"', i + 1)) {
+      const bas = s.lastIndexOf('<button', i), son = s.indexOf('</button>', i);
+      if (bas < 0 || son < 0) continue;
+      dugmeSayisi++;
+      const blok = s.slice(bas, son);
+      const etiketler = [...blok.matchAll(/'([^']*)'/g)].map((x) => x[1]);
+      for (const k of blok.matchAll(/\bt\(\s*['"]([^'"]+)['"]\s*\)/g)) yerel.forEach((y) => etiketler.push(String(y[k[1]] || '')));
+      if (etiketler.some((x) => /whatsapp/i.test(x))) errors.push(`${ad} — gönder düğmesi WhatsApp diyor ama form e-posta gönderiyor`);
+    }
+    if (s.includes('name="botcheck"')) {
+      tuzakSayisi++;
+      if (!/(formData|elements)\.botcheck\b/.test(s)) errors.push(`${ad} — bot tuzağı kutusu var ama gönderimde okunmuyor`);
+    }
+  }
+  if (formSayisi === 0) errors.push('Web3Forms ile gönderen form bulunamadı (WEB3FORMS_URL kullanılmıyor)');
+  if (errors.length > 0) {
+    console.error(`\n[BUILD GUARD FORM HATA] ${errors.length} kural ihlali:`);
+    errors.forEach((err) => console.error(`  - ${err}`));
+    process.exit(1);
+  }
+  console.log(`[BUILD GUARD FORM GEÇTİ] ${formSayisi} form tek anahtar dosyasından gönderiyor ve WhatsApp açmıyor; ${dugmeSayisi} gönder düğmesinin hiçbiri WhatsApp demiyor; ${tuzakSayisi} bot tuzağının hepsi okunuyor.`);
+}
+
+verifyFormRules();

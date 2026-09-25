@@ -4,6 +4,7 @@ import { MessageSquare, PhoneCall, Mail, MapPin, ShieldCheck, Send, CheckCircle2
 import { Link } from 'react-router-dom';
 import { getCalendlyUrl } from '../utils/calendly';
 import { isTurkish } from '../i18n';
+import { WEB3FORMS_URL, WEB3FORMS_KEY } from '../utils/web3forms';
 
 const Contact = () => {
   const { t, i18n } = useTranslation();
@@ -38,14 +39,14 @@ const Contact = () => {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch(WEB3FORMS_URL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          access_key: '64ef0cf5-703c-4cfd-92a4-4f0ba65bb2bb',
+          access_key: WEB3FORMS_KEY,
           from_name: 'TMA Lead Desk',
           subject: `🚨 Yeni TMA İletişim / Ajans Talebi - ${formData.name} (${formData.agency || 'Bireysel'})`,
           name: formData.name,
@@ -279,12 +280,12 @@ const Contact = () => {
               
               <div className="space-y-2">
                 <h3 className="text-2xl font-semibold text-[var(--ink)] font-serif">
-                  {isTr ? 'Sunucu Bağlantısı Kurulamadı' : 'Server Connection Interrupted'}
+                  {isTr ? 'Form Gönderilemedi' : 'Form Could Not Be Sent'}
                 </h3>
                 <p className="text-[var(--ink-2)] text-sm sm:text-base max-w-[34rem] mx-auto leading-relaxed">
                   {isTr 
-                    ? 'Ağ kesintisi nedeniyle otomatik kayıt iletilemedi. Ancak bilgileriniz hazır; aşağıdaki butona tıklayarak tek tıkla WhatsApp kriz masasına iletebilirsiniz:' 
-                    : 'Network timeout prevented automated form storage. Your brief is preserved below — dispatch directly via WhatsApp:'}
+                    ? 'Talebiniz otomatik olarak iletilemedi. Ancak bilgileriniz hazır; aşağıdaki butona tıklayarak tek tıkla WhatsApp kriz masasına iletebilirsiniz:' 
+                    : 'Your request could not be sent automatically. Your brief is preserved below — dispatch directly via WhatsApp:'}
                 </p>
               </div>
 
