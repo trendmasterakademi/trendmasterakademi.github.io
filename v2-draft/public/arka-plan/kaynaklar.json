@@ -1,54 +1,472 @@
 [
   {
     "sahne": 1,
-    "dosya": "sahne-1",
     "kaynak": "https://unsplash.com/photos/cable-network-M5tzZtFCOfs",
     "fotografci": "Taylor Vick",
     "cdn": "photo-1558494949-ef010cbdcc31",
     "lisans": "Unsplash License",
     "indirilme": "2026-09-26",
-    "kalite": {
-      "avif": 50,
-      "webp": 70
-    }
+    "ozgun": {
+      "w": 3956,
+      "h": 2220
+    },
+    "dosyalar": [
+      {
+        "ad": "sahne-1-1280.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1280,
+        "h": 720,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&crop=entropy&w=1280&h=720&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-1-1280.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1280,
+        "h": 720,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&crop=entropy&w=1280&h=720&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-1-1920.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1920,
+        "h": 1080,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&crop=entropy&w=1920&h=1080&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-1-1920.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1920,
+        "h": 1080,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&crop=entropy&w=1920&h=1080&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-1-2560.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 2560,
+        "h": 1440,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&crop=entropy&w=2560&h=1440&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-1-2560.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 2560,
+        "h": 1440,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&crop=entropy&w=2560&h=1440&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-1-dikey-720.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 720,
+        "h": 1600,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&crop=entropy&w=720&h=1600&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-1-dikey-720.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 720,
+        "h": 1600,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&crop=entropy&w=720&h=1600&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-1-dikey-999.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 999,
+        "h": 2220,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&crop=entropy&w=999&h=2220&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-1-dikey-999.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 999,
+        "h": 2220,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?fit=crop&crop=entropy&w=999&h=2220&q=70&fm=webp"
+      }
+    ]
   },
   {
     "sahne": 2,
-    "dosya": "sahne-2",
     "kaynak": "https://unsplash.com/photos/matrix-movie-still-iar-afB0QQw",
     "fotografci": "Markus Spiske",
     "cdn": "photo-1526374965328-7f61d4dc18c5",
     "lisans": "Unsplash License",
     "indirilme": "2026-09-26",
-    "kalite": {
-      "avif": 50,
-      "webp": 70
-    }
+    "ozgun": {
+      "w": 5760,
+      "h": 3840
+    },
+    "dosyalar": [
+      {
+        "ad": "sahne-2-1280.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1280,
+        "h": 720,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&crop=entropy&w=1280&h=720&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-2-1280.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1280,
+        "h": 720,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&crop=entropy&w=1280&h=720&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-2-1920.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1920,
+        "h": 1080,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&crop=entropy&w=1920&h=1080&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-2-1920.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1920,
+        "h": 1080,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&crop=entropy&w=1920&h=1080&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-2-2560.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 2560,
+        "h": 1440,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&crop=entropy&w=2560&h=1440&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-2-2560.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 2560,
+        "h": 1440,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&crop=entropy&w=2560&h=1440&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-2-dikey-720.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 720,
+        "h": 1600,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&crop=entropy&w=720&h=1600&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-2-dikey-720.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 720,
+        "h": 1600,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&crop=entropy&w=720&h=1600&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-2-dikey-1080.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 1080,
+        "h": 2400,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&crop=entropy&w=1080&h=2400&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-2-dikey-1080.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 1080,
+        "h": 2400,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&crop=entropy&w=1080&h=2400&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-2-dikey-1440.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 1440,
+        "h": 3200,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&crop=entropy&w=1440&h=3200&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-2-dikey-1440.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 1440,
+        "h": 3200,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?fit=crop&crop=entropy&w=1440&h=3200&q=70&fm=webp"
+      }
+    ]
   },
   {
     "sahne": 3,
-    "dosya": "sahne-3",
     "kaynak": "https://unsplash.com/photos/blue-utp-cord-40XgDxBfYXM",
     "fotografci": "Jordan Harrison",
     "cdn": "photo-1544197150-b99a580bb7a8",
     "lisans": "Unsplash License",
     "indirilme": "2026-09-26",
-    "kalite": {
-      "avif": 50,
-      "webp": 70
-    }
+    "ozgun": {
+      "w": 6000,
+      "h": 4000
+    },
+    "dosyalar": [
+      {
+        "ad": "sahne-3-1280.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1280,
+        "h": 720,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&crop=entropy&w=1280&h=720&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-3-1280.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1280,
+        "h": 720,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&crop=entropy&w=1280&h=720&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-3-1920.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1920,
+        "h": 1080,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&crop=entropy&w=1920&h=1080&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-3-1920.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1920,
+        "h": 1080,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&crop=entropy&w=1920&h=1080&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-3-2560.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 2560,
+        "h": 1440,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&crop=entropy&w=2560&h=1440&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-3-2560.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 2560,
+        "h": 1440,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&crop=entropy&w=2560&h=1440&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-3-dikey-720.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 720,
+        "h": 1600,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&crop=entropy&w=720&h=1600&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-3-dikey-720.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 720,
+        "h": 1600,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&crop=entropy&w=720&h=1600&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-3-dikey-1080.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 1080,
+        "h": 2400,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&crop=entropy&w=1080&h=2400&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-3-dikey-1080.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 1080,
+        "h": 2400,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&crop=entropy&w=1080&h=2400&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-3-dikey-1440.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 1440,
+        "h": 3200,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&crop=entropy&w=1440&h=3200&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-3-dikey-1440.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 1440,
+        "h": 3200,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?fit=crop&crop=entropy&w=1440&h=3200&q=70&fm=webp"
+      }
+    ]
   },
   {
     "sahne": 4,
-    "dosya": "sahne-4",
     "kaynak": "https://unsplash.com/photos/vehicles-near-buildings-at-night-time-VmX3vmBecFE",
     "fotografci": "Max Bender",
     "cdn": "photo-1519501025264-65ba15a82390",
     "lisans": "Unsplash License",
     "indirilme": "2026-09-26",
-    "kalite": {
-      "avif": 50,
-      "webp": 70
-    }
+    "ozgun": {
+      "w": 4912,
+      "h": 6144
+    },
+    "dosyalar": [
+      {
+        "ad": "sahne-4-1280.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1280,
+        "h": 720,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=1280&h=720&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-4-1280.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1280,
+        "h": 720,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=1280&h=720&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-4-1920.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1920,
+        "h": 1080,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=1920&h=1080&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-4-1920.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1920,
+        "h": 1080,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=1920&h=1080&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-4-2560.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 2560,
+        "h": 1440,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=2560&h=1440&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-4-2560.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 2560,
+        "h": 1440,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=2560&h=1440&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-4-dikey-720.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 720,
+        "h": 1600,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=720&h=1600&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-4-dikey-720.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 720,
+        "h": 1600,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=720&h=1600&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-4-dikey-1080.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 1080,
+        "h": 2400,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=1080&h=2400&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-4-dikey-1080.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 1080,
+        "h": 2400,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=1080&h=2400&q=70&fm=webp"
+      },
+      {
+        "ad": "sahne-4-dikey-1440.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 1440,
+        "h": 3200,
+        "q": 50,
+        "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=1440&h=3200&q=50&fm=avif"
+      },
+      {
+        "ad": "sahne-4-dikey-1440.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 1440,
+        "h": 3200,
+        "q": 70,
+        "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=1440&h=3200&q=70&fm=webp"
+      }
+    ]
   }
 ]

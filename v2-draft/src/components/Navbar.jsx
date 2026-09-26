@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense, lazy } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, Globe, AlertTriangle, ShieldCheck, Zap, BookOpen, Sun, Moon } from 'lucide-react';
+import { Menu, X, Globe, AlertTriangle, ShieldCheck, Zap, BookOpen, Sun, Moon, ClipboardCheck, Stethoscope, Calculator, Users, Mail } from 'lucide-react';
 import { useKrizHattiAcik } from '../utils/krizHatti';
 import { isTurkish } from '../i18n';
 import { getLocalizedPath } from '../utils/routes';
@@ -452,7 +452,7 @@ const Navbar = () => {
                 }`}></span>
                 <span>{isTr ? "Kriz Müdahale Masası" : "Emergency Response Desk"}</span>
               </span>
-              <span className="text-[var(--accent)] font-semibold">
+              <span className="text-[var(--accent)] font-semibold whitespace-nowrap flex-shrink-0">
                 {krizHattiAcik ? (isTr ? "Canlı 09:00–24:00" : "Live 09:00–24:00") : (isTr ? "09:00 Açılış" : "Opens 09:00")}
               </span>
             </button>
@@ -463,7 +463,7 @@ const Navbar = () => {
               className="w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-semibold flex items-center gap-2 text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20 mb-1 min-h-[44px]"
             >
               <BookOpen className="w-4 h-4 text-[var(--accent)] flex-shrink-0" />
-              <span className="truncate">{isTr ? 'TMA Agency Response Kit (Görsel Kılavuz)' : 'TMA Agency Response Kit (Visual Guide)'}</span>
+              <span className="leading-snug">{isTr ? 'TMA Agency Response Kit (Görsel Kılavuz)' : 'TMA Agency Response Kit (Visual Guide)'}</span>
             </Link>
 
             <Link
@@ -495,66 +495,72 @@ const Navbar = () => {
             <Link
               to={isTr ? "/devir-kontrolu/" : "/handover-audit/"}
               onClick={() => setIsOpen(false)}
-              className={`flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium whitespace-nowrap min-h-[44px] ${
+              className={`flex items-center gap-2 w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium whitespace-nowrap min-h-[44px] ${
                 path.startsWith('/devir-kontrolu') || path.startsWith('/handover-audit')
                   ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)]'
                   : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
               }`}
             >
-              {isTr ? '12 Kalemlik Devir Kontrolü' : 'Handover Readiness Audit'}
+              <ClipboardCheck className="w-4 h-4 text-[var(--ink-3)] flex-shrink-0" />
+              <span>{isTr ? '12 Kalemlik Devir Kontrolü' : 'Handover Readiness Audit'}</span>
             </Link>
 
             <Link
               to={isTr ? "/teshis/" : "/diagnostic/"}
               onClick={() => setIsOpen(false)}
-              className={`flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium min-h-[44px] ${
+              className={`flex items-center gap-2 w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium min-h-[44px] ${
                 path.startsWith('/teshis') || path.startsWith('/diagnostic')
                   ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)]'
                   : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
               }`}
             >
-              {isTr ? 'Teşhis Kataloğu' : 'Diagnostic Catalog'}
+              <Stethoscope className="w-4 h-4 text-[var(--ink-3)] flex-shrink-0" />
+              <span>{isTr ? 'Teşhis Kataloğu' : 'Diagnostic Catalog'}</span>
             </Link>
 
             <Link
               to={isTr ? "/kesinti-maliyeti/" : "/downtime-calc/"}
               onClick={() => setIsOpen(false)}
-              className={`flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium min-h-[44px] ${
+              className={`flex items-center gap-2 w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium min-h-[44px] ${
                 path.startsWith('/kesinti-maliyeti') || path.startsWith('/downtime-calc') || path.startsWith('/downtime-cost')
                   ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)]'
                   : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
               }`}
             >
-              {isTr ? 'Kesinti Maliyeti Hesaplayıcı' : 'Downtime Loss Calculator'}
+              <Calculator className="w-4 h-4 text-[var(--ink-3)] flex-shrink-0" />
+              <span>{isTr ? 'Kesinti Maliyeti Hesaplayıcı' : 'Downtime Loss Calculator'}</span>
             </Link>
 
             <Link
               to="/about/"
               onClick={() => setIsOpen(false)}
-              className={`flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium min-h-[44px] ${
+              className={`flex items-center gap-2 w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium min-h-[44px] ${
                 path.startsWith('/about')
                   ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)]'
                   : 'text-[var(--ink-2)] hover:bg-[var(--paper)]'
               }`}
             >
-              {t('nav-about')}
+              <Users className="w-4 h-4 text-[var(--ink-3)] flex-shrink-0" />
+              <span>{t('nav-about')}</span>
             </Link>
 
             {isTanitim ? (
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, 'contact')}
-                className="flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium text-[var(--ink-2)] hover:bg-[var(--paper)] min-h-[44px]"
+                className="flex items-center gap-2 w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium text-[var(--ink-2)] hover:bg-[var(--paper)] min-h-[44px]"
               >
-                {t('nav-contact')}
+                <Mail className="w-4 h-4 text-[var(--ink-3)] flex-shrink-0" />
+                <span>{t('nav-contact')}</span>
               </a>
             ) : (
               <Link
                 to={isTr ? '/tanitim/#contact' : '/overview/#contact'}
                 onClick={() => setIsOpen(false)}
-                className="flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium text-[var(--ink-2)] hover:bg-[var(--paper)] min-h-[44px]"
+                className="flex items-center gap-2 w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium text-[var(--ink-2)] hover:bg-[var(--paper)] min-h-[44px]"
               >
-                {t('nav-contact')}
+                <Mail className="w-4 h-4 text-[var(--ink-3)] flex-shrink-0" />
+                <span>{t('nav-contact')}</span>
               </Link>
             )}
           </div>

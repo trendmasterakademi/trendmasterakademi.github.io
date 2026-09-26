@@ -3883,9 +3883,13 @@ pages.forEach(page => {
       homeRootHtml = fs.readFileSync(ssrHomePath, 'utf8');
     }
     html = html.replace(/<div id="root">[\s\S]*?<\/body>/i, `<div id="root">${homeRootHtml}</div>\n  </body>`);
+    // Adım 97: açılış fotoğrafının ön-yüklemesi arka plan kaydından (src/data/arkaPlan.json)
+    const arkaPlanKayit = JSON.parse(fs.readFileSync(path.join(__dirname, 'src', 'data', 'arkaPlan.json'), 'utf8'));
+    const ilkSahne = arkaPlanKayit.find((s) => s.sahne === 1);
+    const ilkSet = (yon) => ilkSahne.dosyalar.filter((d) => d.yon === yon && d.bicim === 'avif').sort((a, b) => a.w - b.w).map((d) => `/arka-plan/${d.ad} ${d.w}w`).join(', ');
     const preloadLinks = [
-      `  <link rel="preload" as="image" type="image/avif" media="(orientation: portrait)" imagesrcset="/arka-plan/sahne-1-dikey-720.avif 720w, /arka-plan/sahne-1-dikey-1080.avif 1080w, /arka-plan/sahne-1-dikey-1440.avif 1440w" imagesizes="100vw" fetchpriority="high">`,
-      `  <link rel="preload" as="image" type="image/avif" media="(orientation: landscape)" imagesrcset="/arka-plan/sahne-1-1280.avif 1280w, /arka-plan/sahne-1-1920.avif 1920w, /arka-plan/sahne-1-2560.avif 2560w" imagesizes="100vw" fetchpriority="high">`
+      `  <link rel="preload" as="image" type="image/avif" media="(orientation: portrait)" imagesrcset="${ilkSet('dikey')}" imagesizes="100vw" fetchpriority="high">`,
+      `  <link rel="preload" as="image" type="image/avif" media="(orientation: landscape)" imagesrcset="${ilkSet('yatay')}" imagesizes="100vw" fetchpriority="high">`
     ].join('\n');
     html = html.replace('</head>', `${preloadLinks}\n  </head>`);
   } else {
@@ -5374,48 +5378,79 @@ function verifyAnaSayfaGuard() {
     } catch (e) {}
   }
 
-  // 7. Adım 95–96: kaynaklar.json ve stok fotoğraf denetimi (yatay + dikey kırpımlar, 350 KB sınırı)
-  const kaynaklarPath = path.join(distDir, 'arka-plan', 'kaynaklar.json');
-  if (!fs.existsSync(kaynaklarPath)) {
-    errors.push('dist/arka-plan/kaynaklar.json bulunamadı');
-  } else {
-    let kaynaklar = [];
-    try {
-      kaynaklar = JSON.parse(fs.readFileSync(kaynaklarPath, 'utf8'));
-    } catch (e) {
-      errors.push('dist/arka-plan/kaynaklar.json JSON formatında değil: ' + e.message);
-    }
-    if (kaynaklar.length < 4) {
-      errors.push(`kaynaklar.json içinde en az 4 fotoğraf bekleniyor, bulunan: ${kaynaklar.length}`);
-    }
-    const LISANS = { 'unsplash.com': 'Unsplash License', 'pexels.com': 'Pexels License' };
+  // 7. Adım 97: arka plan fotoğrafları — kayıt (src/data/arkaPlan.json = dist/arka-plan/kaynaklar.json) dosyalarla birebir;
+  //    sabit kalite (AVIF 50 / WebP 70), büyütülmüş kırpım yok, dikeyler telefon oranında, ana sayfa srcset'i kayıttan, test kancası yok
+  {
+    const kayitYolu = path.join(__dirname, 'src', 'data', 'arkaPlan.json');
+    const kaynaklarPath = path.join(distDir, 'arka-plan', 'kaynaklar.json');
     const arkaPlanDir = path.join(distDir, 'arka-plan');
-    const gorseller = fs.existsSync(arkaPlanDir) ? fs.readdirSync(arkaPlanDir).filter(f => /\.(avif|webp)$/i.test(f)) : [];
-
-    for (const k of kaynaklar) {
+    let kayit = [];
+    try {
+      kayit = JSON.parse(fs.readFileSync(kayitYolu, 'utf8'));
+      const yayin = fs.existsSync(kaynaklarPath) ? JSON.parse(fs.readFileSync(kaynaklarPath, 'utf8')) : null;
+      if (!yayin || JSON.stringify(yayin) !== JSON.stringify(kayit)) errors.push('dist/arka-plan/kaynaklar.json, src/data/arkaPlan.json ile aynı değil');
+    } catch (e) {
+      errors.push('Arka plan kaydı okunamadı: ' + e.message);
+    }
+    const boyutOku = (b) => {
+      if (b.toString('ascii', 0, 4) === 'RIFF' && b.toString('ascii', 8, 12) === 'WEBP') {
+        const tur = b.toString('ascii', 12, 16);
+        if (tur === 'VP8X') return { w: 1 + b.readUIntLE(24, 3), h: 1 + b.readUIntLE(27, 3) };
+        if (tur === 'VP8 ') return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+        if (tur === 'VP8L') { const v = b.readUInt32LE(21); return { w: (v & 0x3fff) + 1, h: ((v >> 14) & 0x3fff) + 1 }; }
+      }
+      const i = b.indexOf(Buffer.from('ispe'));
+      return i > 0 ? { w: b.readUInt32BE(i + 8), h: b.readUInt32BE(i + 12) } : { w: 0, h: 0 };
+    };
+    const KALITE = { avif: 50, webp: 70 };
+    const LISANS = { 'unsplash.com': 'Unsplash License' };
+    const kayitli = new Set();
+    if (kayit.length !== 4) errors.push(`Arka plan kaydında 4 sahne bekleniyor, bulunan: ${kayit.length}`);
+    for (const s of kayit) {
       let host = '';
-      try { host = new URL(k.kaynak).hostname.replace(/^www\./, ''); } catch (e) {}
-      if (!LISANS[host] || k.lisans !== LISANS[host] || !k.fotografci || !k.dosya || !k.sahne) {
-        errors.push(`kaynaklar.json kaydı geçersiz veya lisansı uyuşmuyor: ${JSON.stringify(k)}`);
+      try { host = new URL(s.kaynak).hostname.replace(/^www\./, ''); } catch (e) {}
+      if (!LISANS[host] || s.lisans !== LISANS[host] || !s.fotografci || !s.cdn || !s.ozgun) errors.push(`Arka plan kaydı eksik ya da lisansı uyuşmuyor: sahne ${s.sahne}`);
+      const dosyalar = s.dosyalar || [];
+      for (const bicim of ['avif', 'webp']) {
+        if (dosyalar.filter((d) => d.yon === 'dikey' && d.bicim === bicim).length < 2) errors.push(`Sahne ${s.sahne}: en az 2 dikey ${bicim} kırpımı bekleniyor`);
+        if (dosyalar.filter((d) => d.yon === 'yatay' && d.bicim === bicim).length < 3) errors.push(`Sahne ${s.sahne}: 3 yatay ${bicim} kırpımı bekleniyor`);
       }
-      for (const w of [1280, 1920, 2560]) {
-        for (const ext of ['avif', 'webp']) {
-          const p = path.join(arkaPlanDir, `${k.dosya}-${w}.${ext}`);
-          if (!fs.existsSync(p)) errors.push(`Yatay dosya eksik: ${k.dosya}-${w}.${ext}`);
+      for (const d of dosyalar) {
+        kayitli.add(d.ad);
+        let u = null;
+        try { u = new URL(d.url); } catch (e) {}
+        if (!u || u.hostname !== 'images.unsplash.com' || !u.pathname.includes(s.cdn) || +u.searchParams.get('w') !== d.w || +u.searchParams.get('h') !== d.h || +u.searchParams.get('q') !== d.q || u.searchParams.get('fm') !== d.bicim) {
+          errors.push(`${d.ad}: kayıttaki adres ölçü, kalite ya da biçimle uyuşmuyor`);
         }
+        if (d.q !== KALITE[d.bicim]) errors.push(`${d.ad}: kalite ${d.q}, sabit değer ${KALITE[d.bicim]}`);
+        if (s.ozgun && (d.w > s.ozgun.w || d.h > s.ozgun.h)) errors.push(`${d.ad}: kırpım özgünden büyük (${d.w}×${d.h} > ${s.ozgun.w}×${s.ozgun.h}), büyütülmüş`);
+        if (d.yon === 'dikey' && d.h / d.w < 2.2) errors.push(`${d.ad}: dikey kırpım telefon oranında değil (${d.w}×${d.h})`);
+        const p = path.join(arkaPlanDir, d.ad);
+        if (!fs.existsSync(p)) { errors.push(`${d.ad}: dist/arka-plan içinde yok`); continue; }
+        const g = boyutOku(fs.readFileSync(p));
+        if (g.w !== d.w || g.h !== d.h) errors.push(`${d.ad}: dosyanın gerçek boyutu ${g.w}×${g.h}, kayıtta ${d.w}×${d.h}`);
       }
-      for (const w of [720, 1080, 1440]) {
-        for (const ext of ['avif', 'webp']) {
-          const p = path.join(arkaPlanDir, `${k.dosya}-dikey-${w}.${ext}`);
-          if (!fs.existsSync(p)) errors.push(`Dikey dosya eksik: ${k.dosya}-dikey-${w}.${ext}`);
-        }
+    }
+    const fazla = fs.existsSync(arkaPlanDir) ? fs.readdirSync(arkaPlanDir).filter((f) => /\.(avif|webp)$/i.test(f) && !kayitli.has(f)) : [];
+    if (fazla.length) errors.push(`Kayıtta olmayan arka plan dosyası: ${fazla.join(', ')}`);
+
+    // Ana sayfa HTML'i: ilk sahnenin <source> srcset'leri ve ön-yüklemesi kayıttan
+    const ilk = kayit.find((s) => s.sahne === 1);
+    if (fs.existsSync(anaHtmlPath) && ilk) {
+      const anaHtml = fs.readFileSync(anaHtmlPath, 'utf8');
+      for (const yon of ['dikey', 'yatay']) {
+        const beklenen = ilk.dosyalar.filter((d) => d.yon === yon && d.bicim === 'avif').sort((a, b) => a.w - b.w).map((d) => `/arka-plan/${d.ad} ${d.w}w`).join(', ');
+        if (!anaHtml.includes(`imagesrcset="${beklenen}"`)) errors.push(`Ana sayfa ön-yüklemesi (${yon}) kayıtla uyuşmuyor`);
+        if (!anaHtml.includes(`srcSet="${beklenen}"`) && !anaHtml.includes(`srcset="${beklenen}"`)) errors.push(`Ana sayfa <source> srcset'i (${yon}) kayıtla uyuşmuyor`);
       }
     }
 
-    const buyukDosyalar = gorseller.filter(f => fs.statSync(path.join(arkaPlanDir, f)).size > 350 * 1024);
-    if (buyukDosyalar.length > 0) {
-      errors.push(`350 KB sınırını aşan arka plan fotoğrafları tespit edildi: ${buyukDosyalar.join(', ')}`);
-    }
+    // Geçişler: test kancası yok, kare başına React güncellemesi yok
+    const arkaKod = fs.readFileSync(path.join(__dirname, 'src', 'components', 'HomeBackground.jsx'), 'utf8');
+    if (/window\.__tma|requestAnimationFrame|setTransitionProgress/.test(arkaKod)) errors.push('HomeBackground.jsx: test kancası (window.__tma…) ya da kare başına güncelleme var');
+    const assetsDir = path.join(distDir, 'assets');
+    const kancali = fs.existsSync(assetsDir) ? fs.readdirSync(assetsDir).filter((f) => f.endsWith('.js') && fs.readFileSync(path.join(assetsDir, f), 'utf8').includes('__tmaSetTransition')) : [];
+    if (kancali.length) errors.push(`Derlenmiş kodda test kancası (__tmaSetTransition): ${kancali.join(', ')}`);
   }
 
   if (errors.length > 0) {
@@ -5424,7 +5459,7 @@ function verifyAnaSayfaGuard() {
     process.exit(1);
   }
 
-  console.log('[BUILD GUARD ANA SAYFA GEÇTİ] 125 sayfa arama dizininde ve bir kategoride; ana sayfa 66 sayfaya bağlanıyor; eski ana sayfa çapası yok; sade şablon yok; combobox ve lisanslı stok fotoğraflar doğrulandı.');
+  console.log('[BUILD GUARD ANA SAYFA GEÇTİ] 125 sayfa arama dizininde ve bir kategoride; ana sayfa 66 sayfaya bağlanıyor; eski ana sayfa çapası yok; sade şablon yok; combobox var; arka plan kaydı dosyalarla birebir (sabit kalite, büyütülmüş kırpım yok, dikeyler telefon oranında, test kancası yok).');
 }
 
 verifyAnaSayfaGuard();
