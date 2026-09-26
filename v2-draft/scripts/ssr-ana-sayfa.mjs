@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { createServer } from 'vite';
-import { prerenderToNodeStream } from 'react-dom/static.node';
+import { renderToString } from 'react-dom/server';
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ const rootDir = path.resolve(__dirname, '..');
 const distDir = path.join(rootDir, 'dist');
 
 async function renderHomeSSR() {
-  console.log('[SSR ANA SAYFA] Sunucu tarafı çizim başlatılıyor...');
+  console.log('[SSR ANA SAYFA] Sunucu tarafı çizim başlatılıyor (tamamlanmış renderToString)...');
 
   const server = await createServer({
     root: rootDir,
@@ -26,17 +26,17 @@ async function renderHomeSSR() {
     const i18n = (await server.ssrLoadModule('/src/i18n.js')).default;
     await i18n.changeLanguage('tr');
 
+    // 1. App.jsx modülünü yükle — tüm sayfalar kayit haritasına eklenir
     const appMod = await server.ssrLoadModule('/src/App.jsx');
     const AppShell = appMod.AppShell || appMod.default;
 
-    const element = React.createElement(MemoryRouter, { initialEntries: ['/'] }, React.createElement(AppShell));
-    const { prelude } = await prerenderToNodeStream(element);
+    // 2. Home sayfasını çizimden ÖNCE tamamlanmış olarak hazırla
+    const { sayfayiHazirla } = await server.ssrLoadModule('/src/utils/sayfaYukle.js');
+    await sayfayiHazirla('Home', '/');
 
-    const chunks = [];
-    for await (const chunk of prelude) {
-      chunks.push(chunk);
-    }
-    const html = Buffer.concat(chunks).toString('utf8');
+    // 3. Tek seferde ve tamamlanmış renderToString çizimi (akış / iskelet yok)
+    const element = React.createElement(MemoryRouter, { initialEntries: ['/'] }, React.createElement(AppShell));
+    const html = renderToString(element);
 
     if (!fs.existsSync(distDir)) {
       fs.mkdirSync(distDir, { recursive: true });

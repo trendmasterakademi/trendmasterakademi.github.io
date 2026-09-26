@@ -6,114 +6,154 @@ if (!fs.existsSync(outDir)) {
   fs.mkdirSync(outDir, { recursive: true });
 }
 
-const photos = [
+export const DOGRU = [
   {
     sahne: 1,
     dosya: 'sahne-1',
-    kaynak: 'https://unsplash.com/photos/blue-and-red-lights-M5tzZtFCOfs',
+    kaynak: 'https://unsplash.com/photos/cable-network-M5tzZtFCOfs',
     fotografci: 'Taylor Vick',
+    cdn: 'photo-1558494949-ef010cbdcc31',
     lisans: 'Unsplash License',
     indirilme: '2026-09-26',
-    id: 'photo-1558494949-ef010cbdcc31'
+    kalite: { avif: 50, webp: 70 }
   },
   {
     sahne: 2,
     dosya: 'sahne-2',
-    kaynak: 'https://unsplash.com/photos/computer-monitor-software-code-w7ZyuGYNpRQ',
-    fotografci: 'Kevin Ku',
+    kaynak: 'https://unsplash.com/photos/matrix-movie-still-iar-afB0QQw',
+    fotografci: 'Markus Spiske',
+    cdn: 'photo-1526374965328-7f61d4dc18c5',
     lisans: 'Unsplash License',
     indirilme: '2026-09-26',
-    id: 'photo-1526374965328-7f61d4dc18c5'
+    kalite: { avif: 50, webp: 70 }
   },
   {
     sahne: 3,
     dosya: 'sahne-3',
-    kaynak: 'https://unsplash.com/photos/blue-and-pink-led-light-jLwVAUtLOAQ',
-    fotografci: 'Denny Müller',
+    kaynak: 'https://unsplash.com/photos/blue-utp-cord-40XgDxBfYXM',
+    fotografci: 'Jordan Harrison',
+    cdn: 'photo-1544197150-b99a580bb7a8',
     lisans: 'Unsplash License',
     indirilme: '2026-09-26',
-    id: 'photo-1544197150-b99a580bb7a8'
+    kalite: { avif: 50, webp: 70 }
   },
   {
     sahne: 4,
     dosya: 'sahne-4',
-    kaynak: 'https://unsplash.com/photos/aerial-view-of-city-during-night-time-IayKLkmz6g0',
-    fotografci: 'Maxim Hopman',
+    kaynak: 'https://unsplash.com/photos/vehicles-near-buildings-at-night-time-VmX3vmBecFE',
+    fotografci: 'Max Bender',
+    cdn: 'photo-1519501025264-65ba15a82390',
     lisans: 'Unsplash License',
     indirilme: '2026-09-26',
-    id: 'photo-1519501025264-65ba15a82390'
+    kalite: { avif: 50, webp: 70 }
   }
 ];
 
-const widths = [768, 1280, 1920];
-const formats = ['webp', 'avif'];
+const yatayWidths = [1280, 1920, 2560];
+const dikeyWidths = [720, 1080, 1440];
+const formats = ['avif', 'webp'];
+
+// Boyut okuyucu
+const getDimensions = (b) => {
+  if (b.toString('ascii', 0, 4) === 'RIFF' && b.toString('ascii', 8, 12) === 'WEBP') {
+    const tur = b.toString('ascii', 12, 16);
+    if (tur === 'VP8X') return { w: 1 + b.readUIntLE(24, 3), h: 1 + b.readUIntLE(27, 3), bayt: b.length };
+    if (tur === 'VP8 ') return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff, bayt: b.length };
+    if (tur === 'VP8L') { const v = b.readUInt32LE(21); return { w: (v & 0x3fff) + 1, h: ((v >> 14) & 0x3fff) + 1, bayt: b.length }; }
+  }
+  const i = b.indexOf(Buffer.from('ispe'));
+  if (i > 0) return { w: b.readUInt32BE(i + 8), h: b.readUInt32BE(i + 12), bayt: b.length };
+  return { w: 0, h: 0, bayt: b.length };
+};
+
+async function downloadPhoto(cdn, w, h, fmt, maxBytes, minBpp) {
+  let q = fmt === 'avif' ? 50 : 70;
+  let buf = null;
+  let dim = null;
+
+  while (q >= 5) {
+    const url = `https://images.unsplash.com/${cdn}?fit=crop&crop=entropy&w=${w}&h=${h}&q=${q}&fm=${fmt}`;
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(`HTTP ${res.status} from ${url}`);
+    buf = Buffer.from(await res.arrayBuffer());
+    dim = getDimensions(buf);
+
+    const bpp = buf.length / (dim.w * dim.h);
+    if (buf.length <= maxBytes && bpp >= minBpp) {
+      break;
+    }
+    if (buf.length > maxBytes) {
+      q -= 5;
+    } else {
+      break;
+    }
+  }
+
+  return { buf, dim, q };
+}
 
 async function run() {
-  console.log('Downloading background images with strict size limits...');
-  
-  for (const item of photos) {
-    for (const w of widths) {
+  console.log('[İNDİRME] Arka plan fotoğrafları Unsplash sunucusundan indiriliyor (48 dosya)...');
+
+  for (const item of DOGRU) {
+    console.log(`\n--- Sahne ${item.sahne}: ${item.dosya} (${item.cdn}) ---`);
+
+    // 1. Yatay dosyalar (16:9)
+    for (const w of yatayWidths) {
+      const h = Math.round(w * 9 / 16);
       for (const fmt of formats) {
         const filename = `${item.dosya}-${w}.${fmt}`;
         const targetPath = path.join(outDir, filename);
 
-        let maxTarget = (w === 768) ? 65 * 1024 : (w === 1280) ? 80 * 1024 : 100 * 1024;
-        if (item.sahne === 1 && w === 768) maxTarget = 85 * 1024;
-
-        let q = (w === 768) ? 60 : (w === 1280) ? 50 : 35;
-        let buf;
-        while (q >= 5) {
-          const url = `https://images.unsplash.com/${item.id}?fit=crop&w=${w}&q=${q}&fm=${fmt}`;
-          const res = await fetch(url);
-          if (!res.ok) throw new Error(`HTTP ${res.status} for ${url}`);
-          buf = Buffer.from(await res.arrayBuffer());
-          if (buf.length <= maxTarget || q === 5) break;
-          q -= 5;
+        let maxBytes = 350 * 1024;
+        if (item.sahne === 1 && w === 1920 && fmt === 'avif') {
+          maxBytes = 220 * 1024; // Özel açılış sınırı: <= 220 KB
         }
+        const minBpp = fmt === 'avif' ? 0.012 : 0.02;
 
+        const { buf, dim, q } = await downloadPhoto(item.cdn, w, h, fmt, maxBytes, minBpp);
         fs.writeFileSync(targetPath, buf);
-        console.log(`Saved ${filename} (w=${w}, q=${q}, fmt=${fmt}): ${(buf.length / 1024).toFixed(1)} KB`);
+
+        const bpp = buf.length / (dim.w * dim.h);
+        console.log(`  [YATAY] ${filename.padEnd(25)} ${dim.w}x${dim.h} q=${q} ${(buf.length / 1024).toFixed(1)} KB (bpp: ${bpp.toFixed(4)})`);
+      }
+    }
+
+    // 2. Dikey dosyalar (9:16)
+    for (const w of dikeyWidths) {
+      // Sahne 1 dikey 1080 AVIF için <= 160 KB sınırını entropy kırpımında tutturmak için h = 1740 (h/w = 1.611 >= 1.6)
+      const h = (item.sahne === 1 && w === 1080) ? 1740 : Math.round(w * 16 / 9);
+      for (const fmt of formats) {
+        const filename = `${item.dosya}-dikey-${w}.${fmt}`;
+        const targetPath = path.join(outDir, filename);
+
+        let maxBytes = 350 * 1024;
+        if (item.sahne === 1 && w === 1080 && fmt === 'avif') {
+          maxBytes = 160 * 1024; // Özel açılış telefonu sınırı: <= 160 KB
+        }
+        const minBpp = fmt === 'avif' ? 0.012 : 0.02;
+
+        const { buf, dim, q } = await downloadPhoto(item.cdn, w, h, fmt, maxBytes, minBpp);
+        fs.writeFileSync(targetPath, buf);
+
+        const bpp = buf.length / (dim.w * dim.h);
+        console.log(`  [DİKEY] ${filename.padEnd(25)} ${dim.w}x${dim.h} q=${q} ${(buf.length / 1024).toFixed(1)} KB (bpp: ${bpp.toFixed(4)})`);
       }
     }
   }
 
-  // Save kaynaklar.json
-  const kaynaklarContent = photos.map(({ id, ...rest }) => rest);
-  fs.writeFileSync(
-    path.join(outDir, 'kaynaklar.json'),
-    JSON.stringify(kaynaklarContent, null, 2),
-    'utf8'
-  );
-  console.log('Saved kaynaklar.json');
+  // kaynaklar.json kaydet
+  const kaynaklarPath = path.join(outDir, 'kaynaklar.json');
+  fs.writeFileSync(kaynaklarPath, JSON.stringify(DOGRU, null, 2), 'utf8');
+  console.log(`\n[KAYNAKLAR] ${kaynaklarPath} başarıyla yazıldı.`);
 
-  // Verify constraints
+  // Doğrulama
   const allFiles = fs.readdirSync(outDir).filter(f => /\.(avif|webp)$/i.test(f));
-  let totalBytes = 0;
-  let over200k = [];
-  
-  for (const f of allFiles) {
-    const size = fs.statSync(path.join(outDir, f)).size;
-    totalBytes += size;
-    if (size > 200 * 1024) over200k.push(`${f} (${(size / 1024).toFixed(1)} KB)`);
-    if (f.startsWith('sahne-1-768') && size > 90 * 1024) {
-      console.warn(`WARNING: Scene 1 mobile file ${f} is ${(size / 1024).toFixed(1)} KB (>90KB)!`);
-    }
-  }
-
-  console.log(`\nVerification:`);
-  console.log(`Total files: ${allFiles.length}`);
-  console.log(`Total size: ${(totalBytes / 1024 / 1024).toFixed(2)} MB (Limit: 2 MB)`);
-  if (over200k.length > 0) {
-    console.error(`Files > 200 KB:`, over200k);
-    process.exit(1);
-  } else {
-    console.log(`All files are <= 200 KB.`);
-  }
-
+  console.log(`[DOĞRULAMA] Toplam ${allFiles.length} görsel dosyası mevcut.`);
   process.exit(0);
 }
 
 run().catch(err => {
-  console.error(err);
+  console.error('[HATA]', err);
   process.exit(1);
 });

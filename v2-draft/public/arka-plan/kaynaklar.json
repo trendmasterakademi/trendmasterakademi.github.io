@@ -2,33 +2,53 @@
   {
     "sahne": 1,
     "dosya": "sahne-1",
-    "kaynak": "https://unsplash.com/photos/blue-and-red-lights-M5tzZtFCOfs",
+    "kaynak": "https://unsplash.com/photos/cable-network-M5tzZtFCOfs",
     "fotografci": "Taylor Vick",
+    "cdn": "photo-1558494949-ef010cbdcc31",
     "lisans": "Unsplash License",
-    "indirilme": "2026-09-26"
+    "indirilme": "2026-09-26",
+    "kalite": {
+      "avif": 50,
+      "webp": 70
+    }
   },
   {
     "sahne": 2,
     "dosya": "sahne-2",
-    "kaynak": "https://unsplash.com/photos/computer-monitor-software-code-w7ZyuGYNpRQ",
-    "fotografci": "Kevin Ku",
+    "kaynak": "https://unsplash.com/photos/matrix-movie-still-iar-afB0QQw",
+    "fotografci": "Markus Spiske",
+    "cdn": "photo-1526374965328-7f61d4dc18c5",
     "lisans": "Unsplash License",
-    "indirilme": "2026-09-26"
+    "indirilme": "2026-09-26",
+    "kalite": {
+      "avif": 50,
+      "webp": 70
+    }
   },
   {
     "sahne": 3,
     "dosya": "sahne-3",
-    "kaynak": "https://unsplash.com/photos/blue-and-pink-led-light-jLwVAUtLOAQ",
-    "fotografci": "Denny Müller",
+    "kaynak": "https://unsplash.com/photos/blue-utp-cord-40XgDxBfYXM",
+    "fotografci": "Jordan Harrison",
+    "cdn": "photo-1544197150-b99a580bb7a8",
     "lisans": "Unsplash License",
-    "indirilme": "2026-09-26"
+    "indirilme": "2026-09-26",
+    "kalite": {
+      "avif": 50,
+      "webp": 70
+    }
   },
   {
     "sahne": 4,
     "dosya": "sahne-4",
-    "kaynak": "https://unsplash.com/photos/aerial-view-of-city-during-night-time-IayKLkmz6g0",
-    "fotografci": "Maxim Hopman",
+    "kaynak": "https://unsplash.com/photos/vehicles-near-buildings-at-night-time-VmX3vmBecFE",
+    "fotografci": "Max Bender",
+    "cdn": "photo-1519501025264-65ba15a82390",
     "lisans": "Unsplash License",
-    "indirilme": "2026-09-26"
+    "indirilme": "2026-09-26",
+    "kalite": {
+      "avif": 50,
+      "webp": 70
+    }
   }
 ]
