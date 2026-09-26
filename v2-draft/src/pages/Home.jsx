@@ -485,7 +485,7 @@ const Home = () => {
           )}
         </div>
 
-        <AltKonsol isTr={isTr} kategoriler={CATEGORY_DEFS} sayfaSayisi={allCategoryPages.length} onSec={dizineGit} />
+        <AltKonsol isTr={isTr} kategoriler={CATEGORY_DEFS} onSec={dizineGit} />
       </section>
 
       {/* 5. İlk ekranın altı: "Tüm sayfalar" dizini (Koyu) */}
