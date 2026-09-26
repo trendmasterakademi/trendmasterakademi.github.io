@@ -329,7 +329,7 @@ const Home = () => {
   const resultCountText = t('home-search-count').replace('{n}', searchResults.length);
 
   return (
-    <div ref={kokRef} data-ana-sayfa="" className="home-dark-scope relative min-h-screen overflow-x-hidden text-[var(--ink-2)] selection:bg-[var(--accent)] selection:text-[var(--on-accent)] font-sans">
+    <div ref={kokRef} data-ana-sayfa="" className="home-dark-scope relative min-h-screen overflow-x-clip text-[var(--ink-2)] selection:bg-[var(--accent)] selection:text-[var(--on-accent)] font-sans">
       {/* 1. Canlı arka plan: Stok fotoğraf katmanı (Unsplash) */}
       <HomeBackground />
 
