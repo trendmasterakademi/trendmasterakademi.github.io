@@ -251,7 +251,7 @@ const Navbar = () => {
             </Link>
 
             <Link
-              to="/kit/"
+              to={isTr ? '/kit/' : '/agency-kit/'}
               className={`px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium transition-all whitespace-nowrap ${
                 path.startsWith('/kit') || path.startsWith('/agency-kit')
                   ? 'text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20'
@@ -458,7 +458,7 @@ const Navbar = () => {
             </button>
 
             <Link
-              to="/kit/"
+              to={isTr ? '/kit/' : '/agency-kit/'}
               onClick={() => setIsOpen(false)}
               className="w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-semibold flex items-center gap-2 text-[var(--accent-ink)] bg-[var(--accent-wash)] border border-[var(--accent)]/20 mb-1 min-h-[44px]"
             >

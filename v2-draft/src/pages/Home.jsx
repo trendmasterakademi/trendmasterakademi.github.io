@@ -5,6 +5,7 @@ import { Search, X, ArrowUpRight } from 'lucide-react';
 import HomeBackground from '../components/HomeBackground';
 import HomeCanvas from '../components/HomeCanvas';
 import AltKonsol from '../components/AltKonsol';
+import { useAnaSayfaSayfalama } from '../components/anaSayfaSayfalama';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 import { CATEGORY_DEFS, getPagesForLang } from '../data/categoryMap';
@@ -145,6 +146,10 @@ const Home = () => {
   const searchBoxRef = useRef(null);
   const inputRef = useRef(null);
   const loadingIndexRef = useRef(false);
+  const kokRef = useRef(null);
+  const dizinRef = useRef(null);
+  // Adım 100: tekerlek ve klavye sayfa sayfa kaydırır; arama kutusu dizinde üstte ortada durur
+  const { git: sayfayaGit, yuvada } = useAnaSayfaSayfalama({ kokRef, dizinRef, kutuRef: searchBoxRef });
 
   // SEO setup
   useEffect(() => {
@@ -211,7 +216,9 @@ const Home = () => {
       if (page.url === '/') return false;
       if (isTr) return page.dil === 'tr' || page.dil === 'ortak';
       return page.dil === 'en' || page.dil === 'ortak';
-    });
+    }).map(page => (!isTr && page.dil === 'ortak' && page.baslik_en)
+      ? { ...page, baslik: page.baslik_en, metin: page.metin_en || page.metin }
+      : page);
 
     const matches = [];
 
@@ -249,7 +256,11 @@ const Home = () => {
     }
 
     // Rank results by score descending
-    matches.sort((a, b) => b.score - a.score);
+    // Adım 100: çözüm odaklı sonuçlar üstte, terimler (sözlük) her zaman en altta.
+    // Önce güçlü eşleşmeler (başlıkta ya da metinde tam ifade), sonra kelime eşleşmeleri; her grupta teşhis → acil → araçlar → vaka → ajans → kurumsal.
+    const ONCELIK = { teshis: 0, acil: 1, araclar: 2, vaka: 3, ajans: 4, kurumsal: 5 };
+    const grup = (m) => (m.kategori === 'sozluk' ? 20 : 0) + (m.score >= 500 ? 0 : 10) + (ONCELIK[m.kategori] ?? 6);
+    matches.sort((a, b) => grup(a) - grup(b) || b.score - a.score);
     return matches;
   }, [debouncedQuery, searchIndex, isTr]);
 
@@ -287,13 +298,10 @@ const Home = () => {
   // Alt konsol: dizine in; kategori verilmişse onu seç; odak seçili sekmeye geçer
   const dizineGit = (katId) => {
     if (katId) setActiveCategory(katId);
-    const el = document.getElementById('tum-sayfalar');
-    const azalt = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (el) el.scrollIntoView({ behavior: azalt ? 'auto' : 'smooth', block: 'start' });
-    setTimeout(() => {
+    sayfayaGit(1, () => {
       const sekme = katId ? document.getElementById(`tab-${katId}`) : document.querySelector('#tum-sayfalar [role="tab"][aria-selected="true"]');
       if (sekme) sekme.focus({ preventScroll: true });
-    }, azalt ? 0 : 450);
+    });
   };
 
   // Sekmeler arasında ←/→ ile gezinme (WAI-ARIA sekme kalıbı)
@@ -321,7 +329,7 @@ const Home = () => {
   const resultCountText = t('home-search-count').replace('{n}', searchResults.length);
 
   return (
-    <div className="home-dark-scope relative min-h-screen overflow-x-hidden text-[var(--ink-2)] selection:bg-[var(--accent)] selection:text-[var(--on-accent)] font-sans">
+    <div ref={kokRef} data-ana-sayfa="" className="home-dark-scope relative min-h-screen overflow-x-hidden text-[var(--ink-2)] selection:bg-[var(--accent)] selection:text-[var(--on-accent)] font-sans">
       {/* 1. Canlı arka plan: Stok fotoğraf katmanı (Unsplash) */}
       <HomeBackground />
 
@@ -331,11 +339,11 @@ const Home = () => {
       {/* 3. Genel arka plan kararması: En fazla %30 (Tüm ekranı %80+ karartan katman kalktı) */}
       <div 
         aria-hidden="true" 
-        className="fixed inset-0 pointer-events-none z-[1] bg-black/25"
+        className="ana-karartma fixed inset-0 pointer-events-none z-[1] bg-black"
       />
 
       {/* 4. İlk Ekran (100svh, koyu, ortalanmış tek odak) */}
-      <section className="relative z-10 min-h-[100svh] flex flex-col justify-center items-center px-4 pt-20 pb-28 sm:pb-40 text-center max-w-4xl mx-auto">
+      <section className="relative z-20 min-h-[100svh] flex flex-col justify-center items-center px-4 pt-20 pb-28 sm:pb-40 text-center max-w-4xl mx-auto">
         {/* Başlık, slogan ve arama kutusunun arkasında yumuşak kenarlı radyal karartma geçişi (Kontrast ≥ 4.5:1) */}
         <div 
           aria-hidden="true"
@@ -343,19 +351,26 @@ const Home = () => {
         />
 
         {/* H1 Başlık (Source Serif 4, clamp boyutlu, dize sabiti JSX yok) */}
-        <h1 className="font-serif text-[var(--ink)] font-normal tracking-tight mb-3 [font-size:clamp(1.75rem,5.5vw+0.5rem,4.5rem)] break-words max-w-full leading-[1.08] select-none">
+        <h1 className="ana-ilk-ekran-icerik font-serif text-[var(--ink)] font-normal tracking-tight mb-3 [font-size:clamp(1.75rem,5.5vw+0.5rem,4.5rem)] break-words max-w-full leading-[1.08] select-none">
           {t('home-h1')}
         </h1>
 
         {/* Bir satır slogan */}
-        <p className="text-[var(--ink-2)] text-base sm:text-lg md:text-xl font-normal tracking-normal mb-8 sm:mb-10 max-w-xl mx-auto">
+        <p className="ana-ilk-ekran-icerik text-[var(--ink-2)] text-base sm:text-lg md:text-xl font-normal tracking-normal mb-8 sm:mb-10 max-w-xl mx-auto">
           {t('home-slogan')}
         </p>
 
         {/* Tek Odak: Büyük hap biçimli arama kutusu */}
-        <div ref={searchBoxRef} className="w-full max-w-[640px] mx-auto relative px-2 sm:px-0">
+        <div data-arama-yeri="" className="w-full max-w-[640px] mx-auto relative h-14 sm:h-16">
+        <div
+          ref={searchBoxRef}
+          data-arama-kutusu={yuvada ? 'yuva' : 'yerinde'}
+          className={yuvada
+            ? 'fixed z-30 top-[72px] left-1/2 -translate-x-1/2 w-[min(560px,calc(100vw-24px))]'
+            : 'absolute inset-x-0 top-0'}
+        >
           <div className="relative flex items-center">
-            <Search className="absolute left-5 w-5 h-5 text-[var(--ink-3)] pointer-events-none" />
+            <Search className="absolute left-5 z-10 w-5 h-5 text-[var(--ink-3)] pointer-events-none" />
             <input
               ref={inputRef}
               type="text"
@@ -377,7 +392,7 @@ const Home = () => {
                 if (query.trim().length > 0) setIsDropdownOpen(true);
               }}
               onKeyDown={handleKeyDown}
-              className="w-full h-14 sm:h-16 pl-13 pr-12 rounded-full bg-[var(--surface)]/90 backdrop-blur-md border border-[var(--rule-strong)] text-[var(--ink)] placeholder:text-[var(--ink-3)] text-sm sm:text-base focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/30 transition-all shadow-2xl"
+              className={`w-full ${yuvada ? 'h-11' : 'h-14 sm:h-16'} pl-11 sm:pl-13 ${query ? 'pr-12' : 'pr-5'} rounded-full bg-[var(--surface)]/90 backdrop-blur-md border border-[var(--rule-strong)] text-[var(--ink)] placeholder:text-[var(--ink-3)] text-sm sm:text-base focus:outline-none focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/30 transition-all shadow-2xl`}
             />
             {query && (
               <button
@@ -484,13 +499,14 @@ const Home = () => {
             </div>
           )}
         </div>
+        </div>
 
         <AltKonsol isTr={isTr} kategoriler={CATEGORY_DEFS} onSec={dizineGit} />
       </section>
 
       {/* 5. İlk ekranın altı: "Tüm sayfalar" dizini (Koyu) */}
-      <section id="tum-sayfalar" className="relative z-10 max-w-6xl mx-auto px-4 py-16 sm:py-24 border-t border-[var(--rule)]">
-        <h2 className="text-xl sm:text-2xl font-serif text-[var(--ink)] mb-8 text-center">
+      <section id="tum-sayfalar" ref={dizinRef} className="ana-dizin relative z-10 max-w-6xl mx-auto px-4 pt-32 sm:pt-36 pb-16 sm:pb-24 border-t border-[var(--rule)]">
+        <h2 className="sr-only">
           {t('home-directory-title')}
         </h2>
 

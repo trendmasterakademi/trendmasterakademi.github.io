@@ -7,15 +7,13 @@ import { isTurkish } from '../i18n';
 const CookieBanner = () => {
   const { i18n } = useTranslation();
   const isTr = isTurkish(i18n);
-  const [isVisible, setIsVisible] = useState(false);
+  const [kapali, setKapali] = useState(false);
 
   useEffect(() => {
     try {
       const consent = localStorage.getItem('tma_cookie_consent');
-      if (!consent) {
-        const timer = setTimeout(() => setIsVisible(true), 1200);
-        return () => clearTimeout(timer);
-      } else if (consent === 'accepted' && window.enableAnalyticsConsent) {
+      if (consent) setKapali(true);
+      if (consent === 'accepted' && window.enableAnalyticsConsent) {
         window.enableAnalyticsConsent();
       }
     } catch (e) {
@@ -36,7 +34,7 @@ const CookieBanner = () => {
       console.warn('Cookie consent save error:', e);
     }
     document.documentElement.removeAttribute('data-cerez-bandi');
-    setIsVisible(false);
+    setKapali(true);
   };
 
   const handleReject = () => {
@@ -49,13 +47,14 @@ const CookieBanner = () => {
       console.warn('Cookie consent reject error:', e);
     }
     document.documentElement.removeAttribute('data-cerez-bandi');
-    setIsVisible(false);
+    setKapali(true);
   };
 
-  if (!isVisible) return null;
+  // Görünürlüğü <html data-cerez-bandi="acik"> belirler (index.html, ilk karede); bant ilk HTML'de hazırdır, sonradan belirmez
+  if (kapali) return null;
 
   return (
-    <div className="fixed bottom-[84px] sm:bottom-6 left-3 right-3 sm:left-6 sm:right-auto sm:max-w-lg z-[60] p-3 sm:p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] shadow-lg transition-all duration-300 animate-in fade-in slide-in-from-bottom-5">
+    <div className="cerez-bandi fixed bottom-[84px] sm:bottom-6 left-3 right-3 sm:left-6 sm:right-auto sm:max-w-lg z-[60] p-3 sm:p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] shadow-lg">
       <div className="flex items-start gap-2.5 sm:gap-3.5">
         <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)] flex items-center justify-center flex-shrink-0 mt-0.5">
           <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />

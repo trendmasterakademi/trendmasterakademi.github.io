@@ -93,11 +93,11 @@ export default {
       "diyagramCozum": {
         "tr": [
           "Anahtar yenileme",
-          "· dakikalar"
+          "· yeni kimlik"
         ],
         "en": [
           "Secret rotation",
-          "· fixed in mins"
+          "· new credentials"
         ]
       }
     },

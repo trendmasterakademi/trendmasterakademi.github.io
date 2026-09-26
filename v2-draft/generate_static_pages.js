@@ -4025,6 +4025,7 @@ function generateSearchIndex() {
     // 1. baslik: Sayfanın <title>'ı, sonundaki " | Trend Master Akademi" olmadan
     const titleMatch = htmlContent.match(/<title>([\s\S]*?)<\/title>/i);
     let baslik = titleMatch ? titleMatch[1].replace(/\s*\|\s*Trend Master Akademi$/i, '').trim() : '';
+    baslik = baslik.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>'); // Adım 100
     
     // 2. metin: Sayfanın h1'i, meta açıklaması ve ön-render gövdesinin (<div id="root"> içi) görünen metni
     // Menü: <nav>...</nav> öğeleri çıkarılır (sitenin ortak menü satırı ve yol izleri arama dizinine girmez)
@@ -4059,13 +4060,14 @@ function generateSearchIndex() {
     const pageDil = getDil(url);
     const pageKategori = getKategori(url);
     
-    aramaDizini.push({
-      url,
-      dil: pageDil,
-      kategori: pageKategori,
-      baslik,
-      metin: fullMetin
-    });
+    const kayit = { url, dil: pageDil, kategori: pageKategori, baslik, metin: fullMetin };
+    // Adım 100: ortak sayfalar İngilizce aramada İngilizce başlık ve metinle bulunur (SEO kaydının İngilizcesi)
+    const enKayit = pageDil === 'ortak' && seoData[url] && seoData[url].en;
+    if (enKayit) {
+      kayit.baslik_en = (enKayit.title || '').replace(/\s*\|\s*Trend Master Akademi$/i, '').trim();
+      kayit.metin_en = (enKayit.desc || '').replace(/\s+/g, ' ').trim();
+    }
+    aramaDizini.push(kayit);
   }
 
   const aramaDiziniJson = JSON.stringify(aramaDizini, null, 2);
@@ -5019,8 +5021,8 @@ function verifyContentRules() {
   }
   const sureTr = /\d+\s*[–-]\s*\d+\s*(saat|dakika|gün|hafta)|\b\d+\s*(saat|dakika|gün|hafta)\b|saatin altında|dakikalar içinde|aynı gün|saatler içinde|ilk haftada|ikinci ayda|günler alır/i;
   const sureEn = /\b\d+\s*[–-]\s*\d+\s*(hours?|minutes?|days?|weeks?)\b|\b\d+\s*(hours?|minutes?|days?|weeks?|months?)\b|under (one|an) hour|in (hours|minutes|days)|month two|\(days\)/i;
-  const kutuTr = /saatler içinde|günler içinde|saatin altında|dakikalar içinde|aynı gün/i;
-  const kutuEn = /\b(hours?|days?|minutes?|today)\b/i;
+  const kutuTr = /dakika|\d+\s*(saat|gün|hafta)|saat(ler)? içinde|gün(ler)? içinde|hafta içinde|saatin altında|aynı gün/i; // Adım 100: yalın "dakikalar" da süre sayılır ("yoğun saat dışına al" sayılmaz)
+  const kutuEn = /\b(hours?|hrs?|days?|minutes?|mins?|weeks?|today)\b/i; // Adım 100: "mins" de süre sayılır
   for (const t of teshisData) {
     if (sureTr.test(t.kimCozer?.tr || '')) errors.push(`teşhis "${t.slug}" — "Kim çözer" (TR) süre içeriyor`);
     if (sureEn.test(t.kimCozer?.en || '')) errors.push(`teşhis "${t.slug}" — "Kim çözer" (EN) süre içeriyor`);
@@ -5355,6 +5357,16 @@ function verifyAnaSayfaGuard() {
     if (!/data-alt-konsol[^>]*>[\s\S]*?href="#tum-sayfalar"/.test(mainMatch)) {
       errors.push("Ana sayfa ilk ekranında alt konsol (data-alt-konsol ve #tum-sayfalar bağlantısı) bulunamadı");
     }
+    // Adım 100: arama kutusunun ilk ekrandaki yeri, çerez bandı ilk HTML'de, "Tüm sayfalar" başlığı görünmez
+    if (!mainMatch.includes('data-arama-yeri')) {
+      errors.push("Ana sayfa ilk ekranında arama kutusunun yeri (data-arama-yeri) bulunamadı");
+    }
+    if (!/class="cerez-bandi /.test(anaHtml)) {
+      errors.push("Ana sayfa HTML'inde çerez bandı (cerez-bandi) bulunamadı");
+    }
+    if (/<h2 class="(?!sr-only")[^"]*"[^>]*>\s*Tüm sayfalar\s*<\/h2>/.test(mainMatch)) {
+      errors.push('Ana sayfada görünür "Tüm sayfalar" başlığı var');
+    }
     if (!/<source[^>]+media="[^"]*(portrait|aspect-ratio)[^"]*"[^>]+dikey-/.test(anaHtml)) {
       errors.push("Ana sayfa HTML'inde dikey fotoğraf media sorgusu bulunamadı");
     }
@@ -5463,7 +5475,7 @@ function verifyAnaSayfaGuard() {
     process.exit(1);
   }
 
-  console.log('[BUILD GUARD ANA SAYFA GEÇTİ] 125 sayfa arama dizininde ve bir kategoride; ana sayfa 66 sayfaya bağlanıyor; eski ana sayfa çapası yok; sade şablon yok; combobox ve alt konsol var; arka plan kaydı dosyalarla birebir (sabit kalite, büyütülmüş kırpım yok, dikeyler telefon oranında, test kancası yok).');
+  console.log('[BUILD GUARD ANA SAYFA GEÇTİ] 125 sayfa arama dizininde ve bir kategoride; ana sayfa 66 sayfaya bağlanıyor; eski ana sayfa çapası yok; sade şablon yok; combobox, alt konsol ve arama yuvası var; çerez bandı ilk çizimde hazır; arka plan kaydı dosyalarla birebir (sabit kalite, büyütülmüş kırpım yok, dikeyler telefon oranında, test kancası yok).');
 }
 
 verifyAnaSayfaGuard();

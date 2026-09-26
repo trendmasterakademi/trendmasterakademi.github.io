@@ -83,7 +83,7 @@ function KitBanner() {
         {/* Middle: Static Informational Row */}
         <div className="flex-1 overflow-hidden h-full flex items-center px-3">
           <Link 
-            to="/kit/" 
+            to={isTr ? '/kit/' : '/agency-kit/'} 
             className="flex items-center gap-2 text-xs text-[var(--ink-2)] hover:text-[var(--accent-ink)] transition-colors truncate h-full min-h-[44px] sm:min-h-0" 
             title={isTr ? "Görsel Kılavuzu Aç" : "Open Visual Guide"}
           >
@@ -102,7 +102,7 @@ function KitBanner() {
         {/* Right: Actions */}
         <div className="flex items-center gap-1.5 px-2 bg-[var(--surface)] h-full z-20 flex-shrink-0 border-l border-[var(--rule)]">
           <Link
-            to="/kit/"
+            to={isTr ? '/kit/' : '/agency-kit/'}
             className="hidden sm:inline-flex items-center gap-1 px-1.5 py-0.5 rounded-[var(--r-control)] text-xs text-[var(--ink-2)] hover:text-[var(--accent-ink)] hover:bg-[var(--paper)] transition-colors whitespace-nowrap h-5"
             title={isTr ? "TMA Agency Kit Görsel Sayfası" : "TMA Agency Kit Visual Page"}
           >
