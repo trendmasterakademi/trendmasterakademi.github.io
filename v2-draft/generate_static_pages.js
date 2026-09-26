@@ -5187,6 +5187,7 @@ function verifySpeedRules() {
   const css = fs.readFileSync(path.join(__dirname, 'src', 'index.css'), 'utf8');
   if (!css.includes('--font-serif: "Source Serif 4", "Source Serif 4 Yedek",')) errors.push('index.css — serif yığınında web fontundan sonra "Source Serif 4 Yedek" yok');
   if (!css.includes('--font-mono: "IBM Plex Mono", "IBM Plex Mono Yedek",')) errors.push('index.css — mono yığınında web fontundan sonra "IBM Plex Mono Yedek" yok');
+  if (!css.includes('--font-sans: "IBM Plex Sans", "IBM Plex Sans Yedek",')) errors.push('index.css — sans yığınında web fontundan sonra "IBM Plex Sans Yedek" yok (Adım 104)');
   const derlenmis = fs.readdirSync(path.join(distDir, 'assets')).filter((x) => x.endsWith('.css')).map((x) => fs.readFileSync(path.join(distDir, 'assets', x), 'utf8')).join('\n');
   if (!/Source Serif 4 Yedek/.test(derlenmis) || !/size-adjust/.test(derlenmis)) errors.push('derlenmiş CSS — yedek font yüzü ya da size-adjust yok');
   if (errors.length > 0) {

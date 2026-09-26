@@ -5,6 +5,7 @@ import { Search, X, ArrowUpRight } from 'lucide-react';
 import HomeBackground from '../components/HomeBackground';
 import HomeCanvas from '../components/HomeCanvas';
 import AltKonsol from '../components/AltKonsol';
+import TmaYaziLogo from '../components/TmaYaziLogo';
 import { useAnaSayfaSayfalama } from '../components/anaSayfaSayfalama';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
@@ -350,9 +351,10 @@ const Home = () => {
           className="absolute inset-0 sm:-inset-x-16 -inset-y-12 bg-[radial-gradient(ellipse_at_center,rgba(15,18,22,0.85)_0%,rgba(15,18,22,0.55)_50%,transparent_75%)] pointer-events-none -z-10 rounded-3xl"
         />
 
-        {/* H1 Başlık (Source Serif 4, clamp boyutlu, dize sabiti JSX yok) */}
-        <h1 className="ana-ilk-ekran-icerik font-sans text-[var(--ink)] font-normal tracking-tight mb-3 [font-size:clamp(1.75rem,5.5vw+0.5rem,4.5rem)] break-words max-w-full leading-[1.08] select-none">
-          {t('home-h1')}
+        {/* H1: marka yazısı (SVG, ilk HTML'de hazır, yazı tipi beklemez); başlık metni ekran okuyucu ve arama motoru için görünmez olarak içinde */}
+        <h1 className="ana-ilk-ekran-icerik text-[var(--ink)] w-full mb-4 sm:mb-5 select-none">
+          <TmaYaziLogo />
+          <span className="sr-only">{t('home-h1')}</span>
         </h1>
 
         {/* Bir satır slogan */}
