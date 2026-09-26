@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Search, X, ArrowUpRight } from 'lucide-react';
 import HomeBackground from '../components/HomeBackground';
 import HomeCanvas from '../components/HomeCanvas';
+import AltKonsol from '../components/AltKonsol';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
 import { CATEGORY_DEFS, getPagesForLang } from '../data/categoryMap';
@@ -283,6 +284,18 @@ const Home = () => {
     }
   };
 
+  // Alt konsol: dizine in; kategori verilmişse onu seç; odak seçili sekmeye geçer
+  const dizineGit = (katId) => {
+    if (katId) setActiveCategory(katId);
+    const el = document.getElementById('tum-sayfalar');
+    const azalt = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (el) el.scrollIntoView({ behavior: azalt ? 'auto' : 'smooth', block: 'start' });
+    setTimeout(() => {
+      const sekme = katId ? document.getElementById(`tab-${katId}`) : document.querySelector('#tum-sayfalar [role="tab"][aria-selected="true"]');
+      if (sekme) sekme.focus({ preventScroll: true });
+    }, azalt ? 0 : 450);
+  };
+
   // Sekmeler arasında ←/→ ile gezinme (WAI-ARIA sekme kalıbı)
   const handleTabKeyDown = (e, currentCatId) => {
     const catIds = CATEGORY_DEFS.map(c => c.id);
@@ -322,7 +335,7 @@ const Home = () => {
       />
 
       {/* 4. İlk Ekran (100svh, koyu, ortalanmış tek odak) */}
-      <section className="relative z-10 min-h-[100svh] flex flex-col justify-center items-center px-4 pt-20 pb-12 text-center max-w-4xl mx-auto">
+      <section className="relative z-10 min-h-[100svh] flex flex-col justify-center items-center px-4 pt-20 pb-28 sm:pb-40 text-center max-w-4xl mx-auto">
         {/* Başlık, slogan ve arama kutusunun arkasında yumuşak kenarlı radyal karartma geçişi (Kontrast ≥ 4.5:1) */}
         <div 
           aria-hidden="true"
@@ -471,6 +484,8 @@ const Home = () => {
             </div>
           )}
         </div>
+
+        <AltKonsol isTr={isTr} kategoriler={CATEGORY_DEFS} sayfaSayisi={allCategoryPages.length} onSec={dizineGit} />
       </section>
 
       {/* 5. İlk ekranın altı: "Tüm sayfalar" dizini (Koyu) */}

@@ -168,6 +168,11 @@
           window.enableAnalyticsConsent();
         }
       } catch(e) {}
+
+      // Adım 98: çerez kararı yoksa bant açılacak; ana sayfa alt konsolu dizüstü genişliklerinde karar verilene kadar bekler
+      try {
+        if (!localStorage.getItem('tma_cookie_consent')) document.documentElement.setAttribute('data-cerez-bandi', 'acik');
+      } catch(e) {}
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
 
@@ -353,13 +358,13 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-iKScnMqB.js"></script>
+    <script type="module" crossorigin src="/assets/index-BlTfq7sE.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BO29LS7V.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-CkqoNDwq.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-DDRR6uYM.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-Jiccq0PY.css">
-    <link rel="modulepreload" crossorigin href="/assets/Sla-BXVRNVv5.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-CDLyFUkm.css">
+    <link rel="modulepreload" crossorigin href="/assets/Sla-CeTmFTg1.js">
   <link rel="modulepreload" crossorigin href="/assets/slaData-CxirMlqa.js">
   <link rel="modulepreload" crossorigin href="/assets/calendly-9JWLTUFE.js">
   <link rel="modulepreload" crossorigin href="/assets/pageTitle-CfrEi3-B.js">

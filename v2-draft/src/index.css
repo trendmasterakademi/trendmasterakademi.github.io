@@ -584,3 +584,44 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Adım 98 · Ana sayfa alt konsolu: komut bir kez yazılır, imleç yanıp söner, çıktı ardından belirir.
+   Yalnız CSS: ilk HTML'de metin tamdır; hareketi azalt ayarında hiçbir animasyon çalışmaz. --alt-konsol-harf = komutun harf sayısı (JSX satır içinde verir; varsayılan TR komutu). */
+[data-alt-konsol] {
+  --alt-konsol-harf: 16;
+}
+.alt-konsol-komut {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  width: calc(var(--alt-konsol-harf) * 1ch);
+  animation: alt-konsol-yaz calc(var(--alt-konsol-harf) * 55ms) steps(var(--alt-konsol-harf), end) 700ms both;
+}
+.alt-konsol-imlec {
+  display: inline-block;
+  width: 0.55em;
+  height: 1.1em;
+  vertical-align: text-bottom;
+  background: var(--term-diff-add);
+  animation: alt-konsol-imlec 1.1s steps(1, end) infinite;
+}
+.alt-konsol-cikti {
+  animation: alt-konsol-belir 420ms ease-out both;
+  animation-delay: calc(700ms + var(--alt-konsol-harf) * 55ms + 150ms);
+}
+.alt-konsol-ok {
+  animation: alt-konsol-ok 1.8s ease-in-out infinite;
+}
+@keyframes alt-konsol-yaz { from { width: 0; } }
+@keyframes alt-konsol-imlec { 50% { opacity: 0; } }
+@keyframes alt-konsol-belir { from { opacity: 0; transform: translateY(4px); } }
+@keyframes alt-konsol-ok { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(3px); } }
+@media (prefers-reduced-motion: reduce) {
+  .alt-konsol-komut, .alt-konsol-imlec, .alt-konsol-cikti, .alt-konsol-ok { animation: none; }
+}
+/* Çerez kararı verilmemişken bant sol altta açık olur; 640–1759 px genişlikte konsolla çakışır.
+   O aralıkta konsol karar verilene kadar bekler; bant kapanınca belirir ve komutunu o anda yazar. */
+@media (min-width: 640px) and (max-width: 1759px) {
+  html[data-cerez-bandi="acik"] [data-alt-konsol] { display: none; }
+}

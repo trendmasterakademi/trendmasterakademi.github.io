@@ -5351,6 +5351,10 @@ function verifyAnaSayfaGuard() {
     if (!/role="combobox"/.test(mainMatch)) {
       errors.push("Ana sayfa <main> içinde arama kutusu (role=\"combobox\") bulunamadı");
     }
+    // Adım 98: ilk ekranın dibinde "Tüm sayfalar" dizinine götüren alt konsol
+    if (!/data-alt-konsol[^>]*>[\s\S]*?href="#tum-sayfalar"/.test(mainMatch)) {
+      errors.push("Ana sayfa ilk ekranında alt konsol (data-alt-konsol ve #tum-sayfalar bağlantısı) bulunamadı");
+    }
     if (!/<source[^>]+media="[^"]*(portrait|aspect-ratio)[^"]*"[^>]+dikey-/.test(anaHtml)) {
       errors.push("Ana sayfa HTML'inde dikey fotoğraf media sorgusu bulunamadı");
     }
@@ -5459,7 +5463,7 @@ function verifyAnaSayfaGuard() {
     process.exit(1);
   }
 
-  console.log('[BUILD GUARD ANA SAYFA GEÇTİ] 125 sayfa arama dizininde ve bir kategoride; ana sayfa 66 sayfaya bağlanıyor; eski ana sayfa çapası yok; sade şablon yok; combobox var; arka plan kaydı dosyalarla birebir (sabit kalite, büyütülmüş kırpım yok, dikeyler telefon oranında, test kancası yok).');
+  console.log('[BUILD GUARD ANA SAYFA GEÇTİ] 125 sayfa arama dizininde ve bir kategoride; ana sayfa 66 sayfaya bağlanıyor; eski ana sayfa çapası yok; sade şablon yok; combobox ve alt konsol var; arka plan kaydı dosyalarla birebir (sabit kalite, büyütülmüş kırpım yok, dikeyler telefon oranında, test kancası yok).');
 }
 
 verifyAnaSayfaGuard();

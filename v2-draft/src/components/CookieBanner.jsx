@@ -35,6 +35,7 @@ const CookieBanner = () => {
     } catch (e) {
       console.warn('Cookie consent save error:', e);
     }
+    document.documentElement.removeAttribute('data-cerez-bandi');
     setIsVisible(false);
   };
 
@@ -47,13 +48,14 @@ const CookieBanner = () => {
     } catch (e) {
       console.warn('Cookie consent reject error:', e);
     }
+    document.documentElement.removeAttribute('data-cerez-bandi');
     setIsVisible(false);
   };
 
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-[84px] sm:bottom-6 left-3 right-3 sm:left-6 sm:right-auto sm:max-w-lg z-[60] max-h-[140px] p-3 sm:p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] shadow-lg transition-all duration-300 animate-in fade-in slide-in-from-bottom-5">
+    <div className="fixed bottom-[84px] sm:bottom-6 left-3 right-3 sm:left-6 sm:right-auto sm:max-w-lg z-[60] p-3 sm:p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] shadow-lg transition-all duration-300 animate-in fade-in slide-in-from-bottom-5">
       <div className="flex items-start gap-2.5 sm:gap-3.5">
         <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-[var(--r-control)] bg-[var(--paper)] text-[var(--accent)] border border-[var(--rule)] flex items-center justify-center flex-shrink-0 mt-0.5">
           <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5" />
