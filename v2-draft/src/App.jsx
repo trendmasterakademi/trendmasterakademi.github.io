@@ -37,6 +37,7 @@ const StatusRadar = sayfa('StatusRadar', () => import('./pages/StatusRadar'));
 const CodeHealth = sayfa('CodeHealth', () => import('./pages/CodeHealth'));
 const RescueRoi = sayfa('RescueRoi', () => import('./pages/RescueRoi'));
 const Tmai = sayfa('Tmai', () => import('./pages/Tmai'));
+const Tanitim = sayfa('Tanitim', () => import('./pages/Tanitim'));
 const NotFound = sayfa('NotFound', () => import('./pages/NotFound'));
 
 // Lightweight, thematic skeleton fallback matching pre-render aesthetic
@@ -73,6 +74,11 @@ function App() {
           <Suspense fallback={<PageFallback />}>
             <Routes>
               <Route path="/" element={<Home />} />
+              
+              <Route path="/tanitim/" element={<Tanitim />} />
+              <Route path="/tanitim" element={<Tanitim />} />
+              <Route path="/overview/" element={<Tanitim />} />
+              <Route path="/overview" element={<Tanitim />} />
               
               <Route path="/agency/" element={<Agency />} />
               <Route path="/agency" element={<Agency />} />

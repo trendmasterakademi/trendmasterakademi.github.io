@@ -93,7 +93,7 @@ const Footer = () => {
               <li><Link to="/radar/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><Activity className="w-3.5 h-3.5 text-[var(--sev-ok)] flex-shrink-0" /> {isTr ? 'SWAT Durum Radarı' : 'Live Status Radar'}</Link></li>
               <li><Link to={isTr ? "/kod-sagligi/" : "/codebase-health/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><ShieldCheck className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'Kod Sağlığı & Borç Denetimi' : 'Codebase Health Audit'}</Link></li>
               <li><Link to={isTr ? "/kurtarma-maliyeti/" : "/rescue-roi/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><Zap className="w-3.5 h-3.5 text-[var(--sev-ok)] flex-shrink-0" /> {isTr ? 'Kurtarma mı, Sıfırdan Yazım mı?' : 'Rescue or Rebuild?'}</Link></li>
-              <li><a href="/#faq" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{isTr ? 'Sıkça Sorulan Sorular (SSS)' : 'FAQ'}</a></li>
+              <li><Link to={isTr ? "/tanitim/#faq" : "/overview/#faq"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{isTr ? 'Sıkça Sorulan Sorular (SSS)' : 'FAQ'}</Link></li>
             </ul>
           </div>
 
@@ -105,7 +105,7 @@ const Footer = () => {
             <ul className="space-y-1 text-xs">
               <li><Link to="/about/" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{t('nav-about')}</Link></li>
               <li><Link to={isTr ? "/hikayemiz/" : "/story/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{isTr ? 'Marka Hikâyemiz' : 'Our Story'}</Link></li>
-              <li><a href="/#contact" className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{t('nav-contact')}</a></li>
+              <li><Link to={isTr ? "/tanitim/#contact" : "/overview/#contact"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center">{t('nav-contact')}</Link></li>
               <li><Link to={isTr ? "/gizlilik-sozlesmesi/" : "/mutual-nda/"} className="hover:text-[var(--accent)] transition-colors py-1 sm:py-0.5 min-h-[44px] flex items-center gap-1.5"><FileText className="w-3.5 h-3.5 text-[var(--accent)] flex-shrink-0" /> {isTr ? 'İnteraktif Gizlilik Sözleşmesi (NDA)' : 'Interactive Mutual NDA'}</Link></li>
               <li>
                 <Link 

@@ -93,8 +93,13 @@ const Navbar = () => {
     };
   }, [isOpen]);
 
+  const isHome = location.pathname === '/' || location.pathname === '';
+  const isTanitim = /^\/(tanitim|overview)\/?$/.test(location.pathname);
+  const isTr = isTurkish(i18n);
+  const path = location.pathname;
+
   useEffect(() => {
-    if (location.pathname !== '/' && location.pathname !== '') {
+    if (!isTanitim) {
       return;
     }
 
@@ -124,10 +129,10 @@ const Navbar = () => {
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [location.pathname]);
+  }, [location.pathname, isTanitim]);
 
   const handleNavClick = (e, targetId) => {
-    if (location.pathname === '/' || location.pathname === '') {
+    if (isTanitim) {
       e.preventDefault();
       const el = document.getElementById(targetId);
       if (el) {
@@ -140,26 +145,62 @@ const Navbar = () => {
     }
   };
 
-  const isHome = location.pathname === '/' || location.pathname === '';
-  const isTr = isTurkish(i18n);
-  const path = location.pathname;
-
   return (
     <>
       <header className={`fixed w-full max-w-[100vw] top-0 left-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? 'bg-[var(--surface)] border-b border-[var(--rule)] shadow-navbar' 
-          : 'bg-[var(--surface)] border-b border-[var(--rule)]'
+        isHome
+          ? (scrolled ? 'bg-[var(--paper)]/90 backdrop-blur-md border-b border-[var(--rule)]' : 'bg-transparent')
+          : (scrolled ? 'bg-[var(--surface)] border-b border-[var(--rule)] shadow-navbar' : 'bg-[var(--surface)] border-b border-[var(--rule)]')
       }`}>
-        {/* TMA Agency Response Kit & Crash Test Scrolling Banner */}
-        <KitBanner />
+        {isHome ? (
+          <div className="h-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto flex items-center justify-between">
+            <Link to="/" className="flex items-center min-h-[44px]" aria-label="Trend Master Akademi Ana Sayfa">
+              <img
+                src="/logo-dark.svg"
+                alt="Trend Master Akademi"
+                className="h-7 sm:h-8 w-auto object-contain"
+                width="200"
+                height="38"
+              />
+            </Link>
 
-        <div className="h-[39px] px-4 sm:px-6 lg:px-8 max-w-full flex items-center">
-          <div className="w-full mx-auto flex justify-between items-center gap-2 sm:gap-4">
-          
-          {/* Brand Logo & Active Response Desk Badge */}
-          <div className="flex items-center gap-2 sm:gap-3 2xl:gap-4 flex-shrink-0">
-            <Link to="/" className="flex items-center group flex-shrink-0 min-h-[44px]" aria-label="Trend Master Akademi Ana Sayfa">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <button
+                type="button"
+                onClick={toggleLang}
+                className="px-2.5 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink-2)] hover:text-[var(--ink)] text-xs font-mono font-medium flex items-center gap-1.5 min-h-[44px] cursor-pointer"
+                title={t('nav-switch-lang')}
+              >
+                <Globe className="w-3.5 h-3.5 text-[var(--accent)]" />
+                <span>{(i18n.resolvedLanguage || i18n.language || 'tr').toLowerCase().startsWith('en') ? 'TR' : 'EN'}</span>
+              </button>
+
+              <button
+                ref={menuBtnRef}
+                id="nav-menu-btn"
+                type="button"
+                onClick={() => setIsOpen(!isOpen)}
+                aria-expanded={isOpen}
+                aria-controls="nav-drawer"
+                aria-label={t('home-menu-button')}
+                className="px-3 sm:px-4 py-1.5 rounded-[var(--r-control)] bg-[var(--surface)] border border-[var(--rule)] text-[var(--ink)] hover:bg-[var(--paper)] text-xs sm:text-sm font-medium flex items-center gap-2 min-h-[44px] cursor-pointer"
+              >
+                {isOpen ? <X className="w-4 h-4 text-[var(--ink)]" /> : <Menu className="w-4 h-4 text-[var(--ink)]" />}
+                <span>{t('home-menu-button')}</span>
+              </button>
+            </div>
+          </div>
+        ) : (
+          <>
+            {/* TMA Agency Response Kit & Crash Test Scrolling Banner */}
+            <KitBanner />
+
+            <div className="h-[39px] px-4 sm:px-6 lg:px-8 max-w-full flex items-center">
+              <div className="w-full mx-auto flex justify-between items-center gap-2 sm:gap-4">
+              
+              {/* Brand Logo & Active Response Desk Badge */}
+              <div className="flex items-center gap-2 sm:gap-3 2xl:gap-4 flex-shrink-0">
+                <Link to="/" className="flex items-center group flex-shrink-0 min-h-[44px]" aria-label="Trend Master Akademi Ana Sayfa">
               <img 
                 src="/logo-light.svg" 
                 alt="Trend Master Akademi" 
@@ -281,7 +322,7 @@ const Navbar = () => {
               {t('nav-about')}
             </Link>
 
-            {isHome ? (
+            {isTanitim ? (
               <a
                 href="#contact"
                 onClick={(e) => handleNavClick(e, 'contact')}
@@ -296,7 +337,7 @@ const Navbar = () => {
               </a>
             ) : (
               <Link
-                to="/#contact"
+                to={isTr ? '/tanitim/#contact' : '/overview/#contact'}
                 className="px-2.5 py-1.5 rounded-[var(--r-control)] text-xs 2xl:text-sm font-medium text-[var(--ink-2)] hover:text-[var(--ink)] hover:bg-[var(--paper)] transition-all whitespace-nowrap"
                 title={t('nav-contact')}
               >
@@ -364,15 +405,17 @@ const Navbar = () => {
 
         </div>
       </div>
+      </>
+      )}
 
-        {/* Mobile / Tablet / Laptop Navigation Drawer (< 1440px) */}
+        {/* Navigation Drawer */}
         {isOpen && (
           <div
             ref={drawerRef}
             id="nav-drawer"
             role="region"
             aria-labelledby="nav-menu-btn"
-            className="min-[1440px]:hidden absolute top-full right-4 sm:right-6 lg:right-8 w-[calc(100%-32px)] sm:w-80 sm:min-w-[320px] max-w-sm pt-3 pb-5 px-3 border border-[var(--rule)] space-y-1 bg-[var(--surface)] rounded-[var(--r-panel)] shadow-navbar max-h-[calc(100dvh-80px)] overflow-y-auto z-50 mt-1"
+            className={`${isHome ? '' : 'min-[1440px]:hidden'} absolute top-full right-4 sm:right-6 lg:right-8 w-[calc(100%-32px)] sm:w-80 sm:min-w-[320px] max-w-sm pt-3 pb-5 px-3 border border-[var(--rule)] space-y-1 bg-[var(--surface)] rounded-[var(--r-panel)] shadow-navbar max-h-[calc(100dvh-80px)] overflow-y-auto z-50 mt-1`}
           >
             {/* Top controls row for < 640px: TR/EN and Theme Switcher */}
             <div className="sm:hidden flex items-center justify-between pb-2.5 mb-2 border-b border-[var(--rule)]">
@@ -497,13 +540,23 @@ const Navbar = () => {
               {t('nav-about')}
             </Link>
 
-            <a
-              href="/#contact"
-              onClick={(e) => handleNavClick(e, 'contact')}
-              className="flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium text-[var(--ink-2)] hover:bg-[var(--paper)] min-h-[44px]"
-            >
-              {t('nav-contact')}
-            </a>
+            {isTanitim ? (
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, 'contact')}
+                className="flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium text-[var(--ink-2)] hover:bg-[var(--paper)] min-h-[44px]"
+              >
+                {t('nav-contact')}
+              </a>
+            ) : (
+              <Link
+                to={isTr ? '/tanitim/#contact' : '/overview/#contact'}
+                onClick={() => setIsOpen(false)}
+                className="flex items-center w-full text-left px-3.5 py-2.5 rounded-[var(--r-control)] text-xs sm:text-sm font-medium text-[var(--ink-2)] hover:bg-[var(--paper)] min-h-[44px]"
+              >
+                {t('nav-contact')}
+              </Link>
+            )}
           </div>
         )}
       </header>

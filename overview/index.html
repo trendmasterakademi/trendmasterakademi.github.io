@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Services &amp; Engagement Model | Trend Master Akademi</title>
+    <meta name="description" content="Trend Master Akademi's white-label technical desk for agencies: services, engagement model, case studies, founder, FAQ and contact." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/overview/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/tanitim/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/tanitim/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/overview/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/overview/" />
+    <meta property="og:title" content="Services &amp; Engagement Model | Trend Master Akademi" />
+    <meta property="og:description" content="Trend Master Akademi's white-label technical desk for agencies: services, engagement model, case studies, founder, FAQ and contact." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT &amp; White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/overview/" />
+    <meta name="twitter:title" content="Services &amp; Engagement Model | Trend Master Akademi" />
+    <meta name="twitter:description" content="Trend Master Akademi's white-label technical desk for agencies: services, engagement model, case studies, founder, FAQ and contact." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://trendmasterakademi.com/#organization",
+      "name": "Trend Master Akademi",
+      "alternateName": "TMA Studio & Labs",
+      "legalName": "Mehmet Şahin",
+      "taxID": "7930336132",
+      "url": "https://trendmasterakademi.com",
+      "logo": "https://trendmasterakademi.com/logo-dark.png",
+      "image": "https://trendmasterakademi.com/og-image.jpg",
+      "description": "Dijital ajanslar, SaaS girişimleri ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), API Entegrasyonu ve Özel Yazılım Geliştirme Stüdyosu.",
+      "founder": {
+        "@type": "Person",
+        "name": "Mehmet Şahin",
+        "jobTitle": "Kurucu & Baş Yazılım Mimarı (Lead Architect)",
+        "image": "https://trendmasterakademi.com/images/mehmet-sahin-480.jpg",
+        "url": "https://trendmasterakademi.com/about/"
+      },
+      "telephone": "+905343713573",
+      "email": "info@trendmasterakademi.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091",
+        "addressLocality": "Konak",
+        "addressRegion": "İzmir",
+        "addressCountry": "TR"
+      },
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 09:00-24:00",
+      "sameAs": [
+        "https://www.linkedin.com/in/trendmasterakademi/"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Türkiye"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "B2B SWAT & Mühendislik Hizmetleri",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Acil Kod Kurtarma & Canlı Sistem Hotfix (Incident SWAT)",
+              "description": "HTTP 500 hataları, veritabanı kilitlenmeleri ve ödeme API kopmalarında acil müdahale."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yarım Kalan Proje Devralma (Abandoned Codebase Takeover)",
+              "description": "Önceki geliştiriciden kalan dokümantasyonsuz ve spagetti kod tabanlarının onarılması ve yayına alınması."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "B2B %100 White-Label Mühendislik & Kapasite Takviyesi",
+              "description": "Ajansların arka planında görünmez teknik ekip olarak resmi NDA altında proje teslimi."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "SaaS & Özel Web Uygulaması Mimarisi",
+              "description": "React, Next.js, Python/FastAPI ve Node.js ile sıfırdan ölçeklenebilir web ve bulut sistemleri."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yapay Zeka, LLM & Akıllı Otomasyon Entegrasyonları",
+              "description": "OpenAI, LLM, RAG ve akıllı agent iş akışlarının şirket içi süreçlere entegrasyonu."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://trendmasterakademi.com/#website",
+      "url": "https://trendmasterakademi.com",
+      "name": "Trend Master Akademi",
+      "publisher": {
+        "@id": "https://trendmasterakademi.com/#organization"
+      },
+      "inLanguage": [
+        "tr-TR",
+        "en-US"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://trendmasterakademi.com/overview/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does Trend Master Akademi's White-Label partnership model work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We operate under a legally binding Mutual NDA. We never contact your clients directly; we build either under your agency's domain email or as an invisible backline engineering squad. All source code and IP rights belong 100% to your agency."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens if the engineer running my project becomes unavailable?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "TMA is a sole proprietorship, but the response desk is not a one-person operation: a second senior engineer is on the desk to take over any work already under way. Your code is never held by us either — the repository is under your control and documentation is delivered as the work progresses. Even if an engagement is interrupted, your agency is left with a working system and the complete source."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does the emergency code rescue process work?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For live production outages (HTTP 500, database deadlocks, payment API failures), we first isolate the repository into a sandbox environment and perform the diagnosis there. Diagnosis and fixed fee are delivered together. We do not provide time commitments — the scope of each incident differs, and making promises that cannot be kept helps no one."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly will I get a response in an emergency?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The response desk is open daily between 09:00 and 24:00 (UTC+3). For live-outage (SEV-0) incidents our first-response commitment is 15 minutes; times for other levels are listed on the SLA page. Notifications arriving outside these hours are picked up at 09:00 the next morning."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do you take over undocumented or abandoned spaghetti codebases?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For stranded projects left without handover; we clone the repository and map architecture, data models, and bottlenecks. We complete missing backend endpoints, refactor tangled spaghetti code to modern standards, and hand over a documented production release."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who owns the intellectual property and source code of the project?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "100% of all developed source code, database schemas, API configurations, and documentation belong exclusively to your agency and client. Zero recurring vendor-lock or licensing claims."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which technology stacks do you provide senior engineering support for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Leading modern web & backend technologies: React, Next.js, Node.js, Python / FastAPI, PostgreSQL, Redis, Docker, Flutter, Stripe / iyzico webhook architectures, and enterprise OpenAI / LLM agent automations."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Services & Engagement Model",
+          "item": "https://trendmasterakademi.com/overview/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-DVan4GKT.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-CwKeWUVp.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-t8oMpfVN.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-CeE157Pj.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-CcUOGDaL.css">
+    <link rel="modulepreload" crossorigin href="/assets/Tanitim-Duyo4eRz.js">
+  <link rel="modulepreload" crossorigin href="/assets/web3forms-DI3pnuVN.js">
+  <link rel="modulepreload" crossorigin href="/assets/calendly-9JWLTUFE.js">
+  <link rel="modulepreload" crossorigin href="/assets/pageTitle-CfrEi3-B.js">
+  <link rel="modulepreload" crossorigin href="/assets/FAQ-C_eqc_kz.js">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Critical Systems Outages, Locked Codebases: Kernel-Level Engineering Triage.</h1>
+        
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/overview/" class="hover:underline">Services & Engagement Model</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/ai-code-takeover/" class="hover:underline">tmai</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Confidentiality and Engagement Agreement</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue or Rebuild?</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-[var(--ink)]">For agencies with stalled projects: We take over the code and deliver on your behalf.</h2>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">The agency emergency button. Senior White-Label technical desk, emergency SWAT triage, PostgreSQL deadlock recovery, SaaS architecture, and incident mitigation for digital agencies.</p>
+        
+  <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">If you see these lines in your system</h2>
+    <ul class="space-y-3">
+      
+        <li class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1 font-mono text-sm">
+          <div class="text-[var(--ink-3)]"><code>SQLSTATE[40001]: Serialization failure: 1213 Deadlock found</code></div>
+          <div><a href="/diagnostic/ayni-stok-iki-musteriye-satildi/" class="text-[var(--accent)] hover:underline font-bold">→ 01 · Same Inventory Sold to Multiple Customers</a></div>
+        </li>
+      
+        <li class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1 font-mono text-sm">
+          <div class="text-[var(--ink-3)]"><code>Lock wait timeout exceeded; try restarting transaction</code></div>
+          <div><a href="/diagnostic/islemler-kilitlendi-sayfa-donuyor/" class="text-[var(--accent)] hover:underline font-bold">→ 04 · Transactions Deadlocked, Pages Spinning</a></div>
+        </li>
+      
+        <li class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1 font-mono text-sm">
+          <div class="text-[var(--ink-3)]"><code>502 Bad Gateway · upstream prematurely closed connection</code></div>
+          <div><a href="/diagnostic/site-500-veriyor-dun-calisiyordu/" class="text-[var(--accent)] hover:underline font-bold">→ 07 · Site Returning 500 Error, Worked Yesterday</a></div>
+        </li>
+      
+        <li class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1 font-mono text-sm">
+          <div class="text-[var(--ink-3)]"><code>NET::ERR_CERT_DATE_INVALID</code></div>
+          <div><a href="/diagnostic/ssl-suresi-doldu/" class="text-[var(--accent)] hover:underline font-bold">→ 10 · SSL Certificate Expired, Security Warning Displayed</a></div>
+        </li>
+      
+        <li class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1 font-mono text-sm">
+          <div class="text-[var(--ink-3)]"><code>HTTP 429 Too Many Requests</code></div>
+          <div><a href="/diagnostic/entegrasyon-429-veriyor/" class="text-[var(--accent)] hover:underline font-bold">→ 12 · Third-Party Integration Returning HTTP 429</a></div>
+        </li>
+      
+        <li class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1 font-mono text-sm">
+          <div class="text-[var(--ink-3)]"><code>Out of memory: Killed process</code></div>
+          <div><a href="/diagnostic/sunucu-her-gun-yeniden-baslatiliyor/" class="text-[var(--accent)] hover:underline font-bold">→ 13 · Server Rebooted Daily to Clear Freeze</a></div>
+        </li>
+      
+        <li class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1 font-mono text-sm">
+          <div class="text-[var(--ink-3)]"><code>SMTP error 535 Authentication failed</code></div>
+          <div><a href="/diagnostic/form-gonderiliyor-mail-gelmiyor/" class="text-[var(--accent)] hover:underline font-bold">→ 18 · Form Submits Successfully but No Email Delivered</a></div>
+        </li>
+      
+        <li class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1 font-mono text-sm">
+          <div class="text-[var(--ink-3)]"><code>robots.txt → Disallow: /</code></div>
+          <div><a href="/diagnostic/site-aramalarda-gorunmez-oldu/" class="text-[var(--accent)] hover:underline font-bold">→ 19 · Website Dropped from Search Engine Results</a></div>
+        </li>
+    </ul>
+    <p class="pt-2">
+      <a href="/diagnostic/" class="text-[var(--accent)] hover:underline font-bold">Browse the complete diagnostic catalog (26 symptoms) →</a>
+    </p>
+  </section>
+  <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 mt-8">
+    <h3 class="text-xl font-bold text-[var(--ink)]">Mehmet Şahin</h3>
+    <p class="text-xs font-mono text-[var(--accent)] font-medium">Founder & Lead Software Architect</p>
+    <picture class="flex-shrink-0 block">
+      <source type="image/avif" srcset="/images/mehmet-sahin-320.avif 1x, /images/mehmet-sahin-480.avif 2x" />
+      <source type="image/webp" srcset="/images/mehmet-sahin-320.webp 1x, /images/mehmet-sahin-480.webp 2x" />
+      <img src="/images/mehmet-sahin-320.jpg" srcset="/images/mehmet-sahin-480.jpg 2x" alt="Mehmet Şahin — Founder & Lead Software Architect" width="260" height="260" loading="lazy" decoding="async" class="w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[260px] lg:h-[260px] rounded-[var(--r-panel)] border border-[var(--rule)] object-cover shadow-sm" />
+    </picture>
+    <p class="text-[var(--ink-3)] leading-relaxed text-sm sm:text-base">I have spent over two decades in financial markets and more than a decade architecting algorithmic software and high-availability server infrastructures. For years, I exclusively built my own systems, translated my own architecture into code, and resolved my own failures.</p>
+  </section>
+  <section class="space-y-4 mt-8 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      
+        <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <h3 class="text-lg font-bold text-[var(--accent)]">How does Trend Master Akademi's White-Label partnership model work?</h3>
+          <p class="text-[var(--ink-3)] leading-relaxed text-sm sm:text-base">We operate under a legally binding Mutual NDA. We never contact your clients directly; we build either under your agency's domain email or as an invisible backline engineering squad. All source code and IP rights belong 100% to your agency.</p>
+        </div>
+      
+      
+        <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <h3 class="text-lg font-bold text-[var(--accent)]">What happens if the engineer running my project becomes unavailable?</h3>
+          <p class="text-[var(--ink-3)] leading-relaxed text-sm sm:text-base">TMA is a sole proprietorship, but the response desk is not a one-person operation: a second senior engineer is on the desk to take over any work already under way. Your code is never held by us either — the repository is under your control and documentation is delivered as the work progresses. Even if an engagement is interrupted, your agency is left with a working system and the complete source.</p>
+        </div>
+      
+      
+        <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <h3 class="text-lg font-bold text-[var(--accent)]">How does the emergency code rescue process work?</h3>
+          <p class="text-[var(--ink-3)] leading-relaxed text-sm sm:text-base">For live production outages (HTTP 500, database deadlocks, payment API failures), we first isolate the repository into a sandbox environment and perform the diagnosis there. Diagnosis and fixed fee are delivered together. We do not provide time commitments — the scope of each incident differs, and making promises that cannot be kept helps no one.</p>
+        </div>
+      
+      
+        <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <h3 class="text-lg font-bold text-[var(--accent)]">How quickly will I get a response in an emergency?</h3>
+          <p class="text-[var(--ink-3)] leading-relaxed text-sm sm:text-base">The response desk is open daily between 09:00 and 24:00 (UTC+3). For live-outage (SEV-0) incidents our first-response commitment is 15 minutes; times for other levels are listed on the SLA page. Notifications arriving outside these hours are picked up at 09:00 the next morning.</p>
+        </div>
+      
+      
+        <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <h3 class="text-lg font-bold text-[var(--accent)]">How do you take over undocumented or abandoned spaghetti codebases?</h3>
+          <p class="text-[var(--ink-3)] leading-relaxed text-sm sm:text-base">For stranded projects left without handover; we clone the repository and map architecture, data models, and bottlenecks. We complete missing backend endpoints, refactor tangled spaghetti code to modern standards, and hand over a documented production release.</p>
+        </div>
+      
+      
+        <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <h3 class="text-lg font-bold text-[var(--accent)]">Who owns the intellectual property and source code of the project?</h3>
+          <p class="text-[var(--ink-3)] leading-relaxed text-sm sm:text-base">100% of all developed source code, database schemas, API configurations, and documentation belong exclusively to your agency and client. Zero recurring vendor-lock or licensing claims.</p>
+        </div>
+      
+      
+        <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <h3 class="text-lg font-bold text-[var(--accent)]">Which technology stacks do you provide senior engineering support for?</h3>
+          <p class="text-[var(--ink-3)] leading-relaxed text-sm sm:text-base">Leading modern web &amp; backend technologies: React, Next.js, Node.js, Python / FastAPI, PostgreSQL, Redis, Docker, Flutter, Stripe / iyzico webhook architectures, and enterprise OpenAI / LLM agent automations.</p>
+        </div>
+      
+    </div>
+  </section>
+
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

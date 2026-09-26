@@ -96,7 +96,7 @@ const FAQ = () => {
   const { i18n } = useTranslation();
   const isTr = isTurkish(i18n);
   const location = useLocation();
-  const isHomePage = location.pathname === '/' || location.pathname === '';
+  const isHomePage = /^\/(tanitim|overview)\/?$/.test(location.pathname);
   const [openIdx, setOpenIdx] = useState(0);
 
   const toggleAccordion = (idx) => {

@@ -726,7 +726,19 @@ export const seoData = {
     "desc": "Lovable, Cursor ya da Bolt gibi araçlarla yazılmış bir projeyi mi devraldınız? tmai; anahtar, veritabanı kuralı, yetki, test ve paket kontrolüyle başlar." } },
   "/ai-code-takeover/": { "en": {
     "title": "tmai: AI-Generated Code Takeover | Trend Master Akademi",
-    "desc": "Took over a project built with tools like Lovable, Cursor or Bolt? tmai starts by checking keys, database rules, permissions, tests and dependencies." } }
+    "desc": "Took over a project built with tools like Lovable, Cursor or Bolt? tmai starts by checking keys, database rules, permissions, tests and dependencies." } },
+  "/tanitim/": {
+    "tr": {
+      "title": "Hizmetler ve Çalışma Modeli | Trend Master Akademi",
+      "desc": "Trend Master Akademi'nin ajanslara sunduğu white-label teknik masa: hizmetler, çalışma modeli, vakalar, kurucu, sık sorulan sorular ve iletişim."
+    }
+  },
+  "/overview/": {
+    "en": {
+      "title": "Services & Engagement Model | Trend Master Akademi",
+      "desc": "Trend Master Akademi's white-label technical desk for agencies: services, engagement model, case studies, founder, FAQ and contact."
+    }
+  }
 };
 
 export const ogImageAlt = {

@@ -1,8 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
+import zlib from 'zlib';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
+import { CATEGORY_DEFS, getDil, getKategori, getCleanTitle, getPagesForLang } from './src/data/categoryMap.js';
 import { glossaryTerms, getGlossaryH1, glossaryHubH1 } from './src/data/glossaryData.js';
 import { teshisData } from './src/data/teshisData.js';
 import { diagnosticLogEnMap } from './src/data/diagnosticLogEnMap.js';
@@ -366,6 +368,73 @@ const homePageExtraContent = `
   </section>
   ${homeFounderHtml}
   ${homeFaqHtml}
+`;
+
+const homeDirectoryHtml = `
+  <section class="space-y-8 mt-10 border-t border-[var(--rule)] pt-8">
+    <div class="space-y-2">
+      <span class="text-xs font-mono uppercase tracking-wider text-[var(--accent)] font-semibold">Tüm Sayfalar</span>
+      <h2 class="text-2xl sm:text-3xl font-bold font-serif text-[var(--ink)] tracking-tight">Tüm sayfalar</h2>
+    </div>
+    ${CATEGORY_DEFS.map(cat => {
+      const catPages = getPagesForLang('tr').filter(p => p.kategori === cat.id);
+      return `
+      <section class="space-y-4">
+        <h2 class="text-xl font-bold font-serif text-[var(--ink)]">${escapeHtml(cat.tr)}</h2>
+        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          ${catPages.map(page => `
+            <li class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--rule-strong)] transition-colors">
+              <a href="${escapeHtml(page.url)}" class="text-[var(--accent)] hover:underline font-medium block">
+                ${escapeHtml(page.baslik)}
+              </a>
+            </li>
+          `).join('\n          ')}
+        </ul>
+      </section>`;
+    }).join('\n    ')}
+  </section>
+`;
+
+const overviewPageExtraContent = `
+  <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">If you see these lines in your system</h2>
+    <ul class="space-y-3">
+      ${diagnosticLogs.map(entry => {
+        const slug = entry.href.replace(/^\/teshis\/|\/$/g, '');
+        const item = teshisData.find(d => d.slug === slug);
+        const titleText = item ? `${item.no} · ${item.baslik.en || item.baslik.tr}` : (entry.title?.en || entry.title?.tr || slug);
+        return `
+        <li class="p-3 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-1 font-mono text-sm">
+          <div class="text-[var(--ink-3)]"><code>${escapeHtml(entry.log)}</code></div>
+          <div><a href="/diagnostic/${escapeHtml(slug)}/" class="text-[var(--accent)] hover:underline font-bold">→ ${escapeHtml(titleText)}</a></div>
+        </li>`;
+      }).join('\n      ')}
+    </ul>
+    <p class="pt-2">
+      <a href="/diagnostic/" class="text-[var(--accent)] hover:underline font-bold">Browse the complete diagnostic catalog (${teshisData.length} symptoms) →</a>
+    </p>
+  </section>
+  <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-4 mt-8">
+    <h3 class="text-xl font-bold text-[var(--ink)]">Mehmet Şahin</h3>
+    <p class="text-xs font-mono text-[var(--accent)] font-medium">Founder & Lead Software Architect</p>
+    <picture class="flex-shrink-0 block">
+      <source type="image/avif" srcset="/images/mehmet-sahin-320.avif 1x, /images/mehmet-sahin-480.avif 2x" />
+      <source type="image/webp" srcset="/images/mehmet-sahin-320.webp 1x, /images/mehmet-sahin-480.webp 2x" />
+      <img src="/images/mehmet-sahin-320.jpg" srcset="/images/mehmet-sahin-480.jpg 2x" alt="Mehmet Şahin — Founder & Lead Software Architect" width="260" height="260" loading="lazy" decoding="async" class="w-[160px] h-[160px] md:w-[200px] md:h-[200px] lg:w-[260px] lg:h-[260px] rounded-[var(--r-panel)] border border-[var(--rule)] object-cover shadow-sm" />
+    </picture>
+    <p class="text-[var(--ink-3)] leading-relaxed text-sm sm:text-base">I have spent over two decades in financial markets and more than a decade architecting algorithmic software and high-availability server infrastructures. For years, I exclusively built my own systems, translated my own architecture into code, and resolved my own failures.</p>
+  </section>
+  <section class="space-y-4 mt-8 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Frequently Asked Questions</h2>
+    <div class="space-y-4">
+      ${faqData.map(item => `
+        <div class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <h3 class="text-lg font-bold text-[var(--accent)]">${escapeHtml(item.question?.en || item.question?.tr || '')}</h3>
+          <p class="text-[var(--ink-3)] leading-relaxed text-sm sm:text-base">${escapeHtml(item.answer?.en || item.answer?.tr || '')}</p>
+        </div>
+      `).join('\n      ')}
+    </div>
+  </section>
 `;
 
 const aboutExtraContent = `
@@ -1509,16 +1578,39 @@ function renderTmaiContent(lang) {
 }
 
 const trLocale = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'src/locales/tr.json'), 'utf8'));
+const enLocale = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'src/locales/en.json'), 'utf8'));
 const homeH1 = `${trLocale['hero-title-line1']} ${trLocale['hero-title-line2']} ${trLocale['hero-title-highlight']}`;
+const homeH1New = trLocale['home-h1'];
+const overviewH1 = `${enLocale['hero-title-line1']} ${enLocale['hero-title-line2']} ${enLocale['hero-title-highlight']}`;
 
 const basePages = [
   {
     dir: '',
     title: 'Trend Master Akademi | Ajansların İmdat Butonu',
-    h1: homeH1,
+    h1: homeH1New,
     description: 'Dijital ajansların imdat butonu: B2B White-Label mühendislik masası, acil kod kurtarma (SWAT), SaaS mimarisi ve kriz çözüm stüdyosu.',
     canonical: 'https://trendmasterakademi.com/',
     ogUrl: 'https://trendmasterakademi.com/',
+    heading: '',
+    subheading: trLocale['home-slogan'],
+    extraContent: homeDirectoryHtml,
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode
+      ]
+    }
+  },
+  {
+    dir: 'tanitim',
+    title: formatPageTitle(seoData['/tanitim/'].tr.title),
+    h1: homeH1,
+    description: seoData['/tanitim/'].tr.desc,
+    canonical: 'https://trendmasterakademi.com/tanitim/',
+    ogUrl: 'https://trendmasterakademi.com/tanitim/',
+    hreflangTr: 'https://trendmasterakademi.com/tanitim/',
+    hreflangEn: 'https://trendmasterakademi.com/overview/',
     heading: 'Teknik olarak projesi tıkanmış ajanslar için: Kodu Devralır, Ajansınız Adına Teslim Ederiz.',
     subheading: 'Dijital ajansların imdat butonu. Teknik olarak tıkanan projeler için B2B White-Label mühendislik masası, acil kod kurtarma (SWAT), PostgreSQL deadlock onarımı, SaaS mimarisi ve kriz çözüm stüdyosu.',
     extraContent: homePageExtraContent,
@@ -1526,9 +1618,10 @@ const basePages = [
       "@context": "https://schema.org",
       "@graph": [
         professionalServiceNode,
+        webSiteNode,
         {
           "@type": "FAQPage",
-          "@id": "https://trendmasterakademi.com/#faq",
+          "@id": "https://trendmasterakademi.com/tanitim/#faq",
           "mainEntity": faqData.map(f => ({
             "@type": "Question",
             "name": f.question.tr,
@@ -1538,7 +1631,53 @@ const basePages = [
             }
           }))
         },
-        webSiteNode
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Ana Sayfa", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Hizmetler ve Çalışma Modeli", "item": "https://trendmasterakademi.com/tanitim/" }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    dir: 'overview',
+    lang: 'en',
+    title: formatPageTitle(seoData['/overview/'].en.title),
+    h1: overviewH1,
+    description: seoData['/overview/'].en.desc,
+    canonical: 'https://trendmasterakademi.com/overview/',
+    ogUrl: 'https://trendmasterakademi.com/overview/',
+    hreflangTr: 'https://trendmasterakademi.com/tanitim/',
+    hreflangEn: 'https://trendmasterakademi.com/overview/',
+    heading: 'For agencies with stalled projects: We take over the code and deliver on your behalf.',
+    subheading: 'The agency emergency button. Senior White-Label technical desk, emergency SWAT triage, PostgreSQL deadlock recovery, SaaS architecture, and incident mitigation for digital agencies.',
+    extraContent: overviewPageExtraContent,
+    schema: {
+      "@context": "https://schema.org",
+      "@graph": [
+        professionalServiceNode,
+        webSiteNode,
+        {
+          "@type": "FAQPage",
+          "@id": "https://trendmasterakademi.com/overview/#faq",
+          "mainEntity": faqData.map(f => ({
+            "@type": "Question",
+            "name": f.question.en || f.question.tr,
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": f.answer.en || f.answer.tr
+            }
+          }))
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trendmasterakademi.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Services & Engagement Model", "item": "https://trendmasterakademi.com/overview/" }
+          ]
+        }
       ]
     }
   },
@@ -3685,9 +3824,10 @@ pages.forEach(page => {
     <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
       <header class="mb-8 border-b border-[var(--rule)] pb-6">
         <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">${page.h1}</h1>
-        ${page.dir === '' ? `<p class="text-base sm:text-lg text-[var(--ink-2)] leading-relaxed mb-4">${escapeHtml(trLocale['hero-desc'])}</p>` : ''}
+        ${page.dir === '' ? `<p class="text-base sm:text-lg text-[var(--ink-2)] leading-relaxed mb-4">${escapeHtml(trLocale['home-slogan'])}</p>` : ''}
         <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
           <a href="/" class="hover:underline">${page.lang === 'en' ? 'Home' : 'Ana Sayfa'}</a>
+          <a href="${page.lang === 'en' ? '/overview/' : '/tanitim/'}" class="hover:underline">${page.lang === 'en' ? 'Services & Engagement Model' : 'Hizmetler ve Çalışma Modeli'}</a>
           <a href="/agency/" class="hover:underline">${page.lang === 'en' ? 'Capacity & Infrastructure' : 'Kapasite & Altyapı'}</a>
           <a href="${page.lang === 'en' ? '/agency-kit/' : '/kit/'}" class="hover:underline">${page.lang === 'en' ? 'Agency Kit' : 'Ajans Kiti'}</a>
           <a href="/crash-test/" class="hover:underline">${page.lang === 'en' ? 'Crash Test (60s)' : 'Crash Test (60sn)'}</a>
@@ -3841,6 +3981,72 @@ function updateSitemapLastmod() {
 
 updateSitemapLastmod();
 
+// =========================================================================
+// SİTE İÇİ ARAMA DİZİNİ (dist/arama-dizini.json)
+// =========================================================================
+function generateSearchIndex() {
+  const aramaDizini = [];
+  const sitemapXml = fs.readFileSync(path.join(distDir, 'sitemap.xml'), 'utf8');
+  const sitemapUrls = [...sitemapXml.matchAll(/<loc>https:\/\/trendmasterakademi\.com([^<]*)<\/loc>/g)].map(m => m[1]);
+
+  for (const url of sitemapUrls) {
+    const relPath = url === '/' ? '' : url.replace(/^\/|\/$/g, '');
+    const htmlFile = path.join(distDir, relPath, 'index.html');
+    if (!fs.existsSync(htmlFile)) {
+      console.error(`[ARAMA DİZİNİ HATA] HTML dosyası bulunamadı: ${htmlFile}`);
+      process.exit(1);
+    }
+    const htmlContent = fs.readFileSync(htmlFile, 'utf8');
+    
+    // 1. baslik: Sayfanın <title>'ı, sonundaki " | Trend Master Akademi" olmadan
+    const titleMatch = htmlContent.match(/<title>([\s\S]*?)<\/title>/i);
+    let baslik = titleMatch ? titleMatch[1].replace(/\s*\|\s*Trend Master Akademi$/i, '').trim() : '';
+    
+    // 2. metin: Sayfanın h1'i, meta açıklaması ve ön-render gövdesinin (<div id="root"> içi) bütün görünen metni
+    const rootMatch = htmlContent.match(/<div id="root">([\s\S]*?)<\/div>\s*<\/body>/i);
+    const rootHtml = rootMatch ? rootMatch[1] : '';
+    
+    const cleanRootText = rootHtml
+      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+      .replace(/<[^>]+>/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/\s+/g, ' ')
+      .trim();
+    
+    const metaDescMatch = htmlContent.match(/<meta name="description" content="(.*?)"/i);
+    const metaDesc = metaDescMatch ? metaDescMatch[1].replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim() : '';
+    
+    const fullMetin = `${metaDesc ? metaDesc + ' ' : ''}${cleanRootText}`.trim();
+    
+    const pageDil = getDil(url);
+    const pageKategori = getKategori(url);
+    
+    aramaDizini.push({
+      url,
+      dil: pageDil,
+      kategori: pageKategori,
+      baslik,
+      metin: fullMetin
+    });
+  }
+
+  const aramaDiziniJson = JSON.stringify(aramaDizini, null, 2);
+  fs.writeFileSync(path.join(distDir, 'arama-dizini.json'), aramaDiziniJson, 'utf8');
+  const rawKb = (Buffer.byteLength(aramaDiziniJson, 'utf8') / 1024).toFixed(1);
+  const gzipKb = (zlib.gzipSync(Buffer.from(aramaDiziniJson)).length / 1024).toFixed(1);
+  console.log(`[ARAMA DİZİNİ] ${aramaDizini.length} sayfa · ${rawKb} KB · gzip ${gzipKb} KB`);
+
+  // Arka plan animasyonu metin verisi (logs + terms, <= 10 KB)
+  const bgLogs = teshisData.map(t => cleanLogForQuestion(t.belirti?.log) || t.baslik?.tr).filter(Boolean);
+  const bgTerms = glossaryTerms.flatMap(g => [g.title, g.titleEn].filter(Boolean));
+  const arkaPlanJson = JSON.stringify({ logs: bgLogs, terms: bgTerms });
+  fs.writeFileSync(path.join(distDir, 'arka-plan-metin.json'), arkaPlanJson, 'utf8');
+  fs.writeFileSync(path.join(__dirname, 'public', 'arka-plan-metin.json'), arkaPlanJson, 'utf8');
+}
+
+generateSearchIndex();
+
 // Build guard: SEO & HTML integrity verification
 function verifySeoAndHtmlIntegrity() {
   const forbidden = ['[object Object]', 'undefined', 'NaN', '>null<', '{tr', '{en'];
@@ -3850,7 +4056,7 @@ function verifySeoAndHtmlIntegrity() {
   const seenTitles = new Map();
   const seenDescs = new Map();
 
-  const beklenen = 71 + 2 * teshisData.length;   // 71 = teşhis dışındaki sayfalar
+  const beklenen = 73 + 2 * teshisData.length;   // 73 = teşhis dışındaki sayfalar (Adım 94: /tanitim/ ve /overview/)
   if (canonicalPages.length !== beklenen) {
     errors.push(`Expected exactly ${beklenen} canonical pages, found ${canonicalPages.length}`);
   }
@@ -4310,7 +4516,7 @@ function verifyH1Integrity() {
     });
     process.exit(1);
   }
-  console.log(`[BUILD GUARD H1-C GEÇTİ] Tüm ${71 + 2 * teshisData.length} sayfanın dist HTML H1 başlığı veri dosyasıyla birebir eşleşiyor (${pages.length} sayfa doğrulandı).`);
+  console.log(`[BUILD GUARD H1-C GEÇTİ] Tüm ${73 + 2 * teshisData.length} sayfanın dist HTML H1 başlığı veri dosyasıyla birebir eşleşiyor (${pages.length} sayfa doğrulandı).`);
 }
 
 verifyH1Integrity();
@@ -4975,3 +5181,122 @@ function verifyAccessibilityRules() {
 }
 
 verifyAccessibilityRules();
+
+// ---------------------------------------------------------------------------
+// [BUILD GUARD ANA SAYFA] Adım 94 — Arama dizini, ana sayfa bağlantıları, çapalar ve Tanıtım
+// ---------------------------------------------------------------------------
+function verifyAnaSayfaGuard() {
+  console.log('\n[BUILD GUARD ANA SAYFA] Ana sayfa ve arama dizini kuralları denetleniyor...');
+  const errors = [];
+
+  // 1. Arama dizini kontrolü
+  const dizinPath = path.join(distDir, 'arama-dizini.json');
+  if (!fs.existsSync(dizinPath)) {
+    errors.push('dist/arama-dizini.json bulunamadı');
+  } else {
+    let dizin = [];
+    try {
+      dizin = JSON.parse(fs.readFileSync(dizinPath, 'utf8'));
+    } catch (e) {
+      errors.push('dist/arama-dizini.json JSON formatında değil: ' + e.message);
+    }
+
+    const smPath = path.join(distDir, 'sitemap.xml');
+    const smContent = fs.readFileSync(smPath, 'utf8');
+    const smUrls = [...smContent.matchAll(/<loc>https:\/\/trendmasterakademi\.com([^<]*)<\/loc>/g)].map(m => m[1]);
+
+    if (dizin.length !== smUrls.length) {
+      errors.push(`Arama dizininde ${dizin.length} sayfa var, site haritasında ${smUrls.length} bekleniyordu`);
+    }
+
+    const dizinUrls = new Set(dizin.map(d => d.url));
+    if (dizinUrls.size !== dizin.length) {
+      errors.push(`Arama dizininde tekrarlanan adresler var (${dizin.length - dizinUrls.size} tekrar)`);
+    }
+
+    for (const url of smUrls) {
+      if (!dizinUrls.has(url)) {
+        errors.push(`Site haritasındaki ${url} arama dizininde yok`);
+      }
+    }
+
+    const validKategoriler = ['anasayfa', 'acil', 'teshis', 'araclar', 'ajans', 'vaka', 'sozluk', 'kurumsal'];
+    for (const d of dizin) {
+      if (!d.baslik || typeof d.baslik !== 'string' || d.baslik.trim().length === 0) {
+        errors.push(`${d.url} kaydının başlığı boş`);
+      }
+      if (!d.metin || typeof d.metin !== 'string' || d.metin.trim().length < 20) {
+        errors.push(`${d.url} kaydının metni yetersiz (${d.metin ? d.metin.length : 0} karakter)`);
+      }
+      const beklenenDil = getDil(d.url);
+      if (d.dil !== beklenenDil) {
+        errors.push(`${d.url} dil alanı '${d.dil}', beklenen '${beklenenDil}'`);
+      }
+      const beklenenKat = getKategori(d.url);
+      if (d.kategori !== beklenenKat || !validKategoriler.includes(d.kategori)) {
+        errors.push(`${d.url} kategori alanı '${d.kategori}', beklenen '${beklenenKat}'`);
+      }
+    }
+  }
+
+  // 2. Ana sayfa ön-render bağlantıları kontrolü
+  const anaHtmlPath = path.join(distDir, 'index.html');
+  if (!fs.existsSync(anaHtmlPath)) {
+    errors.push('dist/index.html bulunamadı');
+  } else {
+    const anaHtml = fs.readFileSync(anaHtmlPath, 'utf8');
+    const anaLinkler = new Set([...anaHtml.matchAll(/href="(\/[^"#?]*)"/g)].map(m => m[1]));
+    const trOrtakPages = getPagesForLang('tr');
+    const eksikLinkler = trOrtakPages.filter(p => !anaLinkler.has(p.url));
+    if (eksikLinkler.length > 0) {
+      errors.push(`Ana sayfa ön-render'ında ${eksikLinkler.length} sayfa bağlantısı eksik: ${eksikLinkler.map(p => p.url).slice(0, 5).join(', ')}`);
+    }
+  }
+
+  // 3. Eski ana sayfa çapaları kontrolü (/#contact, /#faq, vb.)
+  const scanFiles = [];
+  const walk = (d) => {
+    if (!fs.existsSync(d)) return;
+    for (const ent of fs.readdirSync(d, { withFileTypes: true })) {
+      const p = path.join(d, ent.name);
+      if (ent.isDirectory()) {
+        if (ent.name !== 'assets' || d === distDir) walk(p);
+      } else if (/\.(jsx?|json|html)$/.test(ent.name)) {
+        scanFiles.push(p);
+      }
+    }
+  };
+  walk(path.join(__dirname, 'src'));
+  walk(distDir);
+
+  const capaRegex = /["'`]\/#(contact|faq|services|founder|cases|terminal|hero|agency-preview)["'`]/;
+  for (const f of scanFiles) {
+    const content = fs.readFileSync(f, 'utf8');
+    if (capaRegex.test(content)) {
+      errors.push(`${path.relative(__dirname, f)} içinde eski ana sayfa çapası tespit edildi`);
+    }
+  }
+
+  // 4. Tanıtım sayfası kontrolü
+  const tanitimHtmlPath = path.join(distDir, 'tanitim', 'index.html');
+  if (!fs.existsSync(tanitimHtmlPath)) {
+    errors.push('dist/tanitim/index.html bulunamadı');
+  } else {
+    const tanitimHtml = fs.readFileSync(tanitimHtmlPath, 'utf8');
+    const h1Match = tanitimHtml.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+    const tanitimH1 = h1Match ? h1Match[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() : '';
+    if (!tanitimH1.includes('Kritik Sistem Kesintileri')) {
+      errors.push(`Tanıtım sayfası H1 başlığı eski ana sayfa H1'i ile uyuşmuyor: "${tanitimH1}"`);
+    }
+  }
+
+  if (errors.length > 0) {
+    console.error(`\n[BUILD GUARD ANA SAYFA HATA] ${errors.length} kural ihlali:`);
+    errors.forEach(err => console.error(`  - ${err}`));
+    process.exit(1);
+  }
+
+  console.log('[BUILD GUARD ANA SAYFA GEÇTİ] 125 sayfa arama dizininde ve bir kategoride; ana sayfa 66 sayfaya bağlanıyor; eski ana sayfa çapası yok.');
+}
+
+verifyAnaSayfaGuard();

@@ -25,6 +25,7 @@ export const ROUTE_PAIRS = [
   { tr: '/kurtarma-maliyeti/', en: '/rescue-roi/' },
   { tr: '/kit/', en: '/agency-kit/' },
   { tr: '/tmai/', en: '/ai-code-takeover/' },
+  { tr: '/tanitim/', en: '/overview/' },
 ];
 
 export const normalizePath = (pathname) => {
@@ -99,7 +100,8 @@ export const getLangFromPath = (pathname) => {
     norm.startsWith('/codebase-health/') ||
     norm.startsWith('/rescue-roi/') ||
     norm.startsWith('/agency-kit/') ||
-    norm.startsWith('/ai-code-takeover/')
+    norm.startsWith('/ai-code-takeover/') ||
+    norm.startsWith('/overview/')
   ) {
     return 'en';
   }
@@ -120,7 +122,8 @@ export const getLangFromPath = (pathname) => {
     norm.startsWith('/kod-sagligi/') ||
     norm.startsWith('/kurtarma-maliyeti/') ||
     norm.startsWith('/kit/') ||
-    norm.startsWith('/tmai/')
+    norm.startsWith('/tmai/') ||
+    norm.startsWith('/tanitim/')
   ) {
     return 'tr';
   }
