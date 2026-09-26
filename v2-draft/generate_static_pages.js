@@ -3876,7 +3876,17 @@ pages.forEach(page => {
     </div>
   `;
 
-  html = html.replace(/<div id="root">[\s\S]*?<\/body>/i, `<div id="root">${semanticBlock}</div>\n  </body>`);
+  if (page.dir === '') {
+    const ssrHomePath = path.join(distDir, 'ssr-home.html');
+    let homeRootHtml = '';
+    if (fs.existsSync(ssrHomePath)) {
+      homeRootHtml = fs.readFileSync(ssrHomePath, 'utf8');
+    }
+    html = html.replace(/<div id="root">[\s\S]*?<\/body>/i, `<div id="root">${homeRootHtml}</div>\n  </body>`);
+    html = html.replace('</head>', `  <link rel="preload" as="image" imagesrcset="/arka-plan/sahne-1-768.webp 768w, /arka-plan/sahne-1-1280.webp 1280w, /arka-plan/sahne-1-1920.webp 1920w" imagesizes="100vw" fetchpriority="high">\n  </head>`);
+  } else {
+    html = html.replace(/<div id="root">[\s\S]*?<\/body>/i, `<div id="root">${semanticBlock}</div>\n  </body>`);
+  }
 
   const onYukle = sayfaOnYukleme(cleanPath).filter((u) => !html.includes(u));
   if (onYukle.length) {
@@ -4002,22 +4012,35 @@ function generateSearchIndex() {
     const titleMatch = htmlContent.match(/<title>([\s\S]*?)<\/title>/i);
     let baslik = titleMatch ? titleMatch[1].replace(/\s*\|\s*Trend Master Akademi$/i, '').trim() : '';
     
-    // 2. metin: Sayfanın h1'i, meta açıklaması ve ön-render gövdesinin (<div id="root"> içi) bütün görünen metni
+    // 2. metin: Sayfanın h1'i, meta açıklaması ve ön-render gövdesinin (<div id="root"> içi) görünen metni
+    // Menü: <nav>...</nav> öğeleri çıkarılır (sitenin ortak menü satırı ve yol izleri arama dizinine girmez)
     const rootMatch = htmlContent.match(/<div id="root">([\s\S]*?)<\/div>\s*<\/body>/i);
     const rootHtml = rootMatch ? rootMatch[1] : '';
     
-    const cleanRootText = rootHtml
+    const withoutNav = rootHtml.replace(/<nav[\s\S]*?<\/nav>/gi, ' ');
+
+    const cleanRootText = withoutNav
       .replace(/<script[\s\S]*?<\/script>/gi, ' ')
       .replace(/<style[\s\S]*?<\/style>/gi, ' ')
       .replace(/<[^>]+>/g, ' ')
       .replace(/&amp;/g, '&')
+      .replace(/&quot;/g, '"')
+      .replace(/&#x27;|&#39;/g, "'")
+      .replace(/&lt;/g, '<')
+      .replace(/&gt;/g, '>')
       .replace(/\s+/g, ' ')
       .trim();
     
     const metaDescMatch = htmlContent.match(/<meta name="description" content="(.*?)"/i);
     const metaDesc = metaDescMatch ? metaDescMatch[1].replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim() : '';
     
-    const fullMetin = `${metaDesc ? metaDesc + ' ' : ''}${cleanRootText}`.trim();
+    let fullMetin = '';
+    if (url === '/') {
+      // Ana sayfa: metin = h1 + slogan + meta açıklaması (< 600 karakter, dizin listesi girmez)
+      fullMetin = `${homeH1New} ${trLocale['home-slogan']} ${metaDesc}`.replace(/\s+/g, ' ').trim();
+    } else {
+      fullMetin = `${metaDesc ? metaDesc + ' ' : ''}${cleanRootText}`.replace(/\s+/g, ' ').trim();
+    }
     
     const pageDil = getDil(url);
     const pageKategori = getKategori(url);
@@ -4037,10 +4060,18 @@ function generateSearchIndex() {
   const gzipKb = (zlib.gzipSync(Buffer.from(aramaDiziniJson)).length / 1024).toFixed(1);
   console.log(`[ARAMA DİZİNİ] ${aramaDizini.length} sayfa · ${rawKb} KB · gzip ${gzipKb} KB`);
 
-  // Arka plan animasyonu metin verisi (logs + terms, <= 10 KB)
-  const bgLogs = teshisData.map(t => cleanLogForQuestion(t.belirti?.log) || t.baslik?.tr).filter(Boolean);
+  // Arka plan animasyonu metin verisi (gerçek logSatirlari + terms, <= 10 KB)
+  const teshisRaw = fs.readdirSync(path.join(__dirname, 'src', 'data', 'teshis'))
+    .filter(f => f.endsWith('.js'))
+    .map(f => fs.readFileSync(path.join(__dirname, 'src', 'data', 'teshis', f), 'utf8').replace(/\s+/g, ' ').trim())
+    .join('\n');
+
+  const bgLogs = teshisData.flatMap(t => t.logSatirlari || [])
+    .map(l => l.replace(/\s+/g, ' ').trim())
+    .filter(l => teshisRaw.includes(l))
+    .filter(Boolean);
   const bgTerms = glossaryTerms.flatMap(g => [g.title, g.titleEn].filter(Boolean));
-  const arkaPlanJson = JSON.stringify({ logs: bgLogs, terms: bgTerms });
+  const arkaPlanJson = JSON.stringify({ logs: bgLogs, terms: bgTerms }, null, 2);
   fs.writeFileSync(path.join(distDir, 'arka-plan-metin.json'), arkaPlanJson, 'utf8');
   fs.writeFileSync(path.join(__dirname, 'public', 'arka-plan-metin.json'), arkaPlanJson, 'utf8');
 }
@@ -5290,13 +5321,86 @@ function verifyAnaSayfaGuard() {
     }
   }
 
+  // 5. Adım 95: Ana sayfa HTML denetimi (sade şablon ssr-pre-render yok, combobox var, ilk sahne fotoğrafı var)
+  if (fs.existsSync(anaHtmlPath)) {
+    const anaHtml = fs.readFileSync(anaHtmlPath, 'utf8');
+    if (anaHtml.includes('ssr-pre-render')) {
+      errors.push("Ana sayfa HTML'inde sade şablon (ssr-pre-render) bulundu");
+    }
+    if (!/role="combobox"/.test(anaHtml)) {
+      errors.push("Ana sayfa HTML'inde arama kutusu (role=\"combobox\") bulunamadı");
+    }
+    if (!/\/arka-plan\/[^"')\s]+\.(avif|webp)/.test(anaHtml)) {
+      errors.push("Ana sayfa HTML'inde ilk sahnenin fotoğrafı bulunamadı");
+    }
+  }
+
+  // 6. Adım 95: Arama dizininde sitenin ortak menü metni bulunmamalı
+  if (fs.existsSync(dizinPath)) {
+    try {
+      const dizin = JSON.parse(fs.readFileSync(dizinPath, 'utf8'));
+      const MENU_STRINGS = [
+        'Kurtarılabilirlik İndeksi Post-Mortem ve Kök Neden Arşivi Triyaj Simülatörü',
+        'Salvageability Index Post-Mortem & RCA Triage Simulator',
+        'Ana Sayfa Hizmetler ve Çalışma Modeli Kapasite & Altyapı'
+      ];
+      for (const d of dizin) {
+        for (const m of MENU_STRINGS) {
+          if ((d.metin || '').includes(m)) {
+            errors.push(`${d.url} arama dizini kaydında sitenin ortak menü metni bulundu: "${m}"`);
+          }
+        }
+      }
+    } catch (e) {}
+  }
+
+  // 7. Adım 95: kaynaklar.json ve stok fotoğraf denetimi
+  const kaynaklarPath = path.join(distDir, 'arka-plan', 'kaynaklar.json');
+  if (!fs.existsSync(kaynaklarPath)) {
+    errors.push('dist/arka-plan/kaynaklar.json bulunamadı');
+  } else {
+    let kaynaklar = [];
+    try {
+      kaynaklar = JSON.parse(fs.readFileSync(kaynaklarPath, 'utf8'));
+    } catch (e) {
+      errors.push('dist/arka-plan/kaynaklar.json JSON formatında değil: ' + e.message);
+    }
+    if (kaynaklar.length < 4) {
+      errors.push(`kaynaklar.json içinde en az 4 fotoğraf bekleniyor, bulunan: ${kaynaklar.length}`);
+    }
+    const LISANS = { 'unsplash.com': 'Unsplash License', 'pexels.com': 'Pexels License' };
+    const arkaPlanDir = path.join(distDir, 'arka-plan');
+    const gorseller = fs.existsSync(arkaPlanDir) ? fs.readdirSync(arkaPlanDir).filter(f => /\.(avif|webp)$/i.test(f)) : [];
+
+    for (const k of kaynaklar) {
+      let host = '';
+      try { host = new URL(k.kaynak).hostname.replace(/^www\./, ''); } catch (e) {}
+      if (!LISANS[host] || k.lisans !== LISANS[host] || !k.fotografci || !k.dosya || !k.sahne) {
+        errors.push(`kaynaklar.json kaydı geçersiz veya lisansı uyuşmuyor: ${JSON.stringify(k)}`);
+      }
+      const hasFile = gorseller.some(f => f.startsWith(String(k.dosya).replace(/\.(avif|webp)$/i, '')));
+      if (!hasFile) {
+        errors.push(`kaynaklar.json kaydındaki dosya (${k.dosya}) dist/arka-plan/ altında bulunamadı`);
+      }
+    }
+
+    const buyukDosyalar = gorseller.filter(f => fs.statSync(path.join(arkaPlanDir, f)).size > 200 * 1024);
+    if (buyukDosyalar.length > 0) {
+      errors.push(`200 KB sınırını aşan arka plan fotoğrafları tespit edildi: ${buyukDosyalar.join(', ')}`);
+    }
+    const toplamBoyut = gorseller.reduce((a, f) => a + fs.statSync(path.join(arkaPlanDir, f)).size, 0);
+    if (toplamBoyut > 2 * 1024 * 1024) {
+      errors.push(`Arka plan fotoğraflarının toplam boyutu 2 MB sınırını aşıyor: ${(toplamBoyut / 1024 / 1024).toFixed(2)} MB`);
+    }
+  }
+
   if (errors.length > 0) {
     console.error(`\n[BUILD GUARD ANA SAYFA HATA] ${errors.length} kural ihlali:`);
     errors.forEach(err => console.error(`  - ${err}`));
     process.exit(1);
   }
 
-  console.log('[BUILD GUARD ANA SAYFA GEÇTİ] 125 sayfa arama dizininde ve bir kategoride; ana sayfa 66 sayfaya bağlanıyor; eski ana sayfa çapası yok.');
+  console.log('[BUILD GUARD ANA SAYFA GEÇTİ] 125 sayfa arama dizininde ve bir kategoride; ana sayfa 66 sayfaya bağlanıyor; eski ana sayfa çapası yok; sade şablon yok; combobox ve lisanslı stok fotoğraflar doğrulandı.');
 }
 
 verifyAnaSayfaGuard();

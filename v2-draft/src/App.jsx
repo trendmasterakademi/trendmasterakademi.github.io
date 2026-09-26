@@ -55,12 +55,12 @@ const PageFallback = () => (
   </div>
 );
 
-function App() {
+export function AppShell() {
   const { i18n } = useTranslation();
   const isTr = isTurkish(i18n);
 
   return (
-    <Router>
+    <>
       <ScrollToTop />
       <div className="min-h-screen bg-[var(--paper)] text-[var(--ink-2)] selection:bg-[var(--accent)] selection:text-[var(--on-accent)] w-full max-w-full relative font-sans">
         <a
@@ -212,8 +212,17 @@ function App() {
         <FloatingActions />
         <CookieBanner />
       </div>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppShell />
     </Router>
   );
 }
 
 export default App;
+

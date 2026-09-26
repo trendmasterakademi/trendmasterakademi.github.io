@@ -6,7 +6,7 @@
   "scripts": {
     "prebuild": "node build_teshis_index.mjs",
     "dev": "vite",
-    "build": "vite build && node generate_static_pages.js",
+    "build": "vite build && node scripts/ssr-ana-sayfa.mjs && node generate_static_pages.js",
     "lint": "oxlint",
     "preview": "vite preview"
   },

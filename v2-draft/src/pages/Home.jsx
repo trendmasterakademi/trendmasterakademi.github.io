@@ -2,29 +2,43 @@ import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 import { Search, X, ArrowUpRight } from 'lucide-react';
+import HomeBackground from '../components/HomeBackground';
 import HomeCanvas from '../components/HomeCanvas';
 import { setPageSeo } from '../utils/pageTitle';
 import { isTurkish } from '../i18n';
-import { CATEGORY_DEFS, getPagesForLang, getKategori } from '../data/categoryMap';
+import { CATEGORY_DEFS, getPagesForLang } from '../data/categoryMap';
 
-// Normalization function matching Turkish letters and case
-const normalizeSearch = (str) => {
+// 1-to-1 character mapping table for Turkish and Latin characters
+const TR_CHAR_MAP = {
+  'ş': 's', 'Ş': 's',
+  'ı': 'i', 'I': 'i', 'İ': 'i', 'i': 'i',
+  'ğ': 'g', 'Ğ': 'g',
+  'ç': 'c', 'Ç': 'c',
+  'ö': 'o', 'Ö': 'o',
+  'ü': 'u', 'Ü': 'u'
+};
+
+const normalizeChar = (ch) => {
+  if (TR_CHAR_MAP[ch]) return TR_CHAR_MAP[ch];
+  const lower = ch.toLowerCase();
+  return lower.length === 1 ? lower : ch;
+};
+
+// Character-by-character normalization: length of input exactly matches length of output
+const normalize1to1 = (str) => {
   if (!str) return '';
-  let s = str.toLocaleLowerCase('tr');
-  s = s.replace(/ş/g, 's')
-       .replace(/ı/g, 'i')
-       .replace(/ğ/g, 'g')
-       .replace(/ç/g, 'c')
-       .replace(/ö/g, 'o')
-       .replace(/ü/g, 'u');
-  return s;
+  let res = '';
+  for (let i = 0; i < str.length; i++) {
+    res += normalizeChar(str[i]);
+  }
+  return res;
 };
 
 // Snippet boundary extraction (~140 chars)
 const extractSnippet = (text, query, maxLen = 140) => {
   if (!text) return '';
-  const normText = normalizeSearch(text);
-  const normQuery = normalizeSearch(query).trim();
+  const normText = normalize1to1(text);
+  const normQuery = normalize1to1(query).trim();
   if (!normQuery) {
     const raw = text.slice(0, maxLen).trim();
     return text.length > maxLen ? `${raw} …` : raw;
@@ -56,25 +70,57 @@ const extractSnippet = (text, query, maxLen = 140) => {
   return snippet;
 };
 
-// Vurgulama (<mark>) bileşeni
+// Vurgulama (<mark>) bileşeni: Harfsiz sorgularda da özgün harf kılıfını koruyarak işaretler
 const renderHighlight = (snippet, query) => {
   if (!query || !snippet) return snippet;
-  const words = query.trim().split(/\s+/).filter(Boolean);
+  const normSnippet = normalize1to1(snippet);
+  const words = query.trim().split(/\s+/).filter(Boolean).map(normalize1to1);
   if (!words.length) return snippet;
 
-  const escaped = words.map(w => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|');
-  const regex = new RegExp(`(${escaped})`, 'gi');
-  const parts = snippet.split(regex);
+  const intervals = [];
+  for (const w of words) {
+    if (!w) continue;
+    let pos = 0;
+    while ((pos = normSnippet.indexOf(w, pos)) !== -1) {
+      intervals.push([pos, pos + w.length]);
+      pos += w.length;
+    }
+  }
 
-  return parts.map((part, i) =>
-    regex.test(part) ? (
+  if (!intervals.length) return snippet;
+  intervals.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+
+  // Merge overlapping / adjacent intervals
+  const merged = [intervals[0]];
+  for (let i = 1; i < intervals.length; i++) {
+    const prev = merged[merged.length - 1];
+    const curr = intervals[i];
+    if (curr[0] <= prev[1]) {
+      prev[1] = Math.max(prev[1], curr[1]);
+    } else {
+      merged.push(curr);
+    }
+  }
+
+  const parts = [];
+  let last = 0;
+  for (let i = 0; i < merged.length; i++) {
+    const [start, end] = merged[i];
+    if (start > last) {
+      parts.push(snippet.slice(last, start));
+    }
+    parts.push(
       <mark key={i} className="bg-[var(--accent-wash)] text-[var(--accent-ink)] font-semibold px-0.5 rounded">
-        {part}
+        {snippet.slice(start, end)}
       </mark>
-    ) : (
-      part
-    )
-  );
+    );
+    last = end;
+  }
+  if (last < snippet.length) {
+    parts.push(snippet.slice(last));
+  }
+
+  return parts;
 };
 
 const Home = () => {
@@ -82,9 +128,15 @@ const Home = () => {
   const isTr = isTurkish(i18n);
   const navigate = useNavigate();
 
-  const [query, setQuery] = useState('');
-  const [debouncedQuery, setDebouncedQuery] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // Açılışta yazılan harfler kaybolmaz: Ön-render arama kutusuna girilmiş değeri devral
+  const [query, setQuery] = useState(() => {
+    if (typeof window !== 'undefined' && window.__TMA_INITIAL_SEARCH__) {
+      return window.__TMA_INITIAL_SEARCH__;
+    }
+    return '';
+  });
+  const [debouncedQuery, setDebouncedQuery] = useState(query);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(() => query.trim().length > 0);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [searchIndex, setSearchIndex] = useState(null);
   const [activeCategory, setActiveCategory] = useState('acil');
@@ -123,6 +175,13 @@ const Home = () => {
     }
   }, [searchIndex]);
 
+  // Ön-render sırasında değer girilmişse arama dizinini hemen başlat
+  useEffect(() => {
+    if (query.trim().length > 0) {
+      loadSearchIndex();
+    }
+  }, [loadSearchIndex, query]);
+
   // Close search dropdown on click outside
   useEffect(() => {
     const handleClickOutside = (e) => {
@@ -143,7 +202,7 @@ const Home = () => {
     const q = debouncedQuery.trim();
     if (q.length < 2 || !searchIndex) return [];
 
-    const normQ = normalizeSearch(q);
+    const normQ = normalize1to1(q);
     const qWords = normQ.split(/\s+/).filter(Boolean);
 
     // Kapsam: Aktif dilin sayfaları (Türkçede tr + ortak, İngilizcede en + ortak)
@@ -156,8 +215,8 @@ const Home = () => {
     const matches = [];
 
     for (const item of filteredIndex) {
-      const normTitle = normalizeSearch(item.baslik || '');
-      const normText = normalizeSearch(item.metin || '');
+      const normTitle = normalize1to1(item.baslik || '');
+      const normText = normalize1to1(item.metin || '');
 
       let score = 0;
 
@@ -224,32 +283,54 @@ const Home = () => {
     }
   };
 
-  // Directory pages for active language and category
+  // Sekmeler arasında ←/→ ile gezinme (WAI-ARIA sekme kalıbı)
+  const handleTabKeyDown = (e, currentCatId) => {
+    const catIds = CATEGORY_DEFS.map(c => c.id);
+    const idx = catIds.indexOf(currentCatId);
+    if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      const nextId = catIds[(idx + 1) % catIds.length];
+      setActiveCategory(nextId);
+      document.getElementById(`tab-${nextId}`)?.focus();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const prevId = catIds[(idx - 1 + catIds.length) % catIds.length];
+      setActiveCategory(prevId);
+      document.getElementById(`tab-${prevId}`)?.focus();
+    }
+  };
+
+  // Directory pages for active language
   const allCategoryPages = useMemo(() => {
     return getPagesForLang(isTr ? 'tr' : 'en');
   }, [isTr]);
 
-  const currentCategoryPages = useMemo(() => {
-    return allCategoryPages.filter(p => p.kategori === activeCategory);
-  }, [allCategoryPages, activeCategory]);
-
   const resultCountText = t('home-search-count').replace('{n}', searchResults.length);
 
   return (
-    <div className="home-dark-scope relative min-h-screen text-[var(--ink-2)] selection:bg-[var(--accent)] selection:text-[var(--on-accent)] font-sans">
-      {/* 1. Tam ekran sinematik arka plan animasyonu */}
+    <div className="home-dark-scope relative min-h-screen overflow-x-hidden text-[var(--ink-2)] selection:bg-[var(--accent)] selection:text-[var(--on-accent)] font-sans">
+      {/* 1. Canlı arka plan: Stok fotoğraf katmanı (Unsplash) */}
+      <HomeBackground />
+
+      {/* 2. Fotoğraf üstü şeffaf canvas animasyon katmanı (Ekran/ışık karışımı, saydamlık ~0.65) */}
       <HomeCanvas />
 
-      {/* Karartma katmanı (metin-zemin kontrastı ≥ 4.5:1) */}
+      {/* 3. Genel arka plan kararması: En fazla %30 (Tüm ekranı %80+ karartan katman kalktı) */}
       <div 
         aria-hidden="true" 
-        className="fixed inset-0 pointer-events-none z-[1] bg-gradient-to-b from-[var(--paper)] via-[var(--surface)] to-[var(--surface)] opacity-85"
+        className="fixed inset-0 pointer-events-none z-[1] bg-black/25"
       />
 
-      {/* 2. İlk Ekran (100svh, koyu, ortalanmış tek odak) */}
+      {/* 4. İlk Ekran (100svh, koyu, ortalanmış tek odak) */}
       <section className="relative z-10 min-h-[100svh] flex flex-col justify-center items-center px-4 pt-20 pb-12 text-center max-w-4xl mx-auto">
+        {/* Başlık, slogan ve arama kutusunun arkasında yumuşak kenarlı radyal karartma geçişi (Kontrast ≥ 4.5:1) */}
+        <div 
+          aria-hidden="true"
+          className="absolute inset-0 sm:-inset-x-16 -inset-y-12 bg-[radial-gradient(ellipse_at_center,rgba(15,18,22,0.85)_0%,rgba(15,18,22,0.55)_50%,transparent_75%)] pointer-events-none -z-10 rounded-3xl"
+        />
+
         {/* H1 Başlık (Source Serif 4, clamp boyutlu, dize sabiti JSX yok) */}
-        <h1 className="font-serif text-[var(--ink)] font-normal tracking-tight mb-3 [font-size:clamp(2.25rem,6vw+0.5rem,4.5rem)] leading-[1.08] select-none">
+        <h1 className="font-serif text-[var(--ink)] font-normal tracking-tight mb-3 [font-size:clamp(1.75rem,5.5vw+0.5rem,4.5rem)] break-words max-w-full leading-[1.08] select-none">
           {t('home-h1')}
         </h1>
 
@@ -392,13 +473,13 @@ const Home = () => {
         </div>
       </section>
 
-      {/* 3. İlk ekranın altı: "Tüm sayfalar" dizini (Koyu) */}
+      {/* 5. İlk ekranın altı: "Tüm sayfalar" dizini (Koyu) */}
       <section id="tum-sayfalar" className="relative z-10 max-w-6xl mx-auto px-4 py-16 sm:py-24 border-t border-[var(--rule)]">
         <h2 className="text-xl sm:text-2xl font-serif text-[var(--ink)] mb-8 text-center">
           {t('home-directory-title')}
         </h2>
 
-        {/* Kategoriler hap sekmelerle gösterilir (Düğmedir, başlık değildir — ERİŞİM koruması) */}
+        {/* Kategoriler hap sekmelerle gösterilir (WAI-ARIA sekme kalıbı, ←/→ ile geçilir) */}
         <div role="tablist" aria-label={t('home-directory-title')} className="flex flex-wrap justify-center gap-2 mb-10">
           {CATEGORY_DEFS.map(cat => {
             const isActive = activeCategory === cat.id;
@@ -407,8 +488,11 @@ const Home = () => {
                 key={cat.id}
                 type="button"
                 role="tab"
+                id={`tab-${cat.id}`}
+                aria-controls={`panel-${cat.id}`}
                 aria-selected={isActive}
                 onClick={() => setActiveCategory(cat.id)}
+                onKeyDown={(e) => handleTabKeyDown(e, cat.id)}
                 className={`px-4 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all cursor-pointer min-h-[44px] flex items-center ${
                   isActive
                     ? 'bg-[var(--accent)] text-[var(--on-accent)] shadow-md'
@@ -421,24 +505,37 @@ const Home = () => {
           })}
         </div>
 
-        {/* Seçili sekmenin sayfaları */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
-          {currentCategoryPages.map(page => (
-            <Link
-              key={page.url}
-              to={page.url}
-              className="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)]/40 hover:bg-[var(--paper)] transition-all group flex flex-col justify-between min-h-[76px]"
+        {/* 7 kategori paneli: WAI-ARIA tabpanel kalıbı. Yalnız biri görünür, diğerleri hidden. 66 sayfanın tümü HTML'de mevcuttur. */}
+        {CATEGORY_DEFS.map(cat => {
+          const isSelected = activeCategory === cat.id;
+          const pages = allCategoryPages.filter(p => p.kategori === cat.id);
+          return (
+            <div
+              key={cat.id}
+              role="tabpanel"
+              id={`panel-${cat.id}`}
+              aria-labelledby={`tab-${cat.id}`}
+              hidden={!isSelected}
+              className={isSelected ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4" : undefined}
             >
-              <span className="text-xs sm:text-sm font-medium text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors leading-snug line-clamp-2">
-                {page.baslik}
-              </span>
-              <span className="text-[11px] font-mono text-[var(--ink-3)] group-hover:text-[var(--accent)] transition-colors flex items-center justify-between mt-3 pt-2 border-t border-[var(--rule)]/60">
-                <span className="truncate">{page.url}</span>
-                <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity flex-shrink-0" />
-              </span>
-            </Link>
-          ))}
-        </div>
+              {pages.map(page => (
+                <Link
+                  key={page.url}
+                  to={page.url}
+                  className="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)]/40 hover:bg-[var(--paper)] transition-all group flex flex-col justify-between min-h-[76px]"
+                >
+                  <span className="text-xs sm:text-sm font-medium text-[var(--ink)] group-hover:text-[var(--accent)] transition-colors leading-snug line-clamp-2">
+                    {page.baslik}
+                  </span>
+                  <span className="text-[11px] font-mono text-[var(--ink-3)] group-hover:text-[var(--accent)] transition-colors flex items-center justify-between mt-3 pt-2 border-t border-[var(--rule)]/60">
+                    <span className="truncate">{page.url}</span>
+                    <ArrowUpRight className="w-3.5 h-3.5 opacity-60 group-hover:opacity-100 transition-opacity flex-shrink-0" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          );
+        })}
       </section>
     </div>
   );
