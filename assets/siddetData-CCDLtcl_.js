@@ -1,0 +1,1 @@
+var e={CRITICAL:`KRİTİK`,HIGH:`YÜKSEK`,MAJOR:`CİDDİ`},t=(t,n)=>n===`tr`?String(t||``).replace(/\b(CRITICAL|HIGH|MAJOR)\b/g,t=>e[t]):t;export{t};

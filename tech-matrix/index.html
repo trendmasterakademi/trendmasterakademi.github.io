@@ -1,0 +1,902 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+
+      // Adım 98: çerez kararı yoksa bant açılacak; ana sayfa alt konsolu dizüstü genişliklerinde karar verilene kadar bekler
+      try {
+        if (!localStorage.getItem('tma_cookie_consent')) document.documentElement.setAttribute('data-cerez-bandi', 'acik');
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Tech Stack Rescue Matrix | Trend Master Akademi</title>
+    <meta name="description" content="How deep TMA can go in a rescue: known bottlenecks and response readiness across your programming languages, databases and cloud infrastructure." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/tech-matrix/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teknoloji-uyumluluk/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teknoloji-uyumluluk/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/tech-matrix/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/tech-matrix/" />
+    <meta property="og:title" content="Tech Stack Rescue Matrix | Trend Master Akademi" />
+    <meta property="og:description" content="How deep TMA can go in a rescue: known bottlenecks and response readiness across your programming languages, databases and cloud infrastructure." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT &amp; White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/tech-matrix/" />
+    <meta name="twitter:title" content="Tech Stack Rescue Matrix | Trend Master Akademi" />
+    <meta name="twitter:description" content="How deep TMA can go in a rescue: known bottlenecks and response readiness across your programming languages, databases and cloud infrastructure." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://trendmasterakademi.com/#organization",
+      "name": "Trend Master Akademi",
+      "alternateName": "TMA Studio & Labs",
+      "legalName": "Mehmet Şahin",
+      "taxID": "7930336132",
+      "url": "https://trendmasterakademi.com",
+      "logo": "https://trendmasterakademi.com/logo-dark.png",
+      "image": "https://trendmasterakademi.com/og-image.jpg",
+      "description": "Dijital ajanslar, SaaS girişimleri ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), API Entegrasyonu ve Özel Yazılım Geliştirme Stüdyosu.",
+      "founder": {
+        "@type": "Person",
+        "name": "Mehmet Şahin",
+        "jobTitle": "Kurucu & Baş Yazılım Mimarı (Lead Architect)",
+        "image": "https://trendmasterakademi.com/images/mehmet-sahin-480.jpg",
+        "url": "https://trendmasterakademi.com/about/"
+      },
+      "telephone": "+905343713573",
+      "email": "info@trendmasterakademi.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091",
+        "addressLocality": "Konak",
+        "addressRegion": "İzmir",
+        "addressCountry": "TR"
+      },
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 09:00-24:00",
+      "sameAs": [
+        "https://www.linkedin.com/in/trendmasterakademi/"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Türkiye"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "B2B SWAT & Mühendislik Hizmetleri",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Acil Kod Kurtarma & Canlı Sistem Hotfix (Incident SWAT)",
+              "description": "HTTP 500 hataları, veritabanı kilitlenmeleri ve ödeme API kopmalarında acil müdahale."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yarım Kalan Proje Devralma (Abandoned Codebase Takeover)",
+              "description": "Önceki geliştiriciden kalan dokümantasyonsuz ve spagetti kod tabanlarının onarılması ve yayına alınması."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "B2B %100 White-Label Mühendislik & Kapasite Takviyesi",
+              "description": "Ajansların arka planında görünmez teknik ekip olarak resmi NDA altında proje teslimi."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "SaaS & Özel Web Uygulaması Mimarisi",
+              "description": "React, Next.js, Python/FastAPI ve Node.js ile sıfırdan ölçeklenebilir web ve bulut sistemleri."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yapay Zeka, LLM & Akıllı Otomasyon Entegrasyonları",
+              "description": "OpenAI, LLM, RAG ve akıllı agent iş akışlarının şirket içi süreçlere entegrasyonu."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://trendmasterakademi.com/#website",
+      "url": "https://trendmasterakademi.com",
+      "name": "Trend Master Akademi",
+      "publisher": {
+        "@id": "https://trendmasterakademi.com/#organization"
+      },
+      "inLanguage": [
+        "tr-TR",
+        "en-US"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tech Compatibility Matrix",
+          "item": "https://trendmasterakademi.com/tech-matrix/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-Bv-RbppQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-MPzDunqj.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-CAdBTtbb.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-BLUe_38R.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-BW3tzzJZ.css">
+    <link rel="modulepreload" crossorigin href="/assets/TechMatrix-GujQhE3b.js">
+  <link rel="modulepreload" crossorigin href="/assets/slaData-CxirMlqa.js">
+  <link rel="modulepreload" crossorigin href="/assets/calendly-9JWLTUFE.js">
+  <link rel="modulepreload" crossorigin href="/assets/pageTitle-CfrEi3-B.js">
+  <link rel="modulepreload" crossorigin href="/assets/radarData-8tGE4IHH.js">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Tech Stack Compatibility & Rescue Matrix</h1>
+        
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/overview/" class="hover:underline">Services & Engagement Model</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/ai-code-takeover/" class="hover:underline">tmai</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Confidentiality and Engagement Agreement</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue or Rebuild?</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-[var(--ink)]">Tech Stack Compatibility & Rescue Matrix</h2>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Node.js, Go, Python, PostgreSQL, Redis, Kubernetes, and AWS... Select your stack components to evaluate TMA’s surgical rescue capabilities, known failure vectors, and SWAT response times.</p>
+        
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-6">
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-3 p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] text-xs text-[var(--ink-3)] font-mono">
+      <div><strong class="text-[var(--tint-ok-ink)] block text-sm">6 Categories</strong> Backend, Frontend, DB, Infra</div>
+      <div><strong class="text-[var(--ink)] block text-sm">26 Stacks</strong> E-commerce Platforms · Payments, Marketplaces &amp; e-Invoicing · Backend &amp; Microservices · Frontend &amp; Mobile · Databases &amp; Cache · Cloud, DevOps &amp; Kernel</div>
+      <div><strong class="text-[var(--accent)] block text-sm">≤ 15 Minutes</strong> SEV-0 Immediate SWAT Triage</div>
+      <div><strong class="text-[var(--tint-warn-ink)] block text-sm">100%</strong> Pre-Intervention Snapshot Rule</div>
+    </div>
+
+    <h2 class="text-xl font-bold text-[var(--ink)]">Supported Technologies & Surgical Rescue Depth</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">WordPress &amp; WooCommerce</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>White screen after a plugin or theme update (PHP fatal error)</li>
+            <li>Payment captured but the order stuck in 'Pending payment'</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Locating the fault through debug.log and PHP-FPM logs, isolating plugin conflicts by bisection on a staging copy, reconciling orders against payment records, and moving WP-Cron to a real server cron.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Scope of intervention:</strong> We work on all the code on your server: theme, plugins, WooCommerce hooks and the database. Commercial plugins belong to their vendors; if the fault is inside one, it is reported to the vendor with evidence and a workaround is applied in your own code.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Shopify</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Product or cart page broken after a theme edit (Liquid)</li>
+            <li>Webhook delivery failures and the same order processed twice</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Diffing theme versions and rolling back to the last working one, webhook signature verification and processing each event once, rate-limit-aware queuing of API calls, and a stock reconciliation script.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Scope of intervention:</strong> Shopify's infrastructure and checkout belong to Shopify and are not modified. Scope: theme code, custom apps, webhooks, API integrations and the agency's own code. Platform-wide outages are tracked on Shopify's status page.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">ikas</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Records missing from orders because of incomplete mapping in a payment or invoicing integration</li>
+            <li>Page components broken after a theme customisation</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Using logs to separate platform, integration and custom-code faults; diffing theme changes and rolling back; reconciling orders, stock and products through the API; an evidence pack for the platform's support team when the fix belongs to them.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Scope of intervention:</strong> The platform's core code and infrastructure belong to ikas and are not modified. Scope: theme and template customisations, connections built on the platform's API and integration services, the agency's own code, and data consistency. Faults on the platform side are reported to ikas support with evidence.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Ticimax</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Pages failing after a custom design or template change</li>
+            <li>Carrier or volumetric-weight rules not matching in the shipping integration</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Using logs to separate platform, integration and custom-code faults; diffing template changes and rolling back; reconciling orders, stock and products through the services; an evidence pack for the platform's support team when the fix belongs to them.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Scope of intervention:</strong> The platform's core code and infrastructure belong to Ticimax and are not modified. Scope: theme and template customisations, connections built on the platform's API and integration services, the agency's own code, and data consistency. Faults on the platform side are reported to Ticimax support with evidence.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">IdeaSoft</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Storefront page broken after a template edit</li>
+            <li>Variants not matching in API-based product and stock imports</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Using logs to separate platform, integration and custom-code faults; diffing template changes and rolling back; reconciling orders, stock and products through the API; an evidence pack for the platform's support team when the fix belongs to them.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Scope of intervention:</strong> The platform's core code and infrastructure belong to IdeaSoft and are not modified. Scope: theme and template customisations, connections built on the platform's API and integration services, the agency's own code, and data consistency. Faults on the platform side are reported to IdeaSoft support with evidence.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">T-Soft</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Custom code left incompatible after a platform update</li>
+            <li>404s and lost redirects after URL changes</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Using logs to separate platform, integration and custom-code faults; mapping old URLs to new ones and setting up redirects; reconciling orders, stock and products through the API; an evidence pack for the platform's support team when the fix belongs to them.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Scope of intervention:</strong> The platform's core code and infrastructure belong to T-Soft and are not modified. Scope: theme and template customisations, connections built on the platform's API and integration services, the agency's own code, and data consistency. Faults on the platform side are reported to T-Soft support with evidence.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">iyzico</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Payment succeeds but the callback is not processed, so no order is created</li>
+            <li>Empty cart after the 3D Secure return because the session cookie is lost</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Matching payment records against orders, fixing the callback URL and cookie settings (SameSite), making the notification handler process each payment once, and rebuilding missing orders from payment records.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Scope of intervention:</strong> The payment infrastructure, the 3D Secure page and the iyzico account belong to iyzico. Scope is the code on your side: starting the payment, handling the callback and notification, updating the order, and the refund flow. Account, limit and fee matters stay between iyzico and the account holder.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">PayTR</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Signature (hash) mismatch when generating the iFrame token</li>
+            <li>Notification (callback) requests not getting the expected response, causing repeated notifications</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Step-by-step verification of the token request fields and signature calculation, making the notification handler return the expected response and process each payment once, and reconciling payments against orders.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Scope of intervention:</strong> The payment infrastructure, the payment page and the PayTR account belong to PayTR. Scope is the code on your side: the token request, handling the notification, and updating the order. Account, limit and fee matters stay between PayTR and the account holder.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Trendyol API</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Stock and price updates cut off by rate limits</li>
+            <li>Products assumed sent but actually rejected because batch results were never checked</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Rate-limit-aware queuing with retries at increasing intervals, tracking batch results, making order pulls resume from where they stopped, a stock reconciliation report, and an alert when the integration stops.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Scope of intervention:</strong> The marketplace, its rules and the seller panel belong to Trendyol. Scope is the store's integration code: authentication, rate-limit compliance, stock, price and order mapping, retries and reconciliation. If a ready-made integrator is used, the integrator's own software is not modified. Seller account actions and marketplace support tickets stay with the store owner.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Hepsiburada API</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Requests rejected because of a wrong service key or user credentials</li>
+            <li>Stock and price updates cut off by rate limits</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Verifying credentials and request format, rate-limit-aware queuing of requests, listing and fixing product matches, making order pulls resume from where they stopped, and an alert when the integration stops.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Scope of intervention:</strong> The marketplace, its rules and the seller panel belong to Hepsiburada. Scope is the store's integration code: authentication, rate-limit compliance, stock, price and order mapping, retries and reconciliation. If a ready-made integrator is used, the integrator's own software is not modified. Seller account actions and marketplace support tickets stay with the store owner.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">e-Fatura &amp; e-Arşiv Integrators (Turkey)</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Order completed but no invoice created</li>
+            <li>Two invoices for the same order</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Matching orders to invoice records, sending each invoice request once per order, logging and fixing integrator rejections, and listing and resubmitting missing invoices.</p>
+        <p class="text-xs text-[var(--ink-2)] pt-1"><strong class="text-[var(--ink)]">Scope of intervention:</strong> Invoices are issued and transmitted to the Turkish Revenue Administration (GİB) by the private integrator the taxpayer has contracted. Scope is the connection to the integrator: order-to-invoice mapping, requests, error handling and resubmission. No tax, regulatory or accounting advice is given; those stay with the taxpayer's accountant.</p>
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Node.js (Nest / Express / Fastify)</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Event Loop starvation &amp; synchronous CPU blocking</li>
+            <li>Unhandled Promise Rejection silent crash cascades</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> V8 Heap snapshot profiling, Chrome DevTools CPU analysis, Clinic.js flamegraphs, libuv thread pool tuning, and clustering surgery.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Python (Django / FastAPI / Flask)</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>ASGI/WSGI worker lockups &amp; Gunicorn/Uvicorn timeouts</li>
+            <li>Django ORM n+1 query disasters and runaway memory bloat</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Py-Spy / cProfile live process tracing, async/await bottleneck eradication, Celery prefetch and concurrency tuning, raw SQL optimization.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Go (Golang)</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Goroutine leaks and runaway memory consumption</li>
+            <li>Data races (concurrent memory access conflicts)</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> pprof heap/goroutine/mutex dump analysis, Go race detector diagnostics, channel architecture refactoring, and sync.Pool zero-allocation optimization.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">PHP (Laravel / Symfony)</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>PHP-FPM worker pool starvation &amp; 502/504 gateway timeouts</li>
+            <li>Eloquent ORM uncontrolled model hydrations &amp; RAM exhaustion</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> PHP-FPM pm.max_children tuning &amp; slowlog dissection, Laravel Octane (Swoole/RoadRunner) migration, query indexing and layered caching.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Java / Spring Boot</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Scheduled SWAT — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>JVM Metaspace / Heap OutOfMemoryError crashes</li>
+            <li>Garbage Collection Stop-The-World pause freezes</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> JProfiler / VisualVM heap dump &amp; thread dump forensics, G1GC / ZGC tuning, HikariCP pool optimization, and native query isolation.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">React / Next.js</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>SSR hydration mismatch &amp; White Screen of Death (WSOD)</li>
+            <li>Next.js App Router server component memory leaks</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> SSR/SSG/ISR hybrid architecture migration, Webpack/Turbopack chunk splitting, dynamic import optimization, and state re-render isolation.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Vue / Nuxt</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Universal rendering (Nitro engine) memory leaks</li>
+            <li>Circular dependency loops in reactive state stores</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Nitro server engine memory profiling, SSR data-fetching streamlining, and composables refactoring.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">React Native &amp; Flutter</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Scheduled SWAT — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Native bridge deadlocks and UI frame drops (FPS collapse)</li>
+            <li>iOS/Android background task terminations by OS</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Hermes engine memory profiling, Native module bridge optimization, and offline-first SQLite sync.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">PostgreSQL</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Connection pool exhaustion (max_connections ceiling)</li>
+            <li>Table &amp; index bloat causing autovacuum lag</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> PgBouncer pool installation, pg_stat_activity &amp; pg_stat_statements diagnostics, EXPLAIN ANALYZE query surgery, and zero-downtime concurrent indexing.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">MySQL / MariaDB</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>InnoDB buffer pool starvation and disk I/O thrashing</li>
+            <li>Metadata locks blocking concurrent DDL/DML operations</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> SHOW ENGINE INNODB STATUS forensics, slow query log eradication, innodb_buffer_pool_size tuning, and read-replica offloading.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Redis (Cache &amp; Message Broker)</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>Maxmemory limit reached: OOM command not allowed</li>
+            <li>Single-thread blocking: KEYS * and expensive O(N) operations</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Slowlog analysis, non-blocking SCAN migration, eviction policy (volatile-lru) tuning, and Sentinel/Cluster failover inspection.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">MongoDB</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-1 / SEV-2</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-1 ≤ 30 min · SEV-2 ≤ 2 hours</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>WiredTiger cache pressure and write ticket exhaustion</li>
+            <li>Unindexed aggregation pipelines exceeding 100MB RAM limit</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> CurrentOp forensic auditing, compound index remodeling, aggregation memory optimization, and replica set arbitrage.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Docker &amp; Kubernetes (K8s)</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>CrashLoopBackOff &amp; OOMKilled pod restart cascades</li>
+            <li>Ingress Controller 502 / SSL certificate expiry outages</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> Kubectl event &amp; describe forensics, cgroup limits/requests rebalancing, ingress routing remediation, and zero-downtime rolling recovery.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Amazon Web Services (AWS)</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>RDS CPU / IOPS burst credit depletion &amp; database freezes</li>
+            <li>Lambda Cold Starts and VPC ENI attachment exhaustion</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> CloudWatch metric/alarm diagnostics, RDS Performance Insights surgery, ALB routing remediation, and IAM permission unblocking.</p>
+        
+      </article>
+      
+      
+      <article class="p-5 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+        <div class="flex items-center justify-between gap-2">
+          <h3 class="text-base font-bold text-[var(--ink)] font-mono">Linux Kernel, Nginx &amp; Caddy</h3>
+          <span class="text-xs font-mono text-[var(--tint-ok-ink)]">SEV-0 / SEV-1</span>
+        </div>
+        <p class="text-xs font-mono text-[var(--ink-3)]">Readiness: Immediate SWAT Triage — First response SEV-0 ≤ 15 min · SEV-1 ≤ 30 min</p>
+        <div class="pt-1">
+          <p class="text-xs font-semibold text-[var(--tint-warn-ink)] font-mono">Outage Vectors:</p>
+          <ul class="list-disc list-inside space-y-0.5 text-xs text-[var(--ink-3)]">
+            <li>SYN flood, socket exhaustion and TIME_WAIT surges</li>
+            <li>File descriptor (ulimit) exhaustion: 'Too many open files'</li>
+          </ul>
+        </div>
+        <p class="text-xs text-[var(--ink-3)] pt-1"><strong class="text-[var(--accent)]">TMA SWAT:</strong> sysctl.conf kernel socket tuning (somaxconn, tcp_tw_reuse), nofile ulimit expansion, Nginx reverse proxy buffer optimization.</p>
+        
+      </article>
+      
+    </div>
+  </section>
+
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

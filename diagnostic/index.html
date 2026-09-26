@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+
+      // Adım 98: çerez kararı yoksa bant açılacak; ana sayfa alt konsolu dizüstü genişliklerinde karar verilene kadar bekler
+      try {
+        if (!localStorage.getItem('tma_cookie_consent')) document.documentElement.setAttribute('data-cerez-bandi', 'acik');
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Diagnostic Catalog | Trend Master Akademi</title>
+    <meta name="description" content="From symptom to cause: 26 common software failures, each with three likely causes, the test that tells them apart, and the fix. Written for agencies." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/diagnostic/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/diagnostic/" />
+    <meta property="og:title" content="Diagnostic Catalog | Trend Master Akademi" />
+    <meta property="og:description" content="From symptom to cause: 26 common software failures, each with three likely causes, the test that tells them apart, and the fix. Written for agencies." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi - B2B Technical SWAT &amp; White-Label Engineering Studio" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="en_US" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/diagnostic/" />
+    <meta name="twitter:title" content="Diagnostic Catalog | Trend Master Akademi" />
+    <meta name="twitter:description" content="From symptom to cause: 26 common software failures, each with three likely causes, the test that tells them apart, and the fix. Written for agencies." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "name": "Diagnostic Catalog",
+      "description": "From symptom to root cause: technical diagnosis guide for agency leaders and engineering managers.",
+      "url": "https://trendmasterakademi.com/diagnostic/"
+    },
+    {
+      "@type": "ItemList",
+      "numberOfItems": 26,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "01 · Same Inventory Sold to Multiple Customers",
+          "url": "https://trendmasterakademi.com/diagnostic/ayni-stok-iki-musteriye-satildi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "02 · Payment Charged but Order Not Created",
+          "url": "https://trendmasterakademi.com/diagnostic/odeme-alindi-siparis-olusmadi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "03 · Payment Charged Twice for Single Order",
+          "url": "https://trendmasterakademi.com/diagnostic/odeme-iki-kez-alindi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "04 · Transactions Deadlocked, Pages Spinning",
+          "url": "https://trendmasterakademi.com/diagnostic/islemler-kilitlendi-sayfa-donuyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "05 · Data Assumed Lost After System Update",
+          "url": "https://trendmasterakademi.com/diagnostic/guncelleme-sonrasi-veri-kayboldu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "06 · Website Broke Immediately After Deployment",
+          "url": "https://trendmasterakademi.com/diagnostic/deploy-sonrasi-site-bozuldu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "07 · Site Returning 500 Error, Worked Yesterday",
+          "url": "https://trendmasterakademi.com/diagnostic/site-500-veriyor-dun-calisiyordu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "08 · Cloud Account Suspended, Site Down",
+          "url": "https://trendmasterakademi.com/diagnostic/bulut-hesabi-askiya-alindi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "09 · Backup Assumed to Exist, No Valid Backup",
+          "url": "https://trendmasterakademi.com/diagnostic/yedek-var-sanildi-yedek-yok/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "10 · SSL Certificate Expired, Security Warning Displayed",
+          "url": "https://trendmasterakademi.com/diagnostic/ssl-suresi-doldu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "name": "11 · Site Stalled Despite Idle Server Resources",
+          "url": "https://trendmasterakademi.com/diagnostic/site-yavasladi-sunucu-bos/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "name": "12 · Third-Party Integration Returning HTTP 429",
+          "url": "https://trendmasterakademi.com/diagnostic/entegrasyon-429-veriyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "name": "13 · Server Rebooted Daily to Clear Freeze",
+          "url": "https://trendmasterakademi.com/diagnostic/sunucu-her-gun-yeniden-baslatiliyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "name": "14 · Works in Staging, Fails in Production",
+          "url": "https://trendmasterakademi.com/diagnostic/testte-calisiyor-canlida-calismiyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "name": "15 · Every New Feature Breaks an Existing Feature",
+          "url": "https://trendmasterakademi.com/diagnostic/her-yeni-ozellik-oncekini-bozuyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 16,
+          "name": "16 · Developer Departed, Codebase Inaccessible",
+          "url": "https://trendmasterakademi.com/diagnostic/yazilimci-gitti-koda-girilemiyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 17,
+          "name": "17 · Zero Access to Domain Registrar and Hosting",
+          "url": "https://trendmasterakademi.com/diagnostic/domain-hosting-erisimi-yok/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 18,
+          "name": "18 · Form Submits Successfully but No Email Delivered",
+          "url": "https://trendmasterakademi.com/diagnostic/form-gonderiliyor-mail-gelmiyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 19,
+          "name": "19 · Website Dropped from Search Engine Results",
+          "url": "https://trendmasterakademi.com/diagnostic/site-aramalarda-gorunmez-oldu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 20,
+          "name": "20 · Minor Changes Take Days to Deliver",
+          "url": "https://trendmasterakademi.com/diagnostic/kucuk-degisiklik-gunler-suruyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 21,
+          "name": "21 · PayTR Token Error and 'In Progress'",
+          "url": "https://trendmasterakademi.com/diagnostic/paytr-token-ve-bildirim-hatasi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 22,
+          "name": "22 · iyzico 3D Secure Return Error",
+          "url": "https://trendmasterakademi.com/diagnostic/iyzico-3d-secure-donusu-hata/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 23,
+          "name": "23 · WooCommerce: Paid but Order Pending",
+          "url": "https://trendmasterakademi.com/diagnostic/woocommerce-odendi-siparis-bekliyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 24,
+          "name": "24 · Trendyol & Hepsiburada API: 429, 401",
+          "url": "https://trendmasterakademi.com/diagnostic/pazaryeri-api-429-401-hatasi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 25,
+          "name": "25 · Same Item Sold on Two Marketplaces",
+          "url": "https://trendmasterakademi.com/diagnostic/pazaryeri-stok-cift-satis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 26,
+          "name": "26 · e-Archive Invoice Not Being Issued",
+          "url": "https://trendmasterakademi.com/diagnostic/e-arsiv-fatura-kesilmiyor/"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Diagnostic Catalog",
+          "item": "https://trendmasterakademi.com/diagnostic/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-Bv-RbppQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-MPzDunqj.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-CAdBTtbb.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-BLUe_38R.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-BW3tzzJZ.css">
+    <link rel="modulepreload" crossorigin href="/assets/TeshisIndex-DwIslspy.js">
+  <link rel="modulepreload" crossorigin href="/assets/pageTitle-CfrEi3-B.js">
+  <link rel="modulepreload" crossorigin href="/assets/pageH1Data-Cddzsrtl.js">
+  <link rel="modulepreload" crossorigin href="/assets/indexSummary-C8rJM-G_.js">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Diagnostic Catalog</h1>
+        
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Home</a>
+          <a href="/overview/" class="hover:underline">Services & Engagement Model</a>
+          <a href="/agency/" class="hover:underline">Capacity & Infrastructure</a>
+          <a href="/agency-kit/" class="hover:underline">Agency Kit</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60s)</a>
+          <a href="/handover-audit/" class="hover:underline">Handover Audit</a>
+          <a href="/ai-code-takeover/" class="hover:underline">tmai</a>
+          <a href="/diagnostic/" class="hover:underline">Diagnostic Catalog</a>
+          <a href="/salvageability/" class="hover:underline">Salvageability Index</a>
+          <a href="/post-mortems/" class="hover:underline">Post-Mortem & RCA</a>
+          <a href="/triage/" class="hover:underline">Triage Simulator</a>
+          <a href="/sla/" class="hover:underline">SLA & Commitments</a>
+          <a href="/tech-matrix/" class="hover:underline">Tech Matrix</a>
+          <a href="/mutual-nda/" class="hover:underline">Mutual NDA</a>
+          <a href="/nda/" class="hover:underline">Confidentiality and Engagement Agreement</a>
+          <a href="/outage-simulator/" class="hover:underline">Damage Simulator</a>
+          <a href="/radar/" class="hover:underline">Status Radar</a>
+          <a href="/codebase-health/" class="hover:underline">Codebase Health</a>
+          <a href="/rescue-roi/" class="hover:underline">Rescue or Rebuild?</a>
+          <a href="/downtime-calc/" class="hover:underline">Downtime Calculator</a>
+          <a href="/glossary/" class="hover:underline">Technical Glossary</a>
+          <a href="/story/" class="hover:underline">Our Story</a>
+          <a href="/sos/" class="hover:underline">Emergency Support</a>
+          <a href="/about/" class="hover:underline">About Us</a>
+          <a href="/privacy/" class="hover:underline">Privacy Policy</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-[var(--ink)]">Diagnostic Catalog</h2>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">You see the symptom but not the cause. Each diagnosis begins with an observable failure, isolates potential causes, and outlines triage protocols.</p>
+        
+  <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Published Incident Catalog — 26 Diagnoses</h2>
+    <ul class="space-y-4">
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/ayni-stok-iki-musteriye-satildi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 01 · Same Inventory Sold to Multiple Customers</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · revenue loss · Orders &amp; Payments</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The last item in stock was checked out across two different orders, sending inventory negative.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/odeme-alindi-siparis-olusmadi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 02 · Payment Charged but Order Not Created</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · commercial loss · Orders &amp; Payments</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Customer was charged successfully but no order appears in the system.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/odeme-iki-kez-alindi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 03 · Payment Charged Twice for Single Order</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · chargeback risk · Orders &amp; Payments</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The client was billed twice for the same cart.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/islemler-kilitlendi-sayfa-donuyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 04 · Transactions Deadlocked, Pages Spinning</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · transaction halt · Performance</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Specific operations — checkout completion, stock updates, or batch imports — hang indefinitely until timeout.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/guncelleme-sonrasi-veri-kayboldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 05 · Data Assumed Lost After System Update</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · data panic · Data &amp; Migration</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Records vanish after a release, triggering data deletion panic.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/deploy-sonrasi-site-bozuldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 06 · Website Broke Immediately After Deployment</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · deploy failure · Live Outage</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">A new release went live and the site broke.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/site-500-veriyor-dun-calisiyordu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 07 · Site Returning 500 Error, Worked Yesterday</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · outage · Live Outage</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">A website that booted flawlessly yesterday throws 500 errors today, with team members insisting nothing changed.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/bulut-hesabi-askiya-alindi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 08 · Cloud Account Suspended, Site Down</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · outage · Infrastructure &amp; Access</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The application became completely unreachable out of nowhere.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/yedek-var-sanildi-yedek-yok/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 09 · Backup Assumed to Exist, No Valid Backup</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · data loss risk · Handover &amp; Continuity</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">An outage occurred, a rollback to backup was requested, only to discover snapshots were never generated or are un-restorable.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/ssl-suresi-doldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 10 · SSL Certificate Expired, Security Warning Displayed</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · trust loss · Infrastructure &amp; Access</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Users are blocked by 'Your connection is not private' browser interstitials.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/site-yavasladi-sunucu-bos/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 11 · Site Stalled Despite Idle Server Resources</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">High · conversion loss · Performance</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Page latency surges while server CPU and RAM remain idle.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/entegrasyon-429-veriyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 12 · Third-Party Integration Returning HTTP 429</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">High · data sync halted · Contact &amp; Integrations</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">An integration running smoothly for months — carrier, marketplace, payment gateway, or transactional email — abruptly fails with HTTP 429.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/sunucu-her-gun-yeniden-baslatiliyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 13 · Server Rebooted Daily to Clear Freeze</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">High · masked defect · Infrastructure &amp; Access</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The application slows down or freezes predictably every afternoon; rebooting restores normal function.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/testte-calisiyor-canlida-calismiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 14 · Works in Staging, Fails in Production</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">High · release blocker · Handover &amp; Continuity</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The developer says 'it works on my machine' and they are correct.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/her-yeni-ozellik-oncekini-bozuyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 15 · Every New Feature Breaks an Existing Feature</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">High · technical debt · Code Health</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Fixing one module breaks another unrelated area.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/yazilimci-gitti-koda-girilemiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 16 · Developer Departed, Codebase Inaccessible</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">High · continuity risk · Handover &amp; Continuity</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The developer who built the platform departed.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/domain-hosting-erisimi-yok/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 17 · Zero Access to Domain Registrar and Hosting</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">High · ownership risk · Handover &amp; Continuity</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The website is online but no stakeholder has root panel access.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/form-gonderiliyor-mail-gelmiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 18 · Form Submits Successfully but No Email Delivered</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">High · lost leads · Contact &amp; Integrations</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Lead or quote forms display 'Submitted successfully' but notifications never arrive in the team inbox.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/site-aramalarda-gorunmez-oldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 19 · Website Dropped from Search Engine Results</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">High · traffic loss · Visibility</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The site is accessible and looks normal, but organic search rankings plummeted.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/kucuk-degisiklik-gunler-suruyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 20 · Minor Changes Take Days to Deliver</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Medium · velocity loss · Code Health</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Trivial edits like updating button styles or adding a form field drag on for days, leading clients to assume reluctance.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/paytr-token-ve-bildirim-hatasi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 21 · PayTR Token Error and 'In Progress'</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · checkout halted · Orders &amp; Payments</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The PayTR payment frame will not open, or the customer pays but the transaction stays 'In Progress' in the PayTR panel.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/iyzico-3d-secure-donusu-hata/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 22 · iyzico 3D Secure Return Error</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · checkout halted · Orders &amp; Payments</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The customer entered the code on the bank's verification screen and, back on the site, hit a generic message such as 'system error' or 'an unexpected error occurred', sometimes with an emptied cart.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/woocommerce-odendi-siparis-bekliyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 23 · WooCommerce: Paid but Order Pending</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · commercial loss · Orders &amp; Payments</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The payment provider shows a successful payment, but in WooCommerce the order stays 'Pending payment' or 'On hold'.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/pazaryeri-api-429-401-hatasi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 24 · Trendyol &amp; Hepsiburada API: 429, 401</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">High · data sync halted · Contact &amp; Integrations</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The Trendyol or Hepsiburada integration suddenly starts returning 429, 401 or 403; stock, price and order sync stop.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/pazaryeri-stok-cift-satis/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 25 · Same Item Sold on Two Marketplaces</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Critical · revenue loss · Orders &amp; Payments</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">The last unit was sold on the same day on both Trendyol and Hepsiburada, or on both a marketplace and the site.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/diagnostic/e-arsiv-fatura-kesilmiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 26 · e-Archive Invoice Not Being Issued</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">High · legal obligation · Orders &amp; Payments</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Orders complete, but e-Archive invoices are not created, are created incomplete, or are rejected by the integrator.</p>
+        </li>
+    </ul>
+  </section>
+
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Engineering Desk | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | Email: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Address: Akdeniz Mah. Sehit Fethibey Cad. Heris Tower No: 55 Ic Kapi No: 091 Konak / Izmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

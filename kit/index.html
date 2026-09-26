@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+
+      // Adım 98: çerez kararı yoksa bant açılacak; ana sayfa alt konsolu dizüstü genişliklerinde karar verilene kadar bekler
+      try {
+        if (!localStorage.getItem('tma_cookie_consent')) document.documentElement.setAttribute('data-cerez-bandi', 'acik');
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Ajans Müdahale Kiti ve Crash Test 500 | Trend Master Akademi</title>
+    <meta name="description" content="Ajanslar için 8 slaytlık müdahale kılavuzu ve 60 saniyelik Crash Test 500 posteri: teknik krizde ne yapacağınızı önceden bilin. PDF olarak indirin." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/kit/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/kit/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/kit/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/agency-kit/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/kit/" />
+    <meta property="og:title" content="Ajans Müdahale Kiti ve Crash Test 500 | Trend Master Akademi" />
+    <meta property="og:description" content="Ajanslar için 8 slaytlık müdahale kılavuzu ve 60 saniyelik Crash Test 500 posteri: teknik krizde ne yapacağınızı önceden bilin. PDF olarak indirin." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi — Ajanslar için white-label mühendislik ve acil kod kurtarma masası" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/kit/" />
+    <meta name="twitter:title" content="Ajans Müdahale Kiti ve Crash Test 500 | Trend Master Akademi" />
+    <meta name="twitter:description" content="Ajanslar için 8 slaytlık müdahale kılavuzu ve 60 saniyelik Crash Test 500 posteri: teknik krizde ne yapacağınızı önceden bilin. PDF olarak indirin." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://trendmasterakademi.com/#organization",
+      "name": "Trend Master Akademi",
+      "alternateName": "TMA Studio & Labs",
+      "legalName": "Mehmet Şahin",
+      "taxID": "7930336132",
+      "url": "https://trendmasterakademi.com",
+      "logo": "https://trendmasterakademi.com/logo-dark.png",
+      "image": "https://trendmasterakademi.com/og-image.jpg",
+      "description": "Dijital ajanslar, SaaS girişimleri ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), API Entegrasyonu ve Özel Yazılım Geliştirme Stüdyosu.",
+      "founder": {
+        "@type": "Person",
+        "name": "Mehmet Şahin",
+        "jobTitle": "Kurucu & Baş Yazılım Mimarı (Lead Architect)",
+        "image": "https://trendmasterakademi.com/images/mehmet-sahin-480.jpg",
+        "url": "https://trendmasterakademi.com/about/"
+      },
+      "telephone": "+905343713573",
+      "email": "info@trendmasterakademi.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091",
+        "addressLocality": "Konak",
+        "addressRegion": "İzmir",
+        "addressCountry": "TR"
+      },
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 09:00-24:00",
+      "sameAs": [
+        "https://www.linkedin.com/in/trendmasterakademi/"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Türkiye"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "B2B SWAT & Mühendislik Hizmetleri",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Acil Kod Kurtarma & Canlı Sistem Hotfix (Incident SWAT)",
+              "description": "HTTP 500 hataları, veritabanı kilitlenmeleri ve ödeme API kopmalarında acil müdahale."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yarım Kalan Proje Devralma (Abandoned Codebase Takeover)",
+              "description": "Önceki geliştiriciden kalan dokümantasyonsuz ve spagetti kod tabanlarının onarılması ve yayına alınması."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "B2B %100 White-Label Mühendislik & Kapasite Takviyesi",
+              "description": "Ajansların arka planında görünmez teknik ekip olarak resmi NDA altında proje teslimi."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "SaaS & Özel Web Uygulaması Mimarisi",
+              "description": "React, Next.js, Python/FastAPI ve Node.js ile sıfırdan ölçeklenebilir web ve bulut sistemleri."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yapay Zeka, LLM & Akıllı Otomasyon Entegrasyonları",
+              "description": "OpenAI, LLM, RAG ve akıllı agent iş akışlarının şirket içi süreçlere entegrasyonu."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://trendmasterakademi.com/#website",
+      "url": "https://trendmasterakademi.com",
+      "name": "Trend Master Akademi",
+      "publisher": {
+        "@id": "https://trendmasterakademi.com/#organization"
+      },
+      "inLanguage": [
+        "tr-TR",
+        "en-US"
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "TMA Agency Kit",
+          "item": "https://trendmasterakademi.com/kit/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-Bv-RbppQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-MPzDunqj.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-CAdBTtbb.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-BLUe_38R.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-BW3tzzJZ.css">
+    <link rel="modulepreload" crossorigin href="/assets/AgencyKit-Cn-7yzjy.js">
+  <link rel="modulepreload" crossorigin href="/assets/pageTitle-CfrEi3-B.js">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Ajanslar İçin Müdahale & Hazırlık Kiti</h1>
+        
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/tanitim/" class="hover:underline">Hizmetler ve Çalışma Modeli</a>
+          <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
+          <a href="/kit/" class="hover:underline">Ajans Kiti</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
+          <a href="/tmai/" class="hover:underline">tmai</a>
+          <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
+          <a href="/kurtarilabilirlik/" class="hover:underline">Kurtarılabilirlik İndeksi</a>
+          <a href="/post-mortem/" class="hover:underline">Post-Mortem ve Kök Neden Arşivi</a>
+          <a href="/triyaj/" class="hover:underline">Triyaj Simülatörü</a>
+          <a href="/sla/" class="hover:underline">SLA & Taahhütler</a>
+          <a href="/teknoloji-uyumluluk/" class="hover:underline">Teknoloji Matrisi</a>
+          <a href="/gizlilik-sozlesmesi/" class="hover:underline">Gizlilik Sözleşmesi</a>
+          <a href="/nda/" class="hover:underline">Gizlilik ve Çalışma Sözleşmesi</a>
+          <a href="/hasar-tespiti/" class="hover:underline">Hasar Simülatörü</a>
+          <a href="/radar/" class="hover:underline">SWAT Radarı</a>
+          <a href="/kod-sagligi/" class="hover:underline">Kod Sağlığı</a>
+          <a href="/kurtarma-maliyeti/" class="hover:underline">Kurtarma mı, Sıfırdan Yazım mı?</a>
+          <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
+          <a href="/sozluk/" class="hover:underline">Teknik Sözlük</a>
+          <a href="/hikayemiz/" class="hover:underline">Hikayemiz</a>
+          <a href="/sos/" class="hover:underline">Acil Teknik Destek</a>
+          <a href="/about/" class="hover:underline">Hakkımızda</a>
+          <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-[var(--ink)]">TMA Agency Kit // 8 Slaytlık Görsel Kılavuz & Crash Test 500</h2>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Ajansınız teknik bir krize hazır mı? Yüksek çözünürlüklü slaytlar, poster vitrini ve resmi PDF indirme alanı.</p>
+        
+  <section class="space-y-8 mt-8 border-t border-[var(--rule)] pt-8">
+    <div class="space-y-4 max-w-3xl">
+      <p class="text-base text-[var(--ink)] leading-relaxed">
+        Dijital ajansların görünmeyen kıdemli teknik masası: Kriz anında, devir süreçlerinde ve kapasite takviyesinde çalışma standartlarımız.
+      </p>
+      <p class="text-base text-[var(--ink)] leading-relaxed">
+        Bir senaryo seçin. Üç soruyu yanıtlayın. İlk müdahale planınızı ve teknik hazırlık puanınızı anında görün.
+      </p>
+    </div>
+
+    <!-- 3 Kriz Senaryosu & Sorular -->
+    <div class="space-y-4">
+      <h2 class="text-xl font-bold text-[var(--ink)] font-serif">Kriz Senaryoları & Hazırlık Denetimi</h2>
+      <p class="text-xs sm:text-sm text-[var(--ink-3)]">
+        Sisteminize bağlanmaz. Şifre, sunucu erişimi veya müşteri verisi istemez.
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[var(--accent)] font-semibold text-xs">01</span>
+              <span class="font-mono text-xs text-[var(--accent)] bg-[var(--accent-wash)] px-2 py-0.5 rounded border border-[var(--accent)]/20">HTTP 500</span>
+            </div>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Müşteri sitesi çöktü</h3>
+            <p class="text-xs text-[var(--ink-3)] leading-relaxed">Zirve trafikte veritabanı kilitlendi veya sunucu 502/500 hatası veriyor.</p>
+          </div>
+        
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[var(--accent)] font-semibold text-xs">02</span>
+              <span class="font-mono text-xs text-[var(--accent)] bg-[var(--accent-wash)] px-2 py-0.5 rounded border border-[var(--accent)]/20">HANDOVER</span>
+            </div>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Yazılımcı projeyi bıraktı</h3>
+            <p class="text-xs text-[var(--ink-3)] leading-relaxed">Eski geliştirici gitti, dokümantasyon yok, kod derlenemiyor veya erişim eksik.</p>
+          </div>
+        
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[var(--accent)] font-semibold text-xs">03</span>
+              <span class="font-mono text-xs text-[var(--accent)] bg-[var(--accent-wash)] px-2 py-0.5 rounded border border-[var(--accent)]/20">T-48H</span>
+            </div>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Teslime 48 saat kaldı</h3>
+            <p class="text-xs text-[var(--ink-3)] leading-relaxed">Kritik lansman öncesi temel fonksiyonlar çalışmıyor, sprint tıkandı.</p>
+          </div>
+        
+      </div>
+    </div>
+
+    <!-- 8 Slaytlık Kılavuz -->
+    <div class="space-y-4 pt-4 border-t border-[var(--rule)]">
+      <h2 class="text-xl font-bold text-[var(--ink)] font-serif">TMA Ajans Müdahale ve Çalışma Kılavuzu (8 Slayt)</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-3)] block">SLAYT 01 // WHITE-LABEL ENGINEERING</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Müşterinizle siz konuşun. Teknik yükü biz çözelim.</h3>
+          </div>
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-3)] block">SLAYT 02 // AJANSIN GÖRÜNMEYEN TEKNİK EKİBİ</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Proje tıkandığında yeni ekip aramayın.</h3>
+            <p class="text-xs text-[var(--ink-3)] leading-relaxed">Yetişmeyen işler ve canlı sistem sorunları için ajansınıza doğrudan kıdemli yazılım gücü ekleriz.</p>
+            <ul class="text-xs text-[var(--ink-3)] leading-relaxed space-y-1"><li>YETİŞMEYEN SPRINT — Backlog ve özellik geliştirme</li><li>CANLI SİSTEM HATASI — Kritik bug, kesinti ve performans</li><li>EKSİK TEKNİK UZMANLIK — Backend, entegrasyon, AI ve mimari</li></ul>
+          </div>
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-3)] block">SLAYT 03 // WHITE-LABEL MODEL</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Sizin markanız. Bizim mühendisliğimiz.</h3>
+            <ul class="text-xs text-[var(--ink-3)] leading-relaxed space-y-1"><li>MÜŞTERİ SİZDE — İletişim ajansınızda kalır.</li><li>BYPASS YOK — İzinsiz temas veya teklif yok.</li><li>GİZLİLİK — NDA ve portföy gizliliği.</li><li>TAM DEVİR — Kod, erişim ve teknik notlar sizde.</li></ul>
+          </div>
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-3)] block">SLAYT 04 // TEK PARTNER, ALTI ÇÖZÜM ALANI</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Koddan canlı sisteme.</h3>
+            <ul class="text-xs text-[var(--ink-3)] leading-relaxed space-y-1"><li>ACİL BUG FIX — Canlı hata ve kesinti</li><li>KOD DEVRALMA — Yarım kalan projeler</li><li>WEB &amp; SaaS — React, Next.js, backend</li><li>API &amp; ÖDEME — Webhook, CRM, veri akışı</li><li>AI OTOMASYON — LLM ve özel iş akışları</li><li>AUDIT &amp; HIZ — Güvenlik ve performans</li></ul>
+          </div>
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-3)] block">SLAYT 05 // ACİL DURUM AKIŞI</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Üç adımda teknik başlangıç.</h3>
+            <ul class="text-xs text-[var(--ink-3)] leading-relaxed space-y-1"><li>QR'I TARA — Hazır mesajla ajans destek hattına bağlan.</li><li>KISA BRİFİ GÖNDER — URL, hata, teknoloji ve önceliği paylaş.</li><li>PLANI ONAYLA — Kapsam, süre ve bütçe netleşince başlayalım.</li></ul>
+            <p class="text-xs font-mono font-semibold text-[var(--ink)]">İLK TEKNİK ÖN DEĞERLENDİRME: HEDEF 30 DK</p>
+          </div>
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-3)] block">SLAYT 06 // ÇALIŞMA MODELLERİ</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">İhtiyaç kadar kıdemli teknik güç.</h3>
+            <ul class="text-xs text-[var(--ink-3)] leading-relaxed space-y-1"><li>RESPONSE — Canlı sistem müdahalesi</li><li>SPRINT — Backlog ve yoğunluk desteği</li><li>BUILD — Ajans markasıyla uçtan uca üretim</li><li>AUDIT — Kod, mimari, güvenlik ve hız denetimi</li></ul>
+          </div>
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-3)] block">SLAYT 07 // GÜVENLİ VE TEMİZ DEVİR</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Sadece çalışan değil, devralınabilir kod.</h3>
+            <ul class="text-xs text-[var(--ink-3)] leading-relaxed space-y-1"><li>10+ YIL DENEYİM — Doğrudan kıdemli geliştirici muhatap</li><li>100% KAYNAK KOD — Erişim, mülkiyet ve teknik dokümantasyon</li><li>CI/CD TESLİM DİSİPLİNİ — Test, kontrollü yayın ve geri dönüş planı</li></ul>
+            <p class="text-xs font-mono text-[var(--ink-3)]">React / Next.js • Node.js / Python • PostgreSQL / Redis • Docker / Cloud • API / Webhook • OpenAI / LLM</p>
+          </div>
+        
+          <div class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+            <span class="font-mono text-xs text-[var(--ink-3)] block">SLAYT 08 // WHITE-LABEL AGENCY ENGINEERING</span>
+            <h3 class="text-sm font-semibold text-[var(--ink)]">Bir sonraki teknik çıkmazda bizi hatırlayın.</h3>
+            <p class="text-xs text-[var(--ink-3)] leading-relaxed">Ajans destek hattına hazır mesajla bağlanın.</p>
+            <p class="text-xs font-mono text-[var(--ink-3)]">+90 534 371 35 73 · info@trendmasterakademi.com · trendmasterakademi.com</p>
+          </div>
+      </div>
+    </div>
+
+    <!-- İndirme Linkleri (Sözleşme PDF yok!) -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-[var(--rule)]">
+      <a href="/agency-kit/tma-agency-response-kit.pdf" download="TMA-Agency-Response-Kit.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2 min-h-[44px]">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">TMA Agency Response Kit (PDF)</strong>
+        <span class="text-xs text-[var(--accent)] font-mono">İndir (PDF) →</span>
+      </a>
+      <a href="/agency-kit/tma-agency-crash-test-500.pdf" download="TMA-Agency-Crash-Test-500.pdf" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2 min-h-[44px]">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">Crash Test 500 (PDF)</strong>
+        <span class="text-xs text-[var(--accent)] font-mono">İndir (PDF) →</span>
+      </a>
+      <a href="/agency-kit/crash-test-500-poster.png" download="TMA-Crash-Test-500-Poster.png" class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] hover:border-[var(--accent)] transition-colors block text-center space-y-2 min-h-[44px]">
+        <strong class="text-sm font-semibold text-[var(--ink)] block">Crash Test 500 Posteri (PNG)</strong>
+        <span class="text-xs text-[var(--accent)] font-mono">İndir (PNG) →</span>
+      </a>
+    </div>
+  </section>
+
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>

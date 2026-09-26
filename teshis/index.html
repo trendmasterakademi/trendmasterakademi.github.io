@@ -1,0 +1,706 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+
+      // Adım 98: çerez kararı yoksa bant açılacak; ana sayfa alt konsolu dizüstü genişliklerinde karar verilene kadar bekler
+      try {
+        if (!localStorage.getItem('tma_cookie_consent')) document.documentElement.setAttribute('data-cerez-bandi', 'acik');
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Teşhis Kataloğu | Trend Master Akademi</title>
+    <meta name="description" content="Belirtiden nedene: 26 yaygın yazılım arızası, her biri için olası üç neden, ayırt edici test ve çözüm yolu. Ajans diliyle yazılmış teşhis kataloğu." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/teshis/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/teshis/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/teshis/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/diagnostic/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/teshis/" />
+    <meta property="og:title" content="Teşhis Kataloğu | Trend Master Akademi" />
+    <meta property="og:description" content="Belirtiden nedene: 26 yaygın yazılım arızası, her biri için olası üç neden, ayırt edici test ve çözüm yolu. Ajans diliyle yazılmış teşhis kataloğu." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi — Ajanslar için white-label mühendislik ve acil kod kurtarma masası" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="B2B Yazılım SWAT, White-Label Yazılım Geliştirme, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, PostgreSQL Deadlock Onarımı, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/teshis/" />
+    <meta name="twitter:title" content="Teşhis Kataloğu | Trend Master Akademi" />
+    <meta name="twitter:description" content="Belirtiden nedene: 26 yaygın yazılım arızası, her biri için olası üç neden, ayırt edici test ve çözüm yolu. Ajans diliyle yazılmış teşhis kataloğu." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "name": "Teşhis Kataloğu",
+      "description": "Belirtiden nedene: yazılım arızalarının ajans diliyle teşhis rehberi.",
+      "url": "https://trendmasterakademi.com/teshis/"
+    },
+    {
+      "@type": "ItemList",
+      "numberOfItems": 26,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "01 · Aynı stok iki müşteriye satıldı",
+          "url": "https://trendmasterakademi.com/teshis/ayni-stok-iki-musteriye-satildi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "02 · Ödeme alındı, sipariş oluşmadı",
+          "url": "https://trendmasterakademi.com/teshis/odeme-alindi-siparis-olusmadi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "03 · Ödeme iki kez alındı",
+          "url": "https://trendmasterakademi.com/teshis/odeme-iki-kez-alindi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 4,
+          "name": "04 · İşlemler kilitlendi, sayfa dönüp duruyor",
+          "url": "https://trendmasterakademi.com/teshis/islemler-kilitlendi-sayfa-donuyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 5,
+          "name": "05 · Güncellemeden sonra veri kayboldu sanılıyor",
+          "url": "https://trendmasterakademi.com/teshis/guncelleme-sonrasi-veri-kayboldu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 6,
+          "name": "06 · Deploy sonrası site bozuldu",
+          "url": "https://trendmasterakademi.com/teshis/deploy-sonrasi-site-bozuldu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 7,
+          "name": "07 · Site 500 veriyor, dün çalışıyordu",
+          "url": "https://trendmasterakademi.com/teshis/site-500-veriyor-dun-calisiyordu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 8,
+          "name": "08 · Bulut hesabı askıya alındı, site kapandı",
+          "url": "https://trendmasterakademi.com/teshis/bulut-hesabi-askiya-alindi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 9,
+          "name": "09 · Yedek var sanılıyordu, yedek yok",
+          "url": "https://trendmasterakademi.com/teshis/yedek-var-sanildi-yedek-yok/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 10,
+          "name": "10 · SSL süresi doldu, tarayıcı uyarı veriyor",
+          "url": "https://trendmasterakademi.com/teshis/ssl-suresi-doldu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 11,
+          "name": "11 · Site yavaşladı ama sunucu boş",
+          "url": "https://trendmasterakademi.com/teshis/site-yavasladi-sunucu-bos/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 12,
+          "name": "12 · Entegrasyon aniden 429 vermeye başladı",
+          "url": "https://trendmasterakademi.com/teshis/entegrasyon-429-veriyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 13,
+          "name": "13 · Sunucu her gün yeniden başlatılıyor",
+          "url": "https://trendmasterakademi.com/teshis/sunucu-her-gun-yeniden-baslatiliyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 14,
+          "name": "14 · Test ortamında çalışıyor, canlıda çalışmıyor",
+          "url": "https://trendmasterakademi.com/teshis/testte-calisiyor-canlida-calismiyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 15,
+          "name": "15 · Her yeni özellik bir öncekini bozuyor",
+          "url": "https://trendmasterakademi.com/teshis/her-yeni-ozellik-oncekini-bozuyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 16,
+          "name": "16 · Yazılımcı gitti, kimse koda giremiyor",
+          "url": "https://trendmasterakademi.com/teshis/yazilimci-gitti-koda-girilemiyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 17,
+          "name": "17 · Domain ve hosting erişimi kimsede yok",
+          "url": "https://trendmasterakademi.com/teshis/domain-hosting-erisimi-yok/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 18,
+          "name": "18 · Form gönderiliyor ama mail gelmiyor",
+          "url": "https://trendmasterakademi.com/teshis/form-gonderiliyor-mail-gelmiyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 19,
+          "name": "19 · Site aramalarda görünmez oldu",
+          "url": "https://trendmasterakademi.com/teshis/site-aramalarda-gorunmez-oldu/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 20,
+          "name": "20 · Küçük değişiklik günler sürüyor",
+          "url": "https://trendmasterakademi.com/teshis/kucuk-degisiklik-gunler-suruyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 21,
+          "name": "21 · PayTR token hatası ve «Devam Ediyor»",
+          "url": "https://trendmasterakademi.com/teshis/paytr-token-ve-bildirim-hatasi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 22,
+          "name": "22 · iyzico 3D Secure dönüşünde hata",
+          "url": "https://trendmasterakademi.com/teshis/iyzico-3d-secure-donusu-hata/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 23,
+          "name": "23 · WooCommerce: ödendi, sipariş bekliyor",
+          "url": "https://trendmasterakademi.com/teshis/woocommerce-odendi-siparis-bekliyor/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 24,
+          "name": "24 · Trendyol & Hepsiburada API: 429, 401",
+          "url": "https://trendmasterakademi.com/teshis/pazaryeri-api-429-401-hatasi/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 25,
+          "name": "25 · Aynı ürün iki pazaryerinde satıldı",
+          "url": "https://trendmasterakademi.com/teshis/pazaryeri-stok-cift-satis/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 26,
+          "name": "26 · e-Arşiv fatura siteden kesilmiyor",
+          "url": "https://trendmasterakademi.com/teshis/e-arsiv-fatura-kesilmiyor/"
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Teşhis Kataloğu",
+          "item": "https://trendmasterakademi.com/teshis/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-Bv-RbppQ.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-MPzDunqj.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-CAdBTtbb.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-BLUe_38R.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-BW3tzzJZ.css">
+    <link rel="modulepreload" crossorigin href="/assets/TeshisIndex-DwIslspy.js">
+  <link rel="modulepreload" crossorigin href="/assets/pageTitle-CfrEi3-B.js">
+  <link rel="modulepreload" crossorigin href="/assets/pageH1Data-Cddzsrtl.js">
+  <link rel="modulepreload" crossorigin href="/assets/indexSummary-C8rJM-G_.js">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Teşhis Kataloğu</h1>
+        
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/tanitim/" class="hover:underline">Hizmetler ve Çalışma Modeli</a>
+          <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
+          <a href="/kit/" class="hover:underline">Ajans Kiti</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
+          <a href="/tmai/" class="hover:underline">tmai</a>
+          <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
+          <a href="/kurtarilabilirlik/" class="hover:underline">Kurtarılabilirlik İndeksi</a>
+          <a href="/post-mortem/" class="hover:underline">Post-Mortem ve Kök Neden Arşivi</a>
+          <a href="/triyaj/" class="hover:underline">Triyaj Simülatörü</a>
+          <a href="/sla/" class="hover:underline">SLA & Taahhütler</a>
+          <a href="/teknoloji-uyumluluk/" class="hover:underline">Teknoloji Matrisi</a>
+          <a href="/gizlilik-sozlesmesi/" class="hover:underline">Gizlilik Sözleşmesi</a>
+          <a href="/nda/" class="hover:underline">Gizlilik ve Çalışma Sözleşmesi</a>
+          <a href="/hasar-tespiti/" class="hover:underline">Hasar Simülatörü</a>
+          <a href="/radar/" class="hover:underline">SWAT Radarı</a>
+          <a href="/kod-sagligi/" class="hover:underline">Kod Sağlığı</a>
+          <a href="/kurtarma-maliyeti/" class="hover:underline">Kurtarma mı, Sıfırdan Yazım mı?</a>
+          <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
+          <a href="/sozluk/" class="hover:underline">Teknik Sözlük</a>
+          <a href="/hikayemiz/" class="hover:underline">Hikayemiz</a>
+          <a href="/sos/" class="hover:underline">Acil Teknik Destek</a>
+          <a href="/about/" class="hover:underline">Hakkımızda</a>
+          <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-[var(--ink)]">Teşhis Kataloğu</h2>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Belirtiyi görüyorsunuz ama nedenini bilmiyorsunuz. Buradaki her teşhis bir belirtiyle başlar, aynı belirtiyi üretebilecek nedenleri ayırır ve hangisiyle karşı karşıya olduğunuzu nasıl anlayacağınızı gösterir.</p>
+        
+  <section class="space-y-6 mt-6 border-t border-[var(--rule)] pt-6">
+    <h2 class="text-xl font-bold text-[var(--ink)]">Yayınlanmış arıza kataloğu — 26 teşhis</h2>
+    <ul class="space-y-4">
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/ayni-stok-iki-musteriye-satildi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 01 · Aynı stok iki müşteriye satıldı</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · ticari kayıp · Sipariş &amp; Ödeme</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Son kalan ürün iki ayrı siparişte çıktı, stok eksiye düştü.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/odeme-alindi-siparis-olusmadi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 02 · Ödeme alındı, sipariş oluşmadı</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · ticari kayıp · Sipariş &amp; Ödeme</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Müşterinin kartından para çekildi ama sistemde sipariş yok.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/odeme-iki-kez-alindi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 03 · Ödeme iki kez alındı</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · iade riski · Sipariş &amp; Ödeme</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Müşteriden aynı tutar iki kez tahsil edildi.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/islemler-kilitlendi-sayfa-donuyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 04 · İşlemler kilitlendi, sayfa dönüp duruyor</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · işlem durdu · Performans</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Belirli bir işlem — sipariş onayı, stok güncelleme, toplu güncelleme — sonsuza kadar dönüyor ve sonunda zaman aşımı veriyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/guncelleme-sonrasi-veri-kayboldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 05 · Güncellemeden sonra veri kayboldu sanılıyor</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · veri paniği · Veri &amp; Devir</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Bir güncellemeden sonra kayıtlar görünmüyor ve panik &quot;veriler silindi&quot; diye başlıyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/deploy-sonrasi-site-bozuldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 06 · Deploy sonrası site bozuldu</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · yayın hatası · Canlı Arıza</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Yayın alındı ve site bozuldu.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/site-500-veriyor-dun-calisiyordu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 07 · Site 500 veriyor, dün çalışıyordu</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · site kapalı · Canlı Arıza</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Dün sorunsuz açılan site bugün 500 veriyor ve kimse bir şey değiştirmediğini söylüyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/bulut-hesabi-askiya-alindi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 08 · Bulut hesabı askıya alındı, site kapandı</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · site kapalı · Altyapı &amp; Erişim</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Site aniden tamamen erişilemez oldu.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/yedek-var-sanildi-yedek-yok/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 09 · Yedek var sanılıyordu, yedek yok</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · veri riski · Devir &amp; Süreklilik</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Bir sorun çıktı, yedeğe dönülmek istendi ve yedeğin ya hiç alınmadığı ya da geri yüklenemediği görüldü.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/ssl-suresi-doldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 10 · SSL süresi doldu, tarayıcı uyarı veriyor</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · güven kaybı · Altyapı &amp; Erişim</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Ziyaretçiler siteye girerken 'bağlantınız gizli değil' uyarısı alıyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/site-yavasladi-sunucu-bos/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 11 · Site yavaşladı ama sunucu boş</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Yüksek · dönüşüm kaybı · Performans</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Sayfalar geç açılıyor ama sunucu kaynakları rahat görünüyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/entegrasyon-429-veriyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 12 · Entegrasyon aniden 429 vermeye başladı</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Yüksek · veri akışı durdu · İletişim &amp; Entegrasyon</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Aylardır çalışan bir entegrasyon — kargo, pazaryeri, ödeme ya da e-posta — birden hata vermeye başladı ve kod değişmedi.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/sunucu-her-gun-yeniden-baslatiliyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 13 · Sunucu her gün yeniden başlatılıyor</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Yüksek · gizlenen arıza · Altyapı &amp; Erişim</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Site günün belirli saatinde yavaşlıyor veya kilitleniyor, sunucu yeniden başlatılınca düzeliyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/testte-calisiyor-canlida-calismiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 14 · Test ortamında çalışıyor, canlıda çalışmıyor</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Yüksek · teslim engeli · Devir &amp; Süreklilik</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Geliştirici &quot;bende çalışıyor&quot; diyor ve haklı.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/her-yeni-ozellik-oncekini-bozuyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 15 · Her yeni özellik bir öncekini bozuyor</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Yüksek · birikmiş borç · Kod Sağlığı</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Bir yeri düzeltiyorsunuz, başka bir yer bozuluyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/yazilimci-gitti-koda-girilemiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 16 · Yazılımcı gitti, kimse koda giremiyor</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Yüksek · süreklilik riski · Devir &amp; Süreklilik</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Projeyi yapan kişi ayrıldı.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/domain-hosting-erisimi-yok/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 17 · Domain ve hosting erişimi kimsede yok</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Yüksek · mülkiyet riski · Devir &amp; Süreklilik</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Site çalışıyor ama kimse yönetim paneline giremiyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/form-gonderiliyor-mail-gelmiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 18 · Form gönderiliyor ama mail gelmiyor</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Yüksek · kayıp talep · İletişim &amp; Entegrasyon</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">İletişim veya teklif formu 'gönderildi' diyor ama kimseye mail ulaşmıyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/site-aramalarda-gorunmez-oldu/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 19 · Site aramalarda görünmez oldu</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Yüksek · trafik kaybı · Görünürlük</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Site açılıyor, her şey normal görünüyor ama arama sonuçlarındaki yerini kaybetti.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/kucuk-degisiklik-gunler-suruyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 20 · Küçük değişiklik günler sürüyor</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Orta · hız kaybı · Kod Sağlığı</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">&quot;Bir buton rengi&quot; ya da &quot;bir alan ekle&quot; gibi işler günlere yayılıyor ve müşteri bunu isteksizlik sanıyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/paytr-token-ve-bildirim-hatasi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 21 · PayTR token hatası ve «Devam Ediyor»</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · ödeme durdu · Sipariş &amp; Ödeme</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">PayTR ödeme ekranı açılmıyor ya da müşteri ödüyor ama işlem PayTR panelinde «Devam Ediyor» olarak kalıyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/iyzico-3d-secure-donusu-hata/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 22 · iyzico 3D Secure dönüşünde hata</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · ödeme durdu · Sipariş &amp; Ödeme</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Müşteri bankanın doğrulama ekranında kodu girdi, siteye döndüğünde «Sistem hatası oluştu» ya da «beklenmedik bir hata oluştu» gibi genel bir mesajla karşılaştı; bazen sepet de boşaldı.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/woocommerce-odendi-siparis-bekliyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 23 · WooCommerce: ödendi, sipariş bekliyor</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · ticari kayıp · Sipariş &amp; Ödeme</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Ödeme sağlayıcısında ödeme başarılı görünüyor ama WooCommerce'te sipariş «Ödeme bekliyor» ya da «Beklemede» durumunda kalıyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/pazaryeri-api-429-401-hatasi/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 24 · Trendyol &amp; Hepsiburada API: 429, 401</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Yüksek · veri akışı durdu · İletişim &amp; Entegrasyon</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Trendyol ya da Hepsiburada entegrasyonu çalışırken birden 429, 401 ya da 403 dönmeye başlıyor; stok, fiyat ve sipariş akışı duruyor.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/pazaryeri-stok-cift-satis/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 25 · Aynı ürün iki pazaryerinde satıldı</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Kritik · ticari kayıp · Sipariş &amp; Ödeme</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Son kalan ürün aynı gün hem Trendyol'da hem Hepsiburada'da, ya da hem pazaryerinde hem sitede satıldı.</p>
+        </li>
+      
+        <li class="p-4 rounded-xl bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <a href="/teshis/e-arsiv-fatura-kesilmiyor/" class="text-[var(--accent)] font-bold hover:underline font-mono text-base">→ 26 · e-Arşiv fatura siteden kesilmiyor</a>
+            <span class="text-xs font-mono text-[var(--ink-3)]">Yüksek · yasal yükümlülük · Sipariş &amp; Ödeme</span>
+          </div>
+          <p class="text-sm text-[var(--ink-3)] leading-relaxed">Siparişler tamamlanıyor ama e-Arşiv faturaları oluşmuyor, eksik oluşuyor ya da entegratör tarafından reddediliyor.</p>
+        </li>
+    </ul>
+  </section>
+
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>
