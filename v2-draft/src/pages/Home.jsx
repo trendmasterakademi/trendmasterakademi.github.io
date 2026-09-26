@@ -351,7 +351,7 @@ const Home = () => {
         />
 
         {/* H1 Başlık (Source Serif 4, clamp boyutlu, dize sabiti JSX yok) */}
-        <h1 className="ana-ilk-ekran-icerik font-serif text-[var(--ink)] font-normal tracking-tight mb-3 [font-size:clamp(1.75rem,5.5vw+0.5rem,4.5rem)] break-words max-w-full leading-[1.08] select-none">
+        <h1 className="ana-ilk-ekran-icerik font-sans text-[var(--ink)] font-normal tracking-tight mb-3 [font-size:clamp(1.75rem,5.5vw+0.5rem,4.5rem)] break-words max-w-full leading-[1.08] select-none">
           {t('home-h1')}
         </h1>
 
