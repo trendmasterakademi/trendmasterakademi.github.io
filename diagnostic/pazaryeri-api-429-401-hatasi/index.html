@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com https://static.cloudflareinsights.com 'sha256-wJVEG9PsEffYyDZHHYgxX1Jt0ck6QwgNCBNj5eMhKTU=' 'sha256-5Oi72KUZ3LaSR2N9JWbDZVUqXP38QIpVD1g9wfJx/HA=' 'sha256-tX5hPSqAErTkjNHUtDCHI/qBVEbmghMihhwQsp3GpEg=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://*.clarity.ms https://c.bing.com; connect-src 'self' https://api.web3forms.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; manifest-src 'self'; worker-src 'self' blob:">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com https://static.cloudflareinsights.com 'sha256-C6ZpIJnsYCtn3xk+PS0tXZFTts0+iGf8YHLFUvCVsqY=' 'sha256-5Oi72KUZ3LaSR2N9JWbDZVUqXP38QIpVD1g9wfJx/HA=' 'sha256-tX5hPSqAErTkjNHUtDCHI/qBVEbmghMihhwQsp3GpEg=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://*.clarity.ms https://c.bing.com; connect-src 'self' https://api.web3forms.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; manifest-src 'self'; worker-src 'self' blob:">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -170,7 +170,6 @@
         }
       } catch(e) {}
 
-      // Adım 98: çerez kararı yoksa bant açılacak; ana sayfa alt konsolu dizüstü genişliklerinde karar verilene kadar bekler
       try {
         if (!localStorage.getItem('tma_cookie_consent')) document.documentElement.setAttribute('data-cerez-bandi', 'acik');
       } catch(e) {}
