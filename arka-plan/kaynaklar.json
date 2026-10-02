@@ -468,5 +468,317 @@
         "url": "https://images.unsplash.com/photo-1519501025264-65ba15a82390?fit=crop&crop=entropy&w=1440&h=3200&q=70&fm=webp"
       }
     ]
+  },
+  {
+    "sahne": 5,
+    "kaynak": "https://trendmasterakademi.com/arka-plan/",
+    "fotografci": "Trend Master Akademi Studio",
+    "cdn": "tma-studio-5",
+    "lisans": "TMA Studio License",
+    "indirilme": "2026-10-02",
+    "ozgun": {
+      "w": 1600,
+      "h": 900
+    },
+    "dosyalar": [
+      {
+        "ad": "sahne-5-960.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 960,
+        "h": 540,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-5-960.avif"
+      },
+      {
+        "ad": "sahne-5-960.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 960,
+        "h": 540,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-5-960.webp"
+      },
+      {
+        "ad": "sahne-5-1280.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1280,
+        "h": 720,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-5-1280.avif"
+      },
+      {
+        "ad": "sahne-5-1280.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1280,
+        "h": 720,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-5-1280.webp"
+      },
+      {
+        "ad": "sahne-5-1600.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1600,
+        "h": 900,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-5-1600.avif"
+      },
+      {
+        "ad": "sahne-5-1600.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1600,
+        "h": 900,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-5-1600.webp"
+      },
+      {
+        "ad": "sahne-5-dikey-360.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 360,
+        "h": 800,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-5-dikey-360.avif"
+      },
+      {
+        "ad": "sahne-5-dikey-360.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 360,
+        "h": 800,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-5-dikey-360.webp"
+      },
+      {
+        "ad": "sahne-5-dikey-405.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 405,
+        "h": 900,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-5-dikey-405.avif"
+      },
+      {
+        "ad": "sahne-5-dikey-405.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 405,
+        "h": 900,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-5-dikey-405.webp"
+      }
+    ]
+  },
+  {
+    "sahne": 6,
+    "kaynak": "https://trendmasterakademi.com/arka-plan/",
+    "fotografci": "Trend Master Akademi Studio",
+    "cdn": "tma-studio-6",
+    "lisans": "TMA Studio License",
+    "indirilme": "2026-10-02",
+    "ozgun": {
+      "w": 1600,
+      "h": 900
+    },
+    "dosyalar": [
+      {
+        "ad": "sahne-6-960.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 960,
+        "h": 540,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-6-960.avif"
+      },
+      {
+        "ad": "sahne-6-960.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 960,
+        "h": 540,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-6-960.webp"
+      },
+      {
+        "ad": "sahne-6-1280.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1280,
+        "h": 720,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-6-1280.avif"
+      },
+      {
+        "ad": "sahne-6-1280.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1280,
+        "h": 720,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-6-1280.webp"
+      },
+      {
+        "ad": "sahne-6-1600.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1600,
+        "h": 900,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-6-1600.avif"
+      },
+      {
+        "ad": "sahne-6-1600.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1600,
+        "h": 900,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-6-1600.webp"
+      },
+      {
+        "ad": "sahne-6-dikey-360.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 360,
+        "h": 800,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-6-dikey-360.avif"
+      },
+      {
+        "ad": "sahne-6-dikey-360.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 360,
+        "h": 800,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-6-dikey-360.webp"
+      },
+      {
+        "ad": "sahne-6-dikey-405.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 405,
+        "h": 900,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-6-dikey-405.avif"
+      },
+      {
+        "ad": "sahne-6-dikey-405.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 405,
+        "h": 900,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-6-dikey-405.webp"
+      }
+    ]
+  },
+  {
+    "sahne": 7,
+    "kaynak": "https://trendmasterakademi.com/arka-plan/",
+    "fotografci": "Trend Master Akademi Studio",
+    "cdn": "tma-studio-7",
+    "lisans": "TMA Studio License",
+    "indirilme": "2026-10-02",
+    "ozgun": {
+      "w": 1600,
+      "h": 900
+    },
+    "dosyalar": [
+      {
+        "ad": "sahne-7-960.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 960,
+        "h": 540,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-7-960.avif"
+      },
+      {
+        "ad": "sahne-7-960.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 960,
+        "h": 540,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-7-960.webp"
+      },
+      {
+        "ad": "sahne-7-1280.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1280,
+        "h": 720,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-7-1280.avif"
+      },
+      {
+        "ad": "sahne-7-1280.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1280,
+        "h": 720,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-7-1280.webp"
+      },
+      {
+        "ad": "sahne-7-1600.avif",
+        "yon": "yatay",
+        "bicim": "avif",
+        "w": 1600,
+        "h": 900,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-7-1600.avif"
+      },
+      {
+        "ad": "sahne-7-1600.webp",
+        "yon": "yatay",
+        "bicim": "webp",
+        "w": 1600,
+        "h": 900,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-7-1600.webp"
+      },
+      {
+        "ad": "sahne-7-dikey-360.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 360,
+        "h": 800,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-7-dikey-360.avif"
+      },
+      {
+        "ad": "sahne-7-dikey-360.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 360,
+        "h": 800,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-7-dikey-360.webp"
+      },
+      {
+        "ad": "sahne-7-dikey-405.avif",
+        "yon": "dikey",
+        "bicim": "avif",
+        "w": 405,
+        "h": 900,
+        "q": 50,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-7-dikey-405.avif"
+      },
+      {
+        "ad": "sahne-7-dikey-405.webp",
+        "yon": "dikey",
+        "bicim": "webp",
+        "w": 405,
+        "h": 900,
+        "q": 70,
+        "url": "https://trendmasterakademi.com/arka-plan/sahne-7-dikey-405.webp"
+      }
+    ]
   }
 ]
