@@ -3,7 +3,7 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://trendmasterakademi.com/</loc>
-    <lastmod>2026-09-29</lastmod>
+    <lastmod>2026-10-02</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/" />
@@ -360,6 +360,33 @@
     <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/tmai/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/ai-code-takeover/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/tmai/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/blockchain-investigation/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/blockchain-investigation/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/blockchain-investigation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/blockchain-investigation/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/blockchain-inceleme/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/blockchain-inceleme/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/blockchain-investigation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/blockchain-inceleme/" />
+  </url>
+  <url>
+    <loc>https://trendmasterakademi.com/zincir-analizi/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/zincir-analizi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/blockchain-investigation/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/zincir-analizi/" />
   </url>
   <url>
     <loc>https://trendmasterakademi.com/sozluk/deadlock/</loc>
