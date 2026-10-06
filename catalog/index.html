@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trend Master Akademi | Global B2B Technical SWAT, Web3 & White-Label Engineering</title>
+    <meta name="description" content="Worldwide 1-page executive catalog: Incident SWAT & emergency code rescue, Web3 / blockchain & smart contracts, abandoned codebase takeover, white-label engineering for agencies and tech founders globally." />
+    <meta name="author" content="Mehmet Şahin | Trend Master Akademi" />
+    
+    <!-- Open Graph for WhatsApp & Social Media Preview Cards -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/catalog/" />
+    <meta property="og:title" content="Trend Master Akademi — Global Technical SWAT, Web3 & Engineering Desk" />
+    <meta property="og:description" content="Worldwide on-demand engineering: Fullstack, Blockchain & Web3, Emergency Code Rescue, White-Label Agency Support. 100% IP ownership · Global Timezones." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="theme-color" content="#0B0F17" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      :root {
+        --bg-main: #0B0F17;
+        --bg-card: #121824;
+        --bg-card-sub: #172030;
+        --border-color: #232E42;
+        --border-highlight: #3A4B6B;
+        --text-primary: #F0F4F8;
+        --text-secondary: #94A3B8;
+        --text-muted: #64748B;
+        --accent-red: #E53E3E;
+        --accent-emerald: #10B981;
+        --accent-cyan: #06B6D4;
+        --accent-blue: #3B82F6;
+        --accent-purple: #8B5CF6;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        line-height: 1.32;
+        font-size: 12.5px;
+        -webkit-font-smoothing: antialiased;
+        padding: 14px 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .catalog-container {
+        width: 100%;
+        max-width: 900px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        padding: 20px 24px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .catalog-container::before {
+        content: '';
+        position: absolute;
+        top: -90px;
+        right: -90px;
+        width: 280px;
+        height: 280px;
+        background: radial-gradient(circle, rgba(6, 182, 212, 0.12) 0%, rgba(229, 62, 62, 0.08) 50%, transparent 70%);
+        pointer-events: none;
+      }
+
+      /* Header */
+      .header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 12px;
+        margin-bottom: 12px;
+      }
+
+      .brand-box {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .brand-logo-img {
+        width: 42px;
+        height: 42px;
+        border-radius: 8px;
+        border: 1px solid var(--border-highlight);
+        background: #0E1117;
+      }
+
+      .brand-title {
+        font-size: 19px;
+        font-weight: 700;
+        letter-spacing: -0.5px;
+        color: #FFFFFF;
+        line-height: 1.1;
+      }
+
+      .brand-subtitle {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 10px;
+        color: var(--accent-cyan);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        margin-top: 2px;
+        font-weight: 600;
+      }
+
+      .header-pills {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 10px;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: 999px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 10.5px;
+        color: var(--accent-emerald);
+        font-weight: 600;
+      }
+
+      .global-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 10px;
+        background: rgba(6, 182, 212, 0.1);
+        border: 1px solid rgba(6, 182, 212, 0.3);
+        border-radius: 999px;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 10.5px;
+        color: var(--accent-cyan);
+        font-weight: 600;
+      }
+
+      .status-dot {
+        width: 7px;
+        height: 7px;
+        background-color: var(--accent-emerald);
+        border-radius: 50%;
+        box-shadow: 0 0 8px var(--accent-emerald);
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.4; transform: scale(0.9); }
+        100% { opacity: 1; transform: scale(1); }
+      }
+
+      /* Hero Tagline */
+      .hero-tagline {
+        background: linear-gradient(180deg, var(--bg-card-sub) 0%, rgba(23, 32, 48, 0.5) 100%);
+        border: 1px solid var(--border-color);
+        border-left: 4px solid var(--accent-cyan);
+        border-radius: 8px;
+        padding: 10px 14px;
+        margin-bottom: 12px;
+      }
+
+      .hero-headline {
+        font-size: 14.5px;
+        font-weight: 700;
+        color: #FFFFFF;
+        margin-bottom: 3px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .geo-badge {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 9.5px;
+        color: #94A3B8;
+        background: #0E1420;
+        border: 1px solid #232E42;
+        padding: 2px 7px;
+        border-radius: 4px;
+        font-weight: 500;
+      }
+
+      .hero-desc {
+        color: var(--text-secondary);
+        font-size: 11.5px;
+        line-height: 1.35;
+      }
+
+      /* Problem Section */
+      .section-label {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.9px;
+        color: var(--text-muted);
+        margin-bottom: 7px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .problem-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .problem-card {
+        background: #0e1420;
+        border: 1px solid #1f293d;
+        border-radius: 6px;
+        padding: 8px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .problem-title {
+        color: #F87171;
+        font-size: 11px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .problem-text {
+        font-size: 10.5px;
+        color: var(--text-secondary);
+        line-height: 1.25;
+      }
+
+      /* Services 2x2 Grid */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        margin-bottom: 12px;
+      }
+
+      .service-card {
+        background: var(--bg-card-sub);
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 10px 13px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .service-card-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .service-badge {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 9.5px;
+        font-weight: 600;
+        padding: 2px 6px;
+        border-radius: 4px;
+        text-transform: uppercase;
+      }
+
+      .badge-emergency { background: rgba(229, 62, 62, 0.2); color: #FCA5A5; border: 1px solid rgba(229, 62, 62, 0.4); }
+      .badge-blockchain { background: rgba(6, 182, 212, 0.2); color: #67E8F9; border: 1px solid rgba(6, 182, 212, 0.4); }
+      .badge-agency    { background: rgba(59, 130, 246, 0.2); color: #93C5FD; border: 1px solid rgba(59, 130, 246, 0.4); }
+      .badge-custom    { background: rgba(16, 185, 129, 0.2); color: #6EE7B7; border: 1px solid rgba(16, 185, 129, 0.4); }
+
+      .service-name {
+        font-size: 13px;
+        font-weight: 700;
+        color: #FFFFFF;
+      }
+
+      .service-desc {
+        font-size: 11px;
+        color: var(--text-secondary);
+        line-height: 1.3;
+      }
+
+      .service-bullets {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 2.5px;
+        margin-top: 3px;
+      }
+
+      .service-bullets li {
+        font-size: 10.5px;
+        color: #CBD5E1;
+        display: flex;
+        align-items: flex-start;
+        gap: 5px;
+      }
+
+      .service-bullets li::before {
+        content: '▹';
+        color: var(--accent-cyan);
+        font-size: 9.5px;
+        line-height: 1.4;
+      }
+
+      /* Trust & Guarantee Row */
+      .trust-row {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+        margin-bottom: 11px;
+        background: #0E1420;
+        border: 1px dashed var(--border-color);
+        border-radius: 7px;
+        padding: 8px 12px;
+      }
+
+      .trust-item {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .trust-title {
+        font-size: 10.5px;
+        font-weight: 700;
+        color: #E2E8F0;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .trust-desc {
+        font-size: 9.5px;
+        color: var(--text-muted);
+        line-height: 1.25;
+      }
+
+      /* Stack Pill Bar */
+      .stack-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        padding: 6px 10px;
+        background: #0A0D14;
+        border-radius: 6px;
+        border: 1px solid #1C2433;
+      }
+
+      .stack-title {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 9.5px;
+        color: var(--text-muted);
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .stack-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+
+      .stack-tag {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 9.5px;
+        background: #172030;
+        color: #94A3B8;
+        padding: 1.5px 6px;
+        border-radius: 4px;
+        border: 1px solid #243248;
+      }
+
+      .stack-tag.highlight {
+        color: #67E8F9;
+        border-color: rgba(6, 182, 212, 0.4);
+        background: rgba(6, 182, 212, 0.1);
+      }
+
+      /* Bottom Action Box */
+      .contact-banner {
+        background: linear-gradient(135deg, #182234 0%, #111722 100%);
+        border: 1px solid #06B6D4;
+        border-radius: 8px;
+        padding: 12px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 6px 20px rgba(6, 182, 212, 0.12);
+      }
+
+      .contact-lead {
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+      }
+
+      .contact-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .contact-subtitle {
+        font-size: 11px;
+        color: #CBD5E1;
+      }
+
+      .contact-meta {
+        display: flex;
+        gap: 14px;
+        font-size: 10.5px;
+        color: var(--text-secondary);
+        margin-top: 3px;
+      }
+
+      .contact-meta span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-items: flex-end;
+      }
+
+      .btn-whatsapp {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: #25D366;
+        color: #072E15;
+        font-size: 12.5px;
+        font-weight: 700;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        transition: transform 0.15s, background-color 0.15s;
+      }
+
+      .btn-whatsapp:hover {
+        background: #20BD5A;
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 10.5px;
+        color: #93C5FD;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .btn-secondary:hover {
+        text-decoration: underline;
+      }
+
+      /* Floating utility toolbar (hidden in print) */
+      .utility-toolbar {
+        width: 100%;
+        max-width: 900px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .toolbar-links {
+        display: flex;
+        gap: 10px;
+      }
+
+      .toolbar-btn {
+        background: #1A2234;
+        border: 1px solid #2B3A55;
+        color: #CBD5E1;
+        font-size: 11px;
+        padding: 5px 11px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: 'IBM Plex Sans', sans-serif;
+      }
+
+      .toolbar-btn:hover {
+        background: #232F48;
+        color: #FFFFFF;
+      }
+
+      .lang-switch {
+        color: #94A3B8;
+        font-size: 10.5px;
+        text-decoration: none;
+        border: 1px solid var(--border-color);
+        padding: 4px 9px;
+        border-radius: 5px;
+      }
+      .lang-switch:hover {
+        border-color: #64748B;
+        color: #FFF;
+      }
+
+      /* Strict 1-Page A4 Print Guarantee */
+      @page {
+        size: A4 portrait;
+        margin: 6mm 8mm 6mm 8mm;
+      }
+
+      @media print {
+        body {
+          background: #0B0F17 !important;
+          color: #F0F4F8 !important;
+          padding: 0 !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+        }
+
+        .utility-toolbar {
+          display: none !important;
+        }
+
+        .catalog-container {
+          box-shadow: none !important;
+          border: 1px solid #232E42 !important;
+          max-width: 100% !important;
+          padding: 12px 16px !important;
+          border-radius: 0 !important;
+          background: #0B0F17 !important;
+        }
+
+        .hero-tagline {
+          margin-bottom: 8px !important;
+          padding: 7px 10px !important;
+        }
+
+        .problem-grid {
+          margin-bottom: 8px !important;
+          gap: 6px !important;
+        }
+
+        .services-grid {
+          margin-bottom: 8px !important;
+          gap: 8px !important;
+        }
+
+        .service-card {
+          padding: 8px 10px !important;
+        }
+
+        .trust-row {
+          margin-bottom: 8px !important;
+          padding: 6px 10px !important;
+        }
+
+        .stack-bar {
+          margin-bottom: 8px !important;
+          padding: 4px 8px !important;
+        }
+
+        .contact-banner {
+          padding: 9px 12px !important;
+        }
+
+        a {
+          text-decoration: none !important;
+          color: inherit !important;
+        }
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 10px 8px;
+        }
+        .catalog-container {
+          padding: 14px 12px;
+        }
+        .header-pills {
+          display: none;
+        }
+        .problem-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .trust-row {
+          grid-template-columns: 1fr 1fr;
+        }
+        .contact-banner {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 10px;
+        }
+        .cta-buttons {
+          width: 100%;
+          align-items: stretch;
+        }
+        .btn-whatsapp {
+          justify-content: center;
+        }
+        .stack-bar {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 5px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Utility Toolbar for Web Visitors -->
+    <div class="utility-toolbar">
+      <div class="toolbar-links">
+        <a href="/" class="toolbar-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          Visit Website
+        </a>
+        <button onclick="window.print()" class="toolbar-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+          Save / Print as 1-Page PDF
+        </button>
+      </div>
+      <div>
+        <a href="/katalog/" class="lang-switch">Türkçe Versiyon (TR) →</a>
+      </div>
+    </div>
+
+    <!-- 1-Page Executive Catalog Container -->
+    <div class="catalog-container">
+      
+      <!-- Top Brand Header -->
+      <header class="header-row">
+        <div class="brand-box">
+          <img src="/logo-dark.png" alt="Trend Master Akademi Logo" class="brand-logo-img" />
+          <div>
+            <h1 class="brand-title">TREND MASTER AKADEMİ</h1>
+            <div class="brand-subtitle">Global B2B Technical SWAT · Web3 & Fullstack Engineering</div>
+          </div>
+        </div>
+        <div class="header-pills">
+          <div class="global-pill">
+            <span>🌐</span>
+            <span>WORLDWIDE CLIENTS</span>
+          </div>
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>ACTIVE DESK · US · EU · UAE · ASIA</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Hero Tagline -->
+      <section class="hero-tagline">
+        <div class="hero-headline">
+          <span>Global Incident SWAT, Blockchain / Web3 & White-Label Engineering</span>
+          <span class="geo-badge">US · UK · EU · UAE · APAC</span>
+        </div>
+        <div class="hero-desc">
+          Serving tech founders, digital agencies, and crypto/Web3 teams worldwide. When your production or smart contract is broken, an agency deadline is choking your pipeline, or a dev abandoned your codebase — we resolve the crisis under strict Mutual NDA.
+        </div>
+      </section>
+
+      <!-- Pain Points Checklist -->
+      <div class="section-label">
+        <span>⚠</span> GOT AN IMMEDIATE TECHNICAL BOTTLENECK IN YOUR BUSINESS?
+      </div>
+      <section class="problem-grid">
+        <div class="problem-card">
+          <div class="problem-title">🔴 Production Outage</div>
+          <div class="problem-text">HTTP 500 errors, database deadlocks, broken payment gateways, or live server crashes.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-title">🔴 Web3 / Smart Contract Bug</div>
+          <div class="problem-text">Stuck transactions, broken dApp frontend, RPC/indexer lag, or contract logic flaws.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-title">🔴 Abandoned Repo / dApp</div>
+          <div class="problem-text">Previous developer disappeared, leaving undocumented, buggy, or half-finished code.</div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-title">🔴 Agency / Team Crunch</div>
+          <div class="problem-text">Client contracts signed, but missing senior fullstack or Web3 engineers to execute.</div>
+        </div>
+      </section>
+
+      <!-- 4 Core Service Deliverables -->
+      <div class="section-label">
+        <span>⚡</span> OUR 4 DIRECT-ENGAGEMENT SERVICES (GLOBAL EXECUTION)
+      </div>
+      <section class="services-grid">
+        
+        <!-- Service 1: Incident SWAT -->
+        <article class="service-card">
+          <div class="service-card-header">
+            <span class="service-badge badge-emergency">EMERGENCY HOTFIX</span>
+            <span style="font-family:'IBM Plex Mono'; font-size:10px; color:#F87171;">SEV-0 / SEV-1</span>
+          </div>
+          <h2 class="service-name">🚨 Incident SWAT & Production Hotfixes</h2>
+          <p class="service-desc">Rapid diagnostic triage and live emergency hotfixing for mission-critical web applications, APIs, and servers.</p>
+          <ul class="service-bullets">
+            <li>Isolated sandbox analysis to guarantee zero collateral damage to live data.</li>
+            <li>Root-cause hotfixing for Next.js, Node.js, Python/FastAPI, PostgreSQL & Docker.</li>
+            <li>Restoring broken payment gateways (Stripe, webhooks) and database locks.</li>
+          </ul>
+        </article>
+
+        <!-- Service 2: Blockchain / Web3 & FinTech -->
+        <article class="service-card">
+          <div class="service-card-header">
+            <span class="service-badge badge-blockchain">BLOCKCHAIN & WEB3</span>
+            <span style="font-family:'IBM Plex Mono'; font-size:10px; color:#67E8F9;">SMART CONTRACTS</span>
+          </div>
+          <h2 class="service-name">⛓️ Web3, Smart Contracts & Crypto Systems</h2>
+          <p class="service-desc">Robust blockchain engineering, dApp architecture, smart contract audits, and algorithmic trading bridges.</p>
+          <ul class="service-bullets">
+            <li>EVM / Solidity smart contracts, tokenomics, staking pools & NFT/DEX logic.</li>
+            <li>dApp frontend-to-contract integrations (Wagmi, Viem, Ethers.js, WalletConnect).</li>
+            <li>Crypto payment gateways, custom RPC node setups, and quantitative trading bots.</li>
+          </ul>
+        </article>
+
+        <!-- Service 3: Codebase Takeover -->
+        <article class="service-card">
+          <div class="service-card-header">
+            <span class="service-badge badge-agency">CODE RESCUE</span>
+            <span style="font-family:'IBM Plex Mono'; font-size:10px; color:#93C5FD;">TURNKEY LAUNCH</span>
+          </div>
+          <h2 class="service-name">🔄 Stranded Project Takeover & Refactor</h2>
+          <p class="service-desc">Taking over abandoned or broken software repos, modernizing spaghetti code, and driving them to production.</p>
+          <ul class="service-bullets">
+            <li>Full architectural, security, and dependency audit completed within 48 hours.</li>
+            <li>Refactoring spaghetti code into clean, scalable, and documented architecture.</li>
+            <li>Completing missing backend endpoints, automated tests, and CI/CD live deploy.</li>
+          </ul>
+        </article>
+
+        <!-- Service 4: White-Label & Custom SaaS -->
+        <article class="service-card">
+          <div class="service-card-header">
+            <span class="service-badge badge-custom">100% WHITE-LABEL</span>
+            <span style="font-family:'IBM Plex Mono'; font-size:10px; color:#6EE7B7;">AI & SAAS BUILDS</span>
+          </div>
+          <h2 class="service-name">🛡️ White-Label Engineering & AI/SaaS Development</h2>
+          <p class="service-desc">Silent senior technical backing for global agencies. You manage the client; we engineer the system.</p>
+          <ul class="service-bullets">
+            <li>Zero client contact: work under your agency domain or invisible Git contributor.</li>
+            <li>Custom SaaS dashboards, high-volume APIs & LLM / OpenAI autonomous agents.</li>
+            <li>Daily transparent Git commits, automated test suites, and clean handovers.</li>
+          </ul>
+        </article>
+
+      </section>
+
+      <!-- Trust Pillars -->
+      <section class="trust-row">
+        <div class="trust-item">
+          <div class="trust-title">🔒 100% IP & Code Rights</div>
+          <div class="trust-desc">Zero vendor lock-in. 100% of repositories, smart contracts, and data belong to you.</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-title">📝 Binding Global NDA</div>
+          <div class="trust-desc">Your intellectual property and client relationships are protected under Mutual NDA.</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-title">🌍 Global Timezones</div>
+          <div class="trust-desc">Direct execution aligned with US (EST/PST), European (CET/GMT), and Gulf (GST) business hours.</div>
+        </div>
+        <div class="trust-item">
+          <div class="trust-title">👨‍💻 Direct Lead Architect</div>
+          <div class="trust-desc">No junior trial-and-error or sales fluff. Talk directly with senior systems architect Mehmet Şahin.</div>
+        </div>
+      </section>
+
+      <!-- Stack Pill Bar with Blockchain highlighted -->
+      <section class="stack-bar">
+        <span class="stack-title">GLOBAL TECH STACK:</span>
+        <div class="stack-tags">
+          <span class="stack-tag">Next.js / React</span>
+          <span class="stack-tag">TypeScript</span>
+          <span class="stack-tag">Python / FastAPI</span>
+          <span class="stack-tag">Node.js</span>
+          <span class="stack-tag">PostgreSQL</span>
+          <span class="stack-tag">Docker</span>
+          <span class="stack-tag highlight">Solidity / EVM</span>
+          <span class="stack-tag highlight">Web3.js / Viem</span>
+          <span class="stack-tag highlight">Crypto Payment Rails</span>
+          <span class="stack-tag">OpenAI & LLM Agents</span>
+        </div>
+      </section>
+
+      <!-- Bottom High-Conversion Action Box -->
+      <footer class="contact-banner">
+        <div class="contact-lead">
+          <div class="contact-title">
+            <span>💬</span> Got a Project Stuck, Web3 Crisis, or Need Global Dev Muscle?
+          </div>
+          <div class="contact-subtitle">
+            Send your repo/contract link or describe your bottleneck on WhatsApp. We provide a rapid 30-minute direct triage.
+          </div>
+          <div class="contact-meta">
+            <span><strong>Lead Architect:</strong> Mehmet Şahin</span>
+            <span><strong>Worldwide WhatsApp:</strong> +90 534 371 35 73</span>
+            <span><strong>Web:</strong> trendmasterakademi.com</span>
+          </div>
+        </div>
+
+        <div class="cta-buttons">
+          <a href="https://wa.me/905343713573?text=Hi%20Mehmet%2C%20I%20saw%20your%20TMA%20catalog%20in%20the%20global%20group.%20I%20have%20a%20project%20/%20technical%20issue%20I%27d%20like%20to%20discuss." target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.029.569 2.059.873 3.037.873h.005c3.181 0 5.767-2.586 5.768-5.766 0-1.54-.599-2.988-1.688-4.077-1.089-1.089-2.537-1.688-4.077-1.688zm9.585 5.765c-.002 5.305-4.316 9.619-9.619 9.619-1.637 0-3.198-.415-4.577-1.203l-5.42 1.419 1.446-5.281c-.868-1.428-1.328-3.076-1.327-4.773.003-5.305 4.318-9.619 9.622-9.619 2.57 0 4.987 1.001 6.804 2.818 1.817 1.817 2.818 4.234 2.818 6.804z"/></svg>
+            Chat Directly on WhatsApp
+          </a>
+          <a href="mailto:info@trendmasterakademi.com" class="btn-secondary">
+            <span>✉ info@trendmasterakademi.com</span>
+          </a>
+        </div>
+      </footer>
+
+    </div>
+
+  </body>
+</html>
