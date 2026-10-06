@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="meta-title">Mehmet Şahin | Trend Master Akademi — Resmi B2B & Web3 Kartvizit</title>
+    <meta id="meta-desc" name="description" content="Mehmet Şahin — Kurucu & Baş Sistem Mimarı, Trend Master Akademi. B2B Teknik SWAT, Web3 & Akıllı Kontratlar, White-Label Mühendislik Masası." />
+    <meta name="author" content="Mehmet Şahin | Trend Master Akademi" />
+    
+    <!-- Open Graph for WhatsApp & Social Media Preview Cards -->
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content="https://trendmasterakademi.com/kartvizit/" />
+    <meta id="og-title" property="og:title" content="Mehmet Şahin — Trend Master Akademi Kartvizit" />
+    <meta id="og-desc" property="og:description" content="Founder & Lead Systems Architect · B2B Technical SWAT & Web3 Engineering Desk." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta name="theme-color" content="#080C14" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+      :root {
+        --bg-main: #06090F;
+        --card-bg: #0C121E;
+        --card-border: #1E2B42;
+        --card-border-glow: #38BDF8;
+        --text-primary: #FFFFFF;
+        --text-secondary: #94A3B8;
+        --text-muted: #64748B;
+        --accent-red: #EF4444;
+        --accent-cyan: #06B6D4;
+        --accent-emerald: #10B981;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        background-color: var(--bg-main);
+        color: var(--text-primary);
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 24px 16px;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* Top Controls Bar */
+      .top-nav {
+        width: 100%;
+        max-width: 1080px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 10px;
+      }
+
+      .nav-btn {
+        background: #101726;
+        border: 1px solid #1E2B42;
+        color: #CBD5E1;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 7px 14px;
+        border-radius: 7px;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        transition: all 0.15s ease-in-out;
+      }
+
+      .nav-btn:hover {
+        background: #1A263D;
+        color: #FFFFFF;
+        border-color: #2E4166;
+      }
+
+      .lang-pills {
+        display: inline-flex;
+        background: #0C121E;
+        border: 1px solid #1E2B42;
+        border-radius: 8px;
+        padding: 3px;
+        gap: 4px;
+      }
+
+      .lang-pill-btn {
+        background: transparent;
+        border: none;
+        color: #94A3B8;
+        font-size: 11.5px;
+        font-weight: 600;
+        padding: 5px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.15s ease-in-out;
+      }
+
+      .lang-pill-btn.active {
+        background: #17243C;
+        color: #38BDF8;
+        border: 1px solid rgba(56, 189, 248, 0.35);
+      }
+
+      /* Business Card Presentation Showcase */
+      .showcase-area {
+        width: 100%;
+        max-width: 1080px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .showcase-header {
+        text-align: center;
+        margin-bottom: 8px;
+      }
+
+      .showcase-title {
+        font-size: 20px;
+        font-weight: 800;
+        color: #FFFFFF;
+        letter-spacing: -0.4px;
+        margin-bottom: 4px;
+      }
+
+      .showcase-desc {
+        font-size: 13px;
+        color: var(--text-secondary);
+      }
+
+      /* Card Grid (Front & Back Side by Side) */
+      .cards-container {
+        display: flex;
+        justify-content: center;
+        gap: 36px;
+        flex-wrap: wrap;
+        perspective: 1200px;
+      }
+
+      .card-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .card-side-label {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 11px;
+        font-weight: 700;
+        color: #64748B;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+      }
+
+      /* EXACT BUSINESS CARD DIMENSIONS: Standard 85mm x 55mm (Scale factor approx 6x for screen) */
+      .biz-card {
+        width: 480px;
+        height: 290px;
+        background: radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.12) 0%, transparent 45%),
+                    radial-gradient(circle at 10% 85%, rgba(239, 68, 68, 0.08) 0%, transparent 40%),
+                    linear-gradient(135deg, #0F1726 0%, #0A0E17 100%);
+        border: 1px solid #233452;
+        border-radius: 12px;
+        padding: 24px 28px;
+        position: relative;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        overflow: hidden;
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .biz-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 26px 50px rgba(0, 0, 0, 0.75), 0 0 20px rgba(6, 182, 212, 0.18);
+        border-color: #38BDF8;
+      }
+
+      /* FRONT SIDE STYLES */
+      .front-card .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .front-logo {
+        height: 38px;
+        width: auto;
+        max-width: 230px;
+        object-fit: contain;
+      }
+
+      .desk-badge {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 9px;
+        font-weight: 600;
+        padding: 3px 8px;
+        background: rgba(16, 185, 129, 0.12);
+        color: #34D399;
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .desk-pulse {
+        width: 6px;
+        height: 6px;
+        background: #10B981;
+        border-radius: 50%;
+        box-shadow: 0 0 6px #10B981;
+      }
+
+      .front-middle {
+        margin-top: 10px;
+      }
+
+      .front-name {
+        font-size: 26px;
+        font-weight: 800;
+        color: #FFFFFF;
+        letter-spacing: -0.5px;
+        line-height: 1.1;
+      }
+
+      .front-role {
+        font-size: 13px;
+        font-weight: 600;
+        color: #38BDF8;
+        margin-top: 4px;
+        letter-spacing: -0.2px;
+      }
+
+      .front-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .front-tags {
+        display: flex;
+        gap: 6px;
+      }
+
+      .front-tag {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 9px;
+        font-weight: 600;
+        padding: 2.5px 7px;
+        border-radius: 4px;
+        background: #121A28;
+        border: 1px solid #1E2D44;
+        color: #94A3B8;
+      }
+
+      .front-tag.hot {
+        color: #F87171;
+        border-color: rgba(239, 68, 68, 0.35);
+        background: rgba(239, 68, 68, 0.1);
+      }
+
+      .front-tag.web3 {
+        color: #67E8F9;
+        border-color: rgba(6, 182, 212, 0.35);
+        background: rgba(6, 182, 212, 0.1);
+      }
+
+      .front-meta-code {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 9px;
+        color: #64748B;
+      }
+
+      /* BACK SIDE STYLES */
+      .back-card {
+        padding: 20px 24px;
+      }
+
+      .back-layout {
+        display: flex;
+        height: 100%;
+        gap: 18px;
+      }
+
+      .back-left {
+        flex: 1.2;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-right: 1px solid rgba(255, 255, 255, 0.08);
+        padding-right: 16px;
+      }
+
+      .back-pillars-title {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 9.5px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: #38BDF8;
+        margin-bottom: 6px;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+      }
+
+      .back-pillars {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .back-pillar-item {
+        font-size: 10.5px;
+        color: #CBD5E1;
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+        line-height: 1.25;
+      }
+
+      .pillar-icon {
+        font-size: 11px;
+        line-height: 1.2;
+      }
+
+      .back-trust-strip {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 8.5px;
+        color: #64748B;
+        border-top: 1px dashed rgba(255, 255, 255, 0.08);
+        padding-top: 6px;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .back-right {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 11px;
+        color: #E2E8F0;
+        text-decoration: none;
+      }
+
+      .contact-item:hover {
+        color: #38BDF8;
+      }
+
+      .contact-item svg {
+        flex-shrink: 0;
+        color: #06B6D4;
+      }
+
+      .contact-item.addr {
+        font-size: 9.5px;
+        color: #94A3B8;
+        line-height: 1.25;
+      }
+
+      .qr-block {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: #070B12;
+        border: 1px solid #1C273A;
+        border-radius: 8px;
+        padding: 6px 10px;
+      }
+
+      .qr-img {
+        width: 52px;
+        height: 52px;
+        border-radius: 4px;
+        background: #080C14;
+      }
+
+      .qr-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+
+      .qr-title {
+        font-size: 10.5px;
+        font-weight: 700;
+        color: #FFFFFF;
+      }
+
+      .qr-sub {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 8.5px;
+        color: #34D399;
+      }
+
+      /* Quick Actions Under Cards */
+      .card-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 12px;
+      }
+
+      .action-pill {
+        background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+        color: #FFFFFF;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 10px 22px;
+        border-radius: 8px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: 0 4px 16px rgba(16, 185, 129, 0.35);
+        transition: transform 0.15s;
+      }
+
+      .action-pill:hover {
+        transform: translateY(-2px);
+      }
+
+      /* PRINT OPTIMIZATION (Standard 85mm x 55mm Card Size) */
+      @page {
+        size: A4 portrait;
+        margin: 15mm;
+      }
+
+      @media print {
+        body {
+          background: #FFFFFF !important;
+          color: #000000 !important;
+          padding: 0 !important;
+        }
+
+        .top-nav, .card-actions, .showcase-header, .card-side-label {
+          display: none !important;
+        }
+
+        .showcase-area {
+          max-width: 100% !important;
+        }
+
+        .cards-container {
+          gap: 20mm !important;
+          flex-direction: column !important;
+          align-items: center !important;
+        }
+
+        .biz-card {
+          width: 85mm !important;
+          height: 55mm !important;
+          border-radius: 3mm !important;
+          padding: 5mm 6mm !important;
+          box-shadow: none !important;
+          border: 1px solid #1E2B42 !important;
+          background: #0A0E17 !important;
+          color: #FFFFFF !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          page-break-inside: avoid !important;
+        }
+
+        .front-name {
+          font-size: 16pt !important;
+        }
+        .front-role {
+          font-size: 8.5pt !important;
+        }
+        .back-pillar-item {
+          font-size: 6.5pt !important;
+        }
+        .contact-item {
+          font-size: 7pt !important;
+        }
+        .qr-img {
+          width: 12mm !important;
+          height: 12mm !important;
+        }
+      }
+
+      @media (max-width: 980px) {
+        .cards-container {
+          flex-direction: column;
+          align-items: center;
+        }
+        .biz-card {
+          width: 100%;
+          max-width: 440px;
+          height: auto;
+          min-height: 270px;
+        }
+        .back-layout {
+          flex-direction: column;
+          gap: 14px;
+        }
+        .back-left {
+          border-right: none;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+          padding-right: 0;
+          padding-bottom: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Top Navigation & Language Switcher -->
+    <nav class="top-nav">
+      <div class="btn-group">
+        <a href="/" class="nav-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span data-i18n="btn_site">trendmasterakademi.com</span>
+        </a>
+        <a href="/catalog/" class="nav-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <span data-i18n="btn_catalog">1-Sayfalık Katalog</span>
+        </a>
+        <button onclick="window.print()" class="nav-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><path d="M6 14h12v8H6z"/></svg>
+          <span data-i18n="btn_print">Baskı / PDF Al (85x55mm)</span>
+        </button>
+      </div>
+
+      <div class="lang-pills">
+        <button class="lang-pill-btn active" data-lang="tr" onclick="setLang('tr')">🇹🇷 Türkçe</button>
+        <button class="lang-pill-btn" data-lang="en" onclick="setLang('en')">🇬🇧 English</button>
+      </div>
+    </nav>
+
+    <!-- Showcase Container -->
+    <main class="showcase-area">
+      <header class="showcase-header">
+        <h1 class="showcase-title" data-i18n="header_title">Resmi Yönetici & Mimar Kartviziti</h1>
+        <p class="showcase-desc" data-i18n="header_desc">Trend Master Akademi — B2B Teknik SWAT, Web3 & White-Label Mühendislik Masası</p>
+      </header>
+
+      <!-- Cards Container (Front & Back) -->
+      <div class="cards-container">
+        
+        <!-- CARD FRONT -->
+        <div class="card-wrap">
+          <span class="card-side-label" data-i18n="label_front">ÖN YÜZ (FRONT SIDE)</span>
+          <div class="biz-card front-card">
+            
+            <div class="top-bar">
+              <img src="/logo-dark.svg" alt="Trend Master Akademi" class="front-logo" />
+              <div class="desk-badge">
+                <span class="desk-pulse"></span>
+                <span data-i18n="badge_desk">AKTİF MASA</span>
+              </div>
+            </div>
+
+            <div class="front-middle">
+              <div class="front-name">MEHMET ŞAHİN</div>
+              <div class="front-role" data-i18n="front_role">Kurucu & Baş Sistem Mimarı</div>
+            </div>
+
+            <div class="front-bottom">
+              <div class="front-tags">
+                <span class="front-tag hot">INCIDENT SWAT</span>
+                <span class="front-tag web3">WEB3 & DEFI</span>
+                <span class="front-tag">WHITE-LABEL</span>
+              </div>
+              <div class="front-meta-code">85×55mm · ISO 7810</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- CARD BACK -->
+        <div class="card-wrap">
+          <span class="card-side-label" data-i18n="label_back">ARKA YÜZ (BACK SIDE)</span>
+          <div class="biz-card back-card">
+            <div class="back-layout">
+              
+              <!-- Left: 4 Pillars & Guarantees -->
+              <div class="back-left">
+                <div>
+                  <div class="back-pillars-title">
+                    <span>⚡</span>
+                    <span data-i18n="pillars_title">HIZLI MÜDAHALE & MÜHENDİSLİK</span>
+                  </div>
+                  <ul class="back-pillars">
+                    <li class="back-pillar-item">
+                      <span class="pillar-icon">🚨</span>
+                      <strong data-i18n="p1_strong">Incident SWAT:</strong> <span data-i18n="p1_desc">Canlı 500 & DB Sıcak Yama</span>
+                    </li>
+                    <li class="back-pillar-item">
+                      <span class="pillar-icon">⛓️</span>
+                      <strong data-i18n="p2_strong">Web3 & dApps:</strong> <span data-i18n="p2_desc">Solidity, Kripto Raylar & Botlar</span>
+                    </li>
+                    <li class="back-pillar-item">
+                      <span class="pillar-icon">🔄</span>
+                      <strong data-i18n="p3_strong">Code Rescue:</strong> <span data-i18n="p3_desc">Terk Edilmiş Repo & Spagetti İhyası</span>
+                    </li>
+                    <li class="back-pillar-item">
+                      <span class="pillar-icon">🛡️</span>
+                      <strong data-i18n="p4_strong">White-Label:</strong> <span data-i18n="p4_desc">Ajanslar İçin Görünmez Güç</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div class="back-trust-strip">
+                  <span data-i18n="trust_nda">🔒 RESMİ KARŞILIKLI NDA</span>
+                  <span data-i18n="trust_ip">🔑 %100 KOD MÜLKİYETİ</span>
+                </div>
+              </div>
+
+              <!-- Right: QR Code & Direct Contacts -->
+              <div class="back-right">
+                <div class="contact-list">
+                  <a href="tel:+905343713573" class="contact-item">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <strong>+90 534 371 35 73</strong>
+                  </a>
+                  <a href="mailto:info@trendmasterakademi.com" class="contact-item">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <span>info@trendmasterakademi.com</span>
+                  </a>
+                  <a href="https://trendmasterakademi.com" target="_blank" class="contact-item">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <span>trendmasterakademi.com</span>
+                  </a>
+                  <div class="contact-item addr">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>Heris Tower No:55 D:091 Konak / İzmir</span>
+                  </div>
+                </div>
+
+                <!-- QR Code Box -->
+                <a href="https://wa.me/905343713573" target="_blank" class="qr-block" style="text-decoration:none;">
+                  <img src="/images/qr-whatsapp.svg" alt="Scan WhatsApp" class="qr-img" />
+                  <div class="qr-info">
+                    <span class="qr-title" data-i18n="qr_title">WhatsApp Doğrudan</span>
+                    <span class="qr-sub" data-i18n="qr_sub">Hemen Yazın ↗</span>
+                  </div>
+                </a>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div class="card-actions">
+        <a id="wa-chat-btn" href="https://wa.me/905343713573?text=Merhaba%20Mehmet%20Bey%2C%20kartvizitinizi%20inceledim.%20G%C3%B6r%C3%BC%C5%9Fmek%20istedi%C4%9Fim%20bir%20yaz%C4%B1l%C4%B1m%20/%20Web3%20konusu%20var." target="_blank" class="action-pill">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.029.569 2.059.873 3.037.873h.005c3.181 0 5.767-2.586 5.768-5.766 0-1.54-.599-2.988-1.688-4.077-1.089-1.089-2.537-1.688-4.077-1.688zm9.585 5.765c-.002 5.305-4.316 9.619-9.619 9.619-1.637 0-3.198-.415-4.577-1.203l-5.42 1.419 1.446-5.281c-.868-1.428-1.328-3.076-1.327-4.773.003-5.305 4.318-9.619 9.622-9.619 2.57 0 4.987 1.001 6.804 2.818 1.817 1.817 2.818 4.234 2.818 6.804z"/></svg>
+          <span data-i18n="btn_wa">WhatsApp'tan Kartvizit Sahibine Ulaş</span>
+        </a>
+      </div>
+
+    </main>
+
+    <!-- Language Switcher Script -->
+    <script>
+      const cardTexts = {
+        tr: {
+          meta_title: "Mehmet Şahin | Trend Master Akademi — Resmi B2B & Web3 Kartvizit",
+          meta_desc: "Mehmet Şahin — Kurucu & Baş Sistem Mimarı, Trend Master Akademi. B2B Teknik SWAT, Web3 & Akıllı Kontratlar, White-Label Mühendislik Masası.",
+          btn_site: "trendmasterakademi.com",
+          btn_catalog: "1-Sayfalık Katalog",
+          btn_print: "Baskı / PDF Al (85x55mm)",
+          header_title: "Resmi Yönetici & Mimar Kartviziti",
+          header_desc: "Trend Master Akademi — B2B Teknik SWAT, Web3 & White-Label Mühendislik Masası",
+          label_front: "ÖN YÜZ (FRONT SIDE)",
+          label_back: "ARKA YÜZ (BACK SIDE)",
+          badge_desk: "AKTİF MASA",
+          front_role: "Kurucu & Baş Sistem Mimarı",
+          pillars_title: "HIZLI MÜDAHALE & MÜHENDİSLİK",
+          p1_strong: "Incident SWAT:",
+          p1_desc: "Canlı 500 & DB Sıcak Yama",
+          p2_strong: "Web3 & dApps:",
+          p2_desc: "Solidity, Kripto Raylar & Botlar",
+          p3_strong: "Code Rescue:",
+          p3_desc: "Terk Edilmiş Repo & Spagetti İhyası",
+          p4_strong: "White-Label:",
+          p4_desc: "Ajanslar İçin Görünmez Güç",
+          trust_nda: "🔒 RESMİ KARŞILIKLI NDA",
+          trust_ip: "🔑 %100 KOD MÜLKİYETİ",
+          qr_title: "WhatsApp Doğrudan",
+          qr_sub: "Hemen Yazın ↗",
+          btn_wa: "WhatsApp'tan Kartvizit Sahibine Ulaş",
+          wa_msg: "Merhaba Mehmet Bey, kartvizitinizi inceledim. Görüşmek istediğim bir yazılım / Web3 konusu var."
+        },
+        en: {
+          meta_title: "Mehmet Sahin | Trend Master Akademi — Official B2B & Web3 Business Card",
+          meta_desc: "Mehmet Sahin — Founder & Lead Systems Architect, Trend Master Akademi. B2B Technical SWAT, Web3 & Smart Contracts, White-Label Engineering Desk.",
+          btn_site: "trendmasterakademi.com",
+          btn_catalog: "1-Page Catalog",
+          btn_print: "Print / Save PDF (85x55mm)",
+          header_title: "Official Executive & Architect Business Card",
+          header_desc: "Trend Master Akademi — Global B2B Technical SWAT & Web3 Engineering Desk",
+          label_front: "FRONT SIDE",
+          label_back: "BACK SIDE",
+          badge_desk: "ACTIVE DESK",
+          front_role: "Founder & Lead Systems Architect",
+          pillars_title: "RAPID SWAT & SENIOR ENGINEERING",
+          p1_strong: "Incident SWAT:",
+          p1_desc: "Live 500 & Database Hotfixes",
+          p2_strong: "Web3 & dApps:",
+          p2_desc: "Solidity, Crypto Rails & Quant Bots",
+          p3_strong: "Code Rescue:",
+          p3_desc: "Abandoned Repos & Spaghetti Refactor",
+          p4_strong: "White-Label:",
+          p4_desc: "Invisible Agency Backline Muscle",
+          trust_nda: "🔒 BINDING MUTUAL NDA",
+          trust_ip: "🔑 100% IP & CODE RIGHTS",
+          qr_title: "Direct WhatsApp",
+          qr_sub: "Chat Now ↗",
+          btn_wa: "Contact Architect on WhatsApp",
+          wa_msg: "Hi Mehmet, I reviewed your business card. I have a software / Web3 project I'd like to discuss."
+        }
+      };
+
+      function setLang(lang) {
+        if (!cardTexts[lang]) lang = 'tr';
+        document.documentElement.lang = lang;
+        localStorage.setItem('tma_bizcard_lang', lang);
+
+        document.querySelectorAll('.lang-pill-btn').forEach(btn => {
+          if (btn.getAttribute('data-lang') === lang) btn.classList.add('active');
+          else btn.classList.remove('active');
+        });
+
+        const dict = cardTexts[lang];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const k = el.getAttribute('data-i18n');
+          if (dict[k]) el.innerHTML = dict[k];
+        });
+
+        if (dict.meta_title) document.title = dict.meta_title;
+        const waBtn = document.getElementById('wa-chat-btn');
+        if (waBtn && dict.wa_msg) {
+          waBtn.href = 'https://wa.me/905343713573?text=' + encodeURIComponent(dict.wa_msg);
+        }
+      }
+
+      (function init() {
+        const stored = localStorage.getItem('tma_bizcard_lang');
+        const navLang = (navigator.language || '').toLowerCase();
+        let target = 'tr';
+        if (stored === 'en' || stored === 'tr') target = stored;
+        else if (!navLang.startsWith('tr')) target = 'en';
+        setLang(target);
+      })();
+    </script>
+
+  </body>
+</html>
