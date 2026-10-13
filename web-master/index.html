@@ -1,0 +1,796 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com https://static.cloudflareinsights.com 'sha256-C6ZpIJnsYCtn3xk+PS0tXZFTts0+iGf8YHLFUvCVsqY=' 'sha256-5Oi72KUZ3LaSR2N9JWbDZVUqXP38QIpVD1g9wfJx/HA=' 'sha256-tX5hPSqAErTkjNHUtDCHI/qBVEbmghMihhwQsp3GpEg=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://*.clarity.ms https://c.bing.com; connect-src 'self' https://api.web3forms.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; manifest-src 'self'; worker-src 'self' blob:">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+
+      try {
+        if (!localStorage.getItem('tma_cookie_consent')) document.documentElement.setAttribute('data-cerez-bandi', 'acik');
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>Web Master &amp; Özel Kodlu Web Siteleri | Trend Master Akademi</title>
+    <meta name="description" content="Hazır şablonlar yerine sıfırdan özel kodlu, modern tasarımlı, yüksek hızlı kurumsal web siteleri, B2B portalları ve uçtan uca Web Master mühendisliği." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/web-master/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/web-master/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/web-master/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/webmaster/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/web-master/" />
+    <meta property="og:title" content="Web Master &amp; Özel Kodlu Web Siteleri | Trend Master Akademi" />
+    <meta property="og:description" content="Hazır şablonlar yerine sıfırdan özel kodlu, modern tasarımlı, yüksek hızlı kurumsal web siteleri, B2B portalları ve uçtan uca Web Master mühendisliği." />
+    <meta property="og:image" content="https://trendmasterakademi.com/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Trend Master Akademi — Ajanslar için white-label mühendislik ve acil kod kurtarma masası" />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="Ajanslara Yazılım Desteği, White Label Yazılım, Yazılım Çözüm Ortağı, Ajans Yazılım İş Ortaklığı, Dış Kaynak Yazılım Geliştirme, White Label Web Geliştirme, Ajanslara Teknik Destek, Ajanslara Özel Yazılım Hizmeti, Dış Kaynak Yazılım Ekibi, White Label Yazılım Ajansı, Ajanslara Web Yazılım Desteği, Yazılım Proje Devralma, B2B Yazılım SWAT, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/web-master/" />
+    <meta name="twitter:title" content="Web Master &amp; Özel Kodlu Web Siteleri | Trend Master Akademi" />
+    <meta name="twitter:description" content="Hazır şablonlar yerine sıfırdan özel kodlu, modern tasarımlı, yüksek hızlı kurumsal web siteleri, B2B portalları ve uçtan uca Web Master mühendisliği." />
+    <meta name="twitter:image" content="https://trendmasterakademi.com/og-image.jpg" />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://trendmasterakademi.com/#organization",
+      "name": "Trend Master Akademi",
+      "alternateName": "TMA Studio & Labs",
+      "legalName": "Mehmet Şahin",
+      "taxID": "7930336132",
+      "url": "https://trendmasterakademi.com",
+      "logo": "https://trendmasterakademi.com/logo-dark.png",
+      "image": "https://trendmasterakademi.com/og-image.jpg",
+      "description": "Dijital ajanslar, SaaS girişimleri ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), API Entegrasyonu ve Özel Yazılım Geliştirme Stüdyosu.",
+      "founder": {
+        "@type": "Person",
+        "name": "Mehmet Şahin",
+        "jobTitle": "Kurucu & Baş Yazılım Mimarı (Lead Architect)",
+        "image": "https://trendmasterakademi.com/images/mehmet-sahin-480.jpg",
+        "url": "https://trendmasterakademi.com/about/"
+      },
+      "telephone": "+905343713573",
+      "email": "info@trendmasterakademi.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091",
+        "addressLocality": "Konak",
+        "addressRegion": "İzmir",
+        "addressCountry": "TR"
+      },
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 09:00-24:00",
+      "sameAs": [
+        "https://www.linkedin.com/in/trendmasterakademi/"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Türkiye"
+      },
+      "knowsAbout": [
+        "Ajanslara Yazılım Desteği",
+        "White Label Yazılım",
+        "Yazılım Çözüm Ortağı",
+        "Ajans Yazılım İş Ortaklığı",
+        "Dış Kaynak Yazılım Geliştirme",
+        "White Label Web Geliştirme",
+        "Ajanslara Teknik Destek",
+        "Ajanslara Özel Yazılım Hizmeti",
+        "Dış Kaynak Yazılım Ekibi",
+        "White Label Yazılım Ajansı",
+        "Ajanslara Web Yazılım Desteği",
+        "Yazılım Proje Devralma"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "B2B SWAT & Mühendislik Hizmetleri",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Acil Kod Kurtarma & Canlı Sistem Hotfix (Incident SWAT)",
+              "description": "HTTP 500 hataları, veritabanı kilitlenmeleri ve ödeme API kopmalarında acil müdahale."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yarım Kalan Proje Devralma (Abandoned Codebase Takeover)",
+              "description": "Önceki geliştiriciden kalan dokümantasyonsuz ve spagetti kod tabanlarının onarılması ve yayına alınması."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "B2B %100 White-Label Mühendislik & Kapasite Takviyesi",
+              "description": "Ajansların arka planında görünmez teknik ekip olarak resmi NDA altında proje teslimi."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "SaaS & Özel Web Uygulaması Mimarisi",
+              "description": "React, Next.js, Python/FastAPI ve Node.js ile sıfırdan ölçeklenebilir web ve bulut sistemleri."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yapay Zeka, LLM & Akıllı Otomasyon Entegrasyonları",
+              "description": "OpenAI, LLM, RAG ve akıllı agent iş akışlarının şirket içi süreçlere entegrasyonu."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Ajanslara Yazılım Desteği & Dış Kaynak Teknik İş Ortaklığı",
+              "description": "Dijital ajanslara özel white-label web geliştirme, dış kaynak yazılım ekibi ve proje devralma desteği."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://trendmasterakademi.com/#website",
+      "url": "https://trendmasterakademi.com",
+      "name": "Trend Master Akademi",
+      "publisher": {
+        "@id": "https://trendmasterakademi.com/#organization"
+      },
+      "inLanguage": [
+        "tr-TR",
+        "en-US"
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Web Master — Modern Tasarım & Özel Kodlu Web Siteleri",
+      "serviceType": "Özel kodlu web sitesi tasarımı, SaaS mimarisi ve Web Master mühendisliği",
+      "description": "Hazır şablonlar yerine sıfırdan özel kodlu, modern tasarımlı, yüksek hızlı kurumsal web siteleri, B2B portalları ve uçtan uca Web Master mühendisliği.",
+      "provider": {
+        "@id": "https://trendmasterakademi.com/#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Web Master & Özel Kodlu Siteler",
+          "item": "https://trendmasterakademi.com/web-master/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-C-T9spPw.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-BnvBOI7a.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-DeWJNfIW.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-D8B9_y7j.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-CSM_SUhm.css">
+    <link rel="modulepreload" crossorigin href="/assets/WebMaster-UKF00kyy.js">
+  <link rel="modulepreload" crossorigin href="/assets/pageTitle-Bs-QlsoO.js">
+  <link rel="modulepreload" crossorigin href="/assets/pageH1Data-x5c9drLQ.js">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">Web Master — Modern Tasarım & Özel Kodlu Web Mimarisi</h1>
+        
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/tanitim/" class="hover:underline">Hizmetler ve Çalışma Modeli</a>
+          <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
+          <a href="/kit/" class="hover:underline">Ajans Kiti</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
+          <a href="/tmai/" class="hover:underline">tmai</a>
+          <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
+          <a href="/kurtarilabilirlik/" class="hover:underline">Kurtarılabilirlik İndeksi</a>
+          <a href="/post-mortem/" class="hover:underline">Post-Mortem ve Kök Neden Arşivi</a>
+          <a href="/triyaj/" class="hover:underline">Triyaj Simülatörü</a>
+          <a href="/sla/" class="hover:underline">SLA & Taahhütler</a>
+          <a href="/teknoloji-uyumluluk/" class="hover:underline">Teknoloji Matrisi</a>
+          <a href="/gizlilik-sozlesmesi/" class="hover:underline">Gizlilik Sözleşmesi</a>
+          <a href="/nda/" class="hover:underline">Gizlilik ve Çalışma Sözleşmesi</a>
+          <a href="/hasar-tespiti/" class="hover:underline">Hasar Simülatörü</a>
+          <a href="/radar/" class="hover:underline">SWAT Radarı</a>
+          <a href="/kod-sagligi/" class="hover:underline">Kod Sağlığı</a>
+          <a href="/kurtarma-maliyeti/" class="hover:underline">Kurtarma mı, Sıfırdan Yazım mı?</a>
+          <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
+          <a href="/sozluk/" class="hover:underline">Teknik Sözlük</a>
+          <a href="/hikayemiz/" class="hover:underline">Hikayemiz</a>
+          <a href="/sos/" class="hover:underline">Acil Teknik Destek</a>
+          <a href="/about/" class="hover:underline">Hakkımızda</a>
+          <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-[var(--ink)]">Hazır Şablonların Hantallığından Kurtulun: Sıfırdan Özel Kodlu, Yüksek Hızlı ve Yaşayan Web Mimarisi</h2>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">Birbirinin kopyası hazır temalar ve eklenti yığınları yerine; markanıza ve iş modelinize özel kodlanan (custom-coded), prosedürel 3B/modern arayüzlere sahip, statik ön-render (SSR/SSG) ile anında açılan kurumsal web siteleri, B2B müşteri portalları ve uçtan uca Web Master mühendisliği.</p>
+        
+    <div class="space-y-12">
+      <!-- 1. Rozet, Giris & Guvenceler -->
+      <section class="space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] text-xs font-mono font-semibold tracking-wider">
+          TMA WEB MASTER STÜDYOSU // MODERN TASARIM &amp; ÖZEL KODLU SİTELER
+        </div>
+        <p class="text-base sm:text-lg text-[var(--ink-2)] leading-relaxed">
+          Birbirinin kopyası hazır temalar ve eklenti yığınları yerine; markanıza ve iş modelinize özel kodlanan (custom-coded), prosedürel 3B/modern arayüzlere sahip, statik ön-render (SSR/SSG) ile anında açılan kurumsal web siteleri, B2B müşteri portalları ve uçtan uca Web Master mühendisliği.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <strong class="text-xs sm:text-sm font-serif text-[var(--ink)] block">%100 Özel Kodlama</strong>
+              <p class="text-xs text-[var(--ink-2)]">Şişkin hazır tema veya gereksiz eklenti yığını yok; sıfırdan temiz ve modüler mimari.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <strong class="text-xs sm:text-sm font-serif text-[var(--ink)] block">Resmi NDA &amp; Mülkiyet</strong>
+              <p class="text-xs text-[var(--ink-2)]">Tüm kaynak kod, tasarım sistemi ve alan adı varlıkları %100 sizin mülkiyetinizde teslim edilir.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <strong class="text-xs sm:text-sm font-serif text-[var(--ink)] block">Maksimum Hız &amp; SEO</strong>
+              <p class="text-xs text-[var(--ink-2)]">Statik ön-render, yapısal şema (JSON-LD) ve Core Web Vitals odaklı mühendislik.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <strong class="text-xs sm:text-sm font-serif text-[var(--ink)] block">Uçtan Uca Web Master</strong>
+              <p class="text-xs text-[var(--ink-2)]">Sunucu, SSL, DNS, güvenlik başlıkları (CSP) ve canlı yayın operasyonları tek masada.</p>
+            </div>
+          
+        </div>
+      </section>
+
+      <!-- 2. Manifesto -->
+      <section class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+        <span class="text-xs font-mono text-[var(--accent)] uppercase tracking-wider font-semibold">Çalışma Felsefemiz</span>
+        <h2 class="text-xl sm:text-2xl font-serif font-bold text-[var(--ink)]">Hazır şablonlar markanızı sıradanlaştırır ve yavaşlatır; biz markanıza özel, sıfır şişkinlikte yaşayan web sistemleri inşa ediyoruz.</h2>
+        <p class="text-sm text-[var(--ink-2)] leading-relaxed">Birçok şirketin ve dijital ajansın web projelerinde yaşadığı temel açmazı yakından biliyoruz: Hızlıca ayağa kaldırılan hazır temalar ve onlarca eklenti, ilk gün güzel görünse de kısa sürede yavaşlamaya, güvenlik açıkları vermeye ve her yeni özel istekte tıkanmaya başlar.</p><p class="text-sm text-[var(--ink-2)] leading-relaxed">Modern bir web sitesi yalnızca görsel bir broşür değildir; arama motorlarının anında indekslediği, mobilde milisaniyeler içinde tepki veren, ödeme ve CRM sistemleriyle pürüzsüz konuşan bir mühendislik ürünüdür.</p><p class="text-sm text-[var(--ink-2)] leading-relaxed">Web Master masamızda tasarım estetiğini kıdemli yazılım mimarisiyle birleştiriyor; hem markanızın prestijini yükselten özel kodlu siteler üretiyor hem de sunucu, DNS, güvenlik ve performans operasyonlarını kesintisiz yönetiyoruz.</p>
+      </section>
+
+      <!-- 3. Senaryo Sozleri -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">
+          Özellikle şu durumlarda bizi hatırlamanızı isteriz
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">Şablondan Özel Koda Geçiş</span>
+              <p class="text-xs sm:text-sm font-serif italic text-[var(--ink)]">“Mevcut WordPress sitemiz 40 eklenti yüzünden çok ağırlaştı ve rakiplerimizle aynı görünüyor. Sıfırdan özel kodlu, modern ve çok hızlı bir kurumsal site istiyoruz.”</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">İnteraktif &amp; 3B Modern Tasarım</span>
+              <p class="text-xs sm:text-sm font-serif italic text-[var(--ink)]">“Ziyaretçi siteye girdiğinde sıradan stok fotoğraflar değil; markamızın teknoloji gücünü hissettiren canlı, modern ve akıcı bir arayüz görsün istiyoruz.”</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">Özel B2B Portal &amp; Müşteri Paneli</span>
+              <p class="text-xs sm:text-sm font-serif italic text-[var(--ink)]">“Bayilerimizin ve kurumsal müşterilerimizin giriş yapıp özel fiyat, stok ve sipariş takibi yapabileceği özel kodlu bir web portalına ihtiyacımız var.”</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">Yüksek Dönüşümlü E-Ticaret &amp; Ödeme</span>
+              <p class="text-xs sm:text-sm font-serif italic text-[var(--ink)]">“Standart e-ticaret paketleri özel sepet kurgumuza ve ERP entegrasyonumuza yetmiyor. Hızlı, kilitlenmeyen özel bir web mağazası kurmak istiyoruz.”</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">Teknik SEO &amp; Çok Dilli Küresel Mimari</span>
+              <p class="text-xs sm:text-sm font-serif italic text-[var(--ink)]">“Yurt dışı pazarına açılıyoruz; Türkçe ve İngilizce sayfaların ayrı URL, doğru hreflang, JSON-LD şema ve tam hız puanıyla çalışması gerekiyor.”</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">Sürekli Web Master &amp; Altyapı Sahipliği</span>
+              <p class="text-xs sm:text-sm font-serif italic text-[var(--ink)]">“Sitemiz yayına alındıktan sonra da SSL, Cloudflare, sunucu güncellemeleri, yedekleme ve teknik bakım için arkamızda kıdemli bir Web Master masası olsun.”</p>
+            </div>
+          
+        </div>
+      </section>
+
+      <!-- 4. 12 Yetkinlik Matrisi -->
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          12 Boyutlu Özel Kodlu Web Master Yetkinlik Matrisi
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">#01 · Özel Frontend</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Sıfırdan Özel Kodlu (Custom-Coded) Web Siteleri</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Hazır tema kullanmadan, React, Next.js ve modern CSS token mimarisiyle markaya özel, sıfır şişkinlikte arayüz geliştirme.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">#02 · Modern UI/UX</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">İnteraktif 3B Canvas &amp; Modern Görsel Dil</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Donanım hızlandırmalı 2D/3B prosedürel objeler, mikro etkileşimler ve karanlık/açık tema uyumlu çağdaş tasarım sistemleri.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">#03 · Performans</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">SSR, Statik Ön-Render &amp; Core Web Vitals</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">İlk çizimde hazır HTML, sıfır düzen kayması (CLS), optimize edilmiş font yığınları ve yüksek açılış hızı.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">#04 · Teknik SEO</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Derin Teknik SEO &amp; Yapısal Veri (JSON-LD)</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Otomatik içerik özetli site haritası, dinamik canonical/hreflang yönetimi ve sayfa bazlı zengin şema mimarisi.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">#05 · B2B &amp; SaaS</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Özel Müşteri Portalları &amp; Yönetim Panelleri</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Rol bazlı yetkilendirme (RBAC), gerçek zamanlı veri tabloları ve şirket içi operasyonlara özel yönetim ekranları.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">#06 · Backend &amp; API</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Node.js, Python/FastAPI &amp; Veritabanı Mimarisi</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Ölçeklenebilir REST/GraphQL uç noktaları, PostgreSQL ve Redis önbellekleme ile yüksek eşzamanlı arka uç sistemleri.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">#07 · Ödeme &amp; Ticaret</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">PayTR, iyzico, Stripe &amp; Özel Sepet Akışları</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Güvenli 3D Secure ödeme geçitleri, abonelik modelleri, idempotent webhook doğrulaması ve e-fatura entegrasyonları.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">#08 · Entegrasyon</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">CRM, ERP &amp; Üçüncü Parti Veri Senkronu</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Web sitenizin şirket içi CRM, muhasebe, kargo ve pazaryeri yazılımlarıyla çift yönlü otomatik haberleşmesi.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">#09 · Küresel Web</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Çok Dilli (Multi-Language) &amp; Bölgesel Mimari</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Her dil için bağımsız SEO rotaları, anlık istemci dili geçişi ve uluslararası pazarlara uygun içerik sunumu.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">#10 · Güvenlik</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">İçerik Güvenlik Politikası (CSP) &amp; Sıkılaştırma</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">SHA-256 betik özetli CSP başlıkları, bot tuzakları, rate-limiting ve OWASP standartlarında form/API koruması.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">#11 · DevOps &amp; Edge</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Cloudflare, Linux VPS, Docker &amp; CI/CD Hattı</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Otomatik derleme korumaları (Build Guards), kesintisiz dağıtım, CDN önbellekleme ve sunucu altyapı kurulumu.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">#12 · Web Master</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Sürekli Web Master &amp; Canlı Operasyon Yönetimi</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Alan adı, DNS, SSL/TLS takibi, çalışma süresi izleme, düzenli yedekleme ve ihtiyaç anında doğrudan kıdemli müdahale.</p>
+            </article>
+          
+        </div>
+      </section>
+
+      <!-- 5. Simulator Senaryolari -->
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          İnteraktif Web Master Mimari & Özel Kod Simülatörü
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">Kurumsal Marka &amp; Teknoloji Vitrini · Sıfır Şablon · SSR Ön-Render · 60 FPS</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Özel Kodlu Modern Kurumsal &amp; 3B Prestij Sitesi</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">React 19 · Vite/Next.js · Tailwind Token · HTML5 Canvas 3D · JSON-LD</p>
+              <p class="text-xs text-[var(--ink-2)]">Stok fotoğraflardan ve hazır WordPress kalıplarından arındırılmış; markanın mühendislik ve kurumsal ağırlığını yansıtan özel kodlu modern web platformu.</p>
+              <p class="text-xs font-medium text-[var(--ink)]">Tam kaynak kod deposu (Git), otomatik CI/CD yayını, özel tasarım sistemi ve %100 fikri mülkiyet devri.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">Web Uygulaması &amp; Yönetim Paneli · RBAC Yetki · Gerçek Zamanlı API · Yüksek Güvenlik</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Özel Kodlu B2B Müşteri Portalı &amp; SaaS Uygulaması</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">React / Next.js · Node.js / FastAPI · PostgreSQL · Redis · Docker</p>
+              <p class="text-xs text-[var(--ink-2)]">Müşterilerinizin, bayilerinizin veya iç ekibinizin güvenli giriş yaparak süreç yönettiği, yüksek veri hacmine dayanıklı özel web uygulaması.</p>
+              <p class="text-xs font-medium text-[var(--ink)]">Frontend + Backend kaynak kodları, veritabanı migrasyon şemaları, API dokümantasyonu ve sunucu kurulumu.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">FinTech &amp; E-Ticaret Mimarisi · Idempotent Ödeme · Çift Yönlü ERP · Hızlı Sepet</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Özel E-Ticaret, Ödeme Geçidi &amp; ERP Entegrasyonu</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">Next.js / Özel Web · PayTR / iyzico / Stripe · Webhook Queue · PostgreSQL</p>
+              <p class="text-xs text-[var(--ink-2)]">Standart hazır e-ticaret paketlerinin sınırlarını aşan; özel fiyatlandırma, abonelik veya karmaşık stok/ERP kurallarına sahip ticari platformlar.</p>
+              <p class="text-xs font-medium text-[var(--ink)]">Özel mağaza ve ödeme motoru kaynak kodu, sandbox/canlı ödeme test kayıtları ve webhook izleme paneli.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">Uluslararası Büyüme &amp; Web Master · TR/EN Simetrik Rota · Hreflang · CSP Güvenliği</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Çok Dilli Küresel Web &amp; Teknik SEO Dönüşümü</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">Statik/SSR Mimari · i18n Rota Çiftleri · Sitemap Hash · Cloudflare Edge</p>
+              <p class="text-xs text-[var(--ink-2)]">Küresel pazara açılan markalar için her dilde bağımsız URL yapısı, kusursuz teknik SEO şeması ve uçtan uca Web Master güvenliği.</p>
+              <p class="text-xs font-medium text-[var(--ink)]">Çok dilli özel web platformu, tam teknik SEO doğrulama raporu ve Web Master operasyon kılavuzu.</p>
+            </article>
+          
+        </div>
+      </section>
+
+      <!-- 6. Surec -->
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          4 Adımda Sıfırdan Özel Kodlu Web Master Süreci
+        </h2>
+        <div class="space-y-4 pt-2">
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                01
+              </div>
+              <div class="space-y-1.5 flex-1">
+                <h3 class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">Mimari Analiz &amp; Tasarım Kurgusu</h3>
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">Markanızın hedeflerini, ihtiyaç duyulan özel fonksiyonları ve kullanıcı yolculuğunu analiz ediyor; hazır şablon kullanmadan özel ekran ve sistem mimarisini çıkarıyoruz.</p>
+              </div>
+            </div>
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                02
+              </div>
+              <div class="space-y-1.5 flex-1">
+                <h3 class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">Resmi NDA &amp; Sabit Kapsam Planı</h3>
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">Karşılıklı gizlilik sözleşmesi (NDA) imzalıyor; teknoloji yığınını, teslim edilecek modülleri ve bütçeyi sürpriz maliyet olmadan yazılı olarak netleştiriyoruz.</p>
+              </div>
+            </div>
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                03
+              </div>
+              <div class="space-y-1.5 flex-1">
+                <h3 class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">Özel Kodlu (Zero-Bloat) İnşa &amp; Entegrasyon</h3>
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">Frontend, 3B/modern etkileşimler, backend API'leri, ödeme/CRM bağlantıları ve teknik SEO katmanlarını derleme korumalarıyla (Build Guards) kodluyoruz.</p>
+              </div>
+            </div>
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                04
+              </div>
+              <div class="space-y-1.5 flex-1">
+                <h3 class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">Performans Doğrulaması &amp; %100 Kod Devri</h3>
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">Hız, mobil uyumluluk ve güvenlik testlerini tamamlayarak sistemi canlıya alıyor; tüm kaynak kodları ve dokümantasyonu tam mülkiyetle size devrediyoruz.</p>
+              </div>
+            </div>
+          
+        </div>
+      </section>
+
+      <!-- 7. Vaka Calismalari -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">
+          NDA Korumalı Özel Kodlu Web Vaka Örnekleri
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">Kurumsal Dönüşüm &amp; Özel Kod · Tam Mimari Yenileme</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Hantal Şablon Siteden Sıfır Şişkinlikte Özel Kodlu Platforma Geçiş</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">React · Statik Ön-Render · Özel CSS Token · Cloudflare · JSON-LD</p>
+              <p class="text-xs text-[var(--ink-2)]">Çok sayıda eklentiyle çalışan eski kurumsal site mobilde geç açılıyor, arama motoru dizininde sayfa başlıkları çakışıyor ve tasarım rakiplerle birebir aynı görünüyordu.</p>
+              <p class="text-xs text-[var(--ink-2)]">Tüm hazır tema ve eklenti katmanı kaldırıldı. Sıfırdan özel kodlu, iki dilli (TR/EN), her sayfası statik ön-render edilen ve otomatik SEO doğrulamasından geçen yeni mimari inşa edildi.</p>
+              <p class="text-xs font-medium text-[var(--ink)]">Sayfa açılış tepkisi anlık düzeye indi, tüm teknik SEO ve şema hataları temizlendi; marka kendine özgü modern dijital kimliğine kavuştu.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">B2B Müşteri &amp; Bayi Portalı · Özel Web Uygulaması</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Üretici Firma İçin Özel Kodlu B2B Sipariş ve Bayi Yönetim Sistemi</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">Next.js · Node.js · PostgreSQL · Redis · ERP Webhook · RBAC</p>
+              <p class="text-xs text-[var(--ink-2)]">Bayi siparişleri telefon ve Excel tablolarıyla yürütülüyor, hazır e-ticaret paketleri ise müşteriye özel iskonto ve cari hesap kurallarını karşılayamıyordu.</p>
+              <p class="text-xs text-[var(--ink-2)]">Her bayinin kendi iskonto oranını, stok durumunu ve geçmiş faturalarını gördüğü, ERP ile çift yönlü senkronize çalışan özel kodlu B2B web portalı geliştirildi.</p>
+              <p class="text-xs font-medium text-[var(--ink)]">Sipariş hataları ortadan kalktı, bayi operasyonları tek bir güvenli web paneli üzerinden otonom hale getirildi.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">FinTech &amp; İnteraktif Web · Yüksek Prestij &amp; Güvenlik</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Teknoloji Girişimi İçin 3B Etkileşimli ve CSP Korumalı Web Platformu</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">React · HTML5 Canvas 3D · SHA-256 CSP · Çok Dilli Rota · Web3Forms</p>
+              <p class="text-xs text-[var(--ink-2)]">Küresel yatırımcılara ve kurumsal müşterilere hitap eden girişimin web sitesi, ürünün derin mühendislik kalitesini yansıtmıyor ve güvenlik taramalarında zayıf kalıyordu.</p>
+              <p class="text-xs text-[var(--ink-2)]">Donanım dostu prosedürel 3B sahneler, etkileşimli ürün simülatörü ve kriptografik özetli İçerik Güvenlik Politikası (CSP) ile sıfırdan özel kodlu platform kuruldu.</p>
+              <p class="text-xs font-medium text-[var(--ink)]">Hem görsel prestij hem de kurumsal siber güvenlik standartlarını aynı anda karşılayan, %100 mülkiyetli anahtar teslim sistem devreye alındı.</p>
+            </article>
+          
+        </div>
+      </section>
+
+      <!-- 8. SSS (FAQ) -->
+      <section class="space-y-4">
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">
+          Sıkça Sorulan Sorular
+        </h2>
+        <div class="space-y-3">
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+              <h3 class="text-sm font-serif font-semibold text-[var(--ink)]">Özel kodlu (custom-coded) web sitesi ile hazır WordPress/şablon site arasındaki temel fark nedir?</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Hazır şablonlar binlerce farklı senaryoya uymak için kullanmadığınız on binlerce satır kodu ve eklentiyi sitenize yükler; bu da yavaşlığa, güvenlik açıklarına ve sıradan bir görünüme yol açar. Özel kodlu sitelerde ise yalnızca sizin iş modelinizin ihtiyaç duyduğu temiz kod yazılır; hız, güvenlik ve tasarım tamamen markanıza özeldir.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+              <h3 class="text-sm font-serif font-semibold text-[var(--ink)]">Tasarım ve yazılım bittikten sonra kaynak kodların mülkiyeti kime ait oluyor?</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Kaynak kodların, tasarım sisteminin ve tüm yapılandırma dosyalarının %100 fikri mülkiyeti size (veya ajansınıza) devredilir. Sizi kendimize mecbur bırakan kapalı kutu bir lisanslama yapmıyoruz.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+              <h3 class="text-sm font-serif font-semibold text-[var(--ink)]">Ajansımız tasarımı hazırladı, sadece özel kodlama ve Web Master kısmını üstlenir misiniz?</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Evet. İster sıfırdan hem modern görsel dili hem mühendisliği birlikte kurgulayalım, ister ajansınızın Figma/tasarım dosyalarını alıp %100 White-Label olarak en yüksek kod ve SEO standartlarında hayata geçirelim.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+              <h3 class="text-sm font-serif font-semibold text-[var(--ink)]">Sitenin Google SEO uyumu ve açılış hızı nasıl güvence altına alınıyor?</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Geliştirdiğimiz sitelerde her sayfa statik ön-render (SSR/SSG) ile üretilir; arama motorları boş bir JavaScript kabuğu yerine tam HTML içeriği, doğru H1 hiyerarşisini, canonical/hreflang etiketlerini ve JSON-LD yapısal verilerini doğrudan okur.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+              <h3 class="text-sm font-serif font-semibold text-[var(--ink)]">Site yayına alındıktan sonra sunucu, SSL ve teknik bakım desteği veriyor musunuz?</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Evet. Web Master kategorimiz yalnızca siteyi yapıp bırakmak üzerine değil; DNS, SSL/TLS, Cloudflare, sunucu optimizasyonu, yedekleme ve yeni modül geliştirmelerinde sürekli teknik masanız olarak yanınızda durmak üzere kurgulanmıştır.</p>
+            </div>
+          
+        </div>
+      </section>
+
+      <!-- 9. CTA -->
+      <section class="p-6 sm:p-8 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-4 text-left">
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">
+          Markanız veya Müşteriniz İçin Özel Kodlu Modern Bir Web Platformu mu Planlıyorsunuz?
+        </h2>
+        <p class="text-sm sm:text-base text-[var(--ink-2)] leading-relaxed">
+          Hazır şablonların sınırlarına takılmayın. Projenizin kapsamını, mimari gereksinimlerini ve teslim planını doğrudan Baş Mimar ile görüşün.
+        </p>
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="/tanitim/#contact" class="btn-primary">
+            <span>Proje &amp; Mimari Görüşmesi Başlat</span> →
+          </a>
+          <a href="/nda/" class="btn-secondary">
+            <span>Gizlilik Sözleşmemizi (NDA) İnceleyin</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>
