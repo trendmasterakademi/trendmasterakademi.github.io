@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com https://static.cloudflareinsights.com 'sha256-C6ZpIJnsYCtn3xk+PS0tXZFTts0+iGf8YHLFUvCVsqY=' 'sha256-5Oi72KUZ3LaSR2N9JWbDZVUqXP38QIpVD1g9wfJx/HA=' 'sha256-tX5hPSqAErTkjNHUtDCHI/qBVEbmghMihhwQsp3GpEg=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://*.clarity.ms https://c.bing.com; connect-src 'self' https://api.web3forms.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; manifest-src 'self'; worker-src 'self' blob:">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="theme-color" content="#E9EBEE" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Pre-render Design Tokens -->
+    <style id="pre-render-tokens">
+      :root {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) {
+          color-scheme: dark;
+          --paper:        #15181E;
+          --surface:      #1C2027;
+          --rule:         #2B313A;
+          --rule-strong:  #3D444F;
+          --rule-input:   #616B77;
+
+          --ink:          #E7EAEF;
+          --ink-2:        #AEB6C2;
+          --ink-3:        #8A93A1;
+
+          --accent:       #E4636C;
+          --accent-ink:   #F08D94;
+          --accent-wash:  #2A1619;
+          --on-accent:    #15181E;
+
+          --term-bg:      #0E1116;
+          --term-ink:     #C7CEDA;
+          --term-dim:     #6F7B8C;
+          --term-accent:  #E4636C;
+          --term-diff-add:#338E61;
+          --sev-ok:       #2E9E66;
+        }
+      }
+
+      :root[data-theme="dark"] {
+        color-scheme: dark;
+        --paper:        #15181E;
+        --surface:      #1C2027;
+        --rule:         #2B313A;
+        --rule-strong:  #3D444F;
+        --rule-input:   #616B77;
+
+        --ink:          #E7EAEF;
+        --ink-2:        #AEB6C2;
+        --ink-3:        #8A93A1;
+
+        --accent:       #E4636C;
+        --accent-ink:   #F08D94;
+        --accent-wash:  #2A1619;
+        --on-accent:    #15181E;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #2E9E66;
+      }
+
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --paper:        #E9EBEE;
+        --surface:      #F6F7F9;
+        --rule:         #CFD5DC;
+        --rule-strong:  #A9B2BD;
+        --rule-input:   #6E7784;
+
+        --ink:          #14181F;
+        --ink-2:        #49535F;
+        --ink-3:        #626B77;
+
+        --accent:       #B21F2B;
+        --accent-ink:   #8E1A23;
+        --accent-wash:  #F6E7E8;
+        --on-accent:    #FFFFFF;
+
+        --term-bg:      #0E1116;
+        --term-ink:     #C7CEDA;
+        --term-dim:     #6F7B8C;
+        --term-accent:  #E4636C;
+        --term-diff-add:#338E61;
+        --sev-ok:       #1D764B;
+      }
+
+      .logo-light { display: block; }
+      .logo-dark { display: none; }
+      :root[data-theme="dark"] .logo-light { display: none; }
+      :root[data-theme="dark"] .logo-dark { display: block; }
+      @media (prefers-color-scheme: dark) {
+        :root:not([data-theme="light"]) .logo-light { display: none; }
+        :root:not([data-theme="light"]) .logo-dark { display: block; }
+      }
+    </style>
+    
+    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied'
+      });
+      gtag('js', new Date());
+      gtag('config', 'G-98446GTE0E', { send_page_view: true });
+
+      // Custom Event Dispatcher
+      window.trackEvent = function(name, params) {
+        if (typeof gtag === 'function') {
+          gtag('event', name, params || {});
+        }
+      };
+
+      // Consent Activation & Clarity Delayed Bootstrap
+      window.enableAnalyticsConsent = function() {
+        if (typeof gtag === 'function') {
+          gtag('consent', 'update', {
+            'analytics_storage': 'granted'
+          });
+        }
+        if (!window.__clarity_initialized) {
+          window.__clarity_initialized = true;
+          (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "qm7350711g");
+        }
+      };
+
+      // Check existing consent on load
+      try {
+        if (localStorage.getItem('tma_cookie_consent') === 'accepted') {
+          window.enableAnalyticsConsent();
+        }
+      } catch(e) {}
+
+      try {
+        if (!localStorage.getItem('tma_cookie_consent')) document.documentElement.setAttribute('data-cerez-bandi', 'acik');
+      } catch(e) {}
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-98446GTE0E"></script>
+
+    <!-- Google Fonts: Source Serif 4, IBM Plex Sans, IBM Plex Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,400&display=swap"></noscript>
+    
+    <!-- GitHub Pages SPA Redirect Handling -->
+    <script type="text/javascript">
+      (function(l) {
+        if (l.search[1] === '/' ) {
+          var decoded = l.search.slice(1).split('&').map(function(s) { 
+            return s.replace(/~and~/g, '&')
+          }).join('?');
+          window.history.replaceState(null, null,
+              l.pathname.slice(0, -1) + decoded + l.hash
+          );
+        }
+      }(window.location))
+    </script>
+    
+    <title>FinTech &amp; Algoritmik Sistem Mimarisi | Trend Master Akademi</title>
+    <meta name="description" content="FinTech yazılım mimarisi, algoritmik işlem motorları (MQL5/Python), borsa API köprüleri, çift kayıtlı cüzdan ve idempotent ödeme sistemleri mühendisliği." />
+    <meta name="author" content="Trend Master Akademi" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://trendmasterakademi.com/fintech/" />
+
+    <!-- Multilingual Hreflang Tags -->
+    <link rel="alternate" hreflang="tr" href="https://trendmasterakademi.com/fintech/" />
+    <link rel="alternate" hreflang="x-default" href="https://trendmasterakademi.com/fintech/" />
+    <link rel="alternate" hreflang="en" href="https://trendmasterakademi.com/fintech/" />
+
+    <!-- Open Graph / Facebook / WhatsApp / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://trendmasterakademi.com/fintech/" />
+    <meta property="og:title" content="FinTech &amp; Algoritmik Sistem Mimarisi | Trend Master Akademi" />
+    <meta property="og:description" content="FinTech yazılım mimarisi, algoritmik işlem motorları (MQL5/Python), borsa API köprüleri, çift kayıtlı cüzdan ve idempotent ödeme sistemleri mühendisliği." />
+    <meta property="og:site_name" content="Trend Master Akademi" />
+    <meta property="og:locale" content="tr_TR" />
+
+    <meta name="keywords" content="Ajanslara Yazılım Desteği, White Label Yazılım, Yazılım Çözüm Ortağı, Ajans Yazılım İş Ortaklığı, Dış Kaynak Yazılım Geliştirme, White Label Web Geliştirme, Ajanslara Teknik Destek, Ajanslara Özel Yazılım Hizmeti, Dış Kaynak Yazılım Ekibi, White Label Yazılım Ajansı, Ajanslara Web Yazılım Desteği, Yazılım Proje Devralma, B2B Yazılım SWAT, Acil Kod Kurtarma, Yarım Kalan Proje Devralma, SaaS Mimarisi, Next.js React Geliştirici, FastAPI Backend, Stripe Webhook Entegrasyonu, Ajans Teknik Çözüm Ortağı, Trend Master Akademi" />
+
+    <!-- Twitter / X Cards -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://trendmasterakademi.com/fintech/" />
+    <meta name="twitter:title" content="FinTech &amp; Algoritmik Sistem Mimarisi | Trend Master Akademi" />
+    <meta name="twitter:description" content="FinTech yazılım mimarisi, algoritmik işlem motorları (MQL5/Python), borsa API köprüleri, çift kayıtlı cüzdan ve idempotent ödeme sistemleri mühendisliği." />
+
+    <!-- Schema.org JSON-LD Structured Data (Per-page generated) -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfessionalService",
+      "@id": "https://trendmasterakademi.com/#organization",
+      "name": "Trend Master Akademi",
+      "alternateName": "TMA Studio & Labs",
+      "legalName": "Mehmet Şahin",
+      "taxID": "7930336132",
+      "url": "https://trendmasterakademi.com",
+      "logo": "https://trendmasterakademi.com/logo-dark.png",
+      "description": "Dijital ajanslar, SaaS girişimleri ve teknoloji şirketleri için B2B White-Label Mühendislik Masası, Acil Kod Kurtarma (SWAT), API Entegrasyonu ve Özel Yazılım Geliştirme Stüdyosu.",
+      "founder": {
+        "@type": "Person",
+        "name": "Mehmet Şahin",
+        "jobTitle": "Kurucu & Baş Yazılım Mimarı (Lead Architect)",
+        "image": "https://trendmasterakademi.com/images/mehmet-sahin-480.jpg",
+        "url": "https://trendmasterakademi.com/about/"
+      },
+      "telephone": "+905343713573",
+      "email": "info@trendmasterakademi.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091",
+        "addressLocality": "Konak",
+        "addressRegion": "İzmir",
+        "addressCountry": "TR"
+      },
+      "priceRange": "$$",
+      "openingHours": "Mo-Su 09:00-24:00",
+      "sameAs": [
+        "https://www.linkedin.com/in/trendmasterakademi/"
+      ],
+      "areaServed": {
+        "@type": "Country",
+        "name": "Türkiye"
+      },
+      "knowsAbout": [
+        "Ajanslara Yazılım Desteği",
+        "White Label Yazılım",
+        "Yazılım Çözüm Ortağı",
+        "Ajans Yazılım İş Ortaklığı",
+        "Dış Kaynak Yazılım Geliştirme",
+        "White Label Web Geliştirme",
+        "Ajanslara Teknik Destek",
+        "Ajanslara Özel Yazılım Hizmeti",
+        "Dış Kaynak Yazılım Ekibi",
+        "White Label Yazılım Ajansı",
+        "Ajanslara Web Yazılım Desteği",
+        "Yazılım Proje Devralma"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "B2B SWAT & Mühendislik Hizmetleri",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Acil Kod Kurtarma & Canlı Sistem Hotfix (Incident SWAT)",
+              "description": "HTTP 500 hataları, veritabanı kilitlenmeleri ve ödeme API kopmalarında acil müdahale."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yarım Kalan Proje Devralma (Abandoned Codebase Takeover)",
+              "description": "Önceki geliştiriciden kalan dokümantasyonsuz ve spagetti kod tabanlarının onarılması ve yayına alınması."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "B2B %100 White-Label Mühendislik & Kapasite Takviyesi",
+              "description": "Ajansların arka planında görünmez teknik ekip olarak resmi NDA altında proje teslimi."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "SaaS & Özel Web Uygulaması Mimarisi",
+              "description": "React, Next.js, Python/FastAPI ve Node.js ile sıfırdan ölçeklenebilir web ve bulut sistemleri."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Yapay Zeka, LLM & Akıllı Otomasyon Entegrasyonları",
+              "description": "OpenAI, LLM, RAG ve akıllı agent iş akışlarının şirket içi süreçlere entegrasyonu."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Ajanslara Yazılım Desteği & Dış Kaynak Teknik İş Ortaklığı",
+              "description": "Dijital ajanslara özel white-label web geliştirme, dış kaynak yazılım ekibi ve proje devralma desteği."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://trendmasterakademi.com/#website",
+      "url": "https://trendmasterakademi.com",
+      "name": "Trend Master Akademi",
+      "publisher": {
+        "@id": "https://trendmasterakademi.com/#organization"
+      },
+      "inLanguage": [
+        "tr-TR",
+        "en-US"
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "FinTech — Algoritmik Sistemler, Ödeme & Finansal Yazılım Mimarisi",
+      "serviceType": "Algoritmik işlem sistemleri (MQL5/Python), borsa API köprüleri, çift kayıtlı cüzdan ve ödeme orkestrasyonu",
+      "description": "FinTech yazılım mimarisi, algoritmik işlem motorları (MQL5/Python), borsa API köprüleri, çift kayıtlı cüzdan ve idempotent ödeme sistemleri mühendisliği.",
+      "provider": {
+        "@id": "https://trendmasterakademi.com/#organization"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Ana Sayfa",
+          "item": "https://trendmasterakademi.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "FinTech & Algoritmik Sistemler",
+          "item": "https://trendmasterakademi.com/fintech/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <!-- Theme Stamp: Prevent FOUC -->
+    <script>
+    (function() { try {
+      var t=localStorage.getItem('tma_theme');
+      if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
+    } catch(e) {} })();
+    </script>
+    <script type="module" crossorigin src="/assets/index-_g_s3Jdx.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-icons-D5KoIwDL.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-misc-xkWG3HoW.js">
+    <link rel="modulepreload" crossorigin href="/assets/vendor-react-B7I78uSK.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-DwRcgPSf.css">
+    <link rel="modulepreload" crossorigin href="/assets/FinTech-2XG56EUe.js">
+  <link rel="modulepreload" crossorigin href="/assets/pageTitle-BQXnY8oz.js">
+  <link rel="modulepreload" crossorigin href="/assets/pageH1Data-DhEfYA7c.js">
+  <link rel="modulepreload" crossorigin href="/assets/CategoryPillarBar-DYj9rru9.js">
+  </head>
+  <body class="bg-[var(--paper)] text-[var(--ink)] antialiased selection:bg-[var(--accent)] selection:text-[var(--on-accent)]">
+    <div id="root">
+    <div class="ssr-pre-render p-6 sm:p-12 max-w-5xl mx-auto text-[var(--ink)] font-sans">
+      <header class="mb-8 border-b border-[var(--rule)] pb-6">
+        <h1 class="text-3xl sm:text-4xl font-semibold text-[var(--ink)] mb-3 tracking-tight">FinTech — Algoritmik Sistemler, Ödeme & Finansal Yazılım Mimarisi</h1>
+        
+        <nav class="flex flex-wrap gap-4 text-sm font-mono text-[var(--accent)]">
+          <a href="/" class="hover:underline">Ana Sayfa</a>
+          <a href="/tanitim/" class="hover:underline">Hizmetler ve Çalışma Modeli</a>
+          <a href="/agency/" class="hover:underline">Kapasite & Altyapı</a>
+          <a href="/fintech/" class="hover:underline">FinTech</a>
+          <a href="/kit/" class="hover:underline">Ajans Kiti</a>
+          <a href="/crash-test/" class="hover:underline">Crash Test (60sn)</a>
+          <a href="/devir-kontrolu/" class="hover:underline">Devir Kontrolü</a>
+          <a href="/tmai/" class="hover:underline">tmai</a>
+          <a href="/teshis/" class="hover:underline">Teşhis Kataloğu</a>
+          <a href="/kurtarilabilirlik/" class="hover:underline">Kurtarılabilirlik İndeksi</a>
+          <a href="/post-mortem/" class="hover:underline">Post-Mortem ve Kök Neden Arşivi</a>
+          <a href="/triyaj/" class="hover:underline">Triyaj Simülatörü</a>
+          <a href="/sla/" class="hover:underline">SLA & Taahhütler</a>
+          <a href="/teknoloji-uyumluluk/" class="hover:underline">Teknoloji Matrisi</a>
+          <a href="/gizlilik-sozlesmesi/" class="hover:underline">Gizlilik Sözleşmesi</a>
+          <a href="/nda/" class="hover:underline">Gizlilik ve Çalışma Sözleşmesi</a>
+          <a href="/hasar-tespiti/" class="hover:underline">Hasar Simülatörü</a>
+          <a href="/radar/" class="hover:underline">SWAT Radarı</a>
+          <a href="/kod-sagligi/" class="hover:underline">Kod Sağlığı</a>
+          <a href="/kurtarma-maliyeti/" class="hover:underline">Kurtarma mı, Sıfırdan Yazım mı?</a>
+          <a href="/kesinti-maliyeti/" class="hover:underline">Kesinti Maliyeti</a>
+          <a href="/sozluk/" class="hover:underline">Teknik Sözlük</a>
+          <a href="/hikayemiz/" class="hover:underline">Hikayemiz</a>
+          <a href="/sos/" class="hover:underline">Acil Teknik Destek</a>
+          <a href="/about/" class="hover:underline">Hakkımızda</a>
+          <a href="/privacy/" class="hover:underline">KVKK & Gizlilik</a>
+        </nav>
+      </header>
+      <main class="space-y-6">
+        <h2 class="text-2xl font-bold text-[var(--ink)]">Finansal İşlemlerde Sıfır Hata Payı: Atomik Muhasebe, Düşük Gecikmeli Algoritmik Sistemler ve Yüksek Güvenlikli Ödeme Mimarisi</h2>
+        <p class="text-[var(--ink-3)] text-lg leading-relaxed">20 yılı aşkın finansal piyasa tecrübesi ve 10+ yıllık algoritmik sistem mühendisliğiyle; MQL5/MT5 ve Python tabanlı otomatik işlem motorları, borsa/likidite API köprüleri (FIX, WebSocket, REST), çift kayıtlı (Double-Entry Ledger) dijital cüzdan altyapıları, idempotent ödeme orkestrasyonu ve kurumsal FinTech platformları inşa ediyoruz.</p>
+        
+    <div class="space-y-12">
+      <section class="space-y-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-[var(--r-control)] bg-[var(--tint-ok-bg)] border border-[var(--tint-ok-rule)] text-[var(--tint-ok-ink)] text-xs font-mono font-semibold tracking-wider">
+          FINTECH · ALGORİTMİK SİSTEMLER, ÖDEME &amp; FİNANSAL MİMARİ
+        </div>
+        <p class="text-base sm:text-lg text-[var(--ink-2)] leading-relaxed">
+          20 yılı aşkın finansal piyasa tecrübesi ve 10+ yıllık algoritmik sistem mühendisliğiyle; MQL5/MT5 ve Python tabanlı otomatik işlem motorları, borsa/likidite API köprüleri (FIX, WebSocket, REST), çift kayıtlı (Double-Entry Ledger) dijital cüzdan altyapıları, idempotent ödeme orkestrasyonu ve kurumsal FinTech platformları inşa ediyoruz.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 pt-2">
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <strong class="text-xs sm:text-sm font-serif text-[var(--ink)] block">Atomik &amp; Deterministik</strong>
+              <p class="text-xs text-[var(--ink-2)]">Kayan nokta (floating-point) yuvarlama hatası, çift çekim veya yarış durumu barındırmayan finansal çekirdek.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <strong class="text-xs sm:text-sm font-serif text-[var(--ink)] block">Resmi NDA &amp; Tam IP</strong>
+              <p class="text-xs text-[var(--ink-2)]">Algoritmik strateji mantığınız, kaynak kodlarınız ve finansal iş kurallarınız %100 sizin mülkiyetinizde kalır.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <strong class="text-xs sm:text-sm font-serif text-[var(--ink)] block">Düşük Gecikme &amp; Hız</strong>
+              <p class="text-xs text-[var(--ink-2)]">Milisaniye altı WebSocket veri akışı, asenkron emir iletimi ve kesintisiz sunucu/terminal sürekliliği.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <strong class="text-xs sm:text-sm font-serif text-[var(--ink)] block">Kurumsal Güvenlik</strong>
+              <p class="text-xs text-[var(--ink-2)]">HMAC-SHA256 imzalı API köprüleri, idempotent webhook kalkanı ve değiştirilemez denetim izi (Audit Log).</p>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-3">
+        <span class="text-xs font-mono text-[var(--tint-ok-ink)] uppercase tracking-wider font-semibold">FINTECH · ATOMİK FİNANSAL MÜHENDİSLİK &amp; ALGORİTMİK DİSİPLİN</span>
+        <h2 class="text-xl sm:text-2xl font-serif font-bold text-[var(--ink)]">Finansal yazılımlarda 'yaklaşık doğru' diye bir kavram yoktur; her emir, her kuruş ve her milisaniye deterministik olmak zorundadır.</h2>
+        <p class="text-sm text-[var(--ink-2)] leading-relaxed">Standart bir web uygulamasında 500 milisaniyelik bir gecikme veya eşzamanlı iki tıklama yalnızca küçük bir görsel aksaklık yaratabilir. Ancak bir FinTech platformunda, ödeme geçidinde veya algoritmik işlem (trading) motorunda aynı kusur; mükerrer bakiye düşümü, yanlış fiyattan emir iletimi (slippage), veritabanı kilitlenmesi veya doğrudan sermaye kaybı demektir.</p><p class="text-sm text-[var(--ink-2)] leading-relaxed">Yirmi yılı aşkın süredir finansal piyasaların, on yılı aşkın süredir de algoritmik yazılımların ve yüksek erişilebilirlikli sunucu altyapılarının bizzat içindeyiz. Piyasa mikro-yapısını, emir defteri (order book) dinamiklerini, marjin/risk hesaplamalarını ve ödeme sağlayıcıların sınır durumlarını (edge-case) yalnızca teorik kod düzeyinde değil, canlı piyasa şartlarında biliyoruz.</p><p class="text-sm text-[var(--ink-2)] leading-relaxed">FinTech masamızda; kurumsal ödeme ve dijital cüzdan mimarilerinden özel algoritmik işlem botlarına (MQL5, Python, Node.js, C++), gerçek zamanlı veri terminallerinden çoklu borsa API köprülerine kadar tüm finansal sistemlerinizi sıfır veri kaybı ve %100 fikri mülkiyet güvencesiyle mühendislik standartlarında üretiyoruz.</p>
+      </section>
+
+      
+      <section class="space-y-4">
+        <span class="text-xs font-mono text-[var(--tint-ok-ink)] uppercase tracking-wider font-semibold block">FINTECH · MİMARİ KARŞILAŞTIRMA MATRİSİ</span>
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">Standart Yazılım / Hazır Bot Betikleri vs. TMA FinTech Kurumsal &amp; Atomik Mimari</h2>
+        <p class="text-sm text-[var(--ink-2)]">Finansal platformların, yatırım masalarının ve ölçeklenen girişimlerin neden standart geliştirme kalıpları yerine özel FinTech mühendisliğini tercih ettiğinin teknik tablosu:</p>
+        <div class="space-y-2">
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <h3 class="text-sm font-serif font-bold text-[var(--ink)]">Bakiye &amp; Muhasebe Yapısı</h3>
+              <p class="text-xs text-[var(--ink-2)]"><strong>Standart Yazılım &amp; Fragile Betik Yaklaşımı:</strong> Tek bir 'balance' sütununu güncelleyen, eşzamanlı isteklerde yarış durumuna (race condition) ve bakiye kaymasına açık yapı.</p>
+              <p class="text-xs text-[var(--tint-ok-ink)] font-medium"><strong>TMA FinTech · Atomik &amp; Düşük Gecikmeli Mimari:</strong> Çift Kayıtlı Muhasebe (Double-Entry Ledger), sabit noktalı (Decimal/BigInt) aritmetik ve satır seviyesi atomik veritabanı kilitleri.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <h3 class="text-sm font-serif font-bold text-[var(--ink)]">Algoritmik Emir &amp; Risk Motoru</h3>
+              <p class="text-xs text-[var(--ink-2)]"><strong>Standart Yazılım &amp; Fragile Betik Yaklaşımı:</strong> Bağlantı koptuğunda açık pozisyonları unutan, yeniden başlatmada mükerrer emir açan kırılgan indikatör/bot betikleri.</p>
+              <p class="text-xs text-[var(--tint-ok-ink)] font-medium"><strong>TMA FinTech · Atomik &amp; Düşük Gecikmeli Mimari:</strong> Sunucu durumundan otomatik pozisyon kurtarma (State Recovery), maksimum düşüş (Drawdown) sigortası ve sıfır-bölme korumalı deterministik motor.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <h3 class="text-sm font-serif font-bold text-[var(--ink)]">Ödeme &amp; Webhook Orkestrasyonu</h3>
+              <p class="text-xs text-[var(--ink-2)]"><strong>Standart Yazılım &amp; Fragile Betik Yaklaşımı:</strong> Ağ gecikmesinde aynı ödemeyi iki kez işleyen veya 3D Secure dönüşünde siparişi düşüren senkron akışlar.</p>
+              <p class="text-xs text-[var(--tint-ok-ink)] font-medium"><strong>TMA FinTech · Atomik &amp; Düşük Gecikmeli Mimari:</strong> Idempotency-Key doğrulaması, HMAC kriptografik imza kontrolü, mesaj kuyruğu (Queue) ve otomatik mutabakat (Reconciliation).</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <h3 class="text-sm font-serif font-bold text-[var(--ink)]">Canlı Piyasa Veri Akışı</h3>
+              <p class="text-xs text-[var(--ink-2)]"><strong>Standart Yazılım &amp; Fragile Betik Yaklaşımı:</strong> Sürekli REST yoklaması (polling) yüzünden HTTP 429 hız sınırına (rate-limit) takılan ve gecikmeli veri gösteren paneller.</p>
+              <p class="text-xs text-[var(--tint-ok-ink)] font-medium"><strong>TMA FinTech · Atomik &amp; Düşük Gecikmeli Mimari:</strong> Kalıcı WebSocket akışları, bellek içi (Redis/RingBuffer) fiyat önbelleği ve 60 FPS gerçek zamanlı finansal grafik/HUD çizimi.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <h3 class="text-sm font-serif font-bold text-[var(--ink)]">API Anahtarı &amp; Siber Güvenlik</h3>
+              <p class="text-xs text-[var(--ink-2)]"><strong>Standart Yazılım &amp; Fragile Betik Yaklaşımı:</strong> İstemci tarafına sızan API anahtarları, şifresiz saklanan kimlik bilgileri ve yetki kontrolsüz uç noktalar.</p>
+              <p class="text-xs text-[var(--tint-ok-ink)] font-medium"><strong>TMA FinTech · Atomik &amp; Düşük Gecikmeli Mimari:</strong> Kasa (Vault/HSM) tabanlı anahtar izolasyonu, IP beyaz liste kalkanı, RBAC yetkilendirme ve değiştirilemez işlem günlüğü.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1">
+              <h3 class="text-sm font-serif font-bold text-[var(--ink)]">Strateji Gizliliği &amp; Kod Mülkiyeti</h3>
+              <p class="text-xs text-[var(--ink-2)]"><strong>Standart Yazılım &amp; Fragile Betik Yaklaşımı:</strong> Üçüncü parti bulut platformlarına bağımlı, strateji mantığınızı dışarıya açan kapalı kutu abonelikler.</p>
+              <p class="text-xs text-[var(--tint-ok-ink)] font-medium"><strong>TMA FinTech · Atomik &amp; Düşük Gecikmeli Mimari:</strong> Karşılıklı resmi NDA, kendi sunucunuzda (Self-Hosted) tam kontrol ve %100 açık kaynak kod / fikri mülkiyet devri.</p>
+            </div>
+          
+        </div>
+      </section>
+      
+
+      <section class="space-y-4">
+        <span class="text-xs font-mono text-[var(--tint-ok-ink)] uppercase tracking-wider font-semibold block">
+          FINTECH · ALGORİTMİK İŞLEM & FİNANSAL YAZILIM SENARYOLARI
+        </span>
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">
+          Kurumların, Fonların ve Girişimlerin FinTech Masamıza Başvurduğu 6 Kritik İhtiyaç
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">Algoritmik İşlem &amp; MQL5 / Python</span>
+              <p class="text-xs sm:text-sm font-serif italic text-[var(--ink)]">“Yıllardır manuel uyguladığımız ticaret ve risk stratejimizi; MT5 veya kripto borsalarında 7/24 hatasız çalışacak, bağlantı kopsa bile pozisyonları koruyacak kurumsal bir yazılıma dönüştürmek istiyoruz.”</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">Çoklu Borsa &amp; Likidite Köprüsü</span>
+              <p class="text-xs sm:text-sm font-serif italic text-[var(--ink)]">“Farklı borsalardaki (Binance, Bybit, Foreks/CFD) fiyat farklarını ve emir defterlerini milisaniyeler içinde okuyup gecikmesiz emir ileten özel bir execution köprüsüne ihtiyacımız var.”</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">Çift Kayıtlı Cüzdan &amp; Ödeme Geçidi</span>
+              <p class="text-xs sm:text-sm font-serif italic text-[var(--ink)]">“Platformumuzda kullanıcı bakiyeleri, komisyon dağılımları ve PayTR/iyzico/Stripe ödemeleri büyüdükçe mutabakat hataları çıkıyor; sıfır kuruş sapmalı bir ledger mimarisi kurmalıyız.”</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">Canlı Finansal Veri &amp; Risk Terminali</span>
+              <p class="text-xs sm:text-sm font-serif italic text-[var(--ink)]">“Yatırımcılarımız ve iç operasyon ekibimiz için canlı kurları, portföy riskini, PnL dağılımını ve sinyal matrislerini donmadan gösteren özel bir web terminali istiyoruz.”</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">Yarım Kalan FinTech / Bot Kurtarma</span>
+              <p class="text-xs sm:text-sm font-serif italic text-[var(--ink)]">“Önceki geliştiricinin yazdığı ödeme veya işlem botu canlıda sürekli kilitleniyor ve yanlış hesaplama yapıyor; kodun acilen denetlenip sağlam mimariye kavuşturulması gerekiyor.”</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">Kurumsal FinTech SaaS &amp; B2B Portal</span>
+              <p class="text-xs sm:text-sm font-serif italic text-[var(--ink)]">“Finansal danışmanlık, algoritma kiralama veya kurumsal tahsilat modelimiz için lisans doğrulamalı, çok kiracılı (multi-tenant) ve yüksek güvenlikli bir FinTech SaaS platformu inşa etmek istiyoruz.”</p>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          FinTech & Algoritmik Sistemlerde Sunduğumuz 12 Mühendislik Disiplini
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-2">
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">#01 · Algoritmik Motor</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">MQL5 / MT5 Uzman Danışman (EA) &amp; İndikatör Mimarisi</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Sıfır hata/uyarı standardında, sunucu durumu kurtarmalı (state recovery), gelişmiş HUD panelli, çoklu zaman dilimi (MTF) ve dinamik risk motorlu kurumsal MQL5 sistemleri.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">#02 · Borsa Köprüleri</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Python / Node.js Borsa API, WebSocket &amp; FIX Köprüleri</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Binance, Bybit, OKX, Interactive Brokers ve likidite sağlayıcılarla düşük gecikmeli WebSocket veri akışı ve hız sınırı (rate-limit) korumalı emir iletimi.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">#03 · Finansal Çekirdek</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Çift Kayıtlı Muhasebe (Double-Entry Ledger) Veritabanı</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Her bakiye hareketinin borç/alacak denkliğiyle atomik olarak kaydedildiği, geriye dönük denetlenebilir ve sıfır yuvarlama sapmalı PostgreSQL finansal şeması.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">#04 · Ödeme Sistemleri</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Idempotent Ödeme Orkestrasyonu &amp; Escrow Mimarisi</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Stripe, iyzico, PayTR ve küresel ödeme geçitleriyle çift çekim korumalı (idempotent), çoklu para birimli tahsilat, parçalı ödeme (split-payout) ve emanet (escrow) altyapısı.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">#05 · Risk &amp; Sermaye</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Otomatik Risk, Drawdown Kalkanı &amp; Pozisyon Boyutlandırma</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Günlük/toplam maksimum kayıp kesicileri (circuit breaker), kademeli kâr alma (scale-out), başabaş (break-even) ve volatilite bazlı dinamik lot/emir hesaplama motorları.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">#06 · Gerçek Zamanlı UI</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Canlı Piyasa Terminalleri, TradingView &amp; HUD Panelleri</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Saniyede yüzlerce fiyat değişimini tarayıcıyı dondurmadan çizen WebGL/Canvas grafikleri, çoklu sembol tarayıcıları (scanner) ve düşük gecikmeli emir panelleri.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">#07 · Nicel Analiz</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Backtest, Walk-Forward &amp; Monte Carlo Doğrulama Motoru</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Stratejilerin geçmiş gerçek tick verileri üzerinde kayma (slippage), komisyon ve spread maliyetleriyle birlikte matematiksel olarak stres testinden geçirilmesi.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">#08 · Mutabakat</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Otomatik Banka, ERP &amp; Borsa Mutabakat (Reconciliation) Hattı</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Ödeme sağlayıcı, banka hareketleri, e-fatura ve iç veritabanı kayıtlarını periyodik olarak karşılaştırıp tutarsızlıkları anında raporlayan otonom denetim servisleri.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">#09 · Kripto &amp; DeFi</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Hibrit CEX / DEX Arbitraj &amp; Hazine (Treasury) Otomasyonu</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Merkezi borsalar ve zincir üstü likidite havuzları arasında fiyat izleme, kurumsal stablecoin (USDT/USDC) tahsilat geçitleri ve güvenli saklama entegrasyonları.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">#10 · FinTech SaaS</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Çok Kiracılı (Multi-Tenant) FinTech &amp; Lisanslama Platformları</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Donanım/hesap bazlı lisans doğrulama sunucuları, abonelik yönetimi, kopya işlem (copy-trading) dağıtıcıları ve rol bazlı kurumsal yatırımcı portalları.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">#11 · Siber Güvenlik</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">Kriptografik API Güvenliği, KMS &amp; Denetim İzi (Audit Trail)</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">AES-256/HMAC-SHA256 imzalama, IP kısıtlamalı işlem tünelleri, hız sınırlama kalkanları ve tüm finansal aksiyonlar için değiştirilemez log mimarisi.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">#12 · Süreklilik &amp; SRE</span>
+              <h3 class="text-base font-semibold font-serif text-[var(--ink)]">7/24 Watchdog, Otomatik Failover &amp; Telemetri Bildirimi</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Milisaniyelik bağlantı kopmalarında otomatik yeniden bağlanma, açık emir senkronizasyonu ve Telegram/Slack/SMS üzerinden anlık operasyonel sağlık uyarıları.</p>
+            </article>
+          
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          İnteraktif FinTech & Algoritmik Mimari Simülatörü
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">Algoritmik Sistemler &amp; Quant Mimari · Düşük Gecikme · Durum Kurtarma · Sıfır Hata</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Algoritmik İşlem, MQL5/Python &amp; Borsa Execution Motoru</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">MQL5 (MT5) · Python / C++ · WebSocket / FIX API · Redis · Watchdog</p>
+              <p class="text-xs text-[var(--ink-2)]">Ticaret stratejilerinizi, özel indikatörlerinizi veya çoklu borsa emir iletim kurallarınızı insan duygusundan ve bağlantı kopmalarından bağımsız, 7/24 çalışan deterministik bir motora dönüştürür.</p>
+              <p class="text-xs font-medium text-[var(--ink)]">Derlenmiş ve doğrulanmış kaynak kod (MQL5/Python), parametre doğrulama paketi, backtest/stres raporu ve kullanım kılavuzu.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">Ödeme Geçidi &amp; Finansal Ledger · Atomik ACID · Idempotent Webhook · 0 Kuruş Sapma</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Çift Kayıtlı (Double-Entry) Dijital Cüzdan &amp; Ödeme Orkestrasyonu</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">Node.js / FastAPI · PostgreSQL (Serializable/Lock) · Redis Queue · Stripe / iyzico / PayTR</p>
+              <p class="text-xs text-[var(--ink-2)]">Yüksek işlem hacimli pazar yerleri, cüzdan uygulamaları ve B2B tahsilat platformları için çift çekim, kayıp bildirim ve bakiye tutarsızlıklarını matematiksel olarak imkânsız kılan finansal çekirdek.</p>
+              <p class="text-xs font-medium text-[var(--ink)]">Finansal ledger veritabanı şeması, ödeme orkestrasyon API servisleri, idempotency test paketi ve mutabakat paneli.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">Canlı Veri Terminali &amp; Analitik · Sub-Second Stream · 60 FPS Grafik · Anlık Risk</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Gerçek Zamanlı Piyasa Veri Akışı, Quant &amp; Risk Analitik Platformu</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">React 19 · WebSocket Stream · TimescaleDB / PostgreSQL · Python Quant · Canvas/WebGL</p>
+              <p class="text-xs text-[var(--ink-2)]">Canlı piyasa verilerini, emir defteri derinliğini, sentetik osilatörleri ve portföy risk metriklerini tek bir yüksek hızlı ekranda birleştiren özel finansal analiz platformu.</p>
+              <p class="text-xs font-medium text-[var(--ink)]">Canlı veri işleme backend'i, yüksek performanslı web terminali arayüzü, zaman serisi veritabanı ve API dokümantasyonu.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">FinTech SaaS &amp; Kurumsal Platform · Multi-Tenant RBAC · Kriptografik Lisans · CSP</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Kurumsal FinTech SaaS, Lisanslama &amp; B2B Finans Portalı</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">Next.js / React · FastAPI / Node.js · PostgreSQL · Docker · Cloudflare Edge</p>
+              <p class="text-xs text-[var(--ink-2)]">Finansal yazılım ürünlerini, algoritmik araçlarını veya B2B finans operasyonlarını müşterilerine güvenli abonelik ve lisans modeliyle sunmak isteyen kurumlar için anahtar teslim platform.</p>
+              <p class="text-xs font-medium text-[var(--ink)]">Tam kapsamlı FinTech SaaS web platformu, lisans/yetki doğrulama API'si, yönetim konsolu ve %100 kaynak kod devri.</p>
+            </article>
+          
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl sm:text-3xl font-semibold font-serif text-[var(--ink)] tracking-tight">
+          4 Fazda Sıfır Hata Toleranslı FinTech &amp; Algoritmik Üretim Süreci
+        </h2>
+        <div class="space-y-4 pt-2">
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                01
+              </div>
+              <div class="space-y-1.5 flex-1">
+                <h3 class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">Resmi NDA, Matematiksel Kurgu &amp; Sınır Durum Analizi</h3>
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">Karşılıklı gizlilik sözleşmesi (NDA) imzalıyor; strateji formüllerinizi, emir/ödeme akışlarınızı ve olası tüm hata/kopma senaryolarını (edge-case) matematiksel olarak modelliyoruz.</p>
+              </div>
+            </div>
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                02
+              </div>
+              <div class="space-y-1.5 flex-1">
+                <h3 class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">Atomik Çekirdek &amp; Risk Kalkanı Mimarisi</h3>
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">Çift kayıtlı muhasebe şemasını, idempotency anahtarlarını, sermaye koruma sigortalarını ve düşük gecikmeli veri yapılarını sıfır teknik borç prensibiyle kodluyoruz.</p>
+              </div>
+            </div>
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                03
+              </div>
+              <div class="space-y-1.5 flex-1">
+                <h3 class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">Backtest, Sandbox &amp; Kaos Stres Doğrulaması</h3>
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">Canlıya çıkmadan önce sistemi geçmiş piyasa verileri, simüle edilmiş ağ kopmaları, çift bildirim saldırıları ve yüksek eşzamanlı yük altında titizlikle test ediyoruz.</p>
+              </div>
+            </div>
+          
+            <div class="p-6 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] flex flex-col sm:flex-row items-start gap-4">
+              <div class="w-8 h-8 rounded-[var(--r-control)] bg-[var(--accent-wash)] border border-[var(--accent)] text-[var(--accent)] font-mono font-bold text-sm flex items-center justify-center flex-shrink-0">
+                04
+              </div>
+              <div class="space-y-1.5 flex-1">
+                <h3 class="text-base sm:text-lg font-semibold font-serif text-[var(--ink)]">Canlı Devreye Alma, Telemetri &amp; %100 IP Devri</h3>
+                <p class="text-sm text-[var(--ink-2)] leading-relaxed">Sistemi izleme (watchdog) kalkanlarıyla canlı ortama alıyor; tüm kaynak kodları, derleme araçlarını ve teknik kılavuzları %100 fikri mülkiyetle size teslim ediyoruz.</p>
+              </div>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <span class="text-xs font-mono text-[var(--tint-ok-ink)] uppercase tracking-wider font-semibold block">
+          FINTECH · KURUMSAL SİSTEM & ALGORİTMİK MİMARİLER (NDA)
+        </span>
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">
+          Canlı Piyasada ve Yüksek İşlem Hacminde Doğrulanan FinTech Sistemleri
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">Algoritmik İşlem &amp; MQL5 / Python · Sıfır Hata · Canlı Üretim</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Çoklu Sembol Tarayıcı ve Otomatik Risk Motorlu Kurumsal İşlem Sistemi</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">MQL5 · Python Doğrulama · Dinamik SL/TP/Trailing · Sunucu Durum Kurtarma · HUD Panel</p>
+              <p class="text-xs text-[var(--ink-2)]"><strong>Finansal / Teknik Darboğaz:</strong> Yatırım ekibinin kullandığı eski işlem botu; terminal yeniden başladığında açık pozisyonların kontrolünü kaybediyor, yüksek volatilitede sıfır-bölme hatasıyla duruyor ve çoklu parite taramasında ekranı donduruyordu.</p>
+              <p class="text-xs text-[var(--ink-2)]"><strong>FinTech Özel Kod Mimarisi:</strong> Mimari sıfırdan modüler olarak yeniden yazıldı. Sunucu durumundan otomatik pozisyon kurtarma (recovery), kademeli kâr alma (scale-out), seans filtreleri ve 0 hata / 0 uyarı derleme disipliniyle çalışan hafif HUD paneli eklendi.</p>
+              <p class="text-xs font-medium text-[var(--ink)]"><strong>Ölçümlenen Performans & Sonuç:</strong> İnsan müdahalesine gerek kalmadan 7/24 kesintisiz çalışan, bağlantı kopmalarına bağışık ve sayısal olarak doğrulanmış kurumsal işlem motoru devreye alındı.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">Ödeme Geçidi &amp; Double-Entry Ledger · Finansal Çekirdek Yenileme</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Yüksek Hacimli Tahsilat Platformunda Çift Çekim ve Mutabakat Onarımı</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">Node.js · PostgreSQL Serializable · Redis Lock · PayTR / iyzico / Stripe · Webhook Queue</p>
+              <p class="text-xs text-[var(--ink-2)]"><strong>Finansal / Teknik Darboğaz:</strong> Yoğun kampanya saatlerinde ödeme sağlayıcıdan gelen eşzamanlı webhook bildirimleri yarış durumuna (race condition) giriyor; bazı siparişlerde bakiye iki kez güncellenirken bazılarında ödeme alındığı halde sipariş oluşmuyordu.</p>
+              <p class="text-xs text-[var(--ink-2)]"><strong>FinTech Özel Kod Mimarisi:</strong> Tek sütunlu bakiye yapısı çift kayıtlı (Double-Entry Ledger) şemaya taşındı. Dağıtık Redis kilitleri, idempotency anahtarı doğrulaması ve otomatik gün sonu mutabakat kuyruğu devreye alındı.</p>
+              <p class="text-xs font-medium text-[var(--ink)]"><strong>Ölçümlenen Performans & Sonuç:</strong> Mükerrer işlem ve kayıp sipariş oranı sıfırlandı; finans ekibinin saatler süren manuel mutabakat kontrolü tamamen otomatik hale geldi.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--tint-ok-ink)] font-semibold">Canlı Piyasa Terminali &amp; FinTech SaaS · Düşük Gecikmeli Web Platformu</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Gerçek Zamanlı Çoklu Borsa Veri Akışı ve Sinyal Analitik Portalı</h3>
+              <p class="text-xs font-mono text-[var(--ink-3)]">React · WebSocket Toplayıcı · FastAPI · Redis Zaman Serisi · Kriptografik Lisanslama</p>
+              <p class="text-xs text-[var(--ink-2)]"><strong>Finansal / Teknik Darboğaz:</strong> Kullanıcılarına canlı piyasa sinyalleri sunan girişimin mevcut sistemi REST yoklaması yüzünden sürekli borsa API sınırlarına (HTTP 429) takılıyor ve verileri 15-20 saniye gecikmeli gösteriyordu.</p>
+              <p class="text-xs text-[var(--ink-2)]"><strong>FinTech Özel Kod Mimarisi:</strong> Kalıcı WebSocket akışlarını tek merkezde toplayıp bellek içi önbellekten dağıtan pub/sub mimarisi kuruldu. Abonelik ve lisans doğrulaması kriptografik imza katmanıyla koruma altına alındı.</p>
+              <p class="text-xs font-medium text-[var(--ink)]"><strong>Ölçümlenen Performans & Sonuç:</strong> Veri gecikmesi milisaniye düzeyine indi; sunucu bant genişliği maliyeti düşerken binlerce eşzamanlı kullanıcıya donmayan canlı terminal deneyimi sağlandı.</p>
+            </article>
+          
+        </div>
+      </section>
+
+      <section class="space-y-4">
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">
+          Sıkça Sorulan Sorular
+        </h2>
+        <div class="space-y-3">
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+              <h3 class="text-sm font-serif font-semibold text-[var(--ink)]">Algoritmik ticaret stratejimizin veya finansal iş modelimizin gizliliği nasıl korunuyor?</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Koda veya strateji kurallarınıza bakmadan önce resmi, çift taraflı gizlilik sözleşmesi (NDA) imzalıyoruz. Geliştirilen tüm algoritmalar, indikatörler ve finansal motorlar %100 sizin fikri mülkiyetinizdir; üçüncü taraflarla paylaşılmaz ve kapalı kutu lisans bağımlılığı oluşturulmaz.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+              <h3 class="text-sm font-serif font-semibold text-[var(--ink)]">Hem MQL5 (MetaTrader 5) hem de Python / Web tabanlı borsa sistemleri geliştiriyor musunuz?</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Evet. Foreks, emtia ve endeks piyasaları için kurumsal standartlarda MQL5 (EA, özel osilatör, MTF tarayıcı panel) geliştirdiğimiz gibi; kripto ve küresel borsalar için Python, Node.js, WebSocket ve FIX protokolü tabanlı bağımsız işlem ve analiz sistemleri de inşa ediyoruz.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+              <h3 class="text-sm font-serif font-semibold text-[var(--ink)]">Mevcut e-ticaret veya SaaS platformumuzdaki ödeme ve bakiye hatalarını da onarıyor musunuz?</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Evet. Stripe, iyzico, PayTR veya banka API entegrasyonlarında yaşanan çift çekim, düşmeyen webhook bildirimleri, 3D Secure oturum kopmaları ve veritabanı bakiye kaymalarını idempotent ve atomik ledger mimarisiyle kalıcı olarak çözüyoruz.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+              <h3 class="text-sm font-serif font-semibold text-[var(--ink)]">Geliştirdiğiniz finansal sistemler canlı piyasaya çıkmadan önce nasıl test ediliyor?</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Algoritmik sistemler sıfır derleme hatası/uyarısı, matematiksel Python doğrulaması ve gerçek geçmiş tick verileri üzerinde stres testlerinden geçirilir. Ödeme ve ledger sistemleri ise eşzamanlı yük (concurrency), ağ kopması ve mükerrer istek simülasyonlarıyla doğrulanır.</p>
+            </div>
+          
+            <div class="p-4 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-1.5">
+              <h3 class="text-sm font-serif font-semibold text-[var(--ink)]">Ajansların müşterileri için %100 White-Label FinTech geliştirme desteği veriyor musunuz?</h3>
+              <p class="text-xs text-[var(--ink-2)] leading-relaxed">Evet. Dijital ajansların veya yazılım evlerinin aldığı ancak derin finansal/algoritmik uzmanlık gerektiren projelerde arka planda görünmez kıdemli mühendislik masası olarak görev alıyor, projeyi ajansınızın markasıyla teslim ediyoruz.</p>
+            </div>
+          
+        </div>
+      </section>
+
+      <section class="p-6 sm:p-8 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-4 text-left">
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">
+          Algoritmik Bir Strateji, Ödeme Altyapısı veya Kurumsal FinTech Platformu mu Planlıyorsunuz?
+        </h2>
+        <p class="text-sm sm:text-base text-[var(--ink-2)] leading-relaxed">
+          Finansal sistemlerde deneme-yanılma maliyetlidir. Projenizin matematiksel kurgusunu, güvenlik gereksinimlerini ve mimari yol haritasını resmi NDA güvencesiyle doğrudan Baş Mimar ile görüşün.
+        </p>
+        <div class="flex flex-wrap items-center gap-3 pt-2">
+          <a href="/tanitim/#contact" class="btn-primary">
+            <span>FinTech &amp; Mimari Görüşmesi Başlat</span> →
+          </a>
+          <a href="/nda/" class="btn-secondary">
+            <span>Gizlilik Sözleşmemizi (NDA) İnceleyin</span>
+          </a>
+        </div>
+      </section>
+    </div>
+  
+        <section class="p-6 rounded-2xl bg-[var(--surface)] border border-[var(--rule)] space-y-2 mt-6">
+          <h3 class="text-base font-bold text-[var(--accent)]">Trend Master Akademi Studio & Labs</h3>
+          <p class="text-sm text-[var(--ink-3)]">B2B White-Label Mühendislik Masası | Tel: <a href="tel:+905343713573" class="text-[var(--ink)]">+90 534 371 35 73</a> | E-posta: <a href="mailto:info@trendmasterakademi.com" class="text-[var(--ink)]">info@trendmasterakademi.com</a></p>
+          <p class="text-xs text-[var(--ink-3)]">Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir</p>
+        </section>
+      </main>
+    </div>
+  </div>
+  </body>
+</html>
