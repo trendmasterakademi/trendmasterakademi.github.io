@@ -3,8 +3,10 @@
     "url": "/",
     "dil": "ortak",
     "kategori": "anasayfa",
-    "baslik": "Trend Master Akademi | Ajansların İmdat Butonu",
-    "metin": "Trend Master Akademi Ajansların İmdat Butonu | Blockchain Araştırma — Web3 | Web Master | FinTech | App Master Ajansların imdat butonu: müşterinizin görmediği kıdemli teknik masa. White-label çalışma, imzalı gizlilik sözleşmesi, yazılı SLA, ücretsiz teşhis araçları."
+    "baslik": "Trend Master Akademi | Yazılım & Teknoloji İmdat Butonu",
+    "metin": "Trend Master Akademi Ajansların İmdat Butonu | Blockchain Araştırma — Web3 | Web Master | FinTech | App Master Ajans, Blockchain Web3, Web Master, FinTech ve App Master mobil uygulama kategorilerinde kıdemli mühendislik stüdyosu ve her alana özgü acil imdat butonu.",
+    "baslik_en": "Trend Master Akademi | Engineering Studio & SOS Desk",
+    "metin_en": "Senior engineering studio and category-specific emergency SOS button across Agency, Blockchain Web3, Web Master, FinTech, and App Master mobile architectures."
   },
   {
     "url": "/tanitim/",
@@ -151,10 +153,10 @@
     "url": "/sos/",
     "dil": "ortak",
     "kategori": "acil",
-    "baslik": "Acil Teknik Kriz Masası",
-    "metin": "Canlı sistem çöktü veya geliştirici ayrıldı mı? 7/24 B2B acil teknik kriz masası: anında ilk yanıt, teşhis, triage ve cerrahi hotfix müdahalesi. Acil Teknik Destek - Kriz Hattı Burası ajansların imdat butonu. Ajansınızın canlı sistemi durduysa, teslim tarihi yanıyorsa ya da devraldığınız kod açılmıyorsa doğrudan buraya yazın. İlk teşhis ücretsizdir. Kriz hattı her gün 09:00 – 24:00 açık · canlı kesintilerde ilk yanıt taahhüdü 15 dakika. +90 534 371 35 73 WhatsApp'tan yaz Yazarken şunları ekleyin Ajans adı ve size ulaşılacak numara Ne oldu: hata ekranı, hata satırı ya da sistemin davranışı Ne zaman başladı ve o sırada ne değişti (yayın, güncelleme, ödeme sağlayıcı) Erişim var mı: sunucu, repo, panel — yoksa da yazın, teşhis için şart değil İlk teşhis için şifre ya da repo erişimi istemiyoruz. Aciliyet yoksa 60 saniyelik Agency Crash Test ile durumu kendiniz teşhis edin 26 arızanın belgelenmiş teşhis kataloğu Trend Master Akademi Studio & Labs B2B White-Label Mühendislik Masası | Tel: +90 534 371 35 73 | E-posta: info@trendmasterakademi.com Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir",
-    "baslik_en": "Emergency Technical Incident Desk",
-    "metin_en": "Live production crashed or developer walked away? 24/7 B2B emergency incident response: rapid triage, root-cause isolation, and surgical hotfixes."
+    "baslik": "Acil Teknik Kriz & İmdat Butonu",
+    "metin": "Ajans, Web3, Web Master, FinTech ve App Master mobil projelerinizde canlı kesinti, kontrat istismarı, mağaza reddi veya kod kilidine acil imdat butonu. Acil Teknik Destek - Kriz Hattı Burası tüm uzmanlık kategorilerimizin (Ajans & Yazılım, Blockchain Web3, Web Master, FinTech ve App Master Mobil) acil imdat butonu merkezidir. Canlı sisteminiz durduysa, kontrat/cüzdan istismarı yaşandıysa, ödeme/algoritmik bot kilitlendiyse veya mobil uygulamanız mağazadan red yediyse doğrudan ilgili kategorinin imdat butonunu tetikleyin. İlk teşhis ücretsizdir. Kriz hattı her gün 09:00 – 24:00 açık · canlı kesintilerde ilk yanıt taahhüdü 15 dakika. +90 534 371 35 73 WhatsApp'tan yaz Yazarken şunları ekleyin Kurum / Girişim / Ajans adı ve size ulaşılacak numara İlgili uzmanlık kategorisi (Ajans & Yazılım, Blockchain Web3, Web Master, FinTech veya App Master Mobil) Ne oldu: hata ekranı, hata satırı ya da sistemin davranışı Ne zaman başladı ve o sırada ne değişti (yayın, güncelleme, ödeme sağlayıcı) Erişim var mı: sunucu, repo, panel — yoksa da yazın, teşhis için şart değil İlk teşhis için şifre ya da repo erişimi istemiyoruz. Aciliyet yoksa 60 saniyelik Agency Crash Test ile durumu kendiniz teşhis edin 26 arızanın belgelenmiş teşhis kataloğu Trend Master Akademi Studio & Labs B2B White-Label Mühendislik Masası | Tel: +90 534 371 35 73 | E-posta: info@trendmasterakademi.com Adres: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091 Konak / İzmir",
+    "baslik_en": "Emergency Technical SOS Desk",
+    "metin_en": "Category-specific emergency SOS button for Agency, Web3, Web Master, FinTech, and App Master mobile crises: live outages, exploits, or store rejections."
   },
   {
     "url": "/kurtarilabilirlik/",
