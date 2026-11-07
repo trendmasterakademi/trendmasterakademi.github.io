@@ -356,6 +356,51 @@
       }
     },
     {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Uygulamam için Native (Swift/Kotlin) mi yoksa Cross-Platform (Flutter / React Native) mi seçmeliyim?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Uygulamanızın %90'ı için modern Flutter veya React Native (New Architecture) tek kod tabanından hem iOS hem Android'de 60 FPS native performans sunar ve geliştirme/bakım maliyetinizi %40'a kadar düşürür. Cihaz donanımı, özel kamera filtreleri veya işletim sistemi çekirdeğine çok derin erişim gerektiren bölümlerde ise doğrudan Swift ve Kotlin ile native modüller (Platform Channels / JSI) yazarak her iki dünyanın en güçlü yanını birleştiriyoruz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "App Store ve Google Play hesapları ile kaynak kodların mülkiyeti kimde kalıyor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "İlk günden itibaren %100 sizde kalır. Apple Developer ve Google Play Console hesaplarını doğrudan sizin şirketiniz/adınız üzerine açıyor, tüm Git depolarını, tasarım dosyalarını, API anahtarlarını ve imzalama sertifikalarını (Keystore / Provisioning Profiles) eksiksiz olarak size teslim ediyoruz. TMA'ya hiçbir teknik bağımlılığınız (vendor lock-in) oluşmaz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Başka bir ekibin yarım bıraktığı veya App Store'dan red yemiş bir uygulamayı devralıyor musunuz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. TMA'nın en güçlü kaslarından biri Kriz ve Kod Kurtarma (SWAT) disiplinidir. Mevcut mobil kod tabanınızı inceliyor, Apple Guideline (2.1, 3.1.1, 4.2, 5.1.1) veya Google Play red gerekçelerini kökünden çözüyor, kırık bağımlılıkları onarıyor ve uygulamanızı mağaza onayından geçirerek canlıya çıkarıyoruz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Sadece mobil arayüz mü yapıyorsunuz, yoksa arka uç (Backend), veritabanı ve yönetim panelini de kuruyor musunuz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Uçtan uca anahtar teslim çalışıyoruz. Mobil uygulamanın yanı sıra; ölçeklenebilir arka uç API mimarisini (Node.js, Go, Python, PostgreSQL, Redis), gerçek zamanlı WebSocket katmanını, RevenueCat/ödeme entegrasyonlarını ve operasyonlarınızı yöneteceğiniz Web Yönetim Konsolunu (Admin Panel) tek çatı altında inşa ediyoruz."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Uygulama mağazalarda yayınlandıktan sonra yeni iOS/Android sürümleri ve bakım için destek veriyor musunuz?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Evet. Lansman sonrasında çökme izleme (Crashlytics/Sentry), performans telemetrisi, yeni iOS/Android işletim sistemi güncellemelerine uyum ve yeni özellik fazları için yazılı SLA kapsamında sürekli mühendislik desteği sağlıyoruz."
+          }
+        }
+      ]
+    },
+    {
       "@type": "BreadcrumbList",
       "itemListElement": [
         {
@@ -383,13 +428,14 @@
       if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);
     } catch(e) {} })();
     </script>
-    <script type="module" crossorigin src="/assets/index-Dp8HKn9z.js"></script>
+    <script type="module" crossorigin src="/assets/index-DUP4c5GH.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/rolldown-runtime-Bh1tDfsg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-icons-DPtAL6Wg.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BumxflOU.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-Ci8s_2yF.js">
-    <link rel="stylesheet" crossorigin href="/assets/index-CqlJp8AC.css">
-    <link rel="modulepreload" crossorigin href="/assets/AppMaster-DtYEZLFm.js">
+    <link rel="stylesheet" crossorigin href="/assets/index-IjELazZ4.css">
+    <link rel="modulepreload" crossorigin href="/assets/AppMaster-Csa7kmNE.js">
+  <link rel="modulepreload" crossorigin href="/assets/web3forms-DI3pnuVN.js">
   <link rel="modulepreload" crossorigin href="/assets/pageTitle-B8LMSC70.js">
   <link rel="modulepreload" crossorigin href="/assets/pageH1Data-Bn4IkquZ.js">
   <link rel="modulepreload" crossorigin href="/assets/CategoryPillarBar-Dn8mPTPM.js">
@@ -907,6 +953,79 @@
           
         </div>
       </section>
+
+      
+      <section class="space-y-4">
+        <span class="text-xs font-mono text-[var(--accent)] uppercase tracking-wider font-semibold block">MILESTONE 4 · İNTERAKTİF SPRINT, CI/CD &amp; %100 DEVİR PROTOKOLÜ</span>
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">Fikirden App Store Onayına ve %100 Kod Mülkiyetine: 4 Fazlı Mühendislik Hattı</h2>
+        <p class="text-sm text-[var(--ink-2)]">Aylarca süren belirsiz bekleyişleri ortadan kaldırıyoruz. Aşağıdaki fazlara tıklayarak her aşamada elinize geçen somut mühendislik çıktılarını, TestFlight / Play Console dağıtım kapılarını ve devir garantilerini inceleyin:</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">FAZ 01 · KEŞİF &amp; MİMARİ SPEK · Sprint 1 · Sıfır Sürprizli Mimari Kilit</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Karşılıklı NDA, Ürün Mimarisi, Etkileşimli Figma &amp; Mağaza Uyum Planı</h3>
+              <p class="text-xs text-[var(--ink-2)]">Tek bir satır koda geçmeden önce uygulamanızın tüm ekran durumlarını (boş, yükleniyor, çevrimdışı, hata), veritabanı şemasını, RevenueCat/ödeme hunisini ve Apple/Google inceleme kriterlerini yazılı bir mühendislik şartnamesine bağlıyoruz.</p>
+              <p class="text-xs font-mono text-[var(--tint-ok-ink)]">Git Organizasyonu, Apple Developer &amp; Google Play Console Hesaplarının Müşteri Tüzel Kişiliğinde Açılması</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">FAZ 02 · ÇEVİK SPRINT &amp; TESTFLIGHT · Haftalık Canlı Sürümler · TestFlight &amp; Play Internal</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Çevik Mobil + Backend Sprintleri &amp; Haftalık İmzalı Cihaz Dağıtımı</h3>
+              <p class="text-xs text-[var(--ink-2)]">Uygulamanızı karanlıkta geliştirmiyoruz. Her sprint sonunda Fastlane / GitHub Actions hattımız üzerinden doğrudan kendi iPhone ve Android telefonunuza imzalı sürüm düşer; gelişimi gerçek cihazınızda dokunarak takip edersiniz.</p>
+              <p class="text-xs font-mono text-[var(--tint-ok-ink)]">Otomatik Birim/Entegrasyon Testleri + Statik Kod Analizi + Fastlane Otomatik İmzalama</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">FAZ 03 · 60 FPS QA &amp; GELİR ZIRHLAMA · Sıfır Bellek Sızıntısı · Sıfır Çökme</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Performans Profilleme, Güvenlik Sıkılaştırma &amp; Sandbox Gelir Doğrulaması</h3>
+              <p class="text-xs text-[var(--ink-2)]">Mağaza başvurusundan önce uygulamayı en sert saha koşullarına sokuyoruz: zayıf 3G/çevrimdışı ağ geçişleri, 10.000+ satırlık liste kaydırma testleri, StoreKit 2 / Play Billing abonelik yenileme senaryoları ve API sızma testleri.</p>
+              <p class="text-xs font-mono text-[var(--tint-ok-ink)]">Crash-Free &gt; %99.9 Eşiği + IPv6 Simülasyon Onayı + PrivacyInfo.xcprivacy İmzası</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">FAZ 04 · MAĞAZA ONAYI &amp; %100 DEVİR · Mağaza Onayı · %100 Kaynak Kod &amp; Anahtar Devri</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">App Store &amp; Google Play Lansmanı, ASO Kurulumu &amp; Tam Mülkiyet Devri</h3>
+              <p class="text-xs text-[var(--ink-2)]">App Store ve Google Play başvuru sürecini, inceleme ekibi notlarını ve demo hesap videolarını bizzat yöneterek uygulamanızı 'Yayında (Ready for Sale)' statüsüne taşıyor; tüm kaynak kod ve imzalama anahtarlarını eksiksiz devrediyoruz.</p>
+              <p class="text-xs font-mono text-[var(--tint-ok-ink)]">Kademeli Mağaza Yayını (%1 -&gt; %10 -&gt; %100 Staged Rollout) + Canlı Vitals Telemetri Alarmı</p>
+            </article>
+          
+        </div>
+      </section>
+      
+
+      
+      <section class="space-y-4">
+        <span class="text-xs font-mono text-[var(--tint-ok-ink)] uppercase tracking-wider font-semibold block">MILESTONE 4 &amp; 5 · ASO BÜYÜME, CI/CD OTOMASYONU &amp; SPIN-OFF DEVİR MİMARİSİ</span>
+        <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">Lansman Sonrası Mağaza Hakimiyeti: ASO, Kademeli Yayın &amp; %99.94 Crash-Free SLA</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">01 · ASO &amp; MAĞAZA DÖNÜŞÜM VİTRİNİ</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">App Store Optimization (ASO) &amp; Akıllı Puan (4.8+ Yıldız) Motoru</h3>
+              <p class="text-xs text-[var(--ink-2)]">Kullanıcının en mutlu olduğu anda (başarılı işlem/çıktı sonrası) tetiklenen yerel SKStoreReviewController / In-App Review akışları, 15+ dilde lokalize mağaza meta verileri ve yüksek dönüşümlü ekran görüntüsü setleri.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">02 · FASTLANE CI/CD &amp; OTA YAYIN</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Tek Komutla Mağaza Dağıtımı &amp; Uzaktan Özellik Bayrakları (Feature Flags)</h3>
+              <p class="text-xs text-[var(--ink-2)]">Geliştirici bilgisayarlarına bağımlı kalmayan bulut tabanlı Fastlane / GitHub Actions derleme hattı; yeni özellikleri mağaza onayı beklemeden açıp kapatmayı sağlayan Remote Config ve kademeli yayın (Staged Rollout).</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">03 · 7/24 CRASH-FREE &amp; OS SLA</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Canlı Telemetri Radarı &amp; Yeni iOS / Android Sürüm Uyumluluk Kalkanı</h3>
+              <p class="text-xs text-[var(--ink-2)]">Her yıl yayınlanan yeni iOS ve Android ana sürümlerinde, eskiyip kaldırılan (deprecated) API'leri önceden güncelliyor; Sentry ve Crashlytics alarmlarıyla olası bellek/ağ hatalarını kullanıcılar fark etmeden yamıyoruz.</p>
+            </article>
+          
+            <article class="p-5 rounded-[var(--r-panel)] bg-[var(--surface)] border border-[var(--rule)] space-y-2">
+              <span class="text-xs font-mono text-[var(--accent)] font-semibold">04 · %100 MÜLKİYET &amp; İÇ EKİP DEVRİ</span>
+              <h3 class="text-base font-serif font-bold text-[var(--ink)]">Sıfır Ajans Bağımlılığı (Zero Lock-In) &amp; İç Ekip Eğitim Protokolü</h3>
+              <p class="text-xs text-[var(--ink-2)]">Tüm modüller temiz mimari (Clean Architecture) ve tam dokümantasyonla teslim edilir. İleride kendi şirket içi mobil ekibinizi kurduğunuzda, mühendislerimiz eşli programlama (pair-programming) ile sistemi devreder.</p>
+            </article>
+          
+        </div>
+      </section>
+      
 
       <section class="space-y-4">
         <h2 class="text-2xl font-semibold font-serif text-[var(--ink)]">
