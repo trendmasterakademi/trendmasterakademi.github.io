@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://*.clarity.ms https://c.bing.com https://static.cloudflareinsights.com 'sha256-C6ZpIJnsYCtn3xk+PS0tXZFTts0+iGf8YHLFUvCVsqY=' 'sha256-5Oi72KUZ3LaSR2N9JWbDZVUqXP38QIpVD1g9wfJx/HA=' 'sha256-tX5hPSqAErTkjNHUtDCHI/qBVEbmghMihhwQsp3GpEg=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://*.clarity.ms https://c.bing.com; connect-src 'self' https://api.web3forms.com https://api.country.is https://get.geojs.io https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; manifest-src 'self'; worker-src 'self' blob:">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.googleadservices.com https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com https://static.cloudflareinsights.com 'sha256-Au8iwk0Tc/IK9VPM50wsQusxQj9kc3VfRZANwD5Xqco=' 'sha256-5Oi72KUZ3LaSR2N9JWbDZVUqXP38QIpVD1g9wfJx/HA=' 'sha256-tX5hPSqAErTkjNHUtDCHI/qBVEbmghMihhwQsp3GpEg=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com; connect-src 'self' https://api.web3forms.com https://api.country.is https://get.geojs.io https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; manifest-src 'self'; worker-src 'self' blob:">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -138,6 +138,7 @@
       });
       gtag('js', new Date());
       gtag('config', 'G-98446GTE0E', { send_page_view: true });
+      gtag('config', 'AW-18563572378');
 
       // Custom Event Dispatcher
       window.trackEvent = function(name, params) {
@@ -146,11 +147,30 @@
         }
       };
 
+      // Global Lead Conversion Listener (WhatsApp / Phone / Mailto clicks)
+      document.addEventListener('click', function(e) {
+        var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+        if (!a) return;
+        var href = a.getAttribute('href') || '';
+        if (href.indexOf('wa.me/') !== -1 || href.indexOf('api.whatsapp.com') !== -1) {
+          window.trackEvent('generate_lead', { method: 'whatsapp', page_path: location.pathname });
+          window.trackEvent('whatsapp_clicked', { page_path: location.pathname });
+        } else if (href.indexOf('tel:') === 0) {
+          window.trackEvent('generate_lead', { method: 'phone', page_path: location.pathname });
+          window.trackEvent('phone_clicked', { page_path: location.pathname });
+        } else if (href.indexOf('mailto:') === 0) {
+          window.trackEvent('generate_lead', { method: 'email', page_path: location.pathname });
+        }
+      }, { passive: true });
+
       // Consent Activation & Clarity Delayed Bootstrap
       window.enableAnalyticsConsent = function() {
         if (typeof gtag === 'function') {
           gtag('consent', 'update', {
-            'analytics_storage': 'granted'
+            'analytics_storage': 'granted',
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted'
           });
         }
         if (!window.__clarity_initialized) {
@@ -314,11 +334,8 @@
     <link rel="modulepreload" crossorigin href="/assets/vendor-misc-BumxflOU.js">
     <link rel="modulepreload" crossorigin href="/assets/vendor-react-Ci8s_2yF.js">
     <link rel="stylesheet" crossorigin href="/assets/index-DuqcAaDS.css">
-    <link rel="modulepreload" crossorigin href="/assets/Home-B7VWH4Ak.js">
-  <link rel="modulepreload" crossorigin href="/assets/sosCategoryData-CpJw4a6r.js">
-  <link rel="modulepreload" crossorigin href="/assets/pageTitle-CnX9SrB7.js">
-  <link rel="modulepreload" crossorigin href="/assets/servicesData-CEjh_F3D.js">
     <link rel="modulepreload" crossorigin href="/assets/TeshisDetay-Dt9K8r0I.js">
+  <link rel="modulepreload" crossorigin href="/assets/pageTitle-CnX9SrB7.js">
   <link rel="modulepreload" crossorigin href="/assets/indexSummary-C8rJM-G_.js">
   <link rel="modulepreload" crossorigin href="/assets/yazilimci-gitti-koda-girilemiyor-EUPSS8NT.js">
   </head>
