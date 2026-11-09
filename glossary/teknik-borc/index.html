@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.googleadservices.com https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com https://static.cloudflareinsights.com 'sha256-Au8iwk0Tc/IK9VPM50wsQusxQj9kc3VfRZANwD5Xqco=' 'sha256-5Oi72KUZ3LaSR2N9JWbDZVUqXP38QIpVD1g9wfJx/HA=' 'sha256-tX5hPSqAErTkjNHUtDCHI/qBVEbmghMihhwQsp3GpEg=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com; connect-src 'self' https://api.web3forms.com https://api.country.is https://get.geojs.io https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; manifest-src 'self'; worker-src 'self' blob:">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.googleadservices.com https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com https://static.cloudflareinsights.com 'sha256-q7qoHUIHmCzkmw5PWCjvWxLSPhUrqn1OaAyYPiVAupQ=' 'sha256-5Oi72KUZ3LaSR2N9JWbDZVUqXP38QIpVD1g9wfJx/HA=' 'sha256-tX5hPSqAErTkjNHUtDCHI/qBVEbmghMihhwQsp3GpEg=' 'unsafe-hashes' 'sha256-MhtPZXr7+LpJUY5qtMutB+qWfQtMaPccfe7QXtCcEYc='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://images.unsplash.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com; connect-src 'self' https://api.web3forms.com https://api.country.is https://get.geojs.io https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com https://*.google.com https://*.google.com.tr https://*.g.doubleclick.net https://www.googleadservices.com https://pagead2.googlesyndication.com https://*.clarity.ms https://c.bing.com; media-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; manifest-src 'self'; worker-src 'self' blob:">
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png" />
     <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -128,15 +128,24 @@
       }
     </style>
     
-    <!-- Google Consent Mode v2 Initialization (Default: Denied) -->
+    <!-- Google Consent Mode v2 & Google Ads / GA4 Initialization -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      // Strict default denied only for EEA/UK/CH; granted by default for TR & rest of world
       gtag('consent', 'default', {
         'analytics_storage': 'denied',
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
-        'ad_personalization': 'denied'
+        'ad_personalization': 'denied',
+        'region': ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IS','IE','IT','LV','LI','LT','LU','MT','NL','NO','PL','PT','RO','SK','SI','ES','SE','GB','CH']
+      });
+      gtag('consent', 'default', {
+        'analytics_storage': 'granted',
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'url_passthrough': true
       });
       gtag('js', new Date());
       gtag('config', 'G-98446GTE0E', { send_page_view: true });
@@ -149,21 +158,49 @@
         }
       };
 
-      // Global Lead Conversion Listener (WhatsApp / Phone / Mailto clicks)
+      // Helper to fire Lead + Contact conversion events
+      window.__fireLeadConversion = function(method) {
+        var payload = { method: method, page_path: location.pathname };
+        window.trackEvent('generate_lead', payload);
+        window.trackEvent('contact', payload);
+        if (method === 'whatsapp') {
+          window.trackEvent('whatsapp_clicked', { page_path: location.pathname });
+        } else if (method === 'phone') {
+          window.trackEvent('phone_clicked', { page_path: location.pathname });
+        }
+      };
+
+      // Global Lead Conversion Listener (<a> links: WhatsApp / Phone / Mailto)
       document.addEventListener('click', function(e) {
         var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
         if (!a) return;
         var href = a.getAttribute('href') || '';
         if (href.indexOf('wa.me/') !== -1 || href.indexOf('api.whatsapp.com') !== -1) {
-          window.trackEvent('generate_lead', { method: 'whatsapp', page_path: location.pathname });
-          window.trackEvent('whatsapp_clicked', { page_path: location.pathname });
+          window.__fireLeadConversion('whatsapp');
         } else if (href.indexOf('tel:') === 0) {
-          window.trackEvent('generate_lead', { method: 'phone', page_path: location.pathname });
-          window.trackEvent('phone_clicked', { page_path: location.pathname });
+          window.__fireLeadConversion('phone');
         } else if (href.indexOf('mailto:') === 0) {
-          window.trackEvent('generate_lead', { method: 'email', page_path: location.pathname });
+          window.__fireLeadConversion('email');
         }
       }, { passive: true });
+
+      // Intercept window.open for <button> WhatsApp CTAs (AppMaster Simulator & Scope Builder)
+      (function() {
+        var origOpen = window.open;
+        if (typeof origOpen === 'function') {
+          window.open = function(url) {
+            try {
+              var u = String(url || '');
+              if (u.indexOf('wa.me/') !== -1 || u.indexOf('api.whatsapp.com') !== -1) {
+                window.__fireLeadConversion('whatsapp');
+              } else if (u.indexOf('tel:') === 0) {
+                window.__fireLeadConversion('phone');
+              }
+            } catch(err) {}
+            return origOpen.apply(this, arguments);
+          };
+        }
+      })();
 
       // Consent Activation & Clarity Delayed Bootstrap
       window.enableAnalyticsConsent = function() {
