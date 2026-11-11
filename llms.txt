@@ -1,0 +1,38 @@
+# Trend Master Akademi
+
+> Dijital ajanslar, SaaS girişimleri ve teknoloji şirketleri için Kıdemli Yazılım Mühendisliği Masası: Ajansların İmdat Butonu (B2B White-Label & Kriz SWAT), Blockchain Araştırma — Web3 Adli Laboratuvarı, Web Master %100 Özel Kodlu Modern Web Stüdyosu, FinTech Algoritmik Sistemler ve App Master Mobil & AI Uygulama Stüdyosu.
+
+## Kurumsal Kimlik & İletişim Bilgileri (NAP)
+- Resmi Ünvan / Kurucu: Mehmet Şahin (Kurucu & Baş Yazılım Mimarı (Lead Architect))
+- Vergi Kimlik No: 7930336132
+- Genel Merkez: Akdeniz Mah. Şehit Fethibey Cad. Heris Tower No: 55 İç Kapı No: 091, Konak/İzmir TR
+- Koordinatlar: 38.4237, 27.135
+- Doğrudan İletişim: +90 534 371 35 73 (+905343713573)
+- E-Posta: info@trendmasterakademi.com
+- Resmi Web Sitesi: https://trendmasterakademi.com/
+- Çalışma Saatleri: Haftanın 7 Günü 09:00 – 24:00 (Kritik Kriz Müdahale Masası)
+- Hizmet Modeli: %100 White-Label, İki Taraflı Islak/Dijital NDA Güvencesi, SEV-0 Dakikayla Tanımlı SLA Taahhüdü.
+
+## Kurucu & Baş Yazılım Mimarı
+- [Mehmet Şahin](https://trendmasterakademi.com/about/): Kurucu & Baş Yazılım Mimarı (Lead Architect). 21 yıllık finansal piyasa ve algoritmik sistemler deneyimi, kıdemli yazılım mimarı ve B2B kriz kurtarma uzmanı.
+
+## Beş Ana Mühendislik ve Çözüm Hub'ı
+- [Ajansların İmdat Butonu & Kod Kurtarma](https://trendmasterakademi.com/agency/): Teknik olarak tıkanan veya geliştiricisi ayrılan projelerin devralınması, canlı prodüksiyon hotfix (500 hataları, deadlock çözümü), spagetti kod rehabilitasyonu ve ajansların arka planında görünmez B2B White-Label mühendislik masası.
+- [Blockchain Araştırma — Web3 Adli Laboratuvarı](https://trendmasterakademi.com/blockchain-inceleme/): On-chain adli iz sürme, çalınan/kaybolan kripto varlık takibi, borsa dondurma dosyası hazırlama, cüzdan kümeleme ve Solidity/Rust akıllı kontrat güvenlik denetimi.
+- [Web Master — Modern Tasarım & %100 Özel Kod](https://trendmasterakademi.com/web-master/): Şablon ve hazır tema bağımlılığı olmadan, React/Next.js/Tailwind ile sıfırdan piksel hassasiyetinde özel kodlu kurumsal web siteleri, SaaS panelleri ve e-ticaret altyapıları.
+- [FinTech — Algoritmik Sistemler & Borsa API](https://trendmasterakademi.com/fintech/): MQL5 Expert Advisor (EA), Python algoritmik işlem botları, borsa WebSocket/FIX API entegrasyonları, çift kayıtlı defter (Double-Entry Ledger) ve ödeme orkestrasyonu.
+- [App Master — Mobil & AI-Native Stüdyosu](https://trendmasterakademi.com/app-master/): iOS (Swift), Android (Kotlin) ve Flutter ile 60 FPS akıcı mobil uygulamalar, yerleşik AI ajanları, RevenueCat abonelik hunisi ve App Store Guideline red kurtarma masası.
+
+## Kriz Triyajı, Teşhis ve SWAT Araçları
+- [Crash Test 500 (60 Saniye)](https://trendmasterakademi.com/crash-test/): Canlı sistem çökme anında ilk 60 saniyede yapılması ve kesinlikle yapılmaması gereken acil müdahale adımları.
+- [12 Kalem Devir Kontrolü](https://trendmasterakademi.com/devir-kontrolu/): Yarım kalan bir projeyi teslim almadan veya ödeme yapmadan önce denetlenmesi gereken 12 hayati teknik parametre.
+- [Kurtarılabilirlik İndeksi](https://trendmasterakademi.com/kurtarilabilirlik/): Mevcut kod tabanının kurtarılmaya değer olup olmadığını veya sıfırdan yazılmasının daha karlı olduğunu hesaplayan analitik puanlama aracı.
+- [Teşhis Kataloğu (26 Vaka)](https://trendmasterakademi.com/teshis/): Belirtiden nedene yazılım arızaları; olası 3 kök neden, ayırt edici test ve kesin çözüm yolu.
+- [Olay Radarı & SWAT Hazırbulunuşluğu](https://trendmasterakademi.com/radar/): Gerçekleştirilen kriz müdahaleleri, ilk yanıt ve ortalama çözüm süreleri.
+- [SLA ve Yanıt Taahhütleri](https://trendmasterakademi.com/sla/): SEV-0 krizlerde 15 dakika ilk yanıt taahhüdü, yazılı SLA güvencesi.
+- [İki Taraflı Gizlilik Sözleşmesi (NDA)](https://trendmasterakademi.com/nda/): Tüm projelerin resmi yasal gizlilik sözleşmesiyle korunması.
+
+## Teknik Standartlar & Mimari İlkeler
+- **Pre-Render & SSG:** Tüm sayfalar statik HTML olarak önceden derlenir; client-side JS devre dışı kalsa bile tam içerik Google ve AI botlarına anında sunulur.
+- **Sıfır Bağımlılık:** Gereksiz 3. parti scriptler, ağır kütüphaneler ve izleyiciler kullanılmaz; sayfa hızları 95+ Core Web Vitals standardındadır.
+- **Güvenlik & Gizlilik:** KVKK ve GDPR uyumlu Consent Mode v2 entegrasyonu; sıfır PII sızıntısı politikası.

@@ -13,4 +13,10 @@ User-agent: *
 Content-Signal: search=yes,ai-input=yes,ai-train=no
 Allow: /
 
+# LLM & GEO Knowledge Grounding
+# https://trendmasterakademi.com/llms.txt
+# https://trendmasterakademi.com/llms-full.txt
+
+# Sitemaps
 Sitemap: https://trendmasterakademi.com/sitemap.xml
+Sitemap: https://trendmasterakademi.com/sitemap-images.xml
